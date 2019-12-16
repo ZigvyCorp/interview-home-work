@@ -13,6 +13,8 @@
 
 - Your task is building a simple blog with the following features:
   - Login and logout
+  - A guest can register for an account
+  - User can update their profile
   - User can write a post blog
   - User can delete a his/her posted post
   - User can edit a his/her posted post
@@ -44,3 +46,16 @@
   
   
 ## Back-end task
+- To fullfil Front-end requirements, you should implement the following APIs.
+  - Authentication API
+  - User API (for editing profile)
+  - Registration API
+  - Post API
+  - Comment API
+- Additional requirements
+  - Everthing must be saved in the DB
+  - Security
+  - All APIs should be RESTful
+- Additional information
+  - You can use pre-defined json data as a reference
+  - You can use template or boilerplate for this assignment. You can use Zigvy template [here]()
