@@ -34,9 +34,9 @@
 - Besides the main features above, here are additional requirements
   - Pagination or infinite scrolling is a must
   - Use our pre-defined json files to mock API calls
-  - Use redux for state management
-  - Use redux-saga to call mock API. Do not use redux-thunk :)
-  - Use redux-persist to persist data
+  - Use **redux** for state management
+  - Use **redux-saga** to call mock API
+  - Use **redux-persist** to persist data
   - You should have a route for each page
 
 - Additional information
@@ -53,9 +53,9 @@
   - Post API
   - Comment API
 - Additional requirements
-  - Everthing must be saved in the DB
   - Security
   - All APIs should be RESTful
+  - API should have a well design
 - Additional information
   - You can use pre-defined json data as a reference
   - You can use template or boilerplate for this assignment. You can use Zigvy template [here]()
