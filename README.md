@@ -24,6 +24,7 @@
 ** [Mockup here](/mockup/homepage.png) **
 
 - Your task is building a simple blog with the following features:
+  - Use AntD or Bootstrap **(Must have)**
   - Sign-in & Sign-up **(Mandatory for MeteorJS - Optional for ExpressJS)**
   - User can create/write a post blog **(Must have)**
     - Title
