@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Comment = new mongoose.Schema({
+const CommentSchema = new mongoose.Schema({
   owner: {
     type: String,
     required: true
@@ -19,4 +19,4 @@ const Comment = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('comment', Comment);
+module.exports = mongoose.model('Comment', CommentSchema);

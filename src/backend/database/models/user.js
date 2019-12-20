@@ -2,9 +2,10 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const { SALT_ROUND } = require('../../config');
 
-const User = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   username: {
     type: String,
+    unique: true,
     required: true
   },
   password: {
@@ -22,7 +23,7 @@ const User = new mongoose.Schema({
   }
 });
 
-User.pre('save', function (next) {
+UserSchema.pre('save', function (next) {
   let user = this;
 
   bcrypt.hash(user.password, SALT_ROUND)
@@ -36,7 +37,11 @@ User.pre('save', function (next) {
     });
 });
 
-User.method.comparePassword = function (candidatePassword) {
+UserSchema.method.findUserByUsername = async function (username) {
+  return await this.model('User').find({username: username});
+};
+
+UserSchema.method.comparePassword = function (candidatePassword) {
   return new Promise((resolve, reject) => {
     bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
       if (err) reject(err);
@@ -45,4 +50,4 @@ User.method.comparePassword = function (candidatePassword) {
   })
 }
 
-module.exports = mongoose.model("user", User);
+module.exports = mongoose.model("User", UserSchema);

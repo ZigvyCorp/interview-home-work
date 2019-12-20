@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Post = new mongoose.Schema({
+const PostSchema = new mongoose.Schema({
   owner: {
     type: String,
     required: true
@@ -22,4 +22,4 @@ const Post = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('post', Post);
+module.exports = mongoose.model('Post', PostSchema);
