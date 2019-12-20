@@ -1,6 +1,7 @@
 import React from "react";
 
-import { Button } from 'antd';
+import { Row, Col } from 'antd';
+
 class Home extends React.Component {
     componentDidMount()
     {
@@ -9,8 +10,11 @@ class Home extends React.Component {
     render()
     {
         return (
-            <div style={{marginTop: '50px', textAlign: 'center'}}>
-                <Button type="primary">Button</Button>
+            <div style={{marginTop: '50px'}}>
+                <Row gutter={16}>
+                <Col span={12}>col-12</Col>
+                <Col span={12}>col-12</Col>
+                </Row>
             </div>
         );
     }
