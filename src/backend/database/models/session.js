@@ -37,7 +37,7 @@ SessionSchema.methods.login = async function (username, password) {
 
   jwt.sign(payload, SECRET_KEY, { algorithm: 'HS256' }, (err, token) => {
     if (err) {
-      // TODO
+      throw new Error(err);
     }
 
     // Save new session to db
@@ -46,7 +46,7 @@ SessionSchema.methods.login = async function (username, password) {
     }).then(newSession => {
       if (newSession) return token;
     }).catch(err => {
-      // TODO
+      throw new Error(err);
     })
   });
 }
