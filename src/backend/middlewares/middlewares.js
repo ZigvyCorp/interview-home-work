@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { SECRET_KEY } = require('../config');
 const Session = require('../database/models/session');
+const PostSchema = require('../database/models/post');
 
 const isAuthenticated = function (req, res, next) {
     if (typeof req.headers.authentication === 'undefined') {
@@ -18,7 +19,7 @@ const isAuthenticated = function (req, res, next) {
     }
 
     const token = authenticationParts[1];
-    jwt.verify(token, SECRET_KEY, { algorithms: 'HS256' }, err => {
+    jwt.verify(token, SECRET_KEY, { algorithms: 'HS256' }, (err, decoded) => {
         if (err) return res.status(401).json({ error: `Invalid token` });
 
         Session.findOne({ token: token })
@@ -30,6 +31,8 @@ const isAuthenticated = function (req, res, next) {
                 }
 
                 req.headers.session = session;
+                req.headers.username = decoded.username;
+
                 return next();
             }).catch(err => {
                 next(err);
@@ -38,4 +41,18 @@ const isAuthenticated = function (req, res, next) {
     })
 }
 
-module.exports = { isAuthenticated }
+const isPostAuthor = async function (req, res, next) {
+    // Check if user is the owner of the post
+    const postId = req.params.id;
+
+    try {
+        const targetPost = await PostSchema.findById(postId);
+        if (targetPost.owner !== req.headers.username) {
+            return res.status(403).send({ error: 'The current user is not the owner of the target post' });
+        }
+        return next();
+    } catch (err) {
+        next(err);
+    }
+}
+module.exports = { isAuthenticated, isPostAuthor }
