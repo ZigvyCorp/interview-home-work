@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const { SECRET_KEY } = require('../config');
 const Session = require('../database/models/session');
 const PostSchema = require('../database/models/post');
+const CommentSchema = require('../database/models/comment');
 
 const isAuthenticated = function (req, res, next) {
     if (typeof req.headers.authentication === 'undefined') {
@@ -55,4 +56,19 @@ const isPostAuthor = async function (req, res, next) {
         next(err);
     }
 }
-module.exports = { isAuthenticated, isPostAuthor }
+
+
+// TODO: have not tested
+const isCommentAuthor = async function (req, res, next) {
+    const commentId = req.params.id;
+    try {
+        const targetComment = await CommentSchema.findById(commentId);
+        if (targetComment.owner !== req.headers.username) {
+            return res.status(403).send({ error: 'The current user is not the owner of the target comment' });
+        }
+        return next();
+    } catch (err) {
+        next(err);
+    }
+}
+module.exports = { isAuthenticated, isPostAuthor, isCommentAuthor }
