@@ -1,5 +1,5 @@
 const express = require('express');
-const { isAuthenticated } = require('../../../middlewares');
+const { isAuthenticated } = require('../../../middlewares/middlewares');
 const UserSchema = require('../../../database/models/user');
 const SessionRouter = express.Router();
 
