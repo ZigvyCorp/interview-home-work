@@ -38,7 +38,10 @@ UserSchema.pre('save', function (next) {
 });
 
 UserSchema.methods.register = async function(username, password) {
-  return await this.model('User').create({username: username, password: password});
+  const user = await this.findUserByUsername(username);
+  if (user && user.length !== 0) return "The username was duplicated";
+  await this.model('User').create({username: username, password: password});
+  return "The username is registered";
 }
 
 UserSchema.methods.findUserByUsername = async function (username) {
