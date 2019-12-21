@@ -19,7 +19,7 @@ const isAuthenticated = function (req, res, next) {
 
     const token = authenticationParts[1];
     jwt.verify(token, SECRET_KEY, { algorithms: 'HS256' }, err => {
-        if (err) return res.status(401).json({ error: `Not authenticated - ${err}` });
+        if (err) return res.status(401).json({ error: `Invalid token` });
 
         Session.findOne({ token: token })
             .then(session => {
@@ -32,8 +32,8 @@ const isAuthenticated = function (req, res, next) {
                 req.headers.session = session;
                 return next();
             }).catch(err => {
+                next(err);
                 throw new Error(err);
-                return next(err);
             });
     })
 }

@@ -24,8 +24,15 @@ SessionRouter.post('/login', (req, res, next) => {
     });
 });
 
-SessionRouter.get('/logout', isAuthenticated, (req, res, next) => {
-    
+SessionRouter.get('/logout', isAuthenticated, async (req, res, next) => {
+    try {
+        const session = req.headers.session;
+        session.logout();
+        return res.send({msg: 'Logged out successfully'})
+    } catch (err) {
+        next(err)
+        throw new Error(err);
+    }
 })
 
 module.exports = SessionRouter;

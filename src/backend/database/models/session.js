@@ -18,7 +18,7 @@ const SessionSchema = new mongoose.Schema({
 SessionSchema.methods.logout = async function () {
   let session = this;
   session.isLogout = true;
-  session.save();
+  return await session.save();
 }
 
 SessionSchema.methods.login = async function (username, password) {
