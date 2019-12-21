@@ -37,11 +37,15 @@ UserSchema.pre('save', function (next) {
     });
 });
 
-UserSchema.method.findUserByUsername = async function (username) {
+UserSchema.methods.register = async function(username, password) {
+  return await this.model('User').create({username: username, password: password});
+}
+
+UserSchema.methods.findUserByUsername = async function (username) {
   return await this.model('User').find({username: username});
 };
 
-UserSchema.method.comparePassword = function (candidatePassword) {
+UserSchema.methods.comparePassword = function (candidatePassword) {
   return new Promise((resolve, reject) => {
     bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
       if (err) reject(err);
