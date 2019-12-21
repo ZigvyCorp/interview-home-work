@@ -12,9 +12,7 @@ require('./routes')(app);
 
 // Preference: https://expressjs.com/en/guide/error-handling.html
 // Custom error handlers must be defined below require("./routes")(app)
-// eslint-disable-next-line prefer-arrow-callback
-app.use(function (err, _req, res, _next) {
-  // eslint-disable-next-line quotes
+app.use(function (err, req, res, next) {
   res.status(500).send('Something wrong with the server, please try it later!');
   throw err;
 });
