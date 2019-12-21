@@ -15,40 +15,52 @@ const SessionSchema = new mongoose.Schema({
   }
 });
 
-SessionSchema.methods.logout = function () {
+SessionSchema.methods.logout = async function () {
   let session = this;
   session.isLogout = true;
   session.save();
 }
 
 SessionSchema.methods.login = async function (username, password) {
-  let token = '';
-  // Query user by username
-  const user = await UserSchema.findUserByUsername(username);
-  if (typeof user === 'undefined') return token;
-
-  // Compare password
-  if (!user.comparePassword(password)) return token;
-
-  // Generate token
-  const payload = {
-    username: user.username
-  };
-
-  jwt.sign(payload, SECRET_KEY, { algorithm: 'HS256' }, (err, token) => {
-    if (err) {
-      throw new Error(err);
+  return new Promise(async (resolve, reject) => {
+    let token = '';
+    // Query user by username
+    const userSchema = new UserSchema();
+    const userArray = await userSchema.findUserByUsername(username);
+    if (typeof userArray === 'undefined' || userArray.length !== 1) {
+      return resolve(token);
     }
 
-    // Save new session to db
-    this.model('Session').create({
-      token: token
-    }).then(newSession => {
-      if (newSession) return token;
-    }).catch(err => {
-      throw new Error(err);
+    const user = userArray[0];
+    // Compare password
+    userSchema.comparePassword(password, user.password).then(isMatch => {
+      if (!isMatch) {
+        return resolve(token);
+      }
+
+      // Generate token
+      const payload = {
+        username: user.username,
+        issue_at: Date.now()
+      };
+
+      jwt.sign(payload, SECRET_KEY, { algorithm: 'HS256' }, (err, token) => {
+        if (err) {
+          return reject(err);
+        }
+
+        // Save new session to db
+        this.model('Session').create({
+          token: token
+        }).then(newSession => {
+          if (newSession) resolve(token);
+        }).catch(err => {
+          // throw new Error(err);
+          reject(err);
+        });
+      });
     })
-  });
+  })
 }
 
 module.exports = mongoose.model('Session', SessionSchema);

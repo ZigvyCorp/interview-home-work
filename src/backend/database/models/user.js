@@ -48,9 +48,9 @@ UserSchema.methods.findUserByUsername = async function (username) {
   return await this.model('User').find({username: username});
 };
 
-UserSchema.methods.comparePassword = function (candidatePassword) {
+UserSchema.methods.comparePassword = function (candidatePassword, hashedPassword) {
   return new Promise((resolve, reject) => {
-    bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+    bcrypt.compare(candidatePassword, hashedPassword, (err, isMatch) => {
       if (err) reject(err);
       resolve(isMatch);
     })
