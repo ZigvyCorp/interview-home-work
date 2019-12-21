@@ -26,4 +26,8 @@ Endpoints:
     Headers example: { key: Authentication, value: TOKEN}
 - Get post by id:
     GET /api/posts/:id
+- Update post by id:
+    PUT /api/posts/:id
+    Body example: { "title": "The very first post", "content": "Dummy content", "tags": ["funny", "LOL"] }
+    Headers example: { key: Authentication, value: TOKEN}
 

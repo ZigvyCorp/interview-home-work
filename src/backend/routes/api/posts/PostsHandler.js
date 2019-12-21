@@ -42,11 +42,13 @@ PostsRouter.put('/:id', [isAuthenticated, isPostAuthor], async (req, res, next) 
     const id = req.params.id;
     const title = req.body.title;
     const content = req.body.content;
+    const tags = req.body.tags;
 
     try {
         const post = await PostSchema.findById(id);
         if (typeof title !== 'undefined') post.title = title;
         if (typeof content !== 'undefined') post.content = content;
+        if (typeof tags !== 'undefined') post.tags = tags;
         await post.save();
         return res.send({ msg: 'The post is updated successfully' });
     } catch (err) {
