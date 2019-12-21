@@ -16,3 +16,6 @@ Endpoints:
 - Login:
     POST /api/sessions/login
     Body example: { username: 'user1', password: 'password1'}
+- Logout:
+    GET /api/sessions/logout
+    Headers example: { key: Authentication, value: TOKEN}
