@@ -34,6 +34,7 @@ PostsRouter.get('/:id', async (req, res, next) => {
     }
 });
 
+// TODO: have not implemented
 PostsRouter.get('/', (req, res, next) => {
     return res.send({ msg: "Haven't implemented yet" });
 });
@@ -46,6 +47,8 @@ PostsRouter.put('/:id', [isAuthenticated, isPostAuthor], async (req, res, next) 
 
     try {
         const post = await PostSchema.findById(id);
+        if (typeof post === 'undefined') return res.status(400).send({ error: 'The target post id does not exist' });
+
         if (typeof title !== 'undefined') post.title = title;
         if (typeof content !== 'undefined') post.content = content;
         if (typeof tags !== 'undefined') post.tags = tags;
@@ -56,9 +59,13 @@ PostsRouter.put('/:id', [isAuthenticated, isPostAuthor], async (req, res, next) 
     }
 });
 
+// TODO: have not tested
 PostsRouter.delete('/:id', [isAuthenticated, isPostAuthor], async (req, res, next) => {
     const id = req.params.id;
     try {
+        const post = await PostSchema.findById(id);
+        if (typeof post === 'undefined') return res.status(400).send({ error: 'The target post id does not exist' });
+
         await PostSchema.deleteOne({ _id: id });
         return res.send({ msg: 'The post is deleted successfully' });
     } catch (err) {
