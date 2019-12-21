@@ -7,10 +7,11 @@ const PostSchema = new mongoose.Schema({
   },
   title: {
     type: String,
-    required: true
+    default: ''
   },
   content: {
-    type: String
+    type: String,
+    default: ''
   },
   created_at: {
     type: Date,

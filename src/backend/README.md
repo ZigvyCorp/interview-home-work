@@ -19,3 +19,11 @@ Endpoints:
 - Logout:
     GET /api/sessions/logout
     Headers example: { key: Authentication, value: TOKEN}
+
+- Create a new post:
+    POST /api/posts
+    Body example: { "title": "The very first post", "content": "Dummy content", "tags": ["funny", "LOL"] }
+    Headers example: { key: Authentication, value: TOKEN}
+- Get post by id:
+    GET /api/posts/:id
+

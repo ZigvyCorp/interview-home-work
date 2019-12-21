@@ -1,7 +1,7 @@
 const express = require('express');
 const PostsRouter = express.Router();
 const PostSchema = require('../../../database/models/post');
-const {isAuthenticated, isPostAuthor} = require('../../../middlewares/middlewares');
+const { isAuthenticated, isPostAuthor } = require('../../../middlewares/middlewares');
 
 PostsRouter.post('/', isAuthenticated, async (req, res, next) => {
     const title = req.body.title;
@@ -16,18 +16,26 @@ PostsRouter.post('/', isAuthenticated, async (req, res, next) => {
     }
 });
 
-PostsRouter.get('/', (req, res, next) => {
-
-});
-
 PostsRouter.get('/:id', async (req, res, next) => {
     const id = req.params.id;
     try {
         const post = await PostSchema.findById(id);
-        return res.send({ data: post });
+        const returnValues = {
+            id: post._id,
+            owner: post.owner,
+            title: post.title,
+            content: post.content,
+            tags: post.tags,
+            created_at: post.created_at
+        }
+        return res.send({ data: returnValues });
     } catch (err) {
         next(err);
     }
+});
+
+PostsRouter.get('/', (req, res, next) => {
+    return res.send({ msg: "Haven't implemented yet" });
 });
 
 PostsRouter.put('/:id', [isAuthenticated, isPostAuthor], async (req, res, next) => {
@@ -49,7 +57,7 @@ PostsRouter.put('/:id', [isAuthenticated, isPostAuthor], async (req, res, next) 
 PostsRouter.delete('/:id', [isAuthenticated, isPostAuthor], async (req, res, next) => {
     const id = req.params.id;
     try {
-        await PostSchema.deleteOne({_id: id});
+        await PostSchema.deleteOne({ _id: id });
         return res.send({ msg: 'The post is deleted successfully' });
     } catch (err) {
         next(err);
