@@ -1,23 +1,34 @@
-import React from "react";
+import React from "react"
 
-import { Row, Col } from 'antd';
+import { Row, Col, Card, Divider,Pagination, Skeleton, Icon, Avatar } from 'antd'
+
+import {getPostsAPI} from '../services/api/post'
+
+import {connect} from 'react-redux'
+
+import { Switch, Route, Redirect, withRouter } from "react-router-dom"
+
+import {getPostsAction} from '../actions/post.action'
+
+import PostsView from '../components/posts_view/posts_view'
+
+const { Meta } = Card
+
+
+
 
 class Home extends React.Component {
-    componentDidMount()
-    {
-        document.title = "Trang chủ | Zigvy blog app"
-    }
+
     render()
     {
         return (
-            <div style={{marginTop: '50px'}}>
-                <Row gutter={16}>
-                <Col span={12}>col-12</Col>
-                <Col span={12}>col-12</Col>
-                </Row>
-            </div>
+                <Switch>
+                    <Route exact
+                        path='/home/view/:page'
+                        component={PostsView}/>
+                    <Redirect from='/home' to='/home/view/1' />
+                </Switch>
         );
     }
 }
-
-export default Home
+export default withRouter(Home);

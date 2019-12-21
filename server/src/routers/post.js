@@ -22,7 +22,8 @@ router.post('/post/view/:page', async (req, res) => {
                     {
                         posts,
                         current: parseInt(page),
-                        pages: Math.ceil(count / perPage)
+                        pages: Math.ceil(count / perPage),
+                        total: parseInt(count)
                     }
                 })
             })
@@ -44,7 +45,8 @@ router.post('/post/create',auth,async(req, res) => {
             owner: req.user._id,
             title: req.body.title,
             content: req.body.content,
-            tag: req.body.tag
+            tag: req.body.tag,
+            summary: req.body.summary
         })
         await post.save()
         res.status(200).json({"post_created": true})

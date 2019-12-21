@@ -54,7 +54,7 @@ userSchema.methods.generateAuthToken = async function() {
 
 userSchema.statics.findByCredentials = async (email, password) => {
     // Search for a user by email and password.
-    const user = await User.findOne({ email} )
+    const user = await User.findOne({email})
     if (!user) {
         throw new Error({ error: 'Tài khoản và mật khẩu không đúng' })
     }
@@ -62,6 +62,7 @@ userSchema.statics.findByCredentials = async (email, password) => {
     if (!isPasswordMatch) {
         throw new Error({ error: 'Tài khoản và mật khẩu không đúng' })
     }
+    
     return user
 }
 
