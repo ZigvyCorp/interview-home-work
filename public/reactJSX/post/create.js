@@ -28,7 +28,7 @@ class CreatePost extends React.Component {
     onSubmit = (event) => {
         event.preventDefault();
         var target = event.target;
-        this.state.content = quill.container.innerHTML
+        this.state.content = quill.root.innerHTML
         console.log(this.state);
         if (!this.state.title || !this.state.content) {
             showNotification(NotificationType.WARNING, $(target), ErrorMessage.Fill_Param_Required, 3000);

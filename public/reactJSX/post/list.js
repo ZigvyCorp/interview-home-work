@@ -4,8 +4,36 @@ class ListPost extends React.Component {
         this.listPost = [];
     }
 
+    test = () => {
+        $.ajax({
+            url: '/api/post',
+            type: 'get',
+            success: function (res) {
+                $('.list-group').find('.list-group-item').remove();
+                if (res.posts.length) {
+                    for (var i = 0; i < res.posts.length; i++) {
+                        var post = res.posts[i];
+                        var html = '<a id="' + post.id + '" href="/post/' + post.id + '" class="list-group-item list-group-item-action flex-column align-items-start">' +
+                        '<div class="d-flex w-100 justify-content-between">' +
+                        '<h5 class="mb-1">' + post.title + (post.user ? ' - Author: ' + post.user.name : '') + '</h5>' +
+                        '<small>' + getHourMinuteFromTimestamp(post.createdAt) + ' ' + getDateMonthYearFromTimeStamp(post.createdAt) + '</small>' +
+                        '</div>' +
+                        '<p className="mb-1">' + post.content + '</p>' +
+                        '</a>'
+                        $('.list-group').append(html)
+                    }
+                } else {
+                    $('.list-group').append('<div><h4>We dont have any post</h4></div>')
+                }
+            },
+            error: function (res) {
+                console.log(res);
+                showNotification(NotificationType.DANGER, $('.list-post'), ErrorMessage.AN_ERROR_OCCURRED, 3000);
+            }
+        });
+    }
+
     render () {
-        console.log(navigation);
         return (
             <div className="container list-post">
                 <div className="card-header">
@@ -44,6 +72,7 @@ class ListPost extends React.Component {
                         <small className="text-muted">Donec id elit non mi porta.</small>
                     </a>
                 </div>
+                {this.test()}
             </div>
         )
     }

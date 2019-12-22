@@ -33,7 +33,7 @@ var CreatePost = function (_React$Component) {
         _this.onSubmit = function (event) {
             event.preventDefault();
             var target = event.target;
-            _this.state.content = quill.container.innerHTML;
+            _this.state.content = quill.root.innerHTML;
             console.log(_this.state);
             if (!_this.state.title || !_this.state.content) {
                 showNotification(NotificationType.WARNING, $(target), ErrorMessage.Fill_Param_Required, 3000);

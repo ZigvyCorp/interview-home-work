@@ -39,3 +39,25 @@ function showNotification (type, parent, message, time) {
         }, time)
     }
 }
+
+/**
+ * Return format mm:hh from timeStamp
+ * @param {number} timestamp 
+ */
+function getHourMinuteFromTimestamp (timestamp) {
+    var date = new Date(timestamp)
+    var hour = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours()
+    var minute = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes()
+    var str = hour + ':' + minute
+    return str
+}
+
+/**
+ * Return format dd/mm/YYYY from timeStamp
+ * @param {number} timestamp 
+ */
+function getDateMonthYearFromTimeStamp (timestamp) {
+    var date = new Date(timestamp)
+    var str = ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() + 1)).slice(-2) + '/' + date.getFullYear()
+    return str
+}

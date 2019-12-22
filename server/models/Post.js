@@ -22,8 +22,8 @@ var schema = new mongoose.Schema({
         required: true
     },
     createdAt: {
-        type: String,
-        default: ''
+        type: Number,
+        default: Date.now()
     },
     tags: {
         type: Array,
