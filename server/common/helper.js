@@ -16,7 +16,16 @@ function generateRandomID () {
     return parseInt(Date.now().toString() + generateRandomNumber(1, 10000).toString(), 10)
 }
 
+async function  checkExistInModel(Model, objQuery) {
+    let check = await Model.findOne(objQuery);
+    if (check) {
+        return true;
+    }
+    return false;
+}
+
 module.exports = {
     generateRandomNumber: generateRandomNumber,
-    generateRandomID: generateRandomID
+    generateRandomID: generateRandomID,
+    checkExistInModel: checkExistInModel
 };

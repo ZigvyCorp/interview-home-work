@@ -6,12 +6,32 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2",
     "cookie-parser": "~1.4.4",
+    "crypto-js": "^3.1.9-1",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
+    "ejs-locals": "^1.0.2",
     "express": "~4.16.1",
+    "express-ejs-layouts": "^2.5.0",
     "http-errors": "~1.6.3",
     "mongoose": "^5.8.1",
-    "morgan": "~1.9.1"
-  }
+    "morgan": "~1.9.1",
+    "react-redux": "^7.1.3"
+  },
+  "description": "- This is a **Small Project Test** for online interview at Zigvy Corp. This assignment has 2 main tasks: **Front-end** and **Back-end**. You will be required to complete each tasks with your applied position. For short, you can check the list below\r   - Full-stack engineer: Both Front-end and Back-end\r   - Front-end engineer: Front-end only\r   - Back-end engineer: Complete basic layout of Front-end task and Back-end task",
+  "main": "app.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Debung/interview-home-work.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Debung/interview-home-work/issues"
+  },
+  "homepage": "https://github.com/Debung/interview-home-work#readme"
 }

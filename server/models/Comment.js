@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
-var helper = require('helper');
+var Helper = require('Helper');
 
 var schema = new mongoose.Schema({
     id: {
         type: String,
-        default: helper.generateRandomID(),
+        default: Helper.generateRandomID(),
         required: true
     },
     owner: {

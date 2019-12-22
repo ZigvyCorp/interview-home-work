@@ -76,3 +76,31 @@
 - Additional information
   - You can use pre-defined json data as a reference
   - NodeJS & ExpressJS boilerplate or other is accepted
+
+## Documentation
+- views and public -> Frontend
+- routes -> Connect fronntend with backend
+- server -> backend
+- data -> data for backup or do anything else related to data
+- mockup -> don't know how to use :)
+- app.js file and bin folder -> config nodejs server
+- private -> Only server can access to read this folder
+
+**Frontend**
+  You have to install babel for convert JSX -> more comfotable browser file. More infomation in here: https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+    - Install babel:  Step 1: Run npm init -y (if it fails, here’s a fix)
+                      Step 2: Run npm install babel-cli@6 babel-preset-react-app@3
+    - Run this command in terminal to start convert: npx babel --watch public/reactJSX --out-dir public/components --presets react-app/prod
+      We will code JSX in reactJSX folder and convert to components folder
+
+**Backend**
+  API Structure
+    User API:
+      - Create user:
+        api: '/api/user'
+        method: post
+        data: {
+          name: '',
+          username: '',
+          password: ''
+        }
