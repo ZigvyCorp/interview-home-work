@@ -1,0 +1,29 @@
+.short-post {
+  margin-bottom: 20px;
+}
+
+.short-post .toggle-reply {
+  cursor: pointer;
+}
+.short-post .short-post--title {
+  text-align: center;
+}
+.short-post .short-post--description {
+  text-align: left;
+  font-size: 20px;
+}
+
+.short-post .short-post--infor {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.short-post .short-post--infor > div:nth-child(2) {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.short-post .short-post--infor .ant-tag {
+  margin-bottom: 8px;
+}

@@ -1,0 +1,90 @@
+.nav-bar {
+  height: 56px;
+  margin: 8px 3px;
+}
+.nav-bar .nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 3px solid black;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24px;
+}
+
+.nav-bar .logo-box {
+  position: relative;
+  padding-left: 70px;
+}
+.nav-bar .logo-box::after {
+  content: "";
+  height: 50px;
+  width: 50px;
+  background-color: #ddd;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(0px, -50%);
+}
+
+.nav-bar .title {
+  display: block;
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  padding: 0px 60px;
+  border-left: 3px solid black;
+  border-right: 3px solid black;
+  background-color: #ccc;
+  color: #000;
+}
+.nav-bar .title:hover {
+  color: #777;
+}
+.nav-bar .title::after,
+.nav-bar .title::before {
+  content: "";
+  width: 0; 
+  height: 0; 
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.nav-bar .title::after {
+  border-top: 15px solid black;
+  
+}
+.nav-bar .title::before {
+  border-top: 15px solid #ccc;
+  transform: translate(-50%, -4px);
+  z-index: 999;
+}
+
+.nav-bar .account-box {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.nav-bar .account-box .account-name {
+  line-height: 50px;
+  height: 50px;
+  padding: 0 15px 0 8px;
+}
+
+.nav-bar .login-box {
+  margin-right: 8px;
+}
+
+.nav-bar .nav-item .nav-link {
+  font-weight: bold;
+  cursor: pointer;
+  transition: all .3s;
+}
+.nav-bar .nav-item .nav-link:hover {
+  color: #777;
+}

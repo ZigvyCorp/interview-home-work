@@ -1,0 +1,6 @@
+@import '~antd/dist/antd.css';
+
+.container {
+  max-width: 1140px;
+  margin: 40px auto 30px auto;
+}
