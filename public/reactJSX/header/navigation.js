@@ -1,39 +1,49 @@
 class Navigation extends React.Component {
-    render() {
-        return (
-          <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a className="navbar-brand" href="#">
-              <img src={BrandLogo} width="50" height="50" alt=""/>
-            </a>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span className="navbar-toggler-icon"></span>
-            </button>
+  constructor (props) {
+    super(props);
+    this.authencation = $('#verify-site').data('authencation');
+    this.user = $('#verify-site').data('user');
+  }
 
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul className="navbar-nav mr-auto">
-                <li className="nav-item active">
-                  <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/aboutUs">About us</a>
-                </li>
-              </ul>
-              <form className="form-inline my-2 my-lg-0 mr-auto">
-                <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-                <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
-              <ul className="navbar-nav mr-left">
-                <li className="nav-item">
-                  <a className="nav-link" href="/signin">Sign In</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/signup">Sign Up</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        )
-    }
+  render() {
+      return (
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a className="navbar-brand" href="#">
+            <img src={BrandLogo} width="50" height="50" alt=""/>
+          </a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item active">
+                <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="/aboutUs">About us</a>
+              </li>
+            </ul>
+            <form className="form-inline my-2 my-lg-0 mr-auto">
+              <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+              <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <ul className="navbar-nav mr-left">
+              <li className="nav-item">
+                <a className="nav-link" href={this.authencation ? '/api/user/' + this.user.username : '/signin'}>
+                  {this.authencation ? 'Profile' : 'Sign In'}
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href={this.authencation ? '/api/logout' : '/signup'}>
+                  {this.authencation ? 'Logout' : 'Sign Up'}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      )
+  }
 }
 
 domContainer = document.querySelector('#header_navigation');

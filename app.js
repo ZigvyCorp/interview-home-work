@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 engine = require('ejs-locals');
+var session = require('express-session')
+var config = require('./private/config')
 
 var adminRouter = require('./routes/admin');
 var usersRouter = require('./routes/users');
@@ -26,6 +28,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  name: 'zigvy interview',
+  secret: config.secretKeyToken,
+  secure: true,
+  httpOnly: true,
+  resave: false,
+  saveUninitialized: true
+}))
 
 app.use('/admin', adminRouter);
 app.use('/', usersRouter);

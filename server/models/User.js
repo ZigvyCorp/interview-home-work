@@ -30,6 +30,10 @@ var schema = new mongoose.Schema({
     createdAt: {
         type: Number,
         default: 0
+    },
+    loginTime: {
+        type: Number,
+        default: Date.now()
     }
 });
 
@@ -37,8 +41,8 @@ schema.methods.hashPassword = function (password) {
     try {
         if (password) {
             var hashPassword = CryptoJS.AES.encrypt(password, config.secretKeyLv1).toString();
-            var userPrivateInfo = {password: hashPassword, username: this.username}
-            var finalPassword = CryptoJS.AES.encrypt(JSON.stringify(userPrivateInfo), config.secretKeyLv2)
+            var userPrivateInfo = {password: hashPassword, username: this.username};
+            var finalPassword = CryptoJS.AES.encrypt(JSON.stringify(userPrivateInfo), config.secretKeyLv2).toString();
             return finalPassword;
         }
         return false;
@@ -55,8 +59,8 @@ schema.methods.authencation = function (password) {
         var userPrivateInfo = JSON.parse(plaintext);
         if (this.username === userPrivateInfo.username) {
             var hashPassword = userPrivateInfo.password;
-            bytes = CryptoJS.AES.decrypt(hashPassword, config.secretKeyLv1).toString();
-            var decryptPassword = bytes.toString(crypto.enc.Utf8);
+            var bytes1 = CryptoJS.AES.decrypt(hashPassword, config.secretKeyLv1)
+            var decryptPassword = bytes1.toString(CryptoJS.enc.Utf8);
             return decryptPassword === password;
         }
         return false

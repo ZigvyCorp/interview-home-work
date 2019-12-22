@@ -3,11 +3,8 @@ class RegisterForm extends React.Component {
     constructor (props) {
         super(props);
         this.state = {
-            name: '',
             username: '',
-            password: '',
-            confirmpassword: '',
-            agreeTerm: ''
+            password: ''
         }
     }
 
@@ -30,15 +27,11 @@ class RegisterForm extends React.Component {
     onSubmit = (event) => {
         event.preventDefault();
         var target = event.target;
-        if (!this.state.password || !this.state.username || !this.state.confirmpassword) {
+        if (!this.state.password || !this.state.username) {
             showNotification(NotificationType.WARNING, $(target), ErrorMessage.Fill_Param_Required, 3000);
-        } else if (this.state.password !== this.state.confirmpassword) {
-            showNotification(NotificationType.WARNING, $(target), ErrorMessage.Password_Not_Equal, 3000);
-        } else if (!this.state.agreeTerm) {
-            showNotification(NotificationType.WARNING, $(target), ErrorMessage.Agree_Term, 3000);
         } else {
             $.ajax({
-                url: '/api/user',
+                url: '/api/login',
                 type: 'post',
                 dataType: 'json',
                 data: this.state,
@@ -77,11 +70,6 @@ class RegisterForm extends React.Component {
                                         <form className="form-horizontal m-t-20" onSubmit={this.onSubmit}>
                                             <div className="form-group row ">
                                                 <div className="col-12 ">
-                                                    <input onChange={this.onChange} value={this.state.name} name="name" className="form-control form-control-lg" type="text" required=" " placeholder="Name"/>
-                                                </div>
-                                            </div>
-                                            <div className="form-group row ">
-                                                <div className="col-12 ">
                                                     <input onChange={this.onChange} value={this.state.username} name="username" className="form-control form-control-lg" type="text" required=" " placeholder="Username"/>
                                                 </div>
                                             </div>
@@ -90,27 +78,9 @@ class RegisterForm extends React.Component {
                                                     <input onChange={this.onChange} value={this.state.password} name="password" className="form-control form-control-lg" type="password" required=" " placeholder="Password"/>
                                                 </div>
                                             </div>
-                                            <div className="form-group row">
-                                                <div className="col-12 ">
-                                                    <input onChange={this.onChange} value={this.state.confirmpassword} name="confirmpassword" className="form-control form-control-lg" type="password" required=" " placeholder="Confirm Password"/>
-                                                </div>
-                                            </div>
-                                            <div className="form-group row">
-                                                <div className="col-md-12 ">
-                                                    <div className="custom-control custom-checkbox">
-                                                        <input onChange={this.onChange} value={this.state.agreeTerm} name="agreeTerm" type="checkbox" className="custom-control-input" id="customCheck1"/>
-                                                        <label className="custom-control-label" htmlFor="customCheck1">I agree to all <a href="#">Terms</a></label>
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <div className="form-group text-center ">
                                                 <div className="col-xs-12 p-b-20 ">
-                                                    <button className="btn btn-block btn-lg btn-info " type="submit ">SIGN UP</button>
-                                                </div>
-                                            </div>
-                                            <div className="form-group m-b-0 m-t-10 ">
-                                                <div className="col-sm-12 text-center ">
-                                                    Already have an account? <a href="/signin" className="text-info m-l-5 "><b>Sign In</b></a>
+                                                    <button className="btn btn-block btn-lg btn-info " type="submit ">SIGN IN</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -127,5 +97,5 @@ class RegisterForm extends React.Component {
 
 $('#header_navigation').hide()
 
-domContainer = document.querySelector('#form_register');
+domContainer = document.querySelector('#form_login');
 ReactDOM.render(e(RegisterForm), domContainer);

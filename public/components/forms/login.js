@@ -33,15 +33,11 @@ var RegisterForm = function (_React$Component) {
         _this.onSubmit = function (event) {
             event.preventDefault();
             var target = event.target;
-            if (!_this.state.password || !_this.state.username || !_this.state.confirmpassword) {
+            if (!_this.state.password || !_this.state.username) {
                 showNotification(NotificationType.WARNING, $(target), ErrorMessage.Fill_Param_Required, 3000);
-            } else if (_this.state.password !== _this.state.confirmpassword) {
-                showNotification(NotificationType.WARNING, $(target), ErrorMessage.Password_Not_Equal, 3000);
-            } else if (!_this.state.agreeTerm) {
-                showNotification(NotificationType.WARNING, $(target), ErrorMessage.Agree_Term, 3000);
             } else {
                 $.ajax({
-                    url: '/api/user',
+                    url: '/api/login',
                     type: 'post',
                     dataType: 'json',
                     data: _this.state,
@@ -65,11 +61,8 @@ var RegisterForm = function (_React$Component) {
         };
 
         _this.state = {
-            name: '',
             username: '',
-            password: '',
-            confirmpassword: '',
-            agreeTerm: ''
+            password: ''
         };
         return _this;
     }
@@ -121,15 +114,6 @@ var RegisterForm = function (_React$Component) {
                                                 React.createElement(
                                                     'div',
                                                     { className: 'col-12 ' },
-                                                    React.createElement('input', { onChange: this.onChange, value: this.state.name, name: 'name', className: 'form-control form-control-lg', type: 'text', required: ' ', placeholder: 'Name' })
-                                                )
-                                            ),
-                                            React.createElement(
-                                                'div',
-                                                { className: 'form-group row ' },
-                                                React.createElement(
-                                                    'div',
-                                                    { className: 'col-12 ' },
                                                     React.createElement('input', { onChange: this.onChange, value: this.state.username, name: 'username', className: 'form-control form-control-lg', type: 'text', required: ' ', placeholder: 'Username' })
                                                 )
                                             ),
@@ -144,38 +128,6 @@ var RegisterForm = function (_React$Component) {
                                             ),
                                             React.createElement(
                                                 'div',
-                                                { className: 'form-group row' },
-                                                React.createElement(
-                                                    'div',
-                                                    { className: 'col-12 ' },
-                                                    React.createElement('input', { onChange: this.onChange, value: this.state.confirmpassword, name: 'confirmpassword', className: 'form-control form-control-lg', type: 'password', required: ' ', placeholder: 'Confirm Password' })
-                                                )
-                                            ),
-                                            React.createElement(
-                                                'div',
-                                                { className: 'form-group row' },
-                                                React.createElement(
-                                                    'div',
-                                                    { className: 'col-md-12 ' },
-                                                    React.createElement(
-                                                        'div',
-                                                        { className: 'custom-control custom-checkbox' },
-                                                        React.createElement('input', { onChange: this.onChange, value: this.state.agreeTerm, name: 'agreeTerm', type: 'checkbox', className: 'custom-control-input', id: 'customCheck1' }),
-                                                        React.createElement(
-                                                            'label',
-                                                            { className: 'custom-control-label', htmlFor: 'customCheck1' },
-                                                            'I agree to all ',
-                                                            React.createElement(
-                                                                'a',
-                                                                { href: '#' },
-                                                                'Terms'
-                                                            )
-                                                        )
-                                                    )
-                                                )
-                                            ),
-                                            React.createElement(
-                                                'div',
                                                 { className: 'form-group text-center ' },
                                                 React.createElement(
                                                     'div',
@@ -183,25 +135,7 @@ var RegisterForm = function (_React$Component) {
                                                     React.createElement(
                                                         'button',
                                                         { className: 'btn btn-block btn-lg btn-info ', type: 'submit ' },
-                                                        'SIGN UP'
-                                                    )
-                                                )
-                                            ),
-                                            React.createElement(
-                                                'div',
-                                                { className: 'form-group m-b-0 m-t-10 ' },
-                                                React.createElement(
-                                                    'div',
-                                                    { className: 'col-sm-12 text-center ' },
-                                                    'Already have an account? ',
-                                                    React.createElement(
-                                                        'a',
-                                                        { href: '/signin', className: 'text-info m-l-5 ' },
-                                                        React.createElement(
-                                                            'b',
-                                                            null,
-                                                            'Sign In'
-                                                        )
+                                                        'SIGN IN'
                                                     )
                                                 )
                                             )
@@ -221,5 +155,5 @@ var RegisterForm = function (_React$Component) {
 
 $('#header_navigation').hide();
 
-domContainer = document.querySelector('#form_register');
+domContainer = document.querySelector('#form_login');
 ReactDOM.render(e(RegisterForm), domContainer);
