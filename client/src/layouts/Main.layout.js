@@ -15,7 +15,12 @@ import '../App.css';
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
 
-import {history} from "../helpers/history.helpers"
+import LoginForm from "../views/LoginPage.views"
+import RegisterForm from "../views/RegisterPage.views"
+import PostCreate from "../views/PostCreate.view"
+
+import {PrivateRoute, PrivateNotTokenRoute} from "../components/Route/PrivateRoute";
+
 
 
 const switchRoutes = (
@@ -31,16 +36,17 @@ const switchRoutes = (
         );
       }
     })}
+    {/* ignore access to login,register if already logged in */}
+    <PrivateRoute path="/login" component={LoginForm} />
+    <PrivateRoute path="/register" component={RegisterForm} />
+
+    {/* if already logged in will access this page */}
+    <PrivateNotTokenRoute path="/create-post" component={PostCreate} />
+    
     <Redirect from="/" to="/home" />
   </Switch>
 );
 
-/*
-
-    <Route path={"/admin/changeviews"} component={ChangeView} />
-    <Redirect from="/admin" to="/admin/dashboard" />
-
-*/
 
 class Home extends React.Component {
   constructor(props) {
@@ -52,7 +58,6 @@ class Home extends React.Component {
   }
 
   render() {
-    //const { classes, ...rest } = this.props;
     return (
         <>
         <Layout>
@@ -67,10 +72,6 @@ class Home extends React.Component {
     );
   }
 }
-
-// Dashboard.propTypes = {
-//   classes: PropTypes.object.isRequired
-// };
 
 function mapStatetoProps(state)
 {

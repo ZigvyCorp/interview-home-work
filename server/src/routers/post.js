@@ -1,7 +1,6 @@
 const express = require('express')
 const auth = require('../middleware/auth')
 const Post = require('../models/Post')
-const User = require('../models/User')
 
 
 const router = express.Router()
@@ -28,6 +27,13 @@ router.post('/post/view/:page', async (req, res) => {
                 })
             })
         })
+})
+
+router.post('/post/all', async (req, res) => {
+    Post.find({},(error, posts) => {
+        if(error) return res.status(400).json({error})
+        res.status(200).json({posts})
+    })
 })
 
 router.post('/post/view/:id', async(req,res) => {

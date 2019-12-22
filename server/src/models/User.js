@@ -57,12 +57,10 @@ userSchema.statics.findByCredentials = async (email, password) => {
     if (!user) {
         throw new Error({ error: 'Tài khoản và mật khẩu không đúng' })
     }
-    console.log(user.password)
     const isPasswordMatch = await bcrypt.compare(password, user.password)
     if (!isPasswordMatch) {
         throw new Error({ error: 'Tài khoản và mật khẩu không đúng' })
     }
-    
     return user
 }
 

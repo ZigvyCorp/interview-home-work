@@ -21,30 +21,16 @@ service.interceptors.request.use(
     response => {
         // respond status 200
         if(response.status == 200) return response.data
-        
-        //another respond: remove token and go to home
-        if(localStorage.getItem('token')) localStorage.removeItem('token')
 
+        //another respond will remove all token (401, 400, 403)
+        localStorage.removeItem('token')
+        localStorage.removeItem('userData')
+        window.location.href='/home'
     },
     error => {
-      window.location.href = '/home'
-
+      return Promise.reject(error.message)
     }
   )
 
 
   export default service
-
-  /*
-
-      withCredentials: true,
-    credentials: 'same-origin',
-    mode: 'no-cors',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-      'Access-Control-Allow-Origin': '*'
-    }
-
-  */

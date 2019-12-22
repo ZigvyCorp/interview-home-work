@@ -1,14 +1,16 @@
 import React from "react";
 
-import { Row, Col, Card, Divider,Pagination, Skeleton, Icon, Avatar, Collapse, Tag } from 'antd';
+import { Row, Col, Card, Divider,Pagination, Collapse, Tag, Input } from 'antd';
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import {getPostsAction} from '../../actions/post.action'
 import {userAction} from '../../actions/user.action'
 import moment from 'moment'
 import {history} from '../../helpers/history.helpers'
-import ReactHtmlParser from 'react-html-parser';
+
 import {find} from 'lodash';
+
+//const { Search } = Input;
 
 
 const { Panel } = Collapse;
@@ -42,6 +44,11 @@ class Main extends React.Component {
         return data.name + ' - ' + data.email
 
     }
+    // load_search_post(search_key)
+    // {
+    //     let {dispatch} = this.props
+    //     console.log(search_key)
+    // }
     componentDidMount()
     {
         let {page} = this.props.match.params
@@ -52,13 +59,17 @@ class Main extends React.Component {
     render()
     {
         const {postReducer, userReducer} = this.props.state
-        //postReducer.posts.posts
         return (
             <div style={{marginTop: '50px'}}>
                 {(!postReducer.loading && !userReducer.users.loadding) ?
                 
                     (postReducer.posts.posts.length > 0) ? 
                     <>
+                        {/* <Row type="flex" justify="space-around" align="middle" style={{marginBottom: '50px'}}>
+                            <Col span={8} style={{textAlign: 'center'}}>
+                                <Search placeholder="Tìm kiếm bài đăng" onSearch={value => this.load_search_post(value)} enterButton />
+                            </Col>
+                        </Row> */}
                         {
                         postReducer.posts.posts.map((value, index) => {
                             return (

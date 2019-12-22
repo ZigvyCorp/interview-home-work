@@ -3,7 +3,8 @@ import service from '../services';
 
 export const getPostsAPI = {
     getPosts,
-    getPost
+    getPost,
+    createPost
 };
 
 function getPosts(page){
@@ -16,4 +17,9 @@ function getPost(id){
 
     return service.post('/post/view/' + id)
 
+}
+
+function createPost(title, summary, content, tag)
+{
+    return service.post('/post/create',{title,summary, content,tag})
 }

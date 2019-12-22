@@ -17,6 +17,22 @@ class UserHeader extends React.Component {
     (e.key == 'login') ? history.push('/login')  : history.push('/register')
   }
 
+  handleLogout()
+  {
+    localStorage.removeItem('token')
+    localStorage.removeItem('userData')
+    window.location.href= "/home"
+  }
+  handleToCreatePost()
+  {
+    history.push('/create-post')
+  }
+  showName()
+  {
+    let data = JSON.parse(localStorage.getItem('userData'))
+    return data.name
+  }
+
 
   render() {
     return (
@@ -27,12 +43,13 @@ class UserHeader extends React.Component {
           title={
             <span className="submenu-title-wrapper">
               <Icon type="user" />
-                Welcome, name
+                Xin chào, {this.showName()}
             </span>
           }
         >
-            <Menu.Item key="user:1">Thông tin cá nhân</Menu.Item>
-            <Menu.Item key="user:2">Đăng xuất</Menu.Item>
+            <Menu.Item onClick={this.handleToCreatePost.bind(this)} key="user:1">Tạo post</Menu.Item>
+            <Menu.Item key="user:2">Thông tin cá nhân</Menu.Item>
+            <Menu.Item onClick={this.handleLogout.bind(this)} key="user:3">Đăng xuất</Menu.Item>
         </SubMenu> 
       </Menu>
 : 
