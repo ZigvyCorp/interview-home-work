@@ -7,7 +7,7 @@ var authController = require('../server/controllers/authController');
 router.get('/', async function(req, res, next) {
   try {
     var user = await authController.authencationGate(req.session.token);
-    res.render('client/homePage', { title: 'User Page', authencation: true, user: user });
+    res.render('client/homePage', { title: 'User Page', authencation: true, user: JSON.stringify(user) });
   } catch {
     res.render('client/homePage', { title: 'User Page', authencation: false, user: '' });
   }

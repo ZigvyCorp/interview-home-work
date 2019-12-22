@@ -24,8 +24,13 @@ async function  checkExistInModel(Model, objQuery) {
     return false;
 }
 
+async function checkRegexValid (str, regex) {
+    return regex.test(str);
+}
+
 module.exports = {
     generateRandomNumber: generateRandomNumber,
     generateRandomID: generateRandomID,
-    checkExistInModel: checkExistInModel
+    checkExistInModel: checkExistInModel,
+    checkRegexValid: checkRegexValid
 };

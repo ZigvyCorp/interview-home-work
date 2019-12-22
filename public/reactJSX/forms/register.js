@@ -36,6 +36,8 @@ class RegisterForm extends React.Component {
             showNotification(NotificationType.WARNING, $(target), ErrorMessage.Password_Not_Equal, 3000);
         } else if (!this.state.agreeTerm) {
             showNotification(NotificationType.WARNING, $(target), ErrorMessage.Agree_Term, 3000);
+        } else if (!UsernameRegex.test(this.state.username)) {
+            showNotification(NotificationType.WARNING, $(target), ErrorMessage.USER_NAME_NOT_VALID, 3000);
         } else {
             $.ajax({
                 url: '/api/user',

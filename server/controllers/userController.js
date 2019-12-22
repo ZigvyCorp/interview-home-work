@@ -4,8 +4,10 @@ var MassageSupplier = require('../common/MassageSupplier');
 var constant = require('../common/constant');
 var jwt = require('jsonwebtoken');
 var config = require('../../private/config')
+var Helper = require('../common/Helper');
 
 async function createNewUser (data) {
+    if (Helper.checkRegexValid(constant.UsernameRegex, data.username)) throw responseStatus.code403({message: MassageSupplier.PARAMETER_NOT_VALID});
     var checkExist = await User.findOne({username: data.username});
     if (checkExist) {
         throw responseStatus.code403({message: MassageSupplier.USER_IS_EXIST});

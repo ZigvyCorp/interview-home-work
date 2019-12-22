@@ -1,11 +1,14 @@
 const BrandLogo = 'images/logo/zigvy-logo.svg';
 const LoadingLogo = 'images/loading/zigvy-loading.svg';
 
+const UsernameRegex = /^[a-zA-Z0-9]+$/;
+
 const ErrorMessage = {
     Fill_Param_Required: 'Please Fill All Param Required',
     Password_Not_Equal: 'Input password not equal to your confirm password. Please check again.',
     Agree_Term: 'Please check agree term checkbox',
-    AN_ERROR_OCCURRED: 'Error. An error has occurred. Please contact admin for help, thanks.'
+    AN_ERROR_OCCURRED: 'Error. An error has occurred. Please contact admin for help, thanks.',
+    USER_NAME_NOT_VALID: 'Error. Your username input not valid. Please input again.'
 }
 
 const NotificationType = {
