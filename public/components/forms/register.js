@@ -45,7 +45,7 @@ var RegisterForm = function (_React$Component) {
                 showNotification(NotificationType.WARNING, $(target), ErrorMessage.Agree_Term, 3000);
             } else {
                 $.ajax({
-                    url: '/api/post',
+                    url: '/api/user',
                     type: 'post',
                     dataType: 'json',
                     data: _this.state,
@@ -59,6 +59,7 @@ var RegisterForm = function (_React$Component) {
                     },
                     error: function error(res) {
                         console.log(res);
+                        showNotification(NotificationType.DANGER, $(target), ErrorMessage.AN_ERROR_OCCURRED, 3000);
                     }
                 });
             }
