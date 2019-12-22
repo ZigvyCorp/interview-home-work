@@ -52,7 +52,7 @@ CommentsRouter.put('/:commentid', [isAuthenticated, isCommentAuthor], async (req
 });
 
 // TODO: have not tested
-CommentsRouter.delete('/:commentid', [isAuthenticated, isCommentAuthor], (req, res, next) => {
+CommentsRouter.delete('/:commentid', [isAuthenticated, isCommentAuthor], async (req, res, next) => {
     const commentId = req.params.commentid;
 
     try {
