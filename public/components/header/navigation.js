@@ -14,6 +14,33 @@ var Navigation = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (Navigation.__proto__ || Object.getPrototypeOf(Navigation)).call(this, props));
 
+    _this.onChange = function (event) {
+      var target = event.target;
+      var $jquery = $(target);
+      var valueSearch = $jquery.val();
+      $('.list-group').find('div').remove();
+      $('.list-group').find('.list-group-item').remove();
+      $.ajax({
+        url: '/api/post/' + valueSearch,
+        type: 'get',
+        success: function success(res) {
+          if (res.posts.length) {
+            for (var i = 0; i < res.posts.length; i++) {
+              var post = res.posts[i];
+              var html = '<a id="' + post.id + '" href="/post/' + post.id + '" class="list-group-item list-group-item-action flex-column align-items-start">' + '<div class="d-flex w-100 justify-content-between">' + '<h5 class="mb-1">' + post.title + (post.user ? ' - Author: ' + post.user.name : '') + '</h5>' + '<small>' + getHourMinuteFromTimestamp(post.createdAt) + ' ' + getDateMonthYearFromTimeStamp(post.createdAt) + '</small>' + '</div>' + '<p className="mb-1">' + post.content + '</p>' + '</a>';
+              $('.list-group').append(html);
+            }
+          } else {
+            $('.list-group').append('<div><h4>We dont have any post</h4></div>');
+          }
+        },
+        error: function error(res) {
+          console.log(res);
+          showNotification(NotificationType.DANGER, $('.list-post'), ErrorMessage.AN_ERROR_OCCURRED, 3000);
+        }
+      });
+    };
+
     _this.authencation = $('#verify-site').data('authencation');
     _this.user = $('#verify-site').data('user');
     return _this;
@@ -68,7 +95,7 @@ var Navigation = function (_React$Component) {
           React.createElement(
             'form',
             { className: 'form-inline my-2 my-lg-0 mr-auto' },
-            React.createElement('input', { className: 'form-control mr-sm-2', type: 'search', placeholder: 'Search', 'aria-label': 'Search' }),
+            React.createElement('input', { onChange: this.onChange, className: 'form-control mr-sm-2', type: 'search', placeholder: 'Don\'t input \'/\' :))', 'aria-label': 'Search' }),
             React.createElement(
               'button',
               { className: 'btn btn-outline-success my-2 my-sm-0', type: 'submit' },

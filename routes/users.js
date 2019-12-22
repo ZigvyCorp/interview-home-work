@@ -95,6 +95,18 @@ router.get('/api/post', async function(req, res, next) {
   }
 });
 
+router.get('/api/post/:search', async function(req, res, next) {
+  try {
+    var search = req.params.search;
+    console.log(search);
+    let response = await postController.getListPost(search);
+    res.send(response);
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+});
+
 router.post('/api/post', async function(req, res, next) {
   try {
     var user = await authController.authencationGate(req.session.token);

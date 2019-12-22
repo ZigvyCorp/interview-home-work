@@ -15,8 +15,13 @@ async function createNewPost (data, id) {
     }
 }
 
-async function getListPost () {
-    var posts = await Post.find({}).sort({createdAt: -1})
+async function getListPost (search) {
+    var posts
+    if (search) {
+        var posts = await Post.find({$or: [{title: {$regex : '.*' + search + '.*'}}, {tags: {$in: [search]}}]}).sort({createdAt: -1})
+    } else {
+        var posts = await Post.find({}).sort({createdAt: -1})
+    }
     posts = JSON.parse(JSON.stringify(posts))
     for (var i = 0; i < posts.length; i++) {
         var post = posts[i];
