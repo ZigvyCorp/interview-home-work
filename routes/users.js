@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var userController = require('../server/controllers/userController');
 var authController = require('../server/controllers/authController');
+var postController = require('../server/controllers/postController');
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
@@ -28,6 +29,15 @@ router.get('/signup', async function(req, res, next) {
     res.redirect('/');
   } catch {
     res.render('client/registerPage', { title: 'Register Page', authencation: false, user: '' });
+  }
+});
+
+router.get('/create-post', async function(req, res, next) {
+  try {
+    var user = await authController.authencationGate(req.session.token);
+    res.render('client/post/create', { title: 'Create Post Page', authencation: true, user: JSON.stringify(user) });
+  } catch {
+    res.render('client/loginPage', { title: 'Login Page', authencation: false, user: '' });
   }
 });
 
@@ -67,6 +77,28 @@ router.post('/api/user', async function(req, res, next) {
       req.session.token = response.token;
       delete response.token
     }
+    res.send(response);
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+});
+
+// POST API
+router.get('/api/post', async function(req, res, next) {
+  try {
+    let response = await postController.getListPost();
+    res.send(response);
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+  }
+});
+
+router.post('/api/post', async function(req, res, next) {
+  try {
+    var user = await authController.authencationGate(req.session.token);
+    let response = await postController.createNewPost(req.body, user.id);
     res.send(response);
   } catch (error) {
     console.log(error);

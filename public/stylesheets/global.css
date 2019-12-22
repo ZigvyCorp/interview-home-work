@@ -30,3 +30,17 @@
 .color-white {
   color: #fff;
 }
+
+#header_navigation {
+  border-bottom: 1px solid gray;
+  margin-bottom: 50px;
+}
+
+.list-group {
+  margin-top: 20px;
+}
+
+.quill-add {
+  height: 400px;
+  margin-bottom: 20px;
+}

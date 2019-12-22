@@ -4,5 +4,6 @@ module.exports = {
     AN_ERROR_OCCURRED: 'Error. An error has occurred',
     PARAMETER_NOT_VALID: 'Error. Your parameter not valid. Please recheck, thanks',
     LOGIN_SUCCESS: 'LOGIN SUCCESS',
-    SIGNIN_SUCCESS: 'SIGN_SUCCESS'
+    SIGNIN_SUCCESS: 'SIGN_SUCCESS',
+    CREATE_POST_SUCCESS: 'CREATE POST SUCCESS'
 }

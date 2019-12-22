@@ -1,7 +1,7 @@
 var jwt = require('jsonwebtoken');
 var config = require('../../private/config');
 var responseStatus = require('../common/responseStatus');
-var MassageSupplier = require('../common/MassageSupplier');
+var MessageSupplier = require('../common/MessageSupplier');
 var User = require('../models/User');
 
 async function authencationGate (token) {
@@ -13,14 +13,14 @@ async function authencationGate (token) {
                 username: decoded.username,
                 loginTime: {$gte: decoded.loginTime}
             }, {password: 0});
-            if (!authencation) throw responseStatus.code500({message: MassageSupplier.AN_ERROR_OCCURRED})
+            if (!authencation) throw responseStatus.code500({message: MessageSupplier.AN_ERROR_OCCURRED})
             else {
                 return authencation;
             }
         }
-        throw responseStatus.code500({message: MassageSupplier.AN_ERROR_OCCURRED});
+        throw responseStatus.code500({message: MessageSupplier.AN_ERROR_OCCURRED});
     } catch (error) {
-        throw responseStatus.code500({message: MassageSupplier.AN_ERROR_OCCURRED});
+        throw responseStatus.code500({message: MessageSupplier.AN_ERROR_OCCURRED});
     }
 
 }

@@ -105,5 +105,7 @@ var Navigation = function (_React$Component) {
   return Navigation;
 }(React.Component);
 
+var navigation = new Navigation();
+
 domContainer = document.querySelector('#header_navigation');
 ReactDOM.render(e(Navigation), domContainer);

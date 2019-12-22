@@ -1,0 +1,12 @@
+<% layout('../../layouts/client_layout') -%>
+
+<div id="post_create"></div>
+
+<script src="components/post/create.js"></script>
+
+<script>
+    $('.quill-add').append('<div id="editor"></div>');
+    var quill = new Quill('#editor', {
+        theme: 'snow'
+    });
+</script>

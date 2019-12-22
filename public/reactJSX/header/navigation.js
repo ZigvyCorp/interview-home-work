@@ -46,5 +46,7 @@ class Navigation extends React.Component {
   }
 }
 
+var navigation = new Navigation()
+
 domContainer = document.querySelector('#header_navigation');
 ReactDOM.render(e(Navigation), domContainer);

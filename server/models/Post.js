@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Helper = require('Helper');
+var Helper = require('../common/Helper');
 
 var schema = new mongoose.Schema({
     id: {
@@ -26,8 +26,8 @@ var schema = new mongoose.Schema({
         default: ''
     },
     tags: {
-        type: String,
-        default: ''
+        type: Array,
+        default: []
     }
 });
 
