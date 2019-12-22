@@ -34,7 +34,7 @@ router.post('/users/login', async(req, res) => {
 })
 
 router.post('/users/all', async(req,res) => {
-    User.find({}, (error, users) => {
+    User.find({},'email name _id',(error, users) => {
         if(error) return res.status(400).json({error})
         res.status(200).json({users})
     })

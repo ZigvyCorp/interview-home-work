@@ -5,12 +5,10 @@ import {variableConstants} from '../constants/variable.constants'
 const service = axios.create({
     baseURL: `http://${variableConstants.HOST}:${variableConstants.PORT}`, // url = base url + request url
     timeout: 5000, // request timeout
-  }, {crossdomain: true})
+  })
 
 service.interceptors.request.use(
     config => {
-        config.headers['Access-Control-Allow-Origin'] = '*'
-        config.headers['Content-Type'] = 'application/json'
         if (localStorage.getItem('token')) config.headers['Authorization'] = 'Bearer ' + localStorage.getItem('token')
       return config
     },
@@ -36,3 +34,17 @@ service.interceptors.request.use(
 
 
   export default service
+
+  /*
+
+      withCredentials: true,
+    credentials: 'same-origin',
+    mode: 'no-cors',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+      'Access-Control-Allow-Origin': '*'
+    }
+
+  */
