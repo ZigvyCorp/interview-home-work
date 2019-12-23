@@ -11,6 +11,7 @@ const Header = () => {
         </div>
         <ul className="nav navbar-nav navbar-right">
           <NavLink to="/userdetail" exact><span className="glyphicon glyphicon-user"></span> Username</NavLink>
+          <NavLink to="/login" exact><span className="glyphicon glyphicon-user"></span> Login</NavLink>
         </ul>
       </div>
     </nav>

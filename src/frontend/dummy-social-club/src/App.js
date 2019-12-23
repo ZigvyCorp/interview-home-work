@@ -1,11 +1,12 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import HomePage from './components/home/HomePage'
-import AboutPage from './components/about/AboutPage'
+import HomePage from './components/home/HomePage';
+import AboutPage from './components/about/AboutPage';
 import PageNotFound from './PageNotFound';
-import Header from './components/common/Header'
-import UserDetailPage from './components/user_detail/UserDetail'
+import Header from './components/common/Header';
+import UserDetailPage from './components/user_detail/UserDetail';
+import LoginPage from './components/login/LoginPage'
 import { Route, Switch } from 'react-router-dom';
 
 
@@ -17,6 +18,7 @@ function App() {
         <Route exact path="/" component={HomePage}></Route>
         <Route exact path="/about" component={AboutPage}></Route>
         <Route exact path="/userdetail" component={UserDetailPage}></Route>
+        <Route exact path="/login" component={LoginPage}></Route>
         <Route component={PageNotFound}></Route>
       </Switch>
     </div>
