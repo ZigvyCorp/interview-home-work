@@ -9,7 +9,7 @@ const Header = () => {
         <div className="navbar-header">
           <a className="navbar-brand" href="/">Dummy Social Club</a>
         </div>
-        <ul className="nav navbar-nav navbar-right">
+        <ul className="nav navbar-nav navbar-right login-field">
           <NavLink to="/userdetail" exact><span className="glyphicon glyphicon-user"></span> Username</NavLink>
           <NavLink to="/login" exact><span className="glyphicon glyphicon-user"></span> Login</NavLink>
         </ul>

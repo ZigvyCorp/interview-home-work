@@ -11,3 +11,69 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.card-overview {
+  margin: auto;
+  width: 400px;
+}
+
+.card-content {
+  padding: 50px !important;
+}
+
+.card-label {
+  font-size: 30px;
+}
+
+.form-body {
+  padding: 10px 0px 10px 0px;
+  font-size: 20px !important;
+}
+
+.btn-block {
+  font-size: 20px !important;
+}
+
+.login-field {
+  font-size: 15px;
+}
+
+.card-article-title {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card-article-tag {
+  font-size: 10px;
+  float: right;
+  font-size: 1.2rem !important;
+}
+
+.card-author {
+  margin-top: 0rem !important;
+  margin-bottom: 0rem;
+  font-size: 1.6rem !important;
+}
+
+.card-created-date {
+  margin-bottom: 2rem;
+  font-size: 1.5rem !important;
+}
+
+.card-post-content {
+  font-size: 1.5rem;
+}
+
+.tag-field {
+  width: 20rem;
+  float: right;
+}
+
+.tag-item {
+  border: 1px solid;
+  margin: 3px;
+  padding: 2px;
+  display: inline-block;
+  border-radius: 5px;
+}
