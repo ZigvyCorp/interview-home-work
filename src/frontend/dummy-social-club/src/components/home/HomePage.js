@@ -3,8 +3,10 @@ import * as types from '../../redux/actions/actionTypes'
 import axios from 'axios';
 import moment from 'moment';
 import { connect } from 'react-redux';
+import NewPost from '../common/NewPost'
 
 class HomePage extends React.Component {
+  // eslint-disable-next-line no-useless-constructor
   constructor(props) {
     super(props);
   }
@@ -26,6 +28,12 @@ class HomePage extends React.Component {
           </div>
         </div>
         <div className="row pt-5">
+          {(localStorage.getItem("user")) &&
+            <div className="col-12 col-lg-6 offset-lg-3">
+              <NewPost />
+            </div>
+          }
+
           <div className="col-12 col-lg-6 offset-lg-3">
             {posts && posts.map((post) => {
               return (
@@ -37,7 +45,7 @@ class HomePage extends React.Component {
                     <div className="tag-field">
                       <div className="card-article-tag">
                         {post.tags.map(tag => {
-                          return <div className="tag-item"> {tag} </div>
+                          return <div key={tag} className="tag-item"> {tag} </div>
                         })}
                       </div>
                     </div>
