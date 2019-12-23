@@ -58,7 +58,6 @@ const isPostAuthor = async function (req, res, next) {
 }
 
 
-// TODO: have not tested
 const isCommentAuthor = async function (req, res, next) {
     const commentId = req.params.commentid;
     try {

@@ -2,6 +2,7 @@ const express = require('express');
 const PostsRouter = express.Router();
 const PostSchema = require('../../../database/models/post');
 const { isAuthenticated, isPostAuthor } = require('../../../middlewares/middlewares');
+const {DEFAULT_POST_LIMIT} = require('../../../config');
 
 PostsRouter.post('/', isAuthenticated, async (req, res, next) => {
     const title = req.body.title;
@@ -36,7 +37,7 @@ PostsRouter.get('/:id', async (req, res, next) => {
 
 PostsRouter.get('/', async (req, res, next) => {
     try {
-      const postPerPage = !isNaN(Number(req.query.limit)) ? parseInt(req.query.limit) : 2; // TODO: Remember to make this value a constant
+      const postPerPage = !isNaN(Number(req.query.limit)) ? parseInt(req.query.limit) : DEFAULT_POST_LIMIT;
       const page = !isNaN(Number(req.query.page)) ? parseInt(req.query.page): 0;
 
       const posts = await PostSchema.find().limit(postPerPage).skip(postPerPage * page).sort({ created_at: 'asc'});
