@@ -2,10 +2,12 @@
 const Express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('./database/mongoose');
+const cors = require('cors');
 const { PORT } = require('./config');
 
 const app = new Express();
 app.use(bodyParser.json());
+app.use(cors());
 
 // Apply router by models
 require('./routes')(app);
