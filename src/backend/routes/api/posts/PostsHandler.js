@@ -46,7 +46,6 @@ PostsRouter.get('/', async (req, res, next) => {
     }
 });
 
-// TODO: have not tested
 PostsRouter.put('/:id', [isAuthenticated, isPostAuthor], async (req, res, next) => {
     const id = req.params.id;
     const title = req.body.title;
@@ -67,7 +66,6 @@ PostsRouter.put('/:id', [isAuthenticated, isPostAuthor], async (req, res, next) 
     }
 });
 
-// TODO: have not tested
 PostsRouter.delete('/:id', [isAuthenticated, isPostAuthor], async (req, res, next) => {
     const id = req.params.id;
     try {

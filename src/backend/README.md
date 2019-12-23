@@ -34,5 +34,9 @@ Endpoints:
   
 - Get comments by postId
     - GET /api/comments/:postid
+- Update comments by commentId
+    - PUT /api/comments/:commentId
+    - Body example: { "content": "updated content" }
+    - Headers example: { key: Authentication, value: TOKEN}
 
 

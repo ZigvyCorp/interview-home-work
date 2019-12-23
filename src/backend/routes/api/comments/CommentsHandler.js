@@ -31,20 +31,19 @@ CommentsRouter.get('/:postid', async (req, res, next) => {
     }
 });
 
-// TODO: have not tested
 CommentsRouter.put('/:commentid', [isAuthenticated, isCommentAuthor], async (req, res, next) => {
     const commentId = req.params.commentid;
 
     try {
-        const targetComment = CommentSchema.findById(commentId);
+        const targetComment = await CommentSchema.findById(commentId);
         if (typeof targetComment === 'undefined') return res.status(400).send({ error: 'The target comment id does not exist' });
 
         const content = req.body.content;
         if (typeof content !== 'undefined') {
             targetComment.content = content;
         }
-        await targetComment.save();
-        return res.send({ msg: 'The comment is updated successfully' });
+        const updatedComment = await targetComment.save();
+        return res.send({ comment: updatedComment });
     } catch (err) {
         next(err);
     }
@@ -55,7 +54,7 @@ CommentsRouter.delete('/:commentid', [isAuthenticated, isCommentAuthor], async (
     const commentId = req.params.commentid;
 
     try {
-        const targetComment = CommentSchema.findById(commentId);
+        const targetComment = await CommentSchema.findById(commentId);
         if (typeof targetComment === 'undefined') return res.status(400).send({ error: 'The target comment id does not exist' });
 
         await CommentSchema.deleteOne({_id: commentId});
