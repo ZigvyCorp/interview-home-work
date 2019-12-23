@@ -34,10 +34,16 @@ PostsRouter.get('/:id', async (req, res, next) => {
     }
 });
 
-// TODO: have not implemented
 PostsRouter.get('/', async (req, res, next) => {
-    const posts = await PostSchema.find();
-    return res.send(posts);
+    try {
+      const postPerPage = !isNaN(Number(req.query.limit)) ? parseInt(req.query.limit) : 2; // TODO: Remember to make this value a constant
+      const page = !isNaN(Number(req.query.page)) ? parseInt(req.query.page): 0;
+
+      const posts = await PostSchema.find().limit(postPerPage).skip(postPerPage * page).sort({ created_at: 'asc'});
+      return res.send({posts, limit: postPerPage, page});
+    } catch (err) {
+      next(err);
+    }
 });
 
 PostsRouter.put('/:id', [isAuthenticated, isPostAuthor], async (req, res, next) => {
