@@ -9,8 +9,8 @@ CommentsRouter.post('/', isAuthenticated, async (req, res, next) => {
     const content = req.body.content;
     if (typeof postId === 'undefined') return res.status(400).send({ error: 'Post id is required to create a new comment' });
     try {
-        await CommentSchema.create({ owner: req.headers.username, post: postId, content: content });
-        return res.send({ msg: 'The comment is created successfully' });
+        const newComment = await CommentSchema.create({ owner: req.headers.username, post: postId, content: content });
+        return res.send({ comment: newComment });
     } catch (err) {
         next(err);
     }
@@ -24,9 +24,8 @@ CommentsRouter.get('/:postid', async (req, res, next) => {
     }
 
     try {
-        // TODO: have not remove unused fields
         const comments = await CommentSchema.find({ post: postId });
-        return res.send({ data: comments });
+        return res.send({ comments });
     } catch (err) {
         next(err);
     }

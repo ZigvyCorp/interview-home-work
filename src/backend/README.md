@@ -27,4 +27,12 @@ Endpoints:
     - Body example: { "title": "The very first post", "content": "Dummy content", "tags": ["funny", "LOL"] }
     - Headers example: { key: Authentication, value: TOKEN}
 
+- Create a new comment
+    - POST /api/comments
+    - Body example: { "postId": "5e00cbafa8f83815500c5e13", "content": "The first comment" }
+    - Headers example: { key: Authentication, value: TOKEN}
+  
+- Get comments by postId
+    - GET /api/comments/:postid
+
 

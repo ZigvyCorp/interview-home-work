@@ -60,7 +60,7 @@ const isPostAuthor = async function (req, res, next) {
 
 // TODO: have not tested
 const isCommentAuthor = async function (req, res, next) {
-    const commentId = req.params.id;
+    const commentId = req.params.commentid;
     try {
         const targetComment = await CommentSchema.findById(commentId);
         if (targetComment.owner !== req.headers.username) {
