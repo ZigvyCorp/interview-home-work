@@ -9,8 +9,8 @@ PostsRouter.post('/', isAuthenticated, async (req, res, next) => {
     const tags = req.body.tags;
 
     try {
-        await PostSchema.create({ owner: req.headers.username, title: title, content: content, tags: tags });
-        return res.send({ msg: 'New post created' });
+        const newPost = await PostSchema.create({ owner: req.headers.username, title: title, content: content, tags: tags });
+        return res.send({ post: newPost });
     } catch (err) {
         next(err);
     }
