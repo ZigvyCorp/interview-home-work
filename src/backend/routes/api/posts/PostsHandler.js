@@ -35,8 +35,9 @@ PostsRouter.get('/:id', async (req, res, next) => {
 });
 
 // TODO: have not implemented
-PostsRouter.get('/', (req, res, next) => {
-    return res.send({ msg: "Haven't implemented yet" });
+PostsRouter.get('/', async (req, res, next) => {
+    const posts = await PostSchema.find();
+    return res.send(posts);
 });
 
 PostsRouter.put('/:id', [isAuthenticated, isPostAuthor], async (req, res, next) => {
