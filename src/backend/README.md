@@ -38,5 +38,8 @@ Endpoints:
     - PUT /api/comments/:commentId
     - Body example: { "content": "updated content" }
     - Headers example: { key: Authentication, value: TOKEN}
+- Delete comment by commentId
+    - DELETE /api/comments/:commentId
+    - Headers example: { key: Authentication, value: TOKEN}
 
 
