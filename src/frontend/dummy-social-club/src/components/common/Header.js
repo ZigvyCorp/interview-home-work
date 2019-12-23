@@ -18,7 +18,7 @@ class Header extends React.Component {
   render() {
     const loginPageElement = <NavLink to="/login" exact><span className="glyphicon glyphicon-user"></span> Login</NavLink>;
     const detailPageElement = <NavLink to="/userdetail" exact><span className="glyphicon glyphicon-user"></span> {this.state.username}</NavLink>;
-    const targetElement = this.state.username.length > 0? detailPageElement: loginPageElement;
+    const targetElement = this.state.username.length > 0 ? detailPageElement : loginPageElement;
     return (
       <nav className="navbar navbar-inverse">
         <div className="container-fluid">
@@ -29,9 +29,13 @@ class Header extends React.Component {
             {targetElement}
           </ul>
         </div>
+        <ul className="nav navbar-nav navbar-right login-field">
+          <NavLink to="/userdetail" exact><span className="glyphicon glyphicon-user"></span> Username</NavLink>
+          <NavLink to="/login" exact><span className="glyphicon glyphicon-user"></span> Login</NavLink>
+        </ul>
       </nav>
-    )
+    );
   };
-};
+}
 
 export default Header;

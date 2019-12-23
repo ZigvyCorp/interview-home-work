@@ -48,19 +48,19 @@ class LoginPage extends React.Component {
     render() {
         return (
             <div className="row">
-                <div className="card">
-                    <article className="card-body">
-                        <h4 className="card-title mb-4 mt-1">Sign in</h4>
-                        <form onSubmit={this.handleSubmit}>
+                <div className="card card-overview">
+                    <article className="card-body card-content">
+                        <h4 className="card-title mb-4 mt-1 card-label">Sign in</h4>
+                        <form onSubmit={this.handleSubmit} className="form-body">
                             <div className="form-group">
                                 <label>Username</label>
-                                <input name="" className="form-control" placeholder="username" type="text" value={this.state.username} onChange={this.handleUsernameChange}></input>
+                                <input name="" className="form-control form-body" placeholder="username" type="text" value={this.state.username} onChange={this.handleUsernameChange}></input>
                             </div>
                             <div className="form-group">
                                 <label>Password</label>
-                                <input className="form-control" placeholder="******" type="password" value={this.state.password} onChange={this.handlePasswordChange}></input>
+                                <input className="form-control form-body" placeholder="******" type="password" value={this.state.password} onChange={this.handlePasswordChange}></input>
                             </div>
-                            <div className="form-group">
+                            <div className="form-group form-body">
                                 <button type="submit" className="btn btn-primary btn-block"> Login </button>
                             </div>
                         </form>

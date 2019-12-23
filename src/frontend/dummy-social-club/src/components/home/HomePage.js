@@ -30,12 +30,21 @@ class HomePage extends React.Component {
             {posts && posts.map((post) => {
               return (
                 <div className="card my-3" key={post._id}>
-                  <div className="card-header">
+                  <div className="card-header card-article-title">
                     {post.title}
                   </div>
                   <div className="card-body">
-                    {post.content}
-                    <p className="mt-5 text-muted"><b>{post.owner}</b> {moment(new Date(post.created_at)).fromNow()}</p>
+                    <div className="tag-field">
+                      <div className="card-article-tag">
+                        {post.tags.map(tag => {
+                          return <div className="tag-item"> {tag} </div>
+                        })}
+                      </div>
+                    </div>
+                    <p className="text-muted card-author"><b>{post.owner}</b></p>
+                    <p className="card-created-date">Created at: {moment(new Date(post.created_at)).fromNow()}</p>
+
+                    <div className="card-post-content">{post.content}</div>
                   </div>
                 </div>
               )
