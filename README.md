@@ -1,10 +1,10 @@
 # Zigvy Technical Assignment Interview
-Front End Developer\
+Front End Developer
 ======================================
-How to run project?\
+How to run project?
 + npm i: install packages
 + npm run start:server || yarn start:server: start api services
-+ npm start || yarn start: start app
++ npm start || yarn start: start app\
 ======================================
 How to use app?
 Ex: Feature - path: description 
@@ -13,7 +13,7 @@ Ex: Feature - path: description
 + Profile - "/profile": show posts of user, user can edit, remove post
 + Signout
 + Creat post - "/create-post": user can create post
-+ Update post: "/update-post": user can update post
++ Update post: "/update-post": user can update post\
 ======================================
 This project use:
 + React, React's ecosystem for Front End;
