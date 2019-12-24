@@ -4,7 +4,7 @@ Front End Developer
 How to run project?
 + npm i: install packages
 + npm run start:server || yarn start:server: start api services
-+ npm start || yarn start: start app\
++ npm start || yarn start: start app <br/>
 ======================================
 How to use app?
 Ex: Feature - path: description 
