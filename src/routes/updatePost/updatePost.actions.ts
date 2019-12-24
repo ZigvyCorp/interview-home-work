@@ -27,6 +27,7 @@ function* actionFetch(action: { type: string; payload: any }) {
     yield delay(500);
     const { data } = yield call(api, action.payload, getAccessToken());
     yield put(actionFetched(data));
+    window.location.href = `/update-post/${data.id}`;
   } catch (error) {
     yield put(actionFetchFail());
   }

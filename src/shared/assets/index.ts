@@ -23,3 +23,6 @@ export const underlineIcon = () =>
 
 export const removeIcon = () =>
   `${getEnvs().SOURCE_DOMAIN}/images/icons/delete.svg`;
+
+export const updateIcon = () =>
+  `${getEnvs().SOURCE_DOMAIN}/images/icons/update.svg`;

@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { postsSelector } from "./profile.selector";
 import { Link } from "react-router-dom";
 import { ACTION_REMOVE_POST } from "./profile.constant";
-import { removeIcon } from "src/shared/assets";
+import { removeIcon, updateIcon } from "src/shared/assets";
 import { withRouter } from "react-router-dom";
 
 interface IProps {
@@ -16,7 +16,7 @@ const Styled = styled.div`
   margin-top: 5%;
   .hook {
     display: grid;
-    grid-template-columns: 2fr 2fr 5fr 1fr;
+    grid-template-columns: 2fr 2fr 5fr 1fr 1fr;
     grid-gap: 20px;
     border-top: solid 2px #fff;
     align-items: center;
@@ -65,6 +65,7 @@ const Posts = (props: IProps) => {
         <p className="item">{title}</p>
         <p className="item">{content}</p>
         <p className="item"></p>
+        <p className="item"></p>
       </div>
       {isFetched &&
         data.map((item: any, key: string) => (
@@ -88,6 +89,9 @@ const Posts = (props: IProps) => {
               onClick={(e: any) => handleRemovePost(e, item.id)}
             >
               <img src={removeIcon()} alt="" />
+            </Link>
+            <Link to={`/update-post/${item.id}`} className="icon">
+              <img src={updateIcon()} alt="" />
             </Link>
           </div>
         ))}
