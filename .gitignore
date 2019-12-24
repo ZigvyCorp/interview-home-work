@@ -4,7 +4,6 @@
 node_modules
 #core
 scripts
-server
 src/core
 src/services
 # testing
