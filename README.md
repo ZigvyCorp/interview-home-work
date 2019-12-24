@@ -6,7 +6,7 @@ How to run project?
 + npm run start:server || yarn start:server: start api services
 + npm start || yarn start: start app <br/>
 ======================================<br/>
-How to use app?
+Features in app
 Ex: Feature - path: description 
 + Home page - ("/"): show all posts
 + Post details - ("/post/:id"): show post details
@@ -14,6 +14,11 @@ Ex: Feature - path: description
 + Signout
 + Creat post - "/create-post": user can create post
 + Update post: "/update-post": user can update post<br/>
+======================================<br/>
+How to use app?
++ Enter the homge page, you can see all the posts
++ Sign In by nick in folder "user/data", ex: "admin / admin"
++ Click profile at the right corner: profile, create post, sign out
 ======================================<br/>
 This project use:
 + React, React's ecosystem for Front End;
