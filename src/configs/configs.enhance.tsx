@@ -8,7 +8,6 @@ interface IProps {}
 
 const enhance = (WrappedComponent: any) => (props: IProps) => {
   const { isFetched } = useSelector(configsSelector);
-  console.log(useSelector(configsSelector));
   const dispatch = useDispatch();
   React.useEffect(() => {
     if (!isFetched) {
