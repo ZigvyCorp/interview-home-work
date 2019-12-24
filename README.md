@@ -13,11 +13,11 @@ Ex: Feature - path: description
 + Profile - "/profile": show posts of user, user can edit, remove post
 + Signout
 + Creat post - "/create-post": user can create post
-+ Update post: "/update-post": user can update post<br/>
++ Update post: "/update-post/:id": user can update post<br/>
 ======================================<br/>
 How to use app?
 + Enter the homge page, you can see all the posts
-+ Sign In by nick in folder "user/data", ex: "admin / admin"
++ Sign In by nick in folder "data/users.json", ex: "admin / admin"
 + Click profile at the right corner: profile, create post, sign out<br/>
 ======================================<br/>
 This project use:
