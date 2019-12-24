@@ -4,8 +4,8 @@ Front End Developer
 How to run project?
 + npm i: install packages
 + npm run start:server || yarn start:server: start api services
-+ npm start || yarn start: start app <br/>
-======================================
++ npm start || yarn start: start app 
+======================================<br/>
 How to use app?
 Ex: Feature - path: description 
 + Home page - ("/"): show all posts
@@ -13,8 +13,8 @@ Ex: Feature - path: description
 + Profile - "/profile": show posts of user, user can edit, remove post
 + Signout
 + Creat post - "/create-post": user can create post
-+ Update post: "/update-post": user can update post\
-======================================
++ Update post: "/update-post": user can update post
+======================================<br/>
 This project use:
 + React, React's ecosystem for Front End;
 + Express JS, JWT, mockup data for API services
