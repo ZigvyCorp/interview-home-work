@@ -18,7 +18,7 @@ Ex: Feature - path: description
 How to use app?
 + Enter the homge page, you can see all the posts
 + Sign In by nick in folder "user/data", ex: "admin / admin"
-+ Click profile at the right corner: profile, create post, sign out
++ Click profile at the right corner: profile, create post, sign out<br/>
 ======================================<br/>
 This project use:
 + React, React's ecosystem for Front End;
