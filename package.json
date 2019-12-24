@@ -1,0 +1,88 @@
+{
+  "name": "interview",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.23",
+    "@types/node": "^12.12.14",
+    "@types/react": "^16.9.15",
+    "@types/react-dom": "^16.9.4",
+    "@types/react-redux": "^7.1.5",
+    "@types/redux-saga": "^0.10.5",
+    "axios": "^0.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "draft-js": "^0.11.3",
+    "draft-js-export-html": "^1.4.1",
+    "exif-js": "^2.3.0",
+    "express": "^4.17.1",
+    "express-bearer-token": "^2.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.2",
+    "node-sass": "^4.13.0",
+    "react": "^16.12.0",
+    "react-content-loader": "^4.3.3",
+    "react-dom": "^16.12.0",
+    "react-helmet": "^5.2.1",
+    "react-redux": "^7.1.3",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.3.0",
+    "react-tagsinput": "^3.19.0",
+    "recompose": "^0.30.0",
+    "redux-saga": "^1.1.3",
+    "reselect": "^4.0.0",
+    "styled-components": "^4.4.1",
+    "typescript": "^3.7.3",
+    "uuid": "^3.3.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "start:server": "node server/index",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "dev:server": "nodemon server/index"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZigvyCorp/interview-home-work"
+  },
+  "devDependencies": {
+    "@types/ckeditor": "^4.9.8",
+    "@types/draft-js": "^0.10.37",
+    "@types/enzyme": "^3.10.4",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/react-content-loader": "^4.0.0",
+    "@types/react-helmet": "^5.0.14",
+    "@types/react-router-dom": "^5.1.3",
+    "@types/react-tagsinput": "^3.19.6",
+    "@types/recompose": "^0.30.7",
+    "@types/reselect": "^2.2.0",
+    "@types/styled-components": "^4.4.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "enzyme-to-json": "^3.4.3",
+    "immutable": "^4.0.0-rc.12",
+    "nodemon": "^2.0.1",
+    "redux-devtools-extension": "^2.13.8",
+    "ts-jest": "^24.2.0"
+  }
+}

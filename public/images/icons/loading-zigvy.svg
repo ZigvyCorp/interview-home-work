@@ -1,0 +1,167 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 269.67 269.17" id="ryHdf-FYG">
+    <style type="text/css">
+    g{
+    fill: #fff
+    }
+        @-webkit-keyframes Sy8rOfWKFf_SyxqU-FYz_Animation {
+    36.67% {
+        -webkit-transform: scale(0, 0);
+                transform: scale(0, 0)
+    }
+    50% {
+        -webkit-transform: scale(1, 1);
+                transform: scale(1, 1)
+    }
+    0% {
+        -webkit-transform: scale(0, 0);
+                transform: scale(0, 0)
+    }
+    100% {
+        -webkit-transform: scale(1, 1);
+                transform: scale(1, 1)
+    }
+}
+@keyframes Sy8rOfWKFf_SyxqU-FYz_Animation {
+    36.67% {
+        -webkit-transform: scale(0, 0);
+                transform: scale(0, 0)
+    }
+    50% {
+        -webkit-transform: scale(1, 1);
+                transform: scale(1, 1)
+    }
+    0% {
+        -webkit-transform: scale(0, 0);
+                transform: scale(0, 0)
+    }
+    100% {
+        -webkit-transform: scale(1, 1);
+                transform: scale(1, 1)
+    }
+}
+@-webkit-keyframes r1BSOGWtYG_rJlHI-KKG_Animation {
+    0% {
+        -webkit-transform: translate(-200px, -200px);
+                transform: translate(-200px, -200px)
+    }
+    33.33% {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px)
+    }
+    92.22% {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px)
+    }
+    100% {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px)
+    }
+}
+@keyframes r1BSOGWtYG_rJlHI-KKG_Animation {
+    0% {
+        -webkit-transform: translate(-200px, -200px);
+                transform: translate(-200px, -200px)
+    }
+    33.33% {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px)
+    }
+    92.22% {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px)
+    }
+    100% {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px)
+    }
+}
+@-webkit-keyframes H14SOGWtFz_rJckLbKKf_Animation {
+    0% {
+        -webkit-transform: translate(200px, 200px);
+                transform: translate(200px, 200px)
+    }
+    33.33% {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px)
+    }
+    100% {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px)
+    }
+}
+@keyframes H14SOGWtFz_rJckLbKKf_Animation {
+    0% {
+        -webkit-transform: translate(200px, 200px);
+                transform: translate(200px, 200px)
+    }
+    33.33% {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px)
+    }
+    100% {
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px)
+    }
+}
+#ryHdf-FYG * {
+    -webkit-animation-duration: 3s;
+            animation-duration: 3s;
+    -webkit-animation-timing-function: cubic-bezier(0, 0, 1, 1);
+            animation-timing-function: cubic-bezier(0, 0, 1, 1);
+    transform-box: fill-box;
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%
+}
+#r1BSOGWtYG_r1vYfbKYf {
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%
+}
+#Sy8rOfWKFf_rySxr-YYM {
+    -webkit-transform-origin: undefined;
+            transform-origin: undefined
+}
+#H14SOGWtFz_BkORHWKtf {
+    -webkit-transform-origin: undefined;
+            transform-origin: undefined
+}
+#H14SOGWtFz_rJckLbKKf {
+    -webkit-animation-name: H14SOGWtFz_rJckLbKKf_Animation;
+            animation-name: H14SOGWtFz_rJckLbKKf_Animation;
+    -webkit-transform-origin: undefined;
+            transform-origin: undefined
+}
+#r1BSOGWtYG_rJlHI-KKG {
+    -webkit-animation-name: r1BSOGWtYG_rJlHI-KKG_Animation;
+            animation-name: r1BSOGWtYG_rJlHI-KKG_Animation;
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%
+}
+#Sy8rOfWKFf_SyxqU-FYz {
+    -webkit-transform-origin: undefined;
+            transform-origin: undefined;
+    -webkit-animation-name: Sy8rOfWKFf_SyxqU-FYz_Animation;
+            animation-name: Sy8rOfWKFf_SyxqU-FYz_Animation
+}
+    </style>
+    <style type="text/css"/>
+    <title>
+        loading
+    </title>
+    <g id="S1lBOzbYYf" data-name="Layer 2">
+        <g id="HJWBdMZYFz" data-name="Layer 1">
+            <g id="SyzHdzbYFf">
+                <g id="B17H_GZYtz">
+                    <g id="H14SOGWtFz_rJckLbKKf" data-animator-group="true" data-animator-type="0">
+                        <polygon id="H14SOGWtFz" points="259.19 103.67 148.86 213.79 259.19 213.79 259.19 258.61 43.43 258.61 259.19 43.26 259.19 103.67"/>
+                    </g>
+                    <g id="r1BSOGWtYG_rJlHI-KKG" data-animator-group="true" data-animator-type="0">
+                        <polygon id="r1BSOGWtYG" data-name="Path" points="10.81 165.64 121.13 55.53 10.81 55.53 10.81 10.7 226.57 10.7 10.81 226.06 10.81 165.64"/>
+                    </g>
+                    <g id="Sy8rOfWKFf_SyxqU-FYz" data-animator-group="true" data-animator-type="2">
+                        <polygon id="Sy8rOfWKFf" data-name="Path" points="3.93 268.96 0 269.17 0.05 265.09 265.58 0.06 269.67 0 269.46 3.93 3.93 268.96"/>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

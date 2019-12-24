@@ -1,0 +1,1 @@
+export const ACTION_CHANGE_LANGUAGE = `[configs] Change language`;
