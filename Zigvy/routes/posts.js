@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 const post = require('../model/posts')
+const checkAuth = require('../middleware/checkAuth')
 /* GET post */
-router.get('/', (req, res, next) => {
+router.get('/',(req, res, next) => {
     post.find({}, (err, data) => {
         if (err) {
             res.status(400).json(err)
@@ -34,9 +35,10 @@ router.get('/:postId', (req, res, next) => {
 })
 
 // post post
-router.post('/', (req, res, next) => {
+router.post('/',checkAuth ,async (req, res, next) => {
+    const latestPost = await post.find({}).sort({ id: -1 }).limit(1)
     var newPost = new post({
-        id: req.body.id,
+        id:latestPost[0].id+1,
         owner: req.body.owner,
         title: req.body.title,
         content: req.body.content,
