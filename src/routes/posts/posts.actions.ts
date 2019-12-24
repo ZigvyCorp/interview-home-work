@@ -17,7 +17,6 @@ export const actionFetchFail = () => ({
 
 function* actionFetch() {
   try {
-    yield delay(500);
     const { data } = yield call(api);
     yield put(actionFetched(data));
   } catch (error) {

@@ -1,26 +1,38 @@
-import { ACTION_CHANGE_LANGUAGE } from "./configs.constant";
+import { ACTION_FETCHED, ACTIION_FETCH_FAIL } from "./configs.constant";
 
 interface IReducer {
-  country: string;
-  languages: string;
+  isFetching: boolean;
+  isFetched: boolean;
+  data: any;
 }
 
 const initialState: IReducer = {
-  country: "vn",
-  languages: "en"
+  isFetched: false,
+  isFetching: true,
+  data: {}
 };
 
 export default (
   state = initialState,
   action: {
     type: string;
-    payload: object;
+    payload: any;
   }
 ) => {
   switch (action.type) {
-    case ACTION_CHANGE_LANGUAGE: {
+    case ACTION_FETCHED: {
       return {
-        ...state
+        ...state,
+        isFetched: true,
+        isFetching: false,
+        data: { ...action.payload }
+      };
+    }
+    case ACTIION_FETCH_FAIL: {
+      return {
+        ...state,
+        isFetched: false,
+        isFetching: false
       };
     }
     default:

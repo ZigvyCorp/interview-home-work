@@ -26,7 +26,6 @@ function* actionFetch(action: { type: string; payload: any }) {
   const { id } = action.payload;
   try {
     yield put(actionFetching(id));
-    yield delay(500);
     const { data } = yield call(api, id);
     yield put(actionFetched(data));
   } catch (error) {

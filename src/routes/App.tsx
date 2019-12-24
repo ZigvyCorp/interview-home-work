@@ -16,10 +16,13 @@ import PrivateRoute from "src/shared/components/privateRoute";
 import CreatePost from "./createPost";
 import Profile from "src/routes/profile";
 import UpdatePost from "src/routes/updatePost";
+import { configsSelector } from "src/configs/configs.selector";
+import withConfigs from "src/configs/configs.enhance";
 
 export interface IProps {
   auth: any;
   posts: any;
+  configs: any;
 }
 
 const App = (props: IProps) => {
@@ -51,14 +54,16 @@ export default compose<IProps, any>(
   connect(
     (state: any) => ({
       auth: authSelector(state),
-      posts: postsSelector(state)
+      posts: postsSelector(state),
+      configs: configsSelector(state)
     }),
     {}
   ),
   withPosts,
   withAuth,
+  withConfigs,
   branch(
-    (props: IProps) => !props.posts.isFetched,
+    (props: IProps) => !props.posts.isFetched || !props.configs.isFetched,
     renderComponent((props: IProps) => <Loading />)
   ),
   branch(

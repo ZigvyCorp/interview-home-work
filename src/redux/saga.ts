@@ -8,6 +8,7 @@ import commentSagas from "src/routes/comment/comment.actions";
 import createPostSagas from "src/routes/createPost/createPost.actions";
 import profileSagas from "src/routes/profile/profile.actions";
 import updatePostSagas from "src/routes/updatePost/updatePost.actions";
+import configsSagas from "src/configs/configs.actions";
 
 function* rootSaga() {
   yield all([
@@ -19,7 +20,8 @@ function* rootSaga() {
     ...commentSagas.map((saga: any) => saga()),
     ...createPostSagas.map((saga: any) => saga()),
     ...profileSagas.map((saga: any) => saga()),
-    ...updatePostSagas.map((saga: any) => saga())
+    ...updatePostSagas.map((saga: any) => saga()),
+    ...configsSagas.map((saga: any) => saga())
   ]);
 }
 

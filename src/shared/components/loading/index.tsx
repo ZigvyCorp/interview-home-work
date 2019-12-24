@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { getEnvs } from "src/shared/utils";
 
 interface IProps {}
 
@@ -36,7 +37,7 @@ const Loading = (props: IProps) => {
   return (
     <Styled className="loading">
       <div className="logo abs-center">
-        <img src={`images/icons/loading-zigvy.svg`} alt="" />
+        <img src={`${getEnvs().SOURCE_DOMAIN}/images/icons/loading-zigvy.svg`} alt="" />
       </div>
     </Styled>
   );
