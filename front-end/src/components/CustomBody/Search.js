@@ -4,7 +4,7 @@ const Search = ({ value, onChange }) => {
 	const placeholder = ` search for title or tags...`
 
 	return (
-		<div className="input-group-lg mx-3">
+		<div className="input-group-lg mx-4">
 			<input
 			  type="text"
 			  className="form-control"

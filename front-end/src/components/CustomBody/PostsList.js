@@ -14,7 +14,7 @@ const PostsList = ({ postsData, usersData, searchFilter }) => {
 	const filterData = postsData.filter(callbackFilter)
 
 	const result = filterData.length > 0
-	  ? filterData.map(item => {
+	  ? filterData.reverse().map(item => {
 				return (
 					<PostItem
 						key={item.id}

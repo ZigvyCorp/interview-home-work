@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 
+import './index.css';
 import Logo from '../../assets/logoes/64x64_light.png'
 import Profile from '../../assets/profiles/user.png'
 
@@ -13,6 +14,7 @@ const Header = () => {
 		  bg="light"
 		  variant="light"
 		  className="d-flex justify-content-between"
+		  style={{border: 'solid 3px black'}}
 		>
 
 		  <Navbar.Brand href="/">
@@ -27,8 +29,8 @@ const Header = () => {
     		</Navbar.Text>
 			</Navbar.Brand>
 
-			<Navbar.Brand href="/" className="px-5" style={{backgroundColor: '#d9d9d9'}}>
-				Blog
+			<Navbar.Brand href="/" className="px-5 " style={{backgroundColor: '#e5e5e5'}}>
+				Blogs
 			</Navbar.Brand>	
  
 	    <Navbar.Brand>

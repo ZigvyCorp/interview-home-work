@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Card from 'react-bootstrap/Card'
+import { Link } from 'react-router-dom'
 
 import TagsList from '../TagsList'
 import CommentsList from '../CommentsList'
@@ -9,7 +10,14 @@ import {
 }from '../../../helper'
 
 const DetailPage = ({ match, postsData, usersData }) => {
-	console.log(match)
+
+	if (!postsData.length) {
+		return (
+			<div className="min-vh-100 pt-3 mx-3 text-center">
+				{`Something wrong happens, please go to `} <span><Link to={`/`}>Home Page</Link></span>
+			</div>
+		)
+	}
 
 	const post = postsData.filter(item => item.id === parseInt(match.params.id))
 	const { id, owner, title, content, created_at, tags } = post[0]
@@ -19,7 +27,7 @@ const DetailPage = ({ match, postsData, usersData }) => {
 	const ownerInfo = usersData.filter(item => item.id === owner)
 
 	return (
-		<div className="bg-success min-vh-100 pt-3 mx-3">
+		<div className="min-vh-100 pt-3 mx-3">
 			<Card className="border-bottom border-dark m-1">
 			  <Card.Body>
 
