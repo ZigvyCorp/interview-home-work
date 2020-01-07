@@ -1,25 +1,13 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { List, Avatar, Icon, Tag, Comment, Tooltip } from 'antd'
 import moment from 'moment'
+import { reqGetAllPosts } from './redux'
 
-const listData = []
 const colors = ['magenta', 'red', 'volcano', 'orange', 'gold', 'lime', 'green', 'cyan']
 let tagLen = colors.length
-for (let i = 0; i < 23; i++) {
-  listData.push({
-    href: 'https://zigvy.com/',
-    title: `ant design part ${i}`,
-    tags: ['Developer', 'ReactJS', 'Nodejs'],
-    created: '',
-    avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-    img: 'https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png',
-    description: 'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-    content:
-      'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-  })
-}
+
 const IconText = ({ type, text }) => (
   <span>
     <Icon type={type} style={{ marginRight: 8 }} />
@@ -42,6 +30,23 @@ const renderTag = tags => {
   }
 }
 const Home = props => {
+  const [posts, setPosts] = useState([])
+
+  useEffect(() => {
+    // effect
+    props.reqGetAllPost()
+
+    return () => {
+      // cleanup
+    }
+  }, [])
+
+  useEffect(() => {
+    setPosts(props.posts)
+    return () => {
+      // cleanup
+    }
+  }, [props.posts])
   return (
     <React.Fragment>
       <List
@@ -53,7 +58,7 @@ const Home = props => {
           },
           pageSize: 5,
         }}
-        dataSource={listData}
+        dataSource={posts}
         renderItem={item => (
           <List.Item
             key={item.title}
@@ -65,14 +70,10 @@ const Home = props => {
             ]}
             extra={<img width={272} alt='logo' src={item.img} />}
           >
-            <List.Item.Meta
-              avatar={<Avatar src={item.avatar} />}
-              title={<a href={item.href}>{item.title}</a>}
-              description={item.description}
-            />
+            <List.Item.Meta avatar={<Avatar src={item.avatar} />} title={item.title} description={item.description} />
 
             <div>{renderTag(item.tags)}</div>
-            {item.content}
+            {item.content.substring(0, 300)}
           </List.Item>
         )}
       />
@@ -81,7 +82,16 @@ const Home = props => {
 }
 
 const mapStateToProps = state => {
-  return {}
+  return {
+    posts: state.home.allPosts,
+  }
 }
 
-export default withRouter(connect(mapStateToProps)(Home))
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    reqGetAllPost: () => {
+      dispatch(reqGetAllPosts())
+    },
+  }
+}
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home))
