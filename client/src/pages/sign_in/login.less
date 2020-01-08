@@ -1,0 +1,242 @@
+@charset "UTF-8";
+/* CSS Document */
+/* 19-03 Lucy  */
+
+body {
+  background-color: #F7F9FB;
+}
+
+#login {
+  width: 100%;
+  height: 100%;
+  padding: 100px 0;
+  position: relative;
+  background-color: #F7F9FB;
+}
+
+  .bg-login {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #F7F9FB;
+  }
+
+  .bg-login .img-x {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: url(/static/bg_login.png) no-repeat;
+  }
+
+  .bg-login .img-dot li {
+    position: fixed;
+    border-radius: 50%;
+  }
+
+  .bg-login .img-dot li:nth-child(1), .bg-login .img-dot li:nth-child(2) {
+    background: #5868C3;
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(116,151,249,1);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(116,151,249,1);
+    box-shadow: 0px 0px 8px 0px rgba(116,151,249,1);
+  }
+
+  .bg-login .img-dot li:nth-child(3), .bg-login .img-dot li:nth-child(4) {
+    background: #FFB822;
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(250,209,133,1);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(250,209,133,1);
+    box-shadow: 0px 0px 8px 0px rgba(250,209,133,1);
+  }
+
+  .bg-login .img-dot li:nth-child(1) {
+    width: 15px;
+    height: 15px;
+    top: 10%;
+    left: 10%;
+  }
+
+  .bg-login .img-dot li:nth-child(2) {
+    width: 25px;
+    height: 25px;
+    bottom: 25%;
+    right: 18%;
+  }
+
+  .bg-login .img-dot li:nth-child(3) {
+    width: 20px;
+    height: 20px;
+    top: 15%;
+    right: 15%;
+  }
+
+  .bg-login .img-dot li:nth-child(4) {
+    width: 60px;
+    height: 60px;
+    right: 10%;
+    bottom: 10%;
+  }
+
+  .wrap-lgform {
+    width: 1100px;
+    height: auto;
+    min-height: 700px;
+    margin-left:50%;
+    padding: 40px 70px;
+    position: relative;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+  }
+
+  .wrap-lgform h1 {
+    margin-bottom: 80px;
+    position: absolute;
+  }
+
+  .wrap-lgform h2 {
+    margin: 80px 0 10px 0;
+    color: #5868C3;
+    font-size: 60px;
+    font-weight: lighter;
+  }
+
+  .wrap-lgform h3 {
+    font-size: 35px;
+    color: #333;
+    text-align: center;
+  }
+
+  .wrap-lgform h4 {
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+  }
+
+  .wrap-lgform h5 {
+    margin: 30px auto 0;
+    text-align: center;
+  }
+
+  .wrap-lgform h5 i {
+    margin-right: 10px;
+  }
+
+  .wrap-lgform p {
+    width: 450px;
+    margin:0 auto 60px;
+    color: #777;
+  }
+
+  .wrap-lgform .ant-form-item {
+    margin-bottom: 0 !important; /* input id/pw margin 19-05-14 */
+  }
+
+  .wrap-lgform .ant-form-item-control {
+    text-align: center; /* sign in button align 19-05-14 */
+  }
+
+  .wrap-lgform .ant-form-explain {
+    text-align: left;
+  }
+
+  .wrap-lgform .ant-steps {
+    max-width: 375px;
+    margin: 0 auto 60px;
+  }
+
+  .wrap-lgform .ant-steps .ant-steps-item {
+    text-align: left;
+  }
+
+  .wrap-lgform fieldset {
+    width: 350px;
+    margin: 0 auto 40px;
+    text-align: left;
+  }
+
+  .wrap-lgform .steps-content label {
+    width: 100%;
+    padding: 0 10px;
+    margin-top: 30px;
+    display: inline-block;
+    text-align: left;
+  }
+
+  .wrap-lgform .steps-content figure {
+    width: 70px;
+    margin: 0 auto 15px;
+    position: relative;
+  }
+
+  .wrap-lgform .steps-content figure i {
+    font-size: 70px;
+    color: #777;
+  }
+
+  .wrap-lgform .steps-content figure span {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    right: -10px;
+    color: #fff;
+    background: #F5222D;
+  }
+
+  .wrap-lgform fieldset label:first-child {
+    margin-top: 0;
+  }
+
+  .wrap-lgform fieldset input {
+    width: 100%;
+    padding: 4px 11px;
+    margin-bottom: 10px;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 13px;
+    line-height: 1.5;
+    border: 0;
+    border-bottom: 1px solid #979797;
+    border-radius: 0;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    text-align: left !important;
+    color:#5868C3;
+  }
+
+  .wrap-lgform fieldset .btn-below {
+    padding: 0 10px;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .wrap-lgform button {
+    min-width: 130px !important;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    font-size: 15px !important;
+  }
+
+  .wrap-lgform p.wrap-signup {
+    width: calc(100% - 140px);
+    margin: 0 auto;
+    position: absolute;
+    bottom: 40px;
+    font-size: 14px;
+  }
+
+  .wrap-lgform p.wrap-signup > a {
+    display: inline-block;
+    margin-left: 10px;
+  }
+
+  .wrap-lgform p.wrap-con {
+    margin-bottom: 150px;
+  }

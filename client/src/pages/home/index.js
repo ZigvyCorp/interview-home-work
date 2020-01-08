@@ -70,7 +70,11 @@ const Home = props => {
             ]}
             extra={<img width={272} alt='logo' src={item.img} />}
           >
-            <List.Item.Meta avatar={<Avatar src={item.avatar} />} title={item.title} description={item.description} />
+            <List.Item.Meta
+              avatar={<Avatar src={item.avatar} />}
+              title={item.title}
+              description={`created at ${moment(item.created_at).format('LLL')} `}
+            />
 
             <div>{renderTag(item.tags)}</div>
             {item.content.substring(0, 300)}

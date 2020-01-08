@@ -35,11 +35,11 @@ const GlobalLayOut = props => {
             <Menu theme='dark' mode='horizontal' defaultSelectedKeys={['1']} style={{ lineHeight: '64px' }}>
               <Menu.Item key='1'>
                 Home
-                <Link to={`/`}></Link>
+                <Link to={`/posts`}></Link>
               </Menu.Item>
               <Menu.Item key='2'>
                 New Post
-                <Link to={`/map`}></Link>
+                <Link to={`/writer`}></Link>
               </Menu.Item>
               <Menu.Item key='3'>nav 3</Menu.Item>
             </Menu>
