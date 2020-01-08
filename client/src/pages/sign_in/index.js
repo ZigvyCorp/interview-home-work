@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './login.less'
-import { Button, Checkbox, Col, Input, Row } from 'antd'
+import { Button, Checkbox, Col, Form, Input, Row } from 'antd'
+
 function onChange(e) {
   // console.log(`checked = ${e.target.checked}`)
 }
-const Home = () => {
+
+const handleResetPassword = () => {}
+const Home = props => {
+  const [busy, setBusy] = useState(false)
+  const { getFieldDecorator } = props.form
+
+  const handleSubmit = () => {
+    props.router.history.push('/posts')
+  }
   return (
     <div id='login'>
       <section className='bg-login'>
@@ -19,23 +28,48 @@ const Home = () => {
       <section className='wrap-lgform'>
         <h2>Sign in</h2>
         <p>Sign in and start managing data</p>
-        <fieldset>
-          <Input.Group>
-            <Input size='large' placeholder='name@xightin.com' />
-            <Input.Password size='large' placeholder='condition of Password' />
-          </Input.Group>
+        <Form onSubmit={handleSubmit}>
+          <Form.Item>
+            {getFieldDecorator('email', {
+              rules: [
+                { required: true, message: 'Please input email' },
+                {
+                  type: 'email',
+                  message: 'Email is invalid',
+                },
+              ],
+            })(<Input size='large' placeholder='Email address' />)}
+          </Form.Item>
+          <Form.Item>
+            {getFieldDecorator('password', {
+              rules: [
+                { required: true, message: 'Please input password' },
+                { min: 8, message: 'Password must be at least 8 characters' },
+              ],
+            })(<Input.Password size='large' placeholder='Password' />)}
+          </Form.Item>
           <Row type='flex' gutter={10} justify='space-between'>
             <Col>
-              <Checkbox onChange={onChange}>Remember me</Checkbox>
+              <Form.Item>
+                {getFieldDecorator('remember')(<Checkbox onChange={e => {}}>Remember me</Checkbox>)}
+              </Form.Item>
             </Col>
             <Col>
-              <a href='#'>Forgot password?</a>
+              <Button type='link' onClick={handleResetPassword}>
+                Forgot password?
+              </Button>
             </Col>
           </Row>
-        </fieldset>
-        <Button type='primary' size='large' shape='round'>
-          Sign in
-        </Button>
+          <Form.Item>
+            <Row type='flex' gutter={0} justify='center' className='action-bar'>
+              <Col>
+                <Button type='primary' loading={busy} htmlType='submit' size='large' shape='round'>
+                  Sign in
+                </Button>
+              </Col>
+            </Row>
+          </Form.Item>
+        </Form>
         <p className='wrap-signup'>
           Don’t have an account?<a href='#'>Sign up</a>
         </p>
@@ -44,4 +78,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Form.create({ name: 'signinForm' })(Home)
