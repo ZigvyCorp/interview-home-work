@@ -4,8 +4,6 @@ var user = require("./controller/users");
 function setRouter(router, database) {
   router.post("/signin", function(req, res) {
     sessions = req.session;
-    console.log(sessions);
-
     var user_name = req.body.email;
     var password = req.body.password;
     user
@@ -25,13 +23,10 @@ function setRouter(router, database) {
     var name = req.body.name;
     var email = req.body.email;
     var password = req.body.password;
-    console.log("111111111");
     if (name && email && password) {
       user
         .signup(name, email, password, database)
         .then(result => {
-          console.log("2222222222");
-          console.log(result);
           return res.send(result);
         })
         .catch(err => {

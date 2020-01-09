@@ -23,7 +23,6 @@ export default class Signup extends Component {
   };
 
   signIn = () => {
-    console.log(this.state.email);
   };
 
   render() {

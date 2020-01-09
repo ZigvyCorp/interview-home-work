@@ -17,7 +17,6 @@ export default class Signin extends Component {
   };
 
   signIn = () => {
-    console.log(this.state.email);
   };
 
   render() {
