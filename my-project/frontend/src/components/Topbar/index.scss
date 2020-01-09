@@ -1,1 +1,17 @@
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
+
+.topbar {
+  display: flex;
+  text-align: center;
+
+  .home {
+    flex: 1;
+  }
+  .blog {
+    flex: 1;
+  }
+  .sign {
+    flex: 1;
+
+  }
+}

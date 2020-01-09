@@ -1,0 +1,58 @@
+.sign {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+
+  .sign-box {
+    width: 500px;
+    height: 400px;
+    border: 1px solid rgb(212, 208, 208);
+    margin-top: 100px;
+    border-radius: 10px;
+
+    .title{
+      margin-top: 80px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .email {
+      margin-top: 20px;
+      input{
+        width: 300px;
+        border-radius: 4px;
+        border-width: 1px;
+        border: 1px solid rgb(221, 215, 215);
+      }
+    }
+
+    .pass {
+      margin-top: 10px;
+      input{
+        width: 300px;
+        border-radius: 4px;
+        border-width: 1px;
+        border: 1px solid rgb(221, 215, 215);
+
+      }
+    }
+
+    .sign-button {
+      margin-top: 10px;
+      
+      button{
+      font-weight: bold;
+      border-width: 1px;
+      border-radius: 4px;
+
+      }
+    }
+
+    .signup{
+      font-size: 14px;
+      display: flex;
+      margin-left: 100px;
+    }
+
+  }
+}
