@@ -7,11 +7,12 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from "react-redux";
 import logger from "redux-logger";
 import Home from './pages/home';
-
+import './algorithm'
 import Sign from "./pages/sign";
 import Signup from './components/Signup';
 import rootReducer from "./reducer";
 import PostList from "./components/PostList";
+import Sider from './components/sider';
 
 const store = createStore(rootReducer, applyMiddleware(thunk, logger));
 
