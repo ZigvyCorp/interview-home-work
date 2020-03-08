@@ -1,0 +1,18 @@
+.home__list-item .ant-list-item-action {
+  margin-top: 30px;
+  border-bottom: 1px solid #e5e5e5 !important;
+}
+
+.home__list-item .ant-list-item-meta-title {
+  margin-bottom: 0;
+}
+
+.ant-list-item-action > li {
+  width: 100%;
+  text-align: start;
+}
+
+.home__list-item .ant-list-item-extra {
+  position: absolute;
+  right: 16px;
+}
