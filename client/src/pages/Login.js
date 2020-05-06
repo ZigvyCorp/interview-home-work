@@ -12,42 +12,23 @@ export class Login extends Component {
       didLoginSucceed: false
     }
 
-    this.authenticate = this.authenticate.bind(this);
-  }
-  
-  componentDidMount() {
-    this.props.requestUserList()
+    this.login = this.login.bind(this);
   }
 
-  // getUserList = () => {
-  //   fetch('/api/get_user_list')
-  //   .then(res => res.json())
-  //   .then(result => {
-  //     this.props.updateUserList(result)
-  //   })
-  // }
-
-  authenticate = () => {
-    const { userList } = this.props
-
+  login = () => {
     const usr = document.getElementById('username').value
     const pwd = document.getElementById('password').value
 
-    const filteredUserList = userList.filter(user => user.username == usr && user.password == pwd)
-    if (filteredUserList.length > 0) {
-      console.log('success')
-    } else {
-      console.log('fail')
-    }
+    this.props.authenticate({ username: usr, password: pwd })
   }
 
   render() {
-    console.log(this.props.userList)
+    console.log(this.props.currentUserId)
     return (
       <div>
         <input id="username" />
         <input id="password" />
-        <button type="button" onClick={this.authenticate}>Login</button>
+        <button type="button" onClick={this.login}>Login</button>
       </div>
     );
   }
@@ -55,14 +36,14 @@ export class Login extends Component {
 
 const mapStateToProps = state => {
   return {
-    userList: state.userList
+    currentUserId: state.currentUserId
   }
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    requestUserList: () => {
-      dispatch({ type: 'REQUEST_USER_LIST' });
+    authenticate: credential => {
+      dispatch({ type: 'USER_LOGIN', data: credential });
     }
   }
 };
