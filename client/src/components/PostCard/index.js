@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import CommentCard from '../CommentCard';
+import CommentField from '../CommentField';
 
 const PostCard = ({
   id,
@@ -7,7 +9,8 @@ const PostCard = ({
   author,
   createdAt,
   shortContent,
-  commentList
+  commentList,
+  currentUserId
 }) => {
   const commentListId = "collapseComment" + id
   return (
@@ -18,6 +21,7 @@ const PostCard = ({
         <div>Created at: {createdAt}</div>
         <div style={{ marginTop: 12 }}>{shortContent}</div>
         <div style={{ marginTop: 24 }}>
+          {currentUserId && <CommentField postId={id} />}
           <a href={`#${commentListId}`} role="button" data-toggle="collapse"
             aria-expanded="false" aria-controls={commentListId}
             style={commentList.length < 1 ? {color: '#A9A9A9', pointerEvents: 'none', textDecoration: 'none'} : {}}
@@ -27,6 +31,7 @@ const PostCard = ({
           <div className="collapse" id={commentListId} style={{ marginTop: 16 }}>
             {commentList.map(comment => (
               <CommentCard
+                key={comment.id}
                 owner={comment.owner}
                 createdAt={comment.created_at}
                 content={comment.content}
@@ -39,4 +44,10 @@ const PostCard = ({
   )
 }
 
-export default PostCard;
+const mapStateToProps = state => {
+  return {
+    currentUserId: state.currentUserId
+  }
+};
+
+export default connect(mapStateToProps, null)(PostCard);

@@ -4,7 +4,8 @@ const initialState = {
   userList: [],
   postList: [],
   commentList: [],
-  currentUserId: null
+  currentUserId: null,
+  searchTerms: ""
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -18,6 +19,12 @@ const rootReducer = (state = initialState, action) => {
 
     case 'UPDATE_CURRENT_USER_ID':
       return update(state, { currentUserId: { $set: action.userId } })
+
+    case 'UPDATE_COMMENT_LIST':
+      return update(state, { commentList: { $unshift: [action.comment] } })
+
+    case 'UPDATE_SEARCH_TERMS':
+      return update(state, { searchTerms: { $set: action.searchTerms } })
 
     default:
       return state;

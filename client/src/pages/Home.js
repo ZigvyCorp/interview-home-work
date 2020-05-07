@@ -9,16 +9,24 @@ class Home extends Component {
   }
 
   render() {
-    const { postList, commentList, userList } = this.props;
+    const { postList, commentList, userList, searchTerms } = this.props;
+    const filteredPostList = searchTerms !== "" ? postList.filter(post => {
+      const terms = searchTerms.toLowerCase().split(" ")
+      const found = terms.some(term => {
+        return post.title.toLowerCase().indexOf(term) >= 0 || post.tags.indexOf(term) >= 0
+      })
+      return found
+    }) : postList
     return (
       <div className="container" style={{ marginTop: 54 }}>
         <div className="row">
           <div className="col" style={{ marginTop: 24 }}>
-            {postList.map(post => {
+            {filteredPostList.map(post => {
               const owner = userList.filter(user => user.id == post.owner)
               const comments = commentList.filter(comment => comment.post == post.id)
               return (
                 <PostCard
+                  key={post.id}
                   id={post.id}
                   title={post.title}
                   author={owner[0].name}
@@ -40,6 +48,7 @@ const mapStateToProps = state => {
     userList: state.userList,
     postList: state.postList,
     commentList: state.commentList,
+    searchTerms: state.searchTerms
   }
 };
 

@@ -25,6 +25,21 @@ app.post('/api/authenticate', (req, res) => {
   }
 });
 
+app.post('/api/submit_reply', (req, res) => {
+  const id = Math.max.apply(Math, comments.map(comment => { return comment.id; })) + 1
+  const today = new Date();
+  const date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+  const comment = {
+    id: id,
+    owner: req.body.owner,
+    post: req.body.postId,
+    content: req.body.content,
+    created_at: date
+  }
+  comments.unshift(comment)
+  res.json(comment);
+});
+
 app.get('*', (req,res) =>{
   res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });

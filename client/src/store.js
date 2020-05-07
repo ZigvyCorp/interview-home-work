@@ -9,6 +9,7 @@ import rootSaga from './sagas/saga';
 const persistConfig = {
   key: 'root',
   storage,
+  blacklist: ['searchTerms']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
