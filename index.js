@@ -12,8 +12,8 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use(express.json())
 
-app.get('/api/get_user_list', (req, res) => {
-  res.json(users)
+app.get('/api/get_data', (req, res) => {
+  res.json({ userList: users, postList: posts, commentList: comments })
 });
 
 app.post('/api/authenticate', (req, res) => {

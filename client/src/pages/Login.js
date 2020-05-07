@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom';
 
-
-export class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,11 +17,10 @@ export class Login extends Component {
     const usr = document.getElementById('username').value
     const pwd = document.getElementById('password').value
 
-    this.props.authenticate({ username: usr, password: pwd })
+    this.props.authenticate({ username: usr, password: pwd }, this.props.history)
   }
 
   render() {
-    console.log(this.props.currentUserId)
     return (
       <div>
         <input id="username" />
@@ -42,8 +39,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    authenticate: credential => {
-      dispatch({ type: 'USER_LOGIN', data: credential });
+    authenticate: (credential, history) => {
+      dispatch({ type: 'USER_LOGIN', data: credential, callBack: () => history.push('/home') });
     }
   }
 };

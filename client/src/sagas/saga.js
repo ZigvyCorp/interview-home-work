@@ -1,17 +1,17 @@
 import { put, takeEvery, all, call } from 'redux-saga/effects'
 
-const getUserList = async () => {
-  const res = await fetch('/api/get_user_list')
+const getData = async () => {
+  const res = await fetch('/api/get_data')
   return await res.json()
 }
 
-function* requestUserList() {
-  const userList = yield call(getUserList)
-  yield put({ type: 'UPDATE_USER_LIST', userList })
+function* requestData() {
+  const data = yield call(getData)
+  yield put({ type: 'UPDATE_DATA', data })
 }
 
-function* watchRequestUserList() {
-  yield takeEvery('REQUEST_USER_LIST', requestUserList)
+function* watchRequestData() {
+  yield takeEvery('REQUEST_DATA', requestData)
 }
 
 const authenticate = async (credential) => {
@@ -31,6 +31,7 @@ function* userLogin(action) {
   const userId = result.userId
   if (userId) {
     yield put({ type: 'UPDATE_CURRENT_USER_ID', userId })
+    yield call(action.callBack)
   } 
 }
 
@@ -40,7 +41,7 @@ function* watchUserLogin() {
 
 export default function* rootSaga() {
   yield all([
-    watchRequestUserList(),
+    watchRequestData(),
     watchUserLogin()
   ])
 }
