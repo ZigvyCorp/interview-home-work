@@ -69,11 +69,34 @@ function* watchSubmitReply() {
   yield takeLatest('SUBMIT_REPLY', submitReply)
 }
 
+const submitPostToServer = async (data) => {
+  const res = await fetch('/api/submit_post', {
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  return await res.json()
+}
+
+function* submitPost(action) {
+  const data = action.data
+  const result = yield call(submitPostToServer, data)
+  yield put({ type: 'UPDATE_POST_LIST', post: result })
+}
+
+function* watchSubmitPost() {
+  yield takeLatest('SUBMIT_POST', submitPost)
+}
+
 export default function* rootSaga() {
   yield all([
     watchRequestData(),
     watchUserLogin(),
     watchUserLogout(),
-    watchSubmitReply()
+    watchSubmitReply(),
+    watchSubmitPost()
   ])
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom';
 import PostCard from '../components/PostCard';
+import FloatingButton from '../components/FloatingButton';
 
 class Home extends Component {
   componentDidMount() {
@@ -9,7 +9,7 @@ class Home extends Component {
   }
 
   render() {
-    const { postList, commentList, userList, searchTerms } = this.props;
+    const { postList, commentList, userList, searchTerms, currentUserId } = this.props;
     const filteredPostList = searchTerms !== "" ? postList.filter(post => {
       const terms = searchTerms.toLowerCase().split(" ")
       const found = terms.some(term => {
@@ -38,6 +38,7 @@ class Home extends Component {
             })}
           </div>
         </div>
+        {currentUserId && <FloatingButton />}
       </div>
     )
   }
@@ -48,7 +49,8 @@ const mapStateToProps = state => {
     userList: state.userList,
     postList: state.postList,
     commentList: state.commentList,
-    searchTerms: state.searchTerms
+    searchTerms: state.searchTerms,
+    currentUserId: state.currentUserId
   }
 };
 

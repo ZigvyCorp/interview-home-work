@@ -6,11 +6,6 @@ import avatar from '../../images/default_avatar.png'
 class NavigationBar extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isLoggingIn: false,
-      shouldShowResultDiv: false,
-      didLoginSucceed: false
-    }
 
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
@@ -18,7 +13,15 @@ class NavigationBar extends Component {
   }
 
   componentDidMount() {
-    document.getElementById('search').value = this.props.searchTerm
+    const searchField = document.getElementById('search')
+    searchField.value = this.props.searchTerm
+
+    searchField.addEventListener("keyup", event => {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("searhBtn").click();
+      }
+    });
   }
 
   login = () => {
@@ -67,7 +70,7 @@ class NavigationBar extends Component {
             <div className="row justify-content-end align-items-center" style={{ margin: 0 }}>
               {/* Search field */}
               <input id='search' style={{ marginRight: 6 }} />
-              <button style={{ marginRight: 24 }} onClick={this.search}>Search</button>
+              <button id='searhBtn' style={{ marginRight: 24 }} onClick={this.search}>Search</button>
 
               {/* User login and logout */}
               <div>

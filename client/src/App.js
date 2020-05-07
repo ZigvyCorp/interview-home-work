@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
 import NavigationBar from './components/NavigationBar';
+import NewPost from './pages/NewPost';
 
 class App extends Component {
   render() {
@@ -11,6 +12,7 @@ class App extends Component {
         <NavigationBar />
         <Switch>
           <Route exact path='/' component={Home}/>
+          <Route exact path='/new-post' component={NewPost}/>
         </Switch>
       </div>
     )

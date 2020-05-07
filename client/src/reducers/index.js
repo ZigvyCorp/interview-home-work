@@ -23,6 +23,9 @@ const rootReducer = (state = initialState, action) => {
     case 'UPDATE_COMMENT_LIST':
       return update(state, { commentList: { $unshift: [action.comment] } })
 
+    case 'UPDATE_POST_LIST':
+      return update(state, { postList: { $unshift: [action.post] } })
+
     case 'UPDATE_SEARCH_TERMS':
       return update(state, { searchTerms: { $set: action.searchTerms } })
 

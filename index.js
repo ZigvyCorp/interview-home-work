@@ -40,6 +40,22 @@ app.post('/api/submit_reply', (req, res) => {
   res.json(comment);
 });
 
+app.post('/api/submit_post', (req, res) => {
+  const id = Math.max.apply(Math, posts.map(post => { return post.id; })) + 1
+  const today = new Date();
+  const date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+  const post = {
+    id: id,
+    owner: req.body.owner,
+    title: req.body.title,
+    content: req.body.content,
+    created_at: date,
+    tags: req.body.tags
+  }
+  posts.unshift(post)
+  res.json(post);
+});
+
 app.get('*', (req,res) =>{
   res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
