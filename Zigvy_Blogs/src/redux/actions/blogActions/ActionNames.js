@@ -1,0 +1,9 @@
+export const NAME_ACTIONS = {
+    BLOG:{
+        BLOG_HOME_SCREEN:'LOGIN_SCREEN',
+
+        BLOG_CREATE_SCREEN:'SIGNUP_SCREEN',
+
+        BLOG_DETAIL_SCREEN:'BLOG_DETAIL_SCREEN'
+    }
+}

@@ -5,22 +5,30 @@ import {
     ImageBackground,
     ScrollView,
     Image,
-    TextInput
+    TextInput,
+    Alert
 } from 'react-native';
 import {
     heightPercentageToDP as hp,
     widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
 import Button from '@ant-design/react-native/lib/button';
+import { connect } from 'react-redux';
+
 
 import { LoginStyle } from '../../styles/LoginComponentStyles'
 import {
     UserIcon,
     LockIcon
 } from '../../resources/VectorIcons'
+import {
+    login,
+    resetLoginStatus
+} from '../../redux/actions/loginActions/LoginActions'
+import { ACTION_STATUS } from '../../utils/Configs';
 
 
-export default class LoginScreen extends Component {
+class LoginScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -30,12 +38,45 @@ export default class LoginScreen extends Component {
         }
     }
 
+    componentDidUpdate(prevProps) {
+        if (
+            this.props.loginStatus != prevProps.loginStatus
+            && this.props.loginStatus == ACTION_STATUS.SUCCESS
+        ) {
+            this.props.navigation.navigate("LoadingScreen");
+        } else if (
+            this.props.loginStatus != prevProps.loginStatus
+            && this.props.loginStatus == ACTION_STATUS.FAILED
+        ) {
+            this.onloginFailed()
+        }
+    }
+
     onLoginPress = () => {
         if (this.state.userName.trim().length > 0 && this.state.password.trim().length > 0) {
-            this.props.navigation.navigate("LoadingScreen");
+            this.setState({
+                loggingIn: true
+            }, () => {
+                this.props.login(this.state.userName, this.state.password)
+            })
         } else {
             alert('Username and password must not empty..!!!')
         }
+    }
+
+    onloginFailed = () => {
+        this.setState({ loggingIn: false })
+        Alert.alert(
+            'Failed To Login',
+            this.props.loginFailedMessage,
+            [
+                {
+                    text: "Okay",
+                    onPress: () => this.props.resetLoginStatus(),
+                },
+            ],
+            { cancelable: false }
+        )
     }
 
     onSignupPress = () => {
@@ -78,6 +119,7 @@ export default class LoginScreen extends Component {
                                                     onChangeText={(username) => {
                                                         this.setState({ userName: username })
                                                     }}
+                                                    editable={!this.state.loggingIn}
                                                 />
                                             </View>
                                         </View>
@@ -94,6 +136,7 @@ export default class LoginScreen extends Component {
                                                     onChangeText={(pwd) => {
                                                         this.setState({ password: pwd })
                                                     }}
+                                                    editable={!this.state.loggingIn}
                                                 />
                                             </View>
                                         </View>
@@ -112,6 +155,8 @@ export default class LoginScreen extends Component {
                                         }}
                                         activeStyle={{ backgroundColor: '#8E8989' }}
                                         onPress={this.onLoginPress}
+                                        disabled={this.state.loggingIn}
+                                        loading={this.state.loggingIn}
                                     >
                                         <Text style={{ color: 'white', fontWeight: '600' }}>
                                             LOGIN
@@ -125,6 +170,7 @@ export default class LoginScreen extends Component {
                                             borderColor: '#5F5C5C'
                                         }}
                                         activeStyle={{ backgroundColor: '#7B7A7A' }}
+                                        disabled={this.state.loggingIn}
                                         onPress={this.onSignupPress}
                                     >
                                         <Text style={{ color: 'white', fontWeight: '600' }}>
@@ -144,3 +190,15 @@ export default class LoginScreen extends Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        loginStatus: state.loginReducer.loginStatus,
+        loginFailedMessage: state.loginReducer.loginFailedMessage,
+    }
+}
+
+export default connect(mapStateToProps, {
+    login,
+    resetLoginStatus
+})(LoginScreen);

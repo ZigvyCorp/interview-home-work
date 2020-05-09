@@ -3,7 +3,8 @@ import {
     View,
     Text,
     ImageBackground,
-    Image
+    Image,
+    BackHandler
 } from 'react-native';
 import {
     heightPercentageToDP as hp,
@@ -15,6 +16,7 @@ import { LoginStyle } from '../../styles/LoginComponentStyles'
 
 export default class LoadingScreen extends Component {
     componentDidMount(){
+        BackHandler.addEventListener('hardwareBackPress', ()=>true);
         setInterval(()=>{
             this.props.navigation.navigate("BlogRoute");
         },2000)

@@ -31,7 +31,7 @@ export default class Blog extends Component {
                     <View style={{ flex: 0.8, alignItems: 'center' }}>
                         <View style={{ marginTop: hp('0.7%') }}>
                             <Image
-                                source={require('../../resources/images/strage_avatar.jpg')}
+                                source={require('../../resources/images/strange_avatar.jpg')}
                                 style={{
                                     height: hp('8%'), 
                                     width: hp('8%'), 

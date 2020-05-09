@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@ant-design/react-native": "^3.3.0",
+    "@react-native-community/async-storage": "^1.9.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/compat": "^5.1.15",
     "@react-navigation/native": "^5.2.4",
@@ -23,7 +24,11 @@
     "react-native-responsive-screen": "^1.4.1",
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.7.0",
-    "react-native-vector-icons": "^6.6.0"
+    "react-native-vector-icons": "^6.6.0",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "redux-observable": "^1.2.0",
+    "rxjs": "^6.5.5"
   },
   "devDependencies": {
     "@babel/core": "7.9.6",
