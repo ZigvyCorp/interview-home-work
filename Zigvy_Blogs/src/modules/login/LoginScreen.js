@@ -107,7 +107,7 @@ class LoginScreen extends Component {
                                     <View style={LoginStyle.inputHolder}>
                                         <View style={LoginStyle.inputWrapper}>
                                             <View style={LoginStyle.iconWrapper} >
-                                                <UserIcon size={hp('6%')} color="#DBD9D9" />
+                                                <UserIcon size={hp('5%')} color="#DBD9D9" />
                                             </View>
                                             <View
                                                 style={LoginStyle.inputContainer}
@@ -120,12 +120,13 @@ class LoginScreen extends Component {
                                                         this.setState({ userName: username })
                                                     }}
                                                     editable={!this.state.loggingIn}
+                                                    autoCapitalize="none"
                                                 />
                                             </View>
                                         </View>
                                         <View style={LoginStyle.inputWrapper}>
                                             <View style={LoginStyle.iconWrapper}>
-                                                <LockIcon size={hp('6%')} color="#DBD9D9" />
+                                                <LockIcon size={hp('5%')} color="#DBD9D9" />
                                             </View>
                                             <View style={LoginStyle.inputContainer}>
                                                 <TextInput
@@ -137,6 +138,7 @@ class LoginScreen extends Component {
                                                         this.setState({ password: pwd })
                                                     }}
                                                     editable={!this.state.loggingIn}
+                                                    autoCapitalize="none"
                                                 />
                                             </View>
                                         </View>

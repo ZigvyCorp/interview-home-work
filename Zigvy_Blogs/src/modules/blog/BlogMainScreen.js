@@ -7,12 +7,13 @@ import {
     heightPercentageToDP as hp,
     widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
+import Modal from 'react-native-modalbox';
+import { connect } from 'react-redux';
 
 import Blogs from '../../data/posts.json'
 import Blog from './Blog';
-import Modal from 'react-native-modalbox';
 
-export default class BlogMainScreen extends Component {
+class BlogMainScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -25,7 +26,7 @@ export default class BlogMainScreen extends Component {
         this.setState({ postsList: Blogs })
     }
 
-    onBlogPress = () => {
+    onMorePress = () => {
         this.props.navigation.navigate("BlogDetailScreen");
     }
 
@@ -37,7 +38,7 @@ export default class BlogMainScreen extends Component {
         return (
             <View style={{ flex: 1, backgroundColor: '#343435', alignItems: 'center' }}>
                 <FlatList
-                    data={this.state.postsList}
+                    data={this.props.blogList}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={this.renderItem}
                     style={{marginBottom:hp('1%')}}
@@ -46,3 +47,13 @@ export default class BlogMainScreen extends Component {
         );
     }
 }
+
+function mapStateToProps (state){
+    return{
+        blogList: state.blogReducer.blogList,
+    }
+}
+
+export default connect(mapStateToProps, {
+    
+})(BlogMainScreen);

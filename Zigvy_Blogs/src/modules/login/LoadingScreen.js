@@ -4,22 +4,55 @@ import {
     Text,
     ImageBackground,
     Image,
-    BackHandler
+    BackHandler,
+    Alert
 } from 'react-native';
 import {
     heightPercentageToDP as hp,
     widthPercentageToDP as wp
 } from 'react-native-responsive-screen'
-import Spin from '@ant-design/react-native/lib/';
+import { connect } from 'react-redux';
 
 import { LoginStyle } from '../../styles/LoginComponentStyles'
+import {
+    getBlogList
+} from '../../redux/actions/blogActions/BlogActions'
+import { ACTION_STATUS } from '../../utils/Configs';
 
-export default class LoadingScreen extends Component {
+class LoadingScreen extends Component {
+
     componentDidMount(){
         BackHandler.addEventListener('hardwareBackPress', ()=>true);
-        setInterval(()=>{
-            this.props.navigation.navigate("BlogRoute");
-        },2000)
+        this.props.getBlogList()
+    }
+
+    componentDidUpdate(prevProps){
+        if(
+            this.props.blogList != prevProps.blogList &&
+            this.props.getBlogStatus == ACTION_STATUS.SUCCESS
+        ){
+            setInterval(()=>{
+                this.props.navigation.navigate("BlogRoute");
+            },2000)
+        }else if(
+            this.props.getBlogStatus == ACTION_STATUS.FAILED
+        ){
+            this.onGetBlogListFailed()
+        }
+    }
+
+    onGetBlogListFailed = () => {
+        Alert.alert(
+            'Failed To Get Data',
+            this.props.blogReducer.getBlogFailedMessage,
+            [
+                {
+                    text: "Try again",
+                    onPress: () => {},
+                },
+            ],
+            { cancelable: false }
+        )
     }
 
     render() {
@@ -30,7 +63,7 @@ export default class LoadingScreen extends Component {
                 imageStyle={LoginStyle.backgroundImg}
             >
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                    <View style={{ height: hp('22%'), width: wp('38%') }}>
+                    <View style={{ height: hp('22%'), width: wp('50%') }}>
                         <Image
                             source={require('../../resources/images/loading.gif')}
                             style={{
@@ -38,7 +71,7 @@ export default class LoadingScreen extends Component {
                                 width: '100%'
                             }}
                         />
-                        <Text style={{fontSize:hp('3%'),color:'#ffff',marginTop:hp('1%')}}>Preparing data...</Text>
+                        <Text style={{fontSize:hp('2.8%'),color:'#ffff',marginTop:hp('1%')}}>Preparing data...</Text>
                     </View>
                 </View>
 
@@ -46,3 +79,14 @@ export default class LoadingScreen extends Component {
         );
     }
 }
+
+function mapStateToProps (state){
+    return{
+        blogList: state.blogReducer.blogList,
+        getBlogStatus: state.blogReducer.getBlogStatus,
+    }
+}
+
+export default connect(mapStateToProps, {
+    getBlogList
+})(LoadingScreen);

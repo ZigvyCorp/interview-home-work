@@ -53,24 +53,24 @@ export const LoginStyle = StyleSheet.create({
         display: 'flex' 
     },
     inputWrapper:{ 
-        height: hp('8%'), 
+        height: hp('7%'), 
         flexDirection: 'row', 
         marginBottom: hp('2%') 
     },
     iconWrapper:{ 
         flex: 1,
-        justifyContent:'flex-end',
+        justifyContent:'center',
         alignItems:'flex-start'
     },
     inputContainer:{ 
-        flex: 6, 
+        flex: 5, 
         borderBottomWidth: 0.25, 
         borderBottomColor: '#BDBDBD' 
     },
     input:{ 
         height: '100%', 
         width: '100%', 
-        fontSize: hp('3.7%'), 
+        fontSize: hp('2.8%'), 
         color: '#BDBDBD' 
     },
     buttonContainer:{

@@ -14,65 +14,71 @@ import {
     OptionIcon,
     CommentIcon
 } from '../../resources/VectorIcons'
+import { USER_PROFILE } from '../../utils/Configs';
+import {BlogStyle} from '../../styles/BlogComponentStyles'
 
 export default class Blog extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          
-        }
-    }
-
     render() {
+        const { blogData } = this.props
+        const avatarImage = blogData.owner.id != USER_PROFILE.USER_ID 
+            ? require('../../resources/images/strange_avatar.jpg') 
+            : require('../../resources/images/avatar.jpg')
+
         return (
-            <View style={{ height: hp('35%'), width: wp('90%'), backgroundColor: '#D2CCCC', borderRadius: hp('1%'), marginTop: hp('2%'), display: 'flex' }}>
+            <View style={BlogStyle.postContainer}>
                 {/* post header */}
-                <View style={{ flex: 1.5, flexDirection: 'row' }}>
-                    <View style={{ flex: 0.8, alignItems: 'center' }}>
+                <View style={BlogStyle.postHeaderContainer}>
+                    <View style={BlogStyle.ownerAvatarContainer}>
                         <View style={{ marginTop: hp('0.7%') }}>
                             <Image
-                                source={require('../../resources/images/strange_avatar.jpg')}
-                                style={{
-                                    height: hp('8%'), 
-                                    width: hp('8%'), 
-                                    borderRadius: hp('8%') / 2,
-                                }}
+                                source={avatarImage}
+                                style={BlogStyle.ownerAvatarHolder}
                             />
                         </View>
                     </View>
-                    <View style={{ flex: 3.7, }}>
-                        <Text style={{ fontSize: hp('3.5%'), fontWeight: '600', marginLeft: wp('1%'), marginTop: hp('0.5%') }}>Name Here</Text>
-                        <Text style={{ fontSize: hp('2.5%'), marginLeft: wp('1%'), marginTop: hp('0.2%'), color: '#464646' }}>At 12/12/2020</Text>
+                    <View style={{ flex: 3.7 }}>
+                        <Text style={BlogStyle.ownerName}>
+                            {blogData.owner.displayName.length > 0 ? blogData.owner.displayName : 'Anonymous'}
+                        </Text>
+                        <Text style={BlogStyle.postCreatedDate}>
+                            At 9/5/2020
+                        </Text>
                     </View>
-                    <TouchableOpacity style={{ flex: 0.5, alignItems: 'center' }}>
+                    <TouchableOpacity 
+                        style={{ flex: 0.5, alignItems: 'center' }}
+                        onPress={()=>{alert('Feature is under construction :( Sorry for the inconvenience...')}}
+                    >
                         <View>
-                            <OptionIcon size={hp('4.4%')} style={{ marginTop: hp('2%') }} color="#2E2E2E" />
+                            <OptionIcon size={hp('3.8%')} style={{ marginTop: hp('2%') }} color="#2E2E2E" />
                         </View>
                     </TouchableOpacity>
                 </View>
+
                 {/* post content */}
-                <View style={{ flex: 2.5, alignItems: 'center', marginBottom: hp('0.5%') }}>
-                    <View style={{ flex: 1, width: '94%' }}>
-                        <Text style={{ fontSize: hp('3.4%') }}>
-                            {this.props.blogData.content.substring(0, 101)}
+                <View style={BlogStyle.postContentContainer}>
+                    <View style={{ flex: 1, width: '96%' }}>
+                        <Text style={{ fontSize: hp('2.8%') }}>
+                            {blogData.content.substring(0, 101)}
                             <Text
                                 style={{ color: '#051695' }}
-                                onPress={() => { alert('load more') }}
+                                onPress={() => { alert('Feature is under construction :( Sorry for the inconvenience...') }}
                             >
                                 ...More
                                 </Text>
                         </Text>
                     </View>
                 </View>
+
                 {/* post footer */}
-                <View style={{ flex: 1, flexDirection: 'row' }}>
-                    <TouchableOpacity 
+                <View style={BlogStyle.postCommentContainer}>
+                    <TouchableOpacity
                         style={{ flex: 1.5, justifyContent: 'center', alignItems: 'center' }}
+                        onPress={()=>{alert('Feature is under construction :( Sorry for the inconvenience...')}}
                     >
                         <CommentIcon color="#2E2E2E" size={hp('5%')} />
                     </TouchableOpacity>
                     <View style={{ flex: 8.5, justifyContent: 'center', alignItems: 'flex-start' }}>
-                        <Text style={{ fontSize: hp('2.7%') }}>2 Comments</Text>
+                        <Text style={{ fontSize: hp('2.7%') }}>{blogData.comments.length} Comments</Text>
                     </View>
                 </View>
             </View>
