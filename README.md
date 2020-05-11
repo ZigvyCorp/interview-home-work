@@ -76,3 +76,13 @@
 - Additional information
   - You can use pre-defined json data as a reference
   - NodeJS & ExpressJS boilerplate or other is accepted
+  
+  ## install and start project
+  
+  - npm install
+  - npm run dev 
+  
+  #link test PostMan
+  
+  #https://www.getpostman.com/collections/b0512ed114c27222c929
+
