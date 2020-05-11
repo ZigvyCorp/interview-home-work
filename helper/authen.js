@@ -6,18 +6,9 @@ const jwtExpires = config.JWT_EXPIRES;
 
 module.exports = {
   verifyToken: (token) => {
-    try {
-      return jwt.verify(token, jwtSecret);
-    } catch (e) {
-      console.log(e);
-      throw new (e.message, 403);
-    }
+    return jwt.verify(token, jwtSecret);
   },
   generateToken: (data) => {
-    try {
-      return jwt.sign(data, jwtSecret, { expiresIn: jwtExpires });
-    } catch (e) {
-      throw new (e.message, 400);
-    }
+    return jwt.sign(data, jwtSecret, { expiresIn: jwtExpires });
   }
 };

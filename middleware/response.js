@@ -10,9 +10,6 @@ module.exports = (app)=>{
       if (typeof error === 'object') {
         message = error.message;
       }
-      // if (code === 500) {
-      //   captureException('function', error);
-      // }
       return res.status(code).json({ data: null, error: true, message: message });
     };
     next();

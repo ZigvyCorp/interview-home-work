@@ -7,7 +7,6 @@ const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const process = require('process');
 const morgan = require('morgan');
-// const useragent = require('express-useragent');
 
 
 console.log('Starting app at:', process.cwd());

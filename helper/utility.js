@@ -24,16 +24,14 @@ module.exports = {
     return newNumber <= MAX_PAGINATE_LIMIT ? newNumber : MAX_PAGINATE_LIMIT;
   },
 
-  getMongoSkip: (page, limit) => {
-    return (page - 1) * limit;
-  },
+  getMongoSkip: (page, limit) => (page - 1) * limit,
 
   getTotalPage: (count=0, limit=1)=> Math.ceil(count/limit),
 
-  buildOptionByQuery: function (query) {
+  buildOptionByQuery: (query) => {
     let page = this.numberValidate(query.page) || 1;
     let limit = this.limitValidate(query.limit);
     let offset = this.getMongoSkip(page, limit);
     return { page, limit, offset };
-  },
+  }
 };
