@@ -1,0 +1,65 @@
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flexCenter() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin customCheckbox() {
+  .checkbox-container {
+    position: relative;
+    user-select: none;
+    display: flex;
+    align-items: baseline;
+    margin-top: 15px;
+    .checkbox {
+      visibility: hidden;
+      &:checked ~ .checkmark {
+        background-color: royalblue;
+        &::after {
+          display: block;
+        }
+      }
+    }
+
+    .checkboxLabel {
+      margin-left: $checkbox-size + 5px;
+      font-size: $checkbox-size;
+      position: relative;
+      top: -4px;
+      cursor: pointer;
+    }
+
+    .checkmark {
+      position: absolute;
+      left: 0;
+      top: 0;
+      border: 1px solid black;
+      width: $checkbox-size;
+      height: $checkbox-size;
+      &::after {
+        content: "";
+        width: 8px;
+        height: 15px;
+        transform: rotate(45deg);
+        border-right: 1px solid white;
+        border-bottom: 1px solid white;
+        position: absolute;
+        left: 5px;
+        bottom: 3px;
+        display: none;
+      }
+    }
+    &:hover {
+      .checkmark {
+        background: lightgray;
+      }
+    }
+  }
+}

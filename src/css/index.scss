@@ -1,0 +1,44 @@
+@import "./variables";
+@import "./mixin";
+
+.userAuthenticationPage {
+  position: relative;
+  background: $userAuthenticationPage-background-fallback; /* fallback for old browsers */
+  background: $userAuthenticationPage-background-gradient;
+  height: 100vh;
+  overflow: hidden;
+  .basicForm {
+    width: 400px;
+    padding: 30px 50px;
+    border-radius: 8px;
+    display: inline-block;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    text-align: center;
+    @include flexCenter();
+  }
+
+  input {
+    border: none;
+    padding: 5px 9px;
+    outline: none;
+    &:focus {
+      border-bottom: 1px solid lightblue;
+    }
+    &:not([type="checkbox"], [type="radio"]) {
+      width: 100%;
+    }
+  }
+
+  button {
+    font-size: 18px;
+  }
+
+  @include customCheckbox();
+}
+
+.h1,
+.h2,
+.h3,
+.h4 {
+  font-family: Impact, Charcoal, sans-serif;
+}
