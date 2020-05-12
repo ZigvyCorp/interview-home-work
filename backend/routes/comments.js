@@ -2,6 +2,9 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const router = express.Router();
+const cors = require("cors");
+
+router.use(cors());
 
 const getComments = async (req, res, next) => {
   try {
@@ -16,6 +19,17 @@ const getComments = async (req, res, next) => {
       throw err;
     }
     res.json(playerComments);
+  } catch (e) {
+    next(e);
+  }
+};
+
+const getAllComments = async (req, res, next) => {
+  try {
+    const data = fs.readFileSync(path.join(__dirname, "../data/comments.json"));
+    const comments = JSON.parse(data);
+
+    res.json(comments);
   } catch (e) {
     next(e);
   }
@@ -115,6 +129,8 @@ router
   .get(getComments)
   .put(updateComments);
 router.route("/").post(createComments);
+router.route("/").get(getAllComments);
+
 router.route("/:id").get(getComments);
 router
   .route("/:id")

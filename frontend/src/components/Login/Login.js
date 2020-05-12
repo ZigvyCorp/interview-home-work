@@ -1,84 +1,57 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-// import axios from "axios";
-// import agent from "../../agent";
-// import { LOGIN, UPDATE_FIELD_AUTH } from "../../constants/actionTypes";
-import { connect } from "react-redux";
+// import { userActions } from "../_actions";
 
-// const mapStateToProps = state => ({ ...state.auth });
+function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-// const mapDispatchToProps = dispatch => ({
-//   onChangeEmail: value =>
-//     dispatch({ type: UPDATE_FIELD_AUTH, key: "email", value }),
-//   onChangePassword: value =>
-//     dispatch({ type: UPDATE_FIELD_AUTH, key: "password", value }),
-//   onSubmit: (email, password) =>
-//     dispatch({ type: LOGIN, payload: agent.Auth.login(email, password) })
-// });
+  const handleSubmit = event => {
+    event.preventDefault();
+    console.log(event.target.value);
+  };
 
-class Login extends React.Component {
-  //   constructor() {
-  //     super();
-  //     this.changeEmail = ev => this.props.onChangeEmail(ev.target.value);
-  //     this.changePassword = ev => this.props.onChangePassword(ev.target.value);
-  //     this.submitForm = (email, password) => ev => {
-  //       ev.preventDefault();
-  //       this.props.onSubmit(email, password);
-  //     };
-  //   }
-
-  render() {
-    const email = this.props.email;
-    const password = this.props.password;
-
-    return (
-      <div className="login">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-6 offset-md-3 col-xs-12">
-              <h1 className="text-xs-center">Sign In</h1>
-
-              {/* <form onSubmit={this.submitForm(email, password)}> */}
-              <form>
-                <fieldset>
-                  <fieldset className="form-group">
-                    <input
-                      id="email"
-                      className="form-control form-control-lg"
-                      type="text"
-                      placeholder="Email"
-                      value={email}
-                      //   onChange={this.changeEmail}
-                    />
-                  </fieldset>
-
-                  <fieldset className="form-group">
-                    <input
-                      className="form-control form-control-lg"
-                      type="password"
-                      placeholder="Password"
-                      value={password}
-                      //   onChange={this.changePassword}
-                      id="password"
-                    />
-                  </fieldset>
-
-                  <button
-                    className="btn btn-lg btn-primary pull-xs-right"
-                    type="submit"
-                  >
-                    Sign in
-                  </button>
-                </fieldset>
-              </form>
-            </div>
-          </div>
+  return (
+    <div className="col-lg-8 offset-lg-2">
+      <h2>Login</h2>
+      <form name="form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Username</label>
+          <input
+            type="text"
+            name="username"
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+            className={"form-control" + (!username ? " is-invalid" : "")}
+          />
+          {!username && (
+            <div className="invalid-feedback">Username is required</div>
+          )}
         </div>
-      </div>
-    );
-  }
+        <div className="form-group">
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            className={"form-control" + (!password ? " is-invalid" : "")}
+          />
+          {!password && (
+            <div className="invalid-feedback">Password is required</div>
+          )}
+        </div>
+        <div className="form-group">
+          <button className="btn btn-primary">Login</button>
+          <Link to="/register" className="btn btn-link">
+            Register
+          </Link>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default Login;
-// export default connect(mapStateToProps, mapDispatchToProps)(Login);

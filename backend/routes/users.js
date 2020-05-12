@@ -2,6 +2,9 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const router = express.Router();
+const cors = require("cors");
+
+router.use(cors());
 
 const getUsers = async (req, res, next) => {
   try {
@@ -16,6 +19,17 @@ const getUsers = async (req, res, next) => {
       throw err;
     }
     res.json(playerUsers);
+  } catch (e) {
+    next(e);
+  }
+};
+
+const getAllUsers = async (req, res, next) => {
+  try {
+    const data = fs.readFileSync(path.join(__dirname, "../data/users.json"));
+    const users = JSON.parse(data);
+
+    res.json(users);
   } catch (e) {
     next(e);
   }
@@ -117,6 +131,7 @@ router
   .get(getUsers)
   .put(updateUsers);
 router.route("/").post(createUsers);
+router.route("/").get(getAllUsers);
 router.route("/:id").get(getUsers);
 router
   .route("/:id")

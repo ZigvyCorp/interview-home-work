@@ -11,7 +11,8 @@ app.use(logger("tiny"));
 app.use(bodyParser.json());
 app.use("/user", require(path.join(__dirname, "./routes/users")));
 app.use("/post", require(path.join(__dirname, "./routes/posts")));
-// app.use("/comment", require(path.join(__dirname, "./routes/comments")));
+app.use("/comment", require(path.join(__dirname, "./routes/comments")));
+app.use("/login", require(path.join(__dirname, "./routes/auth")));
 
 app.use((req, res, next) => {
   const err = new Error(`${req.method} ${req.url} Not Found`);

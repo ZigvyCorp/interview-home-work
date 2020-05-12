@@ -6,7 +6,9 @@ class Post extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: []
+      posts: [],
+      comments: [],
+      users: []
     };
   }
 
@@ -14,13 +16,18 @@ class Post extends Component {
     callApi("post", "GET", null).then(res => {
       this.setState({ posts: res.data });
     });
+    callApi("comment", "GET", null).then(res => {
+      this.setState({ comments: res.data });
+    });
+    callApi("user", "GET", null).then(res => {
+      this.setState({ users: res.data });
+    });
   }
 
   render() {
-    const { users } = this.props;
-    // const { posts } = this.props;
+    const { users } = this.state;
     const { posts } = this.state;
-    const { comments } = this.props;
+    const { comments } = this.state;
 
     return (
       <>
