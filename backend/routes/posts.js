@@ -2,6 +2,8 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const router = express.Router();
+const cors = require("cors");
+router.use(cors());
 
 const getPosts = async (req, res, next) => {
   try {
@@ -14,6 +16,17 @@ const getPosts = async (req, res, next) => {
       throw err;
     }
     res.json(plPosts);
+  } catch (e) {
+    next(e);
+  }
+};
+
+const getAllPosts = async (req, res, next) => {
+  try {
+    const data = fs.readFileSync(path.join(__dirname, "../data/posts.json"));
+    const posts = JSON.parse(data);
+
+    res.json(posts);
   } catch (e) {
     next(e);
   }
@@ -115,6 +128,8 @@ router
   .get(getPosts)
   .put(updatePosts);
 router.route("/").post(createPosts);
+router.route("/").get(getAllPosts);
+
 router.route("/:id").get(getPosts);
 router
   .route("/:id")
