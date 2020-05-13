@@ -1,6 +1,52 @@
 @import "./variables";
 @import "./mixin";
 
+* {
+  overflow-wrap: normal;
+}
+
+body {
+  min-width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+textarea {
+  resize: none !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  overflow-y: auto !important;
+  height: 500px;
+}
+
+a {
+  text-decoration: none;
+  color: black !important;
+  &:hover {
+    text-decoration: none !important;
+  }
+}
+
+ul {
+  &.upper-navbar {
+    list-style: none;
+    text-decoration: none;
+  }
+  a {
+    color: white;
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.center-element {
+  @include flexCenter;
+}
+
 .userAuthenticationPage {
   position: relative;
   background: $userAuthenticationPage-background-fallback; /* fallback for old browsers */
@@ -14,7 +60,7 @@
     display: inline-block;
     font-family: "Comic Sans MS", cursive, sans-serif;
     text-align: center;
-    @include flexCenter();
+    @include flexCenter;
   }
 
   input {
@@ -32,8 +78,6 @@
   button {
     font-size: 18px;
   }
-
-  @include customCheckbox();
 }
 
 .h1,

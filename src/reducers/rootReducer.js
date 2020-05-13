@@ -1,10 +1,16 @@
 import { combineReducers } from "redux";
-import authReducer from "./authReducer";
+// import { persistReducer } from "redux-persist";
+// import storage from "redux-persist/lib/storage";
+import userReducer from "./userReducer";
+import blogReducer from "./blogReducer";
 
-const initState = {
-  test: "abcdef",
-};
+// const userPersistConfig = {
+//   key: "user",
+//   storage: storage,
+//   blacklist: ["response"],
+// };
 
 export default combineReducers({
-  authReducer,
+  user: userReducer,
+  blog: blogReducer,
 });

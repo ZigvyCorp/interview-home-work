@@ -1,9 +1,9 @@
 import React from "react";
 
-const AuhtenticationFormContainer = ({ children }) => {
-  return (
+const AuhtenticationFormContainer = (WrappedComponent) => {
+  return (props) => (
     <div className="userAuthenticationPage fluid-container d-flex justify-content-center align-items-center">
-      {children}
+      <WrappedComponent {...props} />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React from "react";
 
-const Error = ({ title, subtitle, children, onSubmit }) => (
-  <div className="text-danger">{children}</div>
+const Error = ({ children, className }) => (
+  <div className={`text-danger ${className} text-center`}>{children}</div>
 );
 
 export default Error;
