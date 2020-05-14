@@ -1,0 +1,31 @@
+body {
+  padding: 10px;
+  font-family: sans-serif;
+}
+
+#login-buttons #login-dropdown-list {
+  right: 0;
+  left: unset;
+} 
+
+.content-post span {
+  display: inline;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.navbar-light .logo {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.body-page {
+  margin-top: 100px;
+}
+
+.post {
+  margin-bottom: 40px;
+}
