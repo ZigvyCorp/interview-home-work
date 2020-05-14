@@ -27,13 +27,14 @@ class PostList extends React.Component {
   }
   render() {
     return (
-      <div className="body-page">
+      <div>
         {this.renderCreatePost()}
         {this.renderList()}
       </div>
     )
   }
 }
+
 const mapStateToProps = state => {
   return {
     posts: Object.values(state.posts),

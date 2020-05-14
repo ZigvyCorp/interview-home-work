@@ -21,7 +21,6 @@ class PostForm extends React.Component {
   }
 
   onSubmit = formValues => {
-
     this.props.onSubmit(formValues);
   };
 
@@ -35,7 +34,6 @@ class PostForm extends React.Component {
       </form>
     )
   }
-
 }
 
 export default reduxForm({

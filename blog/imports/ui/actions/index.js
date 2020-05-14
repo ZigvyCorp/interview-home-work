@@ -4,7 +4,10 @@ import {
     FETCH_ALL_POSTS_FAILURE,
     CREATE_POST,
     CREATE_POST_SUCCESS,
-    CREATE_POST_FAILURE
+    CREATE_POST_FAILURE,
+    FETCH_POST,
+    FETCH_POST_SUCCESS,
+    FETCH_POST_FAILURE
 } from './types';
 
 export const fetchAllPosts = () => ({
@@ -36,3 +39,17 @@ export const createPostFailure = (error) => ({
     payload: error
 });
 
+export const fetchPost = (id) => ({
+    type: FETCH_POST,
+    payload: id
+});
+
+export const fetchPostSuccess = (data) => ({
+    type: FETCH_POST_SUCCESS,
+    payload: data
+});
+
+export const fetchPostFailure = (error) => ({
+    type: FETCH_POST_FAILURE,
+    payload: error
+});

@@ -8,7 +8,7 @@ body {
   left: unset;
 } 
 
-.content-post span {
+.post-summary .content-post span {
   display: inline;
   -webkit-line-clamp: 2;
   text-overflow: ellipsis;
@@ -28,4 +28,8 @@ body {
 
 .post {
   margin-bottom: 40px;
+}
+
+.tag {
+  margin-right: 5px;
 }

@@ -6,7 +6,12 @@ import history from '../../history';
 
 class PostCreate extends React.Component {
   onSubmit = formValues => {
-    this.props.createPost(formValues);
+    let title = formValues.title;    
+    let tag =formValues.tags.split(', ');
+    let content = formValues.content;
+    let formatValue = {title, tag, content};
+    
+    this.props.createPost(formatValue);
     history.push('/');
   };
 
@@ -18,7 +23,6 @@ class PostCreate extends React.Component {
       </div>
     )
   }
-
 }
 
 export default connect(
