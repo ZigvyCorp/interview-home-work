@@ -1,0 +1,23 @@
+.container {
+  background-color: #334454;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+
+  .wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    .content {
+      width: 60%;
+      max-width: 720px;
+      padding: 10px;
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
