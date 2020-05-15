@@ -8,7 +8,7 @@ export class AuthService {
     const user = await User.findOne({
       username,
       password: hashString(password),
-    });
+    }).select("-password");
     if (!user) return null;
     return user.toObject();
   }
@@ -25,6 +25,8 @@ export class AuthService {
       ...data,
       password: hashString(data.password),
     });
-    return await (await user.save()).toObject();
+    const userObj = await (await user.save()).toObject();
+    delete userObj["password"];
+    return userObj;
   }
 }

@@ -1,11 +1,18 @@
-import { AxiosInstance } from "axios";
 import { injectable } from "inversify";
 import { axiosInstance } from "./axios";
 
 @injectable()
 export class TagService {
-  private _axios: AxiosInstance = axiosInstance;
+  private _axios: any = axiosInstance;
   addTag(name: string) {
-    return this._axios.post("/tags", name);
+    return this._axios.post("/tags", { name });
+  }
+
+  getSuggestions(name: string) {
+    return this._axios.get("/tags/suggestions", {
+      key: name,
+      page: 0,
+      pageSize: 10,
+    });
   }
 }

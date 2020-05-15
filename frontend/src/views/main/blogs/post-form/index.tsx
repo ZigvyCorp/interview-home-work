@@ -1,19 +1,16 @@
-import { Form, Input, Mentions } from "antd";
-import React, { useEffect, useState } from "react";
-import { Subscription } from "rxjs";
+import { TagMention } from "@/components/tag-mention";
+import { Button, Form, Input } from "antd";
+import React from "react";
 
 interface Props {
   onSubmit: (value: any) => any;
+  submitting?: boolean;
+  error?: string;
 }
 
 const { TextArea } = Input;
-const { Option } = Mentions;
 
 export const PostForm: React.FC<Props> = (props) => {
-  const [tag, setTag] = useState("");
-  const subscriptions: Subscription[] = [];
-  useEffect(() => {}, [tag]);
-
   return (
     <Form name="post" onFinish={props.onSubmit} layout="vertical">
       <Form.Item
@@ -24,6 +21,7 @@ export const PostForm: React.FC<Props> = (props) => {
       >
         <Input placeholder="Type your post title" />
       </Form.Item>
+
       <Form.Item
         name="content"
         label="Content"
@@ -32,16 +30,17 @@ export const PostForm: React.FC<Props> = (props) => {
       >
         <TextArea rows={5} placeholder="Type your post content" />
       </Form.Item>
+
       <Form.Item name="tags" label="Tags">
-        <Mentions
-          placeholder="Type # to mention tags"
-          prefix={["#"]}
-          onSearch={setTag}
-        >
-          <Option key="0" value={tag}>
-            Add tag {tag}
-          </Option>
-        </Mentions>
+        <TagMention />
+      </Form.Item>
+
+      <p style={{ color: "red" }}>{props.error}</p>
+
+      <Form.Item>
+        <Button type="primary" htmlType="submit" disabled={props.submitting}>
+          Post
+        </Button>
       </Form.Item>
     </Form>
   );

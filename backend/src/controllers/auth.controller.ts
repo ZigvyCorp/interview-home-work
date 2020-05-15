@@ -35,7 +35,6 @@ export class AuthController {
         return res.status(401).json({
           message: "Wrong username or password",
         });
-      delete user["password"];
       const token = signJwt(user);
       res.cookie("jwt", token, {
         httpOnly: true,
@@ -78,10 +77,7 @@ export class AuthController {
         });
       }
       const user = await AuthService().createUser(userData);
-      res.json({
-        ...user,
-        password: undefined,
-      });
+      res.json(user);
     } catch (error) {
       // TODO: replace console with another logging helper (morgan)
       console.error(error);

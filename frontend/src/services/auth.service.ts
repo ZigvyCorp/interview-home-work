@@ -1,12 +1,11 @@
 import { LoginRequestModel } from "@/models/requests/login";
 import { SignUpRequestModel } from "@/models/requests/sign-up";
-import { AxiosInstance } from "axios";
 import { injectable } from "inversify";
 import { axiosInstance } from "./axios";
 
 @injectable()
 export class AuthService {
-  private _axios: AxiosInstance = axiosInstance;
+  private _axios = axiosInstance;
   signUp(data: SignUpRequestModel) {
     return this._axios.post("/auth/sign-up", data);
   }

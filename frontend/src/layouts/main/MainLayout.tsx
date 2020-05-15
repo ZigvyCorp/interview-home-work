@@ -20,9 +20,6 @@ export const MainLayout: React.FC = (props) => {
             <Menu.Item key="/">
               <Link to="/">Blogs</Link>
             </Menu.Item>
-            <Menu.Item key="/blogs/new">
-              <Link to="/blogs/new">Create post</Link>
-            </Menu.Item>
           </Menu>
         </div>
         <ProfileMenu />
