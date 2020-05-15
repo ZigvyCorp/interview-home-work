@@ -69,7 +69,7 @@ const PostMenuDropdowm = (props: any) => {
   );
 };
 
-const PostPreview: React.FC<{
+const PostItem: React.FC<{
   post: Post;
 }> = (props) => {
   const { post } = props;
@@ -111,8 +111,8 @@ const mapStateToProps = (state: AppState) => ({
   posts: state.posts,
 });
 
-const PostPreviewWithState = connect(mapStateToProps)(PostPreview);
+const PostWithState = connect(mapStateToProps)(PostItem);
 
 export function renderPostPreview(item: Post) {
-  return <PostPreviewWithState post={item} />;
+  return <PostWithState post={item} />;
 }
