@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { from, Subscription } from "rxjs";
 
 interface AuthValue {
-  isAuthenticated: boolean;
+  isAuthenticated: boolean | undefined;
   user: User | null;
   logout: () => void;
   loading: boolean;
@@ -12,7 +12,7 @@ interface AuthValue {
 }
 
 const defaultValue = {
-  isAuthenticated: false,
+  isAuthenticated: undefined,
   user: null,
   logout: () => {},
   loading: true,
@@ -25,11 +25,11 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider: React.FC = (props) => {
   const [loading, setLoading] = useState(defaultValue.loading);
-  const [isAuthenticated, setIsAuthenticated] = useState(
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean | undefined>(
     defaultValue.isAuthenticated
   );
   const [user, setUser] = useState(defaultValue.user);
-  const { authService } = useServices();
+  const { authService, profileService } = useServices();
 
   const subscriptions: Subscription[] = [];
 
@@ -40,12 +40,25 @@ export const AuthProvider: React.FC = (props) => {
     };
   }, []);
 
-  const logout = () => {};
+  const logout = () => {
+    subscriptions.push(
+      from(authService().logout()).subscribe(
+        () => {
+          setIsAuthenticated(false);
+          setUser(null);
+        },
+        () => {
+          setIsAuthenticated(false);
+          setUser(null);
+        }
+      )
+    );
+  };
 
   const fetchMyProfile = () => {
     setLoading(true);
     subscriptions.push(
-      from(authService().fetchMyProfile()).subscribe(
+      from(profileService().fetchMyProfile()).subscribe(
         (user: any) => {
           setUser(user);
           setIsAuthenticated(true);

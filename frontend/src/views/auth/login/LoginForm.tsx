@@ -62,7 +62,7 @@ export const LoginForm = () => {
       <p style={{ color: "red" }}>{error}</p>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" disabled={sending}>
           Submit
         </Button>
       </Form.Item>

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response, Router } from "express";
 import moment from "moment";
 import { AppConfig } from "../config";
-import { Auth } from "../services";
+import { AuthService } from "../services";
 import { signJwt } from "../utils/jwt";
 
 export class AuthController {
@@ -10,9 +10,15 @@ export class AuthController {
 
     router.post("/sign-up", this.signUp);
     router.post("/login", this.login);
+    router.post("/logout", this.logout);
 
     return router;
   }
+
+  logout = (req: Request, res: Response, next: NextFunction) => {
+    res.clearCookie("jwt");
+    res.sendStatus(204);
+  };
 
   login = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -21,7 +27,7 @@ export class AuthController {
         return res.status(400).json({
           message: "Missing username or password",
         });
-      const user = await Auth().findWithCredentials(
+      const user = await AuthService().findWithCredentials(
         body.username,
         body.password
       );
@@ -66,12 +72,12 @@ export class AuthController {
         return res.status(400).json({
           message: "Missing password",
         });
-      if (await Auth().usernameExists(userData.username)) {
+      if (await AuthService().usernameExists(userData.username)) {
         return res.status(400).json({
           message: "Username exists",
         });
       }
-      const user = await Auth().createUser(userData);
+      const user = await AuthService().createUser(userData);
       res.json({
         ...user,
         password: undefined,

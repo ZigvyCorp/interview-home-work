@@ -13,10 +13,10 @@ export class Database {
       .then(() => {
         console.log("Connected to database");
         this.connection = mongoose.connection;
-        this.connection.on(
-          "error",
-          console.error.bind(console, "connection error:")
-        );
+        this.connection.on("error", (e) => {
+          console.error("connection error:", e);
+          process.exit();
+        });
       });
   }
 

@@ -31,6 +31,6 @@ const startApp = async () => {
 
 startApp();
 
-process.on("uncaughtException", async () => {
+process.on("exit", async () => {
   await Database.disconnect();
 });

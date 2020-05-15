@@ -21,6 +21,11 @@ const userSchema = new Schema({
     required: true,
     default: "",
   },
+  avatar: {
+    type: String,
+    required: false,
+    default: null,
+  },
 });
 
 export const User = model("User", userSchema, "users");

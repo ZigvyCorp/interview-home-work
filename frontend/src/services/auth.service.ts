@@ -15,7 +15,7 @@ export class AuthService {
     return this._axios.post("/auth/login", data);
   }
 
-  fetchMyProfile() {
-    return this._axios.get("/profiles/me");
+  logout() {
+    return this._axios.post("/auth/logout");
   }
 }

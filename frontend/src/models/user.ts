@@ -3,4 +3,5 @@ export class User {
   firstName = "";
   lastName = "";
   username = "";
+  avatar?: string;
 }
