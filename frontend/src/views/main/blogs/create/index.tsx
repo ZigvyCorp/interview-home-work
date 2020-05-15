@@ -20,15 +20,16 @@ const CreateBlog: React.FC = () => {
   }, []);
 
   const handleSubmit = (value: any) => {
-    const tags = value.tags
-      .split(" ")
-      .filter((tag: string) => tag && tag.length)
-      .map((tag: string) => {
-        if (tag.startsWith("#")) {
-          return tag.substring(1, tag.length).toLowerCase();
-        }
-        return tag.toLowerCase();
-      });
+    const tags =
+      value.tags
+        ?.split(" ")
+        .filter((tag: string) => tag && tag.length)
+        .map((tag: string) => {
+          if (tag.startsWith("#")) {
+            return tag.substring(1, tag.length).toLowerCase();
+          }
+          return tag.toLowerCase();
+        }) || [];
     setSubmitting(true);
     subscriptions.push(
       from(

@@ -6,7 +6,7 @@ interface Props<T = any> {
   itemRenderer: (item: T) => any;
   loading?: boolean;
   hasMore?: boolean;
-  loadMore?: () => any;
+  loadMore?: (next?: boolean) => any;
 }
 
 export function InfiniteScrollContainer<T = any>(props: Props<T>) {
@@ -17,7 +17,7 @@ export function InfiniteScrollContainer<T = any>(props: Props<T>) {
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && props.hasMore) {
-          if (props.loadMore) props.loadMore();
+          if (props.loadMore) props.loadMore(true);
         }
       });
       if (node) observer.current.observe(node);

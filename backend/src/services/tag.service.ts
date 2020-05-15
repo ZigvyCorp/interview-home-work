@@ -20,6 +20,9 @@ export class TagService {
     })
       .skip(filter.page * filter.pageSize)
       .limit(filter.pageSize);
-    return [tags.map((tag) => tag.toObject()), tags.length];
+    const count = await Tag.count({
+      name: { $regex: ".*" + filter.key + ".*" },
+    });
+    return [tags.map((tag) => tag.toObject()), count];
   }
 }

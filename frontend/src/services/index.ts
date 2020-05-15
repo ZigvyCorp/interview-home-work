@@ -12,7 +12,7 @@ interface Services {
   postService: () => PostService;
 }
 
-const ServiceTypes = {
+export const ServiceTypes = {
   AuthService: Symbol("AuthService"),
   ProfileService: Symbol("ProfileService"),
   TagService: Symbol("TagService"),

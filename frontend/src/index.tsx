@@ -1,14 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 import "reflect-metadata";
 import App from "./App";
 import { AuthProvider } from "./HOCs/auth-provider";
+import { store } from "./redux";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
-  <AuthProvider>
-    <App />
-  </AuthProvider>,
+  <Provider store={store}>
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  </Provider>,
   document.getElementById("root")
 );
 
