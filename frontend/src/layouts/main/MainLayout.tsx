@@ -9,12 +9,14 @@ const { Header, Content } = Layout;
 
 export const MainLayout: React.FC = (props) => {
   return (
-    <Layout>
+    <Layout style={{ background: "#fff" }}>
       <Header className={classes.header}>
         <div style={{ display: "flex" }}>
           <div className={classes.logo}>
-            <img src={logo} alt="React app" />
-            React App
+            <Link to="/" style={{ color: "#fff" }}>
+              <img src={logo} alt="React app" />
+              React App
+            </Link>
           </div>
           <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["/"]}>
             <Menu.Item key="/">

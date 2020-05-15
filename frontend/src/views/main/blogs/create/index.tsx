@@ -52,11 +52,9 @@ const CreateBlog: React.FC = () => {
   };
 
   return (
-    <React.Fragment>
-      <PageHeader title="Create Post">
-        <PostForm onSubmit={handleSubmit} error={error} />
-      </PageHeader>
-    </React.Fragment>
+    <PageHeader title="Create Post" onBack={history.goBack}>
+      <PostForm onSubmit={handleSubmit} error={error} submitting={submitting} />
+    </PageHeader>
   );
 };
 

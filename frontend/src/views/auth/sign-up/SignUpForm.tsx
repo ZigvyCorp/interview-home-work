@@ -1,5 +1,5 @@
 import { useServices } from "@/services";
-import { Button, Form, Input } from "antd";
+import { Button, Col, Form, Input, Row } from "antd";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { from, Subscription } from "rxjs";
@@ -37,30 +37,34 @@ export const SignUpForm = () => {
   };
   return (
     <Form name="signup" onFinish={handleSubmit} layout="vertical">
-      <Form.Item style={{ marginBottom: 0 }}>
-        <Form.Item
-          label="First name"
-          name="firstName"
-          required
-          rules={[{ required: true, message: "Please input your first name!" }]}
-          style={{ display: "inline-block", width: "calc(50% - 4px)" }}
-        >
-          <Input autoComplete="off" />
-        </Form.Item>
-        <Form.Item
-          label="Last name"
-          name="lastName"
-          required
-          rules={[{ required: true, message: "Please input your last name!" }]}
-          style={{
-            display: "inline-block",
-            width: "calc(50% - 4px)",
-            marginLeft: 8,
-          }}
-        >
-          <Input autoComplete="off" />
-        </Form.Item>
-      </Form.Item>
+      <Row gutter={6}>
+        <Col span={24} md={12}>
+          <Form.Item
+            label="First name"
+            name="firstName"
+            required
+            rules={[
+              { required: true, message: "Please input your first name!" },
+            ]}
+          >
+            <Input autoComplete="off" />
+          </Form.Item>
+        </Col>
+
+        <Col span={24} md={12}>
+          <Form.Item
+            label="Last name"
+            name="lastName"
+            required
+            rules={[
+              { required: true, message: "Please input your last name!" },
+            ]}
+          >
+            <Input autoComplete="off" />
+          </Form.Item>
+        </Col>
+      </Row>
+
       <Form.Item
         label="Username"
         name="username"
