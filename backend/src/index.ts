@@ -2,6 +2,7 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express, { NextFunction, Request, Response } from "express";
+import fileUpload from "express-fileupload";
 import passport from "passport";
 import "reflect-metadata";
 import { AppConfig } from "./config";
@@ -17,6 +18,8 @@ app.use(cors(AppConfig.cors));
 app.use(cookieParser(AppConfig.jwt.secretKey));
 app.use(bodyParser.json());
 app.use(passport.initialize());
+app.use(fileUpload());
+app.use("/public", express.static("public"));
 app.use(routes());
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   // TODO: replace console with another logging helper (morgan)
@@ -26,7 +29,9 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-const startUp = () => {};
+const startUp = () => {
+  // run any startup functions
+};
 
 const startApp = async () => {
   await Database.connect();

@@ -1,23 +1,79 @@
 import { injectable } from "inversify";
-import { Post } from "../DAO/post";
+import { Post } from "../models/post";
 import { FilterRequest } from "../models/requests/filter-request";
 
 @injectable()
 export class PostService {
-  private async _authorize(id: string, author: any) {
+  private async _authorize(id: string, currentUser: any) {
     const post = await Post.findById(id);
     if (!post) throw new Error("Post not found");
-    if (post.toObject().author.toString() !== author._id.toString())
+    if (post.toObject().author.toString() !== currentUser._id.toString())
       throw new Error("Forbidden");
   }
 
-  async deletePost(id: string, author: any) {
-    this._authorize(id, author);
+  async unlikePost(id: string, user: any) {
+    const post = await Post.findById(id).populate(
+      "author",
+      "-username -password"
+    );
+    if (!post) throw new Error("Post not found");
+    if (
+      !post.toObject().likes &&
+      !!!post
+        .toObject()
+        .likes.find((like: any) => like.toString() === user._id.toString())
+    )
+      return post;
+    const updated = await Post.findByIdAndUpdate(
+      id,
+      {
+        $pull: {
+          likes: user._id,
+        },
+      },
+      {
+        new: true,
+      }
+    ).populate("author", "-username -password");
+    return updated?.toObject();
+  }
+
+  async likePost(id: string, user: any) {
+    const post = await Post.findById(id).populate(
+      "author",
+      "-username -password"
+    );
+    if (!post) throw new Error("Post not found");
+    if (
+      post.toObject().likes &&
+      !!post
+        .toObject()
+        .likes.find((like: any) => like.toString() === user._id.toString())
+    )
+      return post;
+    const updated = await Post.findByIdAndUpdate(
+      id,
+      {
+        $push: {
+          likes: user._id,
+        },
+      },
+      {
+        new: true,
+      }
+    ).populate("author", "-username -password");
+    return updated?.toObject();
+  }
+
+  async deletePost(id: string, currentUser: any) {
+    await this._authorize(id, currentUser);
     await Post.findByIdAndDelete(id);
   }
 
-  async updatePost(id: string, data: any = {}, author: any) {
-    this._authorize(id, author);
+  async updatePost(id: string, data: any = {}, currentUser: any) {
+    await this._authorize(id, currentUser);
+    delete data["comments"];
+    delete data["likes"];
     const updated = await Post.findByIdAndUpdate(id, data, {
       new: true,
       runValidators: true,
@@ -50,13 +106,13 @@ export class PostService {
       };
     }
     const posts = await Post.find(findCondition || {})
-      .skip(filter.page * filter.pageSize)
-      .limit(filter.pageSize)
-      .populate("author", "-password -username")
       .sort({
         updatedAt: "desc",
         createdAt: "desc",
-      });
+      })
+      .skip(filter.page * filter.pageSize)
+      .limit(filter.pageSize)
+      .populate("author", "-password -username");
     const count = await Post.count(findCondition || {});
     return [posts.map((p) => p.toObject()), count];
   }
@@ -65,6 +121,8 @@ export class PostService {
     const post = new Post({
       ...data,
       author: author._id,
+      likes: [],
+      comments: [],
     });
     await post.save();
     return post.toObject();

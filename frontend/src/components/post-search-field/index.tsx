@@ -1,7 +1,7 @@
 import { Post } from "@/models/post";
 import { FilterRequest } from "@/models/requests/filter-request";
 import { useServices } from "@/services";
-import { AutoComplete, Form, Input, Typography } from "antd";
+import { AutoComplete, Form, Input, Tag, Typography } from "antd";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { from, Subscription } from "rxjs";
@@ -11,10 +11,19 @@ const PostSelection: React.FC<{
 }> = (props) => {
   return (
     <React.Fragment>
-      <Typography.Text strong>{props.post.title}</Typography.Text>
+      <Typography.Text strong style={{ marginBottom: 10 }}>
+        {props.post.title}
+      </Typography.Text>
       <br />
       {!!props.post.tags.length && (
-        <small>Tags: {props.post.tags.map((tag) => `#${tag}`).join(" ")}</small>
+        <small>
+          Tags:{" "}
+          {props.post.tags.map((tag, index) => (
+            <Tag key={index} color="#55acee">
+              #{tag}
+            </Tag>
+          ))}
+        </small>
       )}
     </React.Fragment>
   );

@@ -5,7 +5,7 @@ import { notification, PageHeader } from "antd";
 import React, { useEffect, useState } from "react";
 import { useHistory, useRouteMatch } from "react-router";
 import { from, Subscription } from "rxjs";
-import { PostForm } from "../post-form";
+import { PostForm } from "./PostForm";
 
 const EditPost: React.FC = () => {
   const history = useHistory();

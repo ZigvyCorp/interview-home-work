@@ -7,6 +7,14 @@ import { axiosInstance } from "./axios";
 export class PostService {
   private _axios: any = axiosInstance;
 
+  unlikePost(id: string) {
+    return this._axios.post(`/posts/${id}/unlike`);
+  }
+
+  likePost(id: string) {
+    return this._axios.post(`/posts/${id}/like`);
+  }
+
   deletePost(id: string) {
     return this._axios.delete(`/posts/${id}`);
   }

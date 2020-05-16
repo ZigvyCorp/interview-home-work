@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
-const NewsFeed = React.lazy(() => import("./newsfeed"));
-const Create = React.lazy(() => import("./create"));
-const Edit = React.lazy(() => import("./edit"));
-const Details = React.lazy(() => import("./details"));
+const NewsFeed = React.lazy(() => import("./Newsfeed"));
+const Create = React.lazy(() => import("./Create"));
+const Edit = React.lazy(() => import("./Edit"));
+const Details = React.lazy(() => import("./Details"));
 
 const Blogs: React.FC = () => {
   return (

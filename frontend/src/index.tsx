@@ -1,17 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 import "reflect-metadata";
 import App from "./App";
 import { AuthProvider } from "./HOCs/auth-provider";
-import { store } from "./redux";
+import "./index.scss";
+import { persistor, store } from "./redux";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <Provider store={store}>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
+    <PersistGate loading={null} persistor={persistor}>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </PersistGate>
   </Provider>,
   document.getElementById("root")
 );

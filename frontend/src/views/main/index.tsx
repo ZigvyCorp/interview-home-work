@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 
 const Blogs = React.lazy(() => import("./blogs"));
+const Profile = React.lazy(() => import("./profile"));
 
 const MainModule = () => {
   const { isAuthenticated, loading } = useAuth();
@@ -16,6 +17,7 @@ const MainModule = () => {
   return (
     <MainLayout>
       <Switch>
+        <Route path="/profile/:id" exact component={Profile} />
         <Route path="/blogs" component={Blogs} />
         <Route path="/" component={Blogs} />
       </Switch>

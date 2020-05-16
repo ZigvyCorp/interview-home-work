@@ -1,6 +1,6 @@
 import { injectable } from "inversify";
-import { Tag } from "../DAO/tag";
 import { FilterRequest } from "../models/requests/filter-request";
+import { Tag } from "../models/tag";
 
 @injectable()
 export class TagService {

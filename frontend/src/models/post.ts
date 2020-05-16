@@ -1,3 +1,4 @@
+import { Comment } from "./comment";
 import { User } from "./user";
 
 export class Post {
@@ -8,4 +9,6 @@ export class Post {
   author: string | User = "";
   createdAt = "";
   updatedAt = "";
+  likes?: string[] | User[] = [];
+  comments?: Comment[] | string[] = [];
 }

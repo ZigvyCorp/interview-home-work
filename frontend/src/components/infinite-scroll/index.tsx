@@ -3,7 +3,7 @@ import React, { useCallback, useRef } from "react";
 
 interface Props<T = any> {
   data: T[];
-  itemRenderer: (item: T) => any;
+  itemRenderer: (item: T, index: number) => any;
   loading?: boolean;
   hasMore?: boolean;
   loadMore?: (next?: boolean) => any;
@@ -28,7 +28,7 @@ export function InfiniteScrollContainer<T = any>(props: Props<T>) {
   return (
     <React.Fragment>
       {props.data.map((item, index) => {
-        const Item = props.itemRenderer(item);
+        const Item = props.itemRenderer(item, index);
         return (
           <div
             key={index}

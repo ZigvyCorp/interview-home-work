@@ -10,6 +10,7 @@ const env = (key: string) => {
 
 export const AppConfig = {
   port: env("PORT"),
+  publicUrl: env("PUBLIC_URL"),
   cors: {
     origin: env("CLIENT_ORIGIN"),
     credentials: true,

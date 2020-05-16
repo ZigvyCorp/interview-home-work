@@ -1,5 +1,5 @@
 import { injectable } from "inversify";
-import { User } from "../DAO/user";
+import { User } from "../models/user";
 import { hashString } from "../utils/crypto";
 
 @injectable()

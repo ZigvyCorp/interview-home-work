@@ -27,6 +27,11 @@ axiosInstance.interceptors.response.use(
         message: "Error",
         description: err.response.data.message,
       });
+    } else {
+      notification.error({
+        message: "Error",
+        description: "Unexpected error occurred",
+      });
     }
     throw err;
   }

@@ -3,7 +3,7 @@ import { notification, PageHeader } from "antd";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { from, Subscription } from "rxjs";
-import { PostForm } from "../post-form";
+import { PostForm } from "./PostForm";
 
 const CreateBlog: React.FC = () => {
   const [submitting, setSubmitting] = useState(false);

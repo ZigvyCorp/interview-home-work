@@ -10,7 +10,7 @@ const { Header, Content } = Layout;
 
 export const MainLayout: React.FC = (props) => {
   return (
-    <Layout style={{ background: "#fcfcfc" }}>
+    <Layout style={{ background: "#eee" }}>
       <Header className={classes.header}>
         <div style={{ display: "flex" }}>
           <div className={classes.logo}>

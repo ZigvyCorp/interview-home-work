@@ -7,6 +7,8 @@ export class PostController {
   get routes() {
     const router = Router();
 
+    router.post("/:id/unlike", this.unlikePost);
+    router.post("/:id/like", this.likePost);
     router.delete("/:id", this.deletePost);
     router.patch("/:id", this.updatePost);
     router.get("/:id", this.getPostDetails);
@@ -15,6 +17,32 @@ export class PostController {
 
     return router;
   }
+
+  unlikePost = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const {
+        user,
+        params: { id },
+      } = req;
+      const post = await PostService().unlikePost(id, user);
+      res.json(post);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  likePost = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const {
+        user,
+        params: { id },
+      } = req;
+      const post = await PostService().likePost(id, user);
+      res.json(post);
+    } catch (error) {
+      next(error);
+    }
+  };
 
   deletePost = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -65,9 +93,11 @@ export class PostController {
 
   getPosts = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const filter = req.query as any;
-      filter.page = parseInt(filter.page || "0");
-      filter.pageSize = parseInt(filter.pageSize || "10");
+      const { query } = req;
+      const filter = new FilterRequest();
+      filter.key = query.key as string;
+      filter.page = parseInt((query.page as string) || "0");
+      filter.pageSize = parseInt((query.pageSize as string) || "10");
       const [posts, total] = await PostService().getPosts(filter);
       const response = new FilterResponse();
       response.data = posts as any[];

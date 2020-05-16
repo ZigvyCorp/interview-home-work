@@ -1,4 +1,4 @@
-import { InfiniteScrollContainer } from "@/components/infinite-scroll";
+import { PostsContainer } from "@/components/posts-container";
 import { Post } from "@/models/post";
 import { FilterRequest } from "@/models/requests/filter-request";
 import { AppState } from "@/redux";
@@ -7,14 +7,13 @@ import { Button, PageHeader } from "antd";
 import React, { useEffect, useRef, useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-import { renderPostPreview } from "./Post";
 
 const NewsFeed: React.FC<{
   posts: AppState["posts"];
 }> = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [hasMore, setHasMore] = useState(false);
+
   const isFirstRender = useRef(true);
   const {
     posts: {
@@ -37,10 +36,6 @@ const NewsFeed: React.FC<{
     setPosts([...posts, ...data]);
   }, [data]);
 
-  useEffect(() => {
-    setHasMore(posts.length < total);
-  }, [posts.length, total]);
-
   const loadPosts = (next: boolean = false) => {
     const filter = new FilterRequest();
     filter.page = next ? page + 1 : 0;
@@ -50,6 +45,28 @@ const NewsFeed: React.FC<{
       type: PostActions.GET_POSTS,
       filter,
     });
+  };
+
+  const onDelete = (index: number) => {
+    const newPosts = [...posts];
+    newPosts.splice(index, 1);
+    setPosts(newPosts);
+  };
+
+  const onUpdated = (index: number, post: Post) => {
+    const newPosts = [...posts];
+    newPosts[index] = post;
+    setPosts(newPosts);
+  };
+
+  const onCommentsUpdated = (index: number, post: Post) => {
+    const newPosts = [...posts];
+    const updatingPost = newPosts[index];
+    newPosts[index] = {
+      ...updatingPost,
+      comments: post.comments || [],
+    };
+    setPosts(newPosts);
   };
 
   return (
@@ -65,12 +82,14 @@ const NewsFeed: React.FC<{
         </Button>,
       ]}
     >
-      <InfiniteScrollContainer<Post>
-        data={posts}
-        itemRenderer={renderPostPreview(loadPosts)}
-        loadMore={loadPosts}
+      <PostsContainer
+        posts={posts}
+        loadPosts={loadPosts}
         loading={loading}
-        hasMore={hasMore}
+        onDelete={onDelete}
+        onUpdated={onUpdated}
+        onCommentsUpdated={onCommentsUpdated}
+        total={total}
       />
     </PageHeader>
   );
