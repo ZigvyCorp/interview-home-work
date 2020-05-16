@@ -46,8 +46,6 @@ export class AuthController {
         jwt: token,
       });
     } catch (error) {
-      // TODO: replace console with another logging helper (morgan)
-      console.error(error);
       next(error);
     }
   };
@@ -79,8 +77,6 @@ export class AuthController {
       const user = await AuthService().createUser(userData);
       res.json(user);
     } catch (error) {
-      // TODO: replace console with another logging helper (morgan)
-      console.error(error);
       next(error);
     }
   };

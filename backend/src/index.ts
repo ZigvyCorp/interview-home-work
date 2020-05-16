@@ -1,7 +1,7 @@
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import passport from "passport";
 import "reflect-metadata";
 import { AppConfig } from "./config";
@@ -18,6 +18,13 @@ app.use(cookieParser(AppConfig.jwt.secretKey));
 app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(routes());
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  // TODO: replace console with another logging helper (morgan)
+  console.error(err);
+  res.status(500).json({
+    message: err.message,
+  });
+});
 
 const startUp = () => {};
 

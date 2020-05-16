@@ -6,7 +6,7 @@ import { from, Subscription } from "rxjs";
 
 const { Option } = Mentions;
 
-export const TagMention: React.FC = (props) => {
+export const TagMention: React.FC<any> = (props) => {
   const [tag, setTag] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [lockMentions, setLockMentions] = useState(false);
@@ -45,7 +45,7 @@ export const TagMention: React.FC = (props) => {
       placeholder="Type # to mention tags"
       prefix={["#"]}
       onSearch={setTag}
-      readOnly={lockMentions}
+      readOnly={lockMentions || props.readOnly}
     >
       {suggestions.map((tag, index) => (
         <Option key={tag} value={tag}>

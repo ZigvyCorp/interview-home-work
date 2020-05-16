@@ -4,7 +4,24 @@ import { FilterRequest } from "../models/requests/filter-request";
 
 @injectable()
 export class PostService {
-  async getPost(filter: FilterRequest = new FilterRequest()) {
+  async updatePost(id: string, data: any = {}, author: any) {
+    const post = await Post.findById(id);
+    if (!post) throw new Error("Post not found");
+    if (post.toObject().author.toString() !== author._id.toString())
+      throw new Error("Forbidden");
+    const updated = await Post.findByIdAndUpdate(id, data, {
+      new: true,
+      runValidators: true,
+    });
+    return updated?.toObject();
+  }
+
+  async getPostDetails(id: string) {
+    const post = await Post.findById(id);
+    return post;
+  }
+
+  async getPosts(filter: FilterRequest = new FilterRequest()) {
     let findCondition;
     if (filter.key) {
       findCondition = {

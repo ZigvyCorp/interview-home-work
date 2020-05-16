@@ -7,18 +7,46 @@ export class PostController {
   get routes() {
     const router = Router();
 
+    router.patch("/:id", this.updatePost);
+    router.get("/:id", this.getPostDetails);
     router.post("/", this.createPost);
     router.get("/", this.getPosts);
 
     return router;
   }
 
+  updatePost = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { user } = req;
+      if (!user)
+        return res.json(401).json({
+          message: "Unauthorized",
+        });
+      const { id } = req.params;
+      const data = req.body;
+      const updatedPost = await PostService().updatePost(id, data, user);
+      res.json(updatedPost);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  getPostDetails = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      const post = await PostService().getPostDetails(id);
+      res.json(post);
+    } catch (error) {
+      next(error);
+    }
+  };
+
   getPosts = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const filter = req.query as any;
       filter.page = parseInt(filter.page || "0");
       filter.pageSize = parseInt(filter.pageSize || "10");
-      const [posts, total] = await PostService().getPost(filter);
+      const [posts, total] = await PostService().getPosts(filter);
       const response = new FilterResponse();
       response.data = posts as any[];
       response.metadata = {
@@ -27,7 +55,6 @@ export class PostController {
       };
       res.json(response);
     } catch (error) {
-      console.error(error);
       next(error);
     }
   };
@@ -46,7 +73,6 @@ export class PostController {
       const post = await PostService().createPost(data, req.user);
       res.json(post);
     } catch (error) {
-      console.error(error);
       next(error);
     }
   };

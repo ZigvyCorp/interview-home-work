@@ -19,7 +19,6 @@ export class TagController {
       const tag = await TagService().addTag(name);
       res.json(tag);
     } catch (error) {
-      console.error(error);
       next(error);
     }
   };
@@ -42,7 +41,6 @@ export class TagController {
       };
       res.json(response);
     } catch (error) {
-      console.error(error);
       next(error);
     }
   };
