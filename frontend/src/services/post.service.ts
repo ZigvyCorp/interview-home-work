@@ -7,6 +7,10 @@ import { axiosInstance } from "./axios";
 export class PostService {
   private _axios: any = axiosInstance;
 
+  deletePost(id: string) {
+    return this._axios.delete(`/posts/${id}`);
+  }
+
   updatePost(data: Post) {
     return this._axios.patch(`/posts/${data._id}`, data);
   }
@@ -19,7 +23,7 @@ export class PostService {
     return this._axios.get("/posts", filter);
   }
 
-  getPostDetails(id: string) {
-    return this._axios.get(`/posts/${id}`);
+  getPostDetails(id: string, withAuthor: boolean = false) {
+    return this._axios.get(`/posts/${id}`, { withAuthor });
   }
 }

@@ -4,11 +4,20 @@ import { FilterRequest } from "../models/requests/filter-request";
 
 @injectable()
 export class PostService {
-  async updatePost(id: string, data: any = {}, author: any) {
+  private async _authorize(id: string, author: any) {
     const post = await Post.findById(id);
     if (!post) throw new Error("Post not found");
     if (post.toObject().author.toString() !== author._id.toString())
       throw new Error("Forbidden");
+  }
+
+  async deletePost(id: string, author: any) {
+    this._authorize(id, author);
+    await Post.findByIdAndDelete(id);
+  }
+
+  async updatePost(id: string, data: any = {}, author: any) {
+    this._authorize(id, author);
     const updated = await Post.findByIdAndUpdate(id, data, {
       new: true,
       runValidators: true,
@@ -16,8 +25,13 @@ export class PostService {
     return updated?.toObject();
   }
 
-  async getPostDetails(id: string) {
-    const post = await Post.findById(id);
+  async getPostDetails(id: string, withAuthor: boolean = false) {
+    let post;
+    if (withAuthor) {
+      post = await Post.findById(id).populate("author", "-username -password");
+    } else {
+      post = await Post.findById(id);
+    }
     return post;
   }
 
@@ -27,10 +41,10 @@ export class PostService {
       findCondition = {
         $or: [
           {
-            name: { $regex: ".*" + filter.key + ".*" },
+            title: { $regex: ".*" + filter.key + ".*", $options: "i" },
           },
           {
-            tags: { $regex: ".*" + filter.key + ".*" },
+            tags: { $regex: ".*" + filter.key + ".*", $options: "i" },
           },
         ],
       };
@@ -38,7 +52,11 @@ export class PostService {
     const posts = await Post.find(findCondition || {})
       .skip(filter.page * filter.pageSize)
       .limit(filter.pageSize)
-      .populate("author", "-password -username");
+      .populate("author", "-password -username")
+      .sort({
+        updatedAt: "desc",
+        createdAt: "desc",
+      });
     const count = await Post.count(findCondition || {});
     return [posts.map((p) => p.toObject()), count];
   }

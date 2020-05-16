@@ -7,6 +7,7 @@ export class PostController {
   get routes() {
     const router = Router();
 
+    router.delete("/:id", this.deletePost);
     router.patch("/:id", this.updatePost);
     router.get("/:id", this.getPostDetails);
     router.post("/", this.createPost);
@@ -14,6 +15,23 @@ export class PostController {
 
     return router;
   }
+
+  deletePost = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const {
+        params: { id },
+        user,
+      } = req;
+      if (!user)
+        return res.json(401).json({
+          message: "Unauthorized",
+        });
+      await PostService().deletePost(id, user);
+      res.sendStatus(204);
+    } catch (error) {
+      next(error);
+    }
+  };
 
   updatePost = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -34,7 +52,11 @@ export class PostController {
   getPostDetails = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
-      const post = await PostService().getPostDetails(id);
+      const { withAuthor } = req.query;
+      const post = await PostService().getPostDetails(
+        id,
+        withAuthor === "true"
+      );
       res.json(post);
     } catch (error) {
       next(error);

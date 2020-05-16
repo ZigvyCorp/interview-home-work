@@ -1,7 +1,7 @@
 import { useAuth } from "@/HOCs/auth-provider";
 import { Post } from "@/models/post";
 import { useServices } from "@/services";
-import { PageHeader } from "antd";
+import { notification, PageHeader } from "antd";
 import React, { useEffect, useState } from "react";
 import { useHistory, useRouteMatch } from "react-router";
 import { from, Subscription } from "rxjs";
@@ -26,7 +26,7 @@ const EditPost: React.FC = () => {
     return () => {
       subscriptions.forEach((sub) => sub.unsubscribe());
     };
-  }, [match]);
+  }, [match.params.id]);
 
   const authorized = (post: Post) => {
     return post.author === user?._id;
@@ -56,6 +56,11 @@ const EditPost: React.FC = () => {
         (updated: any) => {
           setPost(updated);
           setSubmitting(false);
+          notification.success({
+            message: "Success",
+            description: "Post updated successfully!",
+            duration: 2,
+          });
         },
         () => {
           setSubmitting(false);

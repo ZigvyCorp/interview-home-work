@@ -1,5 +1,5 @@
 import { useServices } from "@/services";
-import { PageHeader } from "antd";
+import { notification, PageHeader } from "antd";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { from, Subscription } from "rxjs";
@@ -25,6 +25,11 @@ const CreateBlog: React.FC = () => {
       from(postService().createPost(value)).subscribe(
         () => {
           setSubmitting(false);
+          notification.success({
+            message: "Success",
+            description: "Post created successfully!",
+            duration: 2,
+          });
           history.push("/");
         },
         (err) => {

@@ -16,7 +16,7 @@ export class TagService {
 
   async getTags(filter: FilterRequest = new FilterRequest()) {
     const tags = await Tag.find({
-      name: { $regex: ".*" + filter.key + ".*" },
+      name: { $regex: ".*" + filter.key?.toLowerCase() + ".*" },
     })
       .skip(filter.page * filter.pageSize)
       .limit(filter.pageSize);

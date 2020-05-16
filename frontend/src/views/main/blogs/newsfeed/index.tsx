@@ -45,6 +45,7 @@ const NewsFeed: React.FC<{
     const filter = new FilterRequest();
     filter.page = next ? page + 1 : 0;
     filter.pageSize = 10;
+    if (!next) setPosts([]);
     dispatch({
       type: PostActions.GET_POSTS,
       filter,
@@ -66,7 +67,7 @@ const NewsFeed: React.FC<{
     >
       <InfiniteScrollContainer<Post>
         data={posts}
-        itemRenderer={renderPostPreview}
+        itemRenderer={renderPostPreview(loadPosts)}
         loadMore={loadPosts}
         loading={loading}
         hasMore={hasMore}

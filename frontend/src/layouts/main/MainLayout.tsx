@@ -1,3 +1,4 @@
+import { PostSearchField } from "@/components/post-search-field";
 import logo from "@/logo.svg";
 import { Layout, Menu, Skeleton } from "antd";
 import React, { Suspense } from "react";
@@ -9,7 +10,7 @@ const { Header, Content } = Layout;
 
 export const MainLayout: React.FC = (props) => {
   return (
-    <Layout style={{ background: "#fff" }}>
+    <Layout style={{ background: "#fcfcfc" }}>
       <Header className={classes.header}>
         <div style={{ display: "flex" }}>
           <div className={classes.logo}>
@@ -24,6 +25,8 @@ export const MainLayout: React.FC = (props) => {
             </Menu.Item>
           </Menu>
         </div>
+        <PostSearchField />
+        <div></div>
         <ProfileMenu />
       </Header>
       <Content

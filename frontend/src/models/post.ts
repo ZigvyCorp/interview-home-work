@@ -6,4 +6,6 @@ export class Post {
   content = "";
   tags: string[] = [];
   author: string | User = "";
+  createdAt = "";
+  updatedAt = "";
 }

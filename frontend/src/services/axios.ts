@@ -1,3 +1,4 @@
+import { notification } from "antd";
 import axios, { AxiosRequestConfig } from "axios";
 import qs from "querystring";
 
@@ -16,8 +17,19 @@ axiosInstance.get = ((url: string, query: any, config: AxiosRequestConfig) => {
   return get(url, config);
 }) as any;
 
-axiosInstance.interceptors.response.use((res) => {
-  return res.data;
-});
+axiosInstance.interceptors.response.use(
+  (res) => {
+    return res.data;
+  },
+  (err) => {
+    if (err.response?.data?.message) {
+      notification.error({
+        message: "Error",
+        description: err.response.data.message,
+      });
+    }
+    throw err;
+  }
+);
 
 export { axiosInstance };
