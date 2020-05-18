@@ -11,13 +11,10 @@ import H3 from '../H3';
 // import Banner from './banner.jpg';
 import messages from './messages';
 import './styles.css';
-// {/* <A href="https://www.reactboilerplate.com/">
-//   <Img src={'/banner.jpg'} alt="react-boilerplate - Logo" />
-// </A> */}
 
 const userName = 'Adam Levine';
 
-function Header(props) {
+function Header({user}) {
   return (
     <Row className="container">
       <Col span={8} className="center">

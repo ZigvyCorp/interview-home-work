@@ -35,19 +35,19 @@ import InfiniteScroll from 'react-infinite-scroller';
 
 import { useInjectReducer } from '../../utils/injectReducer';
 import { useInjectSaga } from '../../utils/injectSaga';
-import {
-  makeSelectRepos,
-  makeSelectLoading,
-  makeSelectError,
-} from '../../containers/App/selectors';
+// import {
+//   makeSelectRepos,
+//   makeSelectLoading,
+//   makeSelectError,
+// } from '../../containers/App/selectors';
 import Header from '../../components/Header';
 import H2 from '../../components/H2';
-import { loadRepos } from '../App/actions';
+// import { loadRepos } from '../App/actions';
 import { changeUsername } from './actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import ReplyComment from './ReplyComment';
-import saga from './saga';
+// import saga from './saga';
 
 const key = 'home';
 const avatar =
@@ -69,7 +69,9 @@ const colorTags = [
 const { Panel } = Collapse;
 const { Paragraph } = Typography;
 
-export function HomePage({}) {
+export function HomePage({
+  
+}) {
   const [loading, setloading] = useState(false);
   const [hasMore, sethasMore] = useState(true);
   const [data, setdata] = useState(dataPost);
@@ -130,7 +132,9 @@ export function HomePage({}) {
 
 HomePage.propTypes = {};
 
-const mapStateToProps = createStructuredSelector({});
+const mapStateToProps = createStructuredSelector({
+  
+});
 
 export function mapDispatchToProps(dispatch) {
   return {

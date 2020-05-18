@@ -12,6 +12,7 @@ import { makeSelectUsername } from './selectors';
 /**
  * Github repos request/response handler
  */
+
 export function* getRepos() {
   // Select username from store
   const username = yield select(makeSelectUsername());

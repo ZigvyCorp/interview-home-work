@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { Link, Redirect } from 'react-router-dom';
+import { connect, useDispatch } from 'react-redux';
+import { useInjectSaga } from '../../utils/injectSaga';
+
+import UserActions, { UserSelectors, UserTypes } from '../App/reducer';
 
 const layout = {
   labelCol: { span: 8 },
@@ -10,18 +14,20 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-export default function LoginPage() {
-  const [user, setUser] = useState(false);
+function LoginPage(props) {
+  const dispatch = useDispatch();
+
+  useInjectSaga({ key: 'login', saga });
+
   const onFinish = values => {
-    setUser(true);
+    console.log(values);
+    dispatch(UserActions.loginRequest(values));
   };
 
   const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
   };
-
-  if (user) return <Redirect to="/" />;
-
+  // if (user) return <Redirect to="/" />;
   return (
     <article>
       <div style={{ paddingTop: 60 }}>
@@ -33,8 +39,8 @@ export default function LoginPage() {
           onFinishFailed={onFinishFailed}
         >
           <Form.Item
-            label="Email"
-            name="Email"
+            label="Username"
+            name="username"
             rules={[{ required: true, message: 'Please input your username!' }]}
           >
             <Input />
@@ -64,3 +70,9 @@ export default function LoginPage() {
     </article>
   );
 }
+
+const mapStateToProps = state => ({
+  userPayload: UserSelectors.selectPayload(state.user),
+});
+
+export default connect(mapStateToProps)(LoginPage);

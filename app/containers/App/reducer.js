@@ -1,46 +1,58 @@
-/*
- * AppReducer
- *
- * The reducer takes care of our data. Using actions, we can
- * update our application state. To add a new action,
- * add it to the switch statement in the reducer function
- *
- */
+import { createReducer, createActions } from 'reduxsauce';
+import Immutable from 'seamless-immutable';
 
-import produce from 'immer';
-import { LOAD_REPOS_SUCCESS, LOAD_REPOS, LOAD_REPOS_ERROR } from './constants';
+/* ------------- Types and Action Creators ------------- */
 
-// The initial state of the App
-export const initialState = {
-  loading: false,
-  error: false,
-  currentUser: false,
-  userData: {
-    repositories: false,
-  },
+const { Types, Creators } = createActions({
+  userRequest: ['data'],
+  loginRequest: ['data'],
+  signupRequest: ['data'],
+  userSuccess: ['payload'],
+  userFailure: null,
+});
+
+export const UserTypes = Types;
+export default Creators;
+
+/* ------------- Initial State ------------- */
+
+export const INITIAL_STATE = Immutable({
+  data: null,
+  loading: null,
+  error: null,
+  payload: null,
+});
+
+/* ------------- Selectors ------------- */
+
+export const UserSelectors = {
+  selectData: state => state.data,
+  selectPayload: state => state.payload,
+  selectError: state => state.error,
+  selectLoading: state => state.loading,
 };
 
-/* eslint-disable default-case, no-param-reassign */
-const appReducer = (state = initialState, action) =>
-  produce(state, draft => {
-    switch (action.type) {
-      case LOAD_REPOS:
-        draft.loading = true;
-        draft.error = false;
-        draft.userData.repositories = false;
-        break;
+/* ------------- Reducers ------------- */
 
-      case LOAD_REPOS_SUCCESS:
-        draft.userData.repositories = action.repos;
-        draft.loading = false;
-        draft.currentUser = action.username;
-        break;
+export const request = (state, { data }) =>
+  state.merge({ loading: true, data });
 
-      case LOAD_REPOS_ERROR:
-        draft.error = action.error;
-        draft.loading = false;
-        break;
-    }
-  });
+export const login = (state, { data }) => state.merge({ loading: true, data });
+export const signUp = (state, { data }) => state.merge({ loading: true, data });
 
-export default appReducer;
+export const success = (state, { payload }) => {
+  return state.merge({ loading: false, error: null, payload });
+};
+
+export const failure = (state, { error }) =>
+  state.merge({ loading: false, error, payload: null });
+
+/* ------------- Hookup Reducers To Types ------------- */
+
+export const reducer = createReducer(INITIAL_STATE, {
+  // [Types.USER_REQUEST]: request,
+  [Types.LOGIN_REQUEST]: login,
+  [Types.SIGNUP_REQUEST]: signUp,
+  [Types.USER_SUCCESS]: success,
+  [Types.USER_FAILURE]: failure,
+});

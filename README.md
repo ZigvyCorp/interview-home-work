@@ -24,17 +24,17 @@
 ** [Mockup here](/mockup/homepage.png) **
 
 - Your task is building a simple blog with the following features:
-  [x] Use AntD or Bootstrap **(Must have)**
+  - Use AntD or Bootstrap **(Must have)**
   - Sign-in & Sign-up **(Mandatory for MeteorJS - Optional for ExpressJS)**
-  [x] User can create/write a post blog **(Must have)**
+  - User can create/write a post blog **(Must have)**
     - Title
     - Tags
     - Content
       - Text content **(Must have)**
       - Basic Rich Text Editor Toolbar (Bold, Italic, Underline) **(Nice to have)**
       - Insert images **(Nice to have)**
-  [x] User/Visitor can see all posts on homepage with a short summary (either pagination or scroll infinite) **(Must have)**
-    [x] A post on homepage should display the basic information as below
+  - User/Visitor can see all posts on homepage with a short summary (either pagination or scroll infinite) **(Must have)**
+    - A post on homepage should display the basic information as below
       - Author
       - Created date
       - Title
@@ -50,7 +50,7 @@
 
 
 - Besides the main features above, technical requirements
-  [x] Pagination or infinite scrolling **(Must have)**
+  - Pagination or infinite scrolling **(Must have)**
   - Use our pre-defined json files to mock API calls **(Must have)**
   - Use **redux** for state management **(Must have)**
   - Use **redux-saga** to call mock API **(Must have)**
