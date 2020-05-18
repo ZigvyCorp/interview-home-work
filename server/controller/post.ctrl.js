@@ -50,11 +50,14 @@ postCtrl.getPost = (req, res, next) => {
 };
 
 postCtrl.getAll = (req, res, next) => {
-  PostModel.find().exec((err, listPost) => {
+  PostModel.find({}).populate({
+    path:'owner', select : 'name username _id'
+}).exec((err, listPost) => {
     if (err) {
       res.status(404).send({error: 'Failure to get list Post!'});
       return next(err);
     }
+    
     res.json(listPost);
   });
 };

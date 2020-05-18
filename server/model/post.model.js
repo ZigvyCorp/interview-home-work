@@ -7,12 +7,14 @@ let postSchema = new Schema({
     content: String,
     owner: {
         type: Schema.Types.ObjectId,
+        required: true,
         ref:'users'
     },
     comments: [
         {
             owner: {
                 type: Schema.Types.ObjectId,
+                required: true,
                 ref:'users'
             },
             text: String,

@@ -18,9 +18,9 @@ Router.delete('/', postCtrl.delete);
 //=== Router Comment === //
 // POST => /api/post/comment
 Router.post('/comment', postCtrl.addComment);
-// DELETE => /api/post/comment/:postId 
+// DELETE => /api/post/comment
 Router.delete('/comment', postCtrl.deleteComment);
-// PUT => /api/post/comment/update/:postId 
+// PUT => /api/post/comment/update
 Router.put('/comment/update', postCtrl.updateComment);
 //=== End Router Comment ===//
 

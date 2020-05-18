@@ -26,12 +26,11 @@ app.use(bodyParser.json());
 app.use('/api', routes);
 
 try {
-    console.log(URI);
     mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
   } catch (err) {
     console.log(err);
 }
 
 app.listen(PORT, ()=>{
-    console.log(`server start at port: ${PORT}`);
+    //console.log(`server start at port: ${PORT}`);
 });
