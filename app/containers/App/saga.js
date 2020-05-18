@@ -8,15 +8,20 @@ import request from '../../utils/request';
 
 const api = request.create();
 
-export function* login(data) {
+export function* login({ data }) {
   const response = yield call(api.post, 'api/users/login', { ...data });
-  if (response.ok) {
-    yield put(UserActions.userSuccess(response.data));
+  if (response.ok && response.data.success) {
+    yield put(UserActions.userSuccess(response.data.data));
   } else {
-    yield put(GithubActions.userFailure(response.data));
+    yield put(UserActions.userFailure(response.data.data));
   }
 }
 
-export default function* saga() {
-  yield takeLatest(UserTypes.LOGIN_REQUEST, login);
+export function* signup({ data }) {
+  const response = yield call(api.post, 'api/users/signup', { ...data });
+  if (response.ok && response.data.success) {
+    yield put(UserActions.userSuccess(response.data.data));
+  } else {
+    yield put(UserActions.userFailure(response.data.data));
+  }
 }

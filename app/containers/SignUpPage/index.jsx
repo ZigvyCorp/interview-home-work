@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { connect, useDispatch } from 'react-redux';
+
+import UserActions, { UserSelectors, UserTypes } from '../App/reducer';
 
 const layout = {
   labelCol: { span: 8 },
@@ -10,18 +13,17 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-export default function SignUpPage() {
-  const [user, setUser] = useState(false);
+function SignUpPage({ userPayload }) {
+  const dispatch = useDispatch();
   const onFinish = values => {
-    console.log('Success:', values);
-    setUser(true);
+    dispatch(UserActions.signupRequest(values));
   };
 
   const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
   };
 
-  if (user) return <Redirect to="/" />;
+  if (userPayload) return <Redirect to="/" />;
 
   return (
     <article>
@@ -34,9 +36,18 @@ export default function SignUpPage() {
           onFinishFailed={onFinishFailed}
         >
           <Form.Item
-            label="Email"
-            name="Email"
+            label="Username"
+            name="username"
             rules={[{ required: true, message: 'Please input your username!' }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Name"
+            name="name"
+            rules={[
+              { required: true, message: 'Please input your Full Name!' },
+            ]}
           >
             <Input />
           </Form.Item>
@@ -49,7 +60,7 @@ export default function SignUpPage() {
             <Input.Password />
           </Form.Item>
           <Form.Item
-            name="confirm"
+            name="confirmPassword"
             label="Confirm Password"
             dependencies={['password']}
             hasFeedback
@@ -85,3 +96,9 @@ export default function SignUpPage() {
     </article>
   );
 }
+
+const mapStateToProps = state => ({
+  userPayload: UserSelectors.selectPayload(state.user),
+});
+
+export default connect(mapStateToProps)(SignUpPage);

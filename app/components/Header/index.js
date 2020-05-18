@@ -1,7 +1,9 @@
 import React from 'react';
+import _ from 'lodash';
 import { FormattedMessage } from 'react-intl';
 import { Row, Col, Space } from 'antd';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import A from './A';
 import Img from './Img';
@@ -12,9 +14,20 @@ import H3 from '../H3';
 import messages from './messages';
 import './styles.css';
 
-const userName = 'Adam Levine';
+import UserActions, {
+  UserSelectors,
+  UserTypes,
+} from '../../containers/App/reducer';
 
-function Header({user}) {
+function Header({ user }) {
+  const username = _.get(user, 'username', 'Customer');
+
+  const dispatch = useDispatch();
+
+  const onClickUsername = () => {
+    dispatch(UserActions.logout());
+  };
+
   return (
     <Row className="container">
       <Col span={8} className="center">
@@ -36,7 +49,11 @@ function Header({user}) {
           <Col span={12}>
             <div className="center">
               <H3>
-                <A>{userName}</A>
+                {!user ? (
+                  <Link to="/login">{'Customer'}</Link>
+                ) : (
+                    <A onClick={onClickUsername}>{username} {"(Logout)"}</A>
+                )}
               </H3>
             </div>
           </Col>

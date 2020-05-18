@@ -6,6 +6,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
+import rootSaga from './rootSaga';
 
 export default function configureStore(initialState = {}, history) {
   let composeEnhancers = compose;
@@ -47,11 +48,18 @@ export default function configureStore(initialState = {}, history) {
   store.injectedReducers = {}; // Reducer registry
   store.injectedSagas = {}; // Saga registry
 
+  store.runSaga(rootSaga);
+
   // Make reducers hot reloadable, see http://mxs.is/googmo
   /* istanbul ignore next */
   if (module.hot) {
     module.hot.accept('./reducers', () => {
       store.replaceReducer(createReducer(store.injectedReducers));
+      const newYieldedSagas = require('./rootSaga').default;
+      sagasManager.cancel();
+      sagasManager.done.then(() => {
+        sagasManager = sagaMiddleware(newYieldedSagas);
+      });
     });
   }
 

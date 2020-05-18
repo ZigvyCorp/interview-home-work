@@ -26,7 +26,7 @@ const handle = {
 
   insert: (req, res) => {
     const { body = {} } = req;
-    const itemExisted = _.find(collection, i => i.id == body.id);
+    const itemExisted = _.find(collection, i => i.username == body.username);
     if (itemExisted) return null;
     const item = { id: uuid(), ...body };
     collection.push(item);
@@ -77,13 +77,14 @@ const handle = {
       dob = '',
     } = req.body;
     if (password !== confirmPassword) return null;
+    
     const user = handle.insert({
       body: {
         username,
         password,
         name,
         dob,
-        created_at: moment().format('x'),
+        created_at: moment().valueOf(),
       },
     });
     if (!user) return null;

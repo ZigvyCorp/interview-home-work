@@ -1,9 +1,9 @@
 /**
  *
- * Asynchronously loads the component for SignUpPage
+ * Asynchronously loads the component for LoginPage
  *
  */
 
-import loadable from 'utils/loadable';
+import loadable from '../../utils/loadable';
 
 export default loadable(() => import('./index'));

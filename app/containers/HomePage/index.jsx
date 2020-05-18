@@ -12,7 +12,7 @@ import moment from 'moment';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 import {
@@ -35,21 +35,15 @@ import InfiniteScroll from 'react-infinite-scroller';
 
 import { useInjectReducer } from '../../utils/injectReducer';
 import { useInjectSaga } from '../../utils/injectSaga';
-// import {
-//   makeSelectRepos,
-//   makeSelectLoading,
-//   makeSelectError,
-// } from '../../containers/App/selectors';
 import Header from '../../components/Header';
 import H2 from '../../components/H2';
-// import { loadRepos } from '../App/actions';
 import { changeUsername } from './actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import ReplyComment from './ReplyComment';
-// import saga from './saga';
 
-const key = 'home';
+import UserActions, { UserSelectors, UserTypes } from '../App/reducer';
+
 const avatar =
   'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png';
 const colorTags = [
@@ -69,9 +63,8 @@ const colorTags = [
 const { Panel } = Collapse;
 const { Paragraph } = Typography;
 
-export function HomePage({
-  
-}) {
+function HomePage({ userPayload }) {
+  const dispatch = useDispatch();
   const [loading, setloading] = useState(false);
   const [hasMore, sethasMore] = useState(true);
   const [data, setdata] = useState(dataPost);
@@ -97,7 +90,7 @@ export function HomePage({
         <title>Home Page</title>
         <meta name="description" content="Homepage Blogs" />
       </Helmet>
-      <Header />
+      <Header user={_.get(userPayload, 'user', null)} />
       <div>
         <div style={{ paddingTop: 10, paddingBottom: 10 }}>
           <Button type="dashed" block size="large">
@@ -130,31 +123,11 @@ export function HomePage({
   );
 }
 
-HomePage.propTypes = {};
-
-const mapStateToProps = createStructuredSelector({
-  
+const mapStateToProps = state => ({
+  userPayload: UserSelectors.selectPayload(state.user),
 });
 
-export function mapDispatchToProps(dispatch) {
-  return {
-    onChangeUsername: evt => dispatch(changeUsername(evt.target.value)),
-    onSubmitForm: evt => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(loadRepos());
-    },
-  };
-}
-
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
-
-export default compose(
-  withConnect,
-  memo,
-)(HomePage);
+export default connect(mapStateToProps)(HomePage);
 
 const Post = ({ item }) => {
   return (

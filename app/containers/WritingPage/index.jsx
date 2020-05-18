@@ -23,6 +23,8 @@ import {
   Tooltip,
 } from 'antd';
 
+import UserActions, { UserSelectors, UserTypes } from '../App/reducer';
+
 import { useInjectSaga } from '../../utils/injectSaga';
 import { useInjectReducer } from '../../utils/injectReducer';
 import Header from '../../components/Header';
@@ -41,10 +43,7 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-export function WritingPage() {
-  useInjectReducer({ key: 'writingPage', reducer });
-  useInjectSaga({ key: 'writingPage', saga });
-
+function WritingPage({ userPayload }) {
   const [user, setUser] = useState(false);
   const onFinish = values => {
     setUser(true);
@@ -62,7 +61,7 @@ export function WritingPage() {
 
   return (
     <div>
-      <Header />
+      <Header user={_.get(userPayload, 'user', null)} />
       <div style={{ paddingTop: 60 }}>
         <Form
           {...layout}
@@ -95,23 +94,8 @@ export function WritingPage() {
   );
 }
 
-WritingPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = createStructuredSelector({
-  writingPage: makeSelectWritingPage(),
+const mapStateToProps = state => ({
+  userPayload: UserSelectors.selectPayload(state.user),
 });
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
-
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
-
-export default compose(withConnect)(WritingPage);
+export default connect(mapStateToProps)(WritingPage);

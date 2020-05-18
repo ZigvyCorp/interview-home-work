@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { Link, Redirect } from 'react-router-dom';
 import { connect, useDispatch } from 'react-redux';
-import { useInjectSaga } from '../../utils/injectSaga';
 
 import UserActions, { UserSelectors, UserTypes } from '../App/reducer';
 
@@ -14,20 +13,17 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-function LoginPage(props) {
+function LoginPage({ userPayload }) {
   const dispatch = useDispatch();
 
-  useInjectSaga({ key: 'login', saga });
-
   const onFinish = values => {
-    console.log(values);
     dispatch(UserActions.loginRequest(values));
   };
 
   const onFinishFailed = errorInfo => {
     console.log('Failed:', errorInfo);
   };
-  // if (user) return <Redirect to="/" />;
+  if (userPayload) return <Redirect to="/" />;
   return (
     <article>
       <div style={{ paddingTop: 60 }}>
