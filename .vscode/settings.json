@@ -6,5 +6,9 @@
 		"scroller"
 	],
 	"prettier.singleQuote": true,
-  "prettier.trailingComma": "all",
+	"prettier.trailingComma": "all",
+	"editor.defaultFormatter": "vscode.typescript-language-features",
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features"
+	},
 }

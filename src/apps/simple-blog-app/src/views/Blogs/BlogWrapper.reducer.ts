@@ -1,5 +1,5 @@
-import BlogModel from "../../shared/models/Blog";
 import { REHYDRATE } from 'redux-persist';
+import BlogModel from '../../shared/models/Blog';
 
 const API_CALL_REQUEST = "API_CALL_REQUEST";
 const API_CALL_SUCCESS = "API_CALL_SUCCESS";

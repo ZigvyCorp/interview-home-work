@@ -1,4 +1,4 @@
-import { acceptedUserMW } from "./middleware";
+import { acceptedUserMW } from './middleware';
 import { Router, Request, Response } from 'express';
 import { ParamsDictionary } from 'express-serve-static-core';
 import PostDAO from '@daos/Post/PostDao';

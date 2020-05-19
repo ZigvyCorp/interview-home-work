@@ -1,9 +1,9 @@
 import React from 'react';
-import { Container, Row } from "react-bootstrap";
 import BlogModel from '../../shared/models/Blog';
 import Blog from './Blog.view';
-import { connect } from 'react-redux';
 import InfiniteScroll from 'react-infinite-scroller';
+import { Container } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 interface IProps {
   blogs: BlogModel[],
@@ -29,13 +29,13 @@ class BlogWrapper extends React.Component<IProps, IState> {
     this.props.fetchBlogs(0);
   }
 
-  buildBlogs() { 
-    return this.props.blogs.map(blog=> <Row key={blog._id} ><Blog blog={blog} /></Row>);
+  buildBlogs() {
+    return this.props.blogs.map(blog => <Row key={blog._id} ><Blog blog={blog} /></Row>);
   }
 
-	render() {
-		return (
-			<Container>
+  render() {
+    return (
+      <Container>
         <InfiniteScroll
           pageStart={0}
           loadMore={this.props.fetchBlogs}
@@ -45,7 +45,7 @@ class BlogWrapper extends React.Component<IProps, IState> {
         >
           {this.buildBlogs()}
         </InfiniteScroll>
-			</Container>
+      </Container>
     )
   };
 }

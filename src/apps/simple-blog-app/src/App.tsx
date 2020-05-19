@@ -1,9 +1,9 @@
 import React from 'react';
-import {Router, Route, Redirect, Switch} from 'react-router-dom';
+import { Router, Route, Redirect, Switch } from 'react-router-dom';
 import Blogs from './views/Blogs.container';
 
 interface ILoginProps {
-  location: {state: {from: string}};
+  location: { state: { from: string } };
 }
 
 class Login extends React.Component<ILoginProps> {
@@ -24,7 +24,7 @@ class Login extends React.Component<ILoginProps> {
     if (redirectToReferrer === true) {
       return <Redirect to={from} />
     }
- 
+
     return (
       <div>
         <p>You must log in to view the page</p>
@@ -35,7 +35,7 @@ class Login extends React.Component<ILoginProps> {
 }
 
 interface AppProps {
-    history?: any
+  history?: any
 }
 const fakeAuth = {
   isAuthenticated: false,
@@ -49,13 +49,13 @@ const fakeAuth = {
   }
 }
 const PrivateRoute = (Component: React.ComponentType<any>, path: string) => (
-  <Route path={path} render={ (props) => 
+  <Route path={path} render={(props) =>
     class extends React.Component {
       render() {
-        return fakeAuth.isAuthenticated === true? <Component />: <Redirect to={{
+        return fakeAuth.isAuthenticated === true ? <Component /> : <Redirect to={{
           pathname: '/login',
           state: { from: props.location }
-        }}  />;
+        }} />;
       }
     }
   } />
@@ -70,7 +70,7 @@ class App extends React.Component<AppProps> {
       <Router history={this.props.history}>
         <Switch>
           <Route path="/" render={(): React.ReactNode => <Redirect to="/login" />} exact />
-          <Route path="/login" component={Login}/>
+          <Route path="/login" component={Login} />
           {/* {PrivateRoute(BlogWrapper, '/blogs')} */}
           <Route path='/blogs' component={Blogs} />
           <Route path='*' render={(): React.ReactNode => <div>Error</div>} />
@@ -79,6 +79,6 @@ class App extends React.Component<AppProps> {
     )
   }
 }
-	
+
 
 export default App;

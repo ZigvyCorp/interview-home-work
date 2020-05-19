@@ -8,11 +8,11 @@ type AppProviderProps = {
 
 export class AppProvider extends React.PureComponent<AppProviderProps> {
   render(): React.ReactNode {
-    const {children, reduxConfig} = this.props;
-      return (
-        <ReduxProvider reduxConfig={reduxConfig}>
-          {React.Children.only(children)}
-        </ReduxProvider>
-      );
+    const { children, reduxConfig } = this.props;
+    return (
+      <ReduxProvider reduxConfig={reduxConfig}>
+        {React.Children.only(children)}
+      </ReduxProvider>
+    );
   }
 }
