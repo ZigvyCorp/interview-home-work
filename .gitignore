@@ -3,3 +3,5 @@ yarn-error.log
 .DS_STORE
 node_modules
 dist
+build
+public

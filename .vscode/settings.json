@@ -1,0 +1,10 @@
+{
+	"cSpell.words": [
+		"infinite",
+		"persistor",
+		"react",
+		"scroller"
+	],
+	"prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+}
