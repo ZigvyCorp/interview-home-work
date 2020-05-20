@@ -22,8 +22,8 @@ class PostDAO implements IPostDao {
   /**
    *
    */
-  public async getAllByUser(userId: number): Promise<IPost[]> {
-    return Post.find({ owner: userId });
+  public async getAllByUser(userId: number, limit: number = 0, skip: number = 0): Promise<IPost[]> {
+    return Post.find({ owner: userId }).limit(limit).skip(limit * skip);
   }
   /**
    *

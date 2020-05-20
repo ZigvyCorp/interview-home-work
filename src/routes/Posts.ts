@@ -1,12 +1,11 @@
-import { acceptedUserMW } from "./middleware";
+import { acceptedUserMW } from './middleware';
 import { Router, Request, Response } from 'express';
 import { ParamsDictionary } from 'express-serve-static-core';
 import PostDAO from '@daos/Post/PostDao';
 import { OK } from 'http-status-codes';
-import { ISearchPost, IPost } from '@entities/Post';
 import logger from '@shared/Logger';
 
-const router = Router().use(acceptedUserMW);
+const router = Router();
 const postDao = new PostDAO();
 
 /******************************************************************************
@@ -14,7 +13,8 @@ const postDao = new PostDAO();
  ******************************************************************************/
 router.get('/:ownerId', async (req: Request, res: Response) => {
 	const { ownerId } = req.params as ParamsDictionary;
-	const posts = await postDao.getAllByUser(Number(ownerId));
+	const { limit, skip } = req.query as ParamsDictionary;
+	const posts = await postDao.getAllByUser(Number(ownerId), Number(limit), Number(skip));
 	return res.status(OK).json({ posts });
 });
 
