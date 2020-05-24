@@ -4,14 +4,16 @@ import { UserOutlined } from "@ant-design/icons";
 function Header() {
   return (
     <div>
-      <Affix offsetTop={0}>
+      <Affix offsetTop={0} style={{ background: "white" }}>
         <div
           style={{
             borderTop: "1px solid #000",
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
-            padding: "10px 5px",
+            padding: "10px 5px 0px 5px",
+            background: "white",
+            zIndex: 10,
           }}
         >
           <div
@@ -39,6 +41,7 @@ function Header() {
               justifyContent: "center",
               position: "relative",
               padding: "0px 10px",
+              zIndex: 10,
             }}
           >
             BLOGS
