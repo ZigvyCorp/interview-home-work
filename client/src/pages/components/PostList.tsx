@@ -1,5 +1,5 @@
 import React from "react";
-import { List, Card, Tag, Collapse } from "antd";
+import { List, Card, Tag, Collapse, Avatar } from "antd";
 import styled from "styled-components";
 
 const tagColors = [
@@ -20,14 +20,13 @@ const CustomPanel = styled.div`
   width: 100%;
   .ant-collapse > .ant-collapse-item {
     border-bottom: 0;
-  };
+  }
   .ant-collapse > .ant-collapse-item > .ant-collapse-header {
     border-bottom: 1px solid grey;
-
-  };
+  }
   .ant-collapse-borderless {
     background: white;
-  };
+  }
   .ant-list {
     width: 100%;
   }
@@ -43,6 +42,11 @@ const data = [
     tags: ["consult", "it", "hala"],
     replies: [
       {
+        created_at: 1576506719083,
+        content: "Boring!!!",
+      },
+      {
+        created_at: 1576506719083,
         content: "Boring!!!",
       },
     ],
@@ -57,6 +61,7 @@ const data = [
     tags: ["gov", "legal", "political"],
     replies: [
       {
+        created_at: 1576506719083,
         content: "Boring!!!",
       },
     ],
@@ -71,6 +76,7 @@ const data = [
     tags: ["breathtaking", "landscape", "vietnam"],
     replies: [
       {
+        created_at: 1576506719083,
         content: "Boring!!!",
       },
     ],
@@ -139,7 +145,22 @@ const renderPost = (item: any) => {
                   }
                   key="1"
                 >
-                  text
+                  {item.replies.map((reply: any) => (
+                    <div style={{ display: "flex", paddingBottom: 20 }}>
+                      <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          paddingLeft: 10,
+                        }}
+                      >
+                        <div>{reply.created_at}</div>
+                        <div>{reply.content}</div>
+                        <div>Reply to</div>
+                      </div>
+                    </div>
+                  ))}
                 </Panel>
               </Collapse>
             </CustomPanel>
