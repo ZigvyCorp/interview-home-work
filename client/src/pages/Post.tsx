@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import Header from './components/Header';
-import PostList from './components/PostList';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { getPosts } from './actions';
-import { Skeleton } from 'antd';
+import React, { useEffect } from "react";
+import Header from "./components/Header";
+import PostList from "./components/PostList";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { getPosts } from "./actions";
+import { Skeleton } from "antd";
 
 function Post(props: any) {
   useEffect(() => {
@@ -15,11 +15,11 @@ function Post(props: any) {
   if (props.posts.loading) {
     return <Skeleton />;
   }
-
+  console.log(props.posts,'posts')
   return (
     <div>
       <Header />
-      <PostList />
+      <PostList data={props.posts.data} />
     </div>
   );
 }

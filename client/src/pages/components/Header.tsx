@@ -30,7 +30,7 @@ function Header() {
                 background: "grey",
               }}
             />
-            <text style={{ paddingLeft: 5 }}>Logo</text>
+            <div style={{ paddingLeft: 5 }}>Logo</div>
           </div>
 
           <div
@@ -70,7 +70,7 @@ function Header() {
           </div>
           <div style={{ display: "flex", alignItems: "center" }}>
             <Avatar icon={<UserOutlined />} />
-            <text style={{ paddingLeft: 5 }}>Adam Levine</text>
+            <div style={{ paddingLeft: 5 }}>Adam Levine</div>
           </div>
         </div>
       </Affix>

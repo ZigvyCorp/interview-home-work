@@ -9,7 +9,7 @@ router.get("/posts", async (req, res) => {
   const { limit = 5, index, ...queries }: any = req.query;
 
   try {
-    const posts = await Post.find(req.query).limit(limit);
+    const posts = await Post.find(req.query).populate("owner").limit(limit);
     res.status(200).send(posts);
   } catch (error) {
     res.status(500).send(error);
@@ -21,9 +21,8 @@ router.get("/posts/:id/comments", async (req, res) => {
   const { limit = 5 }: any = req.query;
   try {
     const comments = await Comment.find({ post: _id })
-      .limit(limit)
-      .limit(limit)
-      .sort("-price");
+      .populate("owner")
+      .limit(limit);
     res.status(200).send(comments);
   } catch (error) {
     res.status(500).send(error);
@@ -33,10 +32,9 @@ router.get("/posts/:id/comments", async (req, res) => {
 router.get("/posts/:id", async (req, res) => {
   const { id: _id } = req.params;
   try {
-    const post: any = await Post.findOne({ _id });
-    const user = await User.findOne({ _id: post.owner });
+    const post: any = await Post.findOne({ _id }).populate("owner");
 
-    res.status(200).send({ ...post.toObject(), owner: user });
+    res.status(200).send(post);
   } catch (error) {
     res.status(500).send(error);
   }
@@ -44,7 +42,8 @@ router.get("/posts/:id", async (req, res) => {
 
 router.post("/posts/create", auth, async (req: any, res) => {
   try {
-    const post = new Post({ ...req.body, owner: req.user._id });
+    console.log(req.user);
+    const post = new Post({ ...req.body, owner: req.user });
 
     post.save();
     res.status(200).send(post);
