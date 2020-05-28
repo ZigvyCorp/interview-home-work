@@ -11,6 +11,8 @@
 -   NodeJS - Express
     
 -   MongoDB
+    
+
   
 
 ## Frontend (FE-zigvy-news)

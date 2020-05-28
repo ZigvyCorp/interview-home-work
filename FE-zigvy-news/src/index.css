@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  font-family: 'Poppins';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.comment-wrapper .panel-body {
+  max-height:650px;
+  overflow:auto;
+}
+
+.comment-wrapper .media-list {
+  padding-left: 0;
+}
+
+.comment-wrapper .media-list .media img {
+  width:64px;
+  height:64px;
+  border:2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+  border-bottom:1px dashed #efefef;
+  margin-bottom:25px;
+  padding-right: 0;
+}
+
+.comment-tool-item {
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.post-tool-item {
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 14pt;
+}
+
+.post-hover:hover {
+  background: rgb(200, 200, 200);
+}
+
+.post-hover {
+  background: #fff;
+}
+
+.tag-input {
+  width: 72px;
+}
+
+.card-text-content {
+  width: calc(100vw - 200px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 45px;
+}
