@@ -1,0 +1,17 @@
+How to run the app
+
+- Database: MySQL 
+db-script-mysql.sql file in thuphan_2020_Backend 
+can run Query in phpmyadmin or navicat
+
+- Backend: Express
+in Command Prompt Screen, write syntax:
+>> npm install (import node module)
+>> node app.js (run app)
+
+- Frontend: ReactJS
+in Command Prompt Screen, write syntax:
+>> npm install (import node module)
+>> npm start (run app)
+
+
