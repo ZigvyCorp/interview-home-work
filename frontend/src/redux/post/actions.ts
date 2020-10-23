@@ -1,0 +1,5 @@
+export enum PostActions {
+  GET_POSTS = "POSTS/GET",
+  GET_POSTS_FAILED = "POSTS/GET_FAILED",
+  GET_POSTS_SUCCEED = "POSTS/GET_SUCCEED",
+}
