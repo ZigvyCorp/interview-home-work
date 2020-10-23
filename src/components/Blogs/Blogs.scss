@@ -1,0 +1,86 @@
+*{margin:0;padding:0;box-sizing: border-box;}
+
+.box{
+	margin-top:2em;
+	.caption{
+		text-align:center;
+		font-weight:bold;
+		color:brown;
+		text-shadow:1px 1px 5px brown;
+	}
+	.blog{
+		box-shadow:3px 3px 10px black;
+		margin:2.5em 0;
+		border-radius:3px;
+	}
+	.post{
+		h3{
+			text-align:center;
+			margin-top:1em;
+			color:black;
+			text-shadow:1px 1px 5px black;
+		}
+		div span{
+			font-weight:bold;
+		}
+		p{
+			text-indent:2em;
+			color:gray;
+			font-weight:bold;
+		}
+		.author{
+			color:purple;
+		}
+		.create-at{
+			color:orange;
+		}
+		.tags{
+			color:brown;
+		}
+	}
+	.comment{
+		display:flex;
+		.avt{
+			margin-right:1rem !important;
+		}
+		.content{
+			.user{
+				color:#32CD32;
+				font-weight: bold;
+				text-shadow:1px 1px 5px #32CD32;
+				span{
+					font-weight:400 !important;
+					color:gray !important;
+					text-shadow:0px 0px 0px transparent !important;
+				}
+			}
+			.description{
+				text-indent:2em !important;
+				display:block;
+			}
+		}
+		button:focus,input:focus{
+			box-shadow:0px 0px 0px transparent !important;
+			outline:none !important;
+		}
+		input{
+			border:none;
+		}
+		.active{
+			border:1px solid gray !important;
+		}
+		img{
+			width:50px;
+			height:50px;
+			border-radius:100%;
+			vertical-align: center;
+		}
+	}
+	.pagination{
+		margin:1em auto;
+		.item{
+			color:black !important;
+			font-weight:bold;
+		}
+	}
+}

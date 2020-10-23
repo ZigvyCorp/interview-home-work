@@ -1,0 +1,42 @@
+@import '~antd/dist/antd.css';
+*{margin:0;padding:0;box-sizing: border-box;}
+
+.menu{
+	background-color:black !important;
+	.menu-brand{
+		color:white !important;
+		font-size:2em;
+		font-weight:bold;
+		text-shadow:3px 3px 10px white;
+	}
+	.navbar-toggler-icon{
+		color:white !important;
+		background-color:white !important;
+	}
+	.menu-nav{
+		margin:auto;
+		.menu-item{
+			padding:0em 4em;
+		}
+	}
+	.menu-link{
+		color:white !important;
+		font-size:1.2em;
+		font-weight: bold;
+	}
+	.menu-nav .menu-link:hover, .menu-link:focus, menu-link:visited, menu-link:active{
+		color:#33CC66 !important;
+		text-decoration:none;
+	}
+}
+.logout{
+	color:white;
+	display:inline-block;
+	margin-left:1em;
+	color:orange;
+	font-weight:bold;
+	cursor:pointer;
+}
+.logout:hover,.logout:visited,.logout:active,.logout:link{
+	color:white !important;
+}
