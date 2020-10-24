@@ -1,0 +1,35 @@
+{
+  "name": "interview-home-work",
+  "version": "1.0.0",
+  "description": "## Description - This is a **Small Project Test** for online interview at Zigvy Corp. This assignment has 2 main tasks: **Front-end** and **Back-end**. You will be required to complete each tasks with your applied position. For short, you can check the list below   - Full-stack engineer: Both Front-end and Back-end   - Front-end engineer: Front-end only   - Back-end engineer: Complete basic layout of Front-end task and Back-end task",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hannah-Lee98/interview-home-work.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hannah-Lee98/interview-home-work/issues"
+  },
+  "homepage": "https://github.com/Hannah-Lee98/interview-home-work#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "pretty-quick --staged"
+    ]
+  },
+  "devDependencies": {
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.9",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^3.1.0"
+  }
+}
