@@ -25,7 +25,7 @@ const Post = (props) => {
           <div className={'right'}>
             {post.tags.map((item) => (
               <div key={item}>
-                <Tag color="magenta">item</Tag>
+                <Tag color="magenta">{item}</Tag>
               </div>
             ))}
           </div>
