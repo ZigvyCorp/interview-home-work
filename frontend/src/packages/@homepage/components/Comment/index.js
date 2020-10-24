@@ -1,6 +1,7 @@
 import React from 'react';
 import { Root } from './styled';
 import container from './container';
+import ms from 'ms';
 
 import { Avatar } from 'antd';
 
@@ -13,7 +14,8 @@ const Comment = (props) => {
       </div>
       <div className={'contentComment'}>
         <div>
-          <b>{comment.username}</b> <i>{comment.createdAt}</i>
+          <b>{comment.username}</b>{' '}
+          <i>{ms(Date.now() - comment.createdAt, { long: true })} ago</i>
         </div>
         <div>{comment.content}</div>
       </div>

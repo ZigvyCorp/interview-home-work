@@ -2,6 +2,7 @@ import React from 'react';
 import { Root, Container } from './styled';
 import container from './container';
 import Comment from '../Comment';
+import dayjs from "dayjs";
 
 import { Typography } from 'antd';
 import { Collapse } from 'antd';
@@ -19,7 +20,7 @@ const Post = (props) => {
         <div className={'infoPost'}>
           <div className={'left'}>
             <Title level={5}>Author: {post.author}</Title>
-            <Title level={5}>Created At: {post.createdAt}</Title>
+            <Title level={5}>Created At: {dayjs(post.createdAt).format('MMM DD, YYYY')}</Title>
           </div>
           <div className={'right'}>
             {post.tags.map((item) => (

@@ -15,9 +15,9 @@ const Posts = (props) => {
         enterButton="Search"
         size="large"
         onSearch={handleSearch}
-        loading ={loading}
+        loading={loading}
       />
-        <div>{keyword && `Searching result for ${keyword}`}</div>
+      <div>{keyword && `Searching result for ${keyword}`}</div>
       {posts.map((item, index) => (
         <div
           ref={posts.length === index + 1 ? lastPostElementRef : undefined}
