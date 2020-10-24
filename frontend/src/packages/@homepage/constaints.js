@@ -1,2 +1,11 @@
 const PREFIX = `HOMEPAGE:`
 export const SET_EXPENDED_CMT = `${PREFIX}SET_EXPENDED_CMT`
+export const SET_LOADING = `${PREFIX}SET_LOADING`
+export const SET_ERROR = `${PREFIX}SET_ERROR`
+export const GET_POSTS = `${PREFIX}GET_POSTS`
+export const SET_POSTS = `${PREFIX}SET_POSTS`
+export const PUSH_POSTS = `${PREFIX}PUSH_POSTS`
+export const SET_KEYWORD = `${PREFIX}SET_KEYWORD`
+export const SET_PAGE = `${PREFIX}SET_PAGE`
+export const NEXT_PAGE = `${PREFIX}NEXT_PAGE`
+export const SET_HAS_MORE = `${PREFIX}SET_HAS_MORE`
