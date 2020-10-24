@@ -2,12 +2,12 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import store from './store';
 import { Provider } from 'react-redux';
-import { Test } from './@homepage';
+import { Homepage } from './@homepage';
 
 const App = () => {
   return (
     <Provider store={store}>
-      <Test />
+      <Homepage />
     </Provider>
   );
 };

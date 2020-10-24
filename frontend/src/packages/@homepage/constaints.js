@@ -1,0 +1,2 @@
+const PREFIX = `HOMEPAGE:`
+export const SET_EXPENDED_CMT = `${PREFIX}SET_EXPENDED_CMT`

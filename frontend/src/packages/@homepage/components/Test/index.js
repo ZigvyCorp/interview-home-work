@@ -5,7 +5,7 @@ import container from './container';
 
 const Test = () => {
   return (
-             <Root>
+    <Root>
       <Button>Click me</Button>
     </Root>
   );
