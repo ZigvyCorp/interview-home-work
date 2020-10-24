@@ -7,7 +7,7 @@ import {
   selectedKeyword,
   selectedHasMore,
 } from '../../selector';
-import {useCallback, useEffect, useRef} from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { nextPage, setHasMore, setKeyword, setPage } from '../../actions';
 import { notification } from 'antd';
 
@@ -18,16 +18,15 @@ const container = compose(
     const loading = useSelector(selectedLoading);
     const error = useSelector(selectedError);
     const keyword = useSelector(selectedKeyword);
-    const hasMore = useSelector(selectedHasMore)
+    const hasMore = useSelector(selectedHasMore);
 
-    useEffect(()=>{
-        if(!error) return
-        notification.error({
-            message: 'Error',
-            description: error,
-        });
-
-    },[error])
+    useEffect(() => {
+      if (!error) return;
+      notification.error({
+        message: 'Error',
+        description: error,
+      });
+    }, [error]);
 
     const observer = useRef();
     const lastPostElementRef = useCallback(
@@ -53,6 +52,14 @@ const container = compose(
       [dispatch]
     );
 
+    const [keywordText, setKeywordText] = useState(keyword);
+    const handleSearchChange = useCallback(
+      (event) => {
+        setKeywordText(event.target.value);
+      },
+      [setKeywordText]
+    );
+
     return {
       ...props,
       posts,
@@ -61,6 +68,8 @@ const container = compose(
       loading,
       handleSearch,
       keyword,
+      keywordText,
+      handleSearchChange,
     };
   })
 );

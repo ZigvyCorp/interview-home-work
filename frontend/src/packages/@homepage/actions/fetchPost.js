@@ -45,10 +45,6 @@ export default function* fetchPost(action) {
       })),
     }));
 
-    if (page === 1 && posts.length === 0) {
-      throw new Error('No result');
-    }
-
     if (posts.length <= limit) {
       yield put(setHasMore(false));
     }
