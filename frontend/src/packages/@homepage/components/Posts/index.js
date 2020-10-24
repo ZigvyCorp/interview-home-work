@@ -18,16 +18,18 @@ const Posts = (props) => {
   } = props;
   return (
     <Root>
-      <Search
-        placeholder="input search text"
-        allowClear
-        value={keywordText}
-        onChange={handleSearchChange}
-        enterButton="Search"
-        size="large"
-        onSearch={handleSearch}
-        loading={loading}
-      />
+      <div className={'top'}>
+        <Search
+          placeholder="input search text"
+          allowClear
+          value={keywordText}
+          onChange={handleSearchChange}
+          enterButton="Search"
+          size="large"
+          onSearch={handleSearch}
+          loading={loading}
+        />
+      </div>
       <div>{keyword && `Searching result for ${keyword}`}</div>
       {posts.length === 0 && !loading ? (
         <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />

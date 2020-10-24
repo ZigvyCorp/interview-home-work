@@ -15,8 +15,8 @@ const Post = (props) => {
   const { post, handleToggleExpand } = props;
   return (
     <Root>
-      <Title>{post.title}</Title>
       <Container>
+        <Title>{post.title}</Title>
         <div className={'infoPost'}>
           <div className={'left'}>
             <Title level={5}>Author: {post.author}</Title>
@@ -32,7 +32,7 @@ const Post = (props) => {
         </div>
         <div className={'contentPost'}>
           <div>
-            <Title level={5}>{post.content}</Title>
+            <p>{post.content}</p>
           </div>
         </div>
         <div>{post.comments.length} comments</div>
