@@ -4,6 +4,7 @@ import container from './container';
 import Post from '../Post';
 import { Empty } from 'antd';
 import { Input } from 'antd';
+import ScollTop from '../ScollTop';
 const { Search } = Input;
 
 const Posts = (props) => {
@@ -20,7 +21,7 @@ const Posts = (props) => {
     <Root>
       <div className={'top'}>
         <Search
-          placeholder="input search text"
+          placeholder="Search posts by title "
           allowClear
           value={keywordText}
           onChange={handleSearchChange}
@@ -30,10 +31,13 @@ const Posts = (props) => {
           loading={loading}
         />
       </div>
-      <div>{keyword && `Searching result for ${keyword}`}</div>
+      <div style={{ padding: 5 }}>
+        <b>{keyword && `Searching result for "${keyword}"`}</b>
+      </div>
       {posts.length === 0 && !loading ? (
         <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
       ) : null}
+      <ScollTop />
       {posts.map((item, index) => (
         <div
           ref={posts.length === index + 1 ? lastPostElementRef : undefined}
