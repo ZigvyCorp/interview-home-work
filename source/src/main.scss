@@ -1,0 +1,68 @@
+// Import Bootstrap and its default variables
+@import '~bootstrap/scss/bootstrap.scss';
+@import './varriable';
+.badge-magenta {
+    border: 2px solid $magenta-2;
+    background-color: $magenta-1;
+    color: $magenta-6;
+}
+.badge-red {
+    border: 2px solid $red-2;
+    background-color: $red-1;
+    color: $red-6;
+}
+.badge-volcano {
+    border: 2px solid $volcano-2;
+    background-color: $volcano-1;
+    color: $volcano-6;
+}
+.badge-orange {
+    border: 2px solid $orange-2;
+    background-color: $orange-1;
+    color: $orange-6;
+}
+.badge-gold {
+    border: 2px solid $gold-2;
+    background-color:$gold-1;
+    color: $gold-6;
+}
+.badge-lime {
+    border: 2px solid $lime-2;
+    background-color: $lime-1;
+    color: $lime-6;
+}
+.badge-green {
+    border: 2px solid $green-2;
+    background-color: $green-1;
+    color: $green-6;
+}
+.badge-cyan {
+    border: 2px solid $cyan-2;
+    background-color: $cyan-1;
+    color: $cyan-6;
+}
+.badge-blue {
+    border: 2px solid $blue-2;
+    background-color: $blue-1;
+    color: $blue-6;
+}
+.badge-greekblue {
+    border: 2px solid $geekblue-2;
+    background-color: $geekblue-1;
+    color: $geekblue-6;
+}
+.badge-purple {
+    border: 2px solid $purple-2;
+    background-color: $purple-1;
+    color: $purple-6;
+}
+a {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover {
+        color:black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+}

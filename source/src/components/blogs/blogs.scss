@@ -1,0 +1,54 @@
+.blog {
+    padding: 2rem 0;
+    .blog-head {
+        width: 100%;
+        .blog-title {
+            text-align: center;
+        }
+        .blog-info {
+            .blog-info-info {
+                width: 70%;
+                p {
+                    margin-bottom: 0;
+                }
+            }
+            .blog-info-color {
+                width: 30%;
+                span {
+                    margin: 0px 10px 7px 2px;
+                    padding: 5px 10px;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+    .blog-foot {
+        width: 100%;
+        .blog-reply-title {
+            cursor: pointer;
+        }
+        .blog-replies {
+            display: none;
+            .avatar {
+                margin-right: 2rem;
+                img {
+                    max-width: 100%;
+                }
+            }
+            .reply-infor {
+                .time {
+                    color: #d9d9d9;
+                }
+                .user-name {
+                    color: #8c8c8c;
+                }
+                p {
+                    color: #595959;
+                    .user-name {
+                        margin-right: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}
