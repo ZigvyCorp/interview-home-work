@@ -1,0 +1,55 @@
+.loading-section {
+    .loader {
+        zoom: 0.4;
+        border: 16px solid #f4e6ba;
+        border-radius: 50%;
+        border-top: 16px solid #00D6B2;
+        width: 120px;
+        height: 120px;
+        -webkit-animation: spin 2s linear infinite;
+        /* Safari */
+        animation: spin 2s linear infinite;
+        display: inline-block;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        right: 0;
+        z-index: 99999;
+    }
+
+    .overlay-background {
+        background-color: grey;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: 99998;
+        top: 0px;
+        left: 0px;
+        opacity: 0.2;
+        /* in FireFox */
+        filter: alpha(opacity=0.2);
+        /* in IE */
+    }
+
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+}
