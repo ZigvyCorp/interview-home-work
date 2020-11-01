@@ -1,0 +1,51 @@
+.header {
+  background: #eee url('../../header-bk.png') center;
+  background-size: cover;
+  border-bottom: 1px solid #ccc;
+  
+}
+
+.content {
+  width: 100%;
+  max-width: 980px;
+  margin: auto;
+  padding: 64px 16px;
+  overflow: auto;
+}
+
+.site-title {
+  font-weight: 300;
+  font-size: 36px;
+  float: left;
+  margin-right: 40px;
+}
+
+.site-title a {
+  text-decoration: none;
+  color: #FFF;
+}
+
+.add-post-button {
+  display: inline-block;
+  color: #FFF;
+  background: #03A9F4;
+  padding: 8px 16px;
+  margin-left: 10px;
+  text-decoration: none;
+  float: right;
+}
+
+.search-bar {
+  float: left;
+  max-width: 500px;
+}
+
+
+
+@media (max-width: 760px){
+  .add-post-button{
+    float: left;
+    margin-top: 16px;
+    margin-left: 0px;
+  }
+}
