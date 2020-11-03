@@ -1,2 +1,6 @@
-const reducers = (state, action) => state;
-export default reducers;
+import { combineReducers } from 'redux';
+import blogs from '../views/BlogsPage/reducer';
+
+export default combineReducers({
+  blogs,
+});
