@@ -34,8 +34,8 @@ const Blogs = ({
   searchPost,
   filter,
 }) => {
-  const loadmore = useRef(null);
-  const needLoadMore = useIntersectionObserver(loadmore);
+  const loadmoreRef = useRef(null);
+  const needLoadMore = useIntersectionObserver(loadmoreRef);
 
   useEffect(() => {
     return needLoadMore && loadMore();
@@ -75,7 +75,7 @@ const Blogs = ({
           comments={commentsByPost[post.id]}
         />
       ))}
-      {!hasFetchAll && <LoadMore ref={loadmore}>Load more</LoadMore>}
+      {!hasFetchAll && <LoadMore ref={loadmoreRef}>Load more</LoadMore>}
     </div>
   );
 };

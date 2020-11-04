@@ -9,6 +9,7 @@ const useIntersectionObserver = (refElement) => {
   }, []);
 
   const element = refElement.current;
+
   useEffect(() => {
     if (!element) return;
     const observer = new IntersectionObserver(handleObserver);

@@ -38,6 +38,20 @@ export function fetchPostsCompleted(state, action) {
   };
 }
 
+export function fetchPostsFailed(state, action) {
+  const { filterValue, page, limit } = state;
+  const filter = applyFilterAndPagination(
+    state.posts,
+    filterValue,
+    page,
+    limit
+  );
+  return {
+    ...state,
+    paginatedPosts: filter,
+  };
+}
+
 export function fetchUsersCompleted(state, action) {
   const groupUserById = action.payload.reduce(
     (acc, user) => ({ ...acc, [user.id]: user }),
@@ -100,6 +114,7 @@ export function searchPost(state, action) {
 const blogsReducer = handleActions(
   {
     [types.FETCH_POSTS_COMPLETED]: fetchPostsCompleted,
+    [types.FETCH_POSTS_FAILED]: fetchPostsFailed,
     [types.FETCH_COMMENTS_COMPLETED]: fetchCommentsCompleted,
     [types.FETCH_USERS_COMPLETED]: fetchUsersCompleted,
     [types.LOAD_MORE]: loadMore,

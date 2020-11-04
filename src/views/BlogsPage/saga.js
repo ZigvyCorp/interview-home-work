@@ -4,19 +4,23 @@ import {
   fetchPostsCompleted,
   fetchCommentsCompleted,
   fetchUsersCompleted,
+  fetchPostsFailed,
 } from './actions';
 import apiClient from '../../utils/apiClient';
 
 function* fetchPosts() {
   const response = yield call(() => apiClient.get('posts'));
-  if (response.length > 0) {
+
+  if (response && response.length > 0) {
     yield put(fetchPostsCompleted(response));
+  } else {
+    yield put(fetchPostsFailed());
   }
 }
 
 function* fetchUsers() {
   const response = yield call(() => apiClient.get('users'));
-  if (response.length > 0) {
+  if (response && response.length > 0) {
     yield put(fetchUsersCompleted(response));
   }
 }
@@ -25,7 +29,7 @@ function* fetchComments(action) {
   const response = yield call(() =>
     apiClient.get(`comments?postId=${action.payload}`)
   );
-  if (response.length > 0) {
+  if (response && response.length > 0) {
     yield put(
       fetchCommentsCompleted({ postId: action.payload, comments: response })
     );
