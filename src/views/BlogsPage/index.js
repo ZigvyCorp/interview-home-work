@@ -70,7 +70,7 @@ const Blogs = ({
         <Post
           key={post.id}
           post={post}
-          user={users[post.id]}
+          user={users[post.userId]}
           fetchComments={handleFetchComments}
           comments={commentsByPost[post.id]}
         />

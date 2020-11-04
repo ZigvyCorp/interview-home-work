@@ -7,7 +7,6 @@ import Account from './views/AccountPage';
 import TopMenu from './components/TopMenu';
 
 import 'antd/dist/antd.css';
-import './App.css';
 
 function App() {
   return (
