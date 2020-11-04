@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'antd';
 import styled from 'styled-components';
@@ -13,15 +14,21 @@ const FlexItem = styled(Menu.Item)`
 `;
 
 const TopMenu = (props) => {
+  const [current, setCurrent] = useState('home');
+
+  const handleClick = (event) => {
+    setCurrent(event.key);
+  };
+
   return (
-    <FlexMenu mode='horizontal'>
-      <FlexItem>
+    <FlexMenu mode='horizontal' selectedKeys={[current]} onClick={handleClick}>
+      <FlexItem key='home'>
         <Link to='/'>HomePage</Link>
       </FlexItem>
-      <FlexItem>
+      <FlexItem key='blogs'>
         <Link to='/blogs'>Blogs</Link>
       </FlexItem>
-      <FlexItem>
+      <FlexItem key='account'>
         <Link to='/account'>Account</Link>
       </FlexItem>
     </FlexMenu>
