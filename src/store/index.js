@@ -17,6 +17,7 @@ const persistConfig = {
   key: 'asignment',
   storage,
   stateReconciler: autoMergeLevel2,
+  blacklist: ['blogs'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

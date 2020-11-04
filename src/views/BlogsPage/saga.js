@@ -1,11 +1,23 @@
 import { call, put, takeLatest, takeEvery } from 'redux-saga/effects';
-import { types, fetchPostsCompleted, fetchCommentsCompleted } from './actions';
+import {
+  types,
+  fetchPostsCompleted,
+  fetchCommentsCompleted,
+  fetchUsersCompleted,
+} from './actions';
 import apiClient from '../../utils/apiClient';
 
-function* fetchPost() {
+function* fetchPosts() {
   const response = yield call(() => apiClient.get('posts'));
   if (response.length > 0) {
     yield put(fetchPostsCompleted(response));
+  }
+}
+
+function* fetchUsers() {
+  const response = yield call(() => apiClient.get('users'));
+  if (response.length > 0) {
+    yield put(fetchUsersCompleted(response));
   }
 }
 
@@ -21,7 +33,8 @@ function* fetchComments(action) {
 }
 
 function* createPostSaga() {
-  yield takeLatest(types.FETCH_POSTS, fetchPost);
+  yield takeLatest(types.FETCH_POSTS, fetchPosts);
+  yield takeLatest(types.FETCH_USERS, fetchUsers);
   yield takeEvery(types.FETCH_COMMENTS, fetchComments);
 }
 

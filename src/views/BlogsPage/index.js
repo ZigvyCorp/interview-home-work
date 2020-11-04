@@ -2,6 +2,7 @@ import React, { useEffect, useCallback, useRef } from 'react';
 import { connect } from 'react-redux';
 import {
   fetchPosts as fetchPostsAction,
+  fetchUsers as fetchUsersAction,
   fetchComments as fetchCommentsActions,
   loadMore as loadMoreAction,
   searchPost as searchPostAction,
@@ -10,6 +11,7 @@ import PropTypes from 'prop-types';
 import Post from '../../components/Post';
 import InputSearch from '../../components/InputSearch';
 import styled from 'styled-components';
+import useIntersectionObserver from '../../utils/useIntersectionObserver';
 
 const LoadMore = styled.div`
   text-align: center;
@@ -24,16 +26,25 @@ const Blogs = ({
   fetchPosts,
   paginatedPosts,
   fetchComments,
+  fetchUsers,
   commentsByPost,
+  users,
   loadMore,
   hasFetchAll,
   searchPost,
+  filter,
 }) => {
-  const loader = useRef(null);
+  const loadmore = useRef(null);
+  const needLoadMore = useIntersectionObserver(loadmore);
+
+  useEffect(() => {
+    return needLoadMore && loadMore();
+  }, [needLoadMore, loadMore]);
 
   useEffect(() => {
     fetchPosts();
-  }, [fetchPosts]);
+    fetchUsers();
+  }, [fetchPosts, fetchUsers]);
 
   const handleFetchComments = useCallback(
     (id) => {
@@ -41,29 +52,6 @@ const Blogs = ({
     },
     [fetchComments]
   );
-
-  const handleObserver = useCallback(
-    (entities) => {
-      const target = entities[0];
-      if (target.isIntersecting) {
-        loadMore();
-      }
-    },
-    [loadMore]
-  );
-
-  const loaderRef = loader.current;
-  useEffect(() => {
-    var options = {
-      root: null,
-      rootMargin: '20px',
-      threshold: 1.0,
-    };
-    const observer = new IntersectionObserver(handleObserver, options);
-    if (loader.current) {
-      observer.observe(loader.current);
-    }
-  }, [loaderRef, handleObserver]);
 
   const handleSearch = useCallback(
     (value) => {
@@ -76,17 +64,18 @@ const Blogs = ({
   return (
     <div>
       <SearchWrapper>
-        <InputSearch onSearch={handleSearch} />
+        <InputSearch onSearch={handleSearch} defaultValue={filter} />
       </SearchWrapper>
       {paginatedPosts.map((post) => (
         <Post
           key={post.id}
           post={post}
+          user={users[post.id]}
           fetchComments={handleFetchComments}
           comments={commentsByPost[post.id]}
         />
       ))}
-      {!hasFetchAll && <LoadMore ref={loader}>Load more</LoadMore>}
+      {!hasFetchAll && <LoadMore ref={loadmore}>Load more</LoadMore>}
     </div>
   );
 };
@@ -96,12 +85,15 @@ const mapStateToProps = ({ blogs }) => ({
   page: blogs.page,
   limit: blogs.limit,
   commentsByPost: blogs.comments,
+  users: blogs.users,
   hasFetchAll: blogs.hasFetchAll,
+  filter: blogs.filterValue,
 });
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchPosts: () => dispatch(fetchPostsAction()),
+    fetchUsers: () => dispatch(fetchUsersAction()),
     fetchComments: (id) => dispatch(fetchCommentsActions(id)),
     loadMore: () => dispatch(loadMoreAction()),
     searchPost: (value) => dispatch(searchPostAction(value)),
@@ -113,11 +105,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(Blogs);
 Blogs.propTypes = {
   paginatedPosts: PropTypes.array,
   commentsByPost: PropTypes.object,
+  users: PropTypes.object,
   fetchPosts: PropTypes.func,
   fetchComments: PropTypes.func,
+  fetchUsers: PropTypes.func,
   loadMore: PropTypes.func,
-  page: PropTypes.number,
-  limit: PropTypes.number,
   hasFetchAll: PropTypes.bool,
   searchPost: PropTypes.func,
+  filter: PropTypes.string,
 };

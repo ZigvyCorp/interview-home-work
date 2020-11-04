@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Collapse } from 'antd';
 
@@ -8,6 +8,7 @@ const { Panel } = Collapse;
 const Title = styled.div`
   font-size: 20px;
   text-align: center;
+  margin-bottom: 10px;
 `;
 
 const Content = styled.div`
@@ -28,16 +29,26 @@ const CardWrapper = styled.div`
   }
 `;
 
-const Post = ({ post, fetchComments, comments = [] }) => {
+const Post = ({ post, user, fetchComments, comments = [] }) => {
   useEffect(() => {
     fetchComments(post.id);
   }, [fetchComments, post.id]);
 
+  const title = useMemo(() => {
+    return (
+      <div>
+        <Title>{post.title}</Title>
+        <div>Author: {user.name}</div>
+        <div>Created at: Sep 20, 2020</div>
+      </div>
+    );
+  }, [post, user]);
+
   return (
     <Container key={post.id}>
-      <Card title={<Title>{post.title}</Title>} style={{ width: '100%' }}>
+      <Card title={title} style={{ width: '100%' }}>
         <Content>{post.body}</Content>
-        <Collapse onChange={() => ({})}>
+        <Collapse>
           <Panel header={`${comments.length} replies`} key='1'>
             {comments.length === 0 ? null : (
               <div>
@@ -62,6 +73,7 @@ export default Post;
 
 Post.propTypes = {
   post: PropTypes.object,
+  user: PropTypes.object,
   comments: PropTypes.array,
   fetchComments: PropTypes.func,
 };
