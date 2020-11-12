@@ -2,7 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 
-const Post = ({userName, title, body}) => {
+import Reply from './Reply'
+
+const Post = ({userName, title, body, replyVisible, handleReplyToggle}) => {
 
   const today = moment().format('MMM DD, YYYY');
 
@@ -26,7 +28,9 @@ const Post = ({userName, title, body}) => {
         <div><b>Created at:</b> {today}</div>
       </div>
       <div className='mb-4'>{content()}</div>
-      <div>Replies section</div>
+      <Reply 
+        isVisible={replyVisible}
+        toggleThread={handleReplyToggle}/>
     </div>
   )
 }
@@ -34,7 +38,9 @@ const Post = ({userName, title, body}) => {
 Post.propTypes = {
   userName: PropTypes.string.isRequired, 
   title: PropTypes.string.isRequired,
-  body: PropTypes.string.isRequired
+  body: PropTypes.string.isRequired,
+  replyVisible: PropTypes.bool.isRequired,
+  handleReplyToggle: PropTypes.func.isRequired
 }
 
 export default Post

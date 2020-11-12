@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Post } from "../components";
@@ -14,6 +14,8 @@ const HomePage = () => {
   const { info } = useSelector(selectUserInfo);
   const { comments } = useSelector(selectComment);
 
+  const [isVisible, setVisible] = useState(false)
+
   useEffect(() => {
     dispatch(fetchPostStarted())
     dispatch(getUserInfoStarted())
@@ -23,7 +25,15 @@ const HomePage = () => {
   const renderPost = () => {
     return data.map(({ title, body, id, userId }) => {
       let userName = info.find(item => userId === item.id)
-      return <Post key={id} userName={userName?.name} title={title} body={body} />;
+      return ( 
+      <Post 
+        key={id} 
+        userName={userName?.name} 
+        title={title} 
+        body={body}
+        replyVisible={isVisible} 
+        handleReplyToggle={() => setVisible(!isVisible)} />
+      );
     });
   };
 
