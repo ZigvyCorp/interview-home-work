@@ -1,0 +1,88 @@
+@import "./variables";
+@import "./mixin";
+
+* {
+  overflow-wrap: normal;
+}
+
+body {
+  min-width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+textarea {
+  resize: none !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  overflow-y: auto !important;
+  height: 500px;
+}
+
+a {
+  text-decoration: none;
+  color: black !important;
+  &:hover {
+    text-decoration: none !important;
+  }
+}
+
+ul {
+  &.upper-navbar {
+    list-style: none;
+    text-decoration: none;
+  }
+  a {
+    color: white;
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.center-element {
+  @include flexCenter;
+}
+
+.userAuthenticationPage {
+  position: relative;
+  background: $userAuthenticationPage-background-fallback; /* fallback for old browsers */
+  background: $userAuthenticationPage-background-gradient;
+  height: 100vh;
+  overflow: hidden;
+  .basicForm {
+    width: 400px;
+    padding: 30px 50px;
+    border-radius: 8px;
+    display: inline-block;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    text-align: center;
+    @include flexCenter;
+  }
+
+  input {
+    border: none;
+    padding: 5px 9px;
+    outline: none;
+    &:focus {
+      border-bottom: 1px solid lightblue;
+    }
+    &:not([type="checkbox"], [type="radio"]) {
+      width: 100%;
+    }
+  }
+
+  button {
+    font-size: 18px;
+  }
+}
+
+.h1,
+.h2,
+.h3,
+.h4 {
+  font-family: Impact, Charcoal, sans-serif;
+}
