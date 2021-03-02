@@ -1,28 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Post from '../components/Post';
+import { getPosts } from '../actions/postActions';
 
 const HomeScreen = () => {
-  const [posts, setPosts] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const { data } = await axios.get('/api/posts');
+    dispatch(getPosts());
+  }, [dispatch]);
 
-      setPosts(data);
-
-      console.log(data);
-    };
-
-    fetchPosts();
-  }, []);
+  const posts = useSelector((state) => state.posts.posts);
 
   return (
     <>
       {posts.map((post) => (
         <div key={post._id}>
           <Post post={post} />
+          <br />
         </div>
       ))}
     </>
