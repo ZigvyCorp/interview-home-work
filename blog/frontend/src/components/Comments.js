@@ -10,8 +10,8 @@ const Comment = () => {
         <img
           alt=''
           src={thumbnail}
-          width='60'
-          height='60'
+          width='50'
+          height='50'
           className='d-inline-block align-top'
         />{' '}
       </Col>
@@ -25,6 +25,8 @@ const Comment = () => {
           This is the content of the comment. And there's so much more than
           this. I will add more from fetch API later ...
         </p>
+
+        <p className='text-muted'>Reply to</p>
       </Col>
     </Row>
   );
