@@ -9,4 +9,17 @@ const getUsers = asyncHander(async (req, res) => {
   res.json(users);
 });
 
-export { getUsers };
+// @desc Fetch single user
+// @route GET /api/users/:id
+// @access public
+const getUserById = asyncHander(async (req, res) => {
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    res.json(user);
+  } else {
+    throw new Error('User not found!');
+  }
+});
+
+export { getUsers, getUserById };
