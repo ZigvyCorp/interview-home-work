@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export const requestGetPosts = () => {
+export const requestGetUsers = () => {
   return axios.request({
     method: 'get',
-    url: '/api/posts',
+    url: '/api/users',
   });
 };

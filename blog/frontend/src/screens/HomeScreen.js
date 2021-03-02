@@ -3,15 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Post from '../components/Post';
 import { getPosts } from '../actions/postActions';
+import { getUsers } from '../actions/userActions';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getPosts());
+    dispatch(getUsers());
   }, [dispatch]);
 
   const posts = useSelector((state) => state.posts.posts);
+  const users = useSelector((state) => state.users.users);
 
   return (
     <>

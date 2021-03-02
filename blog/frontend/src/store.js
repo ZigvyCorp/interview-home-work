@@ -2,11 +2,13 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import { getPostsReducer } from './reducers/postReducer.js';
 import { watcherSaga } from './sagas/index.js';
+import { getPostsReducer } from './reducers/postReducer.js';
+import { getUsersReducer } from './reducers/userReducer.js';
 
 const reducer = combineReducers({
   posts: getPostsReducer,
+  users: getUsersReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();

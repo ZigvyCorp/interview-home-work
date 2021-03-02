@@ -6,5 +6,5 @@ export const getPosts = () => ({
 
 export const setPosts = (posts) => ({
   type: SET_POSTS,
-  posts,
+  payload: posts,
 });
