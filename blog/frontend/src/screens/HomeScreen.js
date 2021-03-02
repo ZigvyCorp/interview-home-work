@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Post from '../components/Post';
 import { getPosts } from '../actions/postActions';
 import { getUsers } from '../actions/userActions';
+import { getComments } from '../actions/commentActions';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ const HomeScreen = () => {
   useEffect(() => {
     dispatch(getPosts());
     dispatch(getUsers());
+    dispatch(getComments());
   }, [dispatch]);
 
   const posts = useSelector((state) => state.posts.posts);
