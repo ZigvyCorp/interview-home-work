@@ -5,6 +5,7 @@ import connectDB from './config/db.js';
 
 import postRoutes from './routes/postRoutes.js';
 import userRoutes from './routes/userRoutes.js';
+import commentRoutes from './routes/commentRoutes.js';
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.use('/api/posts', postRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/comments', commentRoutes);
 
 app.get('/', (req, res) => {
   res.send('API is running...');

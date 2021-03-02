@@ -6,6 +6,8 @@ import posts from './data/posts.js';
 import User from './models/userModel.js';
 import Post from './models/postModel.js';
 import connectDB from './config/db.js';
+import Comment from './models/commentModel.js';
+import comments from './data/comments.js';
 
 dotenv.config();
 
@@ -64,12 +66,40 @@ const destroyDataPost = async () => {
   }
 };
 
+const importDataComment = async () => {
+  try {
+    await Comment.insertMany(comments);
+
+    console.log('All comments imported'.green.inverse);
+    process.exit();
+  } catch (error) {
+    console.error(`${error}`.red.inverse);
+    process.exit(1); // Exit with failure
+  }
+};
+
+const destroyDataComment = async () => {
+  try {
+    await Comment.deleteMany();
+
+    console.log('All comments destroyed!'.red.inverse);
+    process.exit();
+  } catch (error) {
+    console.error(`${error}`.red.inverse);
+    process.exit(1); // Exit with failure
+  }
+};
+
 if (process.argv[2] === '-d') {
   destroyData();
 } else if (process.argv[2] === '-ipost') {
   importDataPost();
 } else if (process.argv[2] === '-dpost') {
   destroyDataPost();
+} else if (process.argv[2] === '-icomment') {
+  importDataComment();
+} else if (process.argv[2] === '-dcomment') {
+  destroyDataComment();
 } else {
   importData();
 }
