@@ -40,8 +40,36 @@ const destroyData = async () => {
   }
 };
 
+const importDataPost = async () => {
+  try {
+    await Post.insertMany(posts);
+
+    console.log('All posts imported'.green.inverse);
+    process.exit();
+  } catch (error) {
+    console.error(`${error}`.red.inverse);
+    process.exit(1); // Exit with failure
+  }
+};
+
+const destroyDataPost = async () => {
+  try {
+    await Post.deleteMany();
+
+    console.log('All posts destroyed!'.red.inverse);
+    process.exit();
+  } catch (error) {
+    console.error(`${error}`.red.inverse);
+    process.exit(1); // Exit with failure
+  }
+};
+
 if (process.argv[2] === '-d') {
   destroyData();
+} else if (process.argv[2] === '-ipost') {
+  importDataPost();
+} else if (process.argv[2] === '-dpost') {
+  destroyDataPost();
 } else {
   importData();
 }
