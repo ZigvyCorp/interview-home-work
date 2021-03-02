@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import Post from '../components/Post';
-// import posts from '../components/Posts';
 
 const HomeScreen = () => {
   const [posts, setPosts] = useState([]);
@@ -12,15 +11,17 @@ const HomeScreen = () => {
       const { data } = await axios.get('/api/posts');
 
       setPosts(data);
+
+      console.log(data);
     };
 
     fetchPosts();
-  });
+  }, []);
 
   return (
     <>
       {posts.map((post) => (
-        <div key={post.id}>
+        <div key={post._id}>
           <Post post={post} />
         </div>
       ))}
