@@ -6,3 +6,10 @@ export const requestGetUsers = () => {
     url: '/api/users',
   });
 };
+
+export const requestGetUserById = (userId) => {
+  return axios.request({
+    method: 'get',
+    url: `/api/users/${userId}`,
+  });
+};

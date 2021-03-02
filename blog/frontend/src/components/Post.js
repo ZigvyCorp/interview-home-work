@@ -1,19 +1,13 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
 
 import ColorfulLabels from './ColorfulLabels';
 import Comments from './Comments';
+import UserHeader from './UserHeader';
 
-const Post = ({ post, users }) => {
+const Post = ({ post }) => {
   const renderContent = () =>
     post.body.length > 100 ? post.body.substr(0, 100) + ' ...' : post.body;
-
-  const renderAuthor = () => {
-    return users.filter((user) => user._id === post.user)[0]
-      ? users.filter((user) => user._id === post.user)[0].name
-      : '';
-  };
 
   const renderTime = (createdAt) => {
     let [yy, mm, dd] = createdAt.split('T')[0].split('-');
@@ -64,7 +58,7 @@ const Post = ({ post, users }) => {
       <h1 className='text-center'>{post.title}</h1>
       <Row className='justify-content-between'>
         <Col sm={4}>
-          <h6>Author: {renderAuthor()}</h6>
+          <UserHeader userId={post.user} />
           <h6>Created at: {renderTime(post.createdAt)}</h6>
         </Col>
         <Col sm={4}>
@@ -79,8 +73,4 @@ const Post = ({ post, users }) => {
   );
 };
 
-const mapStatesToProps = (state) => {
-  return { users: state.users.users };
-};
-
-export default connect(mapStatesToProps)(Post);
+export default Post;
