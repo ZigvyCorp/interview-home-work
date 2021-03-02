@@ -6,3 +6,10 @@ export const requestGetComments = () => {
     url: '/api/comments',
   });
 };
+
+export const requestGetCommentsByPostId = (id) => {
+  return axios.request({
+    method: 'get',
+    url: `/api/posts/${id}/comments`,
+  });
+};

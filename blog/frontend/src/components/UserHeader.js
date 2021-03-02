@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, connect } from 'react-redux';
 import { getUserById } from '../actions/userActions';
 
-const UserHeader = ({ userId, user }) => {
+const UserHeader = ({ userId, user, type = 'post' }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -13,7 +13,11 @@ const UserHeader = ({ userId, user }) => {
     return null;
   }
 
-  return <h6>Author: {user.name}</h6>;
+  if (type === 'post') {
+    return <h6>Author: {user.name}</h6>;
+  } else {
+    return <p>{user.name}</p>;
+  }
 };
 
 const mapStateToProps = (state, ownProps) => {

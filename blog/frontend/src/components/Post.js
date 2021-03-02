@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, connect } from 'react-redux';
 import { Col, Row } from 'react-bootstrap';
 
 import ColorfulLabels from './ColorfulLabels';
 import Comments from './Comments';
 import UserHeader from './UserHeader';
+import { getCommentsByPostId } from '../actions/commentActions';
 
-const Post = ({ post }) => {
+const Post = ({ post, comments }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCommentsByPostId(post._id));
+  }, [dispatch, post]);
+
   const renderContent = () =>
     post.body.length > 100 ? post.body.substr(0, 100) + ' ...' : post.body;
 
@@ -68,9 +76,17 @@ const Post = ({ post }) => {
       <br />
       <p className='py-3'>{renderContent()}</p>
       <br />
-      <Comments />
+      <Comments comments={comments} />
     </div>
   );
 };
 
-export default Post;
+const mapStateToProps = (state, ownProps) => {
+  const comments = state.commentsByPostId.comments.filter(
+    (comment) => comment.post === ownProps.post._id
+  );
+
+  return { comments };
+};
+
+export default connect(mapStateToProps)(Post);

@@ -5,13 +5,17 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { watcherSaga } from './sagas/index.js';
 import { getPostsReducer } from './reducers/postReducer.js';
 import { getUserByIdReducer, getUsersReducer } from './reducers/userReducer.js';
-import { getCommentsReducer } from './reducers/commentReducer.js';
+import {
+  getCommentsByPostIdReducer,
+  getCommentsReducer,
+} from './reducers/commentReducer.js';
 
 const reducer = combineReducers({
   posts: getPostsReducer,
   users: getUsersReducer,
   comments: getCommentsReducer,
   userById: getUserByIdReducer,
+  commentsByPostId: getCommentsByPostIdReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();

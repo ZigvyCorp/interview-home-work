@@ -2,8 +2,9 @@ import React from 'react';
 import { Accordion, Button, Card, Row, Col } from 'react-bootstrap';
 
 import thumbnail from '../assets/thumbnail.png';
+import UserHeader from './UserHeader';
 
-const Comment = () => {
+const Comment = ({ comment }) => {
   return (
     <Row className='py-2'>
       <Col sm={1}>
@@ -17,14 +18,11 @@ const Comment = () => {
       </Col>
       <Col sm={11}>
         <div className='d-inline-flex'>
-          <p>Han Solo</p>
+          <UserHeader userId={comment.user} type='comment' />
           <p className='pl-3 text-muted'>a day ago</p>
         </div>
 
-        <p>
-          This is the content of the comment. And there's so much more than
-          this. I will add more from fetch API later ...
-        </p>
+        <p>{comment.body}</p>
 
         <p className='text-muted'>Reply to</p>
       </Col>
@@ -32,18 +30,22 @@ const Comment = () => {
   );
 };
 
-const Comments = () => {
+const Comments = ({ comments }) => {
   return (
     <Accordion>
       <Card>
         <Card.Header>
           <Accordion.Toggle as={Button} variant='link' eventKey='0'>
-            2 replies
+            {comments.length} replies
           </Accordion.Toggle>
         </Card.Header>
         <Accordion.Collapse eventKey='0'>
           <Card.Body>
-            <Comment />
+            {comments.map((comment) => (
+              <div key={comment._id}>
+                <Comment comment={comment} />
+              </div>
+            ))}
           </Card.Body>
         </Accordion.Collapse>
       </Card>
