@@ -18,15 +18,11 @@ const Header = () => {
             />{' '}
           </Nav.Link>
         </Nav.Item>
-        <Nav.Item className='align-self-center'>Blogs</Nav.Item>
+        <Nav.Item className='align-self-center'>
+          <h3 className='text-white'>Blogs</h3>
+        </Nav.Item>
         <Nav.Item className='pr-3 align-self-center'>
-          <img
-            alt=''
-            src={thumbnail}
-            width='30'
-            height='30'
-            className='d-inline-block align-top'
-          />{' '}
+          <img className='mr-2' alt='' src={thumbnail} width='30' height='30' />
           <span>Adam Levine</span>
         </Nav.Item>
       </Nav>
