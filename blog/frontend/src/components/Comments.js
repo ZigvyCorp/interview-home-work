@@ -5,6 +5,17 @@ import thumbnail from '../assets/thumbnail.png';
 import UserHeader from './UserHeader';
 
 const Comment = ({ comment }) => {
+  const renderTime = () => {
+    const [_, __, commentDay] = comment.createdAt.split('T')[0].split('-');
+
+    const today = new Date();
+    const currentDay = today.getDate();
+
+    const distance = currentDay - +commentDay;
+
+    return distance === 1 ? 'a day ago' : `${distance} days ago`;
+  };
+
   return (
     <Row className='py-2'>
       <Col sm={1}>
@@ -19,7 +30,7 @@ const Comment = ({ comment }) => {
       <Col sm={11}>
         <div className='d-inline-flex'>
           <UserHeader userId={comment.user} type='comment' />
-          <p className='pl-3 text-muted'>a day ago</p>
+          <p className='pl-3 text-muted'>{renderTime()}</p>
         </div>
 
         <p>{comment.body}</p>
