@@ -1,13 +1,16 @@
 import {
-  SET_USERS,
+  USERS_FETCH_FAIL,
+  USERS_FETCH_SUCCESS,
   USER_FETCH_FAIL,
   USER_FETCH_SUCCESS,
 } from '../constants/userConstants';
 
 export const getUsersReducer = (state = { users: [] }, action) => {
   switch (action.type) {
-    case SET_USERS:
+    case USERS_FETCH_SUCCESS:
       return { users: action.payload };
+    case USERS_FETCH_FAIL:
+      return { error: action.payload };
     default:
       return state;
   }

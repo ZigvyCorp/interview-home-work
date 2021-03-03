@@ -3,6 +3,7 @@ import {
   getUserByIdFailed,
   setUserById,
   setUsers,
+  getUsersFailed,
 } from '../../actions/userActions';
 import { requestGetUserById, requestGetUsers } from '../requests/user';
 
@@ -13,7 +14,7 @@ export function* handleGetUsers(action) {
 
     yield put(setUsers(data));
   } catch (error) {
-    console.log(error);
+    yield put(getUsersFailed(error));
   }
 }
 

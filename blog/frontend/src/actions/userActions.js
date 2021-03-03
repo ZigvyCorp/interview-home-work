@@ -1,6 +1,7 @@
 import {
-  GET_USERS,
-  SET_USERS,
+  USERS_FETCH_FAIL,
+  USERS_FETCH_REQUEST,
+  USERS_FETCH_SUCCESS,
   USER_FETCH_FAIL,
   USER_FETCH_REQUEST,
   USER_FETCH_SUCCESS,
@@ -8,12 +9,17 @@ import {
 
 // Get users
 export const getUsers = () => ({
-  type: GET_USERS,
+  type: USERS_FETCH_REQUEST,
 });
 
 export const setUsers = (users) => ({
-  type: SET_USERS,
+  type: USERS_FETCH_SUCCESS,
   payload: users,
+});
+
+export const getUsersFailed = (error) => ({
+  type: USERS_FETCH_FAIL,
+  payload: error,
 });
 
 // Get single user

@@ -4,9 +4,9 @@ import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import { watcherSaga } from './sagas/index.js';
+import { watcherSaga } from './sagas/saga.js';
 import { getPostsReducer } from './reducers/postReducer.js';
-import { getUserByIdReducer, getUsersReducer } from './reducers/userReducer.js';
+import { getUserByIdReducer } from './reducers/userReducer.js';
 import {
   getCommentsByPostIdReducer,
   getCommentsReducer,
@@ -15,7 +15,6 @@ import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
 
 const reducer = combineReducers({
   posts: getPostsReducer,
-  users: getUsersReducer,
   comments: getCommentsReducer,
   userById: getUserByIdReducer,
   commentsByPostId: getCommentsByPostIdReducer,

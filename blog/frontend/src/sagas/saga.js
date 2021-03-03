@@ -4,7 +4,10 @@ import {
   COMMENTS_FETCH_REQUEST,
 } from '../constants/commentConstants';
 import { GET_POSTS } from '../constants/postConstants';
-import { GET_USERS, USER_FETCH_REQUEST } from '../constants/userConstants';
+import {
+  USERS_FETCH_REQUEST,
+  USER_FETCH_REQUEST,
+} from '../constants/userConstants';
 import { handleGetPosts } from './handlers/post';
 import { handleGetUserById, handleGetUsers } from './handlers/user';
 import {
@@ -17,7 +20,7 @@ function* watchGetPosts() {
 }
 
 function* watchGetUsers() {
-  yield takeLatest(GET_USERS, handleGetUsers);
+  yield takeLatest(USERS_FETCH_REQUEST, handleGetUsers);
 }
 
 function* watchGetComments() {
