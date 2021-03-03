@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {
   COMMENTS_BY_POST_ID_FETCH_FAIL,
   COMMENTS_BY_POST_ID_FETCH_SUCCESS,
@@ -22,7 +23,22 @@ export const getCommentsByPostIdReducer = (
 ) => {
   switch (action.type) {
     case COMMENTS_BY_POST_ID_FETCH_SUCCESS:
-      return { comments: [...state.comments, ...action.payload] };
+      // Temporary solution, and it's bad!!!
+      const newPayload = [];
+
+      const stringPayload = state.comments.map((comment) =>
+        JSON.stringify(comment)
+      );
+
+      console.log(stringPayload);
+
+      for (let comment of action.payload) {
+        if (!stringPayload.includes(JSON.stringify(comment))) {
+          newPayload.push(comment);
+        }
+      }
+
+      return { comments: [...state.comments, ...newPayload] };
     case COMMENTS_BY_POST_ID_FETCH_FAIL:
       return { error: action.payload };
     default:

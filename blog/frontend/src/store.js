@@ -1,4 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
@@ -18,6 +20,13 @@ const reducer = combineReducers({
   commentsByPostId: getCommentsByPostIdReducer,
 });
 
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, reducer);
+
 const sagaMiddleware = createSagaMiddleware();
 
 const middleware = [sagaMiddleware];
@@ -25,11 +34,12 @@ const middleware = [sagaMiddleware];
 const initialState = {};
 
 const store = createStore(
-  reducer,
+  persistedReducer,
   initialState,
   composeWithDevTools(applyMiddleware(...middleware))
 );
+const persistor = persistStore(store);
 
 sagaMiddleware.run(watcherSaga);
 
-export default store;
+export { store, persistor };
