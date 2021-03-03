@@ -1,5 +1,5 @@
 import { call, put } from 'redux-saga/effects';
-import { setPosts } from '../../actions/postActions';
+import { setPosts, getPostsFailed } from '../../actions/postActions';
 import { requestGetPosts } from '../requests/post';
 
 export function* handleGetPosts(action) {
@@ -11,6 +11,6 @@ export function* handleGetPosts(action) {
 
     yield put(setPosts(data));
   } catch (error) {
-    console.log(error);
+    yield put(getPostsFailed(error));
   }
 }

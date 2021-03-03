@@ -3,7 +3,7 @@ import {
   COMMENTS_BY_POST_ID_FETCH_REQUEST,
   COMMENTS_FETCH_REQUEST,
 } from '../constants/commentConstants';
-import { GET_POSTS } from '../constants/postConstants';
+import { POSTS_FETCH_REQUEST } from '../constants/postConstants';
 import {
   USERS_FETCH_REQUEST,
   USER_FETCH_REQUEST,
@@ -16,7 +16,7 @@ import {
 } from './handlers/comment';
 
 function* watchGetPosts() {
-  yield takeLatest(GET_POSTS, handleGetPosts);
+  yield takeLatest(POSTS_FETCH_REQUEST, handleGetPosts);
 }
 
 function* watchGetUsers() {
