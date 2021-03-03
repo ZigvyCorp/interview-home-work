@@ -5,7 +5,9 @@ import Comment from '../models/commentModel.js';
 // @route GET /api/comments
 // @access public
 const getComments = asyncHander(async (req, res) => {
-  const comments = await Comment.find({});
+  const property = req.query.postId ? { post: req.query.postId } : {};
+
+  const comments = await Comment.find(property);
   res.json(comments);
 });
 
