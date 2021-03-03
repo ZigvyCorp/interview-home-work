@@ -63,7 +63,7 @@ const Post = ({ post, comments }) => {
 
   return (
     <div className='py-5 border-bottom'>
-      <h1 className='text-center'>{post.title}</h1>
+      <h1 className='text-center pt-2 pb-3'>{post.title}</h1>
       <Row className='justify-content-between'>
         <Col sm={4}>
           <UserHeader userId={post.user} />

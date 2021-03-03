@@ -4,6 +4,7 @@ import { Container } from 'react-bootstrap';
 
 import Header from './components/Header';
 import HomeScreen from './screens/HomeScreen';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           />
         </Container>
       </main>
+      <Footer />
     </Router>
   );
 }
