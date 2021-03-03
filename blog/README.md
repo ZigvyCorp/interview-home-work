@@ -1,5 +1,11 @@
 # Assignment Checklist
 
+## USAGE
+
+- Install dependencies then run the below command:
+
+`npm run dev`
+
 ## MOCK EXTERNAL-API
 
 - [x] /posts
