@@ -6,6 +6,9 @@ import Comment from '../models/commentModel.js';
 // @route GET /api/posts
 // @access Public
 const getPosts = asyncHander(async (req, res) => {
+  const pageSize = 3;
+  const page = +req.query.pageNumber || 1;
+
   const keyword = req.query.keyword
     ? {
         title: {
@@ -15,8 +18,12 @@ const getPosts = asyncHander(async (req, res) => {
       }
     : {};
 
-  const posts = await Post.find({ ...keyword });
-  res.json(posts);
+  const count = await Post.count({ ...keyword });
+  const posts = await Post.find({ ...keyword })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
+
+  res.json({ posts, page, pages: Math.ceil(count / pageSize) });
 });
 
 // @desc Fetch all comments of a specific post

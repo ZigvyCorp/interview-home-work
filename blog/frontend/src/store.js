@@ -11,6 +11,7 @@ import {
   getCommentsByPostIdReducer,
   getCommentsReducer,
 } from './reducers/commentReducer.js';
+import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
 
 const reducer = combineReducers({
   posts: getPostsReducer,
@@ -23,6 +24,7 @@ const reducer = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
+  stateReconciler: autoMergeLevel2,
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);

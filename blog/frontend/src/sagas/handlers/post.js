@@ -4,7 +4,9 @@ import { requestGetPosts } from '../requests/post';
 
 export function* handleGetPosts(action) {
   try {
-    const response = yield call(requestGetPosts, action.payload.keyword);
+    const params = [action.payload.keyword, action.payload.pageNumber];
+
+    const response = yield call(requestGetPosts, ...params);
     const { data } = response;
 
     yield put(setPosts(data));
