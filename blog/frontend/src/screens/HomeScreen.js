@@ -18,7 +18,7 @@ const HomeScreen = ({ match }) => {
     dispatch(getPosts(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
 
-  const postsInfo = useSelector((state) => state.posts);
+  const postsInfo = useSelector((state) => state.postsInfo);
   const { posts, pages, page } = postsInfo;
 
   return (

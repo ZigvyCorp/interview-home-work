@@ -14,7 +14,7 @@ import {
 import autoMergeLevel2 from 'redux-persist/es/stateReconciler/autoMergeLevel2';
 
 const reducer = combineReducers({
-  posts: getPostsReducer,
+  postsInfo: getPostsReducer,
   comments: getCommentsReducer,
   userById: getUserByIdReducer,
   commentsByPostId: getCommentsByPostIdReducer,
