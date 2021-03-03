@@ -2,9 +2,9 @@
 
 ## USAGE
 
-- Install dependencies then run the below command:
+- Install dependencies then run the below command
 
-`npm run dev`
+  - `npm run dev`
 
 ## MOCK EXTERNAL-API
 
