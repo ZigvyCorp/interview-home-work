@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import Post from '../components/Post';
 import { getPosts } from '../actions/postActions';
 
-const HomeScreen = () => {
+const HomeScreen = ({ match }) => {
+  const keyword = match.params.keyword;
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPosts());
-  }, [dispatch]);
+    dispatch(getPosts(keyword));
+  }, [dispatch, keyword]);
 
   const posts = useSelector((state) => state.posts.posts);
 

@@ -2,6 +2,8 @@ import React from 'react';
 import { Nav } from 'react-bootstrap';
 import logo from '../logo.svg';
 import thumbnail from '../assets/thumbnail.png';
+import { Route } from 'react-router-dom';
+import SearchBox from './SearchBox';
 
 const Header = () => {
   return (
@@ -17,6 +19,7 @@ const Header = () => {
           />{' '}
         </Nav.Item>
         <Nav.Item>Blogs</Nav.Item>
+        <Route render={({ history }) => <SearchBox history={history} />} />
         <Nav.Item className='pr-3'>
           <img
             alt=''

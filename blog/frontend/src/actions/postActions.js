@@ -1,7 +1,8 @@
 import { GET_POSTS, SET_POSTS } from '../constants/postConstants.js';
 
-export const getPosts = () => ({
+export const getPosts = (keyword = '') => ({
   type: GET_POSTS,
+  payload: { keyword },
 });
 
 export const setPosts = (posts) => ({

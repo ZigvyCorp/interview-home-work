@@ -6,7 +6,16 @@ import Comment from '../models/commentModel.js';
 // @route GET /api/posts
 // @access Public
 const getPosts = asyncHander(async (req, res) => {
-  const posts = await Post.find({});
+  const keyword = req.query.keyword
+    ? {
+        title: {
+          $regex: req.query.keyword,
+          $options: 'i',
+        },
+      }
+    : {};
+
+  const posts = await Post.find({ ...keyword });
   res.json(posts);
 });
 
