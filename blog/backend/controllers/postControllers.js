@@ -18,12 +18,25 @@ const getPosts = asyncHander(async (req, res) => {
       }
     : {};
 
-  const count = await Post.count({ ...keyword });
+  const count = await Post.countDocuments({ ...keyword });
   const posts = await Post.find({ ...keyword })
     .limit(pageSize)
     .skip(pageSize * (page - 1));
 
   res.json({ posts, page, pages: Math.ceil(count / pageSize) });
+});
+
+// @desc Fetch single post by id
+// @route GET /api/posts/:id
+// @access Public
+const getPostById = asyncHander(async (req, res) => {
+  const post = await Post.findById(req.params.id);
+
+  if (post) {
+    res.json(post);
+  } else {
+    throw new Error('Post not found!');
+  }
 });
 
 // @desc Fetch all comments of a specific post
@@ -34,4 +47,4 @@ const getCommentsByPostId = asyncHander(async (req, res) => {
   res.json(comments);
 });
 
-export { getPosts, getCommentsByPostId };
+export { getPosts, getCommentsByPostId, getPostById };
