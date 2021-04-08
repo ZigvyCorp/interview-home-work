@@ -1,0 +1,8 @@
+.card, .searchInput {
+    width: 70%;
+    margin: 10px auto;
+}
+
+.back_btn {
+    margin-left: 15%;
+}
