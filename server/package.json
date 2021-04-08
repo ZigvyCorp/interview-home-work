@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index",
+    "start": "nodemon app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "mongoose": "^5.12.3",
+    "mongoose": "^5.12.3"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.7"
   }
 }

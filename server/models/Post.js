@@ -1,10 +1,15 @@
 const mongoose = require("mongoose");
 
-const postSchema = mongoose.Schema({
-  userId: Number,
-  id: Number,
-  title: String,
-  body: String,
-});
+const Post = mongoose.model(
+  "Post",
+  new mongoose.Schema({
+    userId: Number,
+    id: Number,
+    title: String,
+    body: String,
+    authorName: String,
+    comments: [],
+  })
+);
 
-module.exports = mongoose.model("Post", postSchema);
+module.exports = Post;
