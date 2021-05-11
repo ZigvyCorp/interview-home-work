@@ -28,6 +28,8 @@ class Post extends Component {
         const { users } = this.state;
         const { posts } = this.state;
         const { comments } = this.state;
+        let postComment = new Array(posts.length).fill(0);
+        comments.forEach((c) => {postComment[c["post"]-1]++});
 
         return (
             <>
@@ -72,7 +74,7 @@ class Post extends Component {
                                         "#collapseExample" + post.id
                                     }
                                 >
-                                    Comment
+                                    Comment ({postComment.shift()})
                                 </button>
                             </p>
                             <div
