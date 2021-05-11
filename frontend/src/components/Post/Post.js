@@ -29,7 +29,9 @@ class Post extends Component {
         const { posts } = this.state;
         const { comments } = this.state;
         let postComment = new Array(posts.length).fill(0);
-        comments.forEach((c) => {postComment[c["post"]-1]++});
+        comments.forEach((c) => {
+            postComment[c["post"] - 1]++;
+        });
 
         return (
             <>
@@ -53,7 +55,7 @@ class Post extends Component {
                                     })}
                                 </p>
                                 <p>
-                                    Create at:{" "}
+                                    Create at:
                                     {Date(post.created_at).toString()}
                                 </p>
                             </div>
