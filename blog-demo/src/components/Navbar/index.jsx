@@ -31,7 +31,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="navbar blog__navbar navbar-expand-sm px-5 navbar-dark bg-warning">
+      <nav className="navbar navbar-expand-sm navbar-light bg-warning">
         <NavLink className="navbar-brand" to="/">
           <img src={Logo} alt="" />
         </NavLink>
@@ -46,54 +46,51 @@ const Navbar = () => {
         >
           <span className="navbar-toggler-icon" />
         </button>
-        <div className="collapse navbar-collapse d-flex" id="collapsibleNavId">
-          <div className="login ml-auto d-flex align-items-center">
-            <form
-              className="form-inline my-2 my-lg-0 mr-5"
-              onSubmit={handleSubmit}
-            >
-              <input
-                className="form-control mr-sm-2"
-                type="text"
-                placeholder="Search"
-                onChange={(e) => setSearch(e.target.value)}
-              />
-              <button className="btn btn-danger my-2 my-sm-0" type="button">
-                Search
-              </button>
-            </form>
-            {userValue ? (
-              <>
-                <div className="user d-flex align-items-center">
-                  <>
-                    <img
-                      src="https://i.pravatar.cc/50"
-                      alt=""
-                      className="mr-2"
-                    />
 
-                    <span className="text-danger mr-3">{userValue.name}</span>
-                  </>
-                  <button
-                    type="submit"
-                    className="logout"
-                    onClick={handelLogout}
-                  >
-                    Log out
-                  </button>
-                </div>
-              </>
-            ) : (
-              <button
-                className="btn btn-success"
-                type="button"
-                data-toggle="modal"
-                data-target="#modelId"
-              >
-                Login
-              </button>
-            )}
-          </div>
+        <div
+          className="collapse navbar-collapse justify-content-end"
+          id="collapsibleNavId"
+        >
+          <form
+            className="form-inline my-2 my-lg-0 mr-3"
+            onSubmit={handleSubmit}
+          >
+            <input
+              className="form-control mr-sm-2"
+              type="text"
+              placeholder="Search"
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <button className="btn btn-success my-2 my-sm-0" type="button">
+              Search
+            </button>
+          </form>
+
+          {userValue ? (
+            <>
+              <div className="user d-flex align-items-center">
+                <>
+                  <img src="https://i.pravatar.cc/50" alt="" className="mr-2" />
+
+                  <span className="text-danger mr-3">
+                    {userValue.name.length === 0 ? "admin" : userValue.name}
+                  </span>
+                </>
+                <button type="submit" className="logout" onClick={handelLogout}>
+                  Log out
+                </button>
+              </div>
+            </>
+          ) : (
+            <button
+              className="btn btn-success"
+              type="button"
+              data-toggle="modal"
+              data-target="#modelId"
+            >
+              Login
+            </button>
+          )}
         </div>
       </nav>
     </>
