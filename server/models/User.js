@@ -20,16 +20,9 @@ const UserSchema = new mongoose.Schema(
     
     name: {
       type: String,
-      require: true,
-      min: 3,
-      max: 20,
-      unique: true,
+     
     },
-    id: {
-      type: Number,
-      require: true,
-      default:0,
-    },
+   
     
   },
   { timestamps: true }

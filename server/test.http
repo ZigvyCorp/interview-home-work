@@ -2,9 +2,9 @@ POST http://localhost:5000/auth/register
 Content-Type: application/json
 
 {
-    "username": "angrybird",
-    "password": "asdasdasd",
-    "name": "Angry bird"
+    "username": "cccccccc",
+    "password": "xxxxxxxx",
+ 
     
 
     
