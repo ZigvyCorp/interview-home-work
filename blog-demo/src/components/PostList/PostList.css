@@ -1,0 +1,4 @@
+.post__list__wrapper {
+  padding-top: calc(var(--var--height) + 50px);
+  padding-bottom: 50px;
+}

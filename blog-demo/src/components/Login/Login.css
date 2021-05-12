@@ -1,0 +1,74 @@
+.login__container {
+  height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 200px;
+}
+
+.login__logo {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.login__logo img {
+  margin-bottom: 20px;
+}
+
+.login__logo p {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.login__logo .login__demo {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 0;
+  margin-bottom: 5px;
+}
+
+.login__logo .login__demo span {
+  font-size: 12px;
+  font-style: italic;
+}
+
+.form__login {
+  width: 350px;
+  background-color: #fff;
+  padding: 18px 18px 28px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.form__login > .form-group > .form-control {
+  padding: 22px 12px;
+  font-size: 14px;
+}
+
+.form__login > .form-group > .form-control:focus {
+  background-color: unset;
+  border-color: unset;
+  box-shadow: unset;
+}
+
+.form__login > .form-group > .form-control::placeholder {
+  opacity: 0.5;
+}
+
+.form__login a {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.form__login .form__login__btn-register {
+  padding-left: 40px;
+  padding-right: 40px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: no-drop;
+}
