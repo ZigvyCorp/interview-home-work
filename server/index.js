@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import posts from './routers/posts.js';
 import mongoose from 'mongoose';
-
+import authRoute from './routers/auth.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -21,6 +21,7 @@ app.get('/',(req,res)=>{
 });
 
 app.use('/posts',posts);
+app.use('/auth',authRoute);
 
 mongoose.connect(URI,{useNewUrlParser: true,useUnifiedTopology: true})
 .then(()=>{
