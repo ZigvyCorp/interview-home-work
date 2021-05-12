@@ -9,8 +9,8 @@ import { createPost, hideModal } from '../../redux/actions';
 export default function CreatePostModal() {
   const [data, setData] = React.useState({
     title: '',
-    content: '',
-    attachment: '',
+    body: '',
+   
   });
   const dispatch = useDispatch();
   const { isShow } = useSelector(modalState$);
@@ -20,8 +20,8 @@ export default function CreatePostModal() {
     dispatch(hideModal());
     setData({
       title: '',
-      content: '',
-      attachment: '',
+      body: '',
+     
     });
   }, [dispatch]);
 
@@ -46,8 +46,8 @@ export default function CreatePostModal() {
           rowsMin={10}
           rowsMax={15}
           placeholder='Content...'
-          value={data.content}
-          onChange={(e) => setData({ ...data, content: e.target.value })}
+          value={data.body}
+          onChange={(e) => setData({ ...data, body: e.target.value })}
         />
         
         <div className={classes.footer}>

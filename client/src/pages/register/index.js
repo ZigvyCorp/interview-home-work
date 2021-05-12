@@ -1,80 +1,59 @@
-import axios from "axios";
-import { useRef } from "react";
-import "./index.css";
-import { useHistory } from "react-router";
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {userPostFetch} from '../redux/actions';
 
-export default function Register() {
-  const username = useRef();
-  const email = useRef();
-  const password = useRef();
-  const passwordAgain = useRef();
-  const history = useHistory();
+class Signup extends Component {
+  state = {
+    username: "",
+    password: "",
+    avatar: "",
+    bio: ""
+  }
 
-  const handleClick = async (e) => {
-    e.preventDefault();
-    if (passwordAgain.current.value !== password.current.value) {
-      passwordAgain.current.setCustomValidity("Passwords don't match!");
-    } else {
-      const user = {
-        username: username.current.value,
-        email: email.current.value,
-        password: password.current.value,
-      };
-      try {
-        await axios.post("localhost:5000/auth/register", user);
-        history.push("/login");
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  };
+  handleChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
 
-  return (
-    <div className="login">
-      <div className="loginWrapper">
-        <div className="loginLeft">
-          <h3 className="loginLogo">Lamasocial</h3>
-          <span className="loginDesc">
-            Connect with friends and the world around you on Lamasocial.
-          </span>
-        </div>
-        <div className="loginRight">
-          <form className="loginBox" onSubmit={handleClick}>
-            <input
-              placeholder="Username"
-              required
-              ref={username}
-              className="loginInput"
-            />
-            <input
-              placeholder="Email"
-              required
-              ref={email}
-              className="loginInput"
-              type="email"
-            />
-            <input
-              placeholder="Password"
-              required
-              ref={password}
-              className="loginInput"
-              type="password"
-              minLength="6"
-            />
-            <input
-              placeholder="Password Again"
-              required
-              ref={passwordAgain}
-              className="loginInput"
-              type="password"
-            />
-            <button className="loginButton" type="submit">
-              Sign Up
-            </button>
-            <button className="loginRegisterButton">Log into Account</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  );
+  handleSubmit = event => {
+    event.preventDefault()
+    this.props.userPostFetch(this.state)
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <h1>Sign Up For An Account</h1>
+
+        <label>Username</label>
+        <input
+          name='username'
+          placeholder='Username'
+          value={this.state.username}
+          onChange={this.handleChange}
+          /><br/>
+
+        <label>Password</label>
+        <input
+          type='password'
+          name='password'
+          placeholder='Password'
+          value={this.state.password}
+          onChange={this.handleChange}
+          /><br/>
+
+        
+
+
+        <input type='submit'/>
+      </form>
+    )
+  }
 }
+
+const mapDispatchToProps = dispatch => ({
+  userPostFetch: userInfo => dispatch(userPostFetch(userInfo))
+})
+
+export default connect(null, mapDispatchToProps)(Signup);

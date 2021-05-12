@@ -2,6 +2,15 @@ import mongoose from 'mongoose';
 
 
 const schema = new mongoose.Schema({
+    
+    title:{
+        type: String,
+        required: true
+    },
+    body:{
+        type: String,
+        required: true
+    },
     id:{
         type: Number,
         required: true,
@@ -11,14 +20,6 @@ const schema = new mongoose.Schema({
         type: Number,
         required: true,
         default: 0
-    },
-    title:{
-        type: String,
-        required: true
-    },
-    body:{
-        type: String,
-        required: true
     },
    
 },{timestamps :true}
