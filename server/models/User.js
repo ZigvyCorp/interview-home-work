@@ -2,26 +2,22 @@
 import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema(
-  {
+  {username: {
+    type: String,
+    require: true,
+    min: 3,
+    max: 20,
+    unique: true,
+  },
+  
+  password: {
+    type: String,
+    required: true,
+    min: 6,
+  },
     
-      id: {
-      type: Number,
-      require: true,
-      default:0,
-    },
-    username: {
-      type: String,
-      require: true,
-      min: 3,
-      max: 20,
-      unique: true,
-    },
     
-    password: {
-      type: String,
-      required: true,
-      min: 6,
-    },
+    
     name: {
       type: String,
       require: true,
@@ -29,11 +25,12 @@ const UserSchema = new mongoose.Schema(
       max: 20,
       unique: true,
     },
-    dob: {
-      type: Date,
-      required: true,
-      trim: true,
+    id: {
+      type: Number,
+      require: true,
+      default:0,
     },
+    
   },
   { timestamps: true }
 );

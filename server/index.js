@@ -4,7 +4,10 @@ import cors from 'cors';
 import posts from './routers/posts.js';
 import mongoose from 'mongoose';
 import authRoute from './routers/auth.js';
+import dotenv from 'dotenv';
 
+dotenv.config();
+ 
 const app = express();
 const PORT = process.env.PORT || 5000;
 const URI = 'mongodb+srv://admin:PGBWA9nJB2YxLbJW@cluster0.9efe8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';

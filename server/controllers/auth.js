@@ -19,7 +19,10 @@ export const createAuth = async (req,res) => {
  
      const newUser = new User({
         username: req.body.username,
-        password: hashedPassword,
+        password: req.body.password,
+        name: req.body.name,
+
+
       });
 
      const post = new User(newUser);
