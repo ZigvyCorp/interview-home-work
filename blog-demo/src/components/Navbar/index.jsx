@@ -48,7 +48,11 @@ const Navbar = () => {
         </button>
 
         <div
-          className="collapse navbar-collapse justify-content-end"
+          className="collapse navbar-collapse justify-content-end bg-warning px-2 pb-2"
+          style={{
+            borderRadius: "5px",
+            boxShadow: "rgb(0 0 0 / 50%) 0px 4px 3px -3px",
+          }}
           id="collapsibleNavId"
         >
           <form
