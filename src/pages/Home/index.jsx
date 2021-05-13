@@ -114,7 +114,6 @@ function Home(props) {
 
   const finalData = injectToUser(combineCommentAndPostData, userList);
 
-  console.log('final data', finalData)
 
   
     dispatch({
