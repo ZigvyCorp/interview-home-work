@@ -1,0 +1,61 @@
+.magneta__section {
+  background-color: rgba($color: pink, $alpha: 0.3);
+  color: rgb(204, 93, 111);
+  border: 1px ridge rgba(204, 93, 112, 0.233);
+}
+
+.red__section {
+  background-color: rgba($color: red, $alpha: 0.2);
+  color: red;
+  border: 1px ridge rgba(204, 93, 112, 0.404);
+}
+
+.volcano__section {
+  background-color: rgba(206, 149, 42, 0.479);
+  color: rgba(255, 0, 0, 0.384);
+  border: 1px solid orangered;
+}
+.orange__section {
+  background-color: rgba(214, 169, 86, 0.501);
+  color: orangered;
+  border: 1px solid gold;
+}
+.gold__section {
+  background-color: rgba(218, 165, 32, 0.199);
+  color: orange;
+  border: 1px solid gold;
+}
+//_________________________
+.lime__section {
+  background-color: rgba(172, 255, 47, 0.219);
+  color: rgba(172, 255, 47, 0.87);
+  border: 1px solid rgba(0, 255, 0, 0.171);
+}
+.green__section {
+  margin: 0 5px;
+  background-color: rgba(172, 255, 47, 0.019);
+  color: rgba(172, 255, 47, 0.97);
+  border: 1px solid rgba(50, 205, 50, 0.329);
+}
+.cyan__section {
+  background-color: rgba(0, 255, 255, 0.1);
+  color: cyan;
+  border: 1px solid rgba(0, 255, 255, 0.308);
+}
+.blue__section {
+  margin: 0 5px;
+  background-color: rgba(0, 0, 255, 0.096);
+  color: blue;
+  border: 1px solid rgba(0, 0, 255, 0.247);
+}
+.geekblue__section {
+  background-color: rgba(0, 0, 255, 0.233);
+  color: blue;
+  border: 1px solid rgba(0, 0, 255, 0.342);
+}
+//======
+.purple__section {
+  background-color: rgba(221, 160, 221, 0.185);
+  color: purple;
+  border: 1px solid rgba(128, 0, 128, 0.363);
+}
