@@ -1,0 +1,71 @@
+.post__info {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 50px;
+  background-color: #fff;
+}
+
+.post__info .post__info__title {
+  text-transform: capitalize;
+  display: block;
+  font-size: 1.2rem;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+
+.post__info .post__info__title:hover {
+  color: red !important;
+}
+
+.post__info__details__tag__color span {
+  display: inline-block;
+  color: red;
+  font-size: 12px;
+  padding: 0px 10px;
+  margin-left: 5px;
+  position: relative;
+  border: 1px solid red;
+  border-radius: 10px;
+}
+
+.post__info__details__tag__color span::before {
+  content: "";
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+  position: absolute;
+  border-radius: inherit;
+  background-color: currentColor;
+  opacity: 0.2;
+}
+
+.post__info__comments > p {
+  padding-bottom: 5px;
+  opacity: 0.6;
+}
+
+.post__info__comments .comment__owner {
+  opacity: 0.7;
+  margin-bottom: 7px !important;
+}
+
+.post__info__comments .comment__owner > span {
+  opacity: 0.5;
+  margin-left: 8px;
+}
+
+.post__info__comments .comment__conetent {
+  opacity: 0.8;
+  margin-bottom: 8px !important;
+}
+
+.post__info__comments .comment__reply {
+  font-size: 14px;
+  opacity: 0.7;
+}

@@ -1,0 +1,37 @@
+.blog__navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--var--height);
+  z-index: 999;
+}
+
+.user {
+  cursor: pointer;
+  position: relative;
+}
+
+.user span {
+  display: inline-block;
+  font-size: 18px;
+}
+
+.logout {
+  display: inline-block;
+  color: dodgerblue;
+  padding: 0.5rem 1rem;
+  transition: all 0.5s;
+  border: none;
+  background-color: unset;
+  box-shadow: unset;
+  outline: none;
+}
+
+.logout:hover {
+  text-decoration: none;
+  color: #fff;
+  background-color: dodgerblue;
+  outline: none;
+  box-shadow: unset;
+}

@@ -1,0 +1,9 @@
+export const GET__USERS = "get__users";
+export const GET__POSTS = "get__posts";
+export const ADD__COMMENT = "add__comment";
+export const GET__COMMENTS = "get__comments";
+export const DETAIL__COMMENT = "detail__comment";
+export const POST__DETAIL = "post__detail";
+export const POST__SEARCH = "post__search";
+export const PAGE__LOADING = "page__loading";
+export const CLOSE__LOADING = "close__loading";
