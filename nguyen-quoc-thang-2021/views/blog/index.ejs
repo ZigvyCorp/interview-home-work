@@ -1,0 +1,129 @@
+<% layout('layouts/boilerplate') %>
+<h1 class="text-center">BLOG POSTS</h1>
+<% for(let post of posts) {%> 
+<div class="card mb-3">
+  <div class="container w-25"><img src="#" class="card-img-top" alt="#" /></div>
+  
+  <div class="card-body">
+    <h2 class="card-title"> <a href="/post/<%= post._id %>" class="text-decoration-none text-dark"><%= post.title %></a>  </h2>
+
+
+  
+    <h5>Author:  <%= post.userId.name %> </h5>
+
+    <h5>Date created: Dec 12 1972</h5>
+    <p class="card-text text-truncate">
+      <%= post.body %> 
+    </p>
+
+  <div>
+    <p>
+      <a
+        class="card-text text-decoration-none"
+        data-bs-toggle="collapse"
+        href="#collapseExample1"
+        role="button"
+        aria-expanded="false"
+        aria-controls="collapseExample1"
+        
+      >
+        <small class="text-muted">2 replies</small>
+      </a>
+    </p>
+
+    <hr>
+
+    <div class="collapse" id="collapseExample1"">
+
+      <div class="card card-body border-1">
+        <div class="card mb-3 border-0" >
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="..." alt="..." />
+            </div>
+            <div class="col-md-8">
+              
+              <div class="card-body" ">
+                <h5 class="card-title">name:   </h5>
+                <p class="card-text">
+              
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis tempora doloribus facilis ex officiis distinctio at eligendi. Laborum soluta minus vitae vero saepe cum sequi id laudantium ullam, odio doloribus.
+                </p>
+                <p class="card-text">
+                  <small class="text-muted">Last updated 3 mins ago</small>
+                </p>
+                <p class="card-text">
+                    <a href="#" class="text-decoration-none"><small class="text-muted">Reply</small></a>
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+  
+<!-- end of collapse -->
+    </div>
+
+  
+  </div>
+
+  </div>
+</div>
+<% } %> 
+<!-- <div class="card mb-3">
+    <img src="#" class="card-img-top" alt="#" />
+    <div class="card-body">
+      <h2 class="card-title">Post 1</h2>
+      <h5>Author:</h5>
+      <h5>Date created:</h5>
+      <p class="card-text text-truncate">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro quaerat error nostrum quam? Eligendi, odit! Odit, rerum sit consequuntur dignissimos eveniet similique, impedit corporis ab asperiores perspiciatis est laudantium ut vel molestias possimus quidem animi consequatur aliquid explicabo aliquam atque nihil rem. Non rerum aperiam voluptatibus assumenda, nemo tenetur distinctio hic dolore quasi itaque dignissimos praesentium exercitationem ipsa harum atque vitae. Consectetur sed placeat sequi nam dolorum a magnam blanditiis numquam, accusantium eos rerum sint perferendis porro. Non sed provident dolores quod quibusdam fugit ex sit! Atque praesentium pariatur unde et eaque, rerum nisi dolore aspernatur tempora vero. Corporis doloribus nihil aspernatur quo sed, voluptates numquam illum ea deleniti recusandae error neque, ab temporibus! Praesentium repudiandae ut nemo magni, optio dolorum neque quam ratione cum, vero incidunt ad tenetur, repellendus voluptatum labore nulla necessitatibus inventore dolore quae non! Cumque asperiores tenetur nam deleniti consequatur adipisci molestias voluptates unde architecto saepe.
+      </p>
+  
+      <p>
+        <a
+          class="card-text text-decoration-none"
+          data-bs-toggle="collapse"
+          href="#collapseExample2"
+          role="button"
+          aria-expanded="false"
+          aria-controls="collapseExample2"
+          
+        >
+          <small class="text-muted">2 replies</small>
+        </a>
+      </p>
+  
+      <hr>
+  
+      <div class="collapse" id="collapseExample2"">
+        <div class="card card-body border-0">
+          <div class="card mb-3 border-0" >
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="..." alt="..." />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body" ">
+                  <h5 class="card-title">Lucy</h5>
+                  <p class="card-text">
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This content is a little bit
+                    longer.
+                  </p>
+                  <p class="card-text">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                  </p>
+                  <p class="card-text">
+                    <a href="#" class="text-decoration-none"><small class="text-muted">Reply</small></a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+   -->

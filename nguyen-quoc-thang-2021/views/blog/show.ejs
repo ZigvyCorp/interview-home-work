@@ -1,0 +1,67 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="card mb-3">
+  <div class="container w-25"><img src="#" class="card-img-top" alt="#" /></div>
+  
+  <div class="card-body">
+    <h1 class="card-title"><%= post.title %></h1>
+  
+    <h5>Author: <%= post.userId.name %> </h5>
+
+    <h5>Date created: Dec 12 1972</h5>
+    <p class="card-text ">
+      <%= post.body %> 
+    </p>
+
+  <div>
+    <p>
+      <a
+        class="card-text text-decoration-none"
+        data-bs-toggle="collapse"
+        href="#collapseExample1"
+        role="button"
+        aria-expanded="false"
+        aria-controls="collapseExample1"
+        
+      >
+        <small class="text-muted">2 replies</small>
+      </a>
+    </p>
+
+    <hr>
+
+    <div class="collapse" id="collapseExample1"">
+      <div class="card card-body border-0">
+        <div class="card mb-3 border-0" >
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img src="..." alt="..." />
+            </div>
+            <div class="col-md-8">
+              
+              <div class="card-body" ">
+                <h5 class="card-title">name:   </h5>
+                <p class="card-text">
+                
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis tempora doloribus facilis ex officiis distinctio at eligendi. Laborum soluta minus vitae vero saepe cum sequi id laudantium ullam, odio doloribus.
+                </p>
+                <p class="card-text">
+                  <small class="text-muted">Last updated 3 mins ago</small>
+                </p>
+                <p class="card-text">
+                    <a href="#" class="text-decoration-none"><small class="text-muted">Reply</small></a>
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  
+  </div>
+
+  </div>
+</div>
