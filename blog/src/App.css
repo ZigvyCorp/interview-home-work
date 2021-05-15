@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f0f2f5
+}
+
+a {
+  text-decoration: none !important;
+}
+
+#root {
+  height: 100%
+}
+
+.anticon svg {
+  vertical-align: baseline;
+}
+
+.inline-loading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 11;
+  background-color: rgba(142, 142, 142, 0.4);
+}
+
+.height-100 {
+  height: 100vh;
+}
