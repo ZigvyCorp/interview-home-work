@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="./img/favicon.ico">
+
+    <!-- <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script> -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>My Blog</title>
+
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="blog-header py-2 navbar-light bg-light">
+            <div class="row pt-2 nav flex-nowrap justify-content-between align-items-center">
+                <div class="col-4 my-logo-text ">
+                    <a class="navbar-brand me-0 my-logo" href="#">
+                        <img src="./img/blogger.svg" alt="" width="38" height="38" class="fav d-inline-block align-text-top">
+                        
+                    </a>
+                    <a class="navbar-brand my-logo-text">mylogo</a>
+                </div>
+                <div class="col-4 text-center">
+                    <a href="#" class="blog-header-logo text-dark active">BLOGS</a>
+                </div>
+                <div class="account-user col-4 row d-flex">
+                    <a class="user" href="#">
+                        <i class="fas fa-user-circle fa-2x"></i>
+                        <span id="name0">  </span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Search bar -->
+        <div class="search pt-2">
+            <button type="submit" class="btn-hover-primary bg-light searchButton disabled"><a href="#"><i class="fa fa-search"></i></a></button>
+            <input type="text" name="searchBar" class="searchBar" id="search-title" onkeyup="myFunction()" placeholder="">
+        </div>
+
+        <ul class="list-group" id="charactersList">
+            <li class="list-group-item"><a href="#title1" class="blog-post-title" id="title-search1"></a></li>
+            <li class="list-group-item"><a href="#title2" class="blog-post-title" id="title-search2"></a></li>
+            <li class="list-group-item"><a href="#title3" class="blog-post-title" id="title-search3"></a></li>
+        </ul>
+
+        <!-- Main -->
+        <main>
+            <!-- Blog post 1 -->
+            <div class="blog-post pt-5 p-3">
+                <h1 class="blog-post-title text-center"><a href="#blog1" class="blog-post-title" id="title1"></a></h1>
+                    <div class="row py-3">
+                        <div class="col-md-8">
+                            <p class="blog-post-meta">
+                                <i class="fas fa-user"></i> | Posted by <a class="name-user-post" id="name1" href="#"></a> <br>
+                                <i class="fas fa-calendar-alt"></i> | Created at <a class="create" id="create1" href="#"></a>
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-outline magenta btn-sm"><a href="#" id="magenda1"></a></button>
+                            <button type="button" class="btn btn-outline red btn-sm"><a href="#" id="red1"></a></button>
+                            <button type="button" class="btn btn-outline volcano btn-sm"><a href="#" id="volcano1"></a></button>
+                            <button type="button" class="btn btn-outline orange btn-sm">orange</button>
+                            <button type="button" class="btn btn-outline gold btn-sm">gold</button>
+                            <button type="button" class="btn btn-outline lime btn-sm">lime</button>
+                            <button type="button" class="btn btn-outline green btn-sm">green</button>
+                            <button type="button" class="btn btn-outline cyan btn-sm">cyan</button>
+                            <button type="button" class="btn btn-outline blue btn-sm">blue</button>
+                            <button type="button" class="btn btn-outline geekblue btn-sm">geekblue</button>
+                            <button type="button" class="btn btn-outline purple btn-sm">purple</button>
+                        </div>
+                    </div>
+
+                    <p class="py-2" id="body1"></p>
+            </div>
+
+            <div class="comment-section ">
+                <h6 class="comment text-muted collapsible">2 replies</h6>
+
+                <div class="content">
+                    <hr>
+                    <!-- Comment section -->
+                    <div class="panel-body py-2">
+                        <div class="media-block d-flex flex-row">
+                            <a class="media-left pe-3" href="#"><img class="rounded-circle" alt="Profile Picture" src="https://bootdey.com/img/Content/avatar/avatar1.png" width="50"></a>
+                            <div class="media-body ">
+                                <div class="mar-btm">
+                                    <a href="#" class="btn-link text-semibold media-heading box-inline" id="name4" ></a>
+                                    <p class="text-muted text-sm"><i class="fa fa-mobile fa-md"></i> | from Mobile - 11 mins ago</p>
+                                </div>
+                                <p id="cmt1_1"></p>
+                                <div class="pad-ver">
+                                    <div class="btn-group">
+                                        <a class="btn btn-sm btn-outline-secondary btn-hover-success" href="#"><i class="fa fa-thumbs-up"></i></a>
+                                        <a class="btn btn-sm btn-outline-secondary btn-hover-danger" href="#"><i class="fa fa-thumbs-down"></i></a>
+                                    </div>
+                                    <a class="btn btn-sm btn-secondary btn-hover-primary" href="#">Comment</a>
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-body py-5">
+                        <div class="media-block d-flex flex-row">
+                            <a class="media-left pe-3" href="#"><img class="rounded-circle img-sm" alt="Profile Picture" src="https://bootdey.com/img/Content/avatar/avatar2.png" width="50"></a>
+                            <div class="media-body">
+                                <div class="mar-btm">
+                                    <a href="#" class="btn-link text-semibold media-heading box-inline" id="name5"></a>
+                                    <p class="text-muted text-sm"><i class="fa fa-mobile fa-md"></i> | from Mobile - 7 mins ago</p>
+                                </div>
+                                <p id="cmt1_2"></p>
+                                <div class="pad-ver">
+                                    <div class="btn-group">
+                                        <a class="btn btn-sm btn-outline-secondary btn-hover-success active" href="#"><i class="fa fa-thumbs-up"></i> You Like it</a>
+                                        <a class="btn btn-sm btn-outline-secondary btn-hover-danger" href="#"><i class="fa fa-thumbs-down"></i></a>
+                                    </div>
+                                    <a class="btn btn-sm btn-secondary btn-hover-primary" href="#">Comment</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Blog post 2 -->
+            <div class="blog-post pt-5 p-3">
+                <h1 class="blog-post-title text-center"><a href="#blog2" class="blog-post-title" id="title2"></a></h1>
+                    <div class="row py-3">
+                        <div class="col-md-8">
+                            <p class="blog-post-meta">
+                                <i class="fas fa-user"></i> | Posted by <a class="name-user-post" id="name2" href="#"></a> <br>
+                                <i class="fas fa-calendar-alt"></i> | Created at <a class="create" id="create2" href="#"></a>
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-outline magenta btn-sm"><a href="#" id="magenda2"></a></button>
+                            <button type="button" class="btn btn-outline red btn-sm"><a href="#" id="red2"></a></button>
+                            <button type="button" class="btn btn-outline volcano btn-sm"><a href="#" id="volcano2"></a></button>
+                            <button type="button" class="btn btn-outline orange btn-sm">orange</button>
+                            <button type="button" class="btn btn-outline gold btn-sm">gold</button>
+                            <button type="button" class="btn btn-outline lime btn-sm">lime</button>
+                            <button type="button" class="btn btn-outline green btn-sm">green</button>
+                            <button type="button" class="btn btn-outline cyan btn-sm">cyan</button>
+                            <button type="button" class="btn btn-outline blue btn-sm">blue</button>
+                            <button type="button" class="btn btn-outline geekblue btn-sm">geekblue</button>
+                            <button type="button" class="btn btn-outline purple btn-sm">purple</button>
+                        </div>
+                    </div>
+
+                    <p class="py-2" id="body2"></p>
+            </div>
+
+            <div class="comment-section ">
+                <h6 class="comment text-muted collapsible">2 replies</h6>
+
+                <div class="content">
+                    <hr>
+                    <!-- Comment section -->
+                    <div class="panel-body py-2">
+                        <div class="media-block d-flex flex-row">
+                            <a class="media-left pe-3" href="#"><img class="rounded-circle" alt="Profile Picture" src="https://bootdey.com/img/Content/avatar/avatar1.png" width="50"></a>
+                            <div class="media-body ">
+                                <div class="mar-btm">
+                                    <a href="#" class="btn-link text-semibold media-heading box-inline" id="name6"></a>
+                                    <p class="text-muted text-sm"><i class="fa fa-mobile fa-md"></i> | from Mobile - 11 mins ago</p>
+                                </div>
+                                <p id="cmt2_1"></p>
+                                <div class="pad-ver">
+                                    <div class="btn-group">
+                                        <a class="btn btn-sm btn-outline-secondary btn-hover-success" href="#"><i class="fa fa-thumbs-up"></i></a>
+                                        <a class="btn btn-sm btn-outline-secondary btn-hover-danger" href="#"><i class="fa fa-thumbs-down"></i></a>
+                                    </div>
+                                    <a class="btn btn-sm btn-secondary btn-hover-primary" href="#">Comment</a>
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-body py-5">
+                        <div class="media-block d-flex flex-row">
+                            <a class="media-left pe-3" href="#"><img class="rounded-circle img-sm" alt="Profile Picture" src="https://bootdey.com/img/Content/avatar/avatar2.png" width="50"></a>
+                            <div class="media-body">
+                                <div class="mar-btm">
+                                    <a href="#" class="btn-link text-semibold media-heading box-inline" id="name7"></a>
+                                    <p class="text-muted text-sm"><i class="fa fa-mobile fa-md"></i> | from Mobile - 7 mins ago</p>
+                                </div>
+                                <p id="cmt2_2"></p>
+                                <div class="pad-ver">
+                                    <div class="btn-group">
+                                        <a class="btn btn-sm btn-outline-secondary btn-hover-success active" href="#"><i class="fa fa-thumbs-up"></i> You Like it</a>
+                                        <a class="btn btn-sm btn-outline-secondary btn-hover-danger" href="#"><i class="fa fa-thumbs-down"></i></a>
+                                    </div>
+                                    <a class="btn btn-sm btn-secondary btn-hover-primary" href="#">Comment</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Blog post 3 -->
+            <div class="blog-post pt-5 p-3">
+                <h1 class="blog-post-title text-center"><a href="#blog3" class="blog-post-title" id="title3"></a></h1>
+                    <div class="row py-3">
+                        <div class="col-md-8">
+                            <p class="blog-post-meta">
+                                <i class="fas fa-user"></i> | Posted by <a class="name-user-post" id="name3" href="#"> </a> <br>
+                                <i class="fas fa-calendar-alt"></i> | Created at <a class="create" id="create3" href="#"></a>
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="button" class="btn btn-outline magenta btn-sm"><a href="#" id="magenda3"></a></button>
+                            <button type="button" class="btn btn-outline red btn-sm"><a href="#" id="red3"></a></button>
+                            <button type="button" class="btn btn-outline volcano btn-sm"><a href="#" id="volcano3"></a></button>
+                            <button type="button" class="btn btn-outline orange btn-sm">orange</button>
+                            <button type="button" class="btn btn-outline gold btn-sm">gold</button>
+                            <button type="button" class="btn btn-outline lime btn-sm">lime</button>
+                            <button type="button" class="btn btn-outline green btn-sm">green</button>
+                            <button type="button" class="btn btn-outline cyan btn-sm">cyan</button>
+                            <button type="button" class="btn btn-outline blue btn-sm">blue</button>
+                            <button type="button" class="btn btn-outline geekblue btn-sm">geekblue</button>
+                            <button type="button" class="btn btn-outline purple btn-sm">purple</button>
+                        </div>
+                    </div>
+
+                    <p class="py-2" id="body3"></p>
+            </div>
+
+            <div class="comment-section ">
+                <h6 class="comment text-muted collapsible">2 replies</h6>
+
+                <div class="content">
+                    <hr>
+                    <!-- Comment section -->
+                    <div class="panel-body py-2">
+                        <div class="media-block d-flex flex-row">
+                            <a class="media-left pe-3" href="#"><img class="rounded-circle" alt="Profile Picture" src="https://bootdey.com/img/Content/avatar/avatar1.png" width="50"></a>
+                            <div class="media-body ">
+                                <div class="mar-btm">
+                                    <a href="#" class="btn-link text-semibold media-heading box-inline" id="name8"></a>
+                                    <p class="text-muted text-sm"><i class="fa fa-mobile fa-md"></i> | from Mobile - 11 mins ago</p>
+                                </div>
+                                <p id="cmt3_1"></p>
+                                <div class="pad-ver">
+                                    <div class="btn-group">
+                                        <a class="btn btn-sm btn-outline-secondary btn-hover-success" href="#"><i class="fa fa-thumbs-up"></i></a>
+                                        <a class="btn btn-sm btn-outline-secondary btn-hover-danger" href="#"><i class="fa fa-thumbs-down"></i></a>
+                                    </div>
+                                    <a class="btn btn-sm btn-secondary btn-hover-primary" href="#">Comment</a>
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-body py-5">
+                        <div class="media-block d-flex flex-row">
+                            <a class="media-left pe-3" href="#"><img class="rounded-circle img-sm" alt="Profile Picture" src="https://bootdey.com/img/Content/avatar/avatar2.png" width="50"></a>
+                            <div class="media-body">
+                                <div class="mar-btm">
+                                    <a href="#" class="btn-link text-semibold media-heading box-inline" id="name9"></a>
+                                    <p class="text-muted text-sm"><i class="fa fa-mobile fa-md"></i> | from Mobile - 7 mins ago</p>
+                                </div>
+                                <p id="cmt3_2"></p>
+                                <div class="pad-ver">
+                                    <div class="btn-group">
+                                        <a class="btn btn-sm btn-outline-secondary btn-hover-success active" href="#"><i class="fa fa-thumbs-up"></i> You Like it</a>
+                                        <a class="btn btn-sm btn-outline-secondary btn-hover-danger" href="#"><i class="fa fa-thumbs-down"></i></a>
+                                    </div>
+                                    <a class="btn btn-sm btn-secondary btn-hover-primary" href="#">Comment</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+<script src="index.js"></script>
+</body>
+</html>
