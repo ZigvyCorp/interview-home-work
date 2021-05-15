@@ -1,0 +1,38 @@
+header {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    .logo {
+        margin-left: 3rem;
+        width: 50px;
+        height: 50px;
+    }
+    .nav {
+        padding: 0;
+    }
+    .navbar-expand {
+        justify-content: space-between;
+    }
+    .user-info {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        margin-right: 3rem;
+        cursor: pointer;
+        &__avatar {
+            display: flex;
+            align-items: center;
+            &--image {
+                width: 45px;
+            }
+        }
+        &__user-name {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            flex: none;
+            padding-left: 0;
+            padding-right: 0;
+            &--text {
+                margin-bottom: 0;
+            }
+        }
+    }
+}

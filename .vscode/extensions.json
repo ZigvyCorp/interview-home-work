@@ -1,0 +1,21 @@
+{
+    "recommendations": [
+      "mikael.angular-beastcode",
+      "angular.ng-template",
+      "coenraads.bracket-pair-colorizer",
+      "mikestead.dotenv",
+      "dsznajder.es7-react-js-snippets",
+      "dbaeumer.vscode-eslint",
+      "mkxml.vscode-filesize",
+      "ritwickdey.liveserver",
+      "davidanson.vscode-markdownlint",
+      "pkief.material-icon-theme",
+      "zhuangtongfa.material-theme",
+      "esbenp.prettier-vscode",
+      "syler.sass-indented",
+      "octref.vetur",
+      "ms-vscode.vscode-typescript-tslint-plugin",
+      "visualstudioexptteam.vscodeintellicode",
+      "formulahendry.code-runner"
+    ]
+  }
