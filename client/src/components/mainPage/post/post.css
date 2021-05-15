@@ -1,0 +1,11 @@
+.post-page{
+    width: 100%;
+    min-height: 100vh;
+}
+.search-form{
+    margin-top: 20px;
+    width: 100%;
+    
+}
+@import url(../utils/postItem/postItem.css);
+@import url(../utils/postFilterForm/postFilterForm.css);

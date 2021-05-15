@@ -1,0 +1,37 @@
+.menu-bar{
+    background-color: rgb(52, 52, 53);
+    color: white;
+    height: 50px;
+    
+}
+.menu{
+    display: flex;
+    text-align: center;
+    justify-content: flex-end;
+    height: 100%;
+}
+.menu-item{
+    padding-top: 10px;
+    width: 200px;
+    height: 100%;
+}
+.user{
+    display: flex;
+    height: auto;
+    overflow: hidden;
+    margin-top: 10px;
+    letter-spacing: 1.3px
+
+}
+.logo{
+    width: 100px;
+    height: 100%;
+    margin-left: 10px;
+    margin-top: 10px;
+    letter-spacing: 2px;
+}
+.menu-item:hover{
+    cursor: pointer;
+    background-color: lightblue;
+    transition: 0.3s ease-in;
+}

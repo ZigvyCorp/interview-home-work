@@ -1,0 +1,15 @@
+.post-item{
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px 50px;
+    background-color: white;
+}
+.post-item .info {
+    text-align: center;
+}
+.post-item .tag{
+    text-align: center;
+}
+.post-item .description{
+    margin:0 50px
+}
