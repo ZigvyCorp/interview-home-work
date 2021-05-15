@@ -1,0 +1,9 @@
+.search-bar {
+    padding: 2rem 2rem 0 2rem;
+    .col {
+        display: flex;
+    }
+    &__input-text {
+        margin-right: 10px;
+    }
+}

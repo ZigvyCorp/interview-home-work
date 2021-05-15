@@ -1,0 +1,12 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "files.eol": "\n",
+    "editor.unfoldOnClickAfterEndOfLine": true,
+    "cSpell.words": [
+        "middlewares"
+    ]
+}
