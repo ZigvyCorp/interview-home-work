@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald|Rambla|Staatliches&display=swap');
+
+:root {
+    --font-staat: 'Staatliches', cursive;
+    --font-os: 'Oswald', sans-serif;
+    --font-ram: 'Rambla', sans-serif;
+}
+
+header {
+    font-family: var(--font-os);
+}
+
+.blog-header-logo {
+    font-family: var(--font-staat);
+    font-size: 45px;
+    text-decoration: none;
+}
+
+
+.navbar-brand.my-logo {
+    font-size: 28px;
+}
+
+.fav {
+    margin-left: 20px;
+}
+
+.my-logo-text {
+    font-size: 30px;
+
+}
+
+.user {
+    color: rgb(61, 61, 61);
+    text-decoration: none;
+}
+
+.user span {
+    font-size: 20px;
+    padding: 5px;
+    text-decoration: none;
+
+}
+
+.account-user {
+    padding-right: 30px;
+}
+
+.blog-header .user {
+    display: flex;
+    justify-content: end;
+}
+
+.search {
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+
+.searchBar {
+    font-family: var(--font-ram);
+    width: 100%;
+    border: 1px solid rgb(233, 233, 233);
+    border-left: none;
+    border-radius:  0 5px 5px 0;
+    outline: none;
+}
+
+.searchButton {
+    border: 1px solid #e9e9e9;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px 0 0 5px;
+    cursor: none;
+    font-size: 20px;
+}
+
+input input:focus {
+    outline: none;
+    border-color: #be781c;
+}
+
+main, ul {
+    font-family: var(--font-ram);
+}
+
+.blog-post {
+    font-size: 24px;
+}
+
+.blog-post h1 {
+    font-family: var(--font-staat);
+}
+
+.blog-post .name-user-post {
+    text-decoration: none;
+}
+
+.blog-post-title {
+    text-decoration: none;
+    color: black;
+}
+
+.blog-post-title:hover {
+    text-decoration: none;
+}
+
+.btn {
+    font-size: 12px;
+}
+
+.btn.magenta {
+    background-color: rgb(255, 0, 255, 0.1);
+    border-color: magenta;
+}
+
+.btn.magenta a {
+    color: magenta;
+    text-decoration: none;
+}
+
+.btn.red {
+    background-color: rgb(255, 0, 0, 0.1);
+    border-color: red;
+}
+
+.btn.red a {
+    color: red;
+    text-decoration: none;
+}
+
+.btn.volcano {
+    color: darkorange;
+    background-color: rgb(255, 140, 0, 0.1);
+    border-color: darkorange;
+}
+
+.btn.volcano a {
+    color: darkorange;
+    text-decoration: none;
+}
+
+.btn.orange {
+    color: orange;
+    background-color: rgb(255, 165, 0, 0.1);
+    border-color: orange;
+}
+
+.btn.gold {
+    color: gold;
+    background-color: rgb(255, 215, 0, 0.1);
+    border-color: gold;
+}
+
+.btn.lime {
+    color: lime;
+    background-color: rgb(0, 255, 0, 0.1);
+    border-color: lime;
+}
+
+.btn.green {
+    color: green;
+    background-color: rgb(0, 128, 0, 0.1);
+    border-color: green;
+}
+
+.btn.cyan {
+    color: cyan;
+    background-color: rgb(0, 255, 255, 0.1);
+    border-color: cyan;
+}
+
+.btn.blue {
+    color: blue;
+    background-color: rgb(0, 0, 255, 0.1);
+    border-color: blue;
+}
+
+.btn.geekblue {
+    color: darkblue;
+    background-color: rgb(0, 0, 139, 0.1);
+    border-color: darkblue;
+}
+
+.btn.purple {
+    color: purple;
+    background-color: rgb(128, 0, 128, 0.1);
+    border-color: purple;
+}
+
+.media-body .mar-btm a {
+    text-decoration: none;
+    font-size: 22px;
+}
+
+.create {
+    text-decoration: none;
+    color: black;
+}
+
+.collapsible {
+    cursor: pointer;
+}
+
+.content {
+    display: none;
+    overflow: hidden;
+}
+
+.list-group {
+    padding-left: 37px;
+}
+
+.list-group li:hover {
+    background-color: rgb(247, 247, 247);
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .blog-header-logo {
+        font-size: 40px;
+    }
+
+    .navbar-brand {
+        font-size: 25px;
+        display: flex;
+        justify-content: center;
+    } 
+
+    .fav {
+        margin-left: 0px;
+    }
+
+    .my-logo-text {
+        margin: 0;
+    }
+
+    .blog-header .fa-user-circle {
+        display: none;
+    }
+
+    .blog-header .user {
+
+        justify-content: center;
+        padding: 0;
+    }
+
+    .account-user {
+        padding: 0;
+    }
+}
