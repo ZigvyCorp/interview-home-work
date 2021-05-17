@@ -35,16 +35,32 @@ export const createAuth = async (req,res) => {
 
 export const loginAuth = async (req,res) => {
     try {
-     const user = await User.findOne({ usename: req.body.username });
-     !user && res.status(404).json("user not found");
+
+     let user = await User.findOne({
+           
+            "username" : req.body.username
+          })
+
+          if (!user)
+          return res.status('401').json({
+            error: "User not found"
+          })
+
+
 
      var buf1 = Buffer.from(req.body.password);
         var buf2 = Buffer.from(user.password);
      const validPassword = await buf1.equals(buf2); 
-     !validPassword && res.status(404).json("wrong password");
-    
+
+     if (!validPassword)
+     return res.status('401').send({
+        error: "username and password don't match."
+      })
+
+   
+     
  
-     res.status(200).json(post);
+     res.status(200).json({user: {_id: user._id, name: user.name, email: user.email}});
     } catch (err) {
         res.status(500).json({ error : err});
     }

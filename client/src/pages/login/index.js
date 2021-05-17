@@ -19,7 +19,7 @@ export default function Login() {
       { username: username.current.value, password: password.current.value },
     dispatch
     );
-    console.log(username);
+   
   };
 
   return (
