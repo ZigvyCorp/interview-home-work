@@ -7,6 +7,7 @@ import {createStore,applyMiddleware} from 'redux';
 import createSageMiddleware from 'redux-saga';
 import reducers from './redux/reducers';
 import mySaga from './redux/sagas';
+import { AuthContextProvider } from "./context/AuthContext";
 const sagaMiddleware = createSageMiddleware();
 
 const store = createStore(reducers , applyMiddleware(sagaMiddleware));
@@ -15,7 +16,11 @@ sagaMiddleware.run(mySaga);
 
 ReactDOM.render(
   <Provider store={store}> 
-    <App />
+    <React.StrictMode>
+    <AuthContextProvider>
+      <App />
+    </AuthContextProvider>
+  </React.StrictMode>,
   </Provider>,
   document.getElementById('root')
 );

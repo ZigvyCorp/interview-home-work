@@ -13,6 +13,7 @@ import { AuthContext } from "./context/AuthContext";
 
 function App() {
   const { user } = useContext(AuthContext);
+  console.log(user);
   return (
     <Router>
       <Switch>

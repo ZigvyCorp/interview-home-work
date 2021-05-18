@@ -60,8 +60,21 @@ export const loginAuth = async (req,res) => {
    
      
  
-     res.status(200).json({user: {_id: user._id, name: user.name, email: user.email}});
+     res.status(200).json({user: {_id: user._id, name: user.name}});
     } catch (err) {
+        res.status(500).json({ error : err});
+    }
+};
+export const logoutAuth = async (req,res) => {
+    try {
+
+        res.clearCookie("t")
+        return res.status('200').json({
+          message: "signed out"
+        })
+     
+ 
+        } catch (err) {
         res.status(500).json({ error : err});
     }
 };
