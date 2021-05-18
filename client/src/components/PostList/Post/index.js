@@ -27,7 +27,9 @@ export default function Post({post}){
   })
   const [getUser, setUser] = useState("");
  
+  const [count, setCount] = useState(0);
 
+  
   const addComment = (event) => {
     if(event.keyCode == 13 && event.target.value){
       event.preventDefault()
@@ -74,6 +76,11 @@ export default function Post({post}){
       </p>
     );
   }
+
+ 
+
+
+
   const updateComments = (comments) => {
     console.log(comments);
     setValues({...values, comments: comments})
@@ -100,6 +107,11 @@ export default function Post({post}){
         {post.body}
         </Typography>
       </CardContent>
+     
+              <IconButton className={classes.button} aria-label="Comment" color="secondary">
+                <CommentIcon/>
+              </IconButton> <span>{values.comments.length}</span>
+       
       <CardActions>
       
       <CardHeader
