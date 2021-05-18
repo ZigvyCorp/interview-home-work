@@ -19,3 +19,7 @@ return reduxAction().type;
 
  export const showModal = createAction('SHOW_CREATE_POST_MODAL');
 export const hideModal = createAction('HIDE_CREATE_POST_MODAL');
+
+
+export const showComment = createAction('SHOW_COMMENT');
+export const hideComment = createAction('HIDE_COMMENT');
