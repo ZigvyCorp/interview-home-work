@@ -5,13 +5,18 @@ import { useSelector, useDispatch } from 'react-redux';
 import { modalState$ } from '../../redux/selectors';
 import useStyles from './styles';
 import { createPost, hideModal } from '../../redux/actions';
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function CreatePostModal() {
+  const { user } = useContext(AuthContext);
+  
   const [data, setData] = React.useState({
     title: '',
     body: '',
-   
+    postedBy:user.user,
   });
+  
   const dispatch = useDispatch();
   const { isShow } = useSelector(modalState$);
   const classes = useStyles();
@@ -21,11 +26,12 @@ export default function CreatePostModal() {
     setData({
       title: '',
       body: '',
-     
+      postedBy:user.user,
     });
   }, [dispatch]);
 
   const onSubmit = React.useCallback(() => {
+   console.log(data);
     dispatch(createPost.createPostRequest(data));
     onClose();
   }, [data, dispatch, onClose]);
