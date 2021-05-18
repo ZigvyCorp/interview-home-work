@@ -7,29 +7,23 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import Link from '@material-ui/core/Link';
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { logoutCall } from "../../api/index";
 
-const useStyles = makeStyles((theme) => ({
-    toolbar: {
-      borderBottom: `1px solid ${theme.palette.divider}`,
-    },
-    toolbarTitle: {
-      flex: 1,
-    },
-    toolbarSecondary: {
-      justifyContent: 'space-between',
-      overflowX: 'auto',
-    },
-    toolbarLink: {
-      padding: theme.spacing(1),
-      flexShrink: 0,
-    },
-  }));
+
 
 export default function Header(props){
-    const classes = useStyles();
+    const classes = useStyle();
     const { sections, title } = props;
-
-
+    const { user,dispatch } = useContext(AuthContext);
+    console.log(user.user.name);
+    const handleClick = (e) => {
+      console.log("ok");
+      e.preventDefault();
+      logoutCall(dispatch);
+        
+    };
     return (
         <React.Fragment>
           <Toolbar className={classes.toolbar}>
@@ -47,8 +41,16 @@ export default function Header(props){
             <IconButton>
               <SearchIcon />
             </IconButton>
-            <Button variant="outlined" size="small">
-              Sign in
+            <Typography
+              component="h2"
+              variant="h5"
+              color="inherit"
+              className={classes.toolbarUser}
+            >
+              {user.user.name}
+            </Typography>
+            <Button variant="outlined" size="small" onClick={handleClick}>
+              Sign out
             </Button>
           </Toolbar>
          

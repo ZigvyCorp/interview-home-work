@@ -17,3 +17,14 @@ export const loginCall = async (userCredential, dispatch) => {
   }
 };
 
+export const logoutCall = async (dispatch) => {
+ 
+  try {
+    console.log("ok");
+   const res = await axios.get(`${URL}/auth/logout`);
+
+   dispatch({ type: "LOGOUT_SUCCESS", payload: null});
+  } catch (err) {
+    
+  }
+};
