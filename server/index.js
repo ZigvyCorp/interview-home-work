@@ -4,6 +4,7 @@ import cors from 'cors';
 import posts from './routers/posts.js';
 import mongoose from 'mongoose';
 import authRoute from './routers/auth.js';
+import userRoute from './routers/user.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -25,7 +26,7 @@ app.get('/',(req,res)=>{
 
 app.use('/posts',posts);
 app.use('/auth',authRoute);
-
+app.use('/users',userRoute);
 mongoose.connect(URI,{useNewUrlParser: true,useUnifiedTopology: true})
 .then(()=>{
 console.log('connected to db');

@@ -46,3 +46,21 @@ export const comment = async (params, postId, comment) => {
     console.log(err)
   }
 };
+
+export const findPeople = async (params, signal) => {
+  try {
+   
+    let response = await fetch(`${URL}/users/findpeople/` + params.userId, {
+      method: 'GET',
+      signal: signal,
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      
+      }
+    })    
+    return await response.json();
+  } catch(err) {
+    console.log(err)
+  }
+}

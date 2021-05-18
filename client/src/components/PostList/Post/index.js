@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 
 
 import {Avatar,Card ,Button, CardActions,TextareaAutosize,TextField, CardContent,CardHeader,CardMedia,IconButton,Typography} from "@material-ui/core";
@@ -8,7 +8,7 @@ import { useContext } from "react";
 import moment from 'moment';
 import useStyles from './styles';
 import { AuthContext } from "../../../context/AuthContext";
-import {comment} from '../../../api/index';
+import {comment,findPeople} from '../../../api/index';
 import Divider from '@material-ui/core/Divider'
 import PropTypes from 'prop-types';
 
@@ -19,17 +19,28 @@ export default function Post({post}){
   const handleChange = event => {
     setText(event.target.value)
   } 
+  const abortController = new AbortController();
+  const signal = abortController.signal;
   const [values, setValues] = useState({
     
     comments: post.comments
   })
+  const [getUser, setUser] = useState("");
+ 
+
   const addComment = (event) => {
     if(event.keyCode == 13 && event.target.value){
       event.preventDefault()
       comment({
         userId: user.user._id
       },  post._id, {text: text}).then((data) => {
-        updateComments(data.comments);
+       console.log(data.comments);
+        if (data.error) {
+          console.log(data.error);
+        } else {
+          setText('')
+          updateComments(data.comments)
+        }
       })
     }
   }
@@ -38,19 +49,40 @@ export default function Post({post}){
       <p className={classes.commentText}>
         
         {item.text}
-       
+    
       </p>
     )
   }
 
+  const getUserById = item => {
+    findPeople({
+      userId: item
+    }, signal).then((data) => {
+      if (data && data.error) {
+        console.log(data.error)
+      } else {
+        setUser(data[0].name,getUser);
+        console.log("cc");
+        
+      }
+    });
+    return(
+      <p >
+        
+        {getUser}
+    
+      </p>
+    );
+  }
   const updateComments = (comments) => {
+    console.log(comments);
     setValues({...values, comments: comments})
   }
 
 
     return (<Card>
         <CardHeader avatar={<Avatar>A</Avatar>}
-        title={post.author}
+        title={getUserById(post.postedBy)}
         subheader={moment(post.updatedAt).format('HH:MM MMM DD,YYYY')}
         action={
             <IconButton>
@@ -62,6 +94,7 @@ export default function Post({post}){
       <CardContent>
         <Typography variant='h5' color='textPrimary'>
         {post.title}
+
         </Typography>
         <Typography variant='body2' component='p' color='textSecondary'>
         {post.body}
@@ -83,7 +116,7 @@ export default function Post({post}){
                 />}
               className={classes.cardHeader}
         />
-        { post.comments.map((item, i) => {
+        { values.comments.map((item, i) => {
             return <CardHeader
                      
             title={commentBody(item)}
