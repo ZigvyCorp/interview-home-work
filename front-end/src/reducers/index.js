@@ -1,36 +1,12 @@
 import { combineReducers} from 'redux';
+import { listPostReducer } from './post';
+import { listUserReducer } from './user';
+import { listCommentReducer } from './comment';
 
 
 const reducer = combineReducers({
-    // productList : productListReducer,
-
-    // productListSelling : productListSellingReducer,
-
-    // checkComment:checkCanCommentReducer,
-
-    // categoryList: categoryListReducer,
-    // productDetails: productDetailsReducer,
-    // cart: cartReducer,
-    // userLogin: userLoginReducer,
-    // userRegister: userRegisterReducer,
-
-    // updateRating: updateRatingReducer,
-    // getComments: getCommentReducer,
-
-    // userDetails: userDetailsReducer,
-    // userUpdateProfile:userUpdateProfileReducer,
-    // userUpdatePassword:userUpdatePasswordReducer,
-    // forgotPassword:forgotPasswordReducer,
-
-    // cartPost:cartPostReducer,
-    // cartGet:cartGetReducer,
-    // removeCartPost:removeCartPostReducer,
-    // increaseCart: increaseCartReducer,
-    // decreaseCart: decreaseCartReducer,
-    // orderPost: orderPostReducer,
-    // historyOrder: historyReducer,
-    // viewHistoryOrder: viewHistoryReducer,
-    // removeOrder: removeOrderReducer,
-    // searchHeader:searchHeaderReducer,
+     listPost : listPostReducer,
+     listUser : listUserReducer,
+     listComment : listCommentReducer
 });
 export default reducer;

@@ -1,0 +1,46 @@
+.post {
+    background: white;
+}
+
+.post h2 {
+    text-align: center;
+}
+
+.post-author {
+    display: flex;
+    justify-content: flex start;
+    flex-direction: column;
+}
+
+.post-content {
+    padding: 15px 0;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.text-xs-center {
+    text-align: center;
+}
+
+.post-title {
+    color: #9b9090;
+}
+
+.post-line {
+    border-top: 1px solid rgb(114, 106, 106);
+}
+.header-comment{
+    display: flex;
+}
+.header-comment img{
+    border-radius: 50%;
+}
+.header-comment h5,p{
+    margin-top: 10px;
+    margin-left: 7px;
+}
+
