@@ -1,0 +1,77 @@
+.formContain{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.title{
+    text-align: center;
+    font-weight: 400;
+    user-select: none;
+}
+.forgot{
+    text-align: center;
+}
+.sign-up{
+    text-align: center;
+}
+.sign-up .borders{
+    margin-left: 0.2rem;
+    text-decoration: underline;
+}
+
+.facebook{
+    
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+.facebook .img-fa{
+    cursor: pointer;
+    margin-left: .5rem;
+    width: 1.9rem;
+    height: 1.9rem;
+    
+}
+.facebook .img-gg{
+    cursor: pointer;
+    width: 3rem;
+    height: 3rem;
+
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    width: 24rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    list-style-type: none;
+    box-shadow: .4px 4px 12px rgba(0,0,0,0.2);
+    text-shadow: .4px .4px 5px rgba(0,0,0,0.2);
+}
+.form-container li{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: .5rem;
+    margin-top: .5rem;
+}
+.form-container input{
+    background-color: #f3f6ff;
+    display: block;
+    margin: .5rem 1rem auto;
+    border: none;
+    border-bottom: .1rem solid dodgerblue;
+    outline: none;
+    padding: .5rem .4rem;
+}
+.form-container button{
+    border-radius: 2rem;
+    margin-top: 1rem;
+}
+.form-container .back{
+    border-radius: 2rem;
+}
