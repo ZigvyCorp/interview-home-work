@@ -28,3 +28,21 @@ export const logoutCall = async (dispatch) => {
     
   }
 };
+
+export const comment = async (params, postId, comment) => {
+  try {
+    
+    let response = await fetch(`${URL}/posts/comment`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+ 
+      },
+      body: JSON.stringify({userId:params.userId, postId: postId, comment: comment})
+    })
+    return await response.json()
+  } catch(err) {
+    console.log(err)
+  }
+};

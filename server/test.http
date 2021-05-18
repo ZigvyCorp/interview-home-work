@@ -1,11 +1,15 @@
-POST http://localhost:5000/auth/login
+POST  http://localhost:5000/posts/comment
 Content-Type: application/json
 
 {
-    "username": "phu123",
-    "password": "phulatao"
+     "postId": "60a352f0dd0efe3e68ce5677",
+    "userId": "60a268e64f686319500acbe6",
+ 
+ 
+   "comment": {"text": "ddddddddddd"
+   
+   }
   
     
 
-    
 }
