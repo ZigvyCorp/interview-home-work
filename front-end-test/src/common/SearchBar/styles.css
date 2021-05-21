@@ -1,0 +1,43 @@
+.form-inline {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.form-group {
+    width: 70%;
+}
+
+.form-control {
+    display: inline;
+    width: 100% !important;
+}
+
+form button {
+    height: fit-content;
+}
+
+
+.ModalContainer > div {
+    display: none;
+    z-index: -1 !important;
+}
+
+.ModalContainer.show > .modal-backdrop {
+    display: block;
+    z-index: 100 !important;
+    background-color: grey;
+    opacity: 0.6;
+}
+
+.ModalContainer.show > .modal {
+    display: block;
+    z-index: 101 !important;
+    top: 30%;
+}
+
+@media (min-width: 768px) {
+    .form-control {
+        width: 100% !important;
+    }
+}
