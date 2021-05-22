@@ -1,0 +1,21 @@
+{
+    "type": "object",
+    "properties": {
+        "owner": {
+            "type": "string",
+            "pattern": "[0-9]"
+        },
+        "title": {
+            "type": "string"
+        },
+        "content": {
+            "type": "string"
+        },
+        "tags": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}
