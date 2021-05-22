@@ -1,0 +1,101 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    cursor: pointer;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+
+.pagination li {
+    padding-top: 11px;
+}
+
+.pagination li.active a{
+    color: white;
+    font-weight: bold;
+    background: #0089ff;
+    border-radius: 5px;
+}
+
+.pagination a {
+    padding: 1.6vw;
+    color: white;
+    outline: none;
+}
+
+.pagination a:hover {
+    text-decoration: none;
+    opacity: 0.8;
+    outline: none;
+}
+
+.pagination .next, .pagination .previous {
+    border-radius: 3px;
+    padding: 2px 7px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.pagination .next:hover, .pagination .previous:hover {
+    opacity: 0.9;
+}
+
+.pagination .next {
+    padding-left: 9px;
+}
+
+.pagination .previous {
+    padding-right: 9px;
+}
+
+.pagination .next a, .pagination .previous a {
+    font-size: 30px;
+    border: none;
+}
+
+.pagination__link {
+    font-weight: bold;
+}
+
+.pagination__link--active a {
+    color: #fff;
+}
+
+
+@media (min-width: 481px) {
+    .pagination {
+        margin-top: 50px;
+    }
+
+
+}
+
+@media (min-width: 769px) {
+    .pagination a {
+        padding: 1.8vw;
+    }
+
+}
+
+@media (min-width: 1024px) {
+    .pagination a {
+        padding: 1.3vw;
+    }
+
+}
+
+@media (min-width: 1280px) {
+    .pagination a {
+        padding: 1.1vw;
+    }
+
+}
+
+@media (min-width: 1600px) {
+    .pagination a {
+        padding: 1.1vw;
+    }
+
+}

@@ -1,0 +1,8 @@
+.CommentDetails button {
+    background-color: transparent;
+    font-size: 1.1rem;
+    color: rgb(163, 163, 163);
+}
+.CommentDetails button:hover {
+    color: rgb(32, 128, 192);
+}
