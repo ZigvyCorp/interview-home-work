@@ -9,7 +9,6 @@ const initState = {
 
 
 const PostsReducer = (state = initState, action) => {
-
     var postId = ''
 
     switch (action.type) {

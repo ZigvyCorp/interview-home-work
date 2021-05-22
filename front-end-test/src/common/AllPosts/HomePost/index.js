@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { getAuthor, getComments } from '../../../redux/store/actions/posts';
 import Comment from './Comment'
 import './styles.css'
@@ -31,11 +31,14 @@ const HomePost = (props) => {
 
     return (
         <div className="PostHome mt-3">
-            <h3><Link to={"/post/" + props.post.id} 
-                post={props.post} 
-                date={props.post.date}
-                comments={comments}
-                author={author} >{props.post.title}</Link></h3>
+            <h3><Link to={{
+                pathname: "/post/" + props.post.id,
+                state: {
+                    post: props.post,
+                    comments: comments,
+                    author: author,
+                }
+            }}>{props.post.title}</Link></h3>
 
             <div className="Citation">
                 <p className="mb-1">Author: {author ? author.username : ''}</p>
@@ -52,9 +55,7 @@ const HomePost = (props) => {
                 </div>
 
                 <div className={AllCommentsClassName}>
-                    {comments ? comments.map(cmt => {
-                        return <Comment key={`comment-${cmt.id}-${cmt.userId}`} comment={cmt} />
-                    }) : ''}
+                    {comments ? comments.map(cmt => <Comment key={`comment-${cmt.id}-${cmt.userId}`} comment={cmt} />) : ''}
                 </div>
 
             </div>

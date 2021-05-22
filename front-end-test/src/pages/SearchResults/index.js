@@ -21,12 +21,7 @@ const SearchResults = () => {
     return (
         <div className="SearchResults">
             <h1 className="text-center"> <span className="font-weight-bold">{results.length}</span> results found for "{enteredQuery}"</h1>
-            {/* {results.map(result =>
-                <HomePost post={result} key={result.id}/>
-            )} */}
-
             <AllPosts posts={results} />
-
         </div>
     );
 }

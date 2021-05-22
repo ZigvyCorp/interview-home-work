@@ -10,12 +10,14 @@ function App() {
         <div className="App">
             <Layout>
                 <Switch>
-                    <Route path="/" exact component={HomePage} />
                     <Route path="/post/:id" exact
                         component={(props) => <PostPage {...props} />} />
 
                     <Route path="/search/:query" exact
                         component={(props) => <SearchResults {...props} />} />
+
+                    <Route path="/" component={HomePage} />
+
                 </Switch>
             </Layout>
 

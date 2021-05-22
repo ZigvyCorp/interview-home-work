@@ -20,7 +20,6 @@ const Comment = (props) => {
                 <p>{props.comment.body}</p>
 
                 <button onClick={replyHandler}>Reply to</button>
-
             </div>
 
         </div>
