@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "username":{
+            "type": "string"
+        },
+        "password":{
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "dob":{
+            "type": "string"
+        }
+    }
+}

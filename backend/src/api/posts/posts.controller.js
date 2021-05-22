@@ -18,7 +18,7 @@ const getPost = (req,res) => {
         res.status(200).send({message:'The post is',data:post})
     } catch (error) {
         if (error instanceof dbErrors.NotFound) {
-            res.status(404).send({message:'Not Found'})
+            res.status(404).send({message:error.message})
         }
         res.status(500).send({message:'Internal Server Error'})
 
@@ -33,7 +33,7 @@ const getComments = (req,res) => {
         res.status(200).send({message:'The comments are',data:comments})
     } catch (error) {
         if (error instanceof dbErrors.NotFound) {
-            res.status(404).send({message:'Not Found'})
+            res.status(404).send({message:error.message})
         }
         res.status(500).send({message:'Internal Server Error'})
     }
@@ -59,7 +59,7 @@ const updatePost = (req,res) => {
         res.status(200).send({message:'The post has been updated'})
     } catch (error) {
         if (error instanceof dbErrors.NotFound) {
-            res.status(404).send({message:'Not Found'})
+            res.status(404).send({message:error.message})
         }
         res.status(500).send({message:'Internal Server Error'})
     }
@@ -73,7 +73,7 @@ const deletePost = (req,res)=>{
         res.status(200).send({message:'The post has been deleted'})
     } catch (error) {
         if (error instanceof dbErrors.NotFound) {
-            res.status(404).send({message:'Not Found'})
+            res.status(404).send({message:error.message})
         }
         res.status(500).send({message:'Internal Server Error'})
     }

@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "postId": {
+            "type": "string",
+            "pattern": "[0-9]"
+        }
+    }
+}

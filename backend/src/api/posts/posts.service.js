@@ -10,7 +10,7 @@ class PostService {
   getPost(id) {
     const post = Post.find((post) => post.id === id);
     if (!post) {
-      throw new dbErrors.NotFound();
+      throw new dbErrors.NotFound(`GET - post ${id} not found`);
     }
     return post;
   }
@@ -19,7 +19,7 @@ class PostService {
     const post = Post.find((post) => post.id === id);
 
     if (!post) {
-      throw new dbErrors.NotFound();
+      throw new dbErrors.NotFound(`GET - post ${id} not found`);
     }
 
     const comments = Comment.filter(({ post }) => post === id);
@@ -33,7 +33,7 @@ class PostService {
     const createdPost = {
       id: lastId + 1,
       owner: owner || null,
-      title: title || "",
+      title,
       content: content || "",
       created_at: Date.now(),
       tags: tags || [],
@@ -49,7 +49,7 @@ class PostService {
     const post = Post.find((post) => post.id === id);
 
     if (!post) {
-      throw new dbErrors.NotFound();
+      throw new dbErrors.NotFound(`GET - post ${id} not found`);
     }
 
     Object.assign(post, fieldsToUpdate);
@@ -60,7 +60,7 @@ class PostService {
     const post = Post.find((post) => post.id === id);
 
     if (!post) {
-      throw new dbErrors.NotFound();
+      throw new dbErrors.NotFound(`GET - post ${id} not found`);
     }
 
     const result = Post.filter(post => post.id !== id)
