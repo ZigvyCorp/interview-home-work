@@ -1,0 +1,12 @@
+{
+    "type": "object",
+    "properties":{
+        "owner":{
+            "type": "string",
+            "pattern": "[0-9]"
+        },
+        "content":{
+            "type":"string"
+        }
+    }
+}
