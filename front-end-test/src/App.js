@@ -1,5 +1,4 @@
 import { Route, Switch } from 'react-router-dom';
-import './App.css';
 import HomePage from './pages/Home';
 import PostPage from './pages/PostDetails';
 import Layout from './hoc/Layout';

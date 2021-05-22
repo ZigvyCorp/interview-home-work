@@ -1,22 +1,7 @@
-.PostComment {
-    display: flex;
-    margin-bottom: 30px;
-}
-
-.ProfileImg {
-    margin-right: 20px;
-}
-
-.ProfileImg img {
-    border-radius: 50%;
-}
-
 .CommentDetails button {
     background-color: transparent;
-    border: none;
     font-size: 1.1rem;
     color: rgb(163, 163, 163);
-    padding: 0;
 }
 .CommentDetails button:hover {
     color: rgb(32, 128, 192);

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Comment from '../../common/AllPosts/HomePost/Comment'
-import { useSelector } from 'react-redux'
 
 const PostPage = (props) => {
     const [post, setPost] = useState(null)
@@ -16,7 +15,7 @@ const PostPage = (props) => {
             setComments(props.location.state.comments)
             setAuthor(props.location.state.author)
         }
-    })
+    }, [props.location.state, props.history])
 
 
 
@@ -41,7 +40,7 @@ const PostPage = (props) => {
 
             <div className="border-top pt-3">
                 <h3>{comments.length} comments</h3>
-                {comments.map(cmt => <Comment comment={cmt} />)}
+                {comments.map(cmt => <Comment key={`comment-${cmt.id}-${cmt.userId}`} comment={cmt} />)}
             </div>
         </div> : ''
     );

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CommonHeader from '../../common/Header'
 import SearchBar from '../../common/SearchBar'
-import './styles.css'
 
 class Layout extends Component {
 
@@ -10,7 +9,7 @@ class Layout extends Component {
             <div className="Layout" id="Layout">
                 <CommonHeader />
                 <SearchBar />
-                <main>
+                <main className="p-4">
                     {this.props.children}
                 </main>
             </div>

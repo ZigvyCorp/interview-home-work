@@ -40,9 +40,9 @@ const SearchBar = () => {
 
     return (
         <div>
-            <form className="form-inline mt-3">
+            <form className="form-inline mt-3 d-flex w-100">
                 <div className="form-group mb-0">
-                    <input type="text" className="form-control"
+                    <input type="text" className="form-control d-inline w-100"
                         onChange={e => setQuery(e.target.value)}
                         onKeyPress={handleEnterPressed}
                         id="search-bar" placeholder="Search for a post" />
@@ -52,7 +52,7 @@ const SearchBar = () => {
 
             {/* Modal */}
             <div className="ModalContainer">
-                <div className="modal" id="search-modal" role="dialog">
+                <div className="modal d-none" id="search-modal" role="dialog">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-header justify-content-center">

@@ -1,11 +1,5 @@
 .PostHome {
     border-bottom: 2px solid rgb(35, 177, 177);
-    padding-bottom: 30px;
-}
-
-.PostHome h3 {
-    text-align: center;
-    text-transform: capitalize;
 }
 
 .PostHome a:hover {
@@ -13,15 +7,9 @@
     color: #1a446b;
 }
 
-.CommentsSection {
-    margin-top: 50px;
-}
 
 .CommentsSummary {
-    display: flex;
     border-bottom: 1px solid rgb(179, 179, 179);
-    align-items: center;
-    justify-content: space-between;
 }
 
 .CommentsSummary > * {

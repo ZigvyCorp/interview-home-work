@@ -30,8 +30,8 @@ const HomePost = (props) => {
     const AllCommentsClassName = isCmtHidden ? "AllComments" : "AllComments show"
 
     return (
-        <div className="PostHome mt-3">
-            <h3><Link to={{
+        <div className="PostHome mt-3 pb-3">
+            <h3 className="text-center text-capitalize"><Link to={{
                 pathname: "/post/" + props.post.id,
                 state: {
                     post: props.post,
@@ -47,8 +47,8 @@ const HomePost = (props) => {
 
             <p>{displayBody}</p>
 
-            <div className="CommentSection">
-                <div className="CommentsSummary">
+            <div className="CommentSection mt-3">
+                <div className="CommentsSummary d-flex justify-content-between align-items-center">
                     <p className="text-muted h6">{comments ? comments.length : ''} replies</p>
                     <button className="SeeAllToggler" onClick={seeAllCommentsHandler}>
                         {isCmtHidden ? 'See All' : 'Hide All'}</button>

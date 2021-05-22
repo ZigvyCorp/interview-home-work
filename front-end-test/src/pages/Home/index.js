@@ -10,7 +10,9 @@ const HomePage = () => {
     const posts = useSelector(state => state.posts.posts)
 
     useEffect(() => {
-        dispatch(getPosts())
+        if (!posts) {
+            dispatch(getPosts())
+        }
     }, [dispatch])
 
 
