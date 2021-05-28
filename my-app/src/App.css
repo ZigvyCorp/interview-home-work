@@ -1,0 +1,80 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 8vmin;
+  pointer-events: none;
+}
+
+.containter-logo {
+  text-align: center;
+}
+
+.text-logo {
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(6px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.container{
+  padding: 1rem 2rem;
+}
+
+.Account{
+  align-items: center;
+  margin-left: .6rem;
+  font-size: 1rem;
+}
+
+.title-blog{
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.author-blog{
+  text-align: left;
+  font-size: 1rem;
+}
+
+.date-blog{
+  font-size: 1rem;
+}
+
+.content-blog{
+  text-align: left;
+  font-size: 1rem;
+}
+
+.comment-containter{
+  text-align: left;
+}
+
+.username{
+  font-size: 1rem;
+}
