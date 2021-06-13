@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+}
+
+
+.App {
+  text-align: center;
+}
+
+.my-row {
+  height: 50px;
+}
+
+.grey-div {
+  width: 10%;
+  height: 100%;
+  background-color: antiquewhite;
+}
+
+.my-blog {
+  position: relative;
+  background-color: #E6E6E6;
+  border-left: 3px solid #000;
+  border-right: 3px solid #000;
+  box-sizing: border-box;
+}
+
+.my-blog::before {
+  content: '';
+  position: absolute;
+  top:100%;
+  left: 50%;
+  margin-left: -50px;
+  width: 0;
+  height: 0;
+  border-top: solid 30px #E6E6E6;
+  border-left: solid 45px transparent;
+  border-right: solid 45px transparent;
+}
+
+.my-background-color {
+  background-color: #E6E6E6;
+}
+
+.logo {
+  width: 45px; 
+  height: 45px;
+}
