@@ -102,8 +102,11 @@ export default function Post({post}){
  
 
 const onOpen = React.useCallback(() => {
-  dispatch(showComment());
-  
+  if(isShowCmts == false)
+  {
+    dispatch(showComment());
+  }
+ else
  {
 
   dispatch(hideComment());
