@@ -23,7 +23,7 @@ export default function Post({post}){
 
   const dispatch = useDispatch();
   const  {isShowCmts}  = useSelector(commentState$);
-  console.log(isShowCmts);
+
   const abortController = new AbortController();
   const signal = abortController.signal;
   const [values, setValues] = useState({
@@ -99,16 +99,27 @@ export default function Post({post}){
     );
   }
 
+ const update = () => {
+  
  
+  getShow(current => !current);
+
+};
+useEffect( () => {
+  console.log(showInfo);
+}, [showInfo]);
 
 const onOpen = React.useCallback(() => {
-  if(isShowCmts == false)
+ 
+  if(showInfo == false)
   {
+    console.log("yes");
     dispatch(showComment());
+    update();
   }
  else
  {
-
+  console.log("no");
   dispatch(hideComment());
  }
 }, [dispatch]);
@@ -141,12 +152,12 @@ const onOpen = React.useCallback(() => {
         </Typography>
       </CardContent>
      
-              <IconButton onClick={onOpen} className={classes.button} aria-label="Comment" color="secondary">
+              <IconButton key={post._id} onClick={onOpen} className={classes.button} aria-label="Comment" color="secondary">
                 <CommentIcon/>
               </IconButton> <span>{values.comments.length}</span>
      
           <Divider/>
-            <div style={{display: isShowCmts ? 'block' : 'none' }}>
+            <div style={{display: showInfo ? 'block' : 'none' }}>
             {
                 
                 values.comments.map((item, i) => {
