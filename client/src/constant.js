@@ -7,7 +7,7 @@ export const INIT_STATE = {
         isShow : false
     },
     commentLoad:{
-        isShow : false
-    }
+        isShowCmts : false
+    },
 
 };

@@ -12,7 +12,7 @@ import { AuthContext } from "../../../context/AuthContext";
 import {comment,findPeople} from '../../../api/index';
 import Divider from '@material-ui/core/Divider'
 import PropTypes from 'prop-types';
-import { showComment } from '../../../redux/actions';
+import { showComment,hideComment } from '../../../redux/actions';
 export default function Post({post}){
   const { user } = useContext(AuthContext);
   const classes = useStyles();
@@ -22,8 +22,8 @@ export default function Post({post}){
   } 
 
   const dispatch = useDispatch();
-  const  isShowcmt  = useSelector(commentState$);
-  console.log(isShowcmt);
+  const  {isShowCmts}  = useSelector(commentState$);
+  console.log(isShowCmts);
   const abortController = new AbortController();
   const signal = abortController.signal;
   const [values, setValues] = useState({
@@ -84,6 +84,7 @@ export default function Post({post}){
       if (data && data.error) {
         console.log(data.error)
       } else {
+    
         setUser(data[0].name,getUser);
       
         
@@ -103,6 +104,10 @@ export default function Post({post}){
 const onOpen = React.useCallback(() => {
   dispatch(showComment());
   
+ {
+
+  dispatch(hideComment());
+ }
 }, [dispatch]);
 
 
@@ -138,7 +143,7 @@ const onOpen = React.useCallback(() => {
               </IconButton> <span>{values.comments.length}</span>
      
           <Divider/>
-            <div open={isShowcmt}>
+            <div style={{display: isShowCmts ? 'block' : 'none' }}>
             {
                 
                 values.comments.map((item, i) => {

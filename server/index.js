@@ -11,7 +11,7 @@ dotenv.config();
  
 const app = express();
 const PORT = process.env.PORT || 5000;
-const URI = 'mongodb+srv://admin:PGBWA9nJB2YxLbJW@cluster0.9efe8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const URI = 'mongodb+srv://admin:admin123@cluster0.9efe8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 
 app.use(bodyParser.json({limit: '30mb'}));

@@ -1,15 +1,15 @@
 import { INIT_STATE } from '../../constant';
 import { getType, hideComment, showComment } from '../actions';
 
-export default function commentReducers(state = INIT_STATE.modal, action) {
+export default function commentReducers(state = INIT_STATE.commentLoad, action) {
   switch (action.type) {
-    case getType(showModal):
+    case getType(showComment):
       return {
-        isShow: true,
+        isShowCmts: true,
       };
-    case getType(hideModal):
+    case getType(hideComment):
       return {
-        isShow: false,
+        isShowCmts: false,
       };
     default:
       return state;
