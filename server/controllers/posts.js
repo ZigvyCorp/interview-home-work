@@ -1,16 +1,20 @@
 import { PostModel } from "../models/PostModel.js";
 
-export const getPosts = async (req,res) => {
-    try {
-    
-        const posts = await PostModel.find();
-  
-    res.status(200).json(posts);
-    } catch (err) {
-        res.status(500).json({ error : err});
-    }
-};
 
+export const getPosts = async (req, res) => {
+
+  try{
+    let posts = await PostModel.find()
+                          .populate('comments.postedBy', '_id name')
+                          .populate('postedBy', '_id name')
+                          .sort('-created')
+                          .exec()
+    
+    res.status(200).json(posts);
+  }catch(err){
+    res.status(500).json({ error : err});
+  }
+};
 export const createPost = async (req,res) => {
     try {
      const newPost = req.body;

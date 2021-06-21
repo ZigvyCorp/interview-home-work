@@ -31,10 +31,12 @@ export default function Post({post}){
     comments: post.comments
   })
   const [getUser, setUser] = useState("");
- 
-  const [count, setCount] = useState(0);
+
   const [showInfo,getShow] = useState(false);
-  
+  console.log("e  "+getUser);
+
+
+
   const addComment = (event) => {
     if(event.keyCode == 13 && event.target.value){
       event.preventDefault()
@@ -45,59 +47,46 @@ export default function Post({post}){
         if (data.error) {
           console.log(data.error);
         } else {
-          setText('')
-          updateComments(data.comments)
+          setText('');
+          updateComments(data.comments);
+          
         }
       })
     }
   }
-  const commentBody = item => {
+  const CommentBody = item2=> {
+
+  
+  
+
+
+    
     return (
       
     
-      <CardContent>   
-         <CardHeader avatar={<Avatar>A</Avatar>}
-        title={getUserById(item.postedBy)}
-        subheader={moment(item.updatedAt).format('HH:MM MMM DD,YYYY')}
-        action={
-            <IconButton>
-              <MoreVertIcon />
-            </IconButton>
-          }
-        />
-        <Typography variant='body2' color='textPrimary'>
-        {item.text}
-
-        </Typography>
-        <Typography variant='body2' component='p' color='textSecondary'>
-      
-        </Typography>
-      </CardContent>
-     
-    )
+        <CardContent>   
+           <CardHeader avatar={<Avatar>A</Avatar>}
+          title={item2.postedBy.name}
+          subheader={moment(item2.updatedAt).format('HH:MM MMM DD,YYYY')}
+          action={
+              <IconButton>
+                <MoreVertIcon />
+              </IconButton>
+            }
+          />
+          <Typography variant='body2' color='textPrimary'>
+          {item2.text}
+  
+          </Typography>
+          <Typography variant='body2' component='p' color='textSecondary'>
+        
+          </Typography>
+        </CardContent>
+       
+      )
   }
 
-  const getUserById = item => {
-    findPeople({
-      userId: item
-    }, signal).then((data) => {
-      if (data && data.error) {
-        console.log(data.error)
-      } else {
-    
-        setUser(data[0].name,getUser);
-      
-        
-      }
-    });
-    return(
-      <p >
-        
-        {getUser}
-    
-      </p>
-    );
-  }
+  
 
  const update = () => {
   
@@ -105,9 +94,8 @@ export default function Post({post}){
   getShow(current => !current);
 
 };
-useEffect( () => {
-  console.log(showInfo);
-}, [showInfo]);
+
+
 
 const onOpen = React.useCallback(() => {
  
@@ -124,16 +112,16 @@ const onOpen = React.useCallback(() => {
  }
 }, [dispatch]);
 
-
-  const updateComments = (comments) => {
-    console.log(comments);
+const updateComments = React.useCallback((comments) => {
+  console.log(comments);
     setValues({...values, comments: comments})
-  }
+}, [values]);
+ 
 
 
     return (<Card>
         <CardHeader avatar={<Avatar>A</Avatar>}
-        title={getUserById(post.postedBy)}
+        title={post.postedBy.name}
         subheader={moment(post.updatedAt).format('HH:MM MMM DD,YYYY')}
         action={
             <IconButton>
@@ -163,7 +151,7 @@ const onOpen = React.useCallback(() => {
                 values.comments.map((item, i) => {
                 return <CardHeader
                         
-                title={commentBody(item)}
+                title={CommentBody(item)}
                 className={classes.cardHeader}
                 key={i}/>
 
