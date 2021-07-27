@@ -1,0 +1,89 @@
+<!doctype html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create author</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body style="background-color:#b2cecf;">
+    <!--  -->
+    
+    
+    <style>
+      .styleform  {
+        padding: 5%;
+        border-color: blueviolet;
+        margin-left: 30%;
+      }
+
+    </style>
+    <div class="row">
+      <form class="col-5 styleform " action="/user" method="post" >
+        <h1 style="margin-bottom: 5%;">Create author</h1>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" class="form-control" id="username" name="username" placeholder="Username" >
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password" >
+        </div>
+        <div class="form-group">
+          <label for="name">Fullname</label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Fullname" >
+        </div>
+        <div class="form-group">
+          <label for="dob">Day of birth</label>
+          <input type="date" class="form-control" id="dob" name="dob" >
+        </div>
+        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+        <a class="btn btn-warning" href="/">Home</a>
+      </form>
+
+     
+
+    </div>
+    <div class="row">
+      <div class="col-12">
+      <div class="card">
+          <div class="card-header">
+         <p><h3>User</h3></p> 
+          </div>
+          <div class="card-body">
+          <div class="table-responsive">
+              <table class="table table-hover">
+                  <thead>
+                      <tr>
+                          <th class="text-center">name</th>
+                          <th class="text-center">Username</th>
+                          <th class="text-center">Birthday</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <!-- row 1-->
+              <% if (users && users.length) { %>
+                  <% users.forEach(e => {%>
+                      <tr>
+                          <td  class="text-center" style="width : 80px ;"><%- `${e.name}`%></td>
+                          <td  class="text-center"><%- `${e.username}`%></td>
+                          <td class="text-center" style="width : 70px ;  "><%- `${e.created_at.getDate()}/${e.created_at.getMonth() + 1}/${e.created_at.getFullYear()}` %></td>
+                          
+                      </tr>
+              <% }) } %> 
+                  </tbody>
+              <!-- end row 1 -->
+              </table>
+          </div>
+          </div>
+
+      </div>
+      </div>
+  </div>
+
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   
+  </body>
+</html>

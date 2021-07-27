@@ -1,0 +1,95 @@
+<!doctype html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello (^_^)</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body style="background-color:#b2cecf;">
+    <!--  -->
+    
+    <style>
+      .styleform  {
+        padding: 5%;
+        border-color: blueviolet;
+        margin-left: 30%;
+      }
+
+    </style>
+    
+    <div class="row">
+      <form class="col-5 styleform " action="/post" method="post">
+        <h1 style="margin-bottom: 5%;">Create new Post</h1>
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" id="title" name="title" placeholder="title" required>
+         
+        </div>
+        <div class="form-group">
+          <label for="content">Content</label>
+          <textarea type="text" class="form-control" id="content" name="content" placeholder="Content" required></textarea>
+          <small class="form-text text-muted">100 first characters of the content</small>
+        </div>
+        <div class="form-group">
+          <label for="tags">tags</label>
+          <input type="text" class="form-control" id="tags" name="tags" placeholder="tags" required>
+          <small class="form-text text-muted">tags are separated by commas</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Owner</label>
+          <select class="form-control" name="owner" id="owner" required>
+            <option>Please select the author's article</option>
+            <% if(owners && owners.length){ %> 
+              <% owners.forEach(e=>{ %> 
+            <option value="<%- e._id %>"><%- e.name && e.name %></option>
+            <% }) %> 
+            <% } %> 
+          </select>
+        </div>
+        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+        <a class="btn btn-warning" href="/">Home</a>
+      </form>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+      <div class="card">
+          <div class="card-header">
+         <p><h3>User</h3></p> 
+          </div>
+          <div class="card-body">
+          <div class="table-responsive">
+              <table class="table table-hover">
+                  <thead>
+                      <tr>
+                          <th class="text-center">Title</th>
+                          <th class="text-center">Content</th>
+                          <th class="text-center">Created at</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <!-- row 1-->
+              <% if (posts && posts.length) { %>
+                  <% posts.forEach(e => {%>
+                      <tr>
+                          <td  class="text-center" style="width : 80px ;"><%- `${e?.title}`%></td>
+                          <td  class="text-center"><%- `${e?.content}`%></td>
+                          <td class="text-center" style="width : 70px ;  "><%- `${e.created_at.getDate()}/${e.created_at.getMonth() + 1}/${e.created_at.getFullYear()}` %></td>
+                          
+                      </tr>
+              <% }) } %> 
+                  </tbody>
+              <!-- end row 1 -->
+              </table>
+          </div>
+          </div>
+
+      </div>
+      </div>
+  </div>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </body>
+</html>
