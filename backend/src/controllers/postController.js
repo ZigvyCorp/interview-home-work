@@ -1,15 +1,16 @@
 import asyncHandler from 'express-async-handler';
 import mongoose from 'mongoose';
+import CommentModel from '../models/commentModel.js';
 import PostModel from '../models/postModel.js';
 
 //@desc		create a new post
 //@route	POST /api/posts
 //@access private
 export const createPost = asyncHandler(async (req, res) => {
-	const { owner, title, content, tags } = req.body;
+	const { title, content, tags } = req.body;
 
 	const post = await PostModel.create({
-		owner,
+		owner: req.currentUser.id,
 		title,
 		content,
 		tags,
@@ -75,3 +76,17 @@ export const updatePost = asyncHandler(async (req, res) => {
 //@desc 	get comments in post
 //@route 	GET /api/posts/:id/comments
 //@access public
+export const getCommentsByPostid = asyncHandler(async (req, res) => {
+	const postId = req.params.id;
+
+	const post = await PostModel.findById(postId);
+	if (!post) {
+		res.status(404);
+		throw new Error('post not found');
+	}
+
+	const commentsByPostid = await CommentModel.find({
+		post: postId
+	});
+	res.json(commentsByPostid);
+})
