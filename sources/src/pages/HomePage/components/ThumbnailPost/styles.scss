@@ -10,22 +10,48 @@
         text-align: center;
         h1 {
             font-weight: 600;
-            font-size: 4rem;
+            font-size: 2rem;
         }
     }
     .listing-primary-info {
         .listing-primary-info-user {
             h2 {
                 font-weight: 500;
-                font-size: 1.5rem;
+                font-size: 1.2rem;
+            }
+            span {
+                margin-left: 10px;
+                color: rgb(155, 151, 151);
+                font-size: 18px;
             }
         }
         .listing-primary-info-tag {
+            span {
+                font-size: 1rem;
+            }
         }
     }
     .listing-primary-content {
         p {
-            font-size: 1.3rem;
+            font-size: 1rem;
+        }
+    }
+    .listing-primary-button {
+        text-align: center;
+        .btn-custom {
+            transition: 0.5s;
+            background-color: black;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 600;
+            border-radius: 15px;
+            padding: 6px 20px;
+            height: 100%;
+        }
+        .btn-custom:hover {
+            background-color: #fff;
+            color: black;
+            border: 1px solid black;
         }
     }
 }

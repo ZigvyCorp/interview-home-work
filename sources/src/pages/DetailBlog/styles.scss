@@ -1,0 +1,36 @@
+.detail-blog {
+    max-width: 1140px;
+    margin: auto;
+    .detail-blog-title {
+        text-align: center;
+        h1 {
+            font-weight: 600;
+            font-size: 3rem;
+        }
+    }
+    .detail-blog-info {
+        .detail-blog-info-user {
+            h2 {
+                font-weight: 500;
+                font-size: 1.2rem;
+            }
+            span {
+                margin-left: 10px;
+                color: rgb(155, 151, 151);
+                font-size: 18px;
+            }
+        }
+        .detail-blog-info-tag {
+            span {
+                font-size: 1rem;
+            }
+        }
+    }
+    .detail-blog-content {
+        p {
+            font-size: 1rem;
+        }
+    }
+    .detail-blog-comment {
+    }
+}

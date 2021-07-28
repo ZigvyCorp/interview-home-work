@@ -5,7 +5,6 @@ function Header(props) {
     return (
         <div className="main-header">
             <div className="header-logo">
-
             </div>
             <div className="header-blogs">
                 <h1>Blogs</h1>
