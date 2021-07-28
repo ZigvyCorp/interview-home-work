@@ -1,0 +1,31 @@
+.listing-primary {
+    margin: 0 5px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 9px 0 rgba(34, 12, 43, 0.1);
+    margin-bottom: 0px;
+    height: 100%;
+    .listing-primary-title {
+        text-align: center;
+        h1 {
+            font-weight: 600;
+            font-size: 4rem;
+        }
+    }
+    .listing-primary-info {
+        .listing-primary-info-user {
+            h2 {
+                font-weight: 500;
+                font-size: 1.5rem;
+            }
+        }
+        .listing-primary-info-tag {
+        }
+    }
+    .listing-primary-content {
+        p {
+            font-size: 1.3rem;
+        }
+    }
+}
