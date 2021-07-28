@@ -1,6 +1,5 @@
 import asyncHandler from 'express-async-handler';
 import UserModel from '../models/userModel.js';
-import jwt from 'jsonwebtoken';
 import { generateJWT } from '../utils/generateJWT.js';
 
 //@desc   Register a new user
@@ -45,7 +44,7 @@ export const signin = asyncHandler(async (req, res) => {
 
 		res.status(201).send(user);
 	} else {
-		res.status(401);
+		res.status(400);
 		throw new Error('Invalid email or password');
 	}
 })
