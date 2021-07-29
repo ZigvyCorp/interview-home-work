@@ -1,0 +1,5 @@
+export const LIST_ALL = 'LIST_ALL';
+export const FETCH_ALL_POSTS = 'FETCH_ALL_POSTS'
+export const FETCH_ALL_USERS = 'FETCH_ALL_USERS'
+export const FETCH_ALL_COMMENTS = 'FETCH_ALL_COMMENTS'
+export const ADD_POSTS = 'ADD_POSTS'

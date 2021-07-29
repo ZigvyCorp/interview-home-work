@@ -1,0 +1,15 @@
+.posts{
+    /* background: #444; */
+}
+
+
+.post{
+    /* background: #119999; */
+    cursor: pointer;
+}
+.postTitle{
+    /* background: #000; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
