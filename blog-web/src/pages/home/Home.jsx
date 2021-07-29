@@ -29,12 +29,13 @@ class Home extends Component {
         }
     }
     render() {
+        console.log(this.props);
         return (
             <div className="home">
                 <div className="input-group rounded mt-3 px-5 pt-3 mb-5">
                     <input type="search" className="form-control rounded" placeholder="Search" aria-label="Search"
                         aria-describedby="search-addon" />
-                    <span onClick={() => console.log("asd")} className="input-group-text border-0 btn btn-success" id="search-addon">
+                    <span onClick={(e) => this.props.searchPost(e.target.value)} className="input-group-text border-0 btn btn-success" id="search-addon">
                         <i className="fas fa-search"></i>
                     </span>
                 </div>
@@ -177,6 +178,9 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         addPost: (data) => {
             dispatch(actions.addPosts(data));
+        },
+        searchPost: (data) => {
+            dispatch(actions.searchPosts(data));
         }
     }
 }

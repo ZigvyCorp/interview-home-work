@@ -22,7 +22,10 @@ var myReducer = (state = initialState, action) => {
             return state
         case types.ADD_POSTS:
             state.posts.push(action.data);
-            return [...state]
+            return state
+        case types.SEARCH_POSTS:
+            console.log(action)
+            return state
         default: return state;
     }
 

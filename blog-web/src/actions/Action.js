@@ -33,3 +33,10 @@ export const addPosts = (data) => {
         data: data
     }
 }
+
+export const searchPosts = (data) => {
+    return {
+        type: types.SEARCH_POSTS,
+        data: data
+    }
+}
