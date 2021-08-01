@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-export default function Post({ post, id }) {
+export default function Post({ post }) {
   return (
     <Card style={{ width: '25vw', margin: '1rem' }}>
       <Card.Img
@@ -14,12 +14,8 @@ export default function Post({ post, id }) {
         <Card.Title>
           {post?.title?.charAt(0).toUpperCase() + post?.title?.substring(1)}
         </Card.Title>
-        <Card.Text>
-          {post?.body?.slice(0, 99) + '...'}
-          {/* <br />
-      Comments: {} */}
-        </Card.Text>
-        <Button variant='info' as={Link} to={`/posts/${id}`}>
+        <Card.Text>{post?.body?.slice(0, 99) + '...'}</Card.Text>
+        <Button variant='info' as={Link} to={`/posts/${post.id}`}>
           Read more
         </Button>
       </Card.Body>
