@@ -1,0 +1,20 @@
+.Post {
+  margin: 6rem 5rem;
+  font-size: 4rem;
+}
+
+.Title {
+  font-size: 4.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.Author {
+  line-height: 3.5rem;
+}
+
+.Content {
+  margin-top: 3rem;
+  line-height: 3.5rem;
+}

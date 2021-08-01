@@ -1,0 +1,24 @@
+.Comments {
+  margin: 6rem 5rem;
+  font-size: 5rem;
+}
+
+.cmtBtn {
+  display: flex;
+  color: #555555;
+}
+
+.cmtBtn button {
+  background-color: white;
+  border: none;
+  color: red;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.Comments hr {
+  background-color: #cec8c8;
+  border: 0 none;
+  color: #cec8c8;
+  height: 1.5px;
+}

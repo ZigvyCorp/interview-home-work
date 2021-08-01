@@ -1,0 +1,33 @@
+.cmtContainer {
+  display: flex;
+  font-size: 5rem;
+  margin: 3rem 0;
+}
+
+.cmtName {
+  font-size: 3rem;
+  display: flex;
+  color: gray;
+}
+
+.cmtContent {
+  margin: 2rem 0;
+  font-size: 2.2rem;
+  line-height: 3rem;
+  color: #555555;
+}
+
+.Name {
+  margin-right: 1.5rem;
+}
+
+.Ava {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  margin-right: 3rem;
+}
+
+.Reply {
+  color: gray;
+}
