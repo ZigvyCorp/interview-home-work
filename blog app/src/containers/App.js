@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Header from "../components/Header/Header";
 import Posts from "../components/Posts/Posts";
 import { Route, Switch } from "react-router-dom";
-import { fetchPosts, fetchComments } from "../store/actions/post";
+import { fetchPosts, fetchComments, persistPosts } from "../store/actions/post";
 import InfiniteScroll from "react-infinite-scroll-component";
 import FullPost from "./FullPost/FullPost";
 import Spinner from "../components/Spinner/Spinner";
@@ -15,11 +15,15 @@ class App extends Component {
   componentDidMount() {
     this.props.fetchingPosts(this.state.page);
     this.props.fetchComments();
+    this.props.persistPosts();
   }
 
-  componentDidUpdate(_, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (prevState.page !== this.state.page) {
       this.props.fetchingPosts(this.state.page);
+    }
+    if (prevProps.showPosts !== this.props.showPosts) {
+      this.props.persistPosts();
     }
   }
 
@@ -76,6 +80,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchingPosts: (page) => dispatch(fetchPosts(page)),
     fetchComments: () => dispatch(fetchComments()),
+    persistPosts: () => dispatch(persistPosts()),
   };
 };
 

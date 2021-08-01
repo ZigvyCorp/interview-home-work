@@ -49,7 +49,6 @@ export const fetchLoadedPostsSuccess = (results) => {
 
 export const fetchLoadedPost = (id) => {
   return (dispatch) => {
-
     axios
       .get(`${actionTypes.API_URL}/posts/${id}`)
       .then((response) => {
@@ -75,5 +74,12 @@ export const fetchLoadedComments = (id) => {
         dispatch(fetchLoadedCommentsSuccess(response.data));
       })
       .catch((err) => console.log(err));
+  };
+};
+
+//Persist posts
+export const persistPosts = () => {
+  return {
+    type: actionTypes.PERSIST_POST,
   };
 };

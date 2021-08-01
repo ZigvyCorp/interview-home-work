@@ -7,5 +7,7 @@ export const FETCH_COMMENTS_SUCCESS = "FETCH_COMMENTS_SUCCESS";
 
 //Loaded Post
 export const FETCH_LOADED_POST = "FETCH_LOADED_POST";
-
 export const FETCH_LOADED_CMTS = "FETCH_LOADED_CMTS";
+
+//Persist posts
+export const PERSIST_POST = "PERSIST_POST";

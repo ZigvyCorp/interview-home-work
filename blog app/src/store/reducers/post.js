@@ -34,6 +34,10 @@ const reducer = (state = initialState, action) => {
         loadedCmt: action.results,
       };
 
+    case actionTypes.PERSIST_POST:
+      localStorage.setItem("posts", JSON.stringify(state.posts));
+      return state;
+
     default:
       return state;
   }
