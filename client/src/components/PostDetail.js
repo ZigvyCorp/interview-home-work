@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
+import Moment from 'react-moment';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function PostDetail() {
@@ -7,7 +8,13 @@ export default function PostDetail() {
 
   const [detail, setDetail] = useState({});
   const [comments, setComments] = useState([]);
+  const [time, setTime] = useState('');
   const { id } = useParams();
+  const randomDate = (start, end) => {
+    return new Date(
+      start.getTime() + Math.random() * (end.getTime() - start.getTime())
+    );
+  };
 
   useEffect(() => {
     getPostDetail();
@@ -16,19 +23,24 @@ export default function PostDetail() {
   async function getPostDetail() {
     const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
     const data = await res.json();
-    // console.log('details', data);
     const resComments = await fetch(
       `https://jsonplaceholder.typicode.com/posts/${id}/comments`
     );
     const dataComments = await resComments.json();
     setDetail(data);
     setComments(dataComments);
+    setTime(randomDate(new Date(2015, 0, 1), new Date()));
   }
   return (
-    <div className='d-flex flex-column'>
-      <h1> {detail?.title}</h1>
-      <p>{detail?.body}</p>
-      <p>Comments:{comments?.length} </p>
+    <div className='d-flex flex-column m-5 p-5'>
+      <h1 className='text-capitalize'> {detail?.title}</h1>
+      <Moment style={{ fontSize: '1.5rem', marginBottom: '2rem' }} fromNow>
+        {time}
+      </Moment>
+      <p style={{ fontSize: '1.3rem' }}>{detail?.body}</p>
+      <p style={{ fontSize: '1.3rem', fontWeight: 'bold' }}>
+        Comments: {comments?.length}
+      </p>
     </div>
   );
 }

@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-
 import SearchBox from './SearchBox';
-
 import Post from './Post';
 // import Pagination from './Pagination';
 
@@ -9,7 +7,7 @@ export default function PostList() {
   const [url, setUrl] = useState('https://jsonplaceholder.typicode.com/posts');
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  console.log(posts);
+  // console.log(posts);
   useEffect(() => {
     requestPosts();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -17,22 +15,19 @@ export default function PostList() {
   async function requestPosts() {
     const res = await fetch(url);
     const data = await res.json();
-
     localStorage.setItem('posts', JSON.stringify(data));
-
     setPosts(data);
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // setUrl(`https://jsonplaceholder.typicode.com/posts?${searchTerm}`);
-
     // console.log(e);
     let storedPosts = JSON.parse(localStorage.getItem('posts') || '[]');
     let filterPosts = storedPosts.filter((filtered) =>
       filtered.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    console.log(filterPosts);
+    // console.log(filterPosts);
     setPosts(filterPosts);
     setSearchTerm('');
   };
