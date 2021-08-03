@@ -18,7 +18,8 @@
       - Where xx is the current year.
   - Work and commit codes on **your new branch**.
   - When you finish your work, **push** the branch on your **forked repo**.
-  - **Email us to notify** that you have done the test.
+  - Create a PR from your forked repo to the origin repo.
+  - **Email us the link of your PR to notify** that you have done the test.
 
 ## MOCK EXTERNAL-API: https://jsonplaceholder.typicode.com/
   You're going to use some set of APIs below
