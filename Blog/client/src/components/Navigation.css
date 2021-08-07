@@ -1,0 +1,15 @@
+.Navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--co-main);
+    height: 5rem;
+    width: 100%;
+    z-index: 1;
+}
+
+.logo{
+width: 10rem;
+margin: auto 10.3rem;
+padding-top: 0.2rem;
+}
