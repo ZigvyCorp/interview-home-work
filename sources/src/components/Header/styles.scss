@@ -1,0 +1,32 @@
+.main-header {
+    display: flex;
+    justify-content: space-between;
+
+    .header-logo {
+        background-image: url("https://itviec.com/rails/active_storage/representations/proxy/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBOEkwREE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--b8e41423e13aa379726379f1552baa9049a242ca/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDVG9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFJc0FXa0NMQUU2RDJKaFkydG5jbTkxYm1SSklnd2pSa1pHUmtaR0Jqc0dWRG9MWlhoMFpXNTBTU0lNTXpBd2VETXdNQVk3QmxRPSIsImV4cCI6bnVsbCwicHVyIjoidmFyaWF0aW9uIn19--e7fdcef80c9ebbfc67976b7f3c603c80163df0b0/zigvy-logo.jpg");
+        height: 100px;
+        width: 100px;
+        background-size: cover;
+        margin-left: 20px;
+        transition: all 0.3s;
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+
+    .header-blogs {
+        background-color: black;
+        margin: 5px 0px 20px 0px;
+        padding: 0px 30px 5px 30px;
+        border-radius: 15px;
+        h1 {
+            margin-top: 10px;
+            color: aliceblue;
+        }
+    }
+
+    .header-user {
+        margin-top: 10px;
+        margin-right: 30px;
+    }
+}
