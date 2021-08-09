@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header') -%>
+
+    <body>
+        <!-- Navigation-->
+        <%- include('layouts/navbar') -%>
+            <!-- Page Header-->
+            <header class="py-5 bg-light border-bottom mb-4">
+                <div class="container">
+                    <div class="text-center my-5">
+                        <h1 class="fw-bolder">Login</h1>
+                    </div>
+                </div>
+            </header>
+            <!-- Main Content-->
+            <main class="mb-4">
+                <div class="container px-4 px-lg-5">
+                    <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <div class="col-md-10 col-lg-8 col-xl-7">
+                            <div class="my-5">
+                                <form action="/users/login" method="POST">
+                                    <div class="mb-3">
+                                        <label for="username" class="form-label">Username</label>
+                                        <input type="text" class="form-control" id="username" name="username"
+                                            placeholder="Enter your username..." data-sb-validations="required">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password"
+                                            placeholder="Enter your password..." data-sb-validations="required">
+                                    </div>
+                                    <!-- Submit Button-->
+                                    <button class="btn btn-primary" id="submitButton" type="submit">Login</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <!-- Footer-->
+            <%- include('layouts/footer') -%>
+                <!-- Bootstrap core JS-->
+                <%- include('layouts/scripts') -%>
+    </body>
+
+</html>

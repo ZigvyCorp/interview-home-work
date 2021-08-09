@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header'); -%>
+
+  <body>
+    <!-- Responsive navbar-->
+    <%- include('layouts/navbar'); -%>
+      <!-- Page header with logo and tagline-->
+      <header class="py-5 bg-light border-bottom mb-4">
+        <div class="container">
+          <div class="text-center my-5">
+            <h1 class="fw-bolder">Welcome to ZIGVY Blog</h1>
+          </div>
+        </div>
+      </header>
+      <!-- Page content-->
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <!-- Side widgets-->
+          <div class="col-md-10">
+            <!-- Search widget-->
+            <div class="card mb-4">
+              <div class="card-header">Search</div>
+              <div class="card-body">
+                <div class="input-group">
+                  <input class="form-control" type="text" placeholder="Enter search term..."
+                    aria-label="Enter search term..." aria-describedby="button-search" />
+                  <button class="btn btn-primary" id="button-search" type="button">
+                    Go!
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Blog entries-->
+          <% for (var i=0; i < blogposts.length; i++) { %>
+            <div class="col-md-10">
+              <!-- Featured blog post-->
+              <div class="card mb-4">
+                <!-- <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg"
+                    alt="..." /></a> -->
+                <div class="card-body">
+                  <div class="medium text-muted">
+                    Posted on <%= new Date(blogposts[i].created_at).toDateString() %> by <%= blogposts[i].author %>
+                  </div>
+                  <h2 class="card-title">
+                    <%= blogposts[i].title %>
+                  </h2>
+                  <p class="card-text">
+                    <%= blogposts[i].content %>
+                  </p>
+                </div>
+                <div class="card-body">
+                  <div class="medium text-muted">
+                    Tags: <% for (var j=0; j < blogposts[i].tags.length; j++) { %>
+                      <span class="badge bg-secondary">
+                        <%= blogposts[i].tags[j] %>
+                      </span>
+                      <% } %>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <a class="btn btn-primary" href="/post/<%= blogposts[i]._id %>">Read more →</a>
+                </div>
+                <div class="card-body">
+                  <a href="#" class="card-link">2 replies</a>
+                </div>
+              </div>
+            </div>
+            <% } %>
+        </div>
+      </div>
+      <!-- Footer-->
+      <%- include('layouts/footer'); -%>
+        <!-- Scripts -->
+        <%- include('layouts/scripts'); -%>
+  </body>
+
+</html>
