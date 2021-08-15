@@ -1,0 +1,5 @@
+.vscode
+/node_modules
+/mockup
+/data
+.env

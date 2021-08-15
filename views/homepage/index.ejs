@@ -1,0 +1,34 @@
+<div id="content" style="margin-top: 100px;">
+    <section class="blog-list px-3 py-5 p-md-5">
+        <div class="container single-col-max-width">
+            <% todos.forEach(function(item){ %>
+            <div class="item mb-5">
+                <div class="row g-3 g-xl-0">
+                    <div class="col-2 col-xl-3">
+                        <img class="img-fluid post-thumb " src="./image/blog/<%= item.avatar %>" alt="image">
+                    </div>
+                    <div class="col">
+                        <h3 class="title mb-1"><a class="text-link" href="/blog/<%=item.id%>"><%= item.title %></a></h3>
+                        <div class="meta mb-1"><span class="date">Published 2 days ago</span><span class="time">By <strong><%= item.User.username %></strong></span><span class="comment"><strong><%= item.datecreate %></strong></span></div>
+                        <div class="meta mb-1">Tags:
+                            <% let str = item.tags;
+                            const myArr = str.split(",");
+                            for(var i in myArr){ %>
+                            <span class="date btn-primary"><%= myArr[i] %></span>
+                            <% } %>
+                        </div>
+                        <div class="intro"><%= item.headercontent %>...</div>
+                        <a class="text-link" href="/blog/<%=item.id%>">Read more &rarr;</a>
+                    </div><!--//col-->
+                </div><!--//row-->
+            </div><!--//item-->
+            <% }); %>
+            
+            <!-- <nav class="blog-nav nav nav-justified my-5">
+              <a class="nav-link-prev nav-item nav-link d-none rounded-left" href="#">Previous<i class="arrow-prev fas fa-long-arrow-alt-left"></i></a>
+              <a class="nav-link-next nav-item nav-link rounded" href="#">Next<i class="arrow-next fas fa-long-arrow-alt-right"></i></a>
+            </nav> -->
+            
+        </div>
+    </section>
+</div>

@@ -1,0 +1,20 @@
+<div class="container profile">
+    <form method="POST">
+        <div class="row ml-2">
+            <% profile.forEach(function(item, index){ %>
+            <div class="col-md-7">
+                
+                    <div class="form-group ">
+                        <label for="inputUsername">Username</label>
+                        <input type="text" class="form-control" value="<%= item.username %>" id="inputUsername" name="username" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail4">Email</label>
+                        <input type="email" class="form-control" name="email" id="inputEmail" value="<%= item.email %>" placeholder="Email">
+                    </div>
+                    <div class="btn-edit"><button type="submit" class="btn btn-primary">Cập Nhật</button></div>
+                    
+            </div>
+            <% }); %>
+        </form>     
+</div>
