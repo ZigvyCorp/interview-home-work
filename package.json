@@ -1,0 +1,35 @@
+{
+  "name": "interview-home-work",
+  "version": "1.0.0",
+  "description": "- This is a **Small Project Test** for online interview at Zigvy Corp. This assignment has 2 main tasks: **Front-end** and **Back-end**. You will be required to complete each tasks with your applied position. For short, you can check the list below\r   - Full-stack engineer: Both Front-end and Back-end\r   - Front-end engineer: Front-end only\r   - Back-end engineer: Complete basic layout of Front-end task and Back-end task",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --inspect index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vothikimhieu18600091/interview-home-work.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vothikimhieu18600091/interview-home-work/issues"
+  },
+  "homepage": "https://github.com/vothikimhieu18600091/interview-home-work#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "cookie-session": "^1.4.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
+    "express-ejs-layouts": "^2.5.1",
+    "express-validator": "^6.12.1",
+    "multer": "^1.4.3",
+    "nodemailer": "^6.6.3",
+    "pg": "^8.7.1",
+    "sequelize": "^6.6.5"
+  }
+}
