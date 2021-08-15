@@ -31,20 +31,24 @@ router.post('/register',[
         return true;
     }),
     body('username').trim().notEmpty(),
-    body('password').isLength({min: 6}),
+    body('password').isLength({min: 3}),
 ],asyncHandler (async function(req,res){
-    const errors = validationResult(req);
     var mss = "Email exits";
     var suscess=" ";
-    if (!errors.isEmpty()) {
-       
-      return res.status(422).render('auth/register',{mss,suscess})}
-      const user = await User.create({
+    const errors = validationResult(req);
+
+    console.log(errors)
+    if (errors.isEmpty()) {
+      return res.status(422).render('auth/register',{mss,suscess})
+    }
+
+      // insert user
+    const user = await User.create({
         email: req.body.email,
         username:req.body.username,
         password: req.body.password,
         token: crypto.randomBytes(3).toString('hex').toUpperCase()
-      });
+    });
 
       // send mail
       await Email.send(user.email, 'Mã kích hoạt tài khoản', `${process.env.BASE_URL}/auth/${user.id}/${user.token}`)
