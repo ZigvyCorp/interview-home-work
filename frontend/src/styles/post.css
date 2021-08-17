@@ -1,0 +1,16 @@
+.reply {
+	margin: 20px;
+	cursor: pointer;
+}
+
+.reply-button {
+	border: none;
+	outline: none;
+	background: white;
+}
+
+.readmore {
+	color: crimson;
+	font-weight: bold;
+	cursor: pointer;
+}
