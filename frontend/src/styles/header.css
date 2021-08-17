@@ -1,0 +1,26 @@
+.header {
+	width: 100%;
+	min-height: 70px;
+	position: sticky;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	box-shadow: 0 0 10px #ddd;
+	background: #f8f9fa;
+	border: 1px solid rgb(0, 0, 0, 0.125);
+}
+
+.header .search {
+	position: relative;
+}
+
+.header .search .posts_search {
+	position: absolute;
+	width: 100%;
+	min-width: 250px;
+	background: #fafafa;
+	max-height: calc(100vh - 150px);
+	overflow: auto;
+	margin-top: 5px;
+	border-radius: 3px;
+}
