@@ -1,0 +1,12 @@
+type: object
+description: Schema for generic error.
+properties:
+  title:
+    type: string
+    description: A brief, machine-readable message about the error.
+  detail:
+    type: string
+    description: A human-readable explanation of the error.
+required:
+  - title
+  - detail

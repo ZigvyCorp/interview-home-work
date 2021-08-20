@@ -1,0 +1,40 @@
+get:
+  # operationId: getUsers
+  summary: Get all Users.
+  responses:
+    "200":
+      description: An array of Users.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "../../schemas/User.yaml"
+    "500":
+      $ref: "../../responses/Error.yaml"
+    default:
+      $ref: "../../responses/Error.yaml"
+  tags:
+    - users
+post:
+  # operationId: addUser
+  summary: Add a User.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/User.yaml"
+  responses:
+    "201":
+      description: Added a User.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/User.yaml"
+    "500":
+      $ref: "../../responses/Error.yaml"
+    default:
+      $ref: "../../responses/Error.yaml"
+  tags:
+    - users

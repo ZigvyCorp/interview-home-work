@@ -1,0 +1,20 @@
+get:
+  # operationId: getComments
+  summary: Get Comments.
+  parameters:
+    - $ref: "../../parameters/query/postId.yaml"
+  responses:
+    "200":
+      description: An array of Comments.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "../../schemas/Comment.yaml"
+    "500":
+      $ref: "../../responses/Error.yaml"
+    default:
+      $ref: "../../responses/Error.yaml"
+  tags:
+    - comments

@@ -1,0 +1,44 @@
+get:
+  # operationId: getCommentsByPost
+  summary: Get all Comments of a Post.
+  parameters:
+    - $ref: "../../../parameters/path/id.yaml"
+  responses:
+    "200":
+      description: An array of Comments.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "../../../schemas/Comment.yaml"
+    "500":
+      $ref: "../../../responses/Error.yaml"
+    default:
+      $ref: "../../../responses/Error.yaml"
+  tags:
+    - posts
+post:
+  # operationId: addCommentToPost
+  summary: Add a Comment to a Post.
+  parameters:
+    - $ref: "../../../parameters/path/id.yaml"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../../schemas/Comment.yaml"
+  responses:
+    "201":
+      description: Added a Comment to a Post.
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/Comment.yaml"
+    "500":
+      $ref: "../../../responses/Error.yaml"
+    default:
+      $ref: "../../../responses/Error.yaml"
+  tags:
+    - posts

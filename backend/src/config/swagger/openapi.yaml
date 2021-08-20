@@ -1,0 +1,38 @@
+openapi: 3.0.3
+info:
+  title: Ourdemy API
+  description: The API specification for Ourdemy
+  # Do not change this version number
+  version: 0.0.1
+servers:
+  - url: "{scheme}://{address}:{port}/{basePath}"
+    description: A custom API server
+    variables:
+      scheme:
+        default: http
+      address:
+        default: localhost
+      port:
+        enum:
+          - "3000"
+        default: "3000"
+      basePath:
+        default: v0
+components:
+  schemas:
+    $ref: "./schemas/_index.yaml"
+  parameters:
+    $ref: "./parameters/_index.yaml"
+  responses:
+    $ref: "./responses/_index.yaml"
+paths:
+  /posts:
+    $ref: "./resources/posts/_index.yaml"
+  /posts/{id}:
+    $ref: "./resources/posts/postId/_index.yaml"
+  /posts/{id}/comments:
+    $ref: "./resources/posts/postId/comments.yaml"
+  /comments:
+    $ref: "./resources/comments/_index.yaml"
+  /users:
+    $ref: "./resources/users/_index.yaml"

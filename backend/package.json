@@ -1,0 +1,11 @@
+{
+  "name": "zigvy-assignment-backend",
+  "version": "1.0.0",
+  "description": "Pre-interview assignment for Backend Developer position",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "@alecbuivhp",
+  "license": "ISC"
+}

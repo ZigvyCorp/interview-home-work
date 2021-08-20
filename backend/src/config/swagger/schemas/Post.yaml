@@ -1,0 +1,24 @@
+title: Post
+description: Schema for Post.
+type: object
+properties:
+  id:
+    type: integer
+    description: The ID of the Post.
+  owner:
+    type: integer
+    description: The owner ID of the Post.
+  title:
+    type: string
+    description: The title of the Post.
+  content:
+    type: string
+    description: The content of the Post.
+  create_at:
+    type: integer
+    format: int64
+    description: The creating time of the Post (epoch time in milliseconds).
+  tags:
+    type: array
+    items:
+      type: string

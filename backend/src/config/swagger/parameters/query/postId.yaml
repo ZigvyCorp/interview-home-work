@@ -1,0 +1,6 @@
+name: postId
+description: The ID of the Post.
+schema:
+  type: integer
+  format: int64
+  minimum: 1

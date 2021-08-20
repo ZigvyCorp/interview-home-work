@@ -1,0 +1,58 @@
+get:
+  # operationId: getPost
+  summary: Get a Post.
+  parameters:
+    - $ref: "../../../parameters/path/id.yaml"
+  responses:
+    "200":
+      description: Got a Post.
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/Post.yaml"
+    "404":
+      $ref: "../../../responses/Error.yaml"
+    "500":
+      $ref: "../../../responses/Error.yaml"
+    default:
+      $ref: "../../../responses/Error.yaml"
+  tags:
+    - posts
+put:
+  # operationId: updatePost
+  summary: Update a Post.
+  parameters:
+    - $ref: "../../../parameters/path/id.yaml"
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../../schemas/Post.yaml"
+  responses:
+    "200":
+      description: Updated a Post.
+      content:
+        application/json:
+          schema:
+            $ref: "../../../schemas/Post.yaml"
+    "500":
+      $ref: "../../../responses/Error.yaml"
+    default:
+      $ref: "../../../responses/Error.yaml"
+  tags:
+    - posts
+delete:
+  # operationId: deletePost
+  summary: Delete a Post.
+  parameters:
+    - $ref: "../../../parameters/path/id.yaml"
+  responses:
+    "204":
+      description: Deleted a Post.
+    "500":
+      $ref: "../../../responses/Error.yaml"
+    default:
+      $ref: "../../../responses/Error.yaml"
+  tags:
+    - posts

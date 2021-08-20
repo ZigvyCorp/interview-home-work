@@ -1,0 +1,6 @@
+# Path params
+id:
+  $ref: "./path/id.yaml"
+# Query params
+postId:
+  $ref: "./query/postId.yaml"

@@ -1,0 +1,20 @@
+title: Comment
+description: Schema for Comment.
+type: object
+properties:
+  id:
+    type: integer
+    description: The ID of the Comment.
+  owner:
+    type: integer
+    description: The owner ID of the Comment.
+  post:
+    type: integer
+    description: The post ID of the Comment.
+  content:
+    type: string
+    description: The content of the Comment.
+  create_at:
+    type: integer
+    format: int64
+    description: The creating time of the Post (epoch time in milliseconds).

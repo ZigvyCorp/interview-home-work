@@ -1,0 +1,40 @@
+get:
+  # operationId: getPosts
+  summary: Get all Posts.
+  responses:
+    "200":
+      description: An array of Posts.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: "../../schemas/Post.yaml"
+    "500":
+      $ref: "../../responses/Error.yaml"
+    default:
+      $ref: "../../responses/Error.yaml"
+  tags:
+    - posts
+post:
+  # operationId: addPost
+  summary: Add a Post.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../schemas/Post.yaml"
+  responses:
+    "201":
+      description: Added a Post.
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/Post.yaml"
+    "500":
+      $ref: "../../responses/Error.yaml"
+    default:
+      $ref: "../../responses/Error.yaml"
+  tags:
+    - posts
