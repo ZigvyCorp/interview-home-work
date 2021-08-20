@@ -1,0 +1,91 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+  padding-right: 30px;
+  margin-bottom: 20px;
+  border: 1px solid lightgrey;
+}
+.header img {
+  height: 150px;
+}
+.header h1 {
+  margin: auto 0;
+}
+.posts-modify {
+  margin-bottom: 50px;
+}
+.post-custom {
+  margin-bottom: 20px;
+  display: flex;
+}
+.infor-post {
+  margin-top: 10px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
+.content-comment {
+  display: flex;
+}
+ion-icon {
+  margin-right: 10px;
+  font-size: 30px;
+  margin-bottom: auto;
+}
+
+.wrap-comment {
+  margin-bottom: auto;
+}
+.avatar-any {
+  height: 100px !important;
+  margin: auto 0;
+}
+.wrap-user-header {
+  display: flex;
+}
+.not-found img {
+  width: 100%;
+}
+.detail-post {
+  height: 600px;
+  border: 1px solid lightgray;
+  padding: 20px;
+}
+.detail-post h1 {
+  margin-bottom: 20px;
+}
+.detail-post img {
+  width: 100%;
+  margin-bottom: 20px;
+  height: 300px;
+}
+.card-body a {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+.card-body a :hover {
+  color: blue;
+}
+.form-search-mofidy {
+  height: 40px;
+  margin: auto 0;
+  width: 50%;
+}
+.colap-modify {
+  margin-top: 20px;
+}
