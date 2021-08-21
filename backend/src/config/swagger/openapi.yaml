@@ -1,8 +1,7 @@
 openapi: 3.0.3
 info:
-  title: Ourdemy API
-  description: The API specification for Ourdemy
-  # Do not change this version number
+  title: Blog API
+  description: The API specification for Blog API
   version: 0.0.1
 servers:
   - url: "{scheme}://{address}:{port}/{basePath}"
