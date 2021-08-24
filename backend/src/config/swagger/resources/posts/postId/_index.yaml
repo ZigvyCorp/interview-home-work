@@ -1,5 +1,5 @@
 get:
-  # operationId: getPost
+  operationId: getPost
   summary: Get a Post.
   parameters:
     - $ref: "../../../parameters/path/id.yaml"
@@ -19,7 +19,7 @@ get:
   tags:
     - posts
 put:
-  # operationId: updatePost
+  operationId: updatePost
   summary: Update a Post.
   parameters:
     - $ref: "../../../parameters/path/id.yaml"
@@ -43,7 +43,7 @@ put:
   tags:
     - posts
 delete:
-  # operationId: deletePost
+  operationId: deletePost
   summary: Delete a Post.
   parameters:
     - $ref: "../../../parameters/path/id.yaml"

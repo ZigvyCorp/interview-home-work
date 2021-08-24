@@ -14,7 +14,6 @@ export default {
 
     addUser: async (req, res) => {
         let data = req.body;
-
         try {
             let newUser = await UserService.addUser(data);
             res.status(httpStatus.CREATED).send(newUser);
@@ -26,7 +25,6 @@ export default {
                 });
                 return;
             }
-            console.log(error);
             res.status(httpStatus.INTERNAL_SERVER_ERROR).send(UNEXPECTED_ERROR);
         }
     }

@@ -1,5 +1,5 @@
 get:
-  # operationId: getCommentsByPost
+  operationId: getCommentsByPost
   summary: Get all Comments of a Post.
   parameters:
     - $ref: "../../../parameters/path/id.yaml"
@@ -19,7 +19,7 @@ get:
   tags:
     - posts
 post:
-  # operationId: addCommentToPost
+  operationId: addCommentToPost
   summary: Add a Comment to a Post.
   parameters:
     - $ref: "../../../parameters/path/id.yaml"

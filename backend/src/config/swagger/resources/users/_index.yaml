@@ -1,5 +1,5 @@
 get:
-  # operationId: getUsers
+  operationId: getUsers
   summary: Get all Users.
   responses:
     "200":
@@ -17,7 +17,7 @@ get:
   tags:
     - users
 post:
-  # operationId: addUser
+  operationId: addUser
   summary: Add a User.
   requestBody:
     required: true
