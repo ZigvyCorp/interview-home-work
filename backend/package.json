@@ -14,15 +14,14 @@
     "@babel/core": "^7.15.0",
     "@babel/node": "^7.14.9",
     "@babel/preset-env": "^7.15.0",
-    "@babel/register": "^7.15.3",
     "eslint": "^7.32.0",
-    "nodemon": "^2.0.12",
-    "sequelize-cli": "^6.2.0"
+    "nodemon": "^2.0.12"
   },
   "dependencies": {
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "http-status-codes": "^2.1.4",
-    "mongoose": "^5.13.7"
+    "mongoose": "^5.13.7",
+    "morgan": "^1.10.0"
   }
 }

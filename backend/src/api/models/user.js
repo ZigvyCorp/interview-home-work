@@ -7,10 +7,11 @@ const userSchema = new mongoose.Schema(
             unique: true,
             required: true,
         },
+        name: String,
+        dob: Date,
     },
-    { timestamps: true },
-);
+    { timestamps: true });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema, 'users');
 
 export default User;
