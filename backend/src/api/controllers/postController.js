@@ -65,7 +65,6 @@ export default {
 
     deletePost: async (req, res) => {
         let postId = req.params.postId;
-        // TODO: Error no Post
         try {
             await PostService.deletePost(postId);
             res.status(httpStatus.NO_CONTENT).send(null);

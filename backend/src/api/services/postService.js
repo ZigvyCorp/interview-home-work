@@ -1,4 +1,6 @@
 import { Post, User } from '../models';
+import httpStatus from 'http-status-codes';
+import HTTPError from '../helpers/class/httpErrors';
 
 export default {
     getPosts: async () => {
@@ -12,10 +14,12 @@ export default {
     },
 
     addPost: async (data) => {
-        // Check if user exists
         let user = await User.findById(data.owner);
         if (user === null) {
-            throw new Error('Error'); // TODO: Error handling
+            throw new HTTPError(httpStatus.NOT_FOUND, {
+                title: 'Not Found',
+                detail: 'User does not exist'
+            });
         }
 
         let newPost = new Post(data);
@@ -23,19 +27,30 @@ export default {
     },
 
     getPost: async (postId) => {
-        return await Post.findById(postId, (err) => {
+        let post = await Post.findById(postId, (err) => {
             if (err) throw err;
         })
             .select([
                 '-updatedAt',
                 '-__v'
             ]);
+
+        if (post === null) {
+            throw new HTTPError(httpStatus.NOT_FOUND, {
+                title: 'Not Found',
+                detail: 'Post does not exists'
+            });
+        }
+        return post;
     },
 
     updatePost: async (postId, data) => {
         let post = await Post.findByIdAndUpdate(postId, data, { new: true });
         if (post === null) {
-            throw new Error('Error'); // TODO: Error handling
+            throw new HTTPError(httpStatus.NOT_FOUND, {
+                title: 'Not Found',
+                detail: 'Post does not exists'
+            });
         }
         return post;
     },
@@ -43,11 +58,10 @@ export default {
     deletePost: async (postId) => {
         let post = await Post.findByIdAndDelete(postId);
         if (post === null) {
-            throw new Error('Error'); // TODO: Error handling
+            throw new HTTPError(httpStatus.NOT_FOUND, {
+                title: 'Not Found',
+                detail: 'Post does not exists'
+            });
         }
-        return post;
     },
-
-    getCommentsByPost: async () => { },
-    addCommentToPost: async () => { },
 };

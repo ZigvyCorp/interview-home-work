@@ -22,7 +22,7 @@ export default {
             if (error.name === MONGO_ERROR && error.code === 11000) {
                 throw new HTTPError(httpStatus.CONFLICT, {
                     title: 'Conflict',
-                    detail: 'Username is existed'
+                    detail: 'Username has existed'
                 });
             }
             throw error;
