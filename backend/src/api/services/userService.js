@@ -6,7 +6,6 @@ export default {
             if (err) throw err;
         })
             .select([
-                '-_id',
                 '-updatedAt',
                 '-__v'
             ]);
@@ -14,8 +13,6 @@ export default {
 
     addUser: (data) => {
         let newUser = new User(data);
-        return newUser.save((err) => {
-            if (err) throw err;
-        });
+        return newUser.save();
     },
 };

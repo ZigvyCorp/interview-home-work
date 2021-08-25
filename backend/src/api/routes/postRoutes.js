@@ -13,6 +13,6 @@ router.delete('/:postId', PostController.deletePost);
 
 router.get('/:postId/comments', PostController.getCommentsByPost);
 
-router.post(':postId/comments', PostController.addCommentToPost);
+router.post('/:postId/comments', PostController.addCommentToPost);
 
 export default router;

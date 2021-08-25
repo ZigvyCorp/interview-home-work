@@ -1,5 +1,5 @@
 import httpStatus from 'http-status-codes';
-import { UNEXPECTED_ERROR } from '../helpers/constants/Errors';
+import { UNEXPECTED_ERROR, MONGO_ERROR } from '../helpers/constants/Errors';
 import { UserService } from '../services';
 
 export default {
@@ -12,13 +12,13 @@ export default {
         }
     },
 
-    addUser: (req, res) => {
+    addUser: async (req, res) => {
         let data = req.body;
         try {
-            let newUser = UserService.addUser(data);
+            let newUser = await UserService.addUser(data);
             res.status(httpStatus.CREATED).send(newUser);
         } catch (error) {
-            if (error.code === 11000) {
+            if (error.name === MONGO_ERROR && error.code === 11000) {
                 res.status(httpStatus.CONFLICT).send({
                     title: 'Conflict',
                     detail: 'Username is existed'

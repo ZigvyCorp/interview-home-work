@@ -1,4 +1,4 @@
-import { Post } from '../models';
+import { Post, User } from '../models';
 
 export default {
     getPosts: async () => {
@@ -6,17 +6,20 @@ export default {
             if (err) throw err;
         })
             .select([
-                '-_id',
                 '-updatedAt',
                 '-__v'
             ]);
     },
 
-    addPost: (data) => {
+    addPost: async (data) => {
+        // Check if user exists
+        let user = await User.findById(data.owner);
+        if (user === null) {
+            throw new Error('Error'); // TODO: Error handling
+        }
+
         let newPost = new Post(data);
-        return newPost.save((err) => {
-            if (err) throw err;
-        });
+        return newPost.save();
     },
 
     getPost: async (postId) => {
@@ -24,19 +27,27 @@ export default {
             if (err) throw err;
         })
             .select([
-                '-_id',
                 '-updatedAt',
                 '-__v'
             ]);
     },
 
     updatePost: async (postId, data) => {
-        return await Post.findByIdAndUpdate(postId, data, (err) => {
-            if (err) throw err;
-        });
+        let post = await Post.findByIdAndUpdate(postId, data, { new: true });
+        if (post === null) {
+            throw new Error('Error'); // TODO: Error handling
+        }
+        return post;
     },
 
-    deletePost: async () => { },
+    deletePost: async (postId) => {
+        let post = await Post.findByIdAndDelete(postId);
+        if (post === null) {
+            throw new Error('Error'); // TODO: Error handling
+        }
+        return post;
+    },
+
     getCommentsByPost: async () => { },
     addCommentToPost: async () => { },
 };

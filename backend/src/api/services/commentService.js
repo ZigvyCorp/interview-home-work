@@ -1,23 +1,34 @@
-import { Comment } from '../models';
+import { Comment, User, Post } from '../models';
 
 export default {
     getComments: async (postId) => {
-        return await Comment.find({
-            post: postId
-        }, (err) => {
+        let query = null;
+        if (postId != undefined) {
+            query = { post: postId };
+        }
+        return await Comment.find(query, (err) => {
             if (err) throw err;
         })
             .select([
-                '-_id',
                 '-updatedAt',
                 '-__v'
             ]);
     },
 
-    addComment: (data) => {
+    addComment: async (data) => {
+        // Check if post exists
+        let post = await Post.findById(data.post);
+        if (post === null) {
+            throw new Error('Error'); // TODO: Error handling
+        }
+
+        // Check if user exists
+        let user = await User.findById(data.owner);
+        if (user === null) {
+            throw new Error('Error'); // TODO: Error handling
+        }
+
         let newComment = new Comment(data);
-        return newComment.save((err) => {
-            if (err) throw err;
-        });
+        return await newComment.save();
     },
 };
