@@ -1,7 +1,7 @@
 import httpStatus from 'http-status-codes';
 import { UNEXPECTED_ERROR } from '../helpers/constants/Errors';
 import { UserService } from '../services';
-import HTTPError from '../helpers/class/httpErrors';
+import HTTPError from '../helpers/classes/httpErrors';
 
 export default {
     getUsers: async (req, res) => {

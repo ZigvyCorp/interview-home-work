@@ -1,7 +1,7 @@
 import httpStatus from 'http-status-codes';
 import { UNEXPECTED_ERROR } from '../helpers/constants/Errors';
 import { CommentService } from '../services';
-import HTTPError from '../helpers/class/httpErrors';
+import HTTPError from '../helpers/classes/httpErrors';
 
 export default {
     getComments: async (req, res) => {
@@ -19,7 +19,6 @@ export default {
     },
 
     addComment: async (req, res) => {
-        // TODO: Error no post, no user
         let data = req.body;
         try {
             let newComment = await CommentService.addComment(data);

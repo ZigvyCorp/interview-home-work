@@ -1,7 +1,7 @@
 import { User } from '../models';
 import { MONGO_ERROR } from '../helpers/constants/Errors';
 import httpStatus from 'http-status-codes';
-import HTTPError from '../helpers/class/httpErrors';
+import HTTPError from '../helpers/classes/httpErrors';
 
 export default {
     getUsers: async () => {

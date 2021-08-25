@@ -1,7 +1,7 @@
 import httpStatus from 'http-status-codes';
 import { UNEXPECTED_ERROR } from '../helpers/constants/Errors';
 import { CommentService, PostService } from '../services';
-import HTTPError from '../helpers/class/httpErrors';
+import HTTPError from '../helpers/classes/httpErrors';
 
 export default {
     getPosts: async (req, res) => {
@@ -18,7 +18,6 @@ export default {
     },
 
     addPost: async (req, res) => {
-        // TODO: Error no user
         let data = req.body;
         try {
             let newPost = await PostService.addPost(data);
@@ -34,7 +33,6 @@ export default {
 
     getPost: async (req, res) => {
         let postId = req.params.postId;
-        // TODO: Error not found
         try {
             let post = await PostService.getPost(postId);
             res.status(httpStatus.OK).send(post);
@@ -50,7 +48,6 @@ export default {
     updatePost: async (req, res) => {
         let postId = req.params.postId;
         let data = req.body;
-        // TODO: Error no Post
         try {
             let post = await PostService.updatePost(postId, data);
             res.status(httpStatus.OK).send(post);
