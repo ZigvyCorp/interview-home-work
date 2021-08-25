@@ -1,6 +1,6 @@
 ## Front-end task
 - Your task is building a simple blog with the following features:
-    * [] Use AntD or Bootstrap (Must have)
+    * [ ] Use AntD or Bootstrap (Must have)
 
     * [X] List all posts on homepage with a short summary (either pagination or scroll infinite) (Must have)
 
