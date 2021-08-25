@@ -1,6 +1,7 @@
 import httpStatus from 'http-status-codes';
 import { UNEXPECTED_ERROR } from '../helpers/constants/Errors';
 import { CommentService, PostService } from '../services';
+import HTTPError from '../helpers/class/httpErrors';
 
 export default {
     getPosts: async (req, res) => {
@@ -8,6 +9,10 @@ export default {
             let posts = await PostService.getPosts();
             res.status(httpStatus.OK).send(posts);
         } catch (error) {
+            if (error instanceof HTTPError) {
+                res.status(error.status).send(error.data);
+                return;
+            }
             res.status(httpStatus.INTERNAL_SERVER_ERROR).send(UNEXPECTED_ERROR);
         }
     },
@@ -19,6 +24,10 @@ export default {
             let newPost = await PostService.addPost(data);
             res.status(httpStatus.CREATED).send(newPost);
         } catch (error) {
+            if (error instanceof HTTPError) {
+                res.status(error.status).send(error.data);
+                return;
+            }
             res.status(httpStatus.INTERNAL_SERVER_ERROR).send(UNEXPECTED_ERROR);
         }
     },
@@ -30,6 +39,10 @@ export default {
             let post = await PostService.getPost(postId);
             res.status(httpStatus.OK).send(post);
         } catch (error) {
+            if (error instanceof HTTPError) {
+                res.status(error.status).send(error.data);
+                return;
+            }
             res.status(httpStatus.INTERNAL_SERVER_ERROR).send(UNEXPECTED_ERROR);
         }
     },
@@ -42,6 +55,10 @@ export default {
             let post = await PostService.updatePost(postId, data);
             res.status(httpStatus.OK).send(post);
         } catch (error) {
+            if (error instanceof HTTPError) {
+                res.status(error.status).send(error.data);
+                return;
+            }
             res.status(httpStatus.INTERNAL_SERVER_ERROR).send(UNEXPECTED_ERROR);
         }
     },
@@ -53,22 +70,29 @@ export default {
             await PostService.deletePost(postId);
             res.status(httpStatus.NO_CONTENT).send(null);
         } catch (error) {
+            if (error instanceof HTTPError) {
+                res.status(error.status).send(error.data);
+                return;
+            }
             res.status(httpStatus.INTERNAL_SERVER_ERROR).send(UNEXPECTED_ERROR);
         }
     },
 
-    // eslint-disable-next-line no-unused-vars
     getCommentsByPost: async (req, res) => {
         let postId = req.params.postId;
         try {
             let comments = await CommentService.getComments(postId);
             res.status(httpStatus.OK).send(comments);
         } catch (error) {
+            if (error instanceof HTTPError) {
+                res.status(error.status).send(error.data);
+                return;
+            }
             res.status(httpStatus.INTERNAL_SERVER_ERROR).send(UNEXPECTED_ERROR);
         }
 
     },
-    // eslint-disable-next-line no-unused-vars
+
     addCommentToPost: async (req, res) => {
         let data = req.body;
         let postId = req.params.postId;
@@ -78,8 +102,11 @@ export default {
             let newComment = await CommentService.addComment(data);
             res.status(httpStatus.CREATED).send(newComment);
         } catch (error) {
+            if (error instanceof HTTPError) {
+                res.status(error.status).send(error.data);
+                return;
+            }
             res.status(httpStatus.INTERNAL_SERVER_ERROR).send(UNEXPECTED_ERROR);
         }
-
     }
 };
