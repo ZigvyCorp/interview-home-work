@@ -16,8 +16,12 @@ export default {
             ]);
     },
 
-    addComment: async (data) => {
+    addComment: (data) => {
         let newComment = new Comment(data);
-        return await newComment.save();
+        return newComment.save((err) => {
+            if (err) {
+                throw err;
+            }
+        });
     },
 };

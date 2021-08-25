@@ -12,10 +12,10 @@ export default {
         }
     },
 
-    addUser: async (req, res) => {
+    addUser: (req, res) => {
         let data = req.body;
         try {
-            let newUser = await UserService.addUser(data);
+            let newUser = UserService.addUser(data);
             res.status(httpStatus.CREATED).send(newUser);
         } catch (error) {
             if (error.code === 11000) {

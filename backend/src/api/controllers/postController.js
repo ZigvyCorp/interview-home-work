@@ -12,11 +12,11 @@ export default {
         }
     },
 
-    addPost: async (req, res) => {
+    addPost: (req, res) => {
         // TODO: Error no user
         let data = req.body;
         try {
-            let newComment = await PostService.addPost(data);
+            let newComment = PostService.addPost(data);
             res.status(httpStatus.CREATED).send(newComment);
         } catch (error) {
             res.status(httpStatus.INTERNAL_SERVER_ERROR).send(UNEXPECTED_ERROR);

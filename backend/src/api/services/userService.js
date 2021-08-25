@@ -14,8 +14,12 @@ export default {
             ]);
     },
 
-    addUser: async (data) => {
+    addUser: (data) => {
         let newUser = new User(data);
-        return await newUser.save();
+        return newUser.save((err) => {
+            if (err) {
+                throw err;
+            }
+        });
     },
 };
