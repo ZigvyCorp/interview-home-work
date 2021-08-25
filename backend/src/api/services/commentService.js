@@ -5,9 +5,7 @@ export default {
         return await Comment.find({
             post: postId
         }, (err) => {
-            if (err) {
-                throw err;
-            }
+            if (err) throw err;
         })
             .select([
                 '-_id',
@@ -19,9 +17,7 @@ export default {
     addComment: (data) => {
         let newComment = new Comment(data);
         return newComment.save((err) => {
-            if (err) {
-                throw err;
-            }
+            if (err) throw err;
         });
     },
 };

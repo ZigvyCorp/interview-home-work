@@ -11,8 +11,8 @@ router.put('/:postId', PostController.updatePost);
 
 router.delete('/:postId', PostController.deletePost);
 
-router.get('/:postId/comments', PostController.getComments);
+router.get('/:postId/comments', PostController.getCommentsByPost);
 
-router.post(':postId/comments', PostController.addComment);
+router.post(':postId/comments', PostController.addCommentToPost);
 
 export default router;

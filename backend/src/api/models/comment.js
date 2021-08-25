@@ -6,11 +6,13 @@ const commentSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Post',
             required: true,
+            immutable: true
         },
         owner: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
             required: true,
+            immutable: true
         },
         content: {
             type: String,
