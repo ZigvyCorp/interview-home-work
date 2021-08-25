@@ -7,3 +7,4 @@ export const NOTFOUND_ERROR = {
     detail: 'Resource is not available.'
 };
 export const MONGO_ERROR = 'MongoError';
+export const VALIDATION_ERROR = 'ValidationError';

@@ -1,5 +1,5 @@
 import { User } from '../models';
-import { MONGO_ERROR } from '../helpers/constants/Errors';
+import { MONGO_ERROR, VALIDATION_ERROR } from '../helpers/constants/Errors';
 import httpStatus from 'http-status-codes';
 import HTTPError from '../helpers/classes/httpErrors';
 
@@ -23,6 +23,11 @@ export default {
                 throw new HTTPError(httpStatus.CONFLICT, {
                     title: 'Conflict',
                     detail: 'Username has existed'
+                });
+            } else if (error.name === VALIDATION_ERROR) {
+                throw new HTTPError(httpStatus.UNPROCESSABLE_ENTITY, {
+                    title: 'Unable to process',
+                    detail: 'Validating body failed'
                 });
             }
             throw error;
