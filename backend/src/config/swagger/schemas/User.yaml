@@ -3,7 +3,7 @@ description: Schema for User.
 type: object
 properties:
   id:
-    type: integer
+    type: string
     description: The ID of the User.
   username:
     type: string
@@ -19,3 +19,5 @@ properties:
     type: integer
     format: int64
     description: The creating time of the User (epoch time in milliseconds).
+required:
+  - username

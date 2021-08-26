@@ -3,10 +3,10 @@ description: Schema for Post.
 type: object
 properties:
   id:
-    type: integer
+    type: string
     description: The ID of the Post.
   owner:
-    type: integer
+    type: string
     description: The owner ID of the Post.
   title:
     type: string
@@ -22,3 +22,7 @@ properties:
     type: array
     items:
       type: string
+required:
+  - owner
+  - title
+  - content
