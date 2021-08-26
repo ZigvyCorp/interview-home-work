@@ -32,6 +32,10 @@ post:
         application/json:
           schema:
             $ref: "../../schemas/User.yaml"
+    "409":
+      $ref: "../../responses/Error.yaml"
+    "422":
+      $ref: "../../responses/Error.yaml"
     "500":
       $ref: "../../responses/Error.yaml"
     default:

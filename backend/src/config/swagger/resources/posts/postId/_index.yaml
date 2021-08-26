@@ -36,6 +36,10 @@ put:
         application/json:
           schema:
             $ref: "../../../schemas/Post.yaml"
+    "404":
+      $ref: "../../../responses/Error.yaml"
+    "422":
+      $ref: "../../../responses/Error.yaml"
     "500":
       $ref: "../../../responses/Error.yaml"
     default:
@@ -50,6 +54,8 @@ delete:
   responses:
     "204":
       description: Deleted a Post.
+    "404":
+      $ref: "../../../responses/Error.yaml"
     "500":
       $ref: "../../../responses/Error.yaml"
     default:
