@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  border: 3px solid;
+
+  &--logo {
+    display: flex;
+    align-items: center;
+    span {
+      margin-right: 5px;
+    }
+  }
+
+  &--blogs {
+    width: 100px;
+    background: gray;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
