@@ -1,0 +1,28 @@
+.layout {
+  padding: 20px 10px;
+}
+
+.header {
+  text-align: center;
+  background: white;
+}
+
+.content {
+  background: white;
+  padding: 0 20px;
+}
+
+.footer {
+  background: white;
+  padding: 0 20px 20px;
+}
+
+.container__author {
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.content__description {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

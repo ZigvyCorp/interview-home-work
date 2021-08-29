@@ -7,7 +7,9 @@ import Routes from 'routers'
 function App() {
   return (
     <Provider store={store}>
-      <Routes/>
+      <div className="App">
+        <Routes/>
+      </div>
     </Provider>
   );
 }

@@ -1,7 +1,8 @@
 import * as homepageConstants from 'redux/constants/homepageConstants';
 
 const initialState = {
-  data: [1,2,3]
+  data: [1,2,3],
+  posts: [],
 };
 
 const homepageReducer = (state = initialState, action) => {
@@ -10,6 +11,11 @@ const homepageReducer = (state = initialState, action) => {
       return {
         ...state,
         data: [...state.data, ...action.payload]
+      }
+    case homepageConstants.GET_POSTS_SUCCESS:
+      return {
+        ...state,
+        posts: [...state.posts, ...action.payload]
       }
     default:
       return {
