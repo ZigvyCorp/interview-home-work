@@ -1,0 +1,72 @@
+.post {
+    background: whitesmoke;
+    padding: 2%;
+    border-bottom: solid;
+}
+
+.post-title {
+    margin-bottom: 2%;
+}
+
+.post-info {
+    text-align: left;
+    margin-bottom: 3%;
+}
+
+.post-content {
+    text-align: left;
+    margin-bottom: 1%;
+}
+
+.post p{
+    font-size: 20px;
+    margin: 0;
+}
+
+.comments p{
+    text-align: left;
+}
+
+.comment-content p{
+    margin-top: 1%;
+}
+
+.ant-collapse>.ant-collapse-item>.ant-collapse-header{
+    display:flex;
+    justify-content:space-between;
+    border: outset;
+    padding: 15px;
+    margin-left: -1%;
+    font-size: 15px;
+}
+
+.a-comment{
+    display:flex;
+    border-bottom: solid;
+}
+
+.a-comment-ava {
+    padding: 10px;
+}
+
+.a-comment-ava p{
+    font-size: 10px;
+}
+
+.search-box .search-bar {
+    display: block;
+    padding: 12px;
+    width: 40%;
+    margin: 1% 0 0% 30%;
+  
+    appearance: none;
+    outline: none;
+  
+    border-radius: 16px 16px 16px 16px;
+  
+    font-size: 12px;
+  }
+
+.search-box .search-bar:focus {
+    background: rgba(255, 255, 255, 0.75) none;
+  }
