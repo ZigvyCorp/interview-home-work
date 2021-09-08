@@ -1,0 +1,25 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 60px;
+  padding: 0 20px;
+  box-shadow: 1px 2px 2px 1px #adadad12;
+  .header__logo {
+    img {
+      width: 150px;
+      height: auto;
+    }
+  }
+  .header__blog {
+    span {
+      font-family: cursive;
+      font-size: 30px;
+      color: #278895;
+    }
+  }
+  .header__avatar{
+    color: #a2a2a2;
+    cursor: pointer;
+  }
+}
