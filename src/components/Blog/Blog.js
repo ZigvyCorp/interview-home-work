@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { List } from "antd";
-import TagComponent from "../TagComponent/TagComponent";
 import axios from "axios";
 import { GET_POST_LIST } from "../../redux/constants/BlogConstant";
 import CommentComponent from "../Comment/Comment";
@@ -70,9 +69,7 @@ export default function Blog(props) {
                                         </p>
                                     </div>
                                     <div className="blog__top-flex"></div>
-                                    <div className="blog__top__tag">
-                                        <TagComponent />
-                                    </div>
+                                   
                                 </div>
                                 <div className="blog__content">
                                     {item.body.substring(0, 100)}

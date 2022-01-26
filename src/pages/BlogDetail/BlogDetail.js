@@ -4,7 +4,6 @@ import Header from '../../components/Header/Header';
 import { List } from "antd";
 import axios from 'axios';
 import { GET_POST_DETAIL } from '../../redux/constants/BlogConstant';
-import TagComponent from '../../components/TagComponent/TagComponent';
 import CommentComponent from '../../components/Comment/Comment';
 
 
@@ -61,9 +60,7 @@ export default function BlogDetail(props) {
                                     </p>
                                 </div>
                                 <div className="blog__top-flex"></div>
-                                <div className="blog__top__tag">
-                                    <TagComponent />
-                                </div>
+                                
                             </div>
                             <div className="blog__content">
                                 {item.body}
