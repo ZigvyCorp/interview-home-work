@@ -1,38 +1,35 @@
-import React, { useState, useEffect, createContext } from 'react';
+import React, { useContext } from 'react';
 import { Grid } from '@material-ui/core'
 import ShowList from './ShowList';
+import { DataConText } from '../DataContext';
 
-export const DataConText = createContext()
 
 function Bootstrap() {
-  const [type, setType] = useState('posts')
-  const [blogs, setBlogs] = useState([])
 
-  const [posts, setPosts] = useState([])
-  const [comments, setComments] = useState([])
-  const [users, setUsers] = useState([])
+  const dataList = useContext(DataConText)
+  const postsList = dataList.posts
+  const commentsList = dataList.comments
+  const usersList = dataList.users
 
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then(res => res.json())
-      .then(postsList => setPosts(postsList))
-      .catch((err) => console.log(err))
-  }, [])
+  const userPost = postsList.map(post => (
+    {
+      ...post,
+      ...usersList.find(user => user.id === post.userId),
+      count: 0
+    })
+  )
+  // console.log(userPost);
 
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/comments")
-      .then(res => res.json())
-      .then(commentsList => setComments(commentsList))
-      .catch((err) => console.log(err))
-  }, [])
+  // const userComment = userPost.map(info => (
+  //   {
+  //     ...info,
+  //     ...commentsList.find(comment => comment.postId === info.id)
+  //   }))
 
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then(res => res.json())
-      .then(usersList => setUsers(usersList))
-      .catch((err) => console.log(err))
-  }, [])
 
+
+  // const [type, setType] = useState('posts')
+  // const [blogs, setBlogs] = useState([])
 
   // useEffect(() => {
 
@@ -56,13 +53,14 @@ function Bootstrap() {
   //   })
   // }, [])
 
-  useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/${type}`)
-      .then(res => res.json())
-      .then(listItem => {
-        setBlogs(listItem)
-      })
-  }, [type])
+  // useEffect(() => {
+  //   fetch(`https://jsonplaceholder.typicode.com/${type}`)
+  //     .then(res => res.json())
+  //     .then(listItem => {
+  //       setBlogs(listItem)
+  //     })
+  // }, [type])
+
 
   return (
     <div className="d-flex" id="wrapper">
@@ -70,9 +68,13 @@ function Bootstrap() {
       <div className="border-end bg-white" id="sidebar-wrapper">
         <div className="sidebar-heading border-bottom bg-light">Home Page</div>
         <div className="list-group list-group-flush">
-          <a className="list-group-item list-group-item-action list-group-item-light p-3" href="#!" onClick={() => { setType('posts') }}>Posts</a>
+          {/* <a className="list-group-item list-group-item-action list-group-item-light p-3" href="#!" onClick={() => { setType('posts') }}>Posts</a>
           <a className="list-group-item list-group-item-action list-group-item-light p-3" href="#!" onClick={() => { setType('comments') }}>Comments</a>
-          <a className="list-group-item list-group-item-action list-group-item-light p-3" href="#!" onClick={() => { setType('users') }}>Users</a>
+          <a className="list-group-item list-group-item-action list-group-item-light p-3" href="#!" onClick={() => { setType('users') }}>Users</a> */}
+          <a className="list-group-item list-group-item-action list-group-item-light p-3" href="#!" >Posts</a>
+          <a className="list-group-item list-group-item-action list-group-item-light p-3" href="#!" >Comments</a>
+          <a className="list-group-item list-group-item-action list-group-item-light p-3" href="#!" >Users</a>
+
         </div>
       </div>
       {/* Page content wrapper*/}
@@ -102,16 +104,18 @@ function Bootstrap() {
         {/* Page content*/}
         <div className="container-fluid">
           <h1 className="mt-4"></h1>
-          <DataConText.Provider value={posts}>
-            <Grid container spacing={2} alignItems="stretch">
+
+          <Grid container spacing={5} alignItems="stretch">
+            {userPost.map(data => (
               <Grid item xs={12} sm={6}>
-                <ShowList posts={posts} comments={comments} users={users}/>
+                <ShowList value={data} />
               </Grid>
+            ))}
           </Grid>
-        </DataConText.Provider>
+
+        </div>
       </div>
-    </div>
-      </div >
+    </div >
 
   )
 }
