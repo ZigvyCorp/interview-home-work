@@ -1,6 +1,11 @@
 import React from "react";
 import "../css/comment.css"
 import avatar from "../img/avatar.png"
+import axios from "axios";
+import { Link } from "react-router-dom";
+
+
+
 function Comment() {
     return (
         <div className="comment">

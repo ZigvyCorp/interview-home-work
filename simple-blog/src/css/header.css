@@ -3,6 +3,7 @@
     list-style-type: none;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
+    border: 5px solid black ;
   }
   
   .header li{

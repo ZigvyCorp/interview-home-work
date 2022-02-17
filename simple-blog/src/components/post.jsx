@@ -4,7 +4,7 @@ import Comment from "../components/comment.jsx"
 import Color from "../components/color.jsx";
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-
+import UserHeader from '../components/user.jsx'
 
 
 class Post extends React.Component {
@@ -12,10 +12,10 @@ class Post extends React.Component {
         super()
         this.state = {
             user: {},
-            posts: [],
-            post: {}
+            posts: []
         }
     }
+
     componentDidMount() {
         axios.get(`https://jsonplaceholder.typicode.com/posts`)
             .then((response) => {
@@ -36,14 +36,16 @@ class Post extends React.Component {
                                     <ul className="headercontent">
                                         <li>
                                             <div className='postdetails'>
-                                                <h3>Author:{this.state.user.name}</h3>
+                                                <h3>Author:{<UserHeader userId={post.userId}/>}</h3>
                                                 <h3>Created date: 18/2/2022</h3>
                                             </div>
                                         </li>
                                         <li><Color /></li>
+                                        <p className="contentpost">{post.body}</p>
+
                                     </ul>
-                                    <Comment/>
-                                    <p>{this.state.post.body}</p>
+                                    
+
                                 </div>
                             );
                         })

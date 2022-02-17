@@ -11,9 +11,7 @@
     margin-bottom: 50px;
     margin-right: 30px;
 }
-.name{
-    
-}
+
 
 .commenttime{
     
@@ -32,4 +30,8 @@ a{
 .reply{
     
     font-weight: lighter;
+}
+
+p{
+    font-size: 20px;
 }
