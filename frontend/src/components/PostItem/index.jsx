@@ -1,5 +1,5 @@
 import moment from "moment";
-import React, { useState } from "react";
+import React from "react";
 import { Col, Row } from "react-bootstrap";
 import CommentArrcordion from "../CommentAccordion";
 import Tag from "../Tag";
@@ -58,8 +58,8 @@ function PostItem({ data, authors: users, comments }) {
       </Col>
       <Col lg={8}>
         <div className="tags">
-          {tags.map((tagData) => (
-            <Tag value={tagData} type={tagData} />
+          {tags.map((tagData, index) => (
+            <Tag value={tagData} type={tagData} key={index} />
           ))}
           {/* <Tag value="test" type="magenta" /> */}
         </div>

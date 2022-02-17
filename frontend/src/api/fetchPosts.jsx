@@ -1,3 +1,4 @@
+//Get Posts, users, comments
 const fetchPosts = () => {
   return new Promise((resole) => {
     fetch("https://jsonplaceholder.typicode.com/posts")
@@ -8,7 +9,6 @@ const fetchPosts = () => {
         fetchUsersByIds(userIds)
           .then((users) => {
             const data = { users: users, posts: posts };
-            // resole(data);
             return data;
           })
           .then((data) => {
@@ -17,13 +17,6 @@ const fetchPosts = () => {
             });
           });
       });
-    // .then((data) => {
-    //   console.log(data);
-    //   // const postIds = data?.posts.map((post) => post.id);
-    //   // fetchCommentsByIds(postIds).then((comments) => {
-    //   //   const result = { ...data, comments: comments };
-    //   // });
-    // });
   });
 };
 
@@ -35,6 +28,7 @@ const fetchUsersByIds = (userIds) => {
         return users;
       })
       .then((users) => {
+        //only get user who have id in post list
         resole(users?.filter((user) => userIds.includes(user.id)));
       })
       .catch((err) => err);
@@ -49,6 +43,7 @@ const fetchCommentsByIds = (postsID) => {
         return comments;
       })
       .then((comments) => {
+        //only get comment which have postId in post list
         resole(comments?.filter((comment) => postsID.includes(comment.postId)));
       })
       .catch((err) => err);

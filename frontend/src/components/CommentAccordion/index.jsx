@@ -12,7 +12,7 @@ function CommentArrcordion({ comments, users }) {
         </Accordion.Header>
         <Accordion.Body>
           {comments.map((comment) => (
-            <CommentItem data={comment} users={users} />
+            <CommentItem data={comment} users={users} key={comment.id} />
             // <p>{comment.body}</p>
           ))}
         </Accordion.Body>

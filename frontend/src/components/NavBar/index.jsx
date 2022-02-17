@@ -1,8 +1,8 @@
 import React from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import logo from "../../logo.jpg";
-import "./style.scss";
 import Avatar from "../Avatar";
+import "./style.scss";
 
 function NavBar() {
   return (

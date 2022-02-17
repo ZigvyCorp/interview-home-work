@@ -11,7 +11,7 @@ function CommentItem({ data, users }) {
       <div>
         <h5>{getNameUserFromMail(data.email)}</h5>
         <p>{data.body}</p>
-        <a href>Reply to</a>
+        <span>Reply to</span>
       </div>
     </div>
   );
