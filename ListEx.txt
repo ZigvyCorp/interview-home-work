@@ -1,20 +1,20 @@
 Use AntD or Bootstrap **(Must have)** X
 
   - List all posts on homepage with a short summary (either pagination or scroll infinite) **(Must have)** X scroll
-    - A post on homepage should display the basic information as below (checkout the mockup above)
-      - Author
+    - A post on homepage should display the basic information as below (checkout the mockup above) x
+      - Author x
       - Created date (fake it) X
       - Title X
-      - Content summary - 100 first characters of the content 
+      - Content summary - 100 first characters of the content x
       - Comments will be collapsed by default, display the **count** of the comments for each post
       - Click on comment, the comments section will be expanded and render all post's comments
 
-  - User can search for a post with a given keywords (title) **(Must have)**
+  - User can search for a post with a given keywords (title) **(Must have)** /
   - Post detail page **(Nice to have)**
 
 - Besides the main features above, technical requirements
-  - Pagination or infinite scrolling **(Must have)**
-  - **All EXTERNAL-APIs must be called from Back-end side**
+  - Pagination or infinite scrolling **(Must have)** x
+  - **All EXTERNAL-APIs must be called from Back-end side** x
   - Use **redux** for state management **(Must have)**
   - Use **redux-saga** to call your Node-API **(Must have)**
   - Use **redux-persist** to persist data **(Must have)**

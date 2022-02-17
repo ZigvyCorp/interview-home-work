@@ -113,7 +113,7 @@ function Bootstrap() {
 
           <Grid container spacing={5} alignItems="stretch">
             {userPost.map((data,index)=> (
-              <Grid item xs={12} sm={6} key={index}>
+              <Grid item xs={12} sm={6} key={index} >
                 <ShowList value={data}/>
               </Grid>
             ))}

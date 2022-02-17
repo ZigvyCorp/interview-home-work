@@ -6,7 +6,7 @@ import {
     Typography,
 } from '@material-ui/core'
 
-export default function ShowList({value}) {
+export default function ShowList({ value }) {
     // const dataList = useContext(DataConText)
     // const postsList = dataList.posts
     // const commentsList = dataList.comments
@@ -33,17 +33,18 @@ export default function ShowList({value}) {
     return (
 
         <Card>
-            <CardHeader
-                // title={whichType === 'posts' ? blog.title : blog.name}
-                title={`Author: ${value.name}`}
-                subheader={`Created: ${randomDay}/02/2022`}
-            />
+            <CardHeader title={value.title} align='center' fontWeight='10px' />
             <CardContent>
-                <CardHeader title={`Title: ${value.title}`} />
+                <Typography varient='h5' color='textPrimary'>{`Author: ${value.name}`}</Typography>
+                <Typography varient='h5' color='textPrimary'>{`Created at: Feb ${randomDay}, 2022`}</Typography>
+            </CardContent>
+
+            <CardContent>
+
                 <Typography varient='h5' color='textPrimary'>{value.body}</Typography>
             </CardContent>
             <CardActions>
-                <Typography component="span" color="textSecondary">coments</Typography>
+                <Typography component="span" color="textSecondary">replies</Typography>
             </CardActions>
 
         </Card>
