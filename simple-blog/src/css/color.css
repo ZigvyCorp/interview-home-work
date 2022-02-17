@@ -1,0 +1,65 @@
+.magenta{
+    color: magenta;
+    border: 2px solid magenta;
+}
+
+.red{
+    color: red;
+    border: 2px solid red;
+}
+
+.volcano{
+    color: #d07e59;
+    border: 2px solid #d07e59;
+}
+
+.orange{
+    color: orange;
+    border: 2px solid orange;
+}
+
+.gold{
+    color: gold;
+    border: 2px solid gold;
+}
+
+.lime{
+    color: lime;
+    border: 2px solid lime;
+}
+
+.green{
+    color: green;
+    border: 2px solid green;
+}
+
+.cyan{
+    color: cyan;
+    border: 2px solid cyan;
+}
+
+.blue{
+    color: blue;
+    border: 2px solid blue;
+}
+
+.geekblue{
+    color: #3f556d;
+    border: 2px solid #3f556d;
+}
+
+.purple{
+    color: purple;
+    border: 2px solid purple;
+}
+
+.color a{
+    padding: 5px 5px;
+    border-radius: 5px;
+    margin: 0px 5px;
+    line-height: 50px;
+}
+
+.color{
+    margin-left: 500px;
+}

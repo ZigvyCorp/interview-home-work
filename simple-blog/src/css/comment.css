@@ -1,0 +1,35 @@
+.comment{
+    padding-top: 50px;
+}
+
+.comment li{
+    list-style-type: none;
+    display: inline-block;
+}
+.avatar{
+    width: 50px;
+    margin-bottom: 50px;
+    margin-right: 30px;
+}
+.name{
+    
+}
+
+.commenttime{
+    
+    font-weight: lighter;
+}
+
+a{
+    
+    padding-right: 0px;
+}
+
+.commentcontent{
+    width: 1000px;
+}
+
+.reply{
+    
+    font-weight: lighter;
+}
