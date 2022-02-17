@@ -5,7 +5,7 @@ Use AntD or Bootstrap **(Must have)** X
       - Author
       - Created date (fake it) X
       - Title X
-      - Content summary - 100 first characters of the content X
+      - Content summary - 100 first characters of the content 
       - Comments will be collapsed by default, display the **count** of the comments for each post
       - Click on comment, the comments section will be expanded and render all post's comments
 

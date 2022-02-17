@@ -1,12 +1,60 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { Grid } from '@material-ui/core'
 import ShowList from './ShowList';
 
-
+export const DataConText = createContext()
 
 function Bootstrap() {
   const [type, setType] = useState('posts')
   const [blogs, setBlogs] = useState([])
+
+  const [posts, setPosts] = useState([])
+  const [comments, setComments] = useState([])
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then(res => res.json())
+      .then(postsList => setPosts(postsList))
+      .catch((err) => console.log(err))
+  }, [])
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/comments")
+      .then(res => res.json())
+      .then(commentsList => setComments(commentsList))
+      .catch((err) => console.log(err))
+  }, [])
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+      .then(res => res.json())
+      .then(usersList => setUsers(usersList))
+      .catch((err) => console.log(err))
+  }, [])
+
+
+  // useEffect(() => {
+
+  //   Promise.all([
+  //     fetch("https://jsonplaceholder.typicode.com/posts"),
+  //     fetch("https://jsonplaceholder.typicode.com/comments"),
+  //     fetch("https://jsonplaceholder.typicode.com/users")
+  //   ]).then(allRes => {
+  //     const postsRes = allRes[0].json().then(
+  //       postsData => setPosts(postsData)
+  //     )
+  //     const commentsRes = allRes[1].json().then(
+  //       commentsData => setComments(commentsData)
+  //     )
+  //     const usersRes = allRes[2].json().then(
+  //       usersData => setUsers(usersData)
+  //     )
+
+  //   }).catch((err) => {
+  //     console.log(err);
+  //   })
+  // }, [])
 
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/${type}`)
@@ -17,7 +65,6 @@ function Bootstrap() {
   }, [type])
 
   return (
-
     <div className="d-flex" id="wrapper">
       {/* Sidebar*/}
       <div className="border-end bg-white" id="sidebar-wrapper">
@@ -55,16 +102,17 @@ function Bootstrap() {
         {/* Page content*/}
         <div className="container-fluid">
           <h1 className="mt-4"></h1>
-          <Grid container spacing={2} alignItems="stretch">
-            {blogs.map(blog => (
+          <DataConText.Provider value={posts}>
+            <Grid container spacing={2} alignItems="stretch">
               <Grid item xs={12} sm={6}>
-                <ShowList blog={blog} key={blog.id} />
+                <ShowList posts={posts} comments={comments} users={users}/>
               </Grid>
-            ))}
           </Grid>
-        </div>
+        </DataConText.Provider>
       </div>
     </div>
+      </div >
+
   )
 }
 
