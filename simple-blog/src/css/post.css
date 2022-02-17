@@ -29,3 +29,14 @@ a{
     border-bottom: 3px solid gray;
 }
 
+.userlist{
+    list-style-type: none;
+}
+
+.usersublist{
+    text-align: center;
+}
+
+.headercontent li{
+    display: inline-table;
+}

@@ -2,7 +2,59 @@ import React from "react";
 import "../css/post.css"
 import Comment from "../components/comment.jsx"
 import Color from "../components/color.jsx";
-function Post() {
+import axios from 'axios'
+import { Link } from 'react-router-dom'
+
+
+
+class Post extends React.Component {
+    constructor() {
+        super()
+        this.state = {
+            user: {},
+            posts: [],
+            post: {}
+        }
+    }
+    componentDidMount() {
+        axios.get(`https://jsonplaceholder.typicode.com/posts`)
+            .then((response) => {
+                const posts = response.data
+                this.setState({ posts })
+            })
+        
+    }
+    render() {
+        return (
+            <div>
+                <ul className='userlist'>
+                    {
+                        this.state.posts.map(post => {
+                            return (
+                                <div>
+                                    <li className='usersublist' key={post.id}><h2 to={`/posts/${post.id}`}>{post.title}</h2></li>
+                                    <ul className="headercontent">
+                                        <li>
+                                            <div className='postdetails'>
+                                                <h3>Author:{this.state.user.name}</h3>
+                                                <h3>Created date: 18/2/2022</h3>
+                                            </div>
+                                        </li>
+                                        <li><Color /></li>
+                                    </ul>
+                                    <Comment/>
+                                    <p>{this.state.post.body}</p>
+                                </div>
+                            );
+                        })
+                    }
+                </ul>
+            </div>
+        )
+    }
+}
+
+/*function Post() {
     return (
         <div className="post">
             <h2 className="title">Post title 1</h2>
@@ -23,6 +75,6 @@ function Post() {
             <Comment />
         </div>
     );
-};
+};*/
 
 export default Post;
