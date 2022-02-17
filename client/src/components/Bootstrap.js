@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Grid } from '@material-ui/core'
 import ShowList from './ShowList';
 import { DataConText } from '../DataContext';
+import SearchFilter from './SearchFilter';
 
 
 function Bootstrap() {
@@ -11,6 +12,10 @@ function Bootstrap() {
   const commentsList = dataList.comments
   const usersList = dataList.users
 
+  postsList.map(post => {
+    post.body = post.body.substring(0, 99)
+  });
+
   const userPost = postsList.map(post => (
     {
       ...post,
@@ -18,15 +23,15 @@ function Bootstrap() {
       count: 0
     })
   )
-  // console.log(userPost);
+  
+  function handleFilter(filterValue) {
+    // console.log(filterValue);
+    // console.log(userPost);
+    const filterPost = userPost.filter(post => post.title.toLowerCase().indexOf(filterValue) > -1)
 
-  // const userComment = userPost.map(info => (
-  //   {
-  //     ...info,
-  //     ...commentsList.find(comment => comment.postId === info.id)
-  //   }))
-
-
+    
+    console.log(filterPost)
+  }
 
   // const [type, setType] = useState('posts')
   // const [blogs, setBlogs] = useState([])
@@ -82,7 +87,8 @@ function Bootstrap() {
         {/* Top navigation*/}
         <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
           <div className="container-fluid">
-            <button className="btn btn-primary" id="sidebarToggle">Toggle Menu</button>
+            <button className="btn btn-primary" id="sidebarToggle" style={{marginRight: '10px'}} >Toggle Menu</button>
+            <SearchFilter onSubmit={handleFilter} />
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon" /></button>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
@@ -106,9 +112,9 @@ function Bootstrap() {
           <h1 className="mt-4"></h1>
 
           <Grid container spacing={5} alignItems="stretch">
-            {userPost.map(data => (
-              <Grid item xs={12} sm={6}>
-                <ShowList value={data} />
+            {userPost.map((data,index)=> (
+              <Grid item xs={12} sm={6} key={index}>
+                <ShowList value={data}/>
               </Grid>
             ))}
           </Grid>

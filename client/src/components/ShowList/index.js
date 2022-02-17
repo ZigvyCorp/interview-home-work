@@ -33,7 +33,6 @@ export default function ShowList({value}) {
     return (
 
         <Card>
-
             <CardHeader
                 // title={whichType === 'posts' ? blog.title : blog.name}
                 title={`Author: ${value.name}`}
