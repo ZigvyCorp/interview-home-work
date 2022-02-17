@@ -1,10 +1,11 @@
+import moment from "moment";
 import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import CommentArrcordion from "../CommentAccordion";
 import Tag from "../Tag";
 import "./style.scss";
 
-function PostItem({ data, authors }) {
+function PostItem({ data, authors: users, comments }) {
   const tags = [
     "magenta",
     "red",
@@ -20,7 +21,7 @@ function PostItem({ data, authors }) {
   ];
 
   const renderAuthor = (idUser) => {
-    const author = authors.find((author) => author.id === idUser);
+    const author = users.find((author) => author.id === idUser);
     return author.name;
   };
 
@@ -29,15 +30,33 @@ function PostItem({ data, authors }) {
     return desc.substring(0, 100) + "...";
   };
 
-  const { title, body, userId } = data;
+  const randomDate = () => {
+    var startDate = new Date(2022, 2, 17).getTime();
+    var endDate = new Date(2021, 1, 1).getTime();
+    var spaces = endDate - startDate;
+    var timestamp = Math.round(Math.random() * spaces);
+    timestamp += startDate;
+    return moment(new Date(timestamp)).format("LL");
+  };
+
+  const { title, body, userId, id } = data;
+  const postComments = comments.filter((comment) => comment.postId === id);
+
   return (
     <Row className="post-item">
       <h2>{title}</h2>
-      <Col lg={6}>
-        <p>Author: {renderAuthor(userId)}</p>
-        <p>Created at: Sep 20, 2022</p>
+      <Col lg={4}>
+        <div className="d-flex align-items-center">
+          <ion-icon name="person-circle-outline"></ion-icon>
+          {renderAuthor(userId)}
+        </div>
+
+        <div className="d-flex align-items-center">
+          <ion-icon name="time-outline"></ion-icon>
+          {randomDate()}
+        </div>
       </Col>
-      <Col lg={6}>
+      <Col lg={8}>
         <div className="tags">
           {tags.map((tagData) => (
             <Tag value={tagData} type={tagData} />
@@ -48,7 +67,7 @@ function PostItem({ data, authors }) {
       <Col lg={12}>
         <p>{renderDesc(body)}</p>
       </Col>
-      <CommentArrcordion />
+      <CommentArrcordion comments={postComments} users={users} />
     </Row>
   );
 }

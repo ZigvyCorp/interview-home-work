@@ -1,19 +1,20 @@
 import React from "react";
 import { Accordion } from "react-bootstrap";
+import CommentItem from "./components/CommentItem";
+import "./style.scss";
 
-function CommentArrcordion() {
+function CommentArrcordion({ comments, users }) {
   return (
-    <Accordion flush>
+    <Accordion>
       <Accordion.Item eventKey="0">
-        <Accordion.Header>' count ' replies</Accordion.Header>
+        <Accordion.Header>
+          <ion-icon name="chatbox-outline"></ion-icon> {comments.length} replies
+        </Accordion.Header>
         <Accordion.Body>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          {comments.map((comment) => (
+            <CommentItem data={comment} users={users} />
+            // <p>{comment.body}</p>
+          ))}
         </Accordion.Body>
       </Accordion.Item>
     </Accordion>

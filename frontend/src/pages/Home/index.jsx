@@ -9,12 +9,18 @@ function Home() {
     fetchPosts().then((json) => setPostList(json));
   }, []);
 
+  console.log("data", postList);
+
   return (
     <>
       <NavBar />
       <article className="margin-nav">
         {postList?.posts?.map((postData, index) => (
-          <PostItem data={postData} authors={postList.users} />
+          <PostItem
+            data={postData}
+            authors={postList.users}
+            comments={postList.comments}
+          />
         ))}
       </article>
     </>

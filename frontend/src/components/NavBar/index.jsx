@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Row } from "react-bootstrap";
 import logo from "../../logo.jpg";
 import "./style.scss";
+import Avatar from "../Avatar";
 
 function NavBar() {
   return (
@@ -15,12 +16,7 @@ function NavBar() {
             <h1>Blogs</h1>
           </div>
           <div className="user">
-            <img
-              src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.webp"
-              className="rounded-circle z-depth-0 mr-2"
-              alt="avatar image"
-              height="35"
-            />
+            <Avatar name="P B" />
             Phuc Binh
           </div>
         </div>

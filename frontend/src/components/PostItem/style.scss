@@ -5,4 +5,13 @@
   max-width: 700px;
   margin: auto;
   margin-bottom: 2em;
+
+  & ion-icon {
+    margin-right: 5px;
+    font-size: 20px;
+  }
+
+  & .tags {
+    margin-bottom: 10px;
+  }
 }
