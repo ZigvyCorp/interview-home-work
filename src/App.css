@@ -1,0 +1,128 @@
+.App {
+  /* text-align: center; */
+  max-width: 1200px;
+  margin: auto;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  min-height: 100vh;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+  font-size: calc(10px + 2vmin);
+}
+
+html {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+input,
+textarea,
+select,
+button {
+  outline: none;
+}
+input {
+  line-height: normal;
+}
+label,
+button {
+  cursor: pointer;
+}
+a {
+  text-decoration: none;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Main Css */
+.replies {
+  font-size: 20px;
+  display: inline-block;
+  cursor: pointer;
+  color: #595959
+}
+
+.replies:hover {
+  opacity: .8
+}
+
+
+.comments {
+  margin-top:20px;
+  display: flex;
+}
+.comments_logo {
+  width: 15%;
+  padding-right: 8px;
+}
+
+.comments_title p{
+  font-size: 20px;
+  color: #949494;
+}
+
+.comments_title_header {
+  display: flex;
+  align-items: center;
+}
+
+.comments_title_body {
+
+}
+
+.comments_title_replyto p{
+  margin-top: 10px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+
+.paginationBttns {
+  width: 80%;
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 20px 0;
+}
+
+.paginationBttns a {
+  padding: 10px;
+  margin: 8px;
+  border-radius: 5px;
+  border: 1px solid #2b2eff;
+  color: #2b2eff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.paginationBttns a:hover {
+  color: white;
+  background-color: #2b2eff;
+}
+
+.paginationActive a {
+  color: white;
+  background-color: #2b2eff;
+}
+
+.paginationDisabled a {
+  color: grey;
+  background-color: grey;
+}
