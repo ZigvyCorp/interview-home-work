@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Accordion, Badge, Col, Row } from "react-bootstrap";
-import fetchUsers from "../../api/fetchUsers";
-import "./style.scss";
-import Tag from "../Tag";
+import React, { useState } from "react";
+import { Col, Row } from "react-bootstrap";
 import CommentArrcordion from "../CommentAccordion";
-import fetchUsersByIds from "../../api/fetchUsers";
+import Tag from "../Tag";
+import "./style.scss";
 
-function PostItem({ data }) {
-  const [users, setUsers] = useState([]);
+function PostItem({ data, authors }) {
   const tags = [
     "magenta",
     "red",
@@ -23,11 +20,8 @@ function PostItem({ data }) {
   ];
 
   const renderAuthor = (idUser) => {
-    console.log(users);
-    users.map((user) => {
-      const nameAuthor = user.id === idUser ? user.name : "No name";
-      return nameAuthor;
-    });
+    const author = authors.find((author) => author.id === idUser);
+    return author.name;
   };
 
   const renderDesc = (desc) => {
