@@ -14,7 +14,9 @@ function Bootstrap() {
 
   postsList.map(post => {
     post.body = post.body.substring(0, 99)
+    post.postId = post.id
   });
+
 
   const userPost = postsList.map(post => (
     {
@@ -23,48 +25,14 @@ function Bootstrap() {
       count: 0
     })
   )
-  
+
   function handleFilter(filterValue) {
-    // console.log(filterValue);
-    // console.log(userPost);
+
+    //Data filter
     const filterPost = userPost.filter(post => post.title.toLowerCase().indexOf(filterValue) > -1)
 
-    
     console.log(filterPost)
   }
-
-  // const [type, setType] = useState('posts')
-  // const [blogs, setBlogs] = useState([])
-
-  // useEffect(() => {
-
-  //   Promise.all([
-  //     fetch("https://jsonplaceholder.typicode.com/posts"),
-  //     fetch("https://jsonplaceholder.typicode.com/comments"),
-  //     fetch("https://jsonplaceholder.typicode.com/users")
-  //   ]).then(allRes => {
-  //     const postsRes = allRes[0].json().then(
-  //       postsData => setPosts(postsData)
-  //     )
-  //     const commentsRes = allRes[1].json().then(
-  //       commentsData => setComments(commentsData)
-  //     )
-  //     const usersRes = allRes[2].json().then(
-  //       usersData => setUsers(usersData)
-  //     )
-
-  //   }).catch((err) => {
-  //     console.log(err);
-  //   })
-  // }, [])
-
-  // useEffect(() => {
-  //   fetch(`https://jsonplaceholder.typicode.com/${type}`)
-  //     .then(res => res.json())
-  //     .then(listItem => {
-  //       setBlogs(listItem)
-  //     })
-  // }, [type])
 
 
   return (
@@ -87,7 +55,7 @@ function Bootstrap() {
         {/* Top navigation*/}
         <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
           <div className="container-fluid">
-            <button className="btn btn-primary" id="sidebarToggle" style={{marginRight: '10px'}} >Toggle Menu</button>
+            <button className="btn btn-primary" id="sidebarToggle" style={{ marginRight: '10px' }} >Toggle Menu</button>
             <SearchFilter onSubmit={handleFilter} />
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon" /></button>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -112,9 +80,9 @@ function Bootstrap() {
           <h1 className="mt-4"></h1>
 
           <Grid container spacing={5} alignItems="stretch">
-            {userPost.map((data,index)=> (
+            {userPost.map((data, index) => (
               <Grid item xs={12} sm={6} key={index} >
-                <ShowList value={data}/>
+                <ShowList value={data} />
               </Grid>
             ))}
           </Grid>

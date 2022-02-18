@@ -7,27 +7,6 @@ import {
 } from '@material-ui/core'
 
 export default function ShowList({ value }) {
-    // const dataList = useContext(DataConText)
-    // const postsList = dataList.posts
-    // const commentsList = dataList.comments
-    // const usersList = dataList.users
-
-    // const userPost = postsList.map(post => (
-    //     {
-    //         ...post,
-    //         ...usersList.find(user => user.id === post.userId)
-    //     }))
-
-
-    // const userComment = userPost.map(info => (
-    //     { 
-    //         ...info,
-    //         ...commentsList.find(comment => comment.postId === info.id) 
-    //     }))
-
-
-    // console.log(userPost)
-    // console.log(userComment)
     const randomDay = Math.floor(Math.random() * 17) + 1
 
     return (

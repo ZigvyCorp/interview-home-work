@@ -17,15 +17,15 @@ function SearchFilter(props) {
     function handleSearch(e) {
         setSearchTerm(e.target.value)
 
-        if(!onSubmit) return;
+        if (!onSubmit) return;
 
-        if(typingTimeoutRef.current){
+        if (typingTimeoutRef.current) {
             clearTimeout(typingTimeoutRef.current)
         }
-        
+
         typingTimeoutRef.current = setTimeout(() => {
             onSubmit(e.target.value)
-            
+
         }, 500)
     }
 

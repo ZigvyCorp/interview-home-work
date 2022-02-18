@@ -2,7 +2,7 @@ import { useState, useEffect, createContext } from "react"
 
 const DataConText = createContext()
 
-function DataProvider({children}) {
+function DataProvider({ children }) {
     const [posts, setPosts] = useState([])
     const [comments, setComments] = useState([])
     const [users, setUsers] = useState([])
@@ -27,7 +27,7 @@ function DataProvider({children}) {
             .then(usersList => setUsers(usersList))
             .catch((err) => console.log(err))
     }, [])
-    
+
     const value = {
         posts,
         comments,
