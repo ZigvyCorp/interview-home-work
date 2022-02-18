@@ -106,8 +106,11 @@ class Post extends React.Component {
                             <p>{post.body}</p>
 
                         </ul>
-                        
+
                     </div>
+                    <Comment />
+                    <Comment />
+                    <Comment />
                 </div>
             );
         });
@@ -115,7 +118,10 @@ class Post extends React.Component {
 
     render() {
 
-        return <div className='ui relaxed divided list'>{this.renderList()}</div>
+        return <div className='ui relaxed divided list'>
+            {this.renderList()}
+        </div>
+
     }
 };
 
