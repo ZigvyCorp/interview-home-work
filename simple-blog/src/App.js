@@ -4,6 +4,7 @@ import Header from './components/header.jsx';
 import Post from './components/post';
 import { BrowserRouter, Router, Route, Link, NavLink, Routes } from "react-router-dom";
 
+
 class App extends React.Component {
   render() {
     return (
