@@ -1,0 +1,42 @@
+h2{
+    text-align: center;
+}
+
+.author,
+.date{
+    width: 200px;
+    margin: 0;
+}
+
+.post{
+    width: 80%;
+    padding-left: 150px;
+}
+
+.postheader{
+    list-style-type: none ;
+}
+
+.postheader li{
+    display: inline-table;
+}
+a{
+    text-decoration: none;
+    padding-right: 800px;
+}
+
+.replies{
+    border-bottom: 3px solid gray;
+}
+
+.userlist{
+    list-style-type: none;
+}
+
+.usersublist{
+    text-align: center;
+}
+
+.headercontent li{
+    display: inline-table;
+}
