@@ -4,10 +4,11 @@ import Comment from "../components/comment.jsx"
 import Color from "../components/color.jsx";
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import UserHeader from '../components/user.jsx'
+import { connect } from 'react-redux';
+import { fetchPostsAndUsers } from '../actions/index.jsx';
+import UserHeader from './UserHeader.jsx';
 
-
-class Post extends React.Component {
+/*class Post extends React.Component {
     constructor() {
         super()
         this.state = {
@@ -22,7 +23,7 @@ class Post extends React.Component {
                 const posts = response.data
                 this.setState({ posts })
             })
-        
+        this.props.fetchPostsAndUsers();
     }
     render() {
         return (
@@ -36,15 +37,16 @@ class Post extends React.Component {
                                     <ul className="headercontent">
                                         <li>
                                             <div className='postdetails'>
-                                                <h3>Author:{<UserHeader userId={post.userId}/>}</h3>
+                                                <h3>Author:</h3>
+                                                <UserHeader userId={post.userId} />
                                                 <h3>Created date: 18/2/2022</h3>
                                             </div>
                                         </li>
                                         <li><Color /></li>
-                                        <p className="contentpost">{post.body}</p>
+                                        <p>{post.body}</p>
 
                                     </ul>
-                                    
+
 
                                 </div>
                             );
@@ -54,7 +56,7 @@ class Post extends React.Component {
             </div>
         )
     }
-}
+}*/
 
 /*function Post() {
     return (
@@ -79,4 +81,49 @@ class Post extends React.Component {
     );
 };*/
 
-export default Post;
+class Post extends React.Component {
+    componentDidMount() {
+        this.props.fetchPostsAndUsers();
+    };
+
+    renderList = () => {
+        return this.props.posts.map(post => {
+            return (
+                <div className='item' key={post.id}>
+                    <i className='largle middle aligned icon user' />
+                    <div className='content'>
+                        <h2>{post.title}</h2>
+                        <ul className="headercontent">
+                            <li>
+                                <div className='postdetails'>
+                                    <h3>
+                                        Author:<UserHeader userId={post.userId} />
+                                    </h3>
+                                    <h3>Created date: 18/2/2022</h3>
+                                </div>
+                            </li>
+                            <li><Color /></li>
+                            <p>{post.body}</p>
+
+                        </ul>
+                        
+                    </div>
+                </div>
+            );
+        });
+    };
+
+    render() {
+
+        return <div className='ui relaxed divided list'>{this.renderList()}</div>
+    }
+};
+
+//这里的state是从reducers里面传过来的，参数就是posts的对象,用posts接收到参数后，传到下面connect里面，实现react和redux的沟通
+const mapStateToProps = (state) => {
+    return { posts: state.posts };
+};
+
+export default connect(mapStateToProps, { fetchPostsAndUsers })(Post);
+
+/*export default Post;*/
