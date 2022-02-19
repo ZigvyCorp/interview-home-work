@@ -1,0 +1,27 @@
+.postList {
+  padding: 24px;
+  border: 1px solid #1e1e1e;
+  border-radius: 8px;
+}
+
+.postItem {
+  border-bottom: 1px solid #1e1e1e;
+  .title {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .showComment {
+    user-select: none;
+    cursor: pointer;
+    margin-top: 32px;
+    &:hover {
+      color: red;
+    }
+  }
+  .goDetail {
+    cursor: pointer;
+    font-weight: 600;
+    float: right;
+  }
+}
