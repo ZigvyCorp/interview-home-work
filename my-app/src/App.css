@@ -1,0 +1,25 @@
+
+/* import font */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+body {
+  font-family: "Ubuntu", sans-serif !important; 
+}
+
+.header {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.75rem 2rem;
+}
+
+.Tags {
+  display: flex;
+}
+.Tag {
+  height: fit-content;
+  padding: 4px; 
+  margin: 4px;
+  font-weight: bold;
+}
