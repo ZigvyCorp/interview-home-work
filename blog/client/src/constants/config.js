@@ -1,0 +1,2 @@
+export const REACT_APP_PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER || "http://localhost:3000/assets/images"
+export const BACKEND_URL = process.env.BACKEND_URL ||  "https://jsonplaceholder.typicode.com"

@@ -1,0 +1,41 @@
+.comment-block{
+    display: flex;
+    gap: 10px;
+    padding:5px 0;
+    .avatar-container{
+        img{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        };
+        flex-shrink: 0;
+    };
+    .comment-container{
+        flex-grow: 1;
+        font-size: 14px;
+        .comment-infor{
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            .username{
+                font-weight: 500;
+                color:gray
+            };
+            .time{
+                font-weight: 100;
+                color: gray;
+            }
+        };
+        .comment-content{
+            margin: 10px 0;
+        };
+        .reply-btn{
+            font-size: 14px;
+            color:gray;
+            cursor: pointer;
+            &:hover{
+                color:blue
+            }
+        }
+    }
+}
