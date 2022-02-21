@@ -1,0 +1,94 @@
+.post{
+    .post-title{
+        text-align: center;
+    };
+    .post-infor{
+        p{
+            margin-bottom: 5px;
+        }
+    };
+    .tags{
+        display: flex;
+        gap:5px;
+        align-items: center;
+        flex-wrap: wrap;
+        span{
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 5px;
+            vertical-align: middle;
+            font-size: 12px;
+            &.magenta{
+                border: 1px solid #cc2da0;
+                color:#cc2da0;
+                background-color: rgba(204, 45, 160,0.1);
+            };
+            &.red{
+                border: 1px solid red;
+                color: red;
+                background-color: rgba(255, 0, 0,0.1);
+            };
+            &.volcano{
+                border: 1px solid #e43606;
+                color:#e43606;
+                background-color: rgba(228, 54, 6,0.1);
+            };
+            &.orange{
+                border: 1px solid #fc7703;
+                color:#fc7703;
+                background-color: rgba(252, 119, 3,0.1);
+            };
+            &.gold{
+                border: 1px solid #fcb503;
+                color:#fcb503;
+                background-color: rgba(252, 181, 3, 0.1);
+            };
+            &.lime{
+                border: 1px solid #7CDF7C;
+                color:#7CDF7C;
+                background-color: rgba(124, 223, 124,0.1);
+            };
+            &.green{
+                border: 1px solid #237804;
+                color:#237804;
+                background-color: rgba(35, 120, 4,0.1);
+            };
+            &.cyan{
+                border: 1px solid #00bcd4;
+                color:#00bcd4;
+                background-color: rgba(0, 188, 212,0.1);
+            };
+            &.blue{
+                border: 1px solid #0f9cfa;
+                color:#0f9cfa;
+                background-color: rgba(15, 156, 250,0.1);
+            };
+            &.geekblue{
+                border: 1px solid #030852;
+                color:#030852;
+                background-color: rgba(3, 8, 82,0.1);
+            };
+            &.purple{
+                border: 1px solid #22075e;
+                color:#22075e;
+                background-color: rgba(34, 7, 94,0.1);
+            };
+        }
+    };
+    .post-btn-group{
+        display: flex;
+        justify-content: space-between;
+        .view-cmt-btn{
+            padding:4px 10px;
+            &:hover{
+              color:blue;
+            }
+        }
+    };
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+      }
+}
