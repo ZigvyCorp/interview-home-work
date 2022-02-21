@@ -1,0 +1,21 @@
+{
+  "name": "blog_app",
+  "version": "1.0.0",
+  "description": "blog app for test",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --inspect app.js"
+  },
+  "author": "Nguyen Van Huy",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "fetch": "^1.1.0",
+    "node-fetch": "^2.6.7",
+    "nodemon": "^2.0.15"
+  }
+}
