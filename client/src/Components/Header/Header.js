@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './Header.module.css';
 import { FaUserTie } from 'react-icons/fa';
 const Header = () => {
 	return (
@@ -6,16 +7,16 @@ const Header = () => {
 			<div className="row ">
 				<div className="col-5 border border-3 border-dark">
 					<div className="row h-100 align-items-center">
-						<div className="col-2 h-100 bg-secondary"></div>
+						<div className="col-2 h-100 bg-light"></div>
 						<div className="col align-middle fw-bold">Logo</div>
 					</div>
 				</div>
 				<div
-					className="col-2 d-flex bg-secondary 
+					className={`col-2 d-flex bg-light 
                     justify-content-center 
                     align-items-center 
-                    custom-arrow
-                    fw-bold"
+                    
+                    fw-bold ${styles.customArrow}`}
 				>
 					Blog
 				</div>

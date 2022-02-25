@@ -1,13 +1,63 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-import Header from './Components/Header';
+import axios from 'axios';
+import Header from './Components/Header/Header';
+import Posts from './Components/Posts';
+import Pagination from './Components/Pagination';
 
-function App() {
+const App = () => {
+	const [data, setData] = useState({
+		posts: [],
+		users: [],
+		comments: [],
+	});
+
+	const [currentPage, setCurrentPage] = useState(1);
+	const [postsPerPage] = useState(10);
+	const [loading, setLoading] = useState(true);
+
+	//Fetch data
+	useEffect(() => {
+		const fetchData = async () => {
+			const posts = await axios.get(
+				'https://jsonplaceholder.typicode.com/posts'
+			);
+			const users = await axios.get(
+				'https://jsonplaceholder.typicode.com/users'
+			);
+			const comments = await axios.get(
+				'https://jsonplaceholder.typicode.com/comments'
+			);
+
+			setData({
+				posts: posts.data,
+				users: users.data,
+				comments: comments.data,
+			});
+			setLoading(false);
+		};
+		fetchData();
+	}, []);
+
+	const lastPostIndex = currentPage * postsPerPage;
+	const firstPostIndex = lastPostIndex - postsPerPage;
+	const currentPosts =
+		data.posts.length > 0
+			? data.posts.slice(firstPostIndex, lastPostIndex)
+			: [];
+
+	const paginate = pageNumber => setCurrentPage(pageNumber);
 	return (
-		<div className="mx-5">
+		<div className="mx-6">
 			<Header />
+			<Posts loading={loading} currentPosts={currentPosts} data={data} />
+			<Pagination
+				postsPerPage={postsPerPage}
+				totalPosts={data.posts.length}
+				paginate={paginate}
+			/>
 		</div>
 	);
-}
+};
 
 export default App;
