@@ -3,23 +3,29 @@ import React, { useState } from 'react';
 const Comment = props => {
 	const [showComments, setShowComments] = useState(false);
 
+	//Find all comments on a specific list
 	const commentsList = props.comments.filter(
 		comment => comment.postId === props.postId
 	);
+
+	//Calculate total comments
 	const totalComments = commentsList.length;
 
+	//toggle comments on click
 	const toggleComments = () => {
 		setShowComments(!showComments);
 	};
 
 	return (
 		<div className="my-5">
-			<button
-				className="fw-light border-0 text-secondary"
-				onClick={toggleComments}
-			>
-				{totalComments} replies
-			</button>
+			<div className="border-primary border-bottom pb-3">
+				<button
+					className="fw-light border-0 text-secondary"
+					onClick={toggleComments}
+				>
+					{totalComments} replies
+				</button>
+			</div>
 			{showComments &&
 				commentsList.map(cmt => (
 					<div className="d-flex my-5">

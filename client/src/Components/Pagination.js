@@ -3,6 +3,7 @@ import React from 'react';
 const Pagination = props => {
 	const pageNumbers = [];
 
+	//create page number
 	for (
 		let i = 0;
 		i < Math.ceil(props.totalPosts / props.postsPerPage);
