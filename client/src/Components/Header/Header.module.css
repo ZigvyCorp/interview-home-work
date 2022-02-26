@@ -1,0 +1,23 @@
+.customArrow {
+	position: relative;
+	border-top: 3px solid black;
+	border-bottom: 3px solid black;
+	z-index: 1;
+}
+.customArrow:after {
+	content: '';
+	position: absolute;
+	width: 26px;
+	height: 26px;
+	top: 100%;
+	left: 50%;
+	margin-left: -13px;
+	transform: rotate(45deg);
+	margin-top: -11px;
+	background-color: #e6e6e6;
+	border-top: 0px;
+	border-right: 3px solid black;
+	border-bottom: 3px solid black;
+	border-left: 0px;
+	z-index: 0;
+}
