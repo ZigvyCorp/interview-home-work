@@ -1,8 +1,11 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const {port} = require('./config');
+const cors = require('cors')
  
 const app = express();
+
+app.use(cors());
 
 const apiCommentRouter = require('./routers/Comments.router');
 const apiPostRouter = require('./routers/Posts.router');
