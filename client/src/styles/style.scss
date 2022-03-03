@@ -1,0 +1,33 @@
+@import './mixins';
+@import './variables';
+
+#root {
+    @import '../pages/Home';
+    & p {
+        margin: 0;
+    }
+
+    & ul , li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .ant-collapse-item {
+        border: none;
+
+        .ant-collapse-header{
+            background-color: #fff;
+    
+            & div {
+                display: none !important;
+            }
+
+            & p:hover{
+                color: blue;
+            }
+        }
+    }
+
+    
+}

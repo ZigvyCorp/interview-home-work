@@ -1,0 +1,23 @@
+.post {
+    border-bottom: 1px solid #000;
+    font-size: 1rem;
+    padding: 20px 20px;
+    font-weight: 600;
+    .post_title {
+        text-align: center;
+    }
+
+    .post_information {
+        font-size: 1.3rem;
+        margin-bottom: 30px;
+        .post_tags{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            ul {
+                display: flex;
+                flex-direction: row;
+            }
+        }
+    }
+}
