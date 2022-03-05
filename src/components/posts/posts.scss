@@ -1,0 +1,35 @@
+.list-post {
+	&.ant-list {
+		max-width: 80%;
+		margin: 32px auto;
+	}
+
+	> .ant-spin-nested-loading {
+		box-shadow: rgb(9 30 66 / 25%) 0px 1px 1px, rgb(9 30 66 / 13%) 0px 0px 1px 1px;
+		border-radius: 4px;
+
+		> .ant-spin-container {
+			> .ant-list-items {
+				> .ant-list-item {
+					border-bottom: 2px solid #2b2b2b;
+				}
+			}
+		}
+	}
+
+	.ant-list-split {
+		.ant-list-item {
+			border: none;
+
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+	}
+
+	.font-medium {
+		font-size: 16px;
+		color: #000000;
+		font-weight: 500;
+	}
+}
