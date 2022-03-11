@@ -99,7 +99,7 @@ export function updateComment(req, res) {
 }
 
 // delete comment
-export function deletecomment(req, res) {
+export function deleteComment(req, res) {
   const id = req.params.id;
   Comment.findByIdAndRemove(id)
     .exec()

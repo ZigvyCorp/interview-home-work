@@ -3,28 +3,29 @@ import autoIncrement from 'mongoose-auto-increment'
 
 mongoose.Promise = global.Promise;
 
-const postSchema = new mongoose.Schema({
-    owner: {
-        type: Number, ref: 'User',
+const userSchema = new mongoose.Schema({
+    username: {
+        type: String,
+        required: true,
+        unique: true,
     },
-    title: {
+    password: {
         type: String,
         required: true,
     },
-    content: {
+    name: {
         type: String,
-        required: true,
+    },
+    dob: {
+        type: String,
     },
     created_at: {
         type: Date,
         default: Date.now,
         required: true,
-    },
-    tags: {
-        type: [String]
     }
 });
 
 autoIncrement.initialize(mongoose.connection);
-postSchema.plugin(autoIncrement.plugin, 'Post');
-export default mongoose.model('Post', postSchema);
+userSchema.plugin(autoIncrement.plugin, 'User');
+export default mongoose.model('User', userSchema);

@@ -2,20 +2,18 @@ import mongoose from 'mongoose';
 import autoIncrement from 'mongoose-auto-increment'
 
 mongoose.Promise = global.Promise;
-var Schema = mongoose.Schema;
 
 const commentSchema = new mongoose.Schema({
     owner: {
-        type: Number,
-        required: true,
+        type: Number, ref: 'User',
+    },
+    post: {
+        type: Number, ref: 'Post',
     },
     created_at: {
         type: Date,
         default: Date.now,
         required: true,
-    },
-    post: {
-        type: Number, ref: 'Post',
     },
     content: {
         type: String,
