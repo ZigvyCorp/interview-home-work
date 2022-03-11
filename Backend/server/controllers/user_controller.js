@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import User from '../models/user.js';
 
-// create new user
+// Create new user
 export function createUser (req, res) {
   const user = new User({
     username: req.body.username,
@@ -11,23 +11,39 @@ export function createUser (req, res) {
     created_at: req.body.created_at,
   });
   
-  return user
-    .save()
-    .then((newUser) => {
-      return res.status(201).json({
-        message: 'User has been created',
-        User: newUser,
-      });
+  User.findOne({ username: req.body.username })
+    .then((allUser) => {
+      if (allUser) {
+        return res.status(400).send({ message: "User already exists "});
+      }
+      else {
+        user
+        .save(user)
+        .then((newUser) => {
+          return res.status(201).json({
+            message: 'User has been created',
+            User: newUser,
+          });
+        })
+        .catch((error) => {
+            console.log(error);
+            res.status(500).json({
+            message: 'Server error. Please try again.',
+            error: error.message,
+          });
+        });
+      }
     })
-    .catch((error) => {
-        console.log(error);
+    .catch((err) => {
       res.status(500).json({
-        message: 'Cannot create user',
-        error: error.message,
+        message: 'Server error. Please try again.',
+        error: err.message,
       });
     });
   }
   
+
+
 // Get all users
 export function getAllUser( req, res){
   User.find()
@@ -45,55 +61,74 @@ export function getAllUser( req, res){
     });
 }
 
-// get single user
+
+
+// Get single user
 export function getSingleUser(req, res) {
   const id = req.params.id;
-  User.findById(id).exec()
+  User.findById(id)
     .then((singleUser) => {
-      res.status(200).json({
-        User: singleUser,
-      });
+      if (!singleUser) {
+        res.status(404).send({ message: "Cannot find user with id " + id });
+      } 
+      else {
+        res.status(200).json({
+          User: singleUser,
+        });
+      }  
     })
     .catch((err) => {
       res.status(500).json({
-        message: 'This user does not exist',
+        message: 'Server error. Please try again.',
         error: err.message,
       });
    });
 }
 
-// update user
+
+
+// Update user
 export function updateUser(req, res) {
   const id = req.params.id;
   const updateObject = req.body;
-  User.updateOne({ _id:id }, { $set:updateObject })
-    .exec()
-    .then(() => {
-      res.status(200).json({
-        message: 'User has been updated',
-        updateUser: updateObject,
-      });
+  User.findByIdAndUpdate(id, updateObject, { useFindAndModify: false })
+    .then(currentUser => {
+      if (!currentUser) {
+        res.status(404).send({ message: "Cannot update user with id " + id });
+      }
+      else {
+        res.status(200).json({
+          message: 'User has been updated',
+          updateUser: updateObject,
+        });
+      } 
     })
     .catch((err) => {
       res.status(500).json({
-        message: 'Cannot update user'
+        message: 'Server error. Please try again.'
       });
     });
 }
 
-// delete user
+
+
+// Delete user
 export function deleteUser(req, res) {
   const id = req.params.id;
   User.findByIdAndRemove(id)
-    .exec()
-    .then(() => {
-      res.status(204).json({
-        message: 'User has been deleted'
-      });
+    .then(currentUser => {
+      if (!currentUser) {
+        res.status(404).send({ message: "Cannot delete user with id " + id });
+      }
+      else {
+        res.status(204).json({
+          message: 'User has been deleted'
+        });
+      }
     })
     .catch((err) => {
       res.status(500).json({
-        message: 'Cannot delete user'
+        message: 'Server error. Please try again.'
       });
     });
 }
