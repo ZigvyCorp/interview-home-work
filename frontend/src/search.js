@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
  
-const userURL = 'http://localhost:5000/api/users/'
-const postURL = 'http://localhost:5000/api/posts/'
-const commentURL = 'http://localhost:5000/api/comments/'
+const userURL = 'http://localhost:5000/users/'
+const postURL = 'http://localhost:5000/posts/'
+const commentURL = 'http://localhost:5000/comments/'
 
 export default function Search() {
     const [userID, setUserID] = useState(0)

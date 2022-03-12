@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
  
-const postURL = 'http://localhost:5000/api/posts/'
+const postURL = 'http://localhost:5000/posts/'
 
 export default function Post() {
     const [editing, setEditing] = useState(false);
@@ -100,12 +100,12 @@ export default function Post() {
                 <label for="content">Content:</label><br/>
                 <textarea id="content" name="content" value={content} onChange={(e)=>setContent(e.target.value)}></textarea><br/>
                 <label for="tags">Tags:</label><br/>
-                <input type="checkbox" id="A" name="A" value="A" onChange={handleChange}/>
-                <label for="A">A</label><br/>
-                <input type="checkbox" id="B" name="B" value="B" onChange={handleChange}/>
-                <label for="B">B</label><br/>
-                <input type="checkbox" id="C" name="C" value="C" onChange={handleChange}/>
-                <label for="C">C</label><br/>
+                <input type="checkbox" id="IT" name="IT" value="IT" onChange={handleChange}/>
+                <label for="IT">IT</label><br/>
+                <input type="checkbox" id="Business" name="Business" value="Business" onChange={handleChange}/>
+                <label for="Business">Business</label><br/>
+                <input type="checkbox" id="Software" name="Software" value="Software" onChange={handleChange}/>
+                <label for="Software">Software</label><br/>
                 <input type="submit" value="Submit"></input>
                 </form>
             </div><br/>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
  
-const userURL = 'http://localhost:5000/api/users/'
+const userURL = 'http://localhost:5000/users/'
 
 export default function User() {
     const [editing, setEditing] = useState(false);
