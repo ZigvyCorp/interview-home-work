@@ -1,20 +1,27 @@
 import './App.css';
 import User from './user';
-import React, { useState, useEffect } from "react";
+import Post from './post';
+import Comment from './comment';
+import Home from './home';
+import {
+  BrowserRouter, Route, Routes
+} from 'react-router-dom';
 
-function App() {
-  const [page, setPage] = useState('User')
+export default function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {page==='User'? <User/>: ''}
-
-        <br/>
-        <button onClick={()=>setPage('User')}>User</button>
-        <br/>
+      <div>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/user" element={<User />} />
+            <Route path="/post" element={<Post />} />
+            <Route path="/comment" element={<Comment />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
       </header>
     </div>
   );
 }
-  
-export default App;

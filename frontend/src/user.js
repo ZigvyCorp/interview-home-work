@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
  
 export default function User() {
     const [editing, setEditing] = useState(false);
@@ -69,30 +70,49 @@ export default function User() {
 
     return (
         <div>
-          <div>
+            <Link to="/">Home</Link>
+
+            <div>
             <form onSubmit={() => saveFunc()}>
             <label for="username">Username:</label><br/>
             <input type="text" id="username" name="username" value={username} onChange={(e)=>setUsername(e.target.value)}/><br/>
             <label for="password">Password:</label><br/>
-            <input type="text" id="password" name="password" value={password} onChange={(e)=>setPassword(e.target.value)}/><br/>
+            <input type="password" id="password" name="password" value={password} onChange={(e)=>setPassword(e.target.value)}/><br/>
             <label for="name">Name:</label><br/>
             <input type="text" id="name" name="name" value={name} onChange={(e)=>setName(e.target.value)}/><br/>
             <label for="dob">DOB:</label><br/>
             <input type="text" id="dob" name="dob" value={dob} onChange={(e)=>setDob(e.target.value)}/><br/>
             <input type="submit" value="Submit"></input>
             </form>
-          </div>
-    
-          <div>ALL USERS</div>
-          <ul>
-            {data.map(e => (
-              <li key={e._id}>
-                {e._id}, {e.username}, {e.password}, {e.name}, {e.dob}, {e.created_at}
-                <button onClick={()=> editFunc(e._id, e.username, e.password, e.name, e.dob)}>Edit</button>
-                <button onClick={()=> deleteFunc(e._id)}>Delete</button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      );
+            </div><br/>
+
+            <div>ALL USERS</div><br/>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Name</th>
+                    <th>DOB</th>
+                    <th>Created at</th>
+                </tr>
+                </thead>
+                <tbody>
+                {data.map(e => (
+                    <tr key={e._id}>
+                    <td>{e._id}</td>
+                    <td>{e.username}</td>
+                    <td>{e.password}</td>
+                    <td>{e.name}</td>
+                    <td>{e.dob}</td>
+                    <td>{e.created_at}</td>
+                    <td><button onClick={()=> editFunc(e._id, e.username, e.password, e.name, e.dob)}>Edit</button></td>
+                    <td><button onClick={()=> deleteFunc(e._id)}>Delete</button></td>  
+                    </tr>
+                ))}
+                </tbody>
+            </table><br/>
+      </div>
+    );
 }

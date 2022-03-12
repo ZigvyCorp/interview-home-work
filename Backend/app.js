@@ -15,7 +15,7 @@ app.use(logger('dev'));
 app.use('/api/', mainRoutes);
 
 // set up mongoose
-mongoose.connect("", { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect("mongodb+srv://admin:s3747274@cluster0.zhlph.mongodb.net/Tam", { useNewUrlParser: true, useUnifiedTopology: true })
     .then(()=> {
         console.log('Database connected');
     })
