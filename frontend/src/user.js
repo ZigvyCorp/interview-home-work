@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
  
+const userURL = 'http://localhost:5000/api/users/'
+
 export default function User() {
     const [editing, setEditing] = useState(false);
     const [id, setID] = useState(0)
@@ -12,9 +14,8 @@ export default function User() {
 
 
     // Get
-    const getEndPoint = "http://localhost:5000/api/users/"
     useEffect(() => {
-    fetch(getEndPoint)
+    fetch(userURL)
         .then(response => response.json())
         .then(data => setData(data.User));
     });
@@ -22,9 +23,8 @@ export default function User() {
 
 
     // Delete
-    const deleteEndPoint = "http://localhost:5000/api/users/"
     const deleteFunc = (id) => {
-        fetch(deleteEndPoint + String(id), {
+        fetch(userURL + String(id), {
             method: 'DELETE',
             headers: {
             'Content-Type': 'application/json'
@@ -35,10 +35,9 @@ export default function User() {
 
 
     // Edit/Add
-    const saveEndPoint = "http://localhost:5000/api/users/"
     const saveFunc = () => {     
         if (editing) {
-            fetch(saveEndPoint + String(id), {
+            fetch(userURL + String(id), {
                 method: 'PUT',
                 headers: {
                 'Content-Type': 'application/json'
@@ -48,7 +47,7 @@ export default function User() {
             setEditing(false)
         }
         else {
-            fetch(saveEndPoint, {
+            fetch(userURL, {
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json'
@@ -72,6 +71,7 @@ export default function User() {
         <div>
             <Link to="/">Home</Link>
 
+            <div>USERS PAGE</div><br/>
             <div>
             <form onSubmit={() => saveFunc()}>
             <label for="username">Username:</label><br/>

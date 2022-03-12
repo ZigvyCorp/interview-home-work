@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
  
+const commentURL = 'http://localhost:5000/api/comments/'
+
 export default function Comment() {
     const [editing, setEditing] = useState(false);
     const [id, setID] = useState(0)
@@ -12,9 +14,8 @@ export default function Comment() {
 
 
     // Get
-    const getEndPoint = "http://localhost:5000/api/comments/"
     useEffect(() => {
-    fetch(getEndPoint)
+    fetch(commentURL)
         .then(response => response.json())
         .then(data => setData(data.Comment));
     });
@@ -22,9 +23,8 @@ export default function Comment() {
 
 
     // Delete
-    const deleteEndPoint = "http://localhost:5000/api/comments/"
     const deleteFunc = (id) => {
-        fetch(deleteEndPoint + String(id), {
+        fetch(commentURL + String(id), {
             method: 'DELETE',
             headers: {
             'Content-Type': 'application/json'
@@ -35,10 +35,9 @@ export default function Comment() {
 
 
     // Edit/Add
-    const saveEndPoint = "http://localhost:5000/api/comments/"
     const saveFunc = () => {     
         if (editing) {
-            fetch(saveEndPoint + String(id), {
+            fetch(commentURL + String(id), {
                 method: 'PUT',
                 headers: {
                 'Content-Type': 'application/json'
@@ -48,7 +47,7 @@ export default function Comment() {
             setEditing(false)
         }
         else {
-            fetch(saveEndPoint, {
+            fetch(commentURL, {
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json'
@@ -72,6 +71,7 @@ export default function Comment() {
         <div>
             <Link to="/">Home</Link>
 
+            <div>COMMENTS PAGE</div><br/>
             <div>
                 <form onSubmit={() => saveFunc()}>
                 <label for="owner">Owner:</label><br/>

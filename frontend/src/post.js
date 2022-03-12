@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
  
+const postURL = 'http://localhost:5000/api/posts/'
+
 export default function Post() {
     const [editing, setEditing] = useState(false);
     const [id, setID] = useState(0)
@@ -31,9 +33,8 @@ export default function Post() {
 
 
     // Get
-    const getEndPoint = "http://localhost:5000/api/posts/"
     useEffect(() => {
-    fetch(getEndPoint)
+    fetch(postURL)
         .then(response => response.json())
         .then(data => setData(data.Post));
     });
@@ -41,9 +42,8 @@ export default function Post() {
 
 
     // Delete
-    const deleteEndPoint = "http://localhost:5000/api/posts/"
     const deleteFunc = (id) => {
-        fetch(deleteEndPoint + String(id), {
+        fetch(postURL + String(id), {
             method: 'DELETE',
             headers: {
             'Content-Type': 'application/json'
@@ -54,10 +54,9 @@ export default function Post() {
 
 
     // Edit/Add
-    const saveEndPoint = "http://localhost:5000/api/posts/"
     const saveFunc = () => {     
         if (editing) {
-            fetch(saveEndPoint + String(id), {
+            fetch(postURL + String(id), {
                 method: 'PUT',
                 headers: {
                 'Content-Type': 'application/json'
@@ -67,7 +66,7 @@ export default function Post() {
             setEditing(false)
         }
         else {
-            fetch(saveEndPoint, {
+            fetch(postURL, {
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json'
@@ -91,6 +90,7 @@ export default function Post() {
         <div>
             <Link to="/">Home</Link>
 
+            <div>POSTS PAGE</div><br/>
             <div>
                 <form onSubmit={() => saveFunc()}>
                 <label for="owner">Owner:</label><br/>
