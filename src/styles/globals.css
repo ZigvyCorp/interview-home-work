@@ -1,0 +1,25 @@
+.btn-search button {
+   background-color: #0d5cb6 !important;
+   border-color: #0d5cb6 !important;
+}
+.hover-post:hover {
+   box-shadow: rgb(0 0 0 / 10%) 0px 0px 20px;
+}
+.ant-input-search
+   > .ant-input-group
+   > .ant-input-group-addon:last-child
+   .ant-input-search-button {
+   padding-bottom: 7px;
+}
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+   display: inline;
+   vertical-align: baseline;
+   /* overridge  tailwind icon default */
+}
