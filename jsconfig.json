@@ -1,0 +1,17 @@
+{
+   "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+         "@/components/*": ["src/components/*"],
+         "@/hook/*": ["src/hook/*"],
+         "@/styles/*": ["src/styles/*"],
+         "@/reducers/*": ["src/reducers/*"],
+         "@/models/*": ["server/models/*"],
+         "@/middleware/*": ["server/middleware/*"],
+         "@/controllers/*": ["server/controllers/*"],
+         "@/data/*": ["server/data/*"],
+         "@/lib/*": ["lib/*"],
+         "@/utils/*": ["utils/*"]
+      }
+   }
+}
