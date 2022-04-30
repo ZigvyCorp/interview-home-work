@@ -1,0 +1,31 @@
+@import "../../assets/styles/variables.scss";
+
+.login-page {
+    width: 40%;
+    min-width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -90%);
+    &__header {
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+        &-logo {
+            width: 200px;
+            margin-bottom: 40px;
+        }
+    }
+}
+
+.login-form-forgot {
+    float: right;
+}
+
+.ant-col-rtl .login-form-forgot {
+    float: left;
+}
+
+.login-form-button {
+    width: 100%;
+}

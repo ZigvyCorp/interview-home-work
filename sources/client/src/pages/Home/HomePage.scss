@@ -1,0 +1,23 @@
+.card-item {
+    &-post {
+        display: flex;
+        justify-content: space-between;
+
+        &__main {
+            width: 80%
+        }
+
+        &__tags {}
+    }
+    &-comment {
+
+    }
+}
+
+.home-page .ant-list-pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 70px;
+}
+
