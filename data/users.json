@@ -1,42 +1,296 @@
-[
-  {
-    "id": 1,
-    "username": "meowmeow",
-    "password": "1234567890",
-    "name": "Cat face",
-    "dob": "01/06/2016",
-    "created_at": 1576506719083
+[{
+  "_id": {
+    "$oid": "626ce4d24490e22c783c3a85"
   },
-  {
-    "id": 2,
-    "username": "angrybird",
-    "password": "!@#$%^&*()",
-    "name": "Angry bird",
-    "dob": "13/12/2016",
-    "created_at": 1576506719083
+  "posts": [
+    {
+      "$oid": "626ce5d04490e22c783c3aea"
+    },
+    {
+      "$oid": "626ce5d04490e22c783c3ae6"
+    },
+    {
+      "$oid": "626ce5cf4490e22c783c3ae2"
+    },
+    {
+      "$oid": "626ce5cf4490e22c783c3ade"
+    },
+    {
+      "$oid": "626ce5ce4490e22c783c3ada"
+    },
+    {
+      "$oid": "626ce5ce4490e22c783c3ad6"
+    },
+    {
+      "$oid": "626ce5cd4490e22c783c3ad2"
+    },
+    {
+      "$oid": "626ce5cd4490e22c783c3ace"
+    },
+    {
+      "$oid": "626ce5cb4490e22c783c3aca"
+    },
+    {
+      "$oid": "626ce5ca4490e22c783c3ac6"
+    },
+    {
+      "$oid": "626ce5ca4490e22c783c3ac2"
+    },
+    {
+      "$oid": "626ce5c94490e22c783c3abe"
+    },
+    {
+      "$oid": "626ce5c94490e22c783c3aba"
+    },
+    {
+      "$oid": "626ce5c74490e22c783c3ab6"
+    },
+    {
+      "$oid": "626ce5c74490e22c783c3ab2"
+    },
+    {
+      "$oid": "626ce5c64490e22c783c3aae"
+    },
+    {
+      "$oid": "626ce5c54490e22c783c3aaa"
+    },
+    {
+      "$oid": "626ce5c34490e22c783c3aa6"
+    }
+  ],
+  "username": "guest1",
+  "password": "$2b$10$WGNXwgkL9dBtZtIvj7AWY.sAl5P7sdYAJlX9i3DBJMftAZE0n8bMe",
+  "name": "Hugo Upton IV",
+  "dob": {
+    "$date": {
+      "$numberLong": "1638605717000"
+    }
   },
-  {
-    "id": 3,
-    "username": "happydog",
-    "password": "Zigvy~~~",
-    "name": "",
-    "dob": "",
-    "created_at": 1576506719083
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1651303634883"
+    }
   },
-  {
-    "id": 4,
-    "username": "admin",
-    "password": "admin",
-    "name": "",
-    "dob": "",
-    "created_at": 1576506719083
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1651303888956"
+    }
   },
-  {
-    "id": 5,
-    "username": "user",
-    "password": "user",
-    "name": "",
-    "dob": "",
-    "created_at": 1576506719083
-  }
-]
+  "__v": 18
+},{
+  "_id": {
+    "$oid": "626ce4d94490e22c783c3a88"
+  },
+  "posts": [],
+  "username": "guest2",
+  "password": "$2b$10$NXNOfnc0xLOxQgRWTxeYLu8nOHLGQCxn5pDyzOxxgUrDHuAwKUs3O",
+  "name": "Shelia Russel Sr.",
+  "dob": {
+    "$date": {
+      "$numberLong": "1643307642000"
+    }
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1651303641439"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1651303641439"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "626ce4e14490e22c783c3a8b"
+  },
+  "posts": [],
+  "username": "guest3",
+  "password": "$2b$10$utO4eKhBSEalovWkT1bAPenBzX8TzOWbcW96vNeldiTRpqTL8aLmq",
+  "name": "Inez Stehr",
+  "dob": {
+    "$date": {
+      "$numberLong": "1629536822000"
+    }
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1651303649580"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1651303649580"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "626ce4e44490e22c783c3a8e"
+  },
+  "posts": [],
+  "username": "guest4",
+  "password": "$2b$10$ZDwWXagV.nWza.kH4uaBAOZQLZqO/h64t7vxX27pbYoPICccJK35y",
+  "name": "Margie Smith IV",
+  "dob": {
+    "$date": {
+      "$numberLong": "1649397217000"
+    }
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1651303652628"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1651303652628"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "626ce4ec4490e22c783c3a92"
+  },
+  "posts": [],
+  "username": "guest5",
+  "password": "$2b$10$RAkapJM1gNC0B7ANTu5LkuZio9PslE1WKN24HlCN/o0dns39mQ/Wq",
+  "name": "Moses Nikolaus",
+  "dob": {
+    "$date": {
+      "$numberLong": "1625110776000"
+    }
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1651303660792"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1651303660792"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "626ce4f14490e22c783c3a95"
+  },
+  "posts": [],
+  "username": "guest6",
+  "password": "$2b$10$a2QZOwDTzBrqlrbyy.WnOeAay.SxJejV3/ePTVvy50ex0pyLAFPh2",
+  "name": "Brooke Upton II",
+  "dob": {
+    "$date": {
+      "$numberLong": "1649890406000"
+    }
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1651303665923"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1651303665923"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "626ce4f74490e22c783c3a98"
+  },
+  "posts": [],
+  "username": "guest7",
+  "password": "$2b$10$tO3N6Vaj7LcaFsPxIit0ou4Md/Ccm7x50JtuAjHnxgluzo9OWiyqC",
+  "name": "Tabitha Waters I",
+  "dob": {
+    "$date": {
+      "$numberLong": "1625482311000"
+    }
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1651303671058"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1651303671058"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "626ce4fb4490e22c783c3a9b"
+  },
+  "posts": [],
+  "username": "guest8",
+  "password": "$2b$10$Z12u6BcrQb2rpDSmS5AyhO5AsdyXMWAjVoKksIOzcEMVQP2iM/yVu",
+  "name": "Herbert Kuvalis",
+  "dob": {
+    "$date": {
+      "$numberLong": "1629890629000"
+    }
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1651303675680"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1651303675680"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "626ce5004490e22c783c3a9e"
+  },
+  "posts": [],
+  "username": "guest9",
+  "password": "$2b$10$At4NnD97BurY0CxV2iM5LurZN5/wbhSegnm3wZHkdBdcQehC93tUO",
+  "name": "Raul Lang",
+  "dob": {
+    "$date": {
+      "$numberLong": "1646150549000"
+    }
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1651303680455"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1651303680455"
+    }
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "626ce5054490e22c783c3aa1"
+  },
+  "posts": [],
+  "username": "guest10",
+  "password": "$2b$10$sKP07.jtKfk48IGpqd/.Au054oDR7TKSG3at68kWHYhmxdarFyoNa",
+  "name": "Theodore Kozey",
+  "dob": {
+    "$date": {
+      "$numberLong": "1640396868000"
+    }
+  },
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1651303685326"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1651303685326"
+    }
+  },
+  "__v": 0
+}]

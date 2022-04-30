@@ -1,0 +1,39 @@
+@import "../../assets/styles/variables.scss";
+
+.header {
+    background-color: $while-color;
+    height: 64px;
+    box-shadow: #ccc 0.2px 0.2px 4px;
+    padding: 8px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e2e2e2;
+    margin-bottom: 20px;
+
+    &__title-content {
+    font-size: 2rem;
+    line-height: 2.8rem;
+    color: $black-color;
+    font-weight: 700;
+    opacity: 65%;
+    margin: 0;
+    }
+
+    &__user {
+        &-name {
+            color: #000;
+            opacity: 65%;
+            font-weight: 500;
+            font-size: 1.6rem;
+        }
+        &-img {
+            height: 56px;
+        }
+        &-dropdown {
+            font-size: 1.4rem;
+            color: #333;
+        }
+    }
+}
+
