@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 const User = require('../schemas/User');
 
-const { generateAccessToken } = require('../tools/jwt')
+const { generateAccessToken, authenticateToken } = require('../tools/jwt')
 
 /**
  * @swagger
@@ -151,6 +151,59 @@ router.post("/get-jwt-token", async (req, res) => {
     }));
   } catch (error) {
     res.status(500).send({
+      message: error.message
+    });
+  }
+});
+
+/**
+ * @swagger
+ * /user:
+ *   put:
+ *     summary: Update Profile
+ *     tags: [User]
+ *     security:
+ *      - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *              type: object
+ *              properties:
+ *               password:    
+ *                 type: string
+ *               name:       
+ *                 type: string
+ *               dob:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: The user registers successfully
+ *       500:
+ *         description: Some server error
+ */
+
+ router.put("/user", authenticateToken ,async (req, res) => {
+  try {
+    const { password, name, dob } = req.body;
+    if (password.length < 6 || password.length > 12) {
+      throw Error("Password is not valid");
+    }
+
+    const user = await User.findById(req.user._id);
+
+    user.overwrite({ 
+      username: user.username,
+      password:  bcrypt.hashSync(password, 10),
+      name: name,
+      dob: dob,
+      create_at: user.create_at
+    });
+    await user.save();
+    res.send(user);
+  } catch (error) {
+    return res.status(500).send({
       message: error.message
     });
   }

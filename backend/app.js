@@ -15,8 +15,8 @@ require("./tools/swagger")(app);// Swagger
 // =============================
 
 // Routes
-app.use('/', require('./routes/items'));
 app.use('/', require('./routes/user'));
+app.use('/', require('./routes/post'));
 
 
 app.listen(process.env.PORT, () => {
