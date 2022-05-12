@@ -7,6 +7,15 @@ const options = {
       title: 'API',
       version: '1.0.0',
     },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        }
+      }
+    },
   },
   apis: ['./routes/*.js', './schemas/*.js'], // Do chuyền app từ file app.js, nên path được tính từ file app.js nha
 };

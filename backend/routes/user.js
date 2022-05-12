@@ -1,7 +1,10 @@
 const express = require('express')
 const router = express.Router()
+const bcrypt = require('bcrypt');
 
 const User = require('../schemas/User');
+
+const { generateAccessToken } = require('../tools/jwt')
 
 /**
  * @swagger
@@ -24,17 +27,23 @@ const User = require('../schemas/User');
 
 router.post("/sign-up", async (req, res) => {
   try {
+    const { username, password } = req.body;
+    if (password.length < 6 || password.length > 12) {
+      throw Error("Password is not valid");
+    }
+
     // Check username exits
-    const checkUserExits = await User.findOne({username: req.body.username}).exec();
-    if(checkUserExits !== null){
+    const checkUserExits = await User.findOne({ username: username }).exec();
+    if (checkUserExits !== null) {
       throw Error("Username is exits")
     }
 
-    // Hash Password
-
-
-
     const user = new User(req.body);
+
+    // Hash Password
+    user.password = bcrypt.hashSync(user.password, 10);
+
+    // set Create At
     user.create_at = (new Date()).getTime();
 
     await user.save();
@@ -50,24 +59,22 @@ router.post("/sign-up", async (req, res) => {
  * @swagger
  * /sign-in:
  *   post:
- *     summary: Sign-up
+ *     summary: Sign-in
  *     tags: [User]
- *     consumes:
- *       - application/json
- *     parameters:
- *       - in: body
- *         name: user
- *         description: The user to create.
- *         schema:
- *           type: object
- *           required:
- *             - username
- *             - password
- *           properties:
- *             username:
- *               type: string
- *             password:
- *               type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *              type: object
+ *              properties:
+ *               username:       
+ *                 type: string
+ *               password:    
+ *                 type: string
+ *              required:
+ *               - username
+ *               - password
  *     responses:
  *       200:
  *         description: The user logins successfully
@@ -76,8 +83,78 @@ router.post("/sign-up", async (req, res) => {
  */
 
 router.post("/sign-in", async (req, res) => {
-  console.log("123123");
-  res.status(500).send();
+  try {
+    const { username, password } = req.body;
+
+    const checkUserExits = await User.findOne({ username: username }).exec();
+    if (checkUserExits === null) {
+      throw Error("Username or Password is not correct")
+    }
+    if (bcrypt.compareSync(password, checkUserExits.password) === false) {
+      throw Error("Username or Password is not correct")
+    }
+
+    res.send(checkUserExits);
+  } catch (error) {
+    res.status(500).send({
+      message: error.message
+    });
+  }
 });
+
+
+/**
+ * @swagger
+ * /get-jwt-token:
+ *   post:
+ *     summary: Get JWT token
+ *     tags: [User]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *              type: object
+ *              properties:
+ *               username:       
+ *                 type: string
+ *               password:    
+ *                 type: string
+ *              required:
+ *               - username
+ *               - password
+ *     responses:
+ *       200:
+ *         description: The user logins successfully
+ *       500:
+ *         description: Some server error
+ */
+
+router.post("/get-jwt-token", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    const checkUserExits = await User.findOne({ username: username }).exec();
+    if (checkUserExits === null) {
+      throw Error("Username or Password is not correct")
+    }
+    if (bcrypt.compareSync(password, checkUserExits.password) === false) {
+      throw Error("Username or Password is not correct")
+    }
+
+    res.send(generateAccessToken({
+      _id: checkUserExits._id,
+      username: checkUserExits.username,
+      name: checkUserExits.name,
+      dob: checkUserExits.dob,
+      create_at: checkUserExits.create_at
+    }));
+  } catch (error) {
+    res.status(500).send({
+      message: error.message
+    });
+  }
+});
+
 
 module.exports = router
