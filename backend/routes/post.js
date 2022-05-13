@@ -143,6 +143,10 @@ router.put("/posts", authenticateToken, async (req, res) => {
   try {
     const post = await Post.findById(req.body._id);
 
+    if (post === null) {
+      throw Error("The post is not exits");
+    }
+
     if (post.owener !== req.user._id) {
       throw Error("Unauthorized");
     }

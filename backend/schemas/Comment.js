@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
-const postSchema = new mongoose.Schema({
+const commentSchema = new mongoose.Schema({
   owener: {
     type: String,
     required: true
   },
-  title: {
+  post: {
     type: String,
     required: true
   },
@@ -13,19 +13,16 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  tags: {
-    type: Array
-  },
   create_at: String
 }, { versionKey: false });
 
-module.exports = mongoose.model('Post', postSchema);
+module.exports = mongoose.model('Comment', commentSchema);
 
 /**
  * @swagger
  * components:
  *   schemas:
- *     Post:
+ *     Comment:
  *       type: object
  *       properties:
  *         _id:
@@ -34,24 +31,20 @@ module.exports = mongoose.model('Post', postSchema);
  *         owener:
  *           type: string
  *           description: The author
- *         title:
+ *         post:
  *           type: string
- *           description: The title of post
+ *           description: The id of post
  *         content:
  *           type: string
- *           description: The content of post
- *         tags:
- *           type: array
- *           description: The tags of post
+ *           description: The content of comment
  *         create_at:
  *           type: string
  *           description: The time its created (Auto)
  *       required:
  *         - _id
  *         - owener
- *         - title 
+ *         - post 
  *       example:
- *          title: ""
+ *          post: ""
  *          content: ""
- *          tags: []
 */
