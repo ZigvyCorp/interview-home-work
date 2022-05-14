@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
 
 const commentSchema = new mongoose.Schema({
-  owener: {
-    type: String,
-    required: true
-  },
+  owener: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   post: {
     type: String,
     required: true

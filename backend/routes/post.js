@@ -43,12 +43,12 @@ router.get('/posts', async (req, res) => {
     offset,
     search,
     data: await Post.find({ title: new RegExp(search, "i") }).populate('owener').limit(limit).skip(offset).exec(),
-    length: 10
+    length: await Post.count().exec()
   };
 
   // Join Comments
   for (let i = 0; i < result.data.length; ++i) {
-    result.data[i] = { ...result.data[i]._doc, comments: await Comment.find({post: result.data[i]._id}).exec() };
+    result.data[i] = { ...result.data[i]._doc, comments: await Comment.find({post: result.data[i]._id}).populate('owener').exec() };
   };
   
   res.send(result);
