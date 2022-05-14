@@ -21,5 +21,7 @@ app.use('/', require('./routes/comment'));
 
 
 app.listen(process.env.PORT, () => {
-  console.log(`Example app listening on port ${process.env.PORT}`)
+  console.log(`==================================================`)
+  console.log(`Website: http://localhost:${process.env.PORT}/api/`)
+  console.log(`==================================================`)
 })

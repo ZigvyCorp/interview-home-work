@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const Post = require('../schemas/Post');
+const Comment = require('../schemas/Comment');
 
 const { authenticateToken } = require('../tools/jwt')
 
@@ -37,7 +38,20 @@ const { authenticateToken } = require('../tools/jwt')
  */
 router.get('/posts', async (req, res) => {
   const { limit, offset, search } = req.query;
-  res.send(await Post.find({title: new RegExp(search, "i") }).limit(limit).skip(offset).exec());
+  const result = {
+    limit,
+    offset,
+    search,
+    data: await Post.find({ title: new RegExp(search, "i") }).limit(limit).skip(offset).exec(),
+    length: 10
+  };
+
+  // Join Comments
+  for (let i = 0; i < result.data.length; ++i) {
+    result.data[i] = { ...result.data[i]._doc, comments: await Comment.find({post: result.data[i]._id}).exec() };
+  };
+  
+  res.send(result);
 })
 
 /** 
