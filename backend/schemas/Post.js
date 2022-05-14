@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
 
 const postSchema = new mongoose.Schema({
-  owener: {
-    type: String,
-    required: true
-  },
+  owener: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   title: {
     type: String,
     required: true

@@ -42,7 +42,7 @@ router.get('/posts', async (req, res) => {
     limit,
     offset,
     search,
-    data: await Post.find({ title: new RegExp(search, "i") }).limit(limit).skip(offset).exec(),
+    data: await Post.find({ title: new RegExp(search, "i") }).populate('owener').limit(limit).skip(offset).exec(),
     length: 10
   };
 
