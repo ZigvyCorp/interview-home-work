@@ -43,7 +43,7 @@ function Register() {
   return (
     <LayoutDefault>
       <Row justify="center">
-        <Col span={6}>
+        <Col span={12}>
           <h1 style={{ textAlign: "center" }}>Register</h1>
           <Form
             {...formItemLayout}

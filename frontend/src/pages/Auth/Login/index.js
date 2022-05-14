@@ -6,7 +6,7 @@ function Login() {
   return (
     <LayoutDefault>
       <Row justify="center">
-        <Col span={4}>
+        <Col span={8}>
           <h1 style={{ textAlign: "center" }}>Login</h1>
           <Form
             name="normal_login"
