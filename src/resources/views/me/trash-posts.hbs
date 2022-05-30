@@ -1,0 +1,142 @@
+<form class="mt-4" name="container-form" method="POST" action="/posts/handle-form-actions">
+    <div>
+        <h2>Bài viết đã xóa</h2>
+        <a href="/me/stored/posts">Danh sách bài viết</a>
+        <div class="mt-4 d-flex align-items-center">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="check-all">
+                <label class="form-check-label" for="check-all">
+                    Chọn tất cả
+                </label>
+            </div>
+            <select class="form-control form-control-sm checkbox-all-select" name="action" required>
+                <option value="">-- Hành động --</option>
+                <option value="destroy">Xóa vĩnh viễn</option>
+                <option value="restore">Khôi phục</option>
+            </select>
+            <button class="btn btn-primary btn-sm check-all-submit-btn" disabled>Thực hiện</button>
+        </div>
+    </div>
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th></th>
+                <th scope="col">
+                    #
+                    {{{sortable 'id' _sort}}}  
+                </th>
+                <th scope="col">
+                    Tên bài viết
+                    {{{sortable 'title' _sort}}}  
+                </th>
+                <th scope="col">Mô tả</th>
+                <th scope="col" colspan="3">Thời gian xóa</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each posts}}
+            <tr>
+                <td>
+                    <div class="form-check">
+                        <input class="form-check-input" name="postsIds[]" type="checkbox" value="{{this._id}}">
+                    </div>
+                </td>
+                <th scope="row">{{this.id}}</th>
+                <td>{{this.title}}</td>
+                <td>{{this.body}}</td>
+                <td>{{this.deletedAt}}</td>
+                <td>
+                    <a href="" data-id="{{this._id}}" class="btn btn-link btn-restore" >Khôi phục</a>
+                </td>
+                <td>
+                    <a href="" class="btn btn-link" data-id="{{this._id}}" data-toggle="modal" data-target="#delete-posts-modal">Xóa vĩnh viễn</a>
+                </td>
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan="5" class="text-center">
+                    Thùng rác trống.
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</form>
+
+{{!--confirm delete posts--}}
+<div class="modal fade" id="delete-posts-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Xóa bài viết?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>Hành động này không thể khôi phục. Bạn có muốn xóa vĩnh viễn bài viết này?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button"  id="btn-destroy-posts" class="btn btn-danger">Xóa bỏ</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+        </div>
+        </div>
+    </div>
+</div>
+<form name="form-destroy-posts" method="POST"></form>
+<form name="form-restore-posts" method="POST"></form>
+<script>
+    document.addEventListener("DOMContentLoaded",() =>{
+        var postsId;
+        var btnDestroy = document.getElementById('btn-destroy-posts');
+        var formDeleteForever = document.forms['form-destroy-posts'];
+        var formRestore = document.forms['form-restore-posts'];
+        var containerForm = document.forms['container-form'];
+        var checkboxAll = $('#check-all');
+        var postsItemsCheckbox = $('input[name="postsIds[]"]');
+        var checkAllSubmitBtn = $('.check-all-submit-btn');
+        // lấy tất cả các nút restore bằng jquery truyền vào seletor
+        var btnRestore = $('.btn-restore');
+
+        $('#delete-posts-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) ;
+            postsId = button.data('id');
+        });
+
+        btnDestroy.onclick = () => {
+            formDeleteForever.action = '/posts/' + postsId + '/destroy?_method=DELETE';
+            formDeleteForever.submit();
+        };
+
+        // lắng nghe btn-restore click
+        btnRestore.click(function (e) {
+            e.preventDefault();
+            var postsId = $(this).data('id');
+            formRestore.action = '/posts/' + postsId + '/restore?_method=PATCH';
+            formRestore.submit();
+        })
+
+        // checkbox all changed
+        checkboxAll.change(function () {
+            var isCheckedAll = $(this).prop('checked');
+            postsItemsCheckbox.prop('checked', isCheckedAll);
+            renderCheckAllSubmitBtn();
+        });
+
+        // posts items checkbox changed
+        postsItemsCheckbox.change(function () {
+            var isCheckedAll = postsItemsCheckbox.length === $('input[name="postsIds[]"]:checked').length;
+            checkboxAll.prop('checked', isCheckedAll);
+            renderCheckAllSubmitBtn();
+        });
+        // re-render checkAll btn submit
+        function renderCheckAllSubmitBtn () {
+            var checkedCount = $('input[name="postsIds[]"]:checked').length;
+            if (checkedCount) {
+                checkAllSubmitBtn.removeAttr("disabled");
+                return;
+            }
+            checkAllSubmitBtn.attr('disabled', 'disabled');
+        }
+});
+</script>
