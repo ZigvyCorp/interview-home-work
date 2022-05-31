@@ -1,0 +1,35 @@
+{
+  "name": "interview-home-work",
+  "version": "1.0.0",
+  "description": "- This is a **Small Project Test** for online interview at Zigvy Corp. This assignment has 2 main tasks: **Front-end** and **Back-end**. You will be required to complete each tasks with your applied position. For short, you can check the list below\r   - Full-stack engineer: Both Front-end and Back-end\r   - Front-end engineer: Front-end only\r   - Back-end engineer: Complete basic layout of Front-end task and Back-end task",
+  "main": "src/index.js",
+  "scripts": {
+    "format": "prettier --single-quote --trailing-comma all --tab-width 4 --write src/**/*.{js,json,scss}",
+    "start": "nodemon --inspect src/index.js",
+    "watch": "node-sass --watch src/resources/scss --output src/public/css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thucnguyen09/interview-home-work.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thucnguyen09/interview-home-work/issues"
+  },
+  "homepage": "https://github.com/thucnguyen09/interview-home-work#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "method-override": "^3.0.0",
+    "mongoose": "^6.3.4",
+    "mongoose-delete": "^0.5.4",
+    "mongoose-sequence": "^5.3.1",
+    "mongoose-slug-generator": "^1.0.4",
+    "node-sass": "^7.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
