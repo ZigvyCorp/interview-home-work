@@ -1,0 +1,15 @@
+.comment__name {
+  color: #767474;
+}
+.comment__body {
+  margin-top: 10px;
+}
+.comment__reply {
+  color: #767474;
+}
+.comment__time {
+  color: #a2a2a2;
+  font-size: 14px;
+  font-style: italic;
+  margin-left: 10px;
+}

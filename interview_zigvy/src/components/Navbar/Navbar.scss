@@ -1,0 +1,27 @@
+.navbar {
+   .search__bar {
+      position: relative;
+      .search__icon {
+         position: absolute;
+         top: 50%;
+         right: 0;
+         transform: translate(-50%, -50%);
+      }
+      .search__input {
+         padding-right: 45px;
+      }
+   }
+
+   .user {
+      &__avatar {
+         width: 48px;
+         height: 48px;
+         object-fit: cover;
+         border-radius: 50%;
+         margin-right: 20px;
+      }
+      &__name:hover {
+         color: #fff;
+      }
+   }
+}
