@@ -13,6 +13,7 @@ const typeOrmConfig: DataSourceOptions = {
   synchronize: false, // true is Unsafe not use for product and migration
   migrationsRun: true,
   migrations: ["dist/src/migrations/*{.ts,.js}"],
+  migrationsTableName: "custom_migration_table",
 }
 
 export default typeOrmConfig
