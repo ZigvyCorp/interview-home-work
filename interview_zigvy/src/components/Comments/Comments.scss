@@ -1,0 +1,23 @@
+.comment{
+
+   &__name{
+      color: rgb(118, 116, 116);
+      
+   }
+
+   &__body{
+      margin-top: 10px;
+   }
+
+   &__reply{
+      color: rgb(118, 116, 116);
+      
+   }
+   &__time{
+      color: rgb(162, 162, 162);
+      font-size: 14px;
+      font-style: italic;
+      margin-left: 10px;
+      
+   }
+}
