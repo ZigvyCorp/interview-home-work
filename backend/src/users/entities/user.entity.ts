@@ -1,6 +1,6 @@
 import { Comment } from "src/comments/entities/comment.entity";
 import { Post } from "src/posts/entities/post.entity";
-import { Column, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("Users")
 export class User {
@@ -37,9 +37,8 @@ export class User {
   })
   dob: Date;
 
-  @Column({
+  @CreateDateColumn({
     name: 'create_at',
-    type: 'timestamp',
   })
   createAt: Date;
 

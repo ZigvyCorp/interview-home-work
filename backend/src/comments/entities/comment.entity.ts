@@ -1,6 +1,6 @@
 import { Post } from "src/posts/entities/post.entity";
 import { User } from "src/users/entities/user.entity";
-import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 
 @Entity("Comments")
 export class Comment {
@@ -15,6 +15,11 @@ export class Comment {
     type: "varchar"
   })
   content: string;
+
+  @CreateDateColumn({
+    name: "create_at"
+  })
+  createAt: Date;
 
   @ManyToOne(() => User, (User) => User.comment)
   owner: User;

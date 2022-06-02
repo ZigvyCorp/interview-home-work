@@ -5,14 +5,28 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { UserRepository } from './repositories/users.repository';
 import { FindUserResponse } from './type/user.type';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
   constructor(
     private userRepository: UserRepository,
   ){}
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  async create(createUserDto: CreateUserDto): Promise<boolean> {
+    try {
+      let userExisted: FindUserResponse[] = await this.userRepository.findOneByUsername(createUserDto.username);
+      if(userExisted.length === 0) {
+        let password:string = await bcrypt.hash(createUserDto.password,10);
+        createUserDto.password = password;
+        console.log(createUserDto);
+        let userCreatedResult = await this.userRepository.create(createUserDto);
+        return userCreatedResult ? true : false;
+      } 
+      return false
+    } catch (error) {
+      console.log("createError: ",error)
+      return false;
+    }
   }
 
   async findAll(): Promise<FindUserResponse[] | null> {

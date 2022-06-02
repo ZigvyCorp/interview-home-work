@@ -10,8 +10,21 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+  async create(@Body() createUserDto: CreateUserDto) {
+    let userCreatedResult:boolean = await this.usersService.create(createUserDto);
+    if (!userCreatedResult) {
+      throw new HttpException(
+        {
+          status: HttpStatus.FAILED_DEPENDENCY,
+          errorMessage: {
+            dev: "can't create all user data",
+            user: "can't create all user data",
+          },
+        },
+        HttpStatus.FAILED_DEPENDENCY,
+      );
+    }
+    return userCreatedResult
   }
 
   @Get()
@@ -67,7 +80,7 @@ export class UsersController {
             user: "failed to update",
           },
         },
-        HttpStatus.NOT_FOUND,
+        HttpStatus.NOT_MODIFIED,
       );
     }
     return true;
@@ -75,6 +88,19 @@ export class UsersController {
 
   @Delete(':id')
   async remove(@Param('id') id: number) {
-    return this.usersService.remove(id);
+    let userUpdate:UpdateResult | boolean = await this.usersService.remove(id);
+    if(!userUpdate) {
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_MODIFIED,
+          errorMessage: {
+            dev: `can't save data to db`,
+            user: "failed to update",
+          },
+        },
+        HttpStatus.NOT_MODIFIED,
+      );
+    }
+    return true;
   }
 }
