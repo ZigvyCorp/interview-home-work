@@ -43,6 +43,12 @@ export class User {
   })
   createAt: Date;
 
+  @Column({
+    name: 'removed',
+    type: 'bool'
+  })
+  removed: boolean
+
   @OneToMany(() => Post, (Post) => Post.owner)
   post:Post[];
 

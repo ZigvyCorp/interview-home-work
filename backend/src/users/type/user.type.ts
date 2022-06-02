@@ -5,4 +5,5 @@ export type FindUserResponse = {
   name: string;
   dob: Date;
   createAt: Date;
+  removed: boolean
 }

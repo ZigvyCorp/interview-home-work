@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
+import { DeleteResult, UpdateResult } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './entities/user.entity';
 import { UserRepository } from './repositories/users.repository';
 import { FindUserResponse } from './type/user.type';
 
@@ -15,7 +17,7 @@ export class UsersService {
 
   async findAll(): Promise<FindUserResponse[] | null> {
     try {
-      let listUser:FindUserResponse[] = await this.userRepository.findAllUser();
+      let listUser:FindUserResponse[] = await this.userRepository.find();
       return listUser ? listUser : null
     } catch (error) {
       console.log("findAllErr: ",error);
@@ -23,15 +25,39 @@ export class UsersService {
     }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: number): Promise<FindUserResponse | null> {
+    try {
+      let listUser:FindUserResponse = await this.userRepository.findOne(id, {
+        where: {
+          removed: false
+        }
+      });
+      return listUser ? listUser : null
+    } catch (error) {
+      console.log("findOneErr: ",error);
+      return null
+    }
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: number, updateUserDto: UpdateUserDto):Promise<UpdateResult | boolean> {
+    try {
+      let updateUserResult:UpdateResult = await this.userRepository.update(id,updateUserDto);
+      return updateUserResult
+    } catch (error) {
+      console.log("update: ", error)
+      return false
+    }
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: number):Promise<UpdateResult | boolean> {
+    try {
+      let removeUserResult:UpdateResult = await this.userRepository.update(id, {
+        removed:true
+      })
+      return removeUserResult
+    } catch (error) {
+      console.log("remove: ",error);
+      return false
+    }
   }
 }
