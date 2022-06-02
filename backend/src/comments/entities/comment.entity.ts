@@ -6,7 +6,7 @@ import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 export class Comment {
   @PrimaryColumn({
     name: "id",
-    type: 'number'
+    type: 'int'
   })
   id: number;
 

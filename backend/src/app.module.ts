@@ -1,12 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
-import { PostsModule } from './posts/posts.module';
-import { CommentsModule } from './comments/comments.module';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import typeOrmConfig from 'ormconfig';
-import { ConfigModule } from '@nestjs/config';
+import { CommentsModule } from './comments/comments.module';
+import { PostsModule } from './posts/posts.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -16,7 +14,6 @@ import { ConfigModule } from '@nestjs/config';
     }),
     TypeOrmModule.forRoot(typeOrmConfig),
     UsersModule, PostsModule, CommentsModule],
-  controllers: [AppController],
-  providers: [AppService, ConfigModule],
+  providers: [ConfigModule],
 })
 export class AppModule {}

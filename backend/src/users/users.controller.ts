@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, HttpStatus } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { FindUserResponse } from './type/user.type';
 
 @Controller('users')
 export class UsersController {
@@ -13,8 +14,25 @@ export class UsersController {
   }
 
   @Get()
-  findAll() {
-    return this.usersService.findAll();
+  async findAll() {
+    let listUser: FindUserResponse[] | null = await this.usersService.findAll();
+    if(!listUser) {
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          errorMessage: {
+            dev: `can't find all user data`,
+            user: "not found",
+          },
+        },
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    let listUserAfter:FindUserResponse[] = listUser.map(item => {
+      let {password, ...result} = item;
+      return result
+    })
+    return listUserAfter  
   }
 
   @Get(':id')
