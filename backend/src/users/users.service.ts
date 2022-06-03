@@ -18,9 +18,9 @@ export class UsersService {
       if(userExisted.length === 0) {
         let password:string = await bcrypt.hash(createUserDto.password,10);
         createUserDto.password = password;
-        console.log(createUserDto);
-        let userCreatedResult = await this.userRepository.create(createUserDto);
-        return userCreatedResult ? true : false;
+        let userCreated = await this.userRepository.create(createUserDto);
+        let saveUser = await this.userRepository.save(userCreated);
+        return saveUser ? true : false;
       } 
       return false
     } catch (error) {
@@ -31,7 +31,7 @@ export class UsersService {
 
   async findAll(): Promise<FindUserResponse[] | null> {
     try {
-      let listUser:FindUserResponse[] = await this.userRepository.find();
+      let listUser:FindUserResponse[] = await this.userRepository.find({where:{removed:false}});
       return listUser ? listUser : null
     } catch (error) {
       console.log("findAllErr: ",error);
@@ -55,6 +55,10 @@ export class UsersService {
 
   async update(id: number, updateUserDto: UpdateUserDto):Promise<UpdateResult | boolean> {
     try {
+      if(updateUserDto.password !== undefined) {
+        let password = await bcrypt.hash(updateUserDto.password,10);
+        updateUserDto.password = password;
+      }
       let updateUserResult:UpdateResult = await this.userRepository.update(id,updateUserDto);
       return updateUserResult
     } catch (error) {

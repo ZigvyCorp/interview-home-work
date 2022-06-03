@@ -21,6 +21,13 @@ export class Comment {
   })
   createAt: Date;
 
+  @Column({
+    name: "removed",
+    type: 'bool',
+    default: false
+  })
+  removed: boolean;
+
   @ManyToOne(() => User, (User) => User.comment)
   owner: User;
 

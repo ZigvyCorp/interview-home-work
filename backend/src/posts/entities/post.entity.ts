@@ -1,7 +1,7 @@
 
 import { Comment } from 'src/comments/entities/comment.entity';
 import { User } from 'src/users/entities/user.entity';
-import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity("Posts")
 export class Post {
@@ -29,6 +29,13 @@ export class Post {
   createAt: Date;
 
   @Column({
+    name: "removed",
+    type: 'bool',
+    default: false
+  })
+  removed: boolean;
+
+  @Column({
     name: "tags",
     type: "varchar",
     array: true,
@@ -36,6 +43,7 @@ export class Post {
   tags: string[];
 
   @ManyToOne(() => User, (User) => User.post)
+  @JoinColumn({name: "id"})
   owner: User;
 
   @OneToMany(() => Comment, (Comment) => Comment.post)

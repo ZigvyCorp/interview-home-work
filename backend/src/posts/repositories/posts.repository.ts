@@ -1,4 +1,4 @@
-import { EntityRepository, Repository } from "typeorm";
+import { Brackets, EntityRepository, Repository } from "typeorm";
 import { Post } from "../entities/post.entity";
 
 @EntityRepository(Post)

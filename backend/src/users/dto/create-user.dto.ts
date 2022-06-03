@@ -3,5 +3,4 @@ export class CreateUserDto {
   password: string;
   name: string;
   dob: Date;
-  removed: boolean
 }

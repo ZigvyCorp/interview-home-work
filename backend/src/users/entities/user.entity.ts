@@ -44,7 +44,8 @@ export class User {
 
   @Column({
     name: 'removed',
-    type: 'bool'
+    type: 'bool',
+    default: false,
   })
   removed: boolean
 

@@ -2,8 +2,9 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, HttpException, HttpS
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { FindUserResponse } from './type/user.type';
+import { FindUserResponse, UserCreate } from './type/user.type';
 import { UpdateResult } from 'typeorm';
+import { User } from './entities/user.entity';
 
 @Controller('users')
 export class UsersController {
@@ -43,7 +44,7 @@ export class UsersController {
       );
     }
     let listUserAfter:FindUserResponse[] = listUser.map(item => {
-      let {password, ...result} = item;
+      let {password, removed, ...result} = item;
       return result
     })
     return listUserAfter  
@@ -64,7 +65,7 @@ export class UsersController {
         HttpStatus.NOT_FOUND,
       );
     }
-    let {password, ...result} = user;
+    let {password, removed, ...result} = user;
     return result
   }
 
