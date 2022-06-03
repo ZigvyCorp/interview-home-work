@@ -55,6 +55,23 @@ export class PostsService {
       return null
     }
   }
+  
+  async findPostComment(id: number): Promise<FindPostResponse | null> {
+    try {
+      let listPost:FindPostResponse = await this.postRepository.findOne(id, {
+        select:['comment'],
+        relations: ['comment'],
+        where: {
+          removed: false
+        }
+      });
+      listPost.owner = listPost.owner.id;
+      return listPost ? listPost : null
+    } catch (error) {
+      console.log("findOneErr: ",error);
+      return null
+    }
+  }
 
   async update(id: number, updatePostDto: UpdatePostDto):Promise<UpdateResult | boolean> {
     try {

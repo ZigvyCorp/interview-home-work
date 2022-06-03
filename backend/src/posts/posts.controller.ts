@@ -49,6 +49,23 @@ export class PostsController {
     })
     return listPostAfter
   }
+  @Get(':id/comments')
+  async findAllComment(@Param('id') id: number) {
+    let listPostComment: FindPostResponse | null = await this.postService.findPostComment(id);
+    if(!listPostComment) {
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          errorMessage: {
+            dev: `can't find all user data`,
+            user: "not found",
+          },
+        },
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    return listPostComment
+  }
 
   @Get(':id')
   async findOne(@Param('id') id: number) {
