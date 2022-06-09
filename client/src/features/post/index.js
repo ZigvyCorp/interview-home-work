@@ -1,44 +1,73 @@
+import { Pagination, Spin } from "antd";
+import Search from "antd/lib/input/Search";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getAllUsersAsync } from "../user/userSlice";
 import Post from "./Post";
-import { getPostAsync, selectPost } from "./postSlice";
+import { getPostAsync, searchPostAsync, selectPost } from "./postSlice";
 
-const posts = [
-  {
-    userId: 1,
-    id: 1,
-    title:
-      "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-    body: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto",
-  },
-  {
-    userId: 1,
-    id: 2,
-    title: "qui est esse",
-    body: "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla",
-  },
-  {
-    userId: 1,
-    id: 3,
-    title: "ea molestias quasi exercitationem repellat qui ipsa sit aut",
-    body: "et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut",
-  },
-];
 export default function PostList() {
   const dispatch = useDispatch();
-  // const { posts } = useSelector(selectPost);
+  const { posts, loadingPosts } = useSelector(selectPost);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [keyWord, setKeyWord] = useState("");
 
   useEffect(() => {
-    dispatch(getPostAsync());
+    dispatch(getAllUsersAsync());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (keyWord) {
+      dispatch(searchPostAsync(keyWord));
+      setCurrentPage(1);
+    } else dispatch(getPostAsync(currentPage));
+  }, [dispatch, currentPage, keyWord]);
+
+  if (loadingPosts) return <Spin />;
+
+  const changePage = (page) => {
+    setCurrentPage(page);
+  };
+  const onSearch = (value) => {
+    setKeyWord(value);
+  };
+
   return (
-    <div>
-      <p>post list</p>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Search
+        placeholder="search by title"
+        allowClear
+        onSearch={onSearch}
+        style={{
+          width: 400,
+
+          display: "inline-block",
+        }}
+      />
       <ul>
-        {posts.length &&
-          posts.map((post) => <Post key={post.id} post={post} />)}
+        {posts.length ? (
+          posts.map((post) => <Post key={post.id} post={post} />)
+        ) : (
+          <p>No post found</p>
+        )}
       </ul>
+      {!keyWord && (
+        <Pagination
+          simple
+          size="small"
+          total={100}
+          onChange={changePage}
+          current={currentPage}
+          style={{ paddingBottom: "1rem" }}
+        />
+      )}
     </div>
   );
 }

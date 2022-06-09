@@ -1,8 +1,15 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import Comment from "./Comment";
 
-const CommentList = ({ postId }) => {
-  return <div>CommentList {postId}</div>;
+const CommentList = ({ comments }) => {
+  return (
+    <>
+      <hr />
+      {comments.map((comment) => (
+        <Comment key={comment.id} comment={comment} />
+      ))}
+    </>
+  );
 };
 
 export default CommentList;

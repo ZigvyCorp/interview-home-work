@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { all, call, put, takeLatest } from "redux-saga/effects";
+import { all, call, put, takeEvery, takeLatest } from "redux-saga/effects";
 import { createAction } from "@reduxjs/toolkit";
 import postApi from "../../apis/postApi";
 
@@ -7,20 +7,31 @@ export const getPostAsync = createAction("post/getPostAsync");
 export const getCommentsOfPostAsync = createAction(
   "post/getCommentsOfPostAsync"
 );
+export const searchPostAsync = createAction("post/searchPostAsync");
 
-function* getPostSaga() {
+function* getPostSaga({ payload: page }) {
   try {
-    const data = yield call(postApi.getPosts);
+    yield put(loadingPosts());
+    const data = yield call(postApi.getPosts, page);
     yield put(getPosts(data));
   } catch (error) {
     console.log(error);
   }
 }
+function* searchPostSaga({ payload: keyWord }) {
+  try {
+    yield put(loadingPosts());
+    const data = yield call(postApi.searchPosts, keyWord);
+    yield put(searchPosts(data));
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-function* getCommentsOfPostSaga(postId) {
+function* getCommentsOfPostSaga({ payload: postId }) {
   try {
     const data = yield call(postApi.getCommentsOfPost, postId);
-    yield put(getCommentsOfPost(data));
+    yield put(getCommentsOfPost({ comments: data, postId }));
   } catch (error) {
     console.log(error);
   }
@@ -29,43 +40,42 @@ function* getCommentsOfPostSaga(postId) {
 export function* postSaga() {
   yield all([
     takeLatest(getPostAsync, getPostSaga),
-    takeLatest(getCommentsOfPostAsync, getCommentsOfPostSaga),
+    takeLatest(searchPostAsync, searchPostSaga),
+    takeEvery(getCommentsOfPostAsync, getCommentsOfPostSaga),
   ]);
 }
 
 const initialState = {
   posts: [],
-  totalComment: 0,
+  totalComment: {},
   status: "idle",
+  isPostsLoading: false,
 };
 
 export const postSlice = createSlice({
   name: "post",
   initialState,
   reducers: {
+    loadingPosts: (state, action) => {
+      state.isPostsLoading = true;
+    },
     getPosts: (state, action) => {
-      console.log(`here`);
+      state.isPostsLoading = false;
+      state.posts = [...action.payload];
+    },
+    searchPosts: (state, action) => {
+      state.isPostsLoading = false;
       state.posts = [...action.payload];
     },
     getCommentsOfPost: (state, action) => {
-      console.log(`here`);
-      state.totalComment = action.payload.length;
+      const { postId, comments } = action.payload;
+      state.totalComment[postId] = comments;
     },
-    // addTodo: (state, action) => {
-    //   state.todos.push(action.payload);
-    // },
-    // removeTodo: (state, action) => {
-    //   const index = state.todos.findIndex(
-    //     (todo) => todo.id === action.payload.id
-    //   );
-    //   if (index !== -1) {
-    //     state.todos.splice(index, 1);
-    //   }
-    // },
   },
 });
 
-export const { getPosts, getCommentsOfPost } = postSlice.actions;
+export const { getPosts, getCommentsOfPost, loadingPosts, searchPosts } =
+  postSlice.actions;
 
 export const selectPost = (state) => state.post;
 
