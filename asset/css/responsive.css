@@ -1,0 +1,15 @@
+@media (max-width: 870px) {
+    #header {
+        font-size: 3vw;
+    }
+
+    .header-text {
+        width: 60%;
+    }
+}
+
+@media (max-width: 420px) {
+    .header-text {
+        display: none;
+    }
+}

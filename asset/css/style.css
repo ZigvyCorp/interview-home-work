@@ -1,0 +1,255 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    z-index: 1;
+    display: flex;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#header-left {
+    height: inherit;
+    display: flex;
+    width: 40%;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: white;
+    border-style: solid;
+    border-color: black;
+}
+
+#header-center {
+    display: flex;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(230,230,230);
+    border-bottom: 3px solid black;
+    border-top: 3px solid black;
+}
+
+#header-right {
+    height: inherit;
+    display: flex;
+    width: 40%;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: white;
+    border-style: solid;
+    border-color: black;
+}
+
+#header img {
+    height: 64px;
+}
+
+.header-text {
+    width: 45%;
+    display: inline-block;
+    line-height: 70px;
+    margin-left: 12px;
+}
+
+.extra-space {
+    height: 50px;
+}
+
+#content {
+    width: 96%;
+    margin: 0 auto;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+    font-weight: 600;
+    margin-top: 70px;
+}
+
+.info-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.author {
+    margin-bottom: 5px;
+}
+
+.color-list {
+    width: 30%;
+}
+
+.cl {
+    display: inline-block;
+    font-size: 12px;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    padding: 2px 6px;
+    margin-right: 4px;
+    margin-bottom: 8px;
+}
+
+.c-magenta {
+    border-color: rgb(255,0,255);
+    color: rgb(255,0,255);
+    background-color: 	rgba(255,0,255, 0.1);
+}
+
+.c-red {
+    border-color: rgb(255,0,0);
+    color: rgb(255,0,0);
+    background-color: 	rgba(255,0,0, 0.1);
+}
+
+.c-volcano {
+    border-color: rgb(234,112,72);
+    color: rgb(234,112,72);
+    background-color: 	rgba(234,112,72, 0.1);
+}
+
+.c-orange {
+    border-color: rgb(255,165,0);
+    color: rgb(255,165,0);
+    background-color: 	rgba(255,165,0, 0.1);
+}
+
+.c-gold {
+    border-color: rgb(255,215,0);
+    color: rgb(255,215,0);
+    background-color: 	rgba(255,215,0, 0.1);
+}
+
+.c-lime {
+    border-color: rgb(0,255,0);
+    color: rgb(0,255,0);
+    background-color: 	rgba(0,255,0, 0.1);
+}
+
+.c-green {
+    border-color: rgb(0,128,0);
+    color: rgb(0,128,0);
+    background-color: 	rgba(0,128,0, 0.1);
+}
+
+.c-cyan {
+    border-color: rgb(0,255,255);
+    color: rgb(0,255,255);
+    background-color: 	rgba(0,255,255, 0.1);
+}
+
+.c-blue {
+    border-color: rgb(0,0,255);
+    color: rgb(0,0,255);
+    background-color: 	rgba(0,0,255, 0.1);
+}
+
+.c-geekblue {
+    border-color: rgb(18,105,199);
+    color: rgb(18,105,199);
+    background-color: 	rgba(18,105,199, 0.1);
+}
+
+.c-purple {
+    border-color: rgb(128,0,128);
+    color: rgb(128,0,128);
+    background-color: 	rgba(128,0,128, 0.1);
+}
+
+.main-content {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+#comment-list {
+    width: 96%;
+    margin: 60px auto 0;
+}
+
+.reply-count {
+    font-size: 18px;
+    color: rgb(89,89,89);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.break-line {
+    background-color: rgb(232,232,232);
+    height: 2px;
+    margin-top: 20px;
+}
+
+.comment {
+    display: flex;
+    margin: 30px auto 40px;
+}
+
+.avatar {
+    width: 10%;
+    display: flex;
+    align-items: flex-start;
+}
+
+.avatar img {
+    width: 60%;
+}
+
+.cmt-container {
+    width: 90%;
+}
+
+.cmt-user-info {
+    display: flex;
+}
+
+.user-name {
+    margin-right: 10px;
+    font-weight: bold;
+    color: rgb(142,142,142);
+}
+
+.cmt-date {
+    font-weight: bold;
+    color: rgb(204,204,204);
+}
+
+.cmt-content {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 18px;
+    color: rgb(89,89,89);
+    line-height: 1.4;
+}
+
+.reply-to {
+    margin-top: 25px;
+    font-weight: bold;
+    color: rgb(140,140,140);
+}
+
+.break-line-2 {
+    background-color: black;
+    height: 5px;
+}
