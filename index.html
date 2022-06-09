@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/asset/css/style.css">
+    <link rel="stylesheet" href="/asset/css/responsive.css">
+</head>
+<body>
+    <div id="main">
+        <div id="header">
+            <div id="header-left">
+                <img src="https://cdn-icons-png.flaticon.com/512/1596/1596810.png">
+                <div class="header-text">Logo</div>
+            </div>
+            <div id="header-center">
+                <div class="header-text-center">Blogs</div>
+            </div>
+            <div id="header-right">
+                <img src="https://cdn-icons-png.flaticon.com/512/1596/1596810.png">
+                <div class="header-text">Adam Levine</div>
+            </div>
+        </div>
+
+        <div class="extra-space"></div>
+
+        <div class="post-list">
+            <!-- Begin: Post 1 -->
+            <div id="content">
+                <div class="title">Post title 1</div>
+                <div class="info-container">
+                    <div class="info">
+                        <div class="author">
+                            Author: John Smith
+                        </div>
+                        <div class="date-created">
+                            Created at: Sep 20, 2018
+                        </div>
+                    </div>
+    
+                    <div class="color-list">
+                        <div class="cl c-magenta">magenta</div>
+                        <div class="cl c-red">red</div>
+                        <div class="cl c-volcano">volcano</div>
+                        <div class="cl c-orange">orange</div>
+                        <div class="cl c-gold">gold</div>
+                        <div class="cl c-lime">lime</div>
+                        <div class="cl c-green">green</div>
+                        <div class="cl c-cyan">cyan</div>
+                        <div class="cl c-blue">blue</div>
+                        <div class="cl c-geekblue">geekblue</div>
+                        <div class="cl c-purple">purple</div>
+                    </div>
+                </div>
+    
+                <div class="main-content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis.
+                </div>
+            </div>
+    
+            <div id="comment-list">
+                <div class="reply-count" onclick="showComment('post-1')">
+                    2 replies
+                </div>
+                <div class="break-line"></div>
+                <div id="comments" class="post-1" style="display:none">
+                    <div class="comment">
+                        <div class="avatar">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1596/1596810.png">
+                        </div>
+                        <div class="cmt-container">
+                            <div class="cmt-user-info">
+                                <div class="user-name">
+                                    Han Solo
+                                </div>
+                                <div class="cmt-date">
+                                    a day ago
+                                </div>
+                            </div>
+                            <div class="cmt-content">
+                                We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.
+                            </div>
+                            <div class="reply-to">
+                                Reply to
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="comment">
+                        <div class="avatar">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1596/1596810.png">
+                        </div>
+                        <div class="cmt-container">
+                            <div class="cmt-user-info">
+                                <div class="user-name">
+                                    Han Solo
+                                </div>
+                                <div class="cmt-date">
+                                    2 days ago
+                                </div>
+                            </div>
+                            <div class="cmt-content">
+                                We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.
+                            </div>
+                            <div class="reply-to">
+                                Reply to
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="break-line-2"></div>
+            <!-- End: Post 1 -->
+
+            <!-- Begin: Post 2 -->
+            <div id="content">
+                <div class="title">Post title 2</div>
+                <div class="info-container">
+                    <div class="info">
+                        <div class="author">
+                            Author: John Smith
+                        </div>
+                        <div class="date-created">
+                            Created at: Sep 20, 2018
+                        </div>
+                    </div>
+    
+                    <div class="color-list">
+                        <div class="cl c-magenta">magenta</div>
+                        <div class="cl c-red">red</div>
+                        <div class="cl c-volcano">volcano</div>
+                        <div class="cl c-orange">orange</div>
+                        <div class="cl c-gold">gold</div>
+                        <div class="cl c-lime">lime</div>
+                        <div class="cl c-green">green</div>
+                        <div class="cl c-cyan">cyan</div>
+                        <div class="cl c-blue">blue</div>
+                        <div class="cl c-geekblue">geekblue</div>
+                        <div class="cl c-purple">purple</div>
+                    </div>
+                </div>
+    
+                <div class="main-content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis.
+                </div>
+            </div>
+    
+            <div id="comment-list">
+                <div class="reply-count" onclick="showComment('post-2')">
+                    2 replies
+                </div>
+                <div class="break-line"></div>
+                <div id="comments" class="post-2" style="display:none">
+                    <div class="comment">
+                        <div class="avatar">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1596/1596810.png">
+                        </div>
+                        <div class="cmt-container">
+                            <div class="cmt-user-info">
+                                <div class="user-name">
+                                    Han Solo
+                                </div>
+                                <div class="cmt-date">
+                                    a day ago
+                                </div>
+                            </div>
+                            <div class="cmt-content">
+                                We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.
+                            </div>
+                            <div class="reply-to">
+                                Reply to
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="comment">
+                        <div class="avatar">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1596/1596810.png">
+                        </div>
+                        <div class="cmt-container">
+                            <div class="cmt-user-info">
+                                <div class="user-name">
+                                    Han Solo
+                                </div>
+                                <div class="cmt-date">
+                                    2 days ago
+                                </div>
+                            </div>
+                            <div class="cmt-content">
+                                We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.
+                            </div>
+                            <div class="reply-to">
+                                Reply to
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="break-line-2"></div>
+            <!-- End: Post 2 -->
+
+            <!-- Begin: Post 3 -->
+            <div id="content">
+                <div class="title">Post title 3</div>
+                <div class="info-container">
+                    <div class="info">
+                        <div class="author">
+                            Author: John Smith
+                        </div>
+                        <div class="date-created">
+                            Created at: Sep 20, 2018
+                        </div>
+                    </div>
+    
+                    <div class="color-list">
+                        <div class="cl c-magenta">magenta</div>
+                        <div class="cl c-red">red</div>
+                        <div class="cl c-volcano">volcano</div>
+                        <div class="cl c-orange">orange</div>
+                        <div class="cl c-gold">gold</div>
+                        <div class="cl c-lime">lime</div>
+                        <div class="cl c-green">green</div>
+                        <div class="cl c-cyan">cyan</div>
+                        <div class="cl c-blue">blue</div>
+                        <div class="cl c-geekblue">geekblue</div>
+                        <div class="cl c-purple">purple</div>
+                    </div>
+                </div>
+    
+                <div class="main-content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec mattis ac neque. Duis vulputate commodo lectus, ac blandit elit tincidunt id. Sed rhoncus, tortor sed eleifend tristique, tortor mauris molestie elit, et lacinia ipsum quam nec dui. Quisque nec mauris sit amet elit iaculis pretium sit amet quis.
+                </div>
+            </div>
+    
+            <div id="comment-list">
+                <div class="reply-count" onclick="showComment('post-3')">
+                    2 replies
+                </div>
+                <div class="break-line"></div>
+                <div id="comments" class="post-3" style="display:none">
+                    <div class="comment">
+                        <div class="avatar">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1596/1596810.png">
+                        </div>
+                        <div class="cmt-container">
+                            <div class="cmt-user-info">
+                                <div class="user-name">
+                                    Han Solo
+                                </div>
+                                <div class="cmt-date">
+                                    a day ago
+                                </div>
+                            </div>
+                            <div class="cmt-content">
+                                We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.
+                            </div>
+                            <div class="reply-to">
+                                Reply to
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="comment">
+                        <div class="avatar">
+                            <img src="https://cdn-icons-png.flaticon.com/512/1596/1596810.png">
+                        </div>
+                        <div class="cmt-container">
+                            <div class="cmt-user-info">
+                                <div class="user-name">
+                                    Han Solo
+                                </div>
+                                <div class="cmt-date">
+                                    2 days ago
+                                </div>
+                            </div>
+                            <div class="cmt-content">
+                                We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.
+                            </div>
+                            <div class="reply-to">
+                                Reply to
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="break-line-2"></div>
+            <!-- End: Post 3 -->
+        </div>
+    </div>
+
+    <script>
+        showComment = (value) => {
+            const elements = document.querySelectorAll('[id="comments"]');
+            for (let i = 0; i < elements.length; i++) {
+                if (elements[i].className == value) {
+                    if (elements[i].style.display != "none") {
+                        elements[i].style.display = "none";
+                    } else {
+                        elements[i].style.display = "block";
+                    }
+                }
+            }
+            
+        }
+    </script>
+</body>
+</html>
