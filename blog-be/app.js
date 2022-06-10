@@ -18,6 +18,9 @@ mongoose
         process.exit(1)
     });
 
+
+
+    
 // TODO get(/) and start server
 console.log(config.server.port);
 app.get('/', async (req, res) => {
@@ -28,7 +31,6 @@ app.get('/', async (req, res) => {
         "🚀 Heroku  : https://tixi-movie-heroku.herokuapp.com/");
     res.json(messages);
 })
-
 app.listen({
     port: process.env.PORT || 5030
 }, () => {
@@ -37,5 +39,3 @@ app.listen({
     console.log(`🚀 https://cloud.mongodb.com/v2/6069bc834e865c6b1f43a400#metrics/replicaSet/6069bd87ed7de870c1f0ebe8/explorer `)
     console.log(`🚀 Heroku  : https://tixi-movie-heroku.herokuapp.com/ `)
 })
-
-
