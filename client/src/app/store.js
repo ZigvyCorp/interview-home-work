@@ -15,8 +15,15 @@ const reducer = combineReducers({
   user: userSlice,
 });
 
+const persistConfig = {
+  key: "root",
+  storage: storage,
+  stateReconciler: autoMergeLevel2,
+};
+const persistedReducer = persistReducer(persistConfig, reducer);
+
 const store = configureStore({
-  reducer,
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       thunk: false,
@@ -26,13 +33,6 @@ const store = configureStore({
       },
     }).concat(sagaMiddleware),
 });
-
-const persistConfig = {
-  key: "root",
-  storage: storage,
-  stateReconciler: autoMergeLevel2,
-};
-const persistedReducer = persistReducer(persistConfig, reducer);
 
 sagaMiddleware.run(rootSagas);
 

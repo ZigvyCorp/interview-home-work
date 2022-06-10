@@ -48,7 +48,6 @@ export function* postSaga() {
 const initialState = {
   posts: [],
   totalComment: {},
-  status: "idle",
   isPostsLoading: false,
 };
 
