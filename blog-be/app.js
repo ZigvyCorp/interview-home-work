@@ -6,10 +6,21 @@ const mongoose = require("mongoose");
 //TODO apollo server
 const passport = require("passport");
 const FacebookStrategy = require("passport-facebook").Strategy;
-
+const session = require("express-session");
 const app = express();
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+  })
+);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(passport.initialize());
+app.use(passport.session());
+
 // TODO connect mongodb
 mongoose
   .connect(config.mongo.url, config.mongo.options)
@@ -22,29 +33,28 @@ mongoose
   });
 
 // TODO get(/) and start server
-app.use(passport.initialize());
 passport.serializeUser(function (user, done) {
   done(null, user);
 });
 
-passport.deserializeUser(function (obj, done) {
-  done(null, obj);
+passport.deserializeUser(function (user, done) {
+  console.log(done);
+  done(null, user);
 });
+
 passport.use(
   new FacebookStrategy(
     {
       clientID: "590065265733237",
       clientSecret: "9d9cf56f9c7a55698254da8a79d5a9e9",
-      callbackURL: "https://2b66-14-180-163-156.ngrok.io/",
+      callbackURL:
+        "https://2b66-14-180-163-156.ngrok.io/auth/facebook/callback",
     },
     function (accessToken, refreshToken, profile, cb) {
-      User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-        console.log("====================================");
-        console.log(user);
-        console.log(accessToken);
-        console.log("====================================");
-        return cb(err, user);
-      });
+      console.log("====================================");
+      console.log(profile);
+      console.log("====================================");
+      return cb(null, profile);
     }
   )
 );
@@ -57,7 +67,6 @@ app.get(
   "/auth/facebook/callback",
   passport.authenticate("facebook", { failureRedirect: "/login" }),
   function (req, res) {
-    // Successful authentication, redirect home.
     res.redirect("/get-auth");
   }
 );
