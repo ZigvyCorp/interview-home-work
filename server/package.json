@@ -1,0 +1,34 @@
+{
+  "name": "test_zigvy",
+  "version": "1.0.0",
+  "description": "- This is a **Small Project Test** for online interview at Zigvy Corp. This assignment has 2 main tasks: **Front-end** and **Back-end**. You will be required to complete each tasks with your applied position. For short, you can check the list below\r   - Full-stack engineer: Both Front-end and Back-end\r   - Front-end engineer: Front-end only\r   - Back-end engineer: Complete basic layout of Front-end task and Back-end task",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/",
+    "dev": "nodemon src/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nguyenthengocit37/interview-home-work.git"
+  },
+  "author": "The Ngoc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nguyenthengocit37/interview-home-work/issues"
+  },
+  "homepage": "https://github.com/nguyenthengocit37/interview-home-work#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-validator": "^6.14.2",
+    "helmet": "^5.1.0",
+    "mongoose": "^6.4.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.16"
+  }
+}
