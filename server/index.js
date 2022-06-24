@@ -9,18 +9,17 @@ const PORT = process.env.PORT || 3000;
 const database = require('./config/database');
 const indexRouter = require('./routes');
 
- //Middleware 
+//Middleware 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());//Resource sharing
 app.use(helmet());//Middleware Security
-process.env.ENV == 'DEV' && app.use(morgan('combined')); //logger
-
-//Routes
-app.use(indexRouter);
+process.env.ENV == 'Development' && app.use(morgan('combined')); //logger
 
 database.connect().then(() => {
-    app.listen(PORT,()=>{
+    //Routes
+    app.use(indexRouter);
+    app.listen(PORT, () => {
         console.log(`App listen on port ${PORT}`);
-    })
+    });
 }).catch(err => console.log(err));
