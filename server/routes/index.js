@@ -9,9 +9,5 @@ router.use('/posts',postRouter);
 router.use('/users',userRouter);
 router.use('/comments',commentRouter);
 
-router.get('/',(req,res)=>{
-    res.send('Welcome to my test');
-});
-
 
 module.exports = router;

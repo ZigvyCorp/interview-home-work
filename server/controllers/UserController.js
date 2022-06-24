@@ -1,15 +1,23 @@
 const { validationResult } = require('express-validator');
+const moment = require('moment');
 
 const User = require('../models/User');
+const UserData = require('../../data/users.json');
 
-const getUsers = (req, res) => {
+const getUsers = function (req, res){
     User.find({}).then(user => {
-        res.status(200).json({
+       res.status(200).json({
             status: 'success',
             message: 'Get user successfully',
             data: user
         });
-    });
+    }).catch(err => {
+       res.status(400).json({
+            status: 'error',
+            message: err,
+            data: {}
+        })
+    })
 };
 
 const createUser = (req, res) => {
@@ -22,13 +30,15 @@ const createUser = (req, res) => {
         });
     } 
     const { username, password, name = '', dob = Date.now() } = req.body;
-    if(!username || !password){
+    const dateValid = moment(dob, "MM/DD/YYYY", true).isValid();
+    if(!username || !password || !dateValid){
         return res.status(400).json({
             status: 'error',
             message: 'Invalid username or password',
             data : {},
         })
     }
+    const dateOfBirth =  new Date(dob)
     User.findOne({username}).exec().then(user=>{
         if(user){
             res.status(400).json({
@@ -41,16 +51,36 @@ const createUser = (req, res) => {
                 username,
                 password,
                 name,
-                dob
+                dob : dateOfBirth
             })
-            newUser.save().then(()=>{
-
+            newUser.save().then(user=>{
+                res.status(200).json({
+                    status:'success',
+                    message:'Create User successfully',
+                    data:user
+                })
             })
         }
     })
 };
 
+const insertUser = (req, res) => {
+    UserData.forEach((user,index)=>{
+        if(!user.dob){
+            user.dob = new Date();
+        }
+        newDate = moment(user.dob, "DD/MM/YYYY").format('MM/DD/YYYY');
+        user.dob = new Date(newDate);
+    })
+    User.insertMany(UserData).then(()=>{
+        res.status(200).json({
+            status:'success',
+            message:'Insert user successfully',
+            data : {}
+        })
+    })
+}
 module.exports = {
     getUsers,
-    createUser
+    insertUser
 }
