@@ -37,7 +37,7 @@ const searchPosts = (req, res) => {
 };
 //[GET] /posts?page=[number]&pagesize=[number] --Get posts and paginate
 const getPostsAndPaginate = (req, res) => {
-    const { page = 1, pagesize = 10 } = req.query;
+    let { page = 1, pagesize = 10 } = req.query;
     //Check input
     if (isNaN(page) || isNaN(pagesize)) {
         page = 1;

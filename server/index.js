@@ -14,10 +14,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());//Resource sharing
 app.use(helmet());//Middleware Security
-process.env.NODE_ENV == 'DEV' && app.use(morgan('combined')); //logger
+process.env.ENV == 'DEV' && app.use(morgan('combined')); //logger
 
 //Routes
-
 app.use(indexRouter);
 
 database.connect().then(() => {
