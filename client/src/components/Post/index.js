@@ -13,13 +13,13 @@ function Post({ data }) {
         <Card.Text style={{ minHeight: '5rem' }}>
           {`${String(data.content).substring(0, 100)}...`}
         </Card.Text>
-        <div class='d-flex'>
+        <div className='d-flex'>
           <Card.Text>
-            Author : {data.owner.name}
+            Author : {data.owner?.name}
           </Card.Text>
-          <div class='ms-auto d-flex'>
+          <div className='ms-auto d-flex'>
               <FontAwesomeIcon icon={faClockFour}/>
-            <Card.Text class='ps-1'>
+            <Card.Text className='ps-1'>
               {moment(data.createdAt).format("DD/MM/YYYY")}
             </Card.Text>
           </div>

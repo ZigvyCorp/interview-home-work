@@ -39,7 +39,7 @@ const searchPosts = (req, res) => {
 const getPostsAndPaginate = (req, res) => {
     let { page = 1, pagesize = 10 } = req.query;
     //Check input
-    if (isNaN(page) || isNaN(pagesize)) {
+    if (isNaN(page) || isNaN(pagesize) || page <= 0 || pagesize <= 0) {
         page = 1;
         pagesize = 10;
     }

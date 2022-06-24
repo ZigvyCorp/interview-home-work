@@ -5,7 +5,9 @@ function Layout({children}) {
     return ( 
     <>
     <Header />
+    <div style={{minHeight:'80vh'}}>
     {children}
+    </div>
     <Footer/>
     </> 
     );
