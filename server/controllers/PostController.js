@@ -16,13 +16,21 @@ const getPosts = (req, res) => {
 };
 //[GET] /search
 const searchPosts = (req, res) => {
-    const {query} = req.query;
-    Post.find({title:/query/})
+    const { query } = req.query;
+    const postRegex = new RegExp(query, 'i');
+    Post.find({ title: postRegex })
         .populate('owner')
         .then(posts => {
+            if (!posts) {
+                res.status(404).json({
+                    status: 'success',
+                    message: 'No posts is matches',
+                    data: {}
+                });
+            }
             res.status(200).json({
                 status: 'success',
-                message: 'Get list of posts successfully',
+                message: 'Search posts successfully',
                 data: posts
             });
         });
@@ -31,13 +39,13 @@ const searchPosts = (req, res) => {
 const getPostsAndPaginate = (req, res) => {
     const { page = 1, pagesize = 10 } = req.query;
     //Check input
-    if(isNaN(page) || isNaN(pagesize)){
+    if (isNaN(page) || isNaN(pagesize)) {
         page = 1;
-        pagesize = 10
+        pagesize = 10;
     }
     Post.find({})
         .populate('owner')
-        .skip((page * 1) - pagesize)
+        .skip((page - 1) * pagesize)
         .limit(pagesize)
         .then(posts => {
             res.status(200).json({
@@ -78,35 +86,35 @@ const getCommentsInPost = (req, res) => {
 };
 
 //[POST] /posts/create
-const createPost = (req,res)=>{
-    const { idOwner,title,content,tags=[]} = req.body;
-    if(!idOwner || !title || !content){
+const createPost = (req, res) => {
+    const { idOwner, title, content, tags = [] } = req.body;
+    if (!idOwner || !title || !content) {
         return res.status(400).json({
-            status:'error',
-            message:"Can't create post",
-            data:{}
-        }) 
+            status: 'error',
+            message: "Can't create post",
+            data: {}
+        });
     }
     const newPost = new Post({
         title,
         content,
         tags,
-        owner:idOwner
-    })
-    newPost.save().then(post=>{
+        owner: idOwner
+    });
+    newPost.save().then(post => {
         res.status(200).json({
             status: 'success',
             message: 'Insert post successfully',
             data: post
         });
-    }).catch(err=>{
+    }).catch(err => {
         res.status(400).json({
-            status:'error',
-            message:err,
-            data:{}
-        }) 
-    })
-}
+            status: 'error',
+            message: err,
+            data: {}
+        });
+    });
+};
 
 //[POST] /posts/autoInsert -- Auto insert post from Data Fake
 const insertPosts = (req, res) => {

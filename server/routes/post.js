@@ -4,12 +4,12 @@ const router = express.Router();
 const PostController = require('../controllers/PostController');
 
 
-router.post('/create',PostController.createPost);
 router.post('/autoInsert',PostController.insertPosts);
+router.post('/create',PostController.createPost);
+router.get('/search',PostController.searchPosts);
+router.get('/all',PostController.getPosts);
 router.get('/:id',PostController.getPostById);
 router.get('/:id/comments',PostController.getCommentsInPost);
-router.post('/',PostController.searchPosts);
-router.get('/',PostController.getPosts);
 router.get('/',PostController.getPostsAndPaginate);
 
 
