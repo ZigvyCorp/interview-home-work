@@ -39,7 +39,7 @@ function Detail() {
             </h6>
             <div className='comments mt-5'>
                 <h3>Comments</h3>
-                {comments.length > 0 && comments.map((comment, index) => (
+                {comments.length > 0 ? comments.map((comment, index) => (
                     <div key={index} className='comment bg-light p-1 ps-3 mb-3'>
                         <div className='d-flex'>
                             <h5>{comment.owner.name || comment.owner.username}</h5>
@@ -52,7 +52,7 @@ function Detail() {
                         </div>
                         <p>{comment.content}</p>
                     </div>
-                ))}
+                )):<h5>No comments</h5>}
             </div>
         </Container>
     );
