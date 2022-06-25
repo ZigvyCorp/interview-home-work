@@ -1,10 +1,11 @@
-import { useRef, KeyboardEvent } from 'react';
+import { useRef, KeyboardEvent, useEffect } from 'react';
 
 interface IProps {
     handleSearch: (searchValue: string) => void;
+    numOfPosts: number;
 }
 
-const Header = ({ handleSearch }: IProps) => {
+const Header = ({ handleSearch, numOfPosts }: IProps) => {
     const refSearchInput = useRef<HTMLInputElement>(null);
 
     const onEnterKey = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -26,6 +27,13 @@ const Header = ({ handleSearch }: IProps) => {
             refSearchInput.current.value = '';
         }
     };
+
+    // focus input when no posts found
+    useEffect(() => {
+        if (numOfPosts === 0 && refSearchInput.current) {
+            refSearchInput.current.value = '';
+        }
+    }, [numOfPosts]);
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">

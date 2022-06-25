@@ -78,28 +78,33 @@ function App() {
 
     return (
         <div className="App">
-            <Header handleSearch={handleSearch} />
+            <Header handleSearch={handleSearch} numOfPosts={posts.length} />
             <div className="container mt-5">
                 <div className="post-list">
-                    {posts.map((post, index) => {
-                        const AuthorOfPost = users.find(
-                            (user) => user.id === post.userId
-                        ) || { id: Math.random(), name: 'Anonymous' };
+                    {posts.length > 0 &&
+                        posts.map((post, index) => {
+                            const AuthorOfPost = users.find(
+                                (user) => user.id === post.userId
+                            ) || { id: Math.random(), name: 'Anonymous' };
 
-                        const commentsOfPost = comments.filter(
-                            (comment) => comment.postId === post.id
-                        );
+                            const commentsOfPost = comments.filter(
+                                (comment) => comment.postId === post.id
+                            );
 
-                        return (
-                            <Post
-                                key={index}
-                                dataPost={post}
-                                dataUser={AuthorOfPost}
-                                dataComments={commentsOfPost}
-                                fakeDate={fakeDates[index]}
-                            />
-                        );
-                    })}
+                            return (
+                                <Post
+                                    key={index}
+                                    dataPost={post}
+                                    dataUser={AuthorOfPost}
+                                    dataComments={commentsOfPost}
+                                    fakeDate={fakeDates[index]}
+                                />
+                            );
+                        })}
+
+                    {posts.length === 0 && (
+                        <h4>No post found. Try searching again.</h4>
+                    )}
                 </div>
             </div>
         </div>
