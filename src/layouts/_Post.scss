@@ -1,0 +1,34 @@
+.post {
+    border-radius: 12px;
+    box-shadow: 0 5px 11px 1px rgba(0, 0, 0, 0.1);
+    padding: 25px 40px;
+    margin-bottom: 50px;
+
+    &-title {
+        text-align: center;
+        text-transform: capitalize;
+    }
+
+    &-info {
+        line-height: 1.7rem;
+
+        > span:first-child {
+            display: block;
+        }
+    }
+
+    &-content {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 100ch;
+
+        &::first-letter {
+            text-transform: capitalize;
+        }
+    }
+
+    .tag-list {
+        margin: 10px 0 22px;
+    }
+}

@@ -1,0 +1,10 @@
+@import './layouts/Header';
+@import './layouts/Post';
+@import './layouts/Tag';
+@import './layouts/CommentList';
+@import './layouts/Comment';
+
+img {
+    width: 100%;
+    height: 100%;
+}
