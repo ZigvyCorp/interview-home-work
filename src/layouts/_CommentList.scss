@@ -1,0 +1,19 @@
+.comment-list {
+    margin-left: 10px;
+
+    .comment-show-toggle-btn {
+        display: block;
+        text-align: left;
+        text-decoration: none;
+        padding: 10px 4px;
+        margin-bottom: 15px;
+        color: #333;
+        border-bottom: 1px solid #cdcdcd;
+        transition: background-color 0.2s;
+
+        &:hover {
+            border-radius: 4px;
+            background-color: #ebeaea;
+        }
+    }
+}
