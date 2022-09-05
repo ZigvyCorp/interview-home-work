@@ -1,17 +1,17 @@
 import React from "react";
-import Comment from "./comment";
+import CommentList from "./comment";
 import Content from "./content";
 
-const Post = ({ data }) => {
+const Post = ({ data, comments }) => {
   return (
-    <div className="mx-3 postItem">
+    <div className="mx-3 pb-3 postItem">
       <Content
         title={data.title}
         owner={data.owner}
         content={data.content}
         created_at={data.created_at}
       />
-      <Comment />
+      <CommentList comments={comments} />
     </div>
   );
 };

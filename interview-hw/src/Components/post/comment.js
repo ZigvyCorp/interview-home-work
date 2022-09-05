@@ -1,11 +1,18 @@
 import React from "react";
+import CommentItem from "./commentItem";
 
-const Comment = () => {
+const CommentList = ({ comments }) => {
   return (
-    <div className="border-bottom mt-5 ">
-      <p className="text-muted">2 replies</p>
+    <div>
+      <div className="border-bottom mt-5 mb-3 ">
+        <p className="text-muted">{comments.length} replies</p>
+      </div>
+
+      {comments.map((item) => (
+        <CommentItem content={item} />
+      ))}
     </div>
   );
 };
 
-export default Comment;
+export default CommentList;
