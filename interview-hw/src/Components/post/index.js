@@ -1,11 +1,8 @@
-import React, { Component } from 'react'
+import React from "react";
+import Content from "./content";
 
-export class index extends Component {
-  render() {
-    return (
-      <div>index</div>
-    )
-  }
-}
+const Post = () => {
+  return <Content />;
+};
 
-export default index
+export default Post;

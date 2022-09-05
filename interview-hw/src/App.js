@@ -1,9 +1,13 @@
-import './App.css';
-import State from './Components/navigation/Navbar'
+import "./App.css";
+import Nav from "./Components/navigation/Navbar";
+import Post from "./Components/post";
 
 function App() {
   return (
-    <State />
+    <>
+      <Nav />
+      <Post />
+    </>
   );
 }
 
