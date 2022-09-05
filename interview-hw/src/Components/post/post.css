@@ -1,3 +1,7 @@
 .boxText {
     height: fit-content;
 }
+
+.boxWrap {
+    width: 30%;
+}

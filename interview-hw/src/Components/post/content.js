@@ -1,16 +1,17 @@
 import React from "react";
 import Box from "./box";
+import moment from "moment";
 import "./post.css";
-const PostContent = () => {
+const PostContent = ({ title, owner, content, created_at }) => {
   return (
-    <div className="mx-3">
-      <h1 className="text-center display-5 mt-4">Post title 1</h1>
+    <div>
+      <h1 className="text-center display-5 mt-4">{title}</h1>
       <div className="subTitle d-flex justify-content-between">
         <div>
-          <p className="fw-semibold">Author: John Smith</p>
-          <p>Created at: Sep 20, 2018</p>
+          <p className="fw-semibold">Author: {owner}</p>
+          <p>Created at: {moment(created_at).format("ll")}</p>
         </div>
-        <div className="row mx-0 flex-wrap w-25">
+        <div className="row mx-0 flex-wrap boxWrap">
           <Box text="magenta" bgColor="#fff" />
           <Box text="red" bgColor="#fff" />
           <Box text="volcano" bgColor="#fff" color="#ec7751" />
@@ -24,13 +25,7 @@ const PostContent = () => {
           <Box text="purple" bgColor="#fff" />
         </div>
       </div>
-      <div>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas at
-        convallis leo. Suspendisse sed egestas sapien. Interdum et malesuada
-        fames ac ante ipsum primis in faucibus. Duis pretium velit in sapien
-        porttitor condimentum. In consectetur sagittis ante vel rutrum. Etiam
-        ullamcorper quam a velit bibendum auctor. Nulla in auctor arcu.
-      </div>
+      <div className="mt-3">{content}</div>
     </div>
   );
 };
