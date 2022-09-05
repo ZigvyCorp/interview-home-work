@@ -4,7 +4,7 @@ import Content from "./content";
 
 const Post = ({ data }) => {
   return (
-    <div className="mx-3">
+    <div className="mx-3 postItem">
       <Content
         title={data.title}
         owner={data.owner}

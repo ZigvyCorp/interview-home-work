@@ -1,5 +1,5 @@
 import "./App.css";
-import Nav from "./Components/navigation/Navbar";
+import Nav from "./Components/navigation/navbar";
 import Post from "./Components/post";
 
 const posts = [

@@ -2,7 +2,15 @@ import React from "react";
 import Box from "./box";
 import moment from "moment";
 import "./post.css";
+
 const PostContent = ({ title, owner, content, created_at }) => {
+  const shortParagraph = content.split(" ");
+
+  const postContent =
+    shortParagraph.length >= 100
+      ? shortParagraph.slice(0, 100).join(" ") + "... "
+      : content;
+
   return (
     <div>
       <h1 className="text-center display-5 mt-4">{title}</h1>
@@ -25,7 +33,7 @@ const PostContent = ({ title, owner, content, created_at }) => {
           <Box text="purple" bgColor="#fff" />
         </div>
       </div>
-      <div className="mt-3">{content}</div>
+      <div className="mt-3">{postContent}</div>
     </div>
   );
 };

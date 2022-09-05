@@ -1,7 +1,11 @@
 .boxText {
-    height: fit-content;
+  height: fit-content;
 }
 
 .boxWrap {
-    width: 30%;
+  width: 30%;
+}
+
+.postItem {
+  border-bottom: 2px solid black;
 }
