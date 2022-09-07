@@ -16,8 +16,10 @@ const PostContent = ({ title, owner, content, created_at }) => {
       <h1 className="text-center display-5 mt-4">{title}</h1>
       <div className="subTitle d-flex justify-content-between">
         <div>
-          <p className="fw-semibold">Author: {owner}</p>
-          <p>Created at: {moment(created_at).format("ll")}</p>
+          <p className="font-weight-bold">Author: {owner}</p>
+          <p className="font-weight-bold">
+            Created at: {moment(created_at).format("ll")}
+          </p>
         </div>
         <div className="row mx-0 flex-wrap boxWrap">
           <Box text="magenta" bgColor="#fff" />
