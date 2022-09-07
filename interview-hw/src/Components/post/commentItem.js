@@ -1,10 +1,11 @@
 import React from "react";
+import GuestAvatar from "../../assets/guest_avatar.png";
 
 const CommentItem = ({ content }) => {
   console.log(content);
   return (
     <div className="d-flex mt-4 mb-0">
-      <img width="30px" height="30px" className="mr-3"></img>
+      <img width="40px" height="40px" className="mr-3" src={GuestAvatar}></img>
       <div>
         <div className="d-flex">
           <p className="mr-2">{content.owner}</p>
