@@ -22,17 +22,17 @@ const PostContent = ({ title, owner, content, created_at }) => {
           </p>
         </div>
         <div className="row mx-0 flex-wrap boxWrap">
-          <Box text="magenta" bgColor="#fff" />
-          <Box text="red" bgColor="#fff" />
-          <Box text="volcano" bgColor="#fff" color="#ec7751" />
-          <Box text="orange" bgColor="#fff" />
-          <Box text="gold" bgColor="#fff" />
-          <Box text="lime" bgColor="#fff" />
-          <Box text="green" bgColor="#fff" />
-          <Box text="cyan" bgColor="#fff" />
-          <Box text="blue" bgColor="#fff" />
-          <Box text="geekblue" bgColor="#fff" color="blue" />
-          <Box text="purple" bgColor="#fff" />
+          <Box text="magenta" bgColor="#fcc6ff" />
+          <Box text="red" bgColor="#ffbdc3" />
+          <Box text="volcano" bgColor="#ffc5b6" color="#ec7751" />
+          <Box text="orange" bgColor="#ffc797" />
+          <Box text="gold" bgColor="#fff5b9" />
+          <Box text="lime" bgColor="#c9ffc5" />
+          <Box text="green" bgColor="#afd5af" />
+          <Box text="cyan" bgColor="#cff6fc" />
+          <Box text="blue" bgColor="#c2e3fe" />
+          <Box text="geekblue" bgColor="#b6bef9" color="blue" />
+          <Box text="purple" bgColor="#dfccff" />
         </div>
       </div>
       <div className="mt-3">{postContent}</div>
