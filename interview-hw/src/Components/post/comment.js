@@ -6,7 +6,7 @@ const CommentList = ({ comments }) => {
     <div>
       <div className="border-bottom mt-5 mb-3 ">
         <p
-          className="text-muted btn btn-primary"
+          className="text-muted"
           data-toggle="collapse"
           href="#collapseExample"
           aria-expanded="false"
@@ -15,10 +15,11 @@ const CommentList = ({ comments }) => {
           {comments.length} replies
         </p>
       </div>
-
-      {comments.map((item) => (
-        <CommentItem content={item} className="collapse" id="collapseExample" />
-      ))}
+      <div className="collapse" id="collapseExample">
+        {comments.map((item) => (
+          <CommentItem content={item} />
+        ))}
+      </div>
     </div>
   );
 };
