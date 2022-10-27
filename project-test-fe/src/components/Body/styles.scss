@@ -1,0 +1,41 @@
+.list-post {
+    max-width: 100%;
+    max-height: calc(100vh - 50px);
+    padding: 0px 32px;
+
+    .post {
+        padding: 10px 0px;
+        border-top: 2px solid black;
+    }
+    .post:first-child {
+        border-top: 0;
+    }
+
+    .title-posts {
+        font-size: 28px;
+        font-weight: bold;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    .infor-posts {
+        padding-top: 10px;
+        font-size: 16px;
+        justify-content: space-between;
+    }
+
+    .content-posts {
+        margin-top: 10px;
+        font-size: 16px;
+        font-weight: medium;
+        text-align: justify;
+    }
+
+    .pagination-homepage {
+        .ant-pagination {
+            display: flex;
+            justify-content: end;
+            padding-bottom: 20px;
+        }
+    }
+}
