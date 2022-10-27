@@ -1,0 +1,11 @@
+.homepage {
+    width: 100%;
+    & .search-post {
+        display: flex;
+        justify-content: end;
+        padding: 10px 30px 0px 0px;
+        & .ant-input-wrapper {
+            width: 30%;
+        }
+    }
+}

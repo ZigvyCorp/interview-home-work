@@ -1,0 +1,22 @@
+.comment {
+    padding: 10px 0px;
+    display: contents;
+    & .total-replies {
+        cursor: pointer;
+        font-weight: bold;
+        width: 100%;
+        margin: 10px 20px;
+        border-bottom: 1px solid rgb(160, 158, 158);
+        & .ant-comment-inner {
+            padding: 16px 30px;
+        }
+    }
+
+    & .collapse {
+        display: none;
+    }
+
+    & .expand {
+        display: block;
+    }
+}
