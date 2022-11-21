@@ -18,7 +18,7 @@ const userController = require('../controllers/userController')
  *      403:
  *        description: forbidden
  */
- router.post('/user/register', userController.register)
+ router.post('/users/register', userController.register)
 
 
 /**
@@ -50,6 +50,6 @@ const userController = require('../controllers/userController')
  *      403:
  *        description: forbidden
  */
-  router.post('/user/login', userController.login)
+  router.post('/users/login', userController.login)
 
  module.exports = router

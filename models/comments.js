@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const postSchema = new Schema({
+const commentSchema = new Schema({
     owner: {
         type: Schema.Types.ObjectId,
         ref: 'user',
@@ -10,11 +10,11 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
-    commentPost: [      {
+    post: {
         type: Schema.Types.ObjectId,
-        ref: 'comment'
-    }]
+        ref: 'post'
+    }
 }, { timestamps: true })
-const post = mongoose.model("post", postSchema, "post")
+const comment = mongoose.model("comment", commentSchema, "comment")
 
-module.exports = post
+module.exports = comment

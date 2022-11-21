@@ -9,6 +9,8 @@ const app = express()
 
 const UserRouter = require('./api/routers/userRoute')
 
+const PostRouter = require('./api/routers/postRoute')
+
 const swaggerOptions = {
     swaggerDefinition: {
       openapi: "3.0.0",
@@ -31,6 +33,7 @@ const swaggerOptions = {
   app.use(express.json())
   app.use(cors({ credentials: true, origin: "*" })); 
   app.use('/api', UserRouter)
+  app.use('/api', PostRouter)
 
   mongoose.connect("mongodb+srv://thinhnx:1234@cluster0.xrcymyi.mongodb.net/?retryWrites=true&w=majority",
   {
