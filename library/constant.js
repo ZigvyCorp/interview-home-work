@@ -1,0 +1,7 @@
+const PORT = 8080;
+const HOST = 'http://127.0.0.1:'
+
+const BAD_REQUEST = 400;
+const SUCCESS_OK = 200;
+
+module.exports = {PORT: PORT, HOST:HOST, BAD_REQUEST: BAD_REQUEST, SUCCESS_OK: SUCCESS_OK}
