@@ -1,0 +1,34 @@
+
+.navbar-brand{
+  font-family: Phayfair Display, serif;
+  font-size: 2rem;
+  font-style: italic;
+  padding: 0;
+}
+.nav-items{
+  margin: 10px;
+}
+.nav-link{
+  align-items: center;
+  color: #212529;
+  text-decoration: none;
+  font: 1em sans-serif;
+}
+.navbar-collapse{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.navbar-info{
+  font-size: 1.25rem;
+  position: relative;
+  margin-right: 30px;
+
+}
+
+.info-avt{
+  align-items: center;
+  color: #212529;
+}
+
