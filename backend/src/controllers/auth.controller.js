@@ -5,7 +5,13 @@ const tokenServices = require("./../services/token.service");
 
 const register = catchAsync(async (req, res, next) => {
   let user = await userServices.createUser(req.body);
-  res.json({ data: user });
+  let token = await tokenServices.generateAuthToken(user);
+  res.json({
+    data: {
+      user,
+      token,
+    },
+  });
 });
 
 const login = catchAsync(async (req, res, next) => {
@@ -14,10 +20,10 @@ const login = catchAsync(async (req, res, next) => {
   let token = await tokenServices.generateAuthToken(user);
   res.json({
     data: {
-        user,
-        token
-    }
-  })
+      user,
+      token,
+    },
+  });
 });
 
 module.exports = {

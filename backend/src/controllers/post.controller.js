@@ -3,8 +3,9 @@ const postServices = require("./../services/post.service");
 
 const createPost = catchAsync(async (req, res, next) => {
   const post = await postServices.createPost(req.user._id, req.body);
+  const getFullPost = await postServices.getPostById(post._id);
   res.json({
-    data: post,
+    data: getFullPost,
   });
 });
 
@@ -20,7 +21,7 @@ const updatePost = catchAsync(async (req, res, next) => {
 });
 
 const getPosts = catchAsync(async (req, res, next) => {
-  const post = await postServices.getPosts();
+  const post = await postServices.getPosts(req.query);
 
   res.json({
     data: post,

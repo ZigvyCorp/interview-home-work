@@ -1,0 +1,17 @@
+
+
+.logo {
+  font-size: 30px;
+}
+
+.header-nav {
+
+  padding: 0px 20px;
+  height: 60px;
+  --tw-shadow: 0 0px 3px 5px rgba(0, 0, 0, 0.05);
+  --tw-shadow-colored: 0 0px 3px 5px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

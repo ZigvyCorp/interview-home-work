@@ -4,10 +4,14 @@ const httpStatus = require("http-status");
 
 const login = async (username, password) => {
   let user = await getUserByUsername(username);
-  if (!user || !user.isPasswordMatch(password)) {
-    throw new ApiError(httpStatus.UNAUTHORIZED, "Invalid username and password");
+  let checkPassword = await user.isPasswordMatch(password);
+  if (!user || !checkPassword) {
+    throw new ApiError(
+      httpStatus.UNAUTHORIZED,
+      "Invalid username and password"
+    );
   }
-  return user;
+  return { ...user._doc, password: "private" };
 };
 
 module.exports = {

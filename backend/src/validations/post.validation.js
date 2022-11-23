@@ -4,7 +4,7 @@ const createPost = {
   body: Joi.object({
     title: Joi.string().required(),
     content: Joi.string().required(),
-    tag: Joi.array().items(Joi.string()).required(),
+    tags: Joi.array().items(Joi.string()).required(),
   }),
 };
 
@@ -13,7 +13,7 @@ const updatePost = {
     postId: Joi.string().required(),
     title: Joi.string().required(),
     content: Joi.string().required(),
-    tag: Joi.array().items(Joi.string()).required(),
+    tags: Joi.array().items(Joi.string()).required(),
   }),
 };
 
@@ -29,9 +29,17 @@ const getPostById = {
   }),
 };
 
+const getPost = {
+  query: Joi.object({
+    limit: Joi.number().required().min(1),
+    page: Joi.number().required().min(0),
+  }),
+};
+
 module.exports = {
   createPost,
   updatePost,
   deletePost,
   getPostById,
+  getPost,
 };
