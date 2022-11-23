@@ -1,0 +1,54 @@
+*{
+    font-family: 'Sora',sans-serif;
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+
+.header{
+    margin-bottom:0;
+    display: flex;
+    color:#eeee;
+    text-align: center;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    width: 120px;
+    background: rgba(255, 255, 255, 0.3);
+    font-size: small;
+    text-align: center;
+    letter-spacing: 0.5em;
+    
+}
+.blog{
+    
+    font-size: x-large;
+    text-align: center;
+    letter-spacing: 0.5em;
+    
+
+}
+
+.content{
+    min-height: 280px;
+    margin-top:50px;
+    margin-bottom:50px;
+    padding: 24px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 50px 80px rgba(0, 0, 0, 0.08)
+}
+
+.post-header{
+    text-align: center;
+}
+.tags{
+  line-height: 2.0;
+}
