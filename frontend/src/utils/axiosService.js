@@ -4,11 +4,12 @@ import axios from "axios";
 axios.interceptors.request.use(
   function (config) {
     let data = localStorage.getItem("persist:auth");
-    let auth = JSON.parse(data);
-    console.log(auth.token,"auth.token");
-
-    // Do something before request is sent
-    if (auth.token) config.headers.Authorization = `Bearer ${JSON.parse(auth.token)}`;
+    if (data) {
+      let auth = JSON.parse(data);
+      if (auth)
+        // Do something before request is sent
+        if (auth.token) config.headers.Authorization = `Bearer ${JSON.parse(auth?.token)}`;
+    }
     // OR config.headers.common['Authorization'] = `Bearer ${your_token}`;
     config.baseURL = "http://localhost:4000";
 
