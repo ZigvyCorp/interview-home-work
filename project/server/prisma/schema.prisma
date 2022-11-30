@@ -1,0 +1,76 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Geo {
+  id        Int     @id @default(autoincrement())
+  lat       String? @db.VarChar(255)
+  lng       String? @db.VarChar(255)
+  address   Address @relation(fields: [addressId], references: [id])
+  addressId Int     @unique
+}
+
+model Address {
+  id      Int     @id @default(autoincrement())
+  street  String? @db.VarChar(255)
+  suite   String? @db.VarChar(255)
+  city    String? @db.VarChar(255)
+  zipcode String? @db.VarChar(255)
+  Geo     Geo?
+  user    User    @relation(fields: [userId], references: [id])
+  userId  Int     @unique
+}
+
+model Company {
+  id          Int     @id @default(autoincrement())
+  name        String? @db.VarChar(255)
+  catchPhrase String? @db.VarChar(255)
+  bs          String? @db.VarChar(255)
+  user        User    @relation(fields: [userId], references: [id])
+  userId      Int     @unique
+}
+
+model User {
+  id       Int       @id @default(autoincrement())
+  name     String    @db.VarChar(255)
+  hash     String
+  rt_hash  String?
+  username String    @db.VarChar(255) @unique
+  email    String    @db.VarChar(255) @unique
+  phone    String    @db.VarChar(255) @unique
+  website  String    @db.VarChar(255)
+  Address  Address?
+  Company  Company?
+  posts    Post[]
+  Comments Comments[]
+}
+
+model Post {
+  id       Int        @id @default(autoincrement())
+  user   User       @relation(fields: [userId], references: [id])
+  userId Int
+  title    String     @db.VarChar(255)
+  body     String     @db.VarChar(255)
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+  comments Comments[]
+}
+
+model Comments {
+  id     Int    @id @default(autoincrement())
+  post   Post   @relation(fields: [postId], references: [id])
+  postId Int
+  name   String @db.VarChar(255)
+  email  String @db.VarChar(255)
+  body   String @db.VarChar(255)
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int    
+}
