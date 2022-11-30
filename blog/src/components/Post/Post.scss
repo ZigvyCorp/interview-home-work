@@ -1,0 +1,16 @@
+.post {
+    padding: 0 20px 20px 20px;
+    h1 {
+        text-align: center;
+    }
+    .details {
+        display: flex;
+        flex-direction: column;
+    }
+    .reply {
+        cursor: pointer;
+    }
+    &:last-child {
+        border: none;
+    }
+}
