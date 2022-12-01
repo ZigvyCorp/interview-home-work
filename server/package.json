@@ -1,0 +1,30 @@
+{
+  "name": "interview-home-work",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.5",
+    "body-parser": "^1.20.1",
+    "bootstrap": "^5.2.3",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^16.0.3",
+    "express": "~4.16.1",
+    "express-handlebars": "^6.0.6",
+    "http-errors": "~1.6.3",
+    "http-status": "^1.5.3",
+    "jade": "^0.29.0",
+    "joi": "^17.7.0",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.7.4",
+    "mongoose-paginate-v2": "^1.7.1",
+    "morgan": "~1.9.1",
+    "sass": "^1.56.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

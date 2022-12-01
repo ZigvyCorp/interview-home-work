@@ -1,0 +1,25 @@
+<div
+  class="container-sm"
+  style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; padding: 15px"
+>
+  {{#each posts}}
+    <div
+      style="border-radius: 10px; background-color: rgba(149, 157, 165, 0.2); padding: 15px; margin: 20px;"
+    >
+      <h3 style="text-align: center; margin-bottom: 70px">{{title}}</h3>
+      <p style="text-align: justify;">{{body}}</p>
+      <label>{{totalComment}} replies</label>
+      <button
+        class="btn btn-light"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseExample"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+      >
+        Show comment
+      </button>
+
+    </div>
+  {{/each}}
+</div>
