@@ -3,9 +3,12 @@ import { Button, Text, Avatar } from "@mantine/core";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Comments from "../Comments/Comments";
+import Users from "../Users/Users";
 
 const PostCart = () => {
   const dispatch = useDispatch();
+
+
   const fetchPosts = async () => {
     try {
       const { data } = await axios.get(
@@ -20,6 +23,8 @@ const PostCart = () => {
       console.log(error);
     }
   };
+
+
   const fetchComments = async () => {
     try {
       const { data } = await axios.get(
@@ -31,18 +36,28 @@ const PostCart = () => {
     }
   };
 
-  const { posts } = useSelector((state) => {
-    return { posts: state.posts };
-  });
-  const changeIsOpen = (id)=> {
-    
-    dispatch({ type: "edit", idPost : id});
+  const fetchUsers = async () => {
+    try {
+      const { data } = await axios.get(
+        "https://jsonplaceholder.typicode.com/users"
+      );
+      dispatch({ type: "detailUsers", users: data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  }
-  //   console.log(posts);
+
+  const { posts, users } = useSelector((state) => {
+    return { posts: state.posts, users: state.users };
+  });
+ 
+  console.log(posts);
+    console.log(users);
   useEffect(() => {
     fetchPosts();
     fetchComments();
+    fetchUsers()
   }, []);
   return (
     <>
@@ -55,7 +70,7 @@ const PostCart = () => {
             <div className="d-flex justify-content-between">
               <div>
                 <div className="ps-4">
-                  <h3>Author: John Smith</h3>
+                  <h3><Users id={post.userId}/></h3>
                   <h3>Creat at: Sep 20, 2018</h3>
                 </div>
               </div>
@@ -170,16 +185,14 @@ const PostCart = () => {
                 color="red"
                 size="lg"
                 compact
-                onClick={() => {changeIsOpen(post.id)}}
               >
                 (Detail)
               </Button>
             </div>
             <div className="px-4 pb-4">
               <hr />
-              <div hidden={post.isOpen}>
                 <Comments id={post.id} />
-              </div>
+
             </div>
           </div>
         );

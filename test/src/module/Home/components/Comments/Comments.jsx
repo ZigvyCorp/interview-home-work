@@ -1,12 +1,13 @@
 import React from "react";
 import { Avatar } from "@mantine/core";
 import { useSelector } from "react-redux";
-import axios from "axios";
+
 
 const Comments = ({ id }) => {
   const { comments } = useSelector((state) => {
     return { comments: state.comments };
   });
+
   const commentPost = comments.filter((comment) => {
     return comment.postId === id;
   });
@@ -27,10 +28,7 @@ const Comments = ({ id }) => {
               </div>
               <div>
                 <p className="fs-5">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Ducimus ullam necessitatibus, harum dolores et, similique
-                  asperiores cum voluptatum, placeat quas quia. Provident
-                  doloribus eum soluta?
+                  {comment.body}
                 </p>
               </div>
               <div>
