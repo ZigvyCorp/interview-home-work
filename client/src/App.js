@@ -1,7 +1,6 @@
-import React, { useEffect, lazy, Suspense } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Header from './components/header/header.component';
 import HomePage from './pages/homepage/homepage.component';
 
 const App = () => {

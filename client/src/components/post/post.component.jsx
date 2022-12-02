@@ -1,6 +1,5 @@
 import React from 'react';
 import { Typography, Tag, Col, Row, Collapse, Space, Divider, Avatar } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
 import '../../App.css';
 const moment = require('moment');
 
