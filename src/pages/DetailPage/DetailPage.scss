@@ -1,0 +1,54 @@
+.ant-layout {  
+	.ant-layout-content {
+		.main-inner {
+      .post-title{
+        text-align: left;
+        color: var(--text-color);
+        font-size: 32px;
+        margin-bottom: 16px;
+      }
+
+      .user-profile{
+        .ant-divider{
+          background-color: var(--text-color);
+        }
+      }
+      .post-author{
+        text-align: left;
+        color: var(--text-color);
+        font-size: 16px;
+      }
+
+      .post-body{
+        .ant-typography{
+          text-align: start;
+          color: var(--text-color);
+          font-size: 22px;
+          margin: 1.5rem 0;
+        }
+      }
+
+      .post-comment{
+        margin: 24px 0;
+        .post-comment__title{
+          color: var(--text-color);
+          font-size: 18px;
+          margin-bottom: 1rem;
+        }
+      }
+
+      .post-tag{
+        margin: 1rem 0;
+        width: 100%;
+
+        .ant-typography{
+          text-align: start;
+          color: var(--text-color);
+          font-size: 20px;
+          margin: 1.5rem 0;
+          line-height: 20px;
+        }
+      }
+		}
+	}
+}

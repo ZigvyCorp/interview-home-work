@@ -1,0 +1,17 @@
+
+.post-list{
+  .post-list__pagination{
+    margin: 24px 0;
+
+    .ant-pagination{
+      display: flex;
+      justify-content: flex-end;
+      .ant-pagination-item-link{
+        color: var(--text-color);
+      }
+      .ant-pagination-item a{
+        color: var(--text-color);
+      }
+    }
+  }
+}

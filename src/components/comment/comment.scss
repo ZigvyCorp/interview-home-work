@@ -1,0 +1,25 @@
+.comment{
+  margin-bottom: 1rem;
+  margin-left: 8px;
+  .ant-typography{
+    text-align: left;
+    color: var(--text-color);
+  }
+
+  .comment-body{
+    .comment-body__name{
+      font-size: 16px;
+      opacity: 0.8;
+    }
+
+    .comment-body__createdAt{
+      font-size: 14px;
+      opacity: 0.6;
+    }
+
+    .comment-body__content{
+      font-size: 18px;
+      opacity: 0.8;
+    }
+  }
+}
