@@ -30,7 +30,7 @@ exports.signIn = async (req, res, next) => {
   try {
     const username = req.body.username;
     const password = req.body.password;
-    const user = await User.find({ _id: id });
+    const user = await User.find({ username: username });
     if (!user) {
       res.status(404).json({ message: "Username or Password is incorrect" });
     } else {
