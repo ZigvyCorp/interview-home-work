@@ -7,9 +7,7 @@ const validateUpdateComment = require('../validators/comment/updateCommentValida
 
 const router = express.Router()
 
-router.post('/',  CommentController.getComments)
-
-router.post('/:id', CommentController.getCommentById)
+router.post('/:postId',  CommentController.getCommentsByPostId)
 
 router.post('/create', validateNewComment.validateNewComment(), CommentController.createComment)
 

@@ -1,71 +1,74 @@
-const Comment = require("../models/CommentModel")
-const newCommentValidator = require("../validators/comment/newCommentValidator")
-const updateCommentValidator = require("../validators/comment/updateCommentValidator")
+const Comment = require("../models/CommentModel");
 
-exports.getComments = async (req, res) =>{
-    try {
-        const comments = await Comment.find()
-        res.status(200).json(comments)
-    } catch(err) {
-        res.status(500).json({ error: err })
-    }
-}
-
-exports.getCommentById = async (req, res) =>{
-    try {
-        const id = req.params.id
-        const comment = await Comment.find({_id: id})
-        console.log('comment', comment)
-        res.status(200).json(comment)
-    } catch(err) {
-        res.status(500).json({ error: err })
-    }
-}
-
+exports.getCommentsByPostId = async (req, res) => {
+  try {
+    const postId = req.params.postId;
+    const comments = await Comment.find({ post: postId }).populate(
+      "owner",
+      "name",
+    );
+    res.status(200).json(comments);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+};
 
 exports.createComment = async (req, res) => {
-    try {
-        const newComment = req.body
-        const comment = new Comment(newComment)
-        await comment.save()
-        res.status(200).json(comment)
-    } catch (err) {
-        res.status(500).json({ error: err })
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(422).json({ errors: errors.array() });
+      return;
+    } else {
+      const comment = new Comment({
+        _id: new mongoose.Types.ObjectId(),
+        content: req.body.content,
+        owner: req.body.owner
+      });
+      await comment.save();
+      res.status(200).json(comment);
     }
-}
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+};
 
 exports.updateComment = async (req, res) => {
-    try {
-        const id = req.params.id
-        const comment = await findComment(id)
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(422).json({ errors: errors.array() });
+      return;
+    } else {
+        const id = req.params.id;
+        const comment = await Comment.find({ _id: id });
         if (!comment) {
-            res.status(404).json({message: 'Not Found'})
-        }else {
-            const updatedComment = await Comment.updateOne(null, comment, {new: true})
-            res.status(200).json(updatedComment)
+          res
+            .status(404)
+            .json({ message: "Not found this comment you want to update" });
         }
-    } catch (err) {
-        res.status(500).json({ error: err })
+        if (comment.owner !== req.userId) {
+            comment.content = req.body.content;
+          await comment.save();
+          res.status(200).json(comment);
+      }
     }
-}
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+};
 
 exports.deleteComment = async (req, res) => {
-    try {
-        const id = req.params.id
-        const comment = await findComment(id)
-        if (!comment) {
-            res.status(404).json({message: 'Not Found'})
-        }else {
-            const deletedComment = await Comment.deleteOne(comment, {new: true})
-            res.status(200).json(deletedComment)
-        }
-    } catch (err) {
-        res.status(500).json({ error: err })
+  try {
+    const id = req.params.id;
+    const comment = await Comment.find({ _id: id });
+    if (!comment) {
+      res.status(404).json({ message: "Not found this post you want to delete" });
+    } else {
+      const result = await Comment.deleteOne(comment);
+      res.status(200).json(result);
     }
-}
-
-
-const findComment = async (id) => {
-    const comment = await Comment.find({_id: id})
-    return comment
-}
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+};
