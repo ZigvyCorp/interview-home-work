@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 
 exports.getPosts = async (req, res) => {
   try {
-    const keyword = req.body.keyword;
+    const keyword = req.body.keyword || "";
     const posts = await Post.find({ title: { $regex: keyword } }).populate(
       "owner",
       "name"
