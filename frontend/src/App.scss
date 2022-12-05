@@ -1,0 +1,173 @@
+*,
+body,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    // border: 1px solid rebeccapurple;
+}
+
+.header {
+    height: 70px;
+    position: absolute;
+    top: 0;
+    background-color: white;
+    box-shadow: 0 1px 5px 0 rgb(211, 211, 211);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .center {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5em;
+    }
+
+    .left {
+        flex-basis: 100px;
+        background-color: gray;
+        color: rgb(230, 230, 230);
+        font-size: 2em;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .right {
+        flex-basis: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0 20px;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+.body {
+    margin-top: 70px;
+    margin-bottom: 80px;
+    background-color: white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .post-list {
+        width: min(800px, 100%);
+
+        .post-item {
+            margin-bottom: 20px;
+
+            .author,
+            .create-at,
+            .summary {
+                font-size: 1.1em;
+                margin: 5px 0;
+            }
+
+            .summary::first-letter {
+                margin-left: 3em;
+            }
+
+        }
+    }
+
+    .post {
+        width: min(800px, 100%);
+
+        .post-detail {
+            margin-bottom: 20px;
+
+            .author,
+            .create-at,
+            .tags {
+                font-size: .9em;
+                margin: 5px 20px;
+            }
+
+            .content {
+                font-size: 1.2em;
+                margin: 10px;
+                margin-bottom: 30px;
+                line-height: 1.8em;
+                font-weight: 450;
+
+                &::first-letter {
+                    margin-left: 3em;
+                }
+            }
+        }
+    }
+
+    .comment {
+        display: flex;
+        flex-direction: row;
+
+        .avatar {
+            flex-basis: 50px;
+            flex-shrink: 0;
+        }
+
+        .comment-body {
+            flex-grow: 1;
+            flex-shrink: 1;
+
+            .info {
+                .username {
+                    font-size: 1em;
+                    font-weight: 500;
+                }
+
+                .time {
+                    font-size: .9em;
+                    color: gray;
+                    margin-left: 10px;
+                }
+            }
+
+            .message {
+                font-size: 1em;
+                color: rgb(77, 77, 77);
+            }
+
+            // .action {
+            //     display: flex;
+            // }
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+.footer {
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    z-index: -10;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.ant-tag {
+    margin-bottom: 5px;
+}
+
+.ant-collapse-header {
+    color: gray !important;
+}
