@@ -1,0 +1,3 @@
+export const GET_POST_FETCH = "GET_POST_FETCH";
+export const GET_POST_SUCCESS = "GET_POST_SUCCESS";
+export const GET_POST_ERRORS = "GET_POST_ERRORS";
