@@ -1,33 +1,31 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useMediaQuery } from "react-responsive";
 import { useParams } from "react-router";
 import CommentBox from "../../Components/Comment/CommentBox";
 import { getPostFetch } from "../../redux/actions/postAction";
 import { getUserFetch } from "../../redux/actions/userAction";
+import { createdDate } from "../../utils/RandomNum";
 
 function DetailPage() {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   const posts = useSelector((state) => state.postReducer.posts);
   const currentPost = posts.find((item) => item.id === Number(id));
   const users = useSelector((state) => state.userReducer.users);
   const author = users.find((item) => item.id === Number(currentPost?.userId));
-  const createdDate = randomDate(new Date(2012, 0, 1), new Date());
 
   useEffect(() => {
     dispatch(getPostFetch(posts));
     dispatch(getUserFetch(users));
   }, []);
 
-  function randomDate(start, end) {
-    return new Date(
-      start.getTime() + Math.random() * (end.getTime() - start.getTime())
-    );
-  }
-
   return (
     <div className="container py-5">
-      <h1 className="text-capitalize">{currentPost?.title}</h1>
+      <p className={`text-capitalize ${isMobile ? "h3" : "h1"}`}>
+        {currentPost?.title}
+      </p>
       <p className="mb-0">Author: {author?.name}</p>
       <p>Created date: {createdDate.toDateString()}</p>
       <div className="p-3">

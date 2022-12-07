@@ -8,7 +8,14 @@ function Posts({ data, loading, error }) {
     >
       {loading && <h3>Loading...</h3>}
       {data.map((item) => {
-        return <Card key={item.id} item={item} />;
+        return (
+          <Card
+            key={item.id}
+            item={item}
+            postId={item.id}
+            userId={item.userId}
+          />
+        );
       })}
       {data.length === 0 && !loading && <h3>No posts available</h3>}
       {error && !loading && <h3>{error}</h3>}
