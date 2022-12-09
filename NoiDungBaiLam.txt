@@ -1,4 +1,4 @@
-Ở phần Back-end, 
+Phần Back-end, 
 	mình đã tạo các chức năng cơ bản CRUD cho các loại dữ liệu User, Comment, Post, và các chức năng security cần thiết
 	Xây dựng theo REStful API,
 	cấu trúc MCV
