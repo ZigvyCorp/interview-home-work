@@ -1,0 +1,14 @@
+Ở phần Back-end, 
+	mình đã tạo các chức năng cơ bản CRUD cho các loại dữ liệu User, Comment, Post, và các chức năng security cần thiết
+	Xây dựng theo REStful API,
+	cấu trúc MCV
+	đây là link documentation: https://documenter.getpostman.com/view/21984567/2s8YzRz3WL#ae0795a0-bb08-4ecd-bcc0-cd7b0ed51065
+	, Sau đó mình deploy lên vercel: https://interview-api-five.vercel.app/api/v1/posts để bên phía Front-end gọi API.
+
+Phần Front-end:
+	Nội dung đã làm: 
+		Dùng Antd và bootstrap để xây dựng giao diện
+		Xây dụng homepage dựa vào pagination
+		Chức năng search: Debounce search
+		xây dựng trang detail page
+		Đã dùng redux, redux-saga, redux-persist để lưu dữ liệu lên local storage , route cho mỗi page
