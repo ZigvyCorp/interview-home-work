@@ -1,0 +1,25 @@
+@import '../../../styles/variables.scss';
+.link {
+  &:link,
+  &:visited {
+    color: $color-primary-text;
+    text-decoration: none;
+    font-size: 2.4rem;
+    transition: all 0.3s;
+
+    padding: 1.2rem 2.4rem;
+    border-radius: $default-border-radius;
+  }
+
+  &:hover,
+  &:active {
+    background-color: #c3e5cd;
+  }
+
+  &--active[class] {
+    color: $color-primary;
+    box-shadow: 0 20px 25px -5px rgb(43 47 78 / 10%),
+      0 10px 10px -5px rgb(43 47 78 / 4%);
+    background-color: $color-white;
+  }
+}

@@ -1,0 +1,31 @@
+@import '../../styles/variables.scss';
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 6.4rem;
+  position: relative;
+}
+
+.observer {
+  width: 100%;
+  height: 20rem;
+  background-color: transparent;
+  z-index: -999;
+  pointer-events: none;
+  position: absolute;
+  bottom: 0;
+}
+
+.status-text {
+  margin-top: 6.4rem;
+  text-align: center;
+  font-weight: 500;
+  color: $color-primary;
+  font-size: 2rem;
+}
+
+.spinner-wrapper {
+  width: fit-content;
+  margin: 6.4rem auto 0;
+}
