@@ -1,5 +1,5 @@
-import * as actions from './actions';
-import { POSTS_PER_PAGE, TOTAL_POSTS } from './pagination-constants';
+import * as actions from '../actions/post-actions';
+import { POSTS_PER_PAGE } from '../pagination-constants';
 
 export function checkHasNextPage(
   currentPage,
@@ -10,20 +10,30 @@ export function checkHasNextPage(
 }
 
 const initialState = {
-  isFetching: true,
+  //Basically items = posts, but since posts.posts is kinda confusing, I decided to go with 'items'
+  isFetching: false,
   hasError: false,
   hasNextPage: true,
   items: [],
   nextItems: [],
-  currentPage: 0
+  currentPage: 0,
+  totalPosts: 0,
+  matchingItems: []
 };
 
-function postsReducer(state = initialState, action) {
-  const hasNextPage = checkHasNextPage(
-    POSTS_PER_PAGE,
-    state.currentPage,
-    TOTAL_POSTS
-  );
+function postReducer(state = initialState, action) {
+  let hasNextPage;
+  if (
+    action.type === actions.GET_POSTS_SUCCESS ||
+    action.type === actions.GET_NEXT_POSTS_SUCCESS
+  ) {
+    hasNextPage = checkHasNextPage(
+      POSTS_PER_PAGE,
+      state.currentPage,
+      action.totalPosts
+    );
+  }
+
   switch (action.type) {
     case actions.GET_POSTS:
       return {
@@ -37,7 +47,8 @@ function postsReducer(state = initialState, action) {
           ...state,
           isFetching: false,
           hasError: false,
-          hasNextPage: false
+          hasNextPage: false,
+          totalPosts: action.totalPosts
         };
       }
       return {
@@ -46,7 +57,8 @@ function postsReducer(state = initialState, action) {
         hasError: false,
         hasNextPage: true,
         items: [...state.items, ...action.posts],
-        currentPage: state.currentPage + 1
+        currentPage: state.currentPage + 1,
+        totalPosts: action.totalPosts
       };
     case actions.GET_POSTS_FAILURE:
       return {
@@ -60,7 +72,8 @@ function postsReducer(state = initialState, action) {
           ...state,
           isFetching: false,
           hasError: false,
-          hasNextPage: false
+          hasNextPage: false,
+          totalPosts: action.totalPosts
         };
       }
 
@@ -69,7 +82,8 @@ function postsReducer(state = initialState, action) {
         isFetching: false,
         hasError: false,
         nextItems: action.posts,
-        currentPage: state.currentPage + 1
+        currentPage: state.currentPage + 1,
+        totalPosts: action.totalPosts
       };
     case actions.GET_NEXT_POSTS_FAILURE:
       return {
@@ -83,9 +97,31 @@ function postsReducer(state = initialState, action) {
         items: [...state.items, ...state.nextItems],
         nextItems: []
       };
+
+    case actions.GET_MATCHING_POSTS:
+      return {
+        ...state,
+        isFetching: true,
+        hasError: false
+      };
+
+    case actions.GET_MATCHING_POSTS_SUCCESS:
+      return {
+        ...state,
+        matchingItems: [...action.matchingPosts],
+        isFetching: false,
+        hasError: false
+      };
+
+    case actions.GET_MATCHING_POSTS_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        hasError: true
+      };
     default:
       return state;
   }
 }
 
-export default postsReducer;
+export default postReducer;

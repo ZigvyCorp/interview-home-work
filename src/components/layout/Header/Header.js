@@ -16,7 +16,7 @@ const Header = () => {
         <nav className={scss.nav}>
           <ul>
             <li>
-              <TabLink href='/posts' />
+              <TabLink href='/all-posts' title='All Blogs' />
             </li>
           </ul>
         </nav>

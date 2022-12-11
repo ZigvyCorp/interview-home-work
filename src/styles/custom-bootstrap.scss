@@ -4,8 +4,11 @@ $font-size-base: 1.6rem;
 $border-radius: $default-border-radius;
 $text-muted: $text-muted-color;
 
-$theme-colors: (
-    'primary': $color-primary,
-);
+$primary: $color-primary;
 
+// $theme-colors: (
+//     'primary': $color-primary,
+// );
+
+@import 'bootstrap/dist/css/bootstrap.min.css';
 @import '../../node_modules/bootstrap/scss/bootstrap';

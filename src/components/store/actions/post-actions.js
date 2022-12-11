@@ -7,16 +7,23 @@ export const GET_NEXT_POSTS_SUCCESS = 'GET_NEXT_POSTS_SUCCESS';
 export const GET_NEXT_POSTS_FAILURE = 'GET_NEXT_POSTS_FAILURE';
 export const ADD_NEXT_POSTS = 'ADD_NEXT_POSTS';
 
+export const GET_MATCHING_POSTS = 'GET_MATCHING_POSTS';
+export const GET_MATCHING_POSTS_SUCCESS =
+  'GET_MATCHING_POSTS_SUCCESS';
+export const GET_MATCHING_POSTS_FAILURE =
+  'GET_MATCHING_POSTS_FAILURE';
+
 export const getPosts = () => {
   return {
     type: GET_POSTS
   };
 };
 
-export const getPostsSuccess = (posts) => {
+export const getPostsSuccess = (posts, totalPosts) => {
   return {
     type: GET_POSTS_SUCCESS,
-    posts
+    posts,
+    totalPosts
   };
 };
 
@@ -33,10 +40,11 @@ export const getNextPosts = () => {
   };
 };
 
-export const getNextPostsSuccess = (posts) => {
+export const getNextPostsSuccess = (posts, totalPosts) => {
   return {
     type: GET_NEXT_POSTS_SUCCESS,
-    posts
+    posts,
+    totalPosts
   };
 };
 
@@ -50,5 +58,26 @@ export const getNextPostsFailure = (errors) => {
 export const addNextPosts = () => {
   return {
     type: ADD_NEXT_POSTS
+  };
+};
+
+export const getMatchingPosts = (searchValue) => {
+  return {
+    type: GET_MATCHING_POSTS,
+    searchValue
+  };
+};
+
+export const getMatchingPostsSuccess = (matchingPosts) => {
+  return {
+    type: GET_MATCHING_POSTS_SUCCESS,
+    matchingPosts
+  };
+};
+
+export const getMatchingPostsFailure = (errors) => {
+  return {
+    type: GET_MATCHING_POSTS_FAILURE,
+    errors
   };
 };
