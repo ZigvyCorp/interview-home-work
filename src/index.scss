@@ -1,0 +1,13 @@
+@import './styles/custom-bootstrap.scss';
+
+html {
+    /* font-size: (10/16) * 100%; */
+    font-size: 62.5%;
+}
+
+* {
+    box-sizing: border-box;
+    //useless :(
+    margin: 0;
+    padding: 0;
+}

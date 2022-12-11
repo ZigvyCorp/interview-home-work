@@ -1,0 +1,14 @@
+@import './variables.scss';
+
+$font-size-base: 1.6rem;
+$border-radius: $default-border-radius;
+$text-muted: $text-muted-color;
+
+$primary: $color-primary;
+
+// $theme-colors: (
+//     'primary': $color-primary,
+// );
+
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import '../../node_modules/bootstrap/scss/bootstrap';

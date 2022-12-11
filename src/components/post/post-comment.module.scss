@@ -1,0 +1,24 @@
+.comments {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+}
+
+.comment {
+    display: flex;
+    gap: 1.2rem;
+}
+.user-image {
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+}
+
+.info {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.user-name {
+    font-weight: 500;
+}
