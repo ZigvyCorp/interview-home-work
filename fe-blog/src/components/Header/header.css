@@ -1,0 +1,17 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    height: 6rem;
+    background-color: chocolate;
+    color: whitesmoke;
+    position: fixed;
+    left: 0;
+    right: 0;
+}
+
+.header__search{
+    position: absolute;
+    left: 20%;
+    top: 70%;
+}
