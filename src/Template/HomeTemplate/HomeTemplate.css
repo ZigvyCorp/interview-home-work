@@ -1,0 +1,25 @@
+.container{
+   background-color: rgba(255,255,255,.25);
+   border: 1px solid rgba(255,255,255,.4);
+   max-height: 90vh;
+   border-radius: 20px;
+   box-shadow: 0 25px 45px rgba(0,0,0,.1);
+   backdrop-filter: blur(10px);
+}
+.header{
+   width: 100%;
+   position: relative;
+   background: linear-gradient(to right, transparent, rgba(255,255,255,.4),transparent );
+}
+
+.ant-layout .ant-layout-header{
+   padding-inline: 0;
+   background: transparent;
+}
+
+.anticon svg{
+   display: block;
+}
+.ant-input-search >.ant-input-group >.ant-input-group-addon:last-child .ant-input-search-button{
+   border: 1px solid;
+}
