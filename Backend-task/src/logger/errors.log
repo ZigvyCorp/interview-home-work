@@ -1,0 +1,12 @@
+[2022-12-14 02:19:14] [[31merror[39m] error%
+[2022-12-14 02:20:52] [[31merror[39m] error%
+[2022-12-14 02:41:09] [[31merror[39m] error Post{
+  name: 'Tran',
+  email: 'tran@gmail.com',
+  body: 'Tran Ne',
+  is_deleted: false,
+  _id: new ObjectId("6398d5555586591595062dfa"),
+  created_at: 2022-12-13T19:41:09.203Z,
+  update_at: 2022-12-13T19:41:09.203Z,
+  __v: 0
+}
