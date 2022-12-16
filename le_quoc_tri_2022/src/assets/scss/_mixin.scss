@@ -1,0 +1,25 @@
+@mixin header($mg, $pd, $fs, $fw) {
+    margin: $mg;
+    padding: $pd;
+    font-size: $fs;
+    font-weight: $fw;
+};
+
+
+@mixin buttonColor($fs, $fw, $pd,  $bdr, $cs, $me){
+    font-size: $fs;
+    font-weight: $fw;
+    padding: $pd;
+    border-radius: $bdr;
+    cursor: $cs;
+    margin-right: $me;
+};
+
+@mixin color ($bd, $bg, $cl) {
+    border: $bd;
+    background: $bg;
+    color: $cl;
+}
+
+
+
