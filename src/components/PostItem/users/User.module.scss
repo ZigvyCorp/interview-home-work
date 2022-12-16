@@ -1,0 +1,28 @@
+.users {
+  width: 100%;
+  display: flex;
+  padding: 0;
+  .avatar {
+    width: auto;
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }
+  .infoUsers {
+    .detailInfo {
+      display: flex;
+      .name {
+        color: #bebebe;
+        font-weight: bold;
+        padding-right: 30px;
+      }
+      .time {
+        color: #bebebe;
+      }
+    }
+    .contents {
+      padding-top: 20px;
+    }
+  }
+}
