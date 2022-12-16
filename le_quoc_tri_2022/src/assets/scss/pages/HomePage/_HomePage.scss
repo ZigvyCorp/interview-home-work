@@ -1,0 +1,168 @@
+.interview-home-work {
+  .header {
+    border: 4px solid black;
+    margin-bottom: 15px;
+    .d-flex {
+      .logo {
+        width: 40%;
+        img {
+          height: 100%;
+          width: 130px;
+        }
+        span {
+          @include header(0, 10px 0px, 25px, 600);
+          display: inline-block;
+        }
+      }
+      .blogs {
+        width: 20%;
+        p {
+          @include header(0, 10px 0px, 25px, 600);
+        }
+      }
+      .user {
+        width: 40%;
+        text-align: right;
+        img {
+          height: 100%;
+          width: 60px;
+          margin-right: 10px
+        }
+        span {
+          @include header(0, 10px 0px, 25px, 600);
+          margin-right: 10px;
+          display: inline-block;
+        }
+      }
+    }
+  }
+  .section {
+    h2 {
+        font-size: 60px;
+    }
+    .content-header {
+      .left {
+        h3 {
+            text-align: left;
+            font-weight: 600;
+        }
+      }
+      .right {
+        width: 26%;
+        .button-group {
+            p {
+                @include buttonColor(
+                  14px,
+                  500,
+                  1px 5px,
+                  5px,
+                  pointer,
+                  10px
+                );
+                margin-bottom: 10px;
+              }
+              #magenta {
+                  @include color(
+                      2px solid #f4b6d5,
+                      #fdf2f6,
+                      #dd5a9f,
+                     )
+              }
+              #red {
+                  @include color(
+                      2px solid #f5bbb7,
+                      #fdf2f1,
+                      #e55553,
+                     )
+              }
+              #volcano {
+                  @include color(
+                      2px solid #f7c6aa,
+                      #fdf2e9,
+                      #ea7148,
+                     )
+              }
+              #orange {
+                  @include color(
+                      2px solid #fbe3ba,
+                      #fef7e9,
+                      #efa35a,
+                     )
+              }
+              #gold {
+                  @include color(
+                      2px solid #fdebb5,
+                      #fffbe8,
+                      #f3c26a,
+                     )
+              }
+              #lime {
+                  @include color(
+                      2px solid #f3fdb7,
+                      #feffe9,
+                      #b1d84f,
+                     )
+              }
+              #green {
+                  @include color(
+                      2px solid #daf2c2,
+                      #f8fff0,
+                      #87c95c,
+                     )
+              }
+              #cyan {
+                  @include color(
+                      2px solid #bfeee9,
+                      #ebfffb,
+                      #6fc8ca,
+                     )
+              }
+              #blue {
+                  @include color(
+                      2px solid #b7dffb,
+                      #eaf7fe,
+                      #4f99f7,
+                     )
+              }
+              #geekblue {
+                  @include color(
+                      2px solid #b5c9fb,
+                      #f1f5fe,
+                      #4263e5,
+                     )
+              }
+              #purple {
+                  @include color(
+                      2px solid #d1b7f4,
+                      #f8f2fe,
+                      #7c52d0,
+                     )
+              }
+        }
+      
+      }
+    }
+    .content {
+        margin-top: 10px;
+      p {
+        font-size: 20px;
+        font-weight: 400;
+      }
+    }
+    .footer {
+        border-bottom: 2px solid #eaeaea;
+      p {
+        font-size: 20px;
+        margin-right: 25px;
+        color: #6d6d6d;
+        margin-bottom: 10px;
+      }
+      span {
+        font-size: 20px;
+        font-weight: 500;
+        cursor: pointer;
+        color: #e7150f;
+      }
+    }
+  }
+}
