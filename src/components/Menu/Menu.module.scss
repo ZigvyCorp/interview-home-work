@@ -1,0 +1,9 @@
+.menuItem {
+  padding: 20px;
+  &:hover {
+    background-color: #eeeeee;
+  }
+}
+.menuItemActive {
+  background-color: #eeeeee;
+}
