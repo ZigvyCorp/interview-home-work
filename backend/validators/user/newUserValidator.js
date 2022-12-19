@@ -39,7 +39,6 @@ const validateNewUser = () => {
       .isDate()
       .withMessage("This field must be date")
       .custom((value, { req }) => {
-        // add code here
       })
       .withMessage("User must be greater or equal to 13 years old"),
     body("name").isString().withMessage("This field must be a string"),
