@@ -35,7 +35,13 @@ const validateNewUser = () => {
       .withMessage("Confirmation password field is required")
       .custom((value, { req }) => value === req.body.password)
       .withMessage("The passwords do not match"),
-    body("dob").isDate().withMessage("This field must be date"),
+    body("dob")
+      .isDate()
+      .withMessage("This field must be date")
+      .custom((value, { req }) => {
+        
+      })
+      .withMessage("User must be greater or equal to 13 years old"),
     body("name").isString().withMessage("This field must be a string"),
   ];
 };

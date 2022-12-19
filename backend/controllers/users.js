@@ -60,3 +60,19 @@ exports.signIn = async (req, res, next) => {
     res.status(500).json({ error: err });
   }
 };
+
+exports.updateProfile = async (req, res, next) =>{
+  try {
+    
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+}
+
+exports.forgotPassword = async (req, res, next) => {
+  try {
+    
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+}
