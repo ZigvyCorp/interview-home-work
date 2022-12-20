@@ -5,7 +5,7 @@ import { getListPosts } from "../Reducers/PostsReducer";
 
 function *getListPostSaga() {
   try {
-    let {data, status} = yield call(() => postServices.getPosts())
+    let {data} = yield call(() => postServices.getPosts())
     yield put(getListPosts(data))
   } catch (error) {
     

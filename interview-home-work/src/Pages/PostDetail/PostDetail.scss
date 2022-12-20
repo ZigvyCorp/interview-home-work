@@ -1,24 +1,15 @@
-.posts {
-  .post__search {
-    margin: 2rem 0;
-  }
-  .posts__item {
-    width: 100%;
-    margin: 2rem 0;
-    
+.posts__detail--page {
+  margin-top: 1rem;
+  .posts__item {    
     .posts__item--title {
       display: flex;
       justify-content: center;
-      a {
+      p {
         text-align: center;
         font-size: 1.6rem;
         font-weight: 600;
         margin-bottom: 1rem;
         transition: all .2s ease;
-        &:hover {
-          cursor: pointer;
-          font-size: 1.62rem;
-        }
       }
     }
 
@@ -107,7 +98,9 @@
             .comment__detail--author, .comment__detail--reply {
               font-size: .9rem;
               font-weight: 100;
-              cursor: pointer;
+              &:hover {
+                cursor: pointer;
+              }
             }
             .comment__detail--content {
               margin: .5rem 0;
