@@ -1,0 +1,29 @@
+
+  #btn {
+    --btn-width: 55px;
+    width: calc(var(--btn-width));
+    height: calc((var(--btn-width)));
+    background-image: conic-gradient(green 0deg, red 0deg);
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 50%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s linear;
+
+    .progress {
+      width: calc(var(--btn-width) - 10px);
+      height: calc(var(--btn-width) - 10px);
+      background-color: white;
+      border-radius: 50%;;
+      display: grid;
+      align-items: center;
+      text-align: center;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }

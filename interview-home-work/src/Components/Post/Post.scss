@@ -1,0 +1,123 @@
+.posts {
+  .post__search {
+    margin: 2rem 0;
+  }
+  .posts__item {
+    width: 100%;
+    margin: 2rem 0;
+    
+    .posts__item--title {
+      display: flex;
+      justify-content: center;
+      a {
+        text-align: center;
+        font-size: 1.6rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        transition: all .2s ease;
+        &:hover {
+          cursor: pointer;
+          font-size: 1.62rem;
+        }
+      }
+    }
+
+    .posts__detail {
+      p {
+        font-weight: 500;
+      }
+
+      .detail__author {
+        margin-bottom: 1rem;
+      }
+
+      .detail__content {
+        margin-bottom: 3rem;
+        font-weight: 500;
+      }
+    }
+
+    // Style for comment
+    .comments {
+      display: block;
+      .posts__comments {
+        button {
+          border: none;
+          background: none;
+          position: relative;
+          &:hover {
+            cursor: pointer;
+          }
+    
+          &:before {
+            content: "";
+            border-top: 8px solid black;
+            border-right: 8px solid transparent;
+            border-left: 8px solid transparent;
+            position: absolute;
+            right: -25px;
+            top: 3px;
+          }
+        }
+      }
+    
+      .posts__comments.show__comments {
+        button {
+          &:before {
+            content: "";
+            border-bottom: 8px solid black;
+            border-top: none;
+            position: absolute;
+            right: -25px;
+            top: 3px;
+          }
+        }
+      }
+    
+      .post__line {
+        border-bottom: 1px solid var(--color-grey-100);
+        margin: 1rem;
+      }
+
+      .comment__list {
+        display: none;
+      }
+
+      .comment__list.show__comments {
+        display: block;
+        .comment__item {
+          display: flex;
+          margin: 2rem 0;
+          .avatar {
+            width: 50px;
+            height: 50px;
+            flex-basis: auto;
+            background-color: var(--color-grey-100);
+            color: red;
+            text-align: center;
+            display: grid;
+            align-items: center;
+            flex: 0 0 auto;
+            margin-right: 1rem;
+          }
+      
+          .comment__detail {
+            // display: ;
+      
+            .comment__detail--author, .comment__detail--reply {
+              font-size: .9rem;
+              font-weight: 100;
+              cursor: pointer;
+            }
+            .comment__detail--content {
+              margin: .5rem 0;
+              font-weight: 400;
+            }
+          }
+        }
+      }
+
+    }
+    
+  }
+}
