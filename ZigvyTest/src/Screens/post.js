@@ -1,9 +1,9 @@
-import { InputItem, Pagination, Text, View } from "antd-mobile-rn";
+import { Pagination, Text, View } from "antd-mobile-rn";
 import axios from "axios";
 import _ from "lodash";
 import moment from "moment";
 import { useEffect, useState } from "react";
-import { FlatList, Pressable, StyleSheet } from "react-native";
+import { FlatList, Pressable, StyleSheet, TextInput } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getColor } from "../Helpers";
 import { getPost } from "../Redux/action/postAction";
@@ -64,18 +64,15 @@ const PostScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <InputItem
-        cursorColor={"blue"}
+      <TextInput
+        style={styles.inputContainer}
+        onChangeText={_onChangeSearch}
         placeholder="Search"
-        clearButtonMode="always"
-        onChange={_onChangeSearch}
-        style={{
-          borderBottomColor: "#3498db",
-          borderBottomWidth: 2,
-        }}
+        cursorColor={"blue"}
       />
 
       <FlatList
+        key={current}
         data={posts}
         renderItem={({ item, index }) => (
           <PostItem navigation={navigation} item={item} index={index} />
@@ -130,7 +127,7 @@ const PostItem = ({ item, index, navigation }) => {
               {`Author: ${_.get(user, "name", "privative user")}`}
             </Text>
             <Text style={{ fontSize: 14, color: "#333", fontWeight: 500 }}>
-              {`Create at: ${date}`}
+              {`Created at: ${date}`}
             </Text>
           </View>
           <View
@@ -195,7 +192,7 @@ const styles = StyleSheet.create({
   content: {
     fontSize: 14,
     fontWeight: 500,
-    color: "#333",
+    color: "#71717A",
     marginBottom: 32,
   },
   comment: {
@@ -208,6 +205,14 @@ const styles = StyleSheet.create({
     borderRadius: 13,
     backgroundColor: "red",
     marginRight: 8,
+  },
+  inputContainer: {
+    height: 40,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#333",
+    margin: 16,
+    paddingHorizontal: 16,
   },
 });
 
