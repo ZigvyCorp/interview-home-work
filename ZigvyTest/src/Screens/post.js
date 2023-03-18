@@ -1,5 +1,5 @@
-import { Box, Center, Text } from "native-base";
-import React from "react";
+import { Text, View } from "antd-mobile-rn";
+import { StyleSheet } from "react-native";
 
 const data = [
   {
@@ -33,21 +33,17 @@ const data = [
 
 const PostScreen = () => {
   return (
-    <Box flex="1">
-      <Text>PostScreen</Text>
-    </Box>
+    <View style={styles.container}>
+      <Text>sk</Text>
+    </View>
   );
 };
 
-const PostItems = ({ items }) => {
-  const { title } = items;
-  return (
-    <Box>
-      <Center>
-        <Text>{title}</Text>
-      </Center>
-    </Box>
-  );
-};
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#FAFAFA",
+  },
+});
 
 export default PostScreen;
