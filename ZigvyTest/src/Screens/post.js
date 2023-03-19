@@ -1,9 +1,14 @@
-import { Pagination, Text, View } from "antd-mobile-rn";
-import axios from "axios";
+import {
+  ActivityIndicator,
+  Pagination,
+  SearchBar,
+  Text,
+  View,
+} from "antd-mobile-rn";
 import _ from "lodash";
 import moment from "moment";
 import { useEffect, useState } from "react";
-import { FlatList, Pressable, StyleSheet, TextInput } from "react-native";
+import { FlatList, Pressable, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getColor } from "../Helpers";
 import { getPost } from "../Redux/action/postAction";
@@ -21,6 +26,7 @@ const PostScreen = ({ navigation }) => {
   const posts = useSelector((state) => _.get(state, "postReducers.posts"));
   const [current, setCurrent] = useState(1);
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -33,7 +39,10 @@ const PostScreen = ({ navigation }) => {
     );
   }, []);
 
+  let ld;
   const _onChangePage = (page) => {
+    clearTimeout(ld);
+    setLoading(true);
     setCurrent(page);
     const startData = (page - 1) * 10;
     dispatch(
@@ -43,6 +52,9 @@ const PostScreen = ({ navigation }) => {
         search,
       })
     );
+    ld = setTimeout(() => {
+      setLoading(false);
+    }, 800);
   };
 
   //Search
@@ -64,21 +76,35 @@ const PostScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.inputContainer}
-        onChangeText={_onChangeSearch}
-        placeholder="Search"
-        cursorColor={"blue"}
+      <SearchBar
+        style={{ height: 30 }}
+        cancelText="Cancel"
+        showCancelButton={false}
+        onChange={_onChangeSearch}
       />
 
-      <FlatList
-        key={current}
-        data={posts}
-        renderItem={({ item, index }) => (
-          <PostItem navigation={navigation} item={item} index={index} />
-        )}
-        keyExtractor={(item) => item.id}
-      />
+      {loading ? (
+        <View
+          style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+        >
+          <ActivityIndicator size="large" color="blue" />
+        </View>
+      ) : (
+        <FlatList
+          // ListEmptyComponent={}
+          data={posts}
+          renderItem={({ item, index }) => (
+            <PostItem
+              navigation={navigation}
+              item={_.get(item, "post", {})}
+              user={_.get(item, "user", "")}
+              comments={_.get(item, "comments", [])}
+              index={index}
+            />
+          )}
+          keyExtractor={(item) => item.post.id}
+        />
+      )}
       <Pagination
         total={10}
         current={current}
@@ -90,24 +116,13 @@ const PostScreen = ({ navigation }) => {
   );
 };
 
-const PostItem = ({ item, index, navigation }) => {
+const PostItem = ({ item, index, navigation, user, comments }) => {
   const posts = useSelector((state) => _.get(state, "postReducers.posts"));
-  const { title, body, userId, id } = item;
+  const { title, body } = item;
   const date = moment().format("MMM DD, YYYY");
-  //State
-  const [user, setUser] = useState({});
-
-  useEffect(() => {
-    axios
-      .get(`https://jsonplaceholder.typicode.com/users/${userId}`)
-      .then((res) => {
-        const rs = _.get(res, "data", {});
-        setUser(rs);
-      });
-  }, []);
 
   const _onDetail = () => {
-    navigation?.navigate("PostDetail", { user, post: item });
+    navigation?.navigate("PostDetail", { user, post: item, comments });
   };
 
   return (
@@ -161,7 +176,7 @@ const PostItem = ({ item, index, navigation }) => {
         </Text>
       </Pressable>
       <View style={{ paddingHorizontal: 16 }}>
-        <Comment postID={id} />
+        <Comment data={comments} />
       </View>
     </View>
   );

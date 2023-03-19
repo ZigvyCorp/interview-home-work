@@ -1,24 +1,12 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { Text, View } from "antd-mobile-rn";
-import axios from "axios";
 import _ from "lodash";
-import { useEffect, useState } from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { getColor } from "../Helpers";
 
 const PostDetail = (props) => {
   const params = _.get(props, "route.params", {});
-  const { user, post } = params;
-  const [comment, setComment] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get(`https://jsonplaceholder.typicode.com/posts/${post.id}/comments`)
-      .then((res) => {
-        const rs = _.get(res, "data", []);
-        setComment(rs);
-      });
-  }, []);
+  const { user, post, comments } = params;
 
   return (
     <ScrollView>
@@ -51,10 +39,10 @@ const PostDetail = (props) => {
           <View style={{ flexDirection: "row", marginBottom: 16 }}>
             <MaterialIcons name="comment" size={24} color="black" />
             <Text style={{ fontSize: 16, marginLeft: 3 }}>
-              {comment.length}
+              {comments?.length}
             </Text>
           </View>
-          {comment.map((item) => (
+          {comments?.map((item) => (
             <View style={{ flexDirection: "row" }} key={item?.id}>
               <View
                 style={[

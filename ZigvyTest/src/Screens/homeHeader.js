@@ -24,7 +24,7 @@ const HomeHeader = () => {
               U
             </Text>
           </View>
-          <Text style={styles.name}>User name</Text>
+          <Text style={styles.name}>User</Text>
         </View>
       </View>
     </View>

@@ -1,26 +1,15 @@
 import { Text, View } from "antd-mobile-rn";
-import axios from "axios";
 import _ from "lodash";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Pressable, StyleSheet } from "react-native";
 import { getColor } from "../Helpers";
 
-const Comment = ({ postID }) => {
+const Comment = ({ data }) => {
   const [expand, setExpand] = useState(false);
-  const [comment, setComment] = useState([]);
 
   const _onGetComment = () => {
     setExpand(!expand);
   };
-
-  useEffect(() => {
-    axios
-      .get(`https://jsonplaceholder.typicode.com/posts/${postID}/comments`)
-      .then((res) => {
-        const rs = _.get(res, "data", []);
-        setComment(rs);
-      });
-  }, []);
 
   return (
     <View style={{ marginBottom: 16 }}>
@@ -39,11 +28,11 @@ const Comment = ({ postID }) => {
             fontWeight: 500,
           }}
         >
-          {comment?.length} replies
+          {data?.length} replies
         </Text>
       </Pressable>
       {expand &&
-        comment.map((item) => (
+        data?.map((item) => (
           <View key={item?.id} style={styles.comment}>
             <View
               style={[
