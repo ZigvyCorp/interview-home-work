@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import _ from "lodash";
 import { put, takeLatest } from "redux-saga/effects";
@@ -41,6 +42,30 @@ function* getPost(data) {
   });
 }
 
+function* reactPost(params) {
+  const postID = _.get(params, "postID", null);
+  const dataStoreJSON = yield AsyncStorage.getItem("persist:postState");
+  const dataStore = JSON.parse(dataStoreJSON);
+  const react = JSON.parse(_.get(dataStore, "postReact", ""));
+
+  let data = react;
+  const postData = [postID];
+  if (react.includes(postID)) {
+    data = react.filter((x) => x !== postID);
+  } else {
+    data = postData.concat(react);
+  }
+
+  yield put({
+    type: postAction.REACT_POST_SUCCESS,
+    data,
+  });
+}
+
 export function* watchGetPost() {
   yield takeLatest(postAction.GET_POST, getPost);
+}
+
+export function* watchReactPost() {
+  yield takeLatest(postAction.REACT_POST, reactPost);
 }

@@ -1,7 +1,10 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { persistReducer } from "redux-persist";
 import postAction from "../action/postAction";
 
 const initialState = {
   posts: [],
+  postReact: [],
 };
 
 const postReducers = (state = initialState, action) => {
@@ -11,9 +14,19 @@ const postReducers = (state = initialState, action) => {
         ...state,
         posts: action.data,
       };
+    case postAction.REACT_POST_SUCCESS:
+      return {
+        ...state,
+        postReact: action.data,
+      };
     default:
       return state;
   }
 };
 
-export default postReducers;
+const persistConfig = {
+  key: "postState",
+  storage: AsyncStorage,
+  blacklist: ["posts"],
+};
+export default persistReducer(persistConfig, postReducers);

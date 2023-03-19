@@ -1,3 +1,4 @@
+import { AntDesign } from "@expo/vector-icons";
 import {
   ActivityIndicator,
   Pagination,
@@ -11,7 +12,7 @@ import { useEffect, useState } from "react";
 import { FlatList, Pressable, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getColor } from "../Helpers";
-import { getPost } from "../Redux/action/postAction";
+import { getPost, reactPost } from "../Redux/action/postAction";
 import Comment from "./comment";
 
 const locale = {
@@ -24,6 +25,11 @@ const tags = ["consult", "it", "hala", "gov", "legal", "political"];
 
 const PostScreen = ({ navigation }) => {
   const posts = useSelector((state) => _.get(state, "postReducers.posts"));
+  const postLiked = useSelector((state) =>
+    _.get(state, "postReducers.postReact")
+  );
+
+  //State
   const [current, setCurrent] = useState(1);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
@@ -93,15 +99,21 @@ const PostScreen = ({ navigation }) => {
         <FlatList
           // ListEmptyComponent={}
           data={posts}
-          renderItem={({ item, index }) => (
-            <PostItem
-              navigation={navigation}
-              item={_.get(item, "post", {})}
-              user={_.get(item, "user", "")}
-              comments={_.get(item, "comments", [])}
-              index={index}
-            />
-          )}
+          renderItem={({ item, index }) => {
+            const idPost = _.get(item, "post.id");
+            const liked = postLiked.includes(idPost);
+            return (
+              <PostItem
+                navigation={navigation}
+                item={_.get(item, "post", {})}
+                user={_.get(item, "user", "")}
+                comments={_.get(item, "comments", [])}
+                index={index}
+                postLength={posts?.length}
+                liked={liked}
+              />
+            );
+          }}
           keyExtractor={(item) => item.post.id}
         />
       )}
@@ -116,13 +128,25 @@ const PostScreen = ({ navigation }) => {
   );
 };
 
-const PostItem = ({ item, index, navigation, user, comments }) => {
-  const posts = useSelector((state) => _.get(state, "postReducers.posts"));
-  const { title, body } = item;
+const PostItem = ({
+  item,
+  index,
+  navigation,
+  user,
+  comments,
+  postLength,
+  liked,
+}) => {
+  const dispatch = useDispatch();
+  const { title, body, id } = item;
   const date = moment().format("MMM DD, YYYY");
 
   const _onDetail = () => {
-    navigation?.navigate("PostDetail", { user, post: item, comments });
+    navigation?.navigate("PostDetail", { user, post: item, comments, liked });
+  };
+
+  const _onLike = () => {
+    dispatch(reactPost(id));
   };
 
   return (
@@ -130,8 +154,7 @@ const PostItem = ({ item, index, navigation, user, comments }) => {
       style={{
         flex: 1,
         borderBottomWidth: 2,
-        borderBottomColor:
-          index === posts?.length - 1 ? "transparent" : "black",
+        borderBottomColor: index === postLength - 1 ? "transparent" : "black",
       }}
     >
       <Pressable style={styles.boxItem} onPress={_onDetail}>
@@ -175,7 +198,16 @@ const PostItem = ({ item, index, navigation, user, comments }) => {
           {body.length < 100 ? body : body.substring(0, 100)}
         </Text>
       </Pressable>
+
       <View style={{ paddingHorizontal: 16 }}>
+        <Pressable onPress={_onLike} style={{ marginBottom: 8 }}>
+          <AntDesign
+            name={liked ? "heart" : "hearto"}
+            size={24}
+            color={liked ? "#ec4899" : "black"}
+          />
+        </Pressable>
+
         <Comment data={comments} />
       </View>
     </View>

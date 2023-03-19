@@ -1,4 +1,4 @@
-import { MaterialIcons } from "@expo/vector-icons";
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import { Text, View } from "antd-mobile-rn";
 import _ from "lodash";
 import { ScrollView, StyleSheet } from "react-native";
@@ -6,7 +6,7 @@ import { getColor } from "../Helpers";
 
 const PostDetail = (props) => {
   const params = _.get(props, "route.params", {});
-  const { user, post, comments } = params;
+  const { user, post, comments, liked } = params;
 
   return (
     <ScrollView>
@@ -36,11 +36,20 @@ const PostDetail = (props) => {
           <Text style={styles.title}>{_.get(post, "title", "")}</Text>
           <Text style={styles.content}>{_.get(post, "body", "")}</Text>
           <View style={{ borderBottomWidth: 2, marginBottom: 16 }} />
-          <View style={{ flexDirection: "row", marginBottom: 16 }}>
-            <MaterialIcons name="comment" size={24} color="black" />
-            <Text style={{ fontSize: 16, marginLeft: 3 }}>
-              {comments?.length}
-            </Text>
+          <View
+            style={{
+              flexDirection: "row",
+              marginBottom: 16,
+              justifyContent: "space-between",
+            }}
+          >
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <MaterialIcons name="comment" size={24} color="black" />
+              <Text style={{ fontSize: 16, marginLeft: 3, marginRight: 8 }}>
+                {comments?.length}
+              </Text>
+            </View>
+            {liked && <AntDesign name={"heart"} size={24} color={"#ec4899"} />}
           </View>
           {comments?.map((item) => (
             <View style={{ flexDirection: "row" }} key={item?.id}>

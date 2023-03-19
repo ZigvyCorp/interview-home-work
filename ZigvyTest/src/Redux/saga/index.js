@@ -1,7 +1,7 @@
 import { all } from "redux-saga/effects";
 
-import { watchGetPost } from "./postSaga";
+import { watchGetPost, watchReactPost } from "./postSaga";
 
 export default function* rootSaga() {
-  yield all([watchGetPost()]);
+  yield all([watchGetPost(), watchReactPost()]);
 }
