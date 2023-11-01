@@ -1,0 +1,9 @@
+{
+  "short_name": "Zigvy Corp Interview",
+  "name": "Zigvy Corp Interview",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
