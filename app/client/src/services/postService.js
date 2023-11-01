@@ -1,7 +1,8 @@
 import { http } from "./httpService";
 
-export const getAllPosts = async () => {
-  const response = await http.get("/posts");
+export const getPosts = async (params) => {
+  const query = "?" + new URLSearchParams(params).toString();
+  const response = await http.get(`/posts/list${query}`);
   return response.data;
 };
 

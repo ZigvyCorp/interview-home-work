@@ -5,17 +5,22 @@ import { Link, useLoaderData } from "react-router-dom";
 import { getAllCommentsByPostId } from "../services/commentService";
 import { getPostById } from "../services/postService";
 import { getUserById } from "../services/userService";
+import moment from "moment";
 
 export async function postLoader({ params }) {
   try {
-    const post = await getPostById(params.postId);
-    const user = await getUserById(post.userId);
-    const comments = await getAllCommentsByPostId(post.id);
+    const data = await getPostById(params.postId);
+    if (!data.status) {
+      return null;
+    }
+    const post = data.data;
+    const userRes = await getUserById(post.userId);
+    const commentsRes = await getAllCommentsByPostId(post.id);
 
     return {
       ...post,
-      user,
-      comments: [comments] || [],
+      user: userRes?.data,
+      comments: commentsRes?.data?.list || [],
     };
   } catch (error) {
     return null;
@@ -33,11 +38,12 @@ const PostDetailPage = () => {
         label: `${comments.length} repl${comments.length > 1 ? "ies" : "y"}`,
         children: (
           <div>
-            {comments.map((comment) => (
+            {comments.map((comment, index) => (
               <div key={comment.id}>
-                <div className="font-bold">{comment.name}</div>
+                <div className="font-bold">User: {comment.name}</div>
                 <div>{comment.email}</div>
                 <div className="mt-3">{comment.body}</div>
+                {index === comments.length - 1 ? null : <hr className="mb-3 mt-1" />}
               </div>
             ))}
           </div>
@@ -70,7 +76,7 @@ const PostDetailPage = () => {
         </div>
         <div>
           <b>Created at: </b>
-          123
+          {moment(post.createdAt).format("DD-MM-YYYY")}
         </div>
         <div className="mt-5">{post.body}</div>
       </div>

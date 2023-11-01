@@ -9,7 +9,7 @@ export default function PostItem({ post }) {
   }, [post]);
 
   return (
-    <Link to={`posts/${post.id}`}>
+    <Link to={`posts/${post._id}`}>
       <Card className="min-h-[150px]">
         <div className="text-xl font-bold">{post.title}</div>
         <p>{body}</p>
