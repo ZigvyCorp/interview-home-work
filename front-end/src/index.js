@@ -9,19 +9,24 @@ import {
 } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import PostDetailPage from "./pages/PostDetailPage";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "../src/redux/store";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
       <Route index element={<HomePage />} />
-      <Route path="post" element={<PostDetailPage />} />
+      <Route path="posts/:id" element={<PostDetailPage />} />
     </Route>
   )
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <Provider store={store}>
+    <PersistGate persistor={persistor}>
+      <RouterProvider router={router} />
+    </PersistGate>
+  </Provider>
 );
