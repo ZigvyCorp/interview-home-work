@@ -2,9 +2,9 @@ import PostCard from "../components/PostCard";
 
 export default function HomePage() {
   return (
-    <>
-      <p>Home Page</p>
+    <div className="container fluid">
+      <p className="text-primary fs-2 fw-bold">Test Bootstrap</p>
       <PostCard />
-    </>
+    </div>
   );
 }
