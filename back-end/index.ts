@@ -10,12 +10,15 @@ import commentRouter from "./routes/comment";
 const NAMESPACE = "SERVER";
 
 const app = express();
+const cors = require("cors");
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
 app.use(bodyParser.json());
+
+app.use(cors());
 
 app.use("/api/users", userRouter);
 app.use("/api/posts", postRouter);
