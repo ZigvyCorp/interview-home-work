@@ -1,0 +1,25 @@
+.header_logo img {
+    height: 70px;
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header_avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header_avatar p {
+    padding: 0 10px;
+}
+
+.header_avatar img {
+    height: 100;
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

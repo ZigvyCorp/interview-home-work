@@ -1,0 +1,10 @@
+.app_header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 30px;
+    text-align: center;
+    background-color: aquamarine;
+    position: sticky;
+    top: 0;
+    z-index: 100; 
+}
