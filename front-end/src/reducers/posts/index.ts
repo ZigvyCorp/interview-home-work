@@ -5,9 +5,10 @@ const initialState: TYPE.PostsState = {
   pending: false,
   posts: [],
   error: null,
+  size: 0,
 };
 
-export default function postsReducer(
+export function postsReducer(
   state = initialState,
   action: TYPE.PostsActions
 ): TYPE.PostsState {
@@ -22,8 +23,9 @@ export default function postsReducer(
       return {
         ...state,
         pending: false,
-        posts: action.payload.posts,
+        posts: [...state.posts, ...action.payload.posts],
         error: null,
+        size: action.payload.size,
       };
     }
     case ACTION_TYPE.GET_POSTS_FAILURE:

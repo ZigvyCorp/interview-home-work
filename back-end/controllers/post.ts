@@ -34,11 +34,31 @@ const getCommentsByPost = async (req: Request, res: Response) => {
 
 const getPosts = async (req: Request, res: Response) => {
   try {
-    const findPosts = await Post.find({});
+    const { limit, skip } = req.query;
+    const countPosts = await Post.find({}).countDocuments();
+
+    if (!limit || !skip) {
+      const findPosts = await Post.find({}).populate("owner", "name");
+
+      return res.status(200).json({
+        message: "Get posts successfully",
+        data: findPosts,
+        size: countPosts,
+      });
+    }
+
+    const parsedLimit = parseInt(limit.toString());
+    const parsedSkip = parseInt(skip.toString());
+
+    const findPosts = await Post.find({})
+      .populate("owner", "name")
+      .limit(parsedLimit)
+      .skip((parsedSkip - 1) * parsedLimit);
 
     return res.status(200).json({
       message: "Get posts successfully",
       data: findPosts,
+      size: countPosts,
     });
   } catch (error) {
     if (error instanceof Error)

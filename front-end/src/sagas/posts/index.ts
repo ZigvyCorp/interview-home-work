@@ -4,14 +4,21 @@ import { getPostsSuccess, getPostsFailure } from "../../actions/posts";
 import * as TYPE from "../../types/posts";
 import * as api from "../../api/posts";
 
-const getPosts = () => api.getPosts<TYPE.IPost[]>();
+const getPosts = (pageNumber: Number) => api.getPosts<TYPE.IPost[]>(pageNumber);
 
-function* getPostsSaga() {
+function* getPostsSaga(action: TYPE.GetPostsRequest) {
   try {
-    const response: TYPE.IPost[] = yield call(getPosts);
+    const {
+      data,
+      size,
+    }: {
+      data: TYPE.IPost[];
+      size: number;
+    } = yield call(getPosts, action.pageNumber);
     yield put(
       getPostsSuccess({
-        posts: response,
+        posts: data,
+        size: size,
       })
     );
   } catch (error) {

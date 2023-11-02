@@ -2,11 +2,12 @@ import React from "react";
 
 import { Header } from "antd/es/layout/layout";
 
-import { Flex, Typography } from "antd";
+import { Flex, Typography, theme } from "antd";
 
 import { HighlightOutlined } from "@ant-design/icons";
 
 function BlogHeader() {
+  const { token } = theme.useToken();
   return (
     <Header
       style={{
@@ -14,6 +15,8 @@ function BlogHeader() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
+        width: "100%",
+        minWidth: token.screenLG,
       }}
     >
       <Flex

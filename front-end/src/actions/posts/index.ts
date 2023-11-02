@@ -1,8 +1,9 @@
 import * as ACTION_TYPE from "../../types/posts/actionTypes";
 import * as TYPE from "../../types/posts";
 
-export const getPostsRequest = (): TYPE.GetPostsRequest => ({
+export const getPostsRequest = (pageNumber: Number): TYPE.GetPostsRequest => ({
   type: ACTION_TYPE.GET_POSTS_REQUEST,
+  pageNumber: pageNumber,
 });
 
 export const getPostsSuccess = (

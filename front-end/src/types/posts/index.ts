@@ -1,21 +1,27 @@
 import * as ACTION_TYPE from "./actionTypes";
 
 export interface IPost {
-  id: string;
-  owner: string;
+  _id: string;
+  owner: {
+    _id: string;
+    name: string;
+  };
   title: string;
   content: string;
   tags: string[];
+  created_at: string;
 }
 
 export interface PostsState {
   pending: boolean;
   posts: IPost[];
   error: string | null;
+  size: number;
 }
 
 export interface GetPostsSuccessPayload {
   posts: IPost[];
+  size: number;
 }
 
 export interface GetPostsFailurePayload {
@@ -24,6 +30,7 @@ export interface GetPostsFailurePayload {
 
 export interface GetPostsRequest {
   type: typeof ACTION_TYPE.GET_POSTS_REQUEST;
+  pageNumber: Number;
 }
 
 export interface GetPostsSuccess {
