@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import { userRouter } from "./routers/user.r.js";
 
 dotenv.config();
 
@@ -17,6 +18,11 @@ mongoose
   });
 
 const startServer = () => {
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+
+  app.use("/api/users", userRouter);
+
   app.get("/", (req, res) => {
     res.json({ message: "success" });
   });
