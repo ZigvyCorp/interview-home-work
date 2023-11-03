@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import cors from "cors";
 import { userRouter } from "./routers/user.r.js";
 import { postRouter } from "./routers/post.r.js";
 import { commentRouter } from "./routers/comment.r.js";
@@ -22,6 +23,7 @@ mongoose
 const startServer = () => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+  app.use(cors({ credentials: true, origin: process.env.FE_URL }));
 
   app.use("/api/users", userRouter);
   app.use("/api/posts", postRouter);
