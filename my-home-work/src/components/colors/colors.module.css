@@ -1,0 +1,12 @@
+.colors {
+  height: 30px;
+  width: 25%;
+  flex-wrap: wrap;
+}
+.color {
+  padding: 4px;
+}
+.colorText {
+  color: inherit;
+  font-size: var(--small-font-size);
+}

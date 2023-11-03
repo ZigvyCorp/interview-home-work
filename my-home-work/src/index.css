@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+:root {
+  --color-primary: #74c0fc;
+  --gutter-component-sm: 8px;
+  --gutter-component: 12px;
+  --gutter-component-md: 16px;
+  --gutter-component-lg: 32px;
+  --gutter-container-y: 36px;
+  --gutter-container-x: 12px;
+  --small-font-size: 14px;
+  --normal-font-size: 16px;
+  --medium-font-size: 18px;
+  --large-font-size: 32px;
+}
+body {
+  font-family: sans-serif;
+  box-sizing: border-box;
+  font-size: var(--normal-font-size);
+  line-height: 1.6;
+  padding: 6px;
+}
