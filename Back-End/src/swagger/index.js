@@ -3,8 +3,8 @@
  * /api/post/getPost:
  *  get:
  *      tags: [Post]
- *      description: Lấy tất các blog
- *      summary: Lấy tất các blog
+ *      description: Get all blog
+ *      summary: Get all blog
  *      responses:
  *        200: 
  *          description: success   
@@ -15,13 +15,13 @@
  * /api/post/detailPost/{id}:
  *  get:
  *      tags: [Post]
- *      description: Lấy thông tin chi tiết blog
+ *      description: Get detail blog
  * 
- *      summary: Lấy thông tin chi tiết blog
+ *      summary: Get detail blog
  *      
  *      parameters:
  *      - in: path
- *        description: Nhập ID ảnh
+ *        description: ID Blog
  *        name: id
  *        type: number
  *        required: true
@@ -36,8 +36,8 @@
  * /api/post/upPost:
  *  post:
  *      tags: [Post]
- *      description: Đăng tải bài blog
- *      summary: Đăng tải bài blog
+ *      description: Up blog
+ *      summary: Up blog
  *      parameters:
  *      - in: body
  *        name: Post

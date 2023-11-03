@@ -5,21 +5,21 @@ const initialState = {
     error: null,
 }
 
-const topMovieReducer = (state = initialState, action) => {
+const getPagingReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ActionType.TOPMOVIE_REQUEST: {
+        case ActionType.GETPAGING_REQUEST: {
             state.loading = true;
             state.data = null;
             state.error = null;
             return { ...state }
         }
-        case ActionType.TOPMOVIE_SUCCESS: {
+        case ActionType.GETPAGING_SUCCESS: {
             state.loading = false;
             state.data = action.payload;
             state.error = null;
             return { ...state }
         }
-        case ActionType.TOPMOVIE_FAIL: {
+        case ActionType.GETPAGING_FAIL: {
             state.loading = false;
             state.data = null;
             state.error = action.payload;
@@ -30,4 +30,4 @@ const topMovieReducer = (state = initialState, action) => {
     }
 }
 
-export default topMovieReducer;
+export default getPagingReducer;

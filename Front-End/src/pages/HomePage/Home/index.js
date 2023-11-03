@@ -4,35 +4,30 @@ import { Card } from 'antd'
 import SearchBar from './Search/index.js'
 import { Pagination } from 'antd';
 import { useDispatch, useSelector } from 'react-redux'
-import { actTopMovie } from './duck/action.js'
+import { actListPostRequest } from './Card/duck/action.js';
+import { actGetPaging } from './duck/action.js'
+
+
 
 export default function Home() {
   const [current, setCurrent] = useState(1);
-
-  const actListPostRequest = () => {
-    return {
-      type: '@REQUEST',
-    };
-  };
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actListPostRequest())
   }, [dispatch])
-
+  const { keyword } = useSelector((state) => state.searchReducer);
   useEffect(() => {
-    dispatch(actTopMovie(current))
-  }, [current]);
+    dispatch(actGetPaging(current, keyword))
+  }, [dispatch, current, keyword]);
+
+  // Data with redux saga
+  // let { data, loading } = useSelector((state) => state.postsCardsReducer);
+
+  // Data with search and pagination
+  let { data, loading } = useSelector((state) => state.getPaging);
 
 
-
-  let { data, loading } = useSelector((state) => state.topMovieReducer);
-
-  let { keyword } = useSelector((state) => state.searchReducer);
-
-  if (keyword) {
-    data = data?.filter(post => post.title.toLocaleLowerCase().indexOf(keyword.toLocaleLowerCase()) !== -1)
-  }
 
   const renderPosts = () => {
     return data?.map((post) => {
@@ -40,21 +35,15 @@ export default function Home() {
     });
   }
 
-
   const onChange = (page) => {
     setCurrent(page);
-
-
   }
-
-
 
   return (
     <>
       <div className='text-center' >    <SearchBar /></div>
 
       <div className='container text-center'>
-
         {!loading ? renderPosts() : <Card
           className='mx-auto'
           style={{
@@ -64,7 +53,7 @@ export default function Home() {
         >
         </Card>}
 
-        <Pagination defaultCurrent={1} current={current} total={data?.[0]?.total} onChange={onChange} />
+        <Pagination defaultCurrent={1} current={current} total={data?.[0]?.total} onChange={onChange} pageSize={10} />
 
       </div>
     </>

@@ -1,35 +1,42 @@
 import api from '../../../../utils/apiUtils';
 import * as ActionType from './types';
 
-export const actTopMovie = (page) => {
+export const actGetPaging = (page, keyword) => {
     return (dispatch) => {
-        dispatch(actTopMovieRequest());
-        api.get(`api/post/getpaging/${page}`)
+        console.log(keyword)
+        dispatch(actGetPagingRequest())
+        keyword ? api.get(`api/post/getpaging/1?keyword=${keyword}`)
             .then((result) => {
-                dispatch(actTopMovieSuccess(result.data))
+                dispatch(actGetPagingSuccess(result.data))
             })
             .catch((error) => {
-                dispatch(actTopMovieFail(error))
+                dispatch(actGetPagingFail(error))
+            }) : api.get(`api/post/getpaging/${page}`)
+            .then((result) => {
+                dispatch(actGetPagingSuccess(result.data))
+            })
+            .catch((error) => {
+                dispatch(actGetPagingFail(error))
             })
     };
 };
 
-export const actTopMovieRequest = () => {
+export const actGetPagingRequest = () => {
     return {
-        type: ActionType.TOPMOVIE_REQUEST,
+        type: ActionType.GETPAGING_REQUEST,
     }
 };
 
-export const actTopMovieSuccess = (data) => {
+export const actGetPagingSuccess = (data) => {
     return {
-        type: ActionType.TOPMOVIE_SUCCESS,
+        type: ActionType.GETPAGING_SUCCESS,
         payload: data
     }
 };
 
-export const actTopMovieFail = (error) => {
+export const actGetPagingFail = (error) => {
     return {
-        type: ActionType.TOPMOVIE_FAIL,
+        type: ActionType.GETPAGING_FAIL,
         payload: error
     }
 };
