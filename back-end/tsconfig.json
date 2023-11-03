@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "rootDir": ".",
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "baseUrl": ".",
+    "paths": {
+      "@models": ["./src/models/"],
+      "@views": ["./src/resources/views"],
+      "@controllers": ["./src/controllers/"],
+      "@schemas": ["./src/schemas/"],
+      "@constants": ["./src/constants/"],
+      "@routes/*": ["./src/routes/*"],
+      "@exception/*": ["./src/exception/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@dto/*": ["./src/dto/*"],
+      "@handler/*": ["./src/handler/*"]
+    }
+  },
+  "include": ["src/**/*"]
+}
