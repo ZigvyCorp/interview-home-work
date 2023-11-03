@@ -1,0 +1,34 @@
+.comments {
+  margin: var(--gutter-component-lg) 0;
+}
+.list {
+  margin: var(--gutter-component) 0;
+}
+.commentCount {
+  display: block;
+  padding: var(--gutter-component) 0;
+  border-bottom: 1px solid #ddd;
+}
+.commentCountBtn {
+  background: none;
+  cursor: pointer;
+  border: none;
+}
+.comment {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gutter-component-md);
+  font-size: var(--normal-font-size);
+}
+.comment:not(:last-child) {
+  margin-bottom: var(--gutter-component-lg);
+}
+.commentBtn {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: var(--small-font-size);
+  color: rgba(0, 0, 0, 0.5);
+}

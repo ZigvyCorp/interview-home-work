@@ -1,0 +1,20 @@
+.post {
+  width: 100%;
+  padding: var(--gutter-container-y) 0;
+  border-bottom: 4px solid #000;
+}
+.post * {
+  font-size: var(--normal-font-size);
+}
+.title {
+  text-align: center;
+  color: blue;
+}
+.postDetails {
+  height: 120px;
+  margin-bottom: var(--gutter-component);
+}
+
+.paragraph {
+  margin-bottom: var(--gutter-component-lg) !important;
+}
