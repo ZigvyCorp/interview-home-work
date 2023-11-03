@@ -2,7 +2,7 @@ const express = require("express")
 const app = express();
 const mongoose = require('mongoose')
 const dotenv = require("dotenv")
-
+const cors = require('cors');
 const morgan = require("morgan")
 const postRoute = require('./routes/postRoute')
 const userRoute = require('./routes/userRoute')
@@ -16,10 +16,12 @@ mongoose.connect(process.env.MONGO_URL
 
 app.use(express.json())
 app.use(morgan("dev"))
+app.use(cors());
 
 app.use('/api/post', postRoute)
 app.use('/api/user', userRoute)
 app.use('/api/comment', commentRoute)
+
 
 app.get("/api/test", () => {
     console.log("test is successfull")

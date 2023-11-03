@@ -58,11 +58,11 @@ const deleteComment = asyncHandler(async (req, res) => {
 });
 
 const getComments = asyncHandler(async (req, res) => {
-  const id = req.params.id;
+  const postId = req.params.id;
   try {
-    const post = await Post.findById(id);
+    const post = await Post.findOne({id:postId});
     if (post) {
-      const comments = await Post.find({ postId: id });
+      const comments = await Comment.find({ postId: postId });
       res.json(comments);
     }
   } catch (error) {

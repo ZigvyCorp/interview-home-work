@@ -9,7 +9,7 @@ const {
 
 const router = express.Router()
 
-router.get('/comments', getComments)
+router.get('/comments/:id', getComments)
 router.post('/createComment', createComment)
 router.delete('/:id', deleteComment)
 router.put('/:id', updateComment)
