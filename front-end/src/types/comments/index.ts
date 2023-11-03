@@ -2,7 +2,10 @@ import * as ACTION_TYPE from "./actionTypes";
 
 export interface IComment {
   _id: string;
-  owner: string;
+  owner: {
+    _id: string;
+    name: string;
+  };
   post: string;
   content: string;
 }

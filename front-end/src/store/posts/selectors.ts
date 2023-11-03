@@ -9,7 +9,7 @@ const getPosts = (state: AppState) => state.posts.posts;
 
 const getError = (state: AppState) => state.posts.error;
 
-const getIsSearch = (state: AppState) => state.posts.isSearch;
+const getFirstInit = (state: AppState) => state.posts.firstInit;
 
 export const getPostsSelector = createSelector(getPosts, (posts) => posts);
 
@@ -22,7 +22,7 @@ export const getPostsErrorSelector = createSelector(getError, (error) => error);
 
 export const getPostsSizeSelector = createSelector(getSize, (size) => size);
 
-export const getPostsIsSearchSelector = createSelector(
-  getIsSearch,
-  (isSearch) => isSearch
+export const getPostsFirstInitSelector = createSelector(
+  getFirstInit,
+  (firstInit) => firstInit
 );

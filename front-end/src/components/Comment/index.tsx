@@ -20,7 +20,7 @@ function Comment({ _id, owner, post, content }: IComment) {
       />
       <Space direction="vertical" size={"small"}>
         <Flex gap={"small"} align="center">
-          <Typography>{owner}</Typography>
+          <Typography>{owner.name}</Typography>
           <Typography>a day ago</Typography>
         </Flex>
         <Paragraph style={{ margin: 0 }}>{content}</Paragraph>

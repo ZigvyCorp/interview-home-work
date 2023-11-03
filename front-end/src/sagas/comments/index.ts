@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 import * as ACTION_TYPE from "../../types/comments/actionTypes";
 import * as TYPE from "../../types/comments";
 import * as api from "../../api/comments";

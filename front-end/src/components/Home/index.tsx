@@ -1,33 +1,37 @@
 import React from "react";
 
-import { Layout, ConfigProvider, theme, Flex } from "antd";
-import "./App.css";
-import BlogHeader from "./components/BlogHeader";
-import PostContainer from "./components/PostContainer";
+import { Layout, theme, Flex } from "antd";
+import BlogHeader from "../../components/BlogHeader";
+import PostContainer from "../../components/PostContainer";
 import { useDispatch, useSelector } from "react-redux";
-import { getPostsRequest, searchPostsRequest } from "./actions/posts";
+import { searchPostsRequest } from "../../actions/posts";
 import {
   getPostsPendingSelector,
   getPostsSelector,
   getPostsSizeSelector,
-} from "./store/posts/selectors";
-import LoadMoreButton from "./components/LoadMoreButton";
-import AddPostButton from "./components/AddPostButton";
+} from "../../store/posts/selectors";
+import LoadMoreButton from "../../components/LoadMoreButton";
+import AddPostButton from "../../components/AddPostButton";
+import { IsSearchContext } from "../../contexts/IsSearch";
 
-function App() {
+function Home() {
   const dispatch = useDispatch();
   const posts = useSelector(getPostsSelector);
   const pending = useSelector(getPostsPendingSelector);
   const size = useSelector(getPostsSizeSelector);
   const [search, setSearch] = React.useState<string>("");
   const { token } = theme.useToken();
+  const isSearch = React.useRef<boolean>(false);
+
+  React.useEffect(() => {
+    isSearch.current = true;
+  }, [search]);
 
   React.useLayoutEffect(() => {
-    dispatch(getPostsRequest(0));
+    dispatch(searchPostsRequest(0, ""));
   }, [dispatch]);
-
   return (
-    <ConfigProvider>
+    <IsSearchContext.Provider value={isSearch}>
       <Layout
         style={{
           backgroundColor: "transparent",
@@ -53,7 +57,7 @@ function App() {
               backgroundColor: "#fff",
             }}
           >
-            {<PostContainer />}
+            {<PostContainer isSearch={isSearch.current} />}
           </Layout>
 
           <LoadMoreButton
@@ -61,17 +65,16 @@ function App() {
             size={size}
             pending={pending}
             onClick={() => {
-              if (search.length > 0)
-                dispatch(searchPostsRequest(posts.length, search));
-              else dispatch(getPostsRequest(posts.length));
+              dispatch(searchPostsRequest(posts.length, search));
+              isSearch.current = false;
             }}
           />
         </Flex>
       </Layout>
 
       <AddPostButton />
-    </ConfigProvider>
+    </IsSearchContext.Provider>
   );
 }
 
-export default App;
+export default Home;

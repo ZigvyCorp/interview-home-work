@@ -24,7 +24,7 @@ export interface PostsState {
   posts: IPost[];
   error: string | null;
   size: number;
-  isSearch: boolean;
+  firstInit: boolean;
 }
 
 // Returned payload

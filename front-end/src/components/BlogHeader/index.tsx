@@ -5,8 +5,9 @@ import { Header } from "antd/es/layout/layout";
 import { Flex, Input, Typography, theme } from "antd";
 
 import { HighlightOutlined } from "@ant-design/icons";
+import { debounce } from "lodash";
 import { useDispatch } from "react-redux";
-import { getPostsRequest, searchPostsRequest } from "../../actions/posts";
+import { searchPostsRequest } from "../../actions/posts";
 
 const { Search } = Input;
 
@@ -20,10 +21,16 @@ function BlogHeader({
   const { token } = theme.useToken();
   const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    if (search.length === 0) dispatch(getPostsRequest(0));
-    else dispatch(searchPostsRequest(0, search));
-  }, [dispatch, search]);
+  const debounceSearchRequest = React.useCallback(
+    (search: string) => {
+      const request = debounce(async (search: string) => {
+        dispatch(searchPostsRequest(0, search));
+      }, 500);
+
+      request(search);
+    },
+    [dispatch]
+  );
 
   return (
     <Header
@@ -70,7 +77,10 @@ function BlogHeader({
             allowClear
             enterButton="Search"
             size="middle"
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              debounceSearchRequest(e.target.value);
+            }}
           />
         </Flex>
 
@@ -80,7 +90,7 @@ function BlogHeader({
             margin: 0,
           }}
         >
-          Adam Levine
+          Huu Phuong
         </Typography.Title>
       </Flex>
     </Header>

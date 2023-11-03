@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import User from "../models/user";
 import IUser from "../interfaces/user";
 import { Error } from "mongoose";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 const getUsers = async (req: Request, res: Response) => {
   try {
@@ -11,6 +13,42 @@ const getUsers = async (req: Request, res: Response) => {
       message: "Get users successfully",
       data: findUsers,
     });
+  } catch (error) {
+    if (error instanceof Error)
+      return res.status(500).json({
+        message: "Internal server error",
+        error,
+      });
+  }
+};
+
+const login = async (req: Request, res: Response) => {
+  try {
+    const { username, password }: IUser = req.body;
+
+    const findUser = await User.findOne({
+      username: username,
+    });
+
+    if (!findUser) throw new Error("Name of user is not correct");
+
+    const isMatch = bcrypt.compareSync(password, findUser.password);
+
+    if (isMatch) {
+      const token = jwt.sign(
+        { _id: findUser._id?.toString(), name: findUser.name },
+        "super_secret",
+        {
+          expiresIn: "3h",
+        }
+      );
+
+      return res.status(200).json({
+        message: "Get users successfully",
+        data: findUser,
+        token: token,
+      });
+    } else throw new Error("Password is not correct");
   } catch (error) {
     if (error instanceof Error)
       return res.status(500).json({
@@ -58,8 +96,8 @@ const createUser = async (req: Request, res: Response) => {
     const newUser = new User({
       username: username,
       password: password,
-      name: name,
-      dob: dob !== "" ? new Date(dob) : new Date(),
+      name: name || username,
+      dob: dob ? new Date(dob) : new Date(),
     });
 
     await newUser.save();
@@ -145,4 +183,4 @@ const deleteUser = async (req: Request, res: Response) => {
   }
 };
 
-export default { getUsers, getUser, createUser, updateUser, deleteUser };
+export default { getUsers, getUser, createUser, updateUser, deleteUser, login };

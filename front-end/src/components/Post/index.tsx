@@ -11,12 +11,14 @@ import Comment from "../Comment";
 import { getCommentsSelector } from "../../store/comments/selectors";
 import { getCommentsByPostIdRequest } from "../../actions/comments";
 import { IComment } from "../../types/comments";
-import { deletePostRequest, getPostsRequest } from "../../actions/posts";
+import { deletePostRequest } from "../../actions/posts";
 import {
   getPostsPendingSelector,
   getPostsSelector,
 } from "../../store/posts/selectors";
 import EditPostButton from "../EditPostButton";
+import moment from "moment";
+import { useIsSearchContext } from "../../contexts/IsSearch";
 
 const getItems: (
   panelStyle: CSSProperties,
@@ -44,6 +46,7 @@ function Post({ _id, title, owner, createdAt, tags, content }: IPost) {
   const posts = useSelector(getPostsSelector);
   const pending = useSelector(getPostsPendingSelector);
   const parsedComments = comments.filter((comment) => comment.post === _id);
+  const isSearch = useIsSearchContext();
 
   const panelStyle: React.CSSProperties = {
     marginBottom: token.size,
@@ -77,6 +80,7 @@ function Post({ _id, title, owner, createdAt, tags, content }: IPost) {
             <Button
               disabled={pending}
               onClick={() => {
+                isSearch.current = false;
                 dispatch(deletePostRequest(_id));
                 if (posts.length === 1) window.location.reload();
               }}
@@ -96,7 +100,9 @@ function Post({ _id, title, owner, createdAt, tags, content }: IPost) {
         >
           <Space direction="vertical">
             <Typography>Author: {owner.name}</Typography>
-            <Typography>Created at: {createdAt}</Typography>
+            <Typography>
+              Created at: {moment(createdAt).format("YYYY/MM/d, h:mm:ss A")}
+            </Typography>
           </Space>
 
           <Space>

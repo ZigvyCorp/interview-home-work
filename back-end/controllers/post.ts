@@ -17,7 +17,7 @@ const getCommentsByPost = async (req: Request, res: Response) => {
 
     const getCommentsByPostId = await Comment.find({
       post: id,
-    });
+    }).populate("owner");
 
     return res.status(200).json({
       message: "Get comment by post successfully",

@@ -6,7 +6,7 @@ const initialState: TYPE.PostsState = {
   posts: [],
   error: null,
   size: 0,
-  isSearch: false,
+  firstInit: false,
 };
 
 export function postsReducer(
@@ -17,13 +17,11 @@ export function postsReducer(
     case ACTION_TYPE.EDIT_POST_REQUEST: {
       return {
         ...state,
-        pending: true,
       };
     }
     case ACTION_TYPE.EDITED_POST: {
       return {
         ...state,
-        pending: false,
         posts: state.posts.map((post) =>
           post._id === action.payload.post._id ? action.payload.post : post
         ),
@@ -32,7 +30,6 @@ export function postsReducer(
     case ACTION_TYPE.ADD_POST_REQUEST: {
       return {
         ...state,
-        pending: true,
       };
     }
     case ACTION_TYPE.ADDED_POST: {
@@ -40,7 +37,6 @@ export function postsReducer(
 
       return {
         ...state,
-        pending: false,
         size: state.size + 1,
         posts: [data, ...state.posts],
       };
@@ -54,8 +50,8 @@ export function postsReducer(
     case ACTION_TYPE.DELETED_POST: {
       return {
         ...state,
-        pending: false,
         size: state.size - 1,
+        pending: false,
         posts: state.posts.filter(
           (post) => post._id !== action.payload.post._id
         ),
@@ -65,14 +61,12 @@ export function postsReducer(
       return {
         ...state,
         pending: true,
-        posts: state.isSearch ? [] : state.posts,
       };
     }
     case ACTION_TYPE.GET_POSTS_SUCCESS: {
       return {
         ...state,
         pending: false,
-        isSearch: false,
         posts: [...state.posts, ...action.payload.posts],
         error: null,
         size: action.payload.size,
@@ -89,7 +83,7 @@ export function postsReducer(
       return {
         ...state,
         pending: false,
-        isSearch: true,
+        firstInit: true,
         posts: [...state.posts, ...action.payload.posts],
         error: null,
         size: action.payload.size,
