@@ -1,0 +1,3 @@
+export const SEARCH_REQUEST = '@SEARCHREQUEST';
+export const SEARCH_SUCCESS = '@SEARCHSUCCESS';
+export const SEARCH_FAIL = '@SEARCHFAIL';
