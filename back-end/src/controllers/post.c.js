@@ -13,6 +13,14 @@ export const getAllPosts = (req, res) => {
           as: "author",
         },
       },
+      {
+        $lookup: {
+          from: "comments",
+          localField: "id",
+          foreignField: "post",
+          as: "comments",
+        },
+      },
     ])
     .then((posts) => {
       return res.status(200).json(successResponse({ posts }));
@@ -23,23 +31,27 @@ export const getAllPosts = (req, res) => {
 export const getPostById = async (req, res) => {
   const id = Number(req.params.id);
   return postModel
-    .findOne({ id })
-    .then((post) =>
-      userModel.findOne({ id: post.owner }).then((author) =>
-        res.status(200).json(
-          successResponse({
-            post: {
-              id: post.id,
-              owner: post.owner,
-              title: post.title,
-              content: post.content,
-              created_at: post.created_at,
-              tags: post.tags,
-              author,
-            },
-          })
-        )
-      )
-    )
+    .aggregate([
+      { $match: { id } },
+      {
+        $lookup: {
+          from: "users",
+          localField: "owner",
+          foreignField: "id",
+          as: "author",
+        },
+      },
+      {
+        $lookup: {
+          from: "comments",
+          localField: "id",
+          foreignField: "post",
+          as: "comments",
+        },
+      },
+    ])
+    .then((posts) => {
+      return res.status(200).json(successResponse({ post: posts[0] }));
+    })
     .catch((e) => res.status(500).json(failedResponse(e.message)));
 };
