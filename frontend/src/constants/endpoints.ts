@@ -8,3 +8,5 @@ export const ENDPOINTS = {
     FIND_ALL_COMMENTS_BY_POST_ID: ({ postID, page }: { postID: number; page: number }) =>
         `/comments?postID=${postID}&page=${page}`,
 };
+
+export const API_URL = import.meta.env.VITE_API_URL;
