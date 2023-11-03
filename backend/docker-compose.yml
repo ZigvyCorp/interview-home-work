@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+    postgres:
+        image: postgres:16-alpine
+        restart: always
+        environment:
+            - POSTGRES_USER=root
+            - POSTGRES_PASSWORD=1234567890
+            - POSTGRES_DB=interview_homework
+        volumes:
+            - postgress-data:/var/lib/postgressql/data
+        ports:
+            - 5432:5432
+volumes:
+    postgress-data:
