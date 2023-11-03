@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { PostInitType } from "../types/postType";
-import posts from './../../data/posts.json';
 
 const initialState: PostInitType = {
   postList: [],
