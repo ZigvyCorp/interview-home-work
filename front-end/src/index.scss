@@ -1,4 +1,7 @@
 @import "bootstrap/dist/css/bootstrap.css";
+:root {
+  --header-height: 50px;
+}
 
 body {
   .hover-text {
@@ -13,11 +16,42 @@ body {
   }
 
   .avatar {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
   }
 
   .text-gray {
     color: gray;
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
+    background: #ddd;
+  }
+
+  .nav-blog {
+    background: #ddd;
+    & ::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-right: 2px solid;
+      border-bottom: 2px solid;
+      background: #ddd;
+      top: 97%;
+      left: 50%;
+      transform: translateX(-50%);
+      rotate: 45deg;
+    }
+  }
+
+  .header {
+    height: var(--header-height);
+  }
+
+  .search-bar {
+    margin-top: calc(var(--header-height) + 30px);
   }
 }
