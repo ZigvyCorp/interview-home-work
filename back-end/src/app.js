@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { userRouter } from "./routers/user.r.js";
+import { postRouter } from "./routers/post.r.js";
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ const startServer = () => {
   app.use(express.urlencoded({ extended: true }));
 
   app.use("/api/users", userRouter);
+  app.use("/api/posts", postRouter);
 
   app.get("/", (req, res) => {
     res.json({ message: "success" });
