@@ -24,7 +24,10 @@ export interface PostsState {
   posts: IPost[];
   error: string | null;
   size: number;
+  isSearch: boolean;
 }
+
+// Returned payload
 
 export interface GetPostsSuccessPayload {
   posts: IPost[];
@@ -43,6 +46,16 @@ export interface GetEditedPostPayload {
   post: IPost;
 }
 
+export interface GetDeletedPostPayload {
+  post: IPost;
+}
+export interface GetSearchPostPayload {
+  posts: IPost[];
+  size: number;
+}
+
+// Request
+
 export interface CreatePostRequest {
   type: typeof ACTION_TYPE.ADD_POST_REQUEST;
   data: IPostService;
@@ -54,10 +67,6 @@ export interface EditPostRequest {
   id: string;
 }
 
-export interface GetDeletedPostPayload {
-  post: IPost;
-}
-
 export interface GetPostsRequest {
   type: typeof ACTION_TYPE.GET_POSTS_REQUEST;
   pageNumber: Number;
@@ -67,6 +76,14 @@ export interface DeletePostRequest {
   type: typeof ACTION_TYPE.DELETE_POST_REQUEST;
   id: string;
 }
+
+export interface SearchPostsRequest {
+  type: typeof ACTION_TYPE.SEARCH_POSTS_REQUEST;
+  pageNumber: number;
+  title: string;
+}
+
+// Returned data
 
 export interface GetPostsSuccess {
   type: typeof ACTION_TYPE.GET_POSTS_SUCCESS;
@@ -93,6 +110,11 @@ export interface GetEditedPost {
   payload: GetEditedPostPayload;
 }
 
+export interface GetSearchedPosts {
+  type: typeof ACTION_TYPE.SEARCHED_POSTS;
+  payload: GetSearchPostPayload;
+}
+
 export type PostsActions =
   | GetPostsRequest
   | GetPostsSuccess
@@ -102,4 +124,6 @@ export type PostsActions =
   | DeletePostRequest
   | GetDeletedPost
   | EditPostRequest
-  | GetEditedPost;
+  | GetEditedPost
+  | SearchPostsRequest
+  | GetSearchedPosts;

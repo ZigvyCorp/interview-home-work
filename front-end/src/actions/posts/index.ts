@@ -27,6 +27,15 @@ export const getPostsRequest = (pageNumber: Number): TYPE.GetPostsRequest => ({
   pageNumber: pageNumber,
 });
 
+export const searchPostsRequest = (
+  pageNumber: number,
+  title: string
+): TYPE.SearchPostsRequest => ({
+  type: ACTION_TYPE.SEARCH_POSTS_REQUEST,
+  pageNumber: pageNumber,
+  title: title,
+});
+
 export const getPostsSuccess = (
   payload: TYPE.GetPostsSuccessPayload
 ): TYPE.GetPostsSuccess => ({
@@ -59,5 +68,12 @@ export const getEditedPost = (
   payload: TYPE.GetEditedPostPayload
 ): TYPE.GetEditedPost => ({
   type: ACTION_TYPE.EDITED_POST,
+  payload,
+});
+
+export const getSearchedPosts = (
+  payload: TYPE.GetSearchPostPayload
+): TYPE.GetSearchedPosts => ({
+  type: ACTION_TYPE.SEARCHED_POSTS,
   payload,
 });

@@ -5,7 +5,7 @@ import "./App.css";
 import BlogHeader from "./components/BlogHeader";
 import PostContainer from "./components/PostContainer";
 import { useDispatch, useSelector } from "react-redux";
-import { getPostsRequest } from "./actions/posts";
+import { getPostsRequest, searchPostsRequest } from "./actions/posts";
 import {
   getPostsPendingSelector,
   getPostsSelector,
@@ -19,15 +19,12 @@ function App() {
   const posts = useSelector(getPostsSelector);
   const pending = useSelector(getPostsPendingSelector);
   const size = useSelector(getPostsSizeSelector);
+  const [search, setSearch] = React.useState<string>("");
   const { token } = theme.useToken();
 
   React.useLayoutEffect(() => {
     dispatch(getPostsRequest(0));
   }, [dispatch]);
-
-  React.useEffect(() => {
-    if (posts.length === 0 && size > 0) dispatch(getPostsRequest(0));
-  }, [dispatch, posts, size]);
 
   return (
     <ConfigProvider>
@@ -48,7 +45,7 @@ function App() {
           vertical
           gap={12}
         >
-          <BlogHeader />
+          <BlogHeader search={search} setSearch={setSearch} />
 
           <Layout
             style={{
@@ -63,7 +60,11 @@ function App() {
             postLength={posts.length}
             size={size}
             pending={pending}
-            onClick={() => dispatch(getPostsRequest(posts.length))}
+            onClick={() => {
+              if (search.length > 0)
+                dispatch(searchPostsRequest(posts.length, search));
+              else dispatch(getPostsRequest(posts.length));
+            }}
           />
         </Flex>
       </Layout>

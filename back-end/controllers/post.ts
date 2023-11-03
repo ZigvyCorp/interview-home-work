@@ -32,6 +32,57 @@ const getCommentsByPost = async (req: Request, res: Response) => {
   }
 };
 
+const searchPosts = async (req: Request, res: Response) => {
+  try {
+    const { title, limit, skip } = req.query;
+
+    const countPosts = await Post.find({
+      title: { $regex: title, $options: "i" },
+    }).countDocuments();
+
+    if (!limit || !skip) {
+      const findPosts = await Post.find({
+        title: { $regex: title, $options: "i" },
+      })
+        .populate("owner", "name")
+        .sort({
+          created_at: -1,
+        });
+
+      return res.status(200).json({
+        message: "Get posts successfully",
+        data: findPosts,
+        size: countPosts,
+      });
+    }
+
+    const parsedLimit = parseInt(limit.toString());
+    const parsedSkip = parseInt(skip.toString());
+
+    const findPosts = await Post.find({
+      title: { $regex: title, $options: "i" },
+    })
+      .sort({
+        createdAt: -1,
+      })
+      .populate("owner", "name")
+      .skip(parsedSkip)
+      .limit(parsedLimit);
+
+    return res.status(200).json({
+      message: "Search posts successfully",
+      data: findPosts,
+      size: countPosts,
+    });
+  } catch (error) {
+    if (error instanceof Error)
+      return res.status(500).json({
+        message: "Internal server error",
+        error,
+      });
+  }
+};
+
 const getPosts = async (req: Request, res: Response) => {
   try {
     const { limit, skip } = req.query;
@@ -202,4 +253,5 @@ export default {
   createPost,
   updatePost,
   deletePost,
+  searchPosts,
 };

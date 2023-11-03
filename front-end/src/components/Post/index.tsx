@@ -1,10 +1,7 @@
 import React from "react";
 
 import { Button, Flex, Typography, Card, Space, Collapse, theme } from "antd";
-import {
-  CaretRightOutlined,
-  DeleteOutlined,
-} from "@ant-design/icons";
+import { CaretRightOutlined, DeleteOutlined } from "@ant-design/icons";
 import { IPost } from "../../types/posts";
 import type { CSSProperties } from "react";
 
@@ -14,8 +11,11 @@ import Comment from "../Comment";
 import { getCommentsSelector } from "../../store/comments/selectors";
 import { getCommentsByPostIdRequest } from "../../actions/comments";
 import { IComment } from "../../types/comments";
-import { deletePostRequest } from "../../actions/posts";
-import { getPostsPendingSelector } from "../../store/posts/selectors";
+import { deletePostRequest, getPostsRequest } from "../../actions/posts";
+import {
+  getPostsPendingSelector,
+  getPostsSelector,
+} from "../../store/posts/selectors";
 import EditPostButton from "../EditPostButton";
 
 const getItems: (
@@ -41,9 +41,9 @@ function Post({ _id, title, owner, createdAt, tags, content }: IPost) {
   const { token } = theme.useToken();
   const dispatch = useDispatch();
   const comments = useSelector(getCommentsSelector);
+  const posts = useSelector(getPostsSelector);
   const pending = useSelector(getPostsPendingSelector);
   const parsedComments = comments.filter((comment) => comment.post === _id);
-
 
   const panelStyle: React.CSSProperties = {
     marginBottom: token.size,
@@ -78,6 +78,7 @@ function Post({ _id, title, owner, createdAt, tags, content }: IPost) {
               disabled={pending}
               onClick={() => {
                 dispatch(deletePostRequest(_id));
+                if (posts.length === 1) window.location.reload();
               }}
               icon={<DeleteOutlined />}
             >

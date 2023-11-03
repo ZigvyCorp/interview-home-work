@@ -6,6 +6,7 @@ const initialState: TYPE.PostsState = {
   posts: [],
   error: null,
   size: 0,
+  isSearch: false,
 };
 
 export function postsReducer(
@@ -64,12 +65,31 @@ export function postsReducer(
       return {
         ...state,
         pending: true,
+        posts: state.isSearch ? [] : state.posts,
       };
     }
     case ACTION_TYPE.GET_POSTS_SUCCESS: {
       return {
         ...state,
         pending: false,
+        isSearch: false,
+        posts: [...state.posts, ...action.payload.posts],
+        error: null,
+        size: action.payload.size,
+      };
+    }
+    case ACTION_TYPE.SEARCH_POSTS_REQUEST: {
+      return {
+        ...state,
+        pending: true,
+        posts: action.pageNumber === 0 ? [] : state.posts,
+      };
+    }
+    case ACTION_TYPE.SEARCHED_POSTS: {
+      return {
+        ...state,
+        pending: false,
+        isSearch: true,
         posts: [...state.posts, ...action.payload.posts],
         error: null,
         size: action.payload.size,

@@ -6,6 +6,7 @@ import {
   getCreatedPost,
   getDeletedPost,
   getEditedPost,
+  getSearchedPosts,
 } from "../../actions/posts";
 import * as TYPE from "../../types/posts";
 import * as api from "../../api/posts";
@@ -19,6 +20,9 @@ const deletePost = (data: string) => api.deletePost<TYPE.IPost>(data);
 
 const editPost = (data: TYPE.IPostService, id: string) =>
   api.editPost<TYPE.IPost>(data, id);
+
+const searchPosts = (pageNumber: number, title: string) =>
+  api.searchPosts<TYPE.IPost[]>(pageNumber, title);
 
 function* getPostsSaga(action: TYPE.GetPostsRequest) {
   try {
@@ -88,13 +92,38 @@ function* deletePostSaga(action: TYPE.DeletePostRequest) {
 
 function* editPostSaga(action: TYPE.EditPostRequest) {
   try {
-    console.log(action.data, action.id);
-
     const response: TYPE.IPost = yield call(editPost, action.data, action.id);
 
     yield put(
       getEditedPost({
         post: response,
+      })
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      yield put(
+        getPostsFailure({
+          error: error.message,
+        })
+      );
+    }
+  }
+}
+
+function* searchPostsSaga(action: TYPE.SearchPostsRequest) {
+  try {
+    const {
+      data,
+      size,
+    }: {
+      data: TYPE.IPost[];
+      size: number;
+    } = yield call(searchPosts, action.pageNumber, action.title);
+
+    yield put(
+      getSearchedPosts({
+        posts: data,
+        size: size,
       })
     );
   } catch (error) {
@@ -114,6 +143,7 @@ function* postsSaga() {
     takeLatest(ACTION_TYPE.ADD_POST_REQUEST, createPostSaga),
     takeLatest(ACTION_TYPE.EDIT_POST_REQUEST, editPostSaga),
     takeLatest(ACTION_TYPE.DELETE_POST_REQUEST, deletePostSaga),
+    takeLatest(ACTION_TYPE.SEARCH_POSTS_REQUEST, searchPostsSaga),
   ]);
 }
 

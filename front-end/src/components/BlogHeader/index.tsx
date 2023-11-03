@@ -2,12 +2,29 @@ import React from "react";
 
 import { Header } from "antd/es/layout/layout";
 
-import { Flex, Typography, theme } from "antd";
+import { Flex, Input, Typography, theme } from "antd";
 
 import { HighlightOutlined } from "@ant-design/icons";
+import { useDispatch } from "react-redux";
+import { getPostsRequest, searchPostsRequest } from "../../actions/posts";
 
-function BlogHeader() {
+const { Search } = Input;
+
+function BlogHeader({
+  search,
+  setSearch,
+}: {
+  search: string;
+  setSearch: React.Dispatch<React.SetStateAction<string>>;
+}) {
   const { token } = theme.useToken();
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    if (search.length === 0) dispatch(getPostsRequest(0));
+    else dispatch(searchPostsRequest(0, search));
+  }, [dispatch, search]);
+
   return (
     <Header
       style={{
@@ -29,22 +46,34 @@ function BlogHeader() {
         justify="space-between"
         align="center"
       >
-        <Typography.Title
-          level={3}
-          style={{
-            margin: 0,
-          }}
-        >
-          <HighlightOutlined />
-        </Typography.Title>
-        <Typography.Title
-          level={5}
-          style={{
-            margin: 0,
-          }}
-        >
-          Blogs
-        </Typography.Title>
+        <Flex gap={"middle"} align="center">
+          <Typography.Title
+            level={3}
+            style={{
+              margin: 0,
+            }}
+          >
+            <HighlightOutlined />
+          </Typography.Title>
+          <Typography.Title
+            level={5}
+            style={{
+              margin: 0,
+              flexShrink: 0,
+            }}
+          >
+            Blogs
+          </Typography.Title>
+
+          <Search
+            placeholder="Search by title"
+            allowClear
+            enterButton="Search"
+            size="middle"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </Flex>
+
         <Typography.Title
           level={5}
           style={{

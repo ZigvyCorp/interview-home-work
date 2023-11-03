@@ -16,6 +16,17 @@ export const getPosts = async <Data>(pageNumber: Number) => {
   } as const;
 };
 
+export const searchPosts = async <Data>(pageNumber: Number, title: string) => {
+  const promise = await API.get<IData<Data>>(
+    `/api/posts/search?title=${title}&skip=${pageNumber}&limit=5`
+  );
+
+  return {
+    data: promise.data.data,
+    size: promise.data.size,
+  } as const;
+};
+
 export const createPost = async <Data>(data: IPostService) => {
   const promise = await API.post<IData<Data>>(`/api/posts/create`, data);
   return promise.data.data;
