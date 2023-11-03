@@ -1,0 +1,19 @@
+.card-post {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+
+    .card-title {
+        font-size: 39px;
+        font-weight: 500;
+        margin-right: 30px;
+    }
+
+    .card-infomation {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+}
