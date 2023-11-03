@@ -1,42 +1,72 @@
-[
-  {
-    "id": 1,
-    "username": "meowmeow",
-    "password": "1234567890",
-    "name": "Cat face",
-    "dob": "01/06/2016",
-    "created_at": 1576506719083
+[{
+  "_id": {
+    "$oid": "65451ea2656deb4fc3b6b5f6"
   },
-  {
-    "id": 2,
-    "username": "angrybird",
-    "password": "!@#$%^&*()",
-    "name": "Angry bird",
-    "dob": "13/12/2016",
-    "created_at": 1576506719083
+  "name": "Red",
+  "email": "Red@gmail.com",
+  "avatarUrl": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+  "createdAt": {
+    "$numberLong": "1699028642194"
   },
-  {
-    "id": 3,
-    "username": "happydog",
-    "password": "Zigvy~~~",
-    "name": "",
-    "dob": "",
-    "created_at": 1576506719083
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65452098656deb4fc3b6b5fc"
   },
-  {
-    "id": 4,
-    "username": "admin",
-    "password": "admin",
-    "name": "",
-    "dob": "",
-    "created_at": 1576506719083
+  "name": "Blue",
+  "email": "blue@gmail.com",
+  "avatarUrl": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+  "createdAt": {
+    "$numberLong": "1699029144451"
   },
-  {
-    "id": 5,
-    "username": "user",
-    "password": "user",
-    "name": "",
-    "dob": "",
-    "created_at": 1576506719083
-  }
-]
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6545209f656deb4fc3b6b5fe"
+  },
+  "name": "Green",
+  "email": "green@gmail.com",
+  "avatarUrl": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+  "createdAt": {
+    "$numberLong": "1699029151402"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "654520a5656deb4fc3b6b600"
+  },
+  "name": "Yellow",
+  "email": "yellow@gmail.com",
+  "avatarUrl": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+  "createdAt": {
+    "$numberLong": "1699029157750"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65452103656deb4fc3b6b602"
+  },
+  "name": "Black",
+  "email": "black@gmail.com",
+  "avatarUrl": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+  "createdAt": {
+    "$numberLong": "1699029251470"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6545210a656deb4fc3b6b604"
+  },
+  "name": "White",
+  "email": "white@gmail.com",
+  "avatarUrl": "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
+  "createdAt": {
+    "$numberLong": "1699029258434"
+  },
+  "__v": 0
+}]
