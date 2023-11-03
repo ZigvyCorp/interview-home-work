@@ -1,0 +1,8 @@
+# Front-End
+/frontend/.gitignore
+
+# Back-End
+/backend/.gitignore
+.DS_Store
+/node_modules
+

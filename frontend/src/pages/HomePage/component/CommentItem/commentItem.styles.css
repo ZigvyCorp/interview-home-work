@@ -1,0 +1,20 @@
+.comment-container {
+  margin: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+.author-comment-header {
+  display: flex;
+  flex-direction: row;
+}
+.author-comment-name {
+}
+.comment-time {
+}
+.comment-content {
+    margin: 15px;
+}
+.button-reply-comment {
+}

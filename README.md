@@ -1,3 +1,8 @@
+# MY NOTE
+Please run follow command to start project
+```js
+  npm run start:both
+```
 # Zigvy Technical Assignment Interview
 
 ## Description
