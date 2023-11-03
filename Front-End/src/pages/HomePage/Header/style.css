@@ -1,0 +1,23 @@
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1677ff;
+    color: black;
+    border-radius: 2rem 0 2rem 0;
+    height: 4rem;
+    box-shadow: inset 6px 6px 10px 0 rgba(2, 245, 233, 1), inset -6px -6px 10px 0 rgba(9, 0, 0, 1);
+    font-size: large;
+}
+
+.nav-hover{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0505b4;
+    color: black;
+    border-radius: 2rem 0 2rem 0;
+    height: 4rem;
+    box-shadow: inset 6px 6px 10px 0 rgba(2, 245, 233, 1), inset -6px -6px 10px 0 rgba(9, 0, 0, 1);
+    font-size: large;
+}
