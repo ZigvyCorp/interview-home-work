@@ -22,13 +22,13 @@ function* workerGetPostById({ id }) {
 }
 
 function fetchAllPosts() {
-  return fetch("https://jsonplaceholder.typicode.com/Posts").then((res) =>
-    res.json()
+  return fetch(`${process.env.REACT_APP_BE_URL}/api/posts`).then((res) =>
+    res.json().then((res) => res.data.posts)
   );
 }
 
 function fetchPostById(id) {
-  return fetch(`https://jsonplaceholder.typicode.com/Posts/${id}`).then((res) =>
-    res.json()
+  return fetch(`${process.env.REACT_APP_BE_URL}/api/posts/${id}`).then((res) =>
+    res.json().then((res) => res.data.post)
   );
 }

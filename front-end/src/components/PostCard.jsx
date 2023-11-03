@@ -22,14 +22,14 @@ export default function PostCard({ post }) {
 
       <div className="d-flex flex-row justify-content-between align-items-center">
         <div className="d-flex flex-column">
-          <span>Author: {post?.author.name || "John Smith"}</span>
+          <span>Author: {post?.author[0]?.username || "Author name"}</span>
           <span>Created: {time}</span>
         </div>
         <div>
           <div className="d-flex flex-row gap-2">
             {post.tags.map((tag, index) => (
               <div
-                id={index}
+                key={index}
                 className={`border rounded p-1 border-${randColor()}`}>
                 {tag}
               </div>

@@ -1,21 +1,19 @@
 import { useEffect } from "react";
-import PostCard from "../components/PostCard";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "../redux/actions";
-import { POSTS } from "../mock-data";
+import PostCard from "../components/PostCard";
 import Header from "../components/Header";
 
 export default function HomePage() {
-  // const dispatch = useDispatch();
-  // const posts = useSelector((state) => state.posts);
+  const dispatch = useDispatch();
+  const posts = useSelector((state) => state.posts);
 
-  // useEffect(() => {
-  //   dispatch(getAllPosts());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getAllPosts());
+  }, [dispatch]);
 
   return (
-    <div>
+    <div className="mb-5">
       <Header title="Posts" />
 
       <div className="search-bar container py-2 mb-3">
@@ -25,7 +23,7 @@ export default function HomePage() {
       </div>
 
       <div className="d-flex flex-column gap-3">
-        {POSTS.map((post, index) => (
+        {posts.map((post, index) => (
           <PostCard post={post} key={index} />
         ))}
       </div>
