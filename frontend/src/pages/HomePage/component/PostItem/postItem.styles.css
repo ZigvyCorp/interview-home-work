@@ -1,0 +1,38 @@
+.post-item-container {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 60vw;
+  text-align: left;
+}
+.post-info {
+}
+.post-title-text {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.post-author {
+  font-style: italic;
+}
+
+.post-created-at {
+  font-size: 12px;
+  color: #888;
+}
+
+.post-content {
+  margin-top: 10px;
+}
+
+.post-number-comment {
+  font-size: 14px;
+  color: #007bff;
+  margin-top: 10px;
+}
+
+/* Style for CommentItem component */
+/* You can add specific styles for CommentItem in its own CSS file */
