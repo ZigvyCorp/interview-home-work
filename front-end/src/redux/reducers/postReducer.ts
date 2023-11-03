@@ -1,27 +1,26 @@
 import { PayloadAction } from "../../interfaces/BaseReduxAction";
+import { PaginationResponse } from "../../interfaces/response/PaginationResponse";
 import { PostResponse } from "../../interfaces/response/PostResponse";
+import { GET_POSTS } from "../actions/postAction";
 
-interface State {
-    posts: PostResponse[]
+export interface PostInitialState {
+    posts: PostResponse[];
+    count: number;
 }
 
-export const initialState: State = {
-    posts: []
+export const initialState: PostInitialState = {
+    posts: [],
+    count: 0
   };
 
 
-const postReducer =  (state = initialState, actions: PayloadAction<PostResponse[]>) => {
+const postReducer =  (state = initialState, actions: PayloadAction<PaginationResponse<PostResponse>>) => {
     switch(actions.type){
-        case "LOGIN_PAGE_INIT":
-        return {...state, errors:{}};
-        case "GET_ALL_POST": {
-            state.posts = actions.payload;
+        case GET_POSTS: {
+            state.posts = actions.payload.rows;
+            state.count = actions.payload.count
             return {...state, requesting: true};
         }
-        case "LOGIN_SUCCESS":
-            return {...state, successful: true, user:{...actions.payload}};
-        case "LOGIN_ERROR":
-            return {...state, successful: false, errors:{...actions.error}};
         default:        
             return state;
     }

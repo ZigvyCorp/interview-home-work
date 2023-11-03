@@ -1,40 +1,25 @@
-import axios from "axios";
 import { call, put, takeLatest } from "redux-saga/effects";
+import { PostActionPayload } from "../../interfaces/ReduxPayload";
+import { BaseHttpResponse } from "../../interfaces/response/BaseHttpResponse";
+import { PaginationResponse } from "../../interfaces/response/PaginationResponse";
+import { PostResponse } from "../../interfaces/response/PostResponse";
+import { executeGetWithPagination } from "../../utils/APIUtil";
+import { GET_POSTS, GET_POSTS_SAGA } from "../actions/postAction";
 
-interface IData {
-  userId: number,
-  id: number,
-  title: string,
-  body: string
-}
-
-const apiCall = () => {
-  return axios.get('https://jsonplaceholder.typicode.com/posts')
-    .then(response => response.data)
-    .catch(error => {
-      throw error;
-    });
+const getAllPosts = function*(pagination: PostActionPayload): Generator<any, any, BaseHttpResponse<PaginationResponse<PostResponse>>> {
+  const { data } = yield executeGetWithPagination('/post', pagination);
+  return data;
 };
 
-function loginCall() {
-  console.log("Fetch");
-  return axios.get('https://jsonplaceholder.typicode.com/posts')
-    .then(response => response.data)
-    .catch(error => {
-      throw error;
-    });
-}
-
-const fetchData = function* async({ payload }: { payload: any }): Generator<any, any, IData[]> {
+const fetchData = function*async({ pagination }: { pagination: PostActionPayload }): Generator<any, any, PaginationResponse<PostResponse>> {
   try {
-    let response = yield call(loginCall);
-    yield put({ type: "GET_ALL_POST", payload: response });
+    const { rows, count } = yield call(getAllPosts, pagination);
+    yield put({ type: GET_POSTS, payload: { rows, count }} );
   } catch (err) {
     console.log(err);
-
   }
 };
 
-export const watchFetchData = function* () {
-  yield takeLatest<any>('LOGIN_REQUESTING', fetchData);
+export const getPosts = function*() {
+  yield takeLatest<any>(GET_POSTS_SAGA, fetchData);
 };

@@ -8,5 +8,6 @@ export interface PostResponse {
     content: string;
     createdAt: number;
     tags: string[];
+    totalComments: number;
     comments: CommentResponse[];
 }

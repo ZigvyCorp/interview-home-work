@@ -1,22 +1,25 @@
 import React from "react";
+import Post from "./pages/Post";
+import PostDetail from "./pages/PostDetail";
 
 export const hello = 'Hello'
 
 export interface IRoute {
     name: string
     path: string;
-    component: React.LazyExoticComponent<React.ComponentType<any>>;
+    component: () => JSX.Element;
 };
 
 export const routes: IRoute[] = [
     {
         name: 'Post',
-        path: '/post',
-        component: React.lazy(() => import('./pages/Post'))
-    },
+        path: '/',
+        component: Post
+    }
+    ,
     {
-        name: 'Comment',
-        path: '/comment',
-        component: React.lazy(() => import('./pages/Comment'))
+        name: 'Post Detail',
+        path: '/post/:id',
+        component: PostDetail
     }
 ]

@@ -1,6 +1,4 @@
-import { randomInt } from "./CommonUtil";
-
-export {};
+export { };
 
 declare global {
     interface String {

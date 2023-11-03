@@ -1,5 +1,6 @@
 import { all } from 'redux-saga/effects';
-import { watchFetchData } from './postSaga';
+import { getPosts } from './postSaga';
+import { getPost } from './postDetailSaga';
 export function* rootSaga() {
-    yield all([watchFetchData()])
+    yield all([getPosts(), getPost()])
 }

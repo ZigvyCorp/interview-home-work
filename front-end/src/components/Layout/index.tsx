@@ -1,9 +1,9 @@
-import { Suspense, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Route, Routes, redirect, useLocation } from 'react-router';
-import { routes } from '../../routes';
 import NotFound from '../../pages/NotFound';
-import Header from './Header';
+import { routes } from '../../routes';
 import Container from '../Container';
+import Header from './Header';
 
 const Layout = () => {
 
@@ -16,22 +16,20 @@ const Layout = () => {
     }, [location.pathname])
 
     return (
-        <>
+        <div>
             <Header />
-            <Suspense fallback={<div>Loading...</div>}>
-                <div className="w-full h-full overflow-auto text-white">
-                    <Container>
-                        <Routes>
-                            <Route path='*' element={<NotFound />} />
-                            {routes.map((r) => {
-                                const Component = r.component;
-                                return <Route key={r.name} path={r.path} element={<Component />} />;
-                            })}
-                        </Routes>
-                    </Container>
-                </div>
-            </Suspense>
-        </>
+            <div className="w-full h-full my-12 overflow-auto text-white">
+                <Container>
+                    <Routes>
+                        <Route path='*' element={<NotFound />} />
+                        {routes.map((r) => {
+                            const Component = r.component;
+                            return <Route key={r.name} path={r.path} element={<Component />} />;
+                        })}
+                    </Routes>
+                </Container>
+            </div>
+        </div>
     )
 }
 

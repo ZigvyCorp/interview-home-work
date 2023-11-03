@@ -1,30 +1,11 @@
-export const LOGIN_REQUESTING = 'LOGIN_REQUESTING';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_ERROR = 'LOGIN_ERROR';
-export const LOGIN_PAGE_INIT = 'LOGIN_PAGE_INIT';
+import { PaginationRequest } from "../../interfaces/request/PaginationRequestDto";
 
-export function loginPageInit() {
-    return {
-        type: LOGIN_REQUESTING,
-    };
-}
+export const GET_POSTS = "GET_POSTS";
+export const GET_POSTS_SAGA = "GET_POSTS_SAGA";
 
-export function loginRequest(payload: any) {
+export function getAllPosts(pagination: PaginationRequest) {
     return {
-        type: LOGIN_REQUESTING,
-        payload
-    };
-}
-
-export function loginError(error: any) {
-    return {
-        type: LOGIN_ERROR,
-        error,
-    };
-}
-
-export function loginSuccess() {
-    return {
-        type: LOGIN_SUCCESS,
+        type: GET_POSTS_SAGA,
+        pagination
     };
 }

@@ -13,8 +13,8 @@ const User: React.FC<IUserProps> = (props) => {
 
   return (
     <div className={clsx('flex justify-end items-center whitespace-nowrap', className)}>
-        <Avatar size={32} icon={<UserOutlined rev={undefined} />} />    
-        <span className='ml-2 text-base font-semibold'>Trần Khang</span>    
+        <Avatar size={32} icon={<UserOutlined rev={undefined} />} className='bg-white'/>    
+        <span className='ml-2 text-base font-semibold text-white'>Trần Khang</span>    
     </div>
   )
 }

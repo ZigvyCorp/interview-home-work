@@ -7,14 +7,6 @@ import './utils/ArrayUtils';
 import './utils/StringUtil'
 
 const App = () => {
-  const dispatch = useDispatch();
-
-  const fetchData = () => {
-    dispatch({ type: 'LOGIN_REQUESTING' })
-  }
-
-  console.log(process.env.REACT_APP_API_ENDPOINT);
-
   return (
     <BrowserRouter>
       <Layout />

@@ -3,7 +3,7 @@ import { StatusCodes } from 'http-status-codes';
 import { toast } from 'react-hot-toast';
 
 export const API = axios.create({
-    baseURL: `${process.env.API_ENDPOINT}/api`,
+    baseURL: `${process.env.REACT_APP_API_ENDPOINT}/api`,
 });
 
 API.interceptors.response.use(

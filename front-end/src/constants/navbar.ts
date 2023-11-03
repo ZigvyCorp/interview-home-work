@@ -6,10 +6,6 @@ interface INavbarRoute {
 export const NavbarRoutes: INavbarRoute[] = [
     {
         name: 'Post',
-        path: '/post'
-    },
-    {
-        name: 'Comment',
-        path: '/comment'
+        path: '/'
     }
 ]

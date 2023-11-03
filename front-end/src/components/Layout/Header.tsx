@@ -6,13 +6,15 @@ import User from './User'
 
 const Header = () => {
   return (
-    <Container>
-      <Flex justify='space-between' align='center' className='w-full bg-white'>
-        <Logo />
-        <NavBar />
-        <User />
-      </Flex>
-    </Container>
+    <div className='bg-primary'>
+      <Container>
+        <Flex justify='space-between' align='center' className='w-full'>
+          <Logo />
+          <NavBar />
+          <User />
+        </Flex>
+      </Container>
+    </div>
   )
 }
 
