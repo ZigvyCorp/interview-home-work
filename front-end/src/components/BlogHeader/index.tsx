@@ -17,6 +17,7 @@ function BlogHeader() {
         justifyContent: "center",
         width: "100%",
         minWidth: token.screenLG,
+        padding: 0,
       }}
     >
       <Flex

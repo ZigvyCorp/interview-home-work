@@ -3,5 +3,5 @@ export interface IPost {
   owner: string;
   title: string;
   content: string;
-  tags: string[];
+  tags: string;
 }

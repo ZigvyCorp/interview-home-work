@@ -3,3 +3,11 @@ export interface IData<T> {
   data: T;
   size: Number;
 }
+
+export interface FieldData {
+  name: string | number | (string | number)[];
+  value?: any;
+  touched?: boolean;
+  validating?: boolean;
+  errors?: string[];
+}

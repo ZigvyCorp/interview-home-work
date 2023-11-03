@@ -1,20 +1,22 @@
 import React from "react";
 
 import { Button, Flex, Typography, Card, Space, Collapse, theme } from "antd";
-import { CaretRightOutlined } from "@ant-design/icons";
+import {
+  CaretRightOutlined,
+  DeleteOutlined,
+} from "@ant-design/icons";
 import { IPost } from "../../types/posts";
 import type { CSSProperties } from "react";
 
 import type { CollapseProps } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Comment from "../Comment";
-import {
-  getCommentsErrorSelector,
-  getCommentsPendingSelector,
-  getCommentsSelector,
-} from "../../store/comments/selectors";
+import { getCommentsSelector } from "../../store/comments/selectors";
 import { getCommentsByPostIdRequest } from "../../actions/comments";
 import { IComment } from "../../types/comments";
+import { deletePostRequest } from "../../actions/posts";
+import { getPostsPendingSelector } from "../../store/posts/selectors";
+import EditPostButton from "../EditPostButton";
 
 const getItems: (
   panelStyle: CSSProperties,
@@ -35,11 +37,13 @@ const getItems: (
   },
 ];
 
-function Post({ _id, title, owner, created_at, tags, content }: IPost) {
+function Post({ _id, title, owner, createdAt, tags, content }: IPost) {
   const { token } = theme.useToken();
   const dispatch = useDispatch();
   const comments = useSelector(getCommentsSelector);
+  const pending = useSelector(getPostsPendingSelector);
   const parsedComments = comments.filter((comment) => comment.post === _id);
+
 
   const panelStyle: React.CSSProperties = {
     marginBottom: token.size,
@@ -53,55 +57,77 @@ function Post({ _id, title, owner, created_at, tags, content }: IPost) {
   }, [dispatch, _id]);
 
   return (
-    <Card
-      key={_id}
-      title={title}
-      headStyle={{
-        textAlign: "center",
-      }}
-    >
-      <Flex
+    <>
+      <Card
+        key={_id}
+        title={title}
         style={{
-          marginBottom: token.margin,
+          minWidth: token.screenLG,
         }}
-        justify="space-between"
-        align="flex-start"
+        extra={
+          <Space>
+            <EditPostButton
+              _id={_id}
+              content={content}
+              createdAt={createdAt}
+              owner={owner}
+              tags={tags}
+              title={title}
+            />
+            <Button
+              disabled={pending}
+              onClick={() => {
+                dispatch(deletePostRequest(_id));
+              }}
+              icon={<DeleteOutlined />}
+            >
+              Delete
+            </Button>
+          </Space>
+        }
       >
-        <Space direction="vertical">
-          <Typography>Author: {owner.name}</Typography>
-          <Typography>Created at: {created_at}</Typography>
-        </Space>
+        <Flex
+          style={{
+            marginBottom: token.margin,
+          }}
+          justify="space-between"
+          align="flex-start"
+        >
+          <Space direction="vertical">
+            <Typography>Author: {owner.name}</Typography>
+            <Typography>Created at: {createdAt}</Typography>
+          </Space>
+
+          <Space>
+            {tags.map((tag, i) => (
+              <Button key={i} type="default" size="small">
+                {tag}
+              </Button>
+            ))}
+          </Space>
+        </Flex>
 
         <Space>
-          {tags.map((tag) => (
-            <Button key={tag} type="default" size="small">
-              {tag}
-            </Button>
-          ))}
+          <Typography
+            style={{
+              textAlign: "justify",
+              marginBottom: "12px",
+            }}
+          >
+            {content}
+          </Typography>
         </Space>
-      </Flex>
 
-      <Space>
-        <Typography
-          style={{
-            textAlign: "justify",
-            marginBottom: "12px",
-          }}
-        >
-          {content}
-        </Typography>
-      </Space>
-
-      <Collapse
-        bordered={false}
-        // defaultActiveKey={[_id]}
-        expandIcon={({ isActive }) => (
-          <CaretRightOutlined rotate={isActive ? 90 : 0} />
-        )}
-        style={{ background: "#fff" }}
-        items={getItems(panelStyle, parsedComments, _id)}
-      />
-    </Card>
+        <Collapse
+          bordered={false}
+          expandIcon={({ isActive }) => (
+            <CaretRightOutlined rotate={isActive ? 90 : 0} />
+          )}
+          style={{ background: "#fff" }}
+          items={getItems(panelStyle, parsedComments, _id)}
+        />
+      </Card>
+    </>
   );
 }
 

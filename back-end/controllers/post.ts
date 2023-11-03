@@ -38,7 +38,9 @@ const getPosts = async (req: Request, res: Response) => {
     const countPosts = await Post.find({}).countDocuments();
 
     if (!limit || !skip) {
-      const findPosts = await Post.find({}).populate("owner", "name");
+      const findPosts = await Post.find({}).populate("owner", "name").sort({
+        created_at: -1,
+      });
 
       return res.status(200).json({
         message: "Get posts successfully",
@@ -51,9 +53,12 @@ const getPosts = async (req: Request, res: Response) => {
     const parsedSkip = parseInt(skip.toString());
 
     const findPosts = await Post.find({})
+      .sort({
+        createdAt: -1,
+      })
       .populate("owner", "name")
-      .limit(parsedLimit)
-      .skip((parsedSkip - 1) * parsedLimit);
+      .skip(parsedSkip)
+      .limit(parsedLimit);
 
     return res.status(200).json({
       message: "Get posts successfully",
@@ -104,14 +109,16 @@ const createPost = async (req: Request, res: Response) => {
         message: "User not found",
       });
 
+    const tagsArray = tags.trim().split(/\s*,\s*/);
+
     const newPost = new Post({
       owner: owner,
       title: title,
       content: content,
-      tags: tags,
+      tags: tagsArray,
     });
 
-    await newPost.save();
+    await newPost.save().then((res) => res.populate("owner"));
 
     return res.status(201).json({
       message: "Create post successfully",
@@ -138,6 +145,8 @@ const updatePost = async (req: Request, res: Response) => {
         message: "Post not found",
       });
 
+    const tagsArray = tags.trim().split(/\s*,\s*/);
+
     const updatedPost = await Post.findOneAndUpdate(
       {
         _id: id,
@@ -146,13 +155,13 @@ const updatePost = async (req: Request, res: Response) => {
         $set: {
           title: title,
           content: content,
-          tags: tags,
+          tags: tagsArray,
         },
       },
       {
         new: true,
       }
-    );
+    ).populate("owner");
 
     return res.status(200).json({
       message: "Update post successfully",

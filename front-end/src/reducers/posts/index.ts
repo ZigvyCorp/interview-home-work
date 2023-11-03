@@ -13,6 +13,53 @@ export function postsReducer(
   action: TYPE.PostsActions
 ): TYPE.PostsState {
   switch (action.type) {
+    case ACTION_TYPE.EDIT_POST_REQUEST: {
+      return {
+        ...state,
+        pending: true,
+      };
+    }
+    case ACTION_TYPE.EDITED_POST: {
+      return {
+        ...state,
+        pending: false,
+        posts: state.posts.map((post) =>
+          post._id === action.payload.post._id ? action.payload.post : post
+        ),
+      };
+    }
+    case ACTION_TYPE.ADD_POST_REQUEST: {
+      return {
+        ...state,
+        pending: true,
+      };
+    }
+    case ACTION_TYPE.ADDED_POST: {
+      const data = action.payload.post;
+
+      return {
+        ...state,
+        pending: false,
+        size: state.size + 1,
+        posts: [data, ...state.posts],
+      };
+    }
+    case ACTION_TYPE.DELETE_POST_REQUEST: {
+      return {
+        ...state,
+        pending: true,
+      };
+    }
+    case ACTION_TYPE.DELETED_POST: {
+      return {
+        ...state,
+        pending: false,
+        size: state.size - 1,
+        posts: state.posts.filter(
+          (post) => post._id !== action.payload.post._id
+        ),
+      };
+    }
     case ACTION_TYPE.GET_POSTS_REQUEST: {
       return {
         ...state,

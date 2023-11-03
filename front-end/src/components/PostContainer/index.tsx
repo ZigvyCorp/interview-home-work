@@ -5,45 +5,53 @@ import { Space, Spin, theme } from "antd";
 import {
   getPostsErrorSelector,
   getPostsSelector,
+  getPostsSizeSelector,
 } from "../../store/posts/selectors";
 
-import { useDispatch, useSelector } from "react-redux";
-import { getPostsRequest } from "../../actions/posts";
+import { useSelector } from "react-redux";
 import Post from "../Post";
 
 function PostContainer() {
-  const dispatch = useDispatch();
   const posts = useSelector(getPostsSelector);
+  const size = useSelector(getPostsSizeSelector);
   const error = useSelector(getPostsErrorSelector);
   const { token } = theme.useToken();
 
-  React.useEffect(() => {
-    dispatch(getPostsRequest(1));
-  }, [dispatch]);
+  if (error)
+    return (
+      <div
+        style={{
+          minHeight: token.screenXS,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <p>Something went wrong</p>
+      </div>
+    );
 
-  if (error) return <div>error</div>;
+  if (size === 0 && posts.length === 0) {
+    return (
+      <div
+        style={{
+          minHeight: token.screenXS,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Spin />
+      </div>
+    );
+  }
 
   return (
-    <>
-      {posts.length === 0 ? (
-        <div
-          style={{
-            minHeight: token.screenXS,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Spin size="large" />
-        </div>
-      ) : (
-        <Space direction="vertical">
-          {posts.map((post, i) => {
-            return <Post key={post._id} {...post} />;
-          })}
-        </Space>
-      )}
-    </>
+    <Space direction="vertical">
+      {posts.map((post, i) => {
+        return <Post key={post._id} {...post} />;
+      })}
+    </Space>
   );
 }
 

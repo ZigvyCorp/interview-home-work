@@ -1,15 +1,6 @@
 import React from "react";
 
-import {
-  Layout,
-  ConfigProvider,
-  FloatButton,
-  Modal,
-  Button,
-  theme,
-  Flex,
-} from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { Layout, ConfigProvider, theme, Flex } from "antd";
 import "./App.css";
 import BlogHeader from "./components/BlogHeader";
 import PostContainer from "./components/PostContainer";
@@ -17,32 +8,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPostsRequest } from "./actions/posts";
 import {
   getPostsPendingSelector,
+  getPostsSelector,
   getPostsSizeSelector,
 } from "./store/posts/selectors";
+import LoadMoreButton from "./components/LoadMoreButton";
+import AddPostButton from "./components/AddPostButton";
 
 function App() {
-  const [page, setPage] = React.useState<number>(1);
-  const size = useSelector(getPostsSizeSelector);
-  const pending = useSelector(getPostsPendingSelector);
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const { token } = theme.useToken();
   const dispatch = useDispatch();
+  const posts = useSelector(getPostsSelector);
+  const pending = useSelector(getPostsPendingSelector);
+  const size = useSelector(getPostsSizeSelector);
+  const { token } = theme.useToken();
+
+  React.useLayoutEffect(() => {
+    dispatch(getPostsRequest(0));
+  }, [dispatch]);
 
   React.useEffect(() => {
-    dispatch(getPostsRequest(page));
-  }, [page, dispatch]);
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+    if (posts.length === 0 && size > 0) dispatch(getPostsRequest(0));
+  }, [dispatch, posts, size]);
 
   return (
     <ConfigProvider>
@@ -71,29 +56,19 @@ function App() {
               backgroundColor: "#fff",
             }}
           >
-            <PostContainer />
+            {<PostContainer />}
           </Layout>
 
-          {!(size === page * 1) && !pending && (
-            <Button onClick={() => setPage((prev) => prev + 1)}>
-              Load More
-            </Button>
-          )}
+          <LoadMoreButton
+            postLength={posts.length}
+            size={size}
+            pending={pending}
+            onClick={() => dispatch(getPostsRequest(posts.length))}
+          />
         </Flex>
       </Layout>
 
-      <Modal
-        title="Create your post"
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Modal>
-
-      <FloatButton onClick={showModal} icon={<PlusOutlined />} />
+      <AddPostButton />
     </ConfigProvider>
   );
 }
