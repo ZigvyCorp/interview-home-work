@@ -1,0 +1,64 @@
+{
+	"info": {
+		"_postman_id": "ac4e6ef5-568d-49ee-9f14-676c52ce80cf",
+		"name": "BE_API_Test_Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28604158"
+	},
+	"item": [
+		{
+			"name": "getAllUser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/user/getAllUser"
+			},
+			"response": []
+		},
+		{
+			"name": "getAllUserById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/user/getAllUserById/1"
+			},
+			"response": []
+		},
+		{
+			"name": "getAllPost",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/post/getAllPost"
+			},
+			"response": []
+		},
+		{
+			"name": "getAllPostByUserId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/post/getAllPostByUserId/1"
+			},
+			"response": []
+		},
+		{
+			"name": "getAllComment",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/comment/getAllComment"
+			},
+			"response": []
+		},
+		{
+			"name": "getAllCommentByPostId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/comment/getAllCommentByPostId/1"
+			},
+			"response": []
+		}
+	]
+}
