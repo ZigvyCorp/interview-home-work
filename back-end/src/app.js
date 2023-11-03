@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { userRouter } from "./routers/user.r.js";
 import { postRouter } from "./routers/post.r.js";
+import { commentRouter } from "./routers/comment.r.js";
 
 dotenv.config();
 
@@ -15,7 +16,7 @@ mongoose
     startServer();
   })
   .catch((e) => {
-    console.log("Cannot connect to MongoDB. Error: " + e);
+    console.log("Cannot connect to MongoDB. Error: " + e.message);
   });
 
 const startServer = () => {
@@ -24,6 +25,7 @@ const startServer = () => {
 
   app.use("/api/users", userRouter);
   app.use("/api/posts", postRouter);
+  app.use("/api/comments", commentRouter);
 
   app.get("/", (req, res) => {
     res.json({ message: "success" });
