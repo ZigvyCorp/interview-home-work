@@ -1,7 +1,15 @@
-import axios from 'axios';
+import axios from "axios";
 
-const instance = axios.create({
-  baseURL: 'https://jsonplaceholder.typicode.com/', // Replace with your API base URL
+const config = {
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+  },
+};
+
+const api = axios.create({
+  baseURL: "http://localhost:3000/",
+  ...config,
 });
 
-export default instance;
+export default api;

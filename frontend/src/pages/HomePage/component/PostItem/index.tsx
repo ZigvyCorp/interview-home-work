@@ -1,16 +1,10 @@
 import { useState } from "react";
 import CommentItem from "../CommentItem";
 import "./postItem.styles.css";
+import { PostType } from "../../../../store/types/postType";
 
 type PostItemProps = {
-  data: {
-    id: number;
-    content: string;
-    created_at: string;
-    title: string;
-    tag: string[];
-    owner: number;
-  };
+  data: PostType;
 };
 function PostItem({ data }: PostItemProps) {
   const [isTouched, setTouched] = useState(false);
