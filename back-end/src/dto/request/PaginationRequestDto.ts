@@ -1,5 +1,5 @@
 type SortType = 'ASC' | 'DESC';
-export interface PaginationRequest {
+export class PaginationRequestDto {
     page: number;
     pageSize: number;
     order?: Record<string, SortType>;

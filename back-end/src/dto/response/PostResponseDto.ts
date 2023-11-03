@@ -1,19 +1,19 @@
 import { Expose } from "class-transformer";
-import { CommentResponse } from "./CommentResponseDto";
+import { CommentResponseDto } from "./CommentResponseDto";
 
-export class PostResponse {
+export class PostResponseDto {
     id: number;
     owner: number;
     ownerName: string;
     title: string;
     content: string;
-    createdAt: number;
+    createdAt: Date;
     tags: string[];
-    comments: CommentResponse[];
+    totalComments: number;
+    comments: CommentResponseDto[];
 }
 
 export class GetAllPostsResponseDto {
-
     @Expose()
     name!: string;
 }

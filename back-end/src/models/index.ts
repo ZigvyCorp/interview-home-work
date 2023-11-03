@@ -1,2 +1,3 @@
-export * from './BaseModel';
-export * from './Post.model';
+export * from '../common/BaseModel';
+export * from './PostModel';
+export * from './CommentModel';

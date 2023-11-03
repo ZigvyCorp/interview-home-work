@@ -10,14 +10,13 @@ const typeOrmConfig: ConnectionOptions = {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   synchronize: false,
-  logging: false,
-  entities: [__dirname + '/../models/*.model.{js,ts}'],
+  logging: true,
+  entities: [__dirname + '/../models/*.{js,ts}'],
   migrations: [__dirname + '/../database/migrations/*.{js,ts}'],
   subscribers: [],
   cli: {
     migrationsDir: __dirname + '/../database/migrations',
   },
 };
-
 
 export = typeOrmConfig;

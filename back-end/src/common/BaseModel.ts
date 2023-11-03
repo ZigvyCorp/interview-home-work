@@ -1,7 +1,22 @@
-import { BaseEntity, CreateDateColumn, DeleteDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { 
+  BaseEntity, 
+  CreateDateColumn, 
+  DeleteDateColumn, 
+  Generated, 
+  PrimaryColumn, 
+  UpdateDateColumn, 
+  ValueTransformer 
+} from 'typeorm';
+
+export const bigint: ValueTransformer = {
+  to: (entityValue: number) => entityValue.toString(),
+  from: (databaseValue: string): number => parseInt(databaseValue, 10)
+};
 
 export abstract class BaseModel extends BaseEntity {
-  @PrimaryGeneratedColumn()
+
+  @Generated('increment')
+  @PrimaryColumn('bigint', { transformer: [bigint] })
   id: number;
 
   @CreateDateColumn({

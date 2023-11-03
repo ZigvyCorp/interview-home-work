@@ -14,7 +14,15 @@ export const getPageResponse = <T extends object>(
   count: number,
   rows: T[],
 ): PaginationResponseDto<T> => {
-  const totalPage = pagination.page > 0 ? Math.ceil(count / pagination.pageSize) : 1;
+
+  let totalPage = Math.ceil(count / pagination.pageSize);
+  if (pagination.page <= 0) {
+    totalPage = 1
+  }
+  if (rows.length === 0) {
+    totalPage = 0;
+  }
+  
   return { count, page: Number(pagination.page), rows, totalPage: Number(totalPage) };
 };
 

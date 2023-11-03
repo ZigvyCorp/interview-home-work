@@ -1,14 +1,30 @@
-import { PaginationRequest } from '@dto/request/PaginationRequestDto';
-import HttpResponse from '@handler/HttpResponse';
-import { getPageResponse, getSkipAndTake } from '@utils/PaginationUtil';
+import { CreatePostRequestDto } from '@dto/request/CreatePostRequestDto';
+import { DeleteRecordRequestDto } from '@dto/request/DeleteRecordRequestDto';
+import { GetRecordByIdRequestDto } from '@dto/request/GetRecordByIdRequestDto';
+import { PaginationRequestDto } from '@dto/request/PaginationRequestDto';
+import { UpdatePostRequestDto } from '@dto/request/UpdatePostRequestDto';
 import { Request, Response } from 'express';
-import { PostModel } from 'src/models';
 import PostService from 'src/services/PostService';
-import { getRepository } from 'typeorm';
 
 class PostController {
-    async getAllPost(req:  Request<{}, {}, {}, PaginationRequest>, res: Response) {
+    async getAllPost(req: Request<{}, {}, {}, PaginationRequestDto>, res: Response) {
         return PostService.getAllPosts(req, res);
+    }
+
+    async createPost(req: Request<{}, {}, CreatePostRequestDto, {}>, res: Response) {
+        return PostService.createPost(req, res);
+    }
+
+    async updatePost(req: Request<{}, {}, UpdatePostRequestDto, {}>, res: Response) {
+        return PostService.updatePost(req, res);
+    }
+
+    async deletePost(req: Request<{}, {}, {}, DeleteRecordRequestDto>, res: Response) {
+        return PostService.deletePost(req, res);
+    }
+
+    getPostById(req: Request<GetRecordByIdRequestDto, {}, {}, {}>, res: Response) {
+        return PostService.getPostById(req, res);
     }
 }
 
