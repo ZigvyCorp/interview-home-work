@@ -51,7 +51,8 @@ body {
     height: var(--header-height);
   }
 
-  .search-bar {
+  .search-bar,
+  .post-detail {
     margin-top: calc(var(--header-height) + 30px);
   }
 }

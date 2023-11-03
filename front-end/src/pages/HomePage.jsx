@@ -16,7 +16,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <Header />
+      <Header title="Posts" />
 
       <div className="search-bar container py-2 mb-3">
         <form action="" className="w-100 text-center">

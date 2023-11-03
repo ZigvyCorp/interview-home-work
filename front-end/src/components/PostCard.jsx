@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Comment from "../components/Comment";
 import { Link } from "react-router-dom";
+import { randColor } from "../utils";
 
 export default function PostCard({ post }) {
   const time = new Date(post?.created_at).toDateString().slice(4);
@@ -70,16 +71,3 @@ export default function PostCard({ post }) {
     </div>
   );
 }
-
-const randColor = () => {
-  const colorList = [
-    "primary",
-    "secondary",
-    "success",
-    "danger",
-    "warning",
-    "info",
-    "dark",
-  ];
-  return colorList[Math.round(Math.random() * colorList.length - 1)];
-};

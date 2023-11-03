@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function Header() {
+export default function Header({title}) {
   return (
     <div className="header container position-fixed top-0 start-50 translate-middle-x">
       <div className="row p-0 border border-2 border-dark bg-light">
@@ -15,7 +15,7 @@ export default function Header() {
 
         <div className="col-2">
           <div className="nav-blog position-relative d-flex justify-content-center h-100 border border-2 border-dark border-top-0 border-bottom-0">
-            <span className="fw-bold align-self-center">Blogs</span>
+            <span className="fw-bold align-self-center">{title}</span>
           </div>
         </div>
 
