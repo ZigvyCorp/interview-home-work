@@ -1,0 +1,50 @@
+{
+  "name": "back-end",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only --debug --inspect -r tsconfig-paths/register src/app.ts",
+    "compile": "tsc",
+    "start": "node src/app.ts",
+    "start:prod": "nodemon --inspect dist/src/app.js",
+    "migration:create": "typeorm migration:create -d ./src/database/migrations -n",
+    "migration:up": "ts-node ./node_modules/typeorm/cli.js migration:run ---config ./src/config/typeorm.config.ts"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "googleapis": "^109.0.1",
+    "morgan": "^1.10.0",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^7.1.2",
+    "pg": "^8.11.3",
+    "typeorm": "^0.2.45"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.15",
+    "@types/crypto-js": "^4.1.3",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.14",
+    "@types/express-session": "^1.17.5",
+    "@types/morgan": "^1.9.3",
+    "@types/passport-local": "^1.0.34",
+    "@types/typescript": "^2.0.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.0",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.1.1",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-consistent-codestyle": "^1.16.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "typescript": "^4.9.3"
+  }
+}

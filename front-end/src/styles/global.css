@@ -1,0 +1,24 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  @apply text-black; 
+}
+
+:where(.css-dev-only-do-not-override-qgg3xn).ant-collapse>.ant-collapse-item >.ant-collapse-header {
+  padding: 0;
+}
+
+:where(.css-dev-only-do-not-override-qgg3xn).ant-collapse .ant-collapse-content>.ant-collapse-content-box {
+  padding: 0;
+}
