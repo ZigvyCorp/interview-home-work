@@ -23,7 +23,7 @@ export default async function getListPosts(textSearch: string, page: number) {
             });
             return response;
         } else {
-            const response = await ApiInstance.get(`posts?_limit=10&_offset=${page}`);
+            const response = await ApiInstance.get(`posts?_limit=10&_page=${page}`);
             return response;
         }
     } catch (err) {
