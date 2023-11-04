@@ -19,10 +19,14 @@ export default function Post(): JSX.Element {
         let mounted = true;
         getListPosts(textSearch, page)
             .then((items: any) => {
-                console.log(items)
                 if (mounted) {
-                    setList([...list, ...items.data]);
-                    setTotalRows(100);
+                    if (textSearch) {
+                        setList(items.data)
+                        setTotalRows(items.data.length);
+                    } else {
+                        setList([...list, ...items.data]);
+                        setTotalRows(100);
+                    }
                 }
             });
         return () => {
@@ -39,13 +43,13 @@ export default function Post(): JSX.Element {
                 <InfinityScroll
                     loader={<p>loading...</p>}
                     className="w-[800px] mx-auto my-10"
-                    fetchMore={() => setPage((prev) => prev + 10)}
+                    fetchMore={() => setPage((prev) => prev + 1)}
                     hasMore={list.length < totalRows}
                     endMessage={<p>You have seen it all</p>}
                 >
-                    {list.map((item: any) => {
+                    {list.map((item: any, index: number) => {
                         return (
-                            <PostItem key={item.id} id={item.id} title={item.title} author={'me'} createAt={'20-11-2023'} body={item.body} />
+                            <PostItem key={index} id={item.id} title={item.title} author={'me'} createAt={'20-11-2023'} body={item.body} />
                         )
                     })}
                 </InfinityScroll>

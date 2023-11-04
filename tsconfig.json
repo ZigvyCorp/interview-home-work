@@ -28,7 +28,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "pages/post/index.tsx"  ],
   "exclude": [
     "node_modules"
   ]

@@ -1,9 +1,10 @@
+import Link from "next/link";
 import Comments from "./Comments";
 
 const PostItem = ({ title, author, createAt, body, id }: any) => {
     return (
         <div className="border-bottom">
-            <h3 className="text-center">{title}</h3>
+            <h3 className="text-center"><Link href={`post/${id}`}>{title}</Link></h3>
             <div className="d-flex justify-content-between">
                 <div>
                     <p>Author: {author}</p>
