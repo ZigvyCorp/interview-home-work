@@ -11,8 +11,8 @@ export function* watcherSaga() {
   yield takeEvery(GET_POST_BY_ID, workerGetPostById);
 }
 
-function* workerGetAllPosts() {
-  const posts = yield call(fetchAllPosts);
+function* workerGetAllPosts({ title }) {
+  const posts = yield call(fetchAllPosts, title);
   yield put({ type: GET_ALL_POSTS_SUCCESS, posts });
 }
 
@@ -21,9 +21,9 @@ function* workerGetPostById({ id }) {
   yield put({ type: GET_POST_BY_ID_SUCCESS, post });
 }
 
-function fetchAllPosts() {
-  return fetch(`${process.env.REACT_APP_BE_URL}/api/posts`).then((res) =>
-    res.json().then((res) => res.data.posts)
+function fetchAllPosts(title) {
+  return fetch(`${process.env.REACT_APP_BE_URL}/api/posts?title=${title}`).then(
+    (res) => res.json().then((res) => res.data.posts)
   );
 }
 
