@@ -1,0 +1,10 @@
+@BASE_URL=http://localhost:8080/api
+
+### SEARCH POSTS
+GET {{BASE_URL}}/posts
+
+### GET USERS
+GET {{BASE_URL}}/users
+
+### GET COMMENTS
+GET {{BASE_URL}}/comments
