@@ -1,0 +1,31 @@
+
+$blue: #016bbf;
+$lightBlue: #D5ECFE;
+$gray: #F0F0F0;
+$whiteGray: #757575;
+$darkGray: #7A7A7A;
+$blackPrimary: #292929;
+$green: #00773E;
+
+$theme-colors: (
+    black-primary: $blackPrimary,
+    gray: $gray,
+    dark-gray: $darkGray,
+    white-gray: $whiteGray,
+    blue: $blue,
+    light-blue: $lightBlue,
+    green: $green
+);
+
+$spacers: (
+    60px: 60px,
+    100px: 100px,
+    120px: 120px
+);
+
+
+
+
+
+
+@import '../node_modules/bootstrap/scss/bootstrap'
