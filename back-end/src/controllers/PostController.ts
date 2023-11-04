@@ -1,5 +1,6 @@
 import { CreatePostRequestDto } from '@dto/request/CreatePostRequestDto';
 import { DeleteRecordRequestDto } from '@dto/request/DeleteRecordRequestDto';
+import { GetPostRequestDto } from '@dto/request/GetPostRequestDto';
 import { GetRecordByIdRequestDto } from '@dto/request/GetRecordByIdRequestDto';
 import { PaginationRequestDto } from '@dto/request/PaginationRequestDto';
 import { UpdatePostRequestDto } from '@dto/request/UpdatePostRequestDto';
@@ -7,7 +8,7 @@ import { Request, Response } from 'express';
 import PostService from 'src/services/PostService';
 
 class PostController {
-    async getAllPost(req: Request<{}, {}, {}, PaginationRequestDto>, res: Response) {
+    async getAllPost(req: Request<{}, {}, {}, GetPostRequestDto>, res: Response) {
         return PostService.getAllPosts(req, res);
     }
 

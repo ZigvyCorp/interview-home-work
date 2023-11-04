@@ -9,10 +9,10 @@ import cors from 'cors';
 require('dotenv').config();
 
 const option = {
-  "origin": "http://localhost:3000",
-  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-  "preflightContinue": false,
-  "optionsSuccessStatus": 204
+  origin: "http://localhost:3000",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204
 };
 
 const bootstrap = async () => {

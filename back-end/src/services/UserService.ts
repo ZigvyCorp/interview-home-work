@@ -1,14 +1,14 @@
-import { hashPassword } from './../utils/CommonUtil';
 import { CreateUserRequestDto } from "@dto/request/CreateRequestDto";
+import { DeleteRecordRequestDto } from '@dto/request/DeleteRecordRequestDto';
+import { GetRecordByIdRequestDto } from '@dto/request/GetRecordByIdRequestDto';
 import { PaginationRequestDto } from "@dto/request/PaginationRequestDto";
+import { UpdateUserRequestDto } from '@dto/request/UpdateUserRequestDto';
 import HttpResponse from "@handler/HttpResponse";
 import { Request, Response } from "express";
 import { UserModel } from "src/models/UserModel";
-import { ObjectLiteral, Repository, getRepository } from "typeorm";
+import { getRepository } from "typeorm";
+import { hashPassword } from './../utils/CommonUtil';
 import { BaseService } from "./BaseService";
-import { GetRecordByIdRequestDto } from '@dto/request/GetRecordByIdRequestDto';
-import { DeleteRecordRequestDto } from '@dto/request/DeleteRecordRequestDto';
-import { UpdateUserRequestDto } from '@dto/request/UpdateUserRequestDto';
 
 class UserService extends BaseService {
     async createUser(req: Request<{}, {}, CreateUserRequestDto, {}>, res: Response) {
@@ -48,7 +48,7 @@ class UserService extends BaseService {
     async deleteUser(req: Request<{}, {}, {}, DeleteRecordRequestDto>, res: Response) {
         const { id, soft } = req.query;
         try {
-            await this.deleteOneRecord(UserModel, { id }, JSON.parse(soft))
+            await this.deleteOneRecord(UserModel, { id }, soft)
             return HttpResponse.success(res, { message: `Delete user ${id} successful` }, 200);
         } catch (error) {
             console.log("DELETE_USER_ERROR", error);

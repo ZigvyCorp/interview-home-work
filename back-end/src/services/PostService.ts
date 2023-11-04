@@ -1,7 +1,7 @@
 import { CreatePostRequestDto } from "@dto/request/CreatePostRequestDto";
 import { DeleteRecordRequestDto } from "@dto/request/DeleteRecordRequestDto";
+import { GetPostRequestDto } from "@dto/request/GetPostRequestDto";
 import { GetRecordByIdRequestDto } from "@dto/request/GetRecordByIdRequestDto";
-import { PaginationRequestDto } from "@dto/request/PaginationRequestDto";
 import { UpdatePostRequestDto } from "@dto/request/UpdatePostRequestDto";
 import HttpResponse from "@handler/HttpResponse";
 import { getPageResponse, getSkipAndTake } from "@utils/PaginationUtil";
@@ -13,22 +13,11 @@ import { Repository, getRepository } from "typeorm";
 import { BaseService } from "./BaseService";
 
 export class PostService extends BaseService {
-    async getAllPosts(req: Request<{}, {}, {}, PaginationRequestDto>, res: Response) {
+    async getAllPosts(req: Request<{}, {}, {}, GetPostRequestDto>, res: Response) {
         try {
             const { page, pageSize } = req.query;
-            const { take, skip } = getSkipAndTake(page, pageSize);
-
             const postRepository = getRepository(PostModel);
-            const [posts, total] = await postRepository
-                .createQueryBuilder('post')
-                .select(['post.id', 'post.title', 'post.content', 'post.createdAt', 'post.tags'])
-                .addSelect(['comment.id'])
-                .addSelect(['user.name'])
-                .leftJoin('post.comments', 'comment')
-                .leftJoin('post.owner', 'user')
-                .take(take)
-                .skip(skip)
-                .getManyAndCount();
+            const { posts, total } = await this.handleSearchProduct(req.query, postRepository);
             const postResponse = multiplePostPaginationMapper(posts);
             const pageResponse = getPageResponse({ page, pageSize }, total, postResponse)
             return HttpResponse.success(res, pageResponse, 200);
@@ -36,6 +25,36 @@ export class PostService extends BaseService {
             console.log("ERROR_GET_ALL_POSTS", err);
             return HttpResponse.error(res, 'Get all post error', 400);
         }
+    }
+
+    async handleSearchProduct(request: GetPostRequestDto, repository: Repository<PostModel>) {
+        const { page, pageSize, keyword } = request
+        const { take, skip } = getSkipAndTake(page, pageSize);
+        if (keyword && keyword.length > 0) {
+            const [posts, total] = await repository
+                .createQueryBuilder('post')
+                .select(['post.id', 'post.title', 'post.content', 'post.createdAt', 'post.tags'])
+                .addSelect(['comment.id'])
+                .addSelect(['user.name'])
+                .leftJoin('post.comments', 'comment')
+                .leftJoin('post.owner', 'user')
+                .where('lower(post.title ) like :keyword', { keyword: `%${keyword.toLocaleLowerCase()}%` })
+                .take(take)
+                .skip(skip)
+                .getManyAndCount();
+            return { posts, total };
+        }
+        const [posts, total] = await repository
+            .createQueryBuilder('post')
+            .select(['post.id', 'post.title', 'post.content', 'post.createdAt', 'post.tags'])
+            .addSelect(['comment.id'])
+            .addSelect(['user.name'])
+            .leftJoin('post.comments', 'comment')
+            .leftJoin('post.owner', 'user')
+            .take(take)
+            .skip(skip)
+            .getManyAndCount();
+        return { posts, total };
     }
 
     async createPost(req: Request<{}, {}, CreatePostRequestDto, {}>, res: Response) {

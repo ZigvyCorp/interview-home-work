@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "es2016",
     "module": "commonjs",
     "rootDir": ".",
@@ -12,12 +13,9 @@
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
     "typeRoots": ["./node_modules/@types", "./src/types"],
-    "baseUrl": ".",
     "paths": {
-      "@models": ["./src/models/"],
-      "@views": ["./src/resources/views"],
-      "@controllers": ["./src/controllers/"],
-      "@schemas": ["./src/schemas/"],
+      "@models": ["./src/models/*"],
+      "@controllers": ["./src/controllers/*"],
       "@constants": ["./src/constants/"],
       "@routes/*": ["./src/routes/*"],
       "@exception/*": ["./src/exception/*"],

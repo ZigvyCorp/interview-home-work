@@ -5,8 +5,9 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --debug --inspect -r tsconfig-paths/register src/app.ts",
-    "compile": "tsc --build",
-    "start": "nodemon --inspect dist/src/app.js",
+    "compile": "tsc",
+    "start": "node src/app.ts",
+    "start:prod": "nodemon --inspect dist/src/app.js",
     "migration:create": "typeorm migration:create -d ./src/database/migrations -n",
     "migration:up": "ts-node ./node_modules/typeorm/cli.js migration:run ---config ./src/config/typeorm.config.ts"
   },

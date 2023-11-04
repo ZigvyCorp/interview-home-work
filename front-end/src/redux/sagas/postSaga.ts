@@ -7,13 +7,13 @@ import { executeGetWithPagination } from "../../utils/APIUtil";
 import { GET_POSTS, GET_POSTS_SAGA } from "../actions/postAction";
 
 const getAllPosts = function*(pagination: PostActionPayload): Generator<any, any, BaseHttpResponse<PaginationResponse<PostResponse>>> {
-  const { data } = yield executeGetWithPagination('/post', pagination);
+  const { data } = yield executeGetWithPagination('/post', pagination, { keyword: pagination.keyword });
   return data;
 };
 
-const fetchData = function*async({ pagination }: { pagination: PostActionPayload }): Generator<any, any, PaginationResponse<PostResponse>> {
+const fetchData = function*async({ payload }: { payload: PostActionPayload }): Generator<any, any, PaginationResponse<PostResponse>> {
   try {
-    const { rows, count } = yield call(getAllPosts, pagination);
+    const { rows, count } = yield call(getAllPosts, payload);
     yield put({ type: GET_POSTS, payload: { rows, count }} );
   } catch (err) {
     console.log(err);

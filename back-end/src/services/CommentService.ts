@@ -1,15 +1,15 @@
 import { CreateCommentRequestDto } from "@dto/request/CreateCommentRequestDto";
+import { DeleteRecordRequestDto } from "@dto/request/DeleteRecordRequestDto";
+import { GetCommentByPostIdRequestDto } from "@dto/request/GetCommentRequestDto";
+import { UpdateCommentRequestDto } from "@dto/request/UpdateCommentRequestDto";
+import HttpResponse from "@handler/HttpResponse";
+import { getPageResponse, getSkipAndTake } from "@utils/PaginationUtil";
 import { Request, Response } from "express";
-import { BaseService } from "./BaseService";
+import { multipleCommentMapper } from "src/mapper/CommentResponseMapper";
 import { CommentModel, PostModel } from "src/models";
 import { UserModel } from "src/models/UserModel";
-import HttpResponse from "@handler/HttpResponse";
-import { DeleteRecordRequestDto } from "@dto/request/DeleteRecordRequestDto";
 import { getRepository } from "typeorm";
-import { UpdateCommentRequestDto } from "@dto/request/UpdateCommentRequestDto";
-import { GetCommentByPostIdRequestDto } from "@dto/request/GetCommentRequestDto";
-import { getPageResponse, getSkipAndTake } from "@utils/PaginationUtil";
-import { multipleCommentMapper } from "src/mapper/CommentResponseMapper";
+import { BaseService } from "./BaseService";
 
 export class CommentService extends BaseService {
     async createComment(req: Request<{}, {}, CreateCommentRequestDto, {}>, res: Response) {
