@@ -1,0 +1,55 @@
+.post {
+    padding: 0 2em;
+    text-align: left;
+}
+
+.post:hover {
+    cursor: pointer;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.title {
+    padding: 1em 0;
+    text-align: center;
+}
+
+.content {
+
+}
+
+.commentSection {
+    margin-top: 3em;
+}
+
+.comment {
+    margin: 2em 0;
+    display: flex;
+}
+
+.avatar {
+    width: 5%;
+}
+
+.avatar img {
+    width: 100%;
+    object-fit: contain;
+}
+
+.commentBody {
+    width: 95%;
+    margin-left: 1em;
+}
+
+.username {
+    
+}
+
+.replyButton {
+    width: fit-content;
+    color: gray;
+    margin-top: 1em;
+}
+
+.replyButton:hover {
+    cursor: pointer;
+}
