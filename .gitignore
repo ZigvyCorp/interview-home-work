@@ -4,3 +4,4 @@ server/package-lock.json
 client/node_modules
 client/yarn.lock
 client/package-lock.json
+client/.eslintcache
