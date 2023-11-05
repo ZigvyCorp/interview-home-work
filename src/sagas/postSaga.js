@@ -1,4 +1,3 @@
-// src/sagas/postSaga.js
 import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 import { SET_POSTS, fetchPosts } from '../actions/postActions';
