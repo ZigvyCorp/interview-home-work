@@ -1,5 +1,5 @@
 import { BlogDetailPage, BlogPage } from "@/modules/blogs";
-import { IRouteItem, SITE_URL } from "@/modules/shared";
+import { IRouteItem, SITE_URL } from "@/shared";
 
 export const PAGES_SETTING: Array<IRouteItem> = [
   {

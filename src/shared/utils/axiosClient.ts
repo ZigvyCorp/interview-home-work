@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ENV_CONFIG } from "@/modules/shared";
+import { ENV_CONFIG } from "@/shared";
 
 const axiosClient = axios.create({
   baseURL: ENV_CONFIG.apiURL, // TODO: take this api URL from env

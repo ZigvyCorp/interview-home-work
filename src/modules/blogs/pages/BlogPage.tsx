@@ -1,8 +1,15 @@
-import React from "react";
+import { useEffect } from "react";
+import { useAppDispatch } from "@/shared";
 
-type Props = {};
+import { blogAction } from "@/modules/blogs";
 
-const BlogPage = (props: Props) => {
+const BlogPage = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(blogAction.getPosts());
+  }, []);
+
   return <div>BlogPage</div>;
 };
 

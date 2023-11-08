@@ -1,38 +1,22 @@
-import { PayloadAction } from "@reduxjs/toolkit";
-import { call, put, takeLatest, all } from "@redux-saga/core/effects";
-// import { AxiosError, AxiosResponse } from "axios";
+// import { PayloadAction } from "@reduxjs/toolkit";
+import { call, put, takeLatest } from "@redux-saga/core/effects";
+import { AxiosResponse } from "axios";
+import { BLOGS_SERVICES } from "./service";
+import { blogAction } from "./slice";
 
-// import { authAction } from "./authSlice";
+export function* getPosts() {
+  try {
+    const response: AxiosResponse<any> = yield call(BLOGS_SERVICES.getPosts);
+    if (response) {
+      // console.log(response.data);
 
-// import { connectWallet } from "hooks/walletAuthHooks";
-// import { walletService } from "services/walletService";
-
-export function* handleLogin() {
-  //   try {
-  //     const response: AxiosResponse<string> = yield call(connectWallet);
-  //     if (response) {
-  //       yield put(authAction.loginSucess(response));
-  //     }
-  //   } catch (error: any) {
-  //     yield put(authAction.loginFailure(error));
-  //   }
+      yield put(blogAction.getPostsSuccess(response.data));
+    }
+  } catch (error: any) {
+    yield put(blogAction.getPostsFail(error));
+  }
 }
 
-export function* handleAuth() {
-  //   try {
-  //     const response: Array<string> = yield call(walletService);
-  //     console.log("fasdafsdasfdcadsasfdasdf", response);
-  //     if (response && response.length > 0) {
-  //       yield put(authAction.getAuthSuccess(response[0]));
-  //     } else {
-  //       yield put(authAction.getAuthError("No user found"));
-  //     }
-  //   } catch (error: any) {
-  //     yield put(authAction.getAuthError(error));
-  //   }
-}
-
-export default function* authSaga() {
-  //   yield takeLatest(authAction.login.type, handleLogin);
-  //   yield takeLatest(authAction.getAuth.type, handleAuth);
+export default function* blogSaga() {
+  yield takeLatest(blogAction.getPosts.type, getPosts);
 }

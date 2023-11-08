@@ -1,7 +1,7 @@
 import { useRoutes } from "react-router";
 import { notification } from "antd";
 
-import { NotifyContext, configPages } from "./modules/shared";
+import { NotifyContext, configPages } from "./shared";
 
 import { PAGES_SETTING } from "./routes";
 
