@@ -1,14 +1,20 @@
 import { useEffect } from "react";
-import { useAppDispatch } from "@/shared";
+import { useAppDispatch, useAppSelector } from "@/shared";
 
-import { blogAction } from "@/modules/blogs";
+import { blogAction, selectBlog } from "@/modules/blogs";
 
 const BlogPage = () => {
   const dispatch = useAppDispatch();
+  const { rehydrated } = useAppSelector((state: any) => state._persist);
+  const { posts } = useAppSelector(selectBlog);
 
   useEffect(() => {
-    // dispatch(blogAction.getPosts());
-  }, []);
+    if (rehydrated && posts.length === 0) {
+      dispatch(blogAction.getPosts());
+    }
+  }, [rehydrated]);
+
+  console.log(posts);
 
   return <div>BlogPage</div>;
 };

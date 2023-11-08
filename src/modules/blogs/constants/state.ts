@@ -1,5 +1,6 @@
 export const SLICE_INIT = {
-  loading: false,
+  loading: true,
   posts: [],
+  detail: null,
   error: null,
 };

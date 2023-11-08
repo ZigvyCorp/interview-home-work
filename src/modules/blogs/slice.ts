@@ -29,7 +29,7 @@ export const blogAction = blogSlice.actions;
 
 // Selectors
 
-export const selectPost = (state: IRootState<any>) => state.auth;
+export const selectBlog = (state: IRootState<any>) => state.blog;
 
 // Reducer
 
