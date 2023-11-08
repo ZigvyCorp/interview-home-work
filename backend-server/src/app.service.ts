@@ -7,7 +7,7 @@ export class AppService {
   private readonly helloMessage: string;
 
   constructor(configService: ConfigService) {
-    this.helloMessage = configService.get(HELLO_MESSAGE);
+    this.helloMessage = configService.getEnv(HELLO_MESSAGE);
   }
 
   getHello(): string {

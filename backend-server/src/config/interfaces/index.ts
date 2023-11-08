@@ -1,2 +1,2 @@
-export * from './config-options.interface';
-export * from './config-env.interface';
+export * from './options.interface';
+export * from './env.interface';

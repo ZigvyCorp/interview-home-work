@@ -14,19 +14,3 @@ export const { ConfigurableModuleClass, MODULE_OPTIONS_TOKEN } =
       }),
     )
     .build();
-
-/** more clear
-  export class ConfigModule {
-  static forRoot(options?): DynamicModule {
-    ...
-    return {
-      // override global prop
-      global: extra.isGlobal, 
-
-      ...definition
-      module: ConfigModule,
-      providers: providers,
-      exports: providers,
-    };
-  }
-*/

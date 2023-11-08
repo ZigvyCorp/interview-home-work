@@ -1,1 +1,2 @@
 export const HELLO_MESSAGE = 'HELLO_MESSAGE';
+export const DATABASE_URL = 'DATABASE_URL';

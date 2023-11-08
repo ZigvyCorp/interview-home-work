@@ -1,3 +1,3 @@
 export interface ConfigModuleOptions {
-  folder: string;
+  env: string;
 }
