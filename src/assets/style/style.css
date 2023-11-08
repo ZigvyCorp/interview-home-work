@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --head-height: 64px;
+  --sidebar-width: 260px;
+  --sidebar-width-min: 80px;
+  --sidebar-icon-width: 24px;
+}
+
+html {
+  font-size: 10px;
+}
+
+a {
+  @apply cursor-pointer;
+}
+p,
+a,
+span,
+ul,
+li,
+div,
+table,
+td,
+tr,
+input {
+  /* @apply text-[1.4rem] font-Inter; */
+}
