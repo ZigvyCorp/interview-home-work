@@ -1,0 +1,30 @@
+.post {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.card {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.comments {
+  margin-top: 10px;
+}
+
+.list-group-item {
+  border: none;
+}
+
+.btn-link {
+  text-align: left;
+  padding: 0;
+}
+
+.card-text {
+  text-align: left;
+}
+
+.input-group {
+  max-width: 300px;
+  margin: 0 auto;
+}

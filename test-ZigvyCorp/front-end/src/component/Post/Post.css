@@ -1,0 +1,10 @@
+.card-title,
+.card-author {
+  text-decoration: none !important;
+  color: red;
+}
+
+.card-title:hover,
+.card-author:hover {
+  text-decoration: none !important;
+}
