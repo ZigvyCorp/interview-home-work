@@ -10,7 +10,7 @@ export class CommentService {
         return await this.prisma.comment.findMany();
     }
 
-    async getComment(id: number) {
+    async getCommentById(id: number) {
         return await this.prisma.comment.findUnique({
             where: {
                 id: id
@@ -18,9 +18,34 @@ export class CommentService {
         });
     }
 
-    async createComment(dto: CreateCommentDto) { }
+    async getCommentByPost(id: number) {
+        return await this.prisma.comment.findMany({
+            where: {
+                postId: id
+            }
+        });
+    }
 
-    async updateComment(id: number, dto: UpdateCommentDto) { }
+    async createComment(dto: CreateCommentDto) {
+        return await this.prisma.comment.create({
+            data: {
+                content: dto.content,
+                userId: dto.userId,
+                postId: dto.postId
+            }
+        });
+    }
+
+    async updateComment(id: number, dto: UpdateCommentDto) {
+        return await this.prisma.comment.update({
+            where: {
+                id: id
+            },
+            data: {
+                content: dto.content
+            }
+        });
+    }
 
     async deleteComment(id: number) {
         return await this.prisma.comment.delete({

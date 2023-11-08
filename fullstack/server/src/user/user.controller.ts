@@ -1,36 +1,90 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Res } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto, UpdateUserDto } from './dto';
+import { Response } from 'express';
 
 @Controller('user')
 export class UserController {
   constructor (private readonly userService: UserService) { }
 
   @Get()
-  getAll() {
-    return this.userService.getAll();
+  getAll(@Res() res: Response) {
+    try {
+      return res.status(200).json({
+        data: this.userService.getAll()
+      });
+    } catch (e) {
+      return res.status(500).json({
+        msg: e.message
+      });
+    }
   }
 
   @Get(":id")
-  getUserById(@Param("id") id: number) {
-    return this.userService.getUserById(id);
+  getUserById(
+    @Param("id") id: number,
+    @Res() res: Response
+  ) {
+    try {
+      return res.status(200).json({
+        data: this.userService.getUserById(id)
+      });
+    } catch (e) {
+      return res.status(500).json({
+        msg: e.message
+      });
+    }
   }
 
   @Post("create")
-  createUser(@Body("data") dto: CreateUserDto) {
-    this.userService.createUser(dto);
-    return "User has been created.";
+  createUser(
+    @Body("data") dto: CreateUserDto,
+    @Res() res: Response
+  ) {
+    try {
+      const createUser = this.userService.createUser(dto);
+      return res.status(200).json({
+        msg: "User has been created."
+      });
+    } catch (e) {
+      return res.status(500).json({
+        msg: e.message
+      });
+    }
   }
 
   @Put(":id")
-  updateUser(@Param("id") id: number, @Body("data") dto: UpdateUserDto) {
-    this.userService.updateUser(id, dto);
-    return "User has been updated."
+  updateUser(
+    @Param("id") id: number,
+    @Body("data") dto: UpdateUserDto,
+    @Res() res: Response
+  ) {
+    try {
+      const updateUser = this.userService.updateUser(id, dto);
+      return res.status(200).json({
+        msg: "User has been updated."
+      });
+    } catch (e) {
+      return res.status(500).json({
+        msg: e.message
+      });
+    }
   }
 
   @Delete(":id")
-  deleteUser(@Param("id") id: number) {
-    this.userService.deleteUser(id);
-    return "User has been deleted";
+  deleteUser(
+    @Param("id") id: number,
+    @Res() res: Response
+  ) {
+    try {
+      const deleteUser = this.userService.deleteUser(id);
+      return res.status(200).json({
+        msg: "User has been deleted"
+      });
+    } catch (e) {
+      return res.status(500).json({
+        msg: e.message
+      });
+    }
   }
 }

@@ -1,9 +1,10 @@
 import { PrismaClient } from "@prisma/client";
+import { faker } from "@faker-js/faker";
 
 const prisma = new PrismaClient();
 
-async function main() { 
-    
+async function main() {
+
 }
 
 main()
