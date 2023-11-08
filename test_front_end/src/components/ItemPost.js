@@ -48,17 +48,21 @@ export default function Post({ item }) {
                 <p>{item ? item.body.substring(0, 100) : "temp body"}</p>
             </div>
             <div className="mx-4">
-                <p>Number replies</p>
-                <hr className={" text-center m-auto"} />
+                <button
+                    className="btn btn-light"
+                    onClick={() => setShowComments(!showComments)}>
+                    {comments.length} replies
+                </button>
+                <hr className={" text-center m-auto mb-5"} />
                 {showComments ?
                     comments.map(itemComment => {
                         return <ItemComment item={itemComment} />
                     })
                     : <></>
                 }
-                
+
             </div>
-            <div className="py-1 bg-dark"/>
+            <div className="py-1 bg-dark" />
         </div>
     )
 }
