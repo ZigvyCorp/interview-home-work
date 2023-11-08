@@ -18,3 +18,8 @@ export enum TokenType {
   AccessToken,
   RefreshToken
 }
+
+export enum BlogAudience {
+  Everyone,
+  OnlyMe
+}

@@ -1,6 +1,7 @@
 import { Collection, Db, MongoClient } from 'mongodb';
 
 import { ENV_CONFIG } from '~/constants/config';
+import Blog from '~/models/schemas/Blog.schema';
 import RefreshToken from '~/models/schemas/RefreshToken.schema';
 import User from '~/models/schemas/User.schema';
 
@@ -31,6 +32,10 @@ class DatabaseService {
 
   get refresh_tokens(): Collection<RefreshToken> {
     return this.db.collection(ENV_CONFIG.DB_REFRESH_TOKENS_COLLECTION);
+  }
+
+  get blogs(): Collection<Blog> {
+    return this.db.collection(ENV_CONFIG.DB_BLOGS_COLLECTION);
   }
 }
 
