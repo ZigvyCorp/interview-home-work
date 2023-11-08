@@ -1,15 +1,24 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage";
 import createSagaMiddleware from "redux-saga";
 
 import rootSaga from "./rootSaga";
 import { rootReducer } from "./rootReducer";
 
+import { persistReducer } from "redux-persist";
+
 // import counterReducer from '../features/counter/counterSlice';
 
 const sagaMiddleware = createSagaMiddleware();
 
+const persistConfig = {
+  key: "blog",
+  storage,
+};
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware({
       serializableCheck: false,

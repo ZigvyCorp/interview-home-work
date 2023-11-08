@@ -1,3 +1,5 @@
+import { Header } from "@/components/layouts";
+
 export interface IAdminLayout {
   children?: React.ReactNode;
 }
@@ -5,8 +7,8 @@ export interface IAdminLayout {
 const AdminLayout = ({ children }: IAdminLayout) => {
   return (
     <>
-      <header></header>
-      <main>{children}</main>
+      <Header></Header>
+      <main className="pt-[var(--head-height)]">{children}</main>
       <footer></footer>
     </>
   );

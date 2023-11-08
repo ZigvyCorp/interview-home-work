@@ -7,7 +7,7 @@ import { blogAction } from "./slice";
 export function* getPosts() {
   try {
     const response: AxiosResponse<any> = yield call(BLOGS_SERVICES.getPosts);
-    if (response) {
+    if (response.data) {
       // console.log(response.data);
 
       yield put(blogAction.getPostsSuccess(response.data));

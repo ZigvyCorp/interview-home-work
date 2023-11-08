@@ -13,6 +13,7 @@ module.exports = {
       white: "#ffffff",
       black2: "#505564",
       main: "#f9660c",
+      main_bg: "#2b2b2b",
     },
     fontFamily: {
       Inter: ["Inter", "sans-serif"],

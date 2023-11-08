@@ -7,7 +7,7 @@ const BlogPage = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(blogAction.getPosts());
+    // dispatch(blogAction.getPosts());
   }, []);
 
   return <div>BlogPage</div>;

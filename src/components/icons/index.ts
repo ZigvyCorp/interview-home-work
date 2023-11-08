@@ -1,1 +1,1 @@
-export * as SidebarIconsList from "./SideBar";
+export * as SidebarIconsList from "./Header";
