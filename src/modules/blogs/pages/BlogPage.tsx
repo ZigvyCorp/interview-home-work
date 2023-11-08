@@ -1,12 +1,15 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/shared";
 
+import { LoadPage } from "@/components/loading";
+import { BlogList } from "@/modules/blogs";
+
 import { blogAction, selectBlog } from "@/modules/blogs";
 
 const BlogPage = () => {
   const dispatch = useAppDispatch();
   const { rehydrated } = useAppSelector((state: any) => state._persist);
-  const { posts } = useAppSelector(selectBlog);
+  const { posts, loading } = useAppSelector(selectBlog);
 
   useEffect(() => {
     if (rehydrated && posts.length === 0) {
@@ -14,9 +17,11 @@ const BlogPage = () => {
     }
   }, [rehydrated]);
 
-  console.log(posts);
+  if (loading) {
+    return <LoadPage />;
+  }
 
-  return <div>BlogPage</div>;
+  return <BlogList blogs={posts} />;
 };
 
 export default BlogPage;
