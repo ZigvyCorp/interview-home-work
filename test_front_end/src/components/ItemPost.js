@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
 import ColorCard from "./ColorCard";
+import { getUserByID } from "../services/AppService";
+import { getPostCommentsByID } from "../services/AppService";
+import ItemComment from "./ItemComment";
 
 export default function Post({ item }) {
     const [user, setUser] = useState({});
+    const [comments, setComments] = useState([]);
+    const [showComments, setShowComments] = useState(false);
 
-    const initData = () => {
-        fetch('https://jsonplaceholder.typicode.com/users/'+item.userId)
-      .then(response => response.json()).then(json => {
-        console.log(json);
-        setUser(json);
-      })
+    const initData = async () => {
+        const userData = await getUserByID(item.userId);
+        setUser(userData);
+
+        const commentData = await getPostCommentsByID(item.id);
+        setComments(commentData);
+        console.log("Post's comments:", commentData);
     }
 
-    useEffect(()=> {
+    useEffect(() => {
         initData();
     }, [])
 
@@ -21,11 +27,11 @@ export default function Post({ item }) {
             <div className="mb-4">
                 <h2 className="text-center">{item ? item.title : 'Temp title'}</h2>
                 <div className={"d-inline-flex w-100"}>
-                    <div>
+                    <div className="w-75">
                         <p>Author: {user.name}</p>
                         <p>Created at: Sept. 8, 2023</p>
                     </div>
-                    <div className={"flex-wrap justify-content-end"}>
+                    <div className={"flex-wrap w-25"}>
                         <ColorCard title={'magenta'} color={'text-magenta'} />
                         <ColorCard title={'red'} color={'text-red'} />
                         <ColorCard title={'volcano'} color={'text-volcano'} />
@@ -39,14 +45,20 @@ export default function Post({ item }) {
                         <ColorCard title={'purple'} color={'text-purple'} />
                     </div>
                 </div>
-                <p>{item ? item.body : "temp body"}</p>
+                <p>{item ? item.body.substring(0, 100) : "temp body"}</p>
             </div>
-            <div>
+            <div className="mx-4">
                 <p>Number replies</p>
-                <hr className={"w-75 text-center m-auto"} />
-                <div>Show/hidden items</div>
-                <hr className={"border-dark"} />
+                <hr className={" text-center m-auto"} />
+                {showComments ?
+                    comments.map(itemComment => {
+                        return <ItemComment item={itemComment} />
+                    })
+                    : <></>
+                }
+                
             </div>
+            <div className="py-1 bg-dark"/>
         </div>
     )
 }
