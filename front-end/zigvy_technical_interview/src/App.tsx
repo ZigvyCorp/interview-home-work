@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+
 import ListPost from "./screen/ListPost";
 import DetailPost from "./screen/DetailPost";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
