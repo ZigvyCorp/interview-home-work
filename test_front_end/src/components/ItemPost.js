@@ -32,17 +32,17 @@ export default function Post({ item }) {
                         <p>Created at: Sept. 8, 2023</p>
                     </div>
                     <div className={"flex-wrap w-25"}>
-                        <ColorCard title={'magenta'} color={'text-magenta'} />
-                        <ColorCard title={'red'} color={'text-red'} />
-                        <ColorCard title={'volcano'} color={'text-volcano'} />
-                        <ColorCard title={'orange'} color={'text-orange'} />
-                        <ColorCard title={'gold'} color={'text-gold'} />
-                        <ColorCard title={'lime'} color={'text-lime'} />
-                        <ColorCard title={'green'} color={'text-green'} />
-                        <ColorCard title={'cyan'} color={'text-cyan'} />
-                        <ColorCard title={'blue'} color={'text-blue'} />
-                        <ColorCard title={'geekblue'} color={'text-geekblue'} />
-                        <ColorCard title={'purple'} color={'text-purple'} />
+                        <ColorCard title={'magenta'} color={'magenta'} />
+                        <ColorCard title={'red'} color={'red'} />
+                        <ColorCard title={'volcano'} color={'volcano'} />
+                        <ColorCard title={'orange'} color={'orange'} />
+                        <ColorCard title={'gold'} color={'gold'} />
+                        <ColorCard title={'lime'} color={'lime'} />
+                        <ColorCard title={'green'} color={'green'} />
+                        <ColorCard title={'cyan'} color={'cyan'} />
+                        <ColorCard title={'blue'} color={'blue'} />
+                        <ColorCard title={'geekblue'} color={'geekblue'} />
+                        <ColorCard title={'purple'} color={'purple'} />
                     </div>
                 </div>
                 <p>{item ? item.body.substring(0, 100) : "temp body"}</p>
