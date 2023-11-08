@@ -5,7 +5,6 @@ function App() {
   return (
     <div className='App'>
       <div className='mb-5'>
-        {' '}
         <Navbar />
       </div>
       <HomePage />

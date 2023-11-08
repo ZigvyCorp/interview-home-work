@@ -28,7 +28,7 @@ const BlogPost = () => {
 
   const randomDate = getRandomDate();
   return (
-    <div className='card border-0 border-bottom p-2'>
+    <div className='p-2 border-bottom border-3 border-dark'>
       <div className='card-body'>
         <h1 className='card-title mb-2 text-center fw-bold'>Post 1</h1>
         <h6 className='card-subtitle mb-5 fw-bold d-flex flex-column'>
@@ -43,7 +43,7 @@ const BlogPost = () => {
         </h6>
         <p className='d-flex'>
           <a
-            className='btn text-start border-bottom text-primary p-2 mb-2'
+            className='btn text-start border-bottom text-body-secondary p-2 mb-2'
             data-bs-toggle='collapse'
             href='#id1'
             role='button'
@@ -55,7 +55,7 @@ const BlogPost = () => {
           </a>
         </p>
         <div className='collapse' id='id1'>
-          <div className='mb-5 p-2 comment-container'>
+          <div className='mb-3 p-2 comment-container'>
             <div className='user-avatar'>
               <img
                 src='https://images.unsplash.com/photo-1569913486515-b74bf7751574?q=80&w=1978&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
