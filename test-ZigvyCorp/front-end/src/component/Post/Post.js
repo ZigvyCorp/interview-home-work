@@ -7,7 +7,7 @@ const Post = ({ id, user, created_at, title, content, comments, tags }) => {
   const formattedDate = new Date(created_at);
 
   return (
-    <div className="post card mt-3">
+    <div className="post card mt-3 bg-light">
       <div className="card-body">
         <div className="d-flex justify-content-between">
           <div>
@@ -27,7 +27,8 @@ const Post = ({ id, user, created_at, title, content, comments, tags }) => {
             ))}
           </div>
         </div>
-        <Link to={`/post/${id}`}>
+        {/* Use custom style to remove underline */}
+        <Link to={`/post/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
           <h2>{title}</h2>
         </Link>
         <p className="card-text">{content.substring(0, 100)}...</p>

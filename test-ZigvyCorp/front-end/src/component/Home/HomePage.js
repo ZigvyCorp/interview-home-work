@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchPostsRequest,
-  fetchCommentsRequest,
-  fetchUsersRequest,
-} from "../../redux/actions";
+import { fetchPostsRequest, fetchCommentsRequest, fetchUsersRequest } from "../../redux/actions";
 import Post from "../Post/Post";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { BsSearch } from 'react-icons/bs';
 import "./HomePage.css";
 
 const HomePage = () => {
@@ -60,6 +57,9 @@ const HomePage = () => {
     <div className="container mt-5">
       <div className="text-center">
         <div className="input-group mb-3">
+          <span className="input-group-text">
+            <BsSearch />
+          </span>
           <input
             type="text"
             className="form-control"
@@ -73,22 +73,17 @@ const HomePage = () => {
             <Post key={post.id} {...post} />
           ))}
         </div>
-        <div className="footer text-center mt-3 fixed-bottom">
-          <ul className="pagination justify-content-center">
-            {[
-              ...Array(Math.ceil(filteredPosts.length / postsPerPage)).keys(),
-            ].map((number) => (
-              <li key={number + 1} className="page-item">
-                <button
-                  className="page-link"
-                  onClick={() => paginate(number + 1)}
-                >
-                  {number + 1}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
+      </div>
+      <div className="mt-3">
+        <ul className="pagination justify-content-center">
+          {[...Array(Math.ceil(filteredPosts.length / postsPerPage)).keys()].map((number) => (
+            <li key={number + 1} className={`page-item ${currentPage === number + 1 ? 'active' : ''}`}>
+              <button className="page-link" onClick={() => paginate(number + 1)}>
+                {number + 1}
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
