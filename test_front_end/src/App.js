@@ -8,7 +8,7 @@ function App() {
   let itemIncreasedAmount = 3;
 
   const handleScroll = () => {
-    console.log("offsetHeigt:", document.documentElement.offsetHeight,
+    console.log("offsetHeight:", document.documentElement.offsetHeight,
       "\ninner height:", window.innerHeight,
       "\noffsetTop:", document.body.scrollTop,
       "\currentShownItems:", currentItems);
