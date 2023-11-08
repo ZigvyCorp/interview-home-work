@@ -7,9 +7,9 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
+
 import { PostService } from './post.service';
-import { CreatePostDto } from './dto/create-post.dto';
-import { UpdatePostDto } from './dto/update-post.dto';
+import { CreatePostDto, UpdatePostDto } from '../../dto';
 
 @Controller('post')
 export class PostController {
@@ -17,6 +17,7 @@ export class PostController {
 
   @Post()
   create(@Body() createPostDto: CreatePostDto) {
+    createPostDto.overview = createPostDto.content.substring(0, 100);
     return this.postService.create(createPostDto);
   }
 

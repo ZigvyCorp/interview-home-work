@@ -1,14 +1,31 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
+
 import { CommentService } from './comment.service';
-import { CreateCommentDto } from './dto/create-comment.dto';
-import { UpdateCommentDto } from './dto/update-comment.dto';
+import { PostService } from '../post/post.service';
+import { CreateCommentDto, UpdateCommentDto } from '../../dto';
 
 @Controller('comment')
 export class CommentController {
-  constructor(private readonly commentService: CommentService) {}
+  constructor(
+    private readonly commentService: CommentService,
+    private readonly postService: PostService,
+  ) {}
 
   @Post()
-  create(@Body() createCommentDto: CreateCommentDto) {
+  async create(@Body() createCommentDto: CreateCommentDto) {
+    const postExisted = await this.postService.exist(createCommentDto.post);
+    if (!postExisted)
+      throw new HttpException('Post Not Found', HttpStatus.NOT_FOUND);
     return this.commentService.create(createCommentDto);
   }
 

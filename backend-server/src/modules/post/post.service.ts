@@ -1,13 +1,14 @@
 import { Model } from 'mongoose';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
-import { Post } from './schemas/post.schemas';
-import { CreatePostDto } from './dto/create-post.dto';
-import { UpdatePostDto } from './dto/update-post.dto';
+import { Post } from '../../schemas';
+import { CreatePostDto, UpdatePostDto } from '../../dto';
 
 @Injectable()
 export class PostService {
+  private readonly logger = new Logger(PostService.name);
+
   constructor(
     @InjectModel(Post.name) private readonly postModel: Model<Post>,
   ) {}
@@ -17,12 +18,18 @@ export class PostService {
     return createdPost;
   }
 
+  async exist(id: string) {
+    const count = await this.postModel.countDocuments({ _id: id });
+    this.logger.log('count', { count });
+    return false;
+  }
+
   findAll() {
-    return this.postModel.find().exec();
+    return this.postModel.find().lean().exec();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} post`;
+    return this.postModel.findById(id).lean().exec();
   }
 
   update(id: number, updatePostDto: UpdatePostDto) {

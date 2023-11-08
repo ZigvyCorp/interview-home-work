@@ -1,8 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { CustomLogger, GlobalExceptionFilter } from './common';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    bufferLogs: true, // make sure all logs will be buffered until a custom logger is attached
+  });
+  app.useGlobalFilters(new GlobalExceptionFilter());
+  app.useLogger(new CustomLogger());
   await app.listen(3000);
 }
 bootstrap();
