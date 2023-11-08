@@ -1,0 +1,38 @@
+.wrap-item-content {
+    padding: 0 20px;
+    background-color: white;
+}
+.post-title {
+    font-size: 36px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.wrap-info {
+    display: flex;
+    justify-content: space-around;
+}
+.item1 {
+    font-weight: 500;
+    font-size: 18px;
+    flex: 1;
+    margin-right: 20px;
+}
+.item2 {
+    margin-left: 20px;
+    flex: 1;
+}
+.btn-custom {
+    margin: 0 5px;
+}
+
+.content {
+    font-weight: 500;
+    font-size: 18px;
+}
+.wrap-button {
+}
+.horizon-line-custom {
+    height: 5px;
+    background-color: black;
+    opacity: 100;
+}
