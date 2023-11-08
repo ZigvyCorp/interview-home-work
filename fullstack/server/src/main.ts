@@ -7,11 +7,12 @@ async function bootstrap() {
   //CORS
   app.enableCors({
     origin: ["http://localhost:3000"],
-    methods: ["GET", "HEAD", "POST", "PUT", "DELETE", "OPTION"],
+    methods: ["GET", "HEAD", "POST", "PUT", "PATCH", "DELETE", "OPTION"],
     credentials: true
   });
   //Helmet
   app.use(helmet());
+  //start server
   await app.listen(5000);
 }
 bootstrap();

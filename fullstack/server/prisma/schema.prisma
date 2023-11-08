@@ -16,7 +16,7 @@ model User {
   password  String
   name      String?   @db.VarChar(255)
   avatar    String?   @db.VarChar(255)
-  dob       DateTime? @db.Date
+  dob       DateTime  @db.Timestamp()
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   posts     Post[]
