@@ -1,14 +1,14 @@
-import Home from "@/modules/Home";
+import { BlogDetailPage, BlogPage } from "@/modules/blogs";
 import { IRouteItem, SITE_URL } from "@/modules/shared";
 
 export const PAGES_SETTING: Array<IRouteItem> = [
   {
     path: SITE_URL.HOME,
-    element: Home,
+    element: BlogPage,
     isPrivate: true,
   },
   {
-    path: SITE_URL.LOGIN,
-    element: Home,
+    path: `${SITE_URL.HOME}/:id`,
+    element: BlogDetailPage,
   },
 ];
