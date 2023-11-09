@@ -1,4 +1,5 @@
 import axios from "axios";
+import bcryptjs from "bcryptjs";
 import { NextFunction, Request, Response } from "express";
 import { User } from "../models";
 import { IUser } from "../types";
@@ -39,6 +40,70 @@ export async function getUserById(req: Request, res: Response, next: NextFunctio
 		if (!user) throw new Error("User not found");
 
 		res.status(200).json(handleResponse(user, 200, `User -${id} fetched successfully`));
+	} catch (error) {
+		next(error);
+	}
+}
+
+// create user
+export async function createUser(req: Request, res: Response, next: NextFunction) {
+	const { name, username, password, email } = req.body;
+
+	try {
+		const isExist = User.findOne({
+			$or: [{ email }, { name }, { username }],
+		});
+		if (isExist) {
+			throw new Error("User already exist");
+		}
+
+		const newUser = new User({
+			jsonId: +User.countDocuments() + 1,
+			name,
+			username,
+			email,
+			password: bcryptjs.hash(password, +process.env.SALT_OR_ROUNDS || 10),
+		});
+
+		await newUser.save();
+		res.status(201).json(handleResponse(newUser, 201, "User created successfully"));
+	} catch (error) {
+		next(error);
+	}
+}
+
+// update user
+export async function updateUser(req: Request, res: Response, next: NextFunction) {
+	const { id } = req.params;
+	const { name, username, password, email } = req.body;
+
+	try {
+		const user = await User.findById(id);
+		if (!user) {
+			throw new Error("User not found");
+		}
+
+		Object.assign(user, { name, username, email, password });
+
+		await user.save();
+		res.status(200).json(handleResponse(user, 200, "User updated successfully"));
+	} catch (error) {
+		next(error);
+	}
+}
+
+// delete user
+export async function deleteUser(req: Request, res: Response, next: NextFunction) {
+	const { id } = req.params;
+
+	try {
+		const user = await User.findById(id);
+		if (!user) {
+			throw new Error("User not found");
+		}
+
+		await user.remove();
+		res.status(200).json(handleResponse(user, 200, "User deleted successfully"));
 	} catch (error) {
 		next(error);
 	}
