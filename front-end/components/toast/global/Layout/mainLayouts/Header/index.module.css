@@ -1,0 +1,37 @@
+.header {
+	/* padding: 0.4rem 1rem; */
+	align-items: center;
+	justify-content: space-between;
+	position: relative;
+	font-size: 12px;
+	background-color: #fff;
+	transition: 0.3s;
+	/* margin-left: 64px; */
+	display: flex;
+	/* border-top-left-radius: 14px; */
+	font-family: 'Arial', sans-serif !important;
+}
+
+.text {
+	background: linear-gradient(180deg, #ebcb97 0%, #90622e 100%) !important;
+	background-clip: text !important;
+	color: transparent;
+}
+
+.bell:hover {
+	transform: rotate(-20deg);
+	/* -ms-transform-origin-x: rotate(20deg); */
+}
+
+.logo {
+	width: 40px !important;
+	height: 40px !important;
+}
+
+.logoBorder {
+	width: 42px !important;
+	height: 42px !important;
+}
+.scrollbarHide::-webkit-scrollbar {
+	display: none !important;
+}

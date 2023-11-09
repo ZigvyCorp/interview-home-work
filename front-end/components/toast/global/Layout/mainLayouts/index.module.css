@@ -1,0 +1,17 @@
+.container {
+	position: relative;
+	width: 100%;
+	padding-left: 0px;
+	background-color: #f3f5f8;
+	height: fit-content;
+	font-family: 'Arial', sans-serif !important;
+}
+
+.main {
+	transition: 0.3s;
+}
+
+.footer,
+.header {
+	transition: 0.3s;
+}

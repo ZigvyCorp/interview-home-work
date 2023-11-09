@@ -1,0 +1,13 @@
+.text {
+	color: orange;
+}
+
+.btnPlus:hover {
+	transition: 0.3s;
+	transform: rotate(90deg);
+}
+
+.btnBounce {
+	transform: translateY(-25%);
+	animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+}

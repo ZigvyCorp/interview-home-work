@@ -1,0 +1,6 @@
+.text {
+	background: linear-gradient(180deg, #ebcb97 0%, #90622e 100%) !important;
+	background-clip: text !important;
+	color: transparent;
+	width: 20px !important;
+}

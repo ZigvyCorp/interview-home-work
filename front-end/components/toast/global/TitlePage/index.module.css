@@ -1,0 +1,8 @@
+.text {
+	color: #bd8847;
+}
+
+.btnPlus:hover {
+	transition: 0.3s;
+	transform: rotate(90deg);
+}

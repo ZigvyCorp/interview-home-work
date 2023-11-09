@@ -1,0 +1,40 @@
+.table table > thead > tr > th {
+	padding: 8px;
+	font-size: small;
+	font-weight: 600;
+	color: #777 !important;
+	transition: 0.3s;
+}
+
+.table table > thead > tr > th::before {
+	content: unset !important;
+}
+
+.maintable table > thead > tr > th {
+	padding: 10px;
+	font-size: small;
+	font-weight: 600;
+	color: #fff;
+	white-space: nowrap;
+	background-color: #90622e;
+}
+
+.table table > tbody > tr > td,
+.maintable table > tbody > tr > td,
+.table table > tfoot > tr > td,
+.maintable table > tfoot > tr > td {
+	color: #6b6f82;
+	padding: 0 8px;
+	/* height: 45px; */
+	/* font-size: 14px !important; */
+}
+
+.maintable table tr {
+	background-color: #fff;
+	border: solid 0.5px #90622e !important;
+}
+
+.maintable {
+	width: 100%;
+	/* box-shadow: 1px 2px px 2px rgb(210, 208, 208); */
+}

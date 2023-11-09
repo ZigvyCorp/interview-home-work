@@ -1,0 +1,31 @@
+.nested-table table > thead > tr > th {
+	background-color: #fff !important;
+	color: #000 !important;
+}
+
+.nested-table tr,
+.nested-table td,
+.nested-table th,
+.nested-table table {
+	border-color: #c3c3c3 !important;
+	height: auto;
+	line-height: 2rem;
+}
+
+.nested-table table {
+	border-left: 1px solid #c3c3c3 !important;
+	width: 100% !important;
+}
+
+.nested-table th,
+.nested-table td {
+	/* padding: 0.5rem !important; */
+	line-height: 1rem;
+	/* height: auto !important; */
+	min-height: 32px !important;
+}
+
+.nested-table th {
+	padding: 14px !important;
+	font-weight: 600 !important;
+}

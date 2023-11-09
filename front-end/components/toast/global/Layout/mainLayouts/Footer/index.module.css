@@ -1,0 +1,19 @@
+.footer {
+	padding: 0.4rem 1rem;
+	align-items: center;
+	justify-content: center;
+	/* position: relative; */
+	font-size: 12px;
+	color: #90622e;
+	border-top: 2px solid #90622e;
+	background-color: #fff;
+	transition: 0.3s;
+	/* margin-left: 64px; */
+	display: flex;
+	height: 32px !important;
+	align-items: flex-end;
+}
+
+.footer p {
+	margin: 0;
+}
