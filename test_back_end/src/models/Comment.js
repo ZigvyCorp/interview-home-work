@@ -3,8 +3,7 @@ const Schema = mongoose.Schema;
 
 const CommentSchema = new Schema({
     _id: Schema.ObjectId,
-    postId: {type: Number},
-    id: {type: Number},
+    postId: {type: Schema.Types.ObjectId},
     name: {type: String},
     email: {type:String},
     body: {type:String}

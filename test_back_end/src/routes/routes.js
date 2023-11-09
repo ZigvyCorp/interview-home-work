@@ -10,4 +10,7 @@ router.get('/comments', commentController.getAllComments);
 
 router.get('/users', userController.getAllUser);
 
+router.post('/getCommentsByPostId', commentController.getCommentsByPostId);
+
+
 module.exports = router;

@@ -4,6 +4,7 @@ const postModel = require('../models/post')
 exports.getAllPosts = (req,res) => {
     postModel
     .find()
+    .populate('userId')
     .then((listPosts) => {
         return res.status(200).json({
             success: true,

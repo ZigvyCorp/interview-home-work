@@ -17,7 +17,7 @@ app.use('/api/',postRoutes);
 
 console.log("Server:", process.env.ATLAS_URI)
 
-mongoose.connect(process.env.ATLAS_URI, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.ATLAS_URI)
 .then(()=> {
     console.log('Database connected');
 })
