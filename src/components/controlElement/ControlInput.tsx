@@ -38,7 +38,7 @@ const ControlInput = ({
               value={field.value}
               disable={disable}
               onPressEnter={handlePressEnter}
-              handleChange={field.onChange}
+              onChange={field.onChange}
               {...props}
             />
           );

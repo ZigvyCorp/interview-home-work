@@ -1,6 +1,6 @@
 import { RouteObject } from "react-router";
 
-import { IRouteItem } from "@/modules/shared";
+import { IRouteItem } from "@/shared";
 
 import { AdminLayout } from "@/modules/layouts";
 
