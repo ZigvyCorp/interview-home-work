@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useMemo, useCallback, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { IComment, IPost, PaginationResponseDefault } from "../types";
 import {
@@ -31,6 +31,8 @@ interface IPostItemProps {
 }
 const PostItem: React.FC<IPostItemProps> = (props) => {
   const { post, extra } = props;
+  console.log("🚀 ~ file: PostItem.tsx:135 ~ post:", post);
+
   const [limit] = useState(5);
   const [page, setPage] = useState(1);
 
@@ -41,14 +43,19 @@ const PostItem: React.FC<IPostItemProps> = (props) => {
     data: PaginationResponseDefault,
     loading: false,
   };
+  console.log("🚀 ~ file: PostItem.tsx:43 ~ loading:", loading);
 
   const commentsList = commentsState || PaginationResponseDefault;
 
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   const toggleCollapse = async () => {
-    if ((get(post, "comments", 0) as number) > 0 && isCollapsed) {
-      dispatch(fetchCommentAsync({ limit, page, postId: post.id }));
+    const count = get(post, "comments", 0) as number;
+    if (count > 0 && isCollapsed) {
+      // Check is get first cmt
+      if (commentsList.meta?.currentPage <= 0) {
+        dispatch(fetchCommentAsync({ limit, page, postId: post.id }));
+      }
     }
     setIsCollapsed(!isCollapsed);
   };
@@ -67,8 +74,9 @@ const PostItem: React.FC<IPostItemProps> = (props) => {
         <Flex flex={1} justify="end">
           <Space size={[0, "small"]} wrap>
             {tags.map((t) => {
+              const color = generateRandomColor();
               return (
-                <Tag key={t} color={generateRandomColor()}>
+                <Tag key={t} color={color}>
                   {t}
                 </Tag>
               );
@@ -77,7 +85,7 @@ const PostItem: React.FC<IPostItemProps> = (props) => {
         </Flex>
       </Flex>
     ),
-    [post]
+    [generateRandomColor]
   );
 
   const renderContent = (content: string) => (
@@ -86,13 +94,14 @@ const PostItem: React.FC<IPostItemProps> = (props) => {
     </Flex>
   );
 
-  const handleCommentLoadMore = () => {
-    if(loading) return;
+  const handleCommentLoadMore = async () => {
+    if (loading) return;
 
-    if(page >= commentsList.meta.totalItems) {
+    if (page >= commentsList.meta.totalPages) {
       return;
     }
-    // dispatch(fetchCommentAsync({ limit, page: page + 1, postId: post.id }));
+    dispatch(fetchCommentAsync({ limit, page: page + 1, postId: post.id }));
+    setPage((pre) => pre + 1);
   };
 
   const renderComments = (count: number) => (
@@ -102,23 +111,33 @@ const PostItem: React.FC<IPostItemProps> = (props) => {
       </Button>
       <Collapse ghost activeKey={isCollapsed ? [] : ["1"]}>
         <Panel header="" key="1" showArrow={false}>
-          <InfiniteScroll
-            dataLength={commentsList.items.length}
-            next={handleCommentLoadMore}
-            hasMore={commentsList.items.length < commentsList.meta.totalItems}
-            loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
-            endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
-            scrollableTarget="scrollableDiv"
+          <div
+            id="scrollableDiv"
+            style={{
+              height: 400,
+              overflow: "auto",
+            }}
           >
-            <List<IComment>
-              itemLayout="horizontal"
-              // loadMore={handleCommentLoadMore}
-              dataSource={commentsList.items}
-              renderItem={(item, index) => (
-                <CommentItem comment={item} index={index} />
-              )}
-            />
-          </InfiniteScroll>
+            <InfiniteScroll
+              dataLength={commentsList.items.length}
+              next={handleCommentLoadMore}
+              hasMore={commentsList.items.length < commentsList.meta.totalItems}
+              loader={
+                <Skeleton avatar paragraph={{ rows: 1 }} active={loading} />
+              }
+              endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
+              scrollableTarget="scrollableDiv"
+            >
+              <List<IComment>
+                itemLayout="horizontal"
+                // loadMore={handleCommentLoadMore}
+                dataSource={commentsList.items}
+                renderItem={(item, index) => (
+                  <CommentItem comment={item} index={index} />
+                )}
+              />
+            </InfiniteScroll>
+          </div>
         </Panel>
       </Collapse>
     </Flex>

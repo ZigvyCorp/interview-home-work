@@ -1,9 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, current,PayloadAction } from '@reduxjs/toolkit';
 import { IGetListCommentResponse, PaginationResponseDefault } from '../../types';
+import { notification } from 'antd';
 
 export interface CommentState {
   comments: Record<number, {
-    data?: IGetListCommentResponse | undefined;
+    data: IGetListCommentResponse | undefined;
     loading: boolean;
   }>,
 }
@@ -20,26 +21,32 @@ export const commentSlice = createSlice({
   reducers: {
     fetchCommentSuccess: (state, action: PayloadAction<[number, IGetListCommentResponse]>) => {
       const [postId, payload] = action.payload;
+      const stateCurrent = current(state);
+      const previousCmt = stateCurrent.comments[postId].data?.items || [];
       state.comments = {
         ...state.comments,
         [postId]: {
           loading: false,
           data: {
-            meta: payload.meta,
-            items:payload.items
+            ...payload,
+            items: [...previousCmt, ...payload.items]
           },
         }
-      }
-
+      };
     },
-    fetchCommentFailure: (state, action: PayloadAction<[number]>) => {
-      const [postId] = action.payload;
+    fetchCommentFailure: (state, action: PayloadAction<[number, string]>) => {
+      const [postId, description] = action.payload;
       state.comments = {
         ...state.comments,
         [postId]: {
+          ...state.comments[postId],
           loading: false,
         }
       }
+      notification.error({
+        message:"Ohhh",
+        description
+      });
 
     },
     fetchCommentPending: (state, action: PayloadAction<[number]>) => {
@@ -47,6 +54,7 @@ export const commentSlice = createSlice({
       state.comments = {
         ...state.comments,
         [postId]: {
+          ...state.comments[postId],
           loading: true,
         }
       }

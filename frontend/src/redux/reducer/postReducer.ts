@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IGetListPostResponse } from '../../types';
+import { notification } from 'antd';
 
 export interface PostState {
   value: number;
@@ -27,18 +28,24 @@ export const postSlice = createSlice({
       state.posts.loading = false;
       state.posts.data = action.payload;
     },
-    fetchPostFailure: (state) => {
+    fetchPostFailure: (state, action: PayloadAction<[string]>) => {
+      const [description] = action.payload;
+      console.log("🚀 ~ file: postReducer.ts:33 ~ description:", description)
       state.posts.loading = false;
+      notification.error({
+        message: "Ohhh",
+        description
+      });
 
     },
-    fetchPostPending: (state) => {
+    fetchPostPending: (state, ) => {
       state.posts.loading = true;
     },
   },
 });
 
-export const { 
+export const {
   fetchPostSuccess, fetchPostFailure, fetchPostPending,
- } = postSlice.actions;
+} = postSlice.actions;
 
 export default postSlice.reducer;

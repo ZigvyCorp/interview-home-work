@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Pagination, Col, Row, PaginationProps, Input } from "antd";
+import { Pagination, Col, Row, PaginationProps, Input, Skeleton } from "antd";
 import { get } from "lodash";
 
 import { PostItem } from "./../../../components/PostItem";
@@ -17,6 +17,7 @@ const PostList: React.FC = (props) => {
   const { data: postsState, loading } = useAppSelector(
     (state) => state.post.posts
   );
+
   const renderPosts = useCallback(() => {
     return postsState?.items.map((p) => {
       return (
@@ -60,7 +61,11 @@ const PostList: React.FC = (props) => {
           }}
         />
       </Col>
-      <Col span={24}>{renderPosts()}</Col>
+      <Col span={24}>
+        <Skeleton loading={loading} paragraph={{ rows: 3 }}>
+          {renderPosts()}
+        </Skeleton>
+      </Col>
       <Col span={24}>
         <Pagination
           style={{ float: "right" }}

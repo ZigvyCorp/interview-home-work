@@ -14,7 +14,7 @@ export interface IComment {
     post: number;
     content: string;
     created_at: number;
-    owner?: number | IUser | any;
+    owner: number | IUser;
     [key: string]: string | number | unknown;
 };
 
@@ -59,5 +59,6 @@ export interface IGetListPostResponse extends IPaginationResponse<IPost> { }
 
 export interface IGetListComment extends IPagination {
     postId: number;
+    callback?: ()=>void;
 }
 export interface IGetListCommentResponse extends IPaginationResponse<IComment> { }

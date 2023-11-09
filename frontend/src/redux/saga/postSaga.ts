@@ -1,10 +1,10 @@
 import { PayloadAction, createAction } from "@reduxjs/toolkit";
-import { all, call, put, takeLatest } from "redux-saga/effects";
+import { all, call, put, takeLatest, delay } from "redux-saga/effects";
 import { isEmpty } from 'lodash';
-import { 
+import {
   IGetListPost, IGetListPostResponse,
   IGetListComment, IGetListCommentResponse,
- } from "../../types";
+} from "../../types";
 
 import { fetchPostsApi } from "../../apis/post";
 import { fetchCommentsApi } from "../../apis/comment";
@@ -19,8 +19,8 @@ import { IResponseApi } from "../../utils";
 export const fetchPostAsync = createAction<IGetListPost>('post/fetch');
 function* fetchPostSaga(action: PayloadAction<IGetListPost>) {
   try {
-    yield put(fetchPostPending())
-
+    yield put(fetchPostPending());
+    yield delay(1000);
     const { payload } = action;
     const res: IResponseApi<IGetListPostResponse> = yield call(fetchPostsApi, payload);
     const { data, error } = res;
@@ -28,31 +28,32 @@ function* fetchPostSaga(action: PayloadAction<IGetListPost>) {
       throw new Error(error?.message || "Unknown");
     }
 
-    yield put(fetchPostSuccess(data!))
+    yield put(fetchPostSuccess(data!));
 
   } catch (error: any) {
-    yield put(fetchPostFailure(error?.message))
+    yield put(fetchPostFailure([error?.message]));
   }
 }
 
 
 export const fetchCommentAsync = createAction<IGetListComment>('post/comment/id');
 function* fetchCommentSaga(action: PayloadAction<IGetListComment>) {
+  const { payload } = action;
+  const { postId } = payload;
   try {
-    const { payload } = action;
-    const { postId } = payload;
-    yield put(fetchCommentPending([postId]))
 
+    yield put(fetchCommentPending([postId]));
+
+    yield delay(1000);
     const res: IResponseApi<IGetListCommentResponse> = yield call(fetchCommentsApi, payload);
     const { data, error } = res;
     if (!isEmpty(error)) {
       throw new Error(error?.message || "Unknown");
     }
-
-    yield put(fetchCommentSuccess([payload.postId, data!]))
+    yield put(fetchCommentSuccess([payload.postId, data!]));
 
   } catch (error: any) {
-    yield put(fetchCommentFailure(error?.message))
+    yield put(fetchCommentFailure([postId, error?.message]));
   }
 }
 

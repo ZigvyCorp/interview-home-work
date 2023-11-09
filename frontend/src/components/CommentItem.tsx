@@ -1,6 +1,7 @@
 import { Avatar, Flex, Typography } from "antd";
-import { IComment } from "../types";
+import { IComment, IUser } from "../types";
 import moment from "moment";
+import { get } from "lodash";
 
 const { Paragraph, Text } = Typography;
 
@@ -20,7 +21,7 @@ export const CommentItem: React.FC<ICommentProps> = ({ comment, index }) => {
       <Flex vertical style={{ marginLeft: "8px" }}>
         <Flex>
           <Text strong style={{ marginRight: "8px" }}>
-            {comment.owner}
+            {get(comment.owner as IUser, "owner.name", "")}
           </Text>
           <span style={{ opacity: 0.5 }}>
             {moment(comment.created_at).fromNow()}
