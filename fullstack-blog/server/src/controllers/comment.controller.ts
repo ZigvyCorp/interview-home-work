@@ -63,3 +63,58 @@ export async function getCommentById(req: Request, res: Response, next: NextFunc
 		next(error);
 	}
 }
+
+// create comment
+export async function createComment(req: Request, res: Response, next: NextFunction) {
+	const { postId, body, email, name } = req.body;
+
+	try {
+		const newComment = new Comment({
+			postId,
+			body,
+			email,
+			name,
+		});
+
+		await newComment.save();
+		res.status(201).json(handleResponse(newComment, 201, "Comment created successfully"));
+	} catch (error) {
+		next(error);
+	}
+}
+
+// update comment
+export async function updateComment(req: Request, res: Response, next: NextFunction) {
+	const { id } = req.params;
+	const { postId, body, email, name } = req.body;
+
+	try {
+		const comment = await Comment.findById(id);
+		if (!comment) {
+			throw new Error("Comment not found");
+		}
+
+		Object.assign(comment, { postId, body, email, name });
+		await comment.save();
+		res.status(200).json(handleResponse(comment, 200, "Comment updated successfully"));
+	} catch (error) {
+		next(error);
+	}
+}
+
+// delete comment
+export async function deleteComment(req: Request, res: Response, next: NextFunction) {
+	const { id } = req.params;
+
+	try {
+		const comment = await Comment.findById(id);
+		if (!comment) {
+			throw new Error("Comment not found");
+		}
+
+		await comment.remove();
+		res.status(200).json(handleResponse(comment, 200, "Comment deleted successfully"));
+	} catch (error) {
+		next(error);
+	}
+}
