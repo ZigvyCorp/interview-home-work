@@ -1,0 +1,11 @@
+.comment {
+    p,
+    span {
+        font-size: 12px !important;
+    }
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+}
