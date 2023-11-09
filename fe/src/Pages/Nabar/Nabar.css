@@ -1,0 +1,22 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar-logo {
+    font-size: 32px;
+    padding-left: 2%;
+}
+.navbar-title {
+    font-size: 32px;
+    text-align: center;
+}
+.navbar-user {
+    font-size: 32px;
+    text-align: end;
+}
+@media (max-width: 375px) {
+  .navbar-logo , .navbar-title, .navbar-user {
+    font-size: 16px;
+  }
+}
