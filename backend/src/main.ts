@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
-import { Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 
 import { AppModule } from './app.module';
 import { Environment } from './types';
@@ -10,6 +10,11 @@ async function bootstrap() {
 
   app.setGlobalPrefix('/api');
   app.enableCors();
+  app.useGlobalPipes(new ValidationPipe({
+    transform: true,
+    whitelist: true,
+    skipUndefinedProperties: true,
+  }));
 
   const configs = app.get(ConfigService);
   const selfConfig = configs.get<Environment['server']>('server');

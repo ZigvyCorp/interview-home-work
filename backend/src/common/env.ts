@@ -13,12 +13,13 @@ export const environment = (): Environment => ({
         database: process.env.PG_DBNAME,
         username: process.env.PG_USER,
         password: process.env.PG_PASS,
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        entities: [__dirname + '/../**/*.entity{.ts,.js}'],
         autoLoadEntities: true,
-        keepConnectionAlive: true
-        // synchronize: true,
+        keepConnectionAlive: true,
+        synchronize: true,
     },
 });
+
 /* Use for migration TypeORM */
 export const typeOrmConfig: Database & any = {
     type: 'postgres',
@@ -35,7 +36,7 @@ export const typeOrmConfig: Database & any = {
     extra: {
         charset: 'utf8mb4_unicode_ci'
     },
-    synchronize: false,
+    synchronize: true,
     logging: true
 };
 

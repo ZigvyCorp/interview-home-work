@@ -10,10 +10,10 @@ export class CommentEntity extends CustomBaseEntity {
 
     @ManyToOne(() => PostEntity, post => post.comments)
     @JoinColumn({ name: 'post' })
-    post: PostEntity;
+    post: PostEntity | number;
 
     @ManyToOne(() => UserEntity, user => user.comments)
-    @JoinColumn({ name: 'owner' })
-    owner: UserEntity;
+    @JoinColumn({ name: 'user' })
+    owner: UserEntity | number;
 
 }

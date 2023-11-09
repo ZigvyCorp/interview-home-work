@@ -1,5 +1,5 @@
 import { CustomBaseEntity } from "src/common/entities/base.entity";
-import { Column, Entity, JoinColumn, OneToMany, OneToOne } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne } from "typeorm";
 import { UserEntity } from "./user.entity";
 import { CommentEntity } from "./comment.entity";
 
@@ -14,9 +14,9 @@ export class PostEntity extends CustomBaseEntity {
     @Column({ type: 'jsonb', name: 'tags', nullable: false })
     tags: string[];
 
-    @OneToOne(() => UserEntity, { cascade: true })
+    @ManyToOne(() => UserEntity)
     @JoinColumn({ name: 'owner' })
-    owner: UserEntity;
+    owner: UserEntity | number;
 
     @OneToMany(() => CommentEntity, comment => comment.post)
     comments: CommentEntity[];

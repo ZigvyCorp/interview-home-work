@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { CreatePostDto } from '../dto/create-post.dto';
-import { UpdatePostDto } from '../dto/update-post.dto';
+import { CreatePostDto } from '../dto/post/create-post.dto';
+import { UpdatePostDto } from '../dto/post/update-post.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ILike, Repository } from 'typeorm';
 import { PostEntity } from '../entities/post.entity';
 import { PaginateQueryDto } from 'src/common/dtos/paginate.dto';
-import { paginateRaw } from 'nestjs-typeorm-paginate';
+import { paginate, paginateRaw } from 'nestjs-typeorm-paginate';
+import { CommentEntity, UserEntity } from '../entities';
 
 @Injectable()
 export class PostService {
@@ -24,15 +25,28 @@ export class PostService {
     const queryBuilder = this.postRepository.createQueryBuilder('u');
     queryBuilder.orderBy('u.id', 'DESC');
 
-    queryBuilder.where([{ type: ILike(`%${keyword || ''}%`) }, { name: ILike(`%${keyword || ''}%`) }]);
+    queryBuilder.where([
+      { title: ILike(`%${keyword || ''}%`) },
+      { content: ILike(`%${keyword || ''}%`) },
+      // { tags: ILike(`%${keyword || ''}%`) },
+    ]);
 
-    const response = await paginateRaw<PostEntity>(queryBuilder, filters);
+    queryBuilder.leftJoinAndMapOne('u.owner', UserEntity, 'user', 'u.owner = user.id');
+    queryBuilder.loadRelationCountAndMap('u.comments', 'u.comments');
+
+    const response = await paginate<PostEntity>(queryBuilder, filters);
 
     return response;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} post`;
+  async findOne(id: number): Promise<PostEntity> {
+    const post = await this.postRepository.findOne({
+      relations: ['owner'],
+      where: {
+        id,
+      }
+    });
+    return post;
   }
 
   update(id: number, updatePostDto: UpdatePostDto) {

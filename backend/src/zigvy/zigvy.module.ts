@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { PostService } from './services/post.service';
-import { PostController } from './controllers/post.controller';
+import { PostService, CommentService, InitialService, UserService } from './services';
+import { PostController, CommentController, UserController } from './controllers';
 import { CommentEntity, PostEntity, UserEntity} from './entities';
 
 @Module({
@@ -11,7 +11,7 @@ import { CommentEntity, PostEntity, UserEntity} from './entities';
       CommentEntity, PostEntity, UserEntity
     ]),
   ],
-  controllers: [PostController],
-  providers: [PostService],
+  controllers: [PostController, CommentController, UserController],
+  providers: [PostService, CommentService, InitialService, UserService],
 })
 export class ZigvyModule {}
