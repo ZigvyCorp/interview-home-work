@@ -1,12 +1,14 @@
 import { FileOutlined, HomeOutlined } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
-import { Menu } from 'antd'
+import { Menu, Button } from 'antd'
 import { useState } from 'react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
 import PATH from '~/constants/path'
 import AccountDropdown from '../AccountDropdown'
 import styles from './Header.module.scss'
+import { AppContext } from '~/providers/AppProvider/AppProvider'
 
 const items: MenuProps['items'] = [
   {
@@ -27,6 +29,7 @@ const items: MenuProps['items'] = [
 ]
 
 const Header = () => {
+  const { isAuthenticated } = useContext(AppContext)
   const [current, setCurrent] = useState('home')
 
   const onClick: MenuProps['onClick'] = (e) => {
@@ -41,7 +44,12 @@ const Header = () => {
           Logo
         </Link>
         <Menu onClick={onClick} selectedKeys={[current]} mode='horizontal' items={items} />
-        <AccountDropdown />
+        {isAuthenticated && <AccountDropdown />}
+        {!isAuthenticated && (
+          <Link to={PATH.LOGIN}>
+            <Button type='primary'>Đăng nhập</Button>
+          </Link>
+        )}
       </nav>
     </header>
   )
