@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const http = require("http");
+// const http = require("http");
 
 const app = express();
 
@@ -41,5 +41,9 @@ app.use("/api/user", usersRoute);
 app.use("/api/post", postsRoute);
 app.use("/api/comment", cmtsRoute);
 
-const server = http.createServer(app);
-server.listen(port, () => console.log(`Server started on port ${port}`));
+// const server = http.createServer(app);
+// server.listen(port, () => console.log(`Server started on port ${port}`));
+
+app.listen(port, () => {
+  console.log(`Server started on port ${port}`);
+});
