@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Res } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto, UpdateUserDto } from './dto';
 import { Response } from 'express';
@@ -10,8 +10,9 @@ export class UserController {
   @Get()
   getAll(@Res() res: Response) {
     try {
+      const data = this.userService.getAll();
       return res.status(200).json({
-        data: this.userService.getAll()
+        data
       });
     } catch (e) {
       return res.status(500).json({
@@ -22,12 +23,13 @@ export class UserController {
 
   @Get(":id")
   getUserById(
-    @Param("id") id: number,
+    @Param("id", new ParseIntPipe()) id: number,
     @Res() res: Response
   ) {
     try {
+      const data = this.userService.getUserById(id);
       return res.status(200).json({
-        data: this.userService.getUserById(id)
+        data
       });
     } catch (e) {
       return res.status(500).json({
@@ -55,7 +57,7 @@ export class UserController {
 
   @Put(":id")
   updateUser(
-    @Param("id") id: number,
+    @Param("id", new ParseIntPipe()) id: number,
     @Body("data") dto: UpdateUserDto,
     @Res() res: Response
   ) {
@@ -73,7 +75,7 @@ export class UserController {
 
   @Delete(":id")
   deleteUser(
-    @Param("id") id: number,
+    @Param("id", new ParseIntPipe()) id: number,
     @Res() res: Response
   ) {
     try {

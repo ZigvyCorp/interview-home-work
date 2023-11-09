@@ -1,4 +1,4 @@
-import { Controller, Body, Query, Param, Get, Post, Put, Delete, Res } from '@nestjs/common';
+import { Controller, Body, Query, Param, Get, Post, Put, Delete, Res, ParseIntPipe } from '@nestjs/common';
 import { PostService } from './post.service';
 import { CreatePostDto, UpdatePostDto } from './dto';
 import { Response } from 'express';
@@ -9,14 +9,15 @@ export class PostController {
 
   @Get()
   getAll(
-    @Query("skip") skip: number,
-    @Query("take") take: number,
+    @Query("skip", new ParseIntPipe()) skip: number,
+    @Query("take", new ParseIntPipe()) take: number,
     @Query("orderBy") order: string,
     @Res() res: Response
   ) {
     try {
+      const data = this.postService.getAll(skip, take, order);
       return res.status(200).json({
-        data: this.postService.getAll(skip, take, order)
+        data
       });
     } catch (e) {
       return res.status(500).json({
@@ -31,8 +32,9 @@ export class PostController {
     @Res() res: Response
   ) {
     try {
+      const data = this.postService.getPostByTitle(title);
       return res.status(200).json({
-        data: this.postService.getPostByTitle(title)
+        data
       });
     } catch (e) {
       return res.status(500).json({
@@ -43,12 +45,13 @@ export class PostController {
 
   @Get(":id")
   getPostById(
-    @Param("id") id: number,
+    @Param("id", new ParseIntPipe()) id: number,
     @Res() res: Response
   ) {
     try {
+      const data = this.postService.getPostById(id);
       return res.status(200).json({
-        data: this.postService.getPostById(id)
+        data
       });
     } catch (e) {
       return res.status(500).json({
@@ -59,12 +62,13 @@ export class PostController {
 
   @Get("user/:id")
   getPostByUser(
-    @Param("id") id: number,
+    @Param("id", new ParseIntPipe()) id: number,
     @Res() res: Response
   ) {
     try {
+      const data = this.postService.getPostByUser(id);
       return res.status(200).json({
-        data: this.postService.getPostByUser(id)
+        data
       });
     } catch (e) {
       return res.status(500).json({
@@ -93,7 +97,7 @@ export class PostController {
 
   @Put(":id")
   updatePost(
-    @Param("id") id: number,
+    @Param("id", new ParseIntPipe()) id: number,
     @Body("data") dto: UpdatePostDto,
     @Res() res: Response
   ) {
@@ -111,7 +115,7 @@ export class PostController {
 
   @Delete(":id")
   deletePost(
-    @Param("id") id: number,
+    @Param("id", new ParseIntPipe()) id: number,
     @Res() res: Response
   ) {
     try {

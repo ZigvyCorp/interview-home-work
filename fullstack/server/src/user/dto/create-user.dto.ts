@@ -6,7 +6,7 @@ const CreateUserSchema = z.object({
     password: z.string().min(1),
     name: z.string().nullable(),
     avatar: z.string().nullable(),
-    dob: z.date().nullable()
+    dob: z.string().datetime().nullable()
 });
 
 export class CreateUserDto extends createZodDto(CreateUserSchema) { }

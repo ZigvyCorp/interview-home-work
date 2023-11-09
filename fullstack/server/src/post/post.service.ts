@@ -9,10 +9,10 @@ export class PostService {
 
     async getAll(skip: number, take: number, order: string) {
         return await this.prisma.post.findMany({
-            skip: skip,
-            take: take,
+            skip: skip || undefined,
+            take: take || undefined,
             orderBy: {
-                updatedAt: order as Prisma.SortOrder
+                updatedAt: order as Prisma.SortOrder || null
             },
             include: {
                 comments: true

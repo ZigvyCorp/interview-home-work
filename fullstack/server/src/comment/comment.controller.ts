@@ -1,4 +1,4 @@
-import { Controller, Body, Param, Get, Post, Put, Delete, Res } from '@nestjs/common';
+import { Controller, Body, Param, Get, Post, Put, Delete, Res, ParseIntPipe } from '@nestjs/common';
 import { CommentService } from './comment.service';
 import { CreateCommentDto, UpdateCommentDto } from './dto';
 import { Response } from 'express';
@@ -10,8 +10,9 @@ export class CommentController {
   @Get()
   getAll(@Res() res: Response) {
     try {
+      const data = this.commentService.getAll();
       return res.status(200).json({
-        data: this.commentService.getAll()
+        data
       });
     } catch (e) {
       return res.status(500).json({
@@ -22,12 +23,13 @@ export class CommentController {
 
   @Get(":id")
   getCommentById(
-    @Param("id") id: number,
+    @Param("id", new ParseIntPipe()) id: number,
     @Res() res: Response
   ) {
     try {
+      const data = this.commentService.getCommentById(id);
       return res.status(200).json({
-        đata: this.commentService.getCommentById(id)
+        data
       });
     } catch (e) {
       return res.status(500).json({
@@ -38,19 +40,19 @@ export class CommentController {
 
   @Get("post/:id")
   getCommentByPost(
-    @Param("id") id: number,
+    @Param("id", new ParseIntPipe()) id: number,
     @Res() res: Response
   ) {
     try {
+      const data = this.commentService.getCommentByPost(id);
       return res.status(200).json({
-        data: this.commentService.getCommentByPost(id)
+        data
       });
     } catch (e) {
       return res.status(500).json({
         msg: e.message
       });
     }
-
   }
 
   @Post("create")
@@ -63,7 +65,7 @@ export class CommentController {
       return res.status(200).json({
         msg: "Comment has been created."
       });
-    } catch (e: any) {
+    } catch (e) {
       return res.status(500).json({
         msg: e.message
       });
@@ -72,7 +74,7 @@ export class CommentController {
 
   @Put(":id")
   updateComment(
-    @Param("id") id: number,
+    @Param("id", new ParseIntPipe()) id: number,
     @Body("data") dto: UpdateCommentDto,
     @Res() res: Response
   ) {
@@ -81,7 +83,7 @@ export class CommentController {
       return res.status(200).json({
         msg: "Comment has been updated"
       });
-    } catch (e: any) {
+    } catch (e) {
       return res.status(500).json({
         msg: e.message
       });
@@ -90,7 +92,7 @@ export class CommentController {
 
   @Delete(":id")
   deleteComment(
-    @Param("id") id: number,
+    @Param("id", new ParseIntPipe()) id: number,
     @Res() res: Response
   ) {
     try {
@@ -98,7 +100,7 @@ export class CommentController {
       return res.status(200).json({
         msg: "Comment has been deleted"
       });
-    } catch (e: any) {
+    } catch (e) {
       return res.status(500).json({
         msg: e.message
       });

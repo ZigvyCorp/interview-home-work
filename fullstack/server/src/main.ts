@@ -4,6 +4,8 @@ import helmet from 'helmet';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  //api prefix
+  app.setGlobalPrefix('api');
   //CORS
   app.enableCors({
     origin: ["http://localhost:3000"],
