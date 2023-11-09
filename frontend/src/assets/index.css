@@ -1,0 +1,38 @@
+.header {
+    height: 60px;
+}
+.post-item {
+    width: 49%;
+    min-height: 100px;
+}
+
+.post-title {
+    width: 100%;
+    text-align: center;
+}
+.post-author {
+    width: 100%;
+    min-height: 100px;
+    /* background-color: rebeccapurple; */
+}
+
+.page-item {
+    padding: 5px;
+    min-width: 40px;
+    text-align: center;
+}
+
+.comment-header {
+    width: 100%;
+    min-height: 50px;
+}
+
+.collapsed {
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+}
+
+.collapsed.show {
+    max-height: 1500px;
+}
