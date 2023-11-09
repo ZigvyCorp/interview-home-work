@@ -1,14 +1,13 @@
-import { FileOutlined, HomeOutlined } from '@ant-design/icons'
+import { FileAddOutlined, HomeOutlined } from '@ant-design/icons'
 import type { MenuProps } from 'antd'
-import { Menu, Button } from 'antd'
-import { useState } from 'react'
-import { useContext } from 'react'
+import { Button, Menu } from 'antd'
+import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import PATH from '~/constants/path'
+import { AppContext } from '~/providers/AppProvider/AppProvider'
 import AccountDropdown from '../AccountDropdown'
 import styles from './Header.module.scss'
-import { AppContext } from '~/providers/AppProvider/AppProvider'
 
 const items: MenuProps['items'] = [
   {
@@ -17,14 +16,9 @@ const items: MenuProps['items'] = [
     icon: <HomeOutlined />
   },
   {
-    label: <Link to={PATH.BLOGS}>Blog</Link>,
-    key: 'blog',
-    icon: <FileOutlined />
-  },
-  {
-    label: <Link to={PATH.BLOGS}>Đăng blog</Link>,
-    key: 'create-blog',
-    icon: <FileOutlined />
+    label: <Link to={PATH.CREATE_BLOG}>Đăng blog</Link>,
+    key: 'create_blog',
+    icon: <FileAddOutlined />
   }
 ]
 

@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { useContext } from 'react'
 import { Navigate, Outlet, useRoutes } from 'react-router-dom'
 
@@ -5,16 +6,16 @@ import PATH from '~/constants/path'
 import MainLayout from '~/layouts/MainLayout'
 import Home from '~/pages/Home'
 import Login from '~/pages/Login'
+import CreateBlog from '~/pages/CreateBlog'
 import NotFound from '~/pages/NotFound'
 import Register from '~/pages/Register'
 import { AppContext } from '~/providers/AppProvider/AppProvider'
 
-// const ProtectedRoute = () => {
-//   const { isAuthenticated } = useContext(AppContext)
-//   return isAuthenticated ? <Outlet /> : <Navigate to={PATH.LOGIN} />
-// }
+const ProtectedRoute = () => {
+  const { isAuthenticated } = useContext(AppContext)
+  return isAuthenticated ? <Outlet /> : <Navigate to={PATH.LOGIN} />
+}
 
-// eslint-disable-next-line react-refresh/only-export-components
 const RejectedRoute = () => {
   const { isAuthenticated } = useContext(AppContext)
   return !isAuthenticated ? <Outlet /> : <Navigate to={PATH.HOME} />
@@ -38,6 +39,22 @@ const useElement = () => {
         </MainLayout>
       )
     },
+    // ProtectedRoute
+    {
+      path: '/',
+      element: <ProtectedRoute />,
+      children: [
+        {
+          path: PATH.CREATE_BLOG,
+          element: (
+            <MainLayout>
+              <CreateBlog />
+            </MainLayout>
+          )
+        }
+      ]
+    },
+    // RejectedRoute
     {
       path: '/',
       element: <RejectedRoute />,

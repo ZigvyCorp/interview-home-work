@@ -11,7 +11,8 @@ class BlogsServices {
     const { insertedId } = await databaseService.blogs.insertOne(
       new Blog({
         ...body,
-        user_id: new ObjectId(user_id)
+        user_id: new ObjectId(user_id),
+        audience: Number(body.audience)
       })
     );
     const blog = await databaseService.blogs.findOne({ _id: insertedId });
@@ -25,7 +26,10 @@ class BlogsServices {
     const blog = await databaseService.blogs.findOneAndUpdate(
       { _id: new ObjectId(blog_id) },
       {
-        $set: body,
+        $set: {
+          ...body,
+          audience: Number(body.audience)
+        },
         $currentDate: {
           updated_at: true
         }

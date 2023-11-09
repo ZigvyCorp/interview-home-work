@@ -1,6 +1,6 @@
 const PATH = {
   HOME: '/',
-  BLOGS: '/blogs',
+  CREATE_BLOG: '/create-blog',
   LOGIN: '/login',
   REGISTER: '/register',
   NOT_FOUND: '*'

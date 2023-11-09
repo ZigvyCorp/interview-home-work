@@ -60,8 +60,6 @@ const Login = () => {
 
   // Submit form
   const onSubmit = handleSubmit((data) => {
-    console.log('>>> onSubmit: ', data)
-
     loginMutation.mutate(data)
   })
 
