@@ -34,3 +34,37 @@ tr,
 input {
   @apply text-[1.4rem] font-Inter text-white;
 }
+
+.custom-pagination {
+  .ant-pagination-item {
+    a {
+      @apply !text-white;
+    }
+
+    &.ant-pagination-item-active {
+      a {
+        @apply !text-light_bg;
+      }
+    }
+  }
+
+  .ant-pagination-next {
+    button {
+      @apply !text-white;
+    }
+
+    &.ant-pagination-disabled {
+      @apply !opacity-40;
+    }
+  }
+
+  .ant-pagination-prev {
+    button {
+      @apply !text-white;
+    }
+
+    &.ant-pagination-disabled {
+      @apply !opacity-40;
+    }
+  }
+}

@@ -77,7 +77,7 @@ const BlogList = ({ className = "", blogs }: IBlogList) => {
           </div>
         </div>
 
-        <div className="pt-[30px]">
+        <div className="py-[30px]">
           {listData.length > 0 && (
             <Pagination
               page={pagination.page}
