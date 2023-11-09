@@ -39,7 +39,7 @@ export const getPostCommentsByID = async (postId) => {
         let list = [];
         console.log(json);
         json.forEach(element => {
-            if (element.postId == postId){
+            if (element.postId === postId){
                 list = [...list, element];
             }
         });
