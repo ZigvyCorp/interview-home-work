@@ -36,5 +36,7 @@ export const BLOGS_MESSAGES = {
   BLOG_IDS_IS_REQUIRED: 'Danh sách ID blog là bắt buộc',
   BLOG_IDS_MUST_BE_AN_ARRAY: 'Danh sách ID blog phải là một mảng',
   BLOG_IDS_MUST_NOT_BE_EMPTY: 'Danh sách ID blog không được rỗng',
-  BLOG_IDS_IS_INVALID: 'Danh sách ID blog không hợp lệ'
+  BLOG_IDS_IS_INVALID: 'Danh sách ID blog không hợp lệ',
+  GET_BLOGS_SUCCESSFUL: 'Lấy danh sách blog thành công',
+  GET_BLOG_DETAIL_SUCCESSFUL: 'Lấy chi tiết blog thành công'
 } as const;

@@ -1,5 +1,6 @@
-import { ParamsDictionary } from 'express-serve-static-core';
+import { ParamsDictionary, Query } from 'express-serve-static-core';
 import { BlogAudience } from '~/constants/enum';
+import { PaginationReqQuery } from './Common.requests';
 
 // Body: Tạo blog
 export interface CreateBlogReqBody {
@@ -23,4 +24,9 @@ export interface BlogIdReqParams extends ParamsDictionary {
 // Body: Xoá blog (một hoặc nhiều)
 export interface DeleteBlogsReqBody {
   blog_ids: string[];
+}
+
+// Query: Lấy danh sách blog
+export interface GetBlogsQuery extends PaginationReqQuery {
+  title?: string;
 }

@@ -194,3 +194,16 @@ export const deleteBlogsValidator = validate(
     ['body']
   )
 );
+
+// Lấy danh sách blog
+export const getBlogsValidator = validate(
+  checkSchema(
+    {
+      title: {
+        optional: true,
+        trim: true
+      }
+    },
+    ['query']
+  )
+);
