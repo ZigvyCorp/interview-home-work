@@ -16,9 +16,10 @@ const getListPost = async ({ search }) => {
         console.log(err)
     }
     let data = await response.json()
+    data = data.metadata
     data = data.map((value) => {
-        let body = value.body
-        value.body = body.length > 100 ? body.slice(0, 100) + '...' : body
+        let content = value.content
+        value.content = content.length > 100 ? content.slice(0, 100) + '...' : content
         return value
     })
     return data
@@ -29,6 +30,8 @@ const getPostById = async (id) => {
     if (err) {
         console.log(err)
     }
-    return await response.json()
+    let data = await response.json()
+    data = data.metadata
+    return data
 }
 export { getListPost, getPostById }

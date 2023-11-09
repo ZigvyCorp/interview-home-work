@@ -4,9 +4,11 @@ const { NotFoundError } = require("../core/error.response");
 
 async function getAllPost({ search }) {
     const condition = {};
-    condition.title = {
-        [DB.Op.like]: `%${search}%`,
-    };
+    if (search) {
+        condition.title = {
+            [DB.Op.like]: `%${search}%`,
+        };
+    }
 
     const posts = await postRepository.getAllPost(condition);
     return posts;

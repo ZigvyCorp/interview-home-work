@@ -7,9 +7,9 @@ export default function CommentItem({ data }) {
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpUF-wkEUfqNx7IIudXfmbaFg-ILMZwYYy2Tg-t4LrW2WFCwWPQoxxmI2-1UDL_Mhpe7U&usqp=CAU"
                     alt=""
                     style={{
-                        borderRadius: "50%",
-                        width: "40px",
-                        height: "40px",
+                        borderRadius: '50%',
+                        width: '40px',
+                        height: '40px',
                     }}
                 />
             </div>
@@ -18,9 +18,9 @@ export default function CommentItem({ data }) {
                     <p>{data?.email}</p>
                     <p className="text-secondary">2 day ago</p>
                 </div>
-                <div className="comment-body">{data?.body}</div>
+                <div className="comment-body">{data?.content}</div>
                 <div className="comment-replyto text-secondary">Reply To</div>
             </div>
         </div>
-    );
+    )
 }

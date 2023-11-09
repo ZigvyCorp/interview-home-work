@@ -12,7 +12,6 @@ export default function HomePage() {
     const searchParams = new URLSearchParams(window.location.search)
     const page = searchParams.get('page') || 1
     const [listPost, setListPosts] = useState([])
-
     const [currentPage, setCurrentPage] = useState(page)
     const itemPerPage = 10
     const totalItems = posts.length
@@ -28,7 +27,8 @@ export default function HomePage() {
     }, [currentPage])
 
     useEffect(() => {
-        setListPosts(posts)
+        const data = posts.slice(startIndex, endIndex)
+        setListPosts(data)
     }, [posts])
 
     const handleChangePage = (page) => {
