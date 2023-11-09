@@ -1,11 +1,29 @@
 import React from 'react';
-// import { Counter } from './features/counter/Counter';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { routes } from './routes';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello, World!</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {routes.map((route, index) => {
+          const path = route.path;
+          const Page = route.page;
+
+          return (
+            <Route
+              key={index}
+              path={path}
+              element={
+                <div className="Zigvy_blog">
+                  <Page />
+                </div>
+              }
+            />
+          );
+        })}
+      </Routes>
+    </BrowserRouter>
   );
 }
 
