@@ -1,39 +1,10 @@
 import React from 'react';
-import { Card, Flex, Space, Typography, Tag, Button, Collapse, Avatar } from 'antd';
+import PostCardComment from './PostCardComment';
 import { CommentOutlined } from '@ant-design/icons';
-
+import { Card, Flex, Space, Typography, Tag, Button, Collapse } from 'antd';
 
 const PostCard = () => {
 
-    const RenderComments = () => {
-        return (
-            <Flex vertical gap="large">
-                <Flex gap="large">
-                    <Avatar size="large" src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=3" />
-                    <Space direction='vertical' align='start'>
-                        <Space size='large'>
-                            <Typography.Text type='secondary' strong>Name</Typography.Text>
-                            <Typography.Text type='secondary'>Date</Typography.Text>
-                        </Space>
-                        <Typography.Text>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, cumque.
-                        </Typography.Text>
-                    </Space>
-                </Flex>
-                <Flex gap="large">
-                    <Avatar size="large" src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=3" />
-                    <Space direction='vertical' align='start'>
-                        <Space size='large'>
-                            <Typography.Text type='secondary' strong>Name</Typography.Text>
-                            <Typography.Text type='secondary'>Date</Typography.Text>
-                        </Space>
-                        <Typography.Text>lorem10</Typography.Text>
-                    </Space>
-                </Flex>
-            </Flex>
-
-        );
-    };
     return (
         <Card actions={[
             <Collapse
@@ -45,7 +16,7 @@ const PostCard = () => {
                             <Typography.Text strong>4</Typography.Text>
                             <CommentOutlined />
                         </Button>,
-                        children: <RenderComments />,
+                        children: <PostCardComment />,
                         showArrow: false
                     },
                 ]}

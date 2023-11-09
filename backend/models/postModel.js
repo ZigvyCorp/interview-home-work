@@ -13,6 +13,7 @@ const postSchema = new mongoose.Schema({
     author: {
         type: mongoose.Types.ObjectId, ref: 'User'
     },
+    tag: [{ type: String }]
 }, { timestamps: true });
 
 module.exports = mongoose.model('Post', postSchema);

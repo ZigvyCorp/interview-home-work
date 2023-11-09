@@ -4,11 +4,10 @@ const bcrypt = require('bcryptjs');
 const Users = require('../models/userModel');
 const generateToken = require('../utils/jwt');
 
-
 const authController = {
     register: async (req, res) => {
         try {
-            const { username, password } = req.body;
+            const { username, password, name, dob } = req.body;
 
             const existUsername = await Users.findOne({ username });
 
@@ -20,7 +19,7 @@ const authController = {
 
             const hashPassword = await bcrypt.hash(password, 15);
 
-            const newUser = new Users({ username, password: hashPassword });
+            const newUser = new Users({ username, password: hashPassword, name, dob });
             await newUser.save();
 
             return res.status(httpStatus.CREATED).send({
@@ -36,7 +35,7 @@ const authController = {
 
             const user = await Users.findOne({ username });
             if (!user) {
-                res.status(httpStatus.CONFLICT).send({
+                res.status(httpStatus.NOT_FOUND).send({
                     message: "Username not found!"
                 });
             }
@@ -50,31 +49,26 @@ const authController = {
 
             const accessToken = generateToken({ id: user._id });
 
-            res.cookie("accessToken", accessToken, {
-                httpOnly: true
-            })
-                .status(httpStatus.OK)
-                .send({
-                    message: "Login success",
-                    accessToken,
-                    username
-                });
+            res.status(httpStatus.OK).send({
+                message: "Login success",
+                accessToken
+            });
 
         } catch (err) {
             res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err);
         }
     },
-    logout: (req, res) => {
+    getMe: async (req, res) => {
         try {
-            return res.clearCookie("accessToken")
-                .status(httpStatus.OK).send({
-                    message: "Logout!"
-                });
+            const user = await Users.findById(req.user._id).select('-password');
+            res.status(httpStatus.OK).send({
+                message: "Get me success!",
+                user,
+            });
         } catch (err) {
-            return res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err);
+            res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err);
         }
     }
-
 };
 
 module.exports = authController;
