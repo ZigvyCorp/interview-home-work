@@ -3,7 +3,8 @@ import Comments from "../component/Comment";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { fetchPostIdRequest } from "../redux/actions/postIdAction";
+import { fetchPostIdRequest } from "../redux/actions/post/postIdAction";
+import { fetchCommentPostIdRequest } from "../redux/actions/comment/commentPostIdAction";
 
 const DetailPost = () => {
   const dispatch = useDispatch();
@@ -11,7 +12,6 @@ const DetailPost = () => {
   const { postId } = useParams();
   const [showComment, setShowComment] = useState(false);
 
-  console.log("postId", postId);
   const handleShowComment = () => {
     setShowComment(!showComment);
   };
@@ -20,12 +20,27 @@ const DetailPost = () => {
     (state: RootState) => state.postId
   );
 
+  const { loadingComment, comments, errorComment } = useSelector(
+    (state: RootState) => state.commentPostId
+  );
+
   useEffect(() => {
     if (postId !== undefined) {
       dispatch(fetchPostIdRequest({ postId: Number(postId) }));
+      dispatch(fetchCommentPostIdRequest({ postId: Number(postId) }));
     }
-    console.log(post);
   }, []);
+  console.log(showComment);
+
+  const CommentPostId = () => {
+    return (
+      <>
+        {comments.map((comment, index) => (
+          <Comments key={index} content={comment.body} name={comment.name} />
+        ))}
+      </>
+    );
+  };
 
   return (
     <Fragment>
@@ -34,20 +49,20 @@ const DetailPost = () => {
         <div className="d-flex justify-content-between">
           <div>
             <p>Author: John Smith</p>
-            <p>Create at: Sep 20, 2018</p>
+            <p>Create at: Oct 1, 2023</p>
           </div>
           <div>coming soon</div>
         </div>
         <div className="my-5">
           <p>{post.body}</p>
         </div>
-        <div className="mx-3">
+        <div>
           <p style={{ cursor: "pointer" }} onClick={() => handleShowComment()}>
-            2 replies
+            {comments.length} replies
           </p>
         </div>
-        <hr className="mx-3"></hr>
-        {showComment ? <Comments /> : ""}
+        <hr />
+        {showComment ? <CommentPostId /> : ""}
       </div>
     </Fragment>
   );

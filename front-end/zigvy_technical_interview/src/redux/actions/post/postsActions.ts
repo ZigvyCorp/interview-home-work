@@ -1,11 +1,11 @@
-import { postTypes } from "../actions-types/postTypes";
+import { postTypes } from "../../actions-types/postTypes";
 import {
   FetchPostFailure,
   FetchPostFailurePayload,
   FetchPostRequest,
   FetchPostSuccess,
   FetchPostSuccessPayload,
-} from "../types/types";
+} from "../../types/post/types";
 
 export const fetchPostRequest = (): FetchPostRequest => ({
   type: postTypes.FETCH_POST_REQUEST,

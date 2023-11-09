@@ -1,4 +1,4 @@
-import { postIdTypes } from "../actions-types/postTypes";
+import { postIdTypes } from "../../actions-types/postTypes";
 
 import {
   FetchPostIdFailure,
@@ -6,7 +6,7 @@ import {
   FetchPostIdRequest,
   FetchPostIdSuccess,
   FetchPostIdSuccessPayload,
-} from "../types/typesId";
+} from "../../types/post/typesId";
 
 export const fetchPostIdRequest = (payload: {
   postId: number;

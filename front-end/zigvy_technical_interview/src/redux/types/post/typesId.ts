@@ -1,5 +1,5 @@
-import { Post } from "../../model/type";
-import { postIdTypes } from "../actions-types/postTypes";
+import { Post } from "../../../model/type";
+import { postIdTypes } from "../../actions-types/postTypes";
 
 export interface PostIdState {
   loading: boolean;

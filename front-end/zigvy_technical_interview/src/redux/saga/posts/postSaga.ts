@@ -2,7 +2,10 @@ import axios from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 
 import { Post } from "../../../model/type";
-import { fetchPostFailure, fetchPostSuccess } from "../../actions/postsActions";
+import {
+  fetchPostFailure,
+  fetchPostSuccess,
+} from "../../actions/post/postsActions";
 
 import { postTypes } from "../../actions-types/postTypes";
 import { baseUrl } from "../../../baseurl";

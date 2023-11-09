@@ -1,4 +1,13 @@
-const Comments = () => {
+import moment from "moment";
+
+interface CommentCard {
+  content: string;
+  name: string;
+}
+const Comments = ({ content, name }: CommentCard) => {
+  const createDate = moment("2023-10-01");
+  const nowDate = moment();
+  const diffInDay = nowDate.diff(createDate, "days");
   return (
     <div className="d-flex flex-row mx-3">
       <div style={{ marginRight: "30px" }}>
@@ -10,14 +19,12 @@ const Comments = () => {
       </div>
       <div className="d-flex flex-column">
         <div className="d-flex flex-row">
-          <p style={{ fontWeight: "bold" }}>Han Solo</p>
-          <p style={{ marginLeft: "30px", color: "grey" }}>a day ago</p>
+          <p style={{ fontWeight: "bold" }}>{name}</p>
+          <p style={{ marginLeft: "30px", color: "grey" }}>
+            {diffInDay} day ago
+          </p>
         </div>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed
-          lacinia sapien. Suspendisse velit lacus, molestie sit amet tempor
-          viverra, ullamcorper eget est.{" "}
-        </p>
+        <p>{content}</p>
         <p style={{ cursor: "pointer", color: "grey" }}>Reply to</p>
       </div>
     </div>

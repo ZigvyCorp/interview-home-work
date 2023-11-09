@@ -4,11 +4,11 @@ import { Post } from "../../../model/type";
 import {
   fetchPostIdSuccess,
   fetchPostIdFailure,
-} from "../../actions/postIdAction";
+} from "../../actions/post/postIdAction";
 import { postIdTypes } from "../../actions-types/postTypes";
 import { baseUrl } from "../../../baseurl";
 
-const getPostId = ({ postId }: { postId: string }) =>
+const getPostId = ({ postId }: { postId: number }) =>
   axios.get<Post>(baseUrl + `/posts/${postId}`);
 
 function* fetchPostIdSaga(action: any): any {
