@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { paginateRaw } from 'nestjs-typeorm-paginate';
+import { paginate, paginateRaw } from 'nestjs-typeorm-paginate';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ILike, Repository } from 'typeorm';
 
@@ -25,12 +25,12 @@ export class UserService {
     queryBuilder.orderBy('u.id', 'DESC');
 
     queryBuilder.where([
-      { title: ILike(`%${keyword || ''}%`) },
-      { content: ILike(`%${keyword || ''}%`) },
+      { name: ILike(`%${keyword || ''}%`) },
+      { username: ILike(`%${keyword || ''}%`) },
       // { tags: ILike(`%${keyword || ''}%`) },
     ]);
 
-    const response = await paginateRaw<UserEntity>(queryBuilder, filters);
+    const response = await paginate<UserEntity>(queryBuilder, filters);
 
     return response;
   }

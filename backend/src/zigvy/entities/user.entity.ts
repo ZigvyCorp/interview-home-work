@@ -1,5 +1,5 @@
 import { CustomBaseEntity } from "src/common/entities/base.entity";
-import { BeforeInsert, BeforeUpdate, Column, Entity, JoinColumn, OneToMany, OneToOne } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany } from "typeorm";
 import { CommentEntity } from "./comment.entity";
 import { Expose } from "class-transformer";
 import { hashPassword } from "src/utils/password.util";
@@ -12,6 +12,7 @@ export class UserEntity extends CustomBaseEntity {
     @Column({ type: 'varchar', name: 'username', nullable: false })
     username: string;
 
+    // Remove password when get
     @Expose()
     @Column({ type: 'varchar', name: 'password', nullable: false })
     password: string;
