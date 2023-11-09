@@ -1,0 +1,63 @@
+.Navbar{
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid black ;
+}
+.Navbar .logo{
+  padding-top: 10px;
+  padding-left: 20px;
+}
+.Navbar .web-name{
+  border-left: 2px black solid;
+  border-right: 2px black solid;
+  padding-top: 10px;
+}
+.user{
+  display: flex;
+  flex-direction: row;
+  padding-right: 20px;
+}
+.user h4{
+  padding-top: 12px;
+  padding-left: 5px;
+}
+.user img{
+  max-width: 50px;
+  height: 50px;
+  padding-top: 10px;
+}
+.post{
+  border: 1px solid blue;
+}
+.title h1{
+  display: flex;
+  justify-content: center;
+}
+.container{
+  padding-left: 50px;
+  padding-right: 50px;
+  width: auto;
+}
+.post div{
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.comment{
+  border: 1px solid purple;
+  display: flex;
+  flex-direction: row;
+}
+.comment-info {
+  display: flex;
+  flex-direction: row;
+  
+}
+.comment div img{
+  width: 150px;
+  height: 150px;
+  padding-top: 10px;
+}
+.comment div h4{
+  padding-left: 20px;
+  color: gray;
+}
