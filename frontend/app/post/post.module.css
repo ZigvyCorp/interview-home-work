@@ -1,0 +1,41 @@
+.blog {
+  padding: 16px;
+  border-bottom: 2px solid black;
+}
+
+.blog h1 {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+.desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 24px;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.tags {
+  display: flex;
+  gap: 4px;
+}
+
+.tags > div {
+  border: 1px solid red;
+  height: fit-content;
+  padding: 2px 8px;
+  border-radius: 8px;
+}
+
+.boxComment {
+  padding: 12px;
+}
