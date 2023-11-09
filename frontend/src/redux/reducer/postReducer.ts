@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IGetListPostResponse } from '../../types';
+import { IGetListPostResponse, IPost } from '../../types';
 import { notification } from 'antd';
 
 export interface PostState {
@@ -8,6 +8,10 @@ export interface PostState {
     data: IGetListPostResponse | undefined;
     loading: boolean;
   },
+  post: {
+    data: IPost | undefined;
+    loading: boolean;
+  }
 }
 
 const initialState: PostState = {
@@ -15,6 +19,10 @@ const initialState: PostState = {
   posts: {
     data: undefined,
     loading: false,
+  },
+  post: {
+    data: undefined,
+    loading: false
   }
 };
 
@@ -30,22 +38,38 @@ export const postSlice = createSlice({
     },
     fetchPostFailure: (state, action: PayloadAction<[string]>) => {
       const [description] = action.payload;
-      console.log("🚀 ~ file: postReducer.ts:33 ~ description:", description)
       state.posts.loading = false;
+      notification.error({
+        message: "Ohhh",
+        description
+      });
+    },
+    fetchPostPending: (state,) => {
+      state.posts.loading = true;
+    },
+
+    fetchPostDetailSuccess: (state, action: PayloadAction<IPost>) => {
+      state.post.loading = false;
+      state.post.data = action.payload;
+    },
+    fetchPostDetailFailure: (state, action: PayloadAction<[string]>) => {
+      const [description] = action.payload;
+      state.post.loading = false;
       notification.error({
         message: "Ohhh",
         description
       });
 
     },
-    fetchPostPending: (state, ) => {
-      state.posts.loading = true;
+    fetchPostDetailPending: (state) => {
+      state.post.loading = true;
     },
   },
 });
 
 export const {
   fetchPostSuccess, fetchPostFailure, fetchPostPending,
+  fetchPostDetailSuccess, fetchPostDetailFailure, fetchPostDetailPending,
 } = postSlice.actions;
 
 export default postSlice.reducer;

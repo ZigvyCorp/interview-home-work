@@ -57,8 +57,14 @@ export const PaginationResponseDefault = {
 export interface IGetListPost extends IPagination { }
 export interface IGetListPostResponse extends IPaginationResponse<IPost> { }
 
+export interface IGetPost {
+    id: number;
+}
+export interface IGetPostResponse extends IPost { }
+
+
 export interface IGetListComment extends IPagination {
     postId: number;
-    callback?: ()=>void;
+    callback?: () => void;
 }
 export interface IGetListCommentResponse extends IPaginationResponse<IComment> { }

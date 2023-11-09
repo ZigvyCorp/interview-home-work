@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query, BadRequestException } from '@nestjs/common';
 import { CreateCommentDto } from '../dto/comment/create-comment.dto';
 import { CommentService, PostService, UserService } from '../services';
 import { GetCommentsDto } from '../dto/comment/get-comments.dto';

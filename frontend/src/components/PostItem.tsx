@@ -31,7 +31,6 @@ interface IPostItemProps {
 }
 const PostItem: React.FC<IPostItemProps> = (props) => {
   const { post, extra } = props;
-  console.log("🚀 ~ file: PostItem.tsx:135 ~ post:", post);
 
   const [limit] = useState(5);
   const [page, setPage] = useState(1);
@@ -43,7 +42,6 @@ const PostItem: React.FC<IPostItemProps> = (props) => {
     data: PaginationResponseDefault,
     loading: false,
   };
-  console.log("🚀 ~ file: PostItem.tsx:43 ~ loading:", loading);
 
   const commentsList = commentsState || PaginationResponseDefault;
 

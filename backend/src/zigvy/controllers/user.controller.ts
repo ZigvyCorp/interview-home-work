@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, BadGatewayException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Query, BadGatewayException } from '@nestjs/common';
 import { UserService } from '../services';
 import { PaginateQueryDto } from 'src/common/dtos/paginate.dto';
 import { CreateUserDto } from '../dto/user/create-user.dto';

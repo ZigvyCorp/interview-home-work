@@ -40,13 +40,12 @@ export class PostService {
   }
 
   async findOne(id: number): Promise<PostEntity> {
-    const post = await this.postRepository.findOne({
-      relations: ['owner'],
-      where: {
-        id,
-      }
-    });
-    return post;
+    const queryBuilder = this.postRepository.createQueryBuilder('u');
+    queryBuilder.where([
+      { id },
+    ]);
+    queryBuilder.loadRelationCountAndMap('u.comments', 'u.comments');
+    return queryBuilder.getOne();
   }
 
   update(id: number, updatePostDto: UpdatePostDto) {

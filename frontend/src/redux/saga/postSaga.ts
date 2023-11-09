@@ -3,13 +3,14 @@ import { all, call, put, takeLatest, delay } from "redux-saga/effects";
 import { isEmpty } from 'lodash';
 import {
   IGetListPost, IGetListPostResponse,
-  IGetListComment, IGetListCommentResponse,
+  IGetListComment, IGetListCommentResponse, IPost, IGetPost,
 } from "../../types";
 
-import { fetchPostsApi } from "../../apis/post";
+import { fetchPostDetailApi, fetchPostsApi } from "../../apis/post";
 import { fetchCommentsApi } from "../../apis/comment";
 import {
   fetchPostSuccess, fetchPostFailure, fetchPostPending,
+  fetchPostDetailSuccess, fetchPostDetailFailure, fetchPostDetailPending,
 } from "../reducer/postReducer";
 import {
   fetchCommentSuccess, fetchCommentFailure, fetchCommentPending,
@@ -20,7 +21,7 @@ export const fetchPostAsync = createAction<IGetListPost>('post/fetch');
 function* fetchPostSaga(action: PayloadAction<IGetListPost>) {
   try {
     yield put(fetchPostPending());
-    yield delay(1000);
+    yield delay(500);
     const { payload } = action;
     const res: IResponseApi<IGetListPostResponse> = yield call(fetchPostsApi, payload);
     const { data, error } = res;
@@ -35,6 +36,24 @@ function* fetchPostSaga(action: PayloadAction<IGetListPost>) {
   }
 }
 
+export const fetchPostDetailAsync = createAction<IGetPost>('post/fetch/id');
+function* fetchPostDetailSaga(action: PayloadAction<IGetPost>) {
+  try {
+    yield put(fetchPostDetailPending());
+    const { payload } = action;
+    const res: IResponseApi<IPost> = yield call(fetchPostDetailApi, payload);
+    const { data, error } = res;
+    if (!isEmpty(error)) {
+      throw new Error(error?.message || "Unknown");
+    }
+
+    yield put(fetchPostDetailSuccess(data!));
+
+  } catch (error: any) {
+    yield put(fetchPostDetailFailure([error?.message]));
+  }
+}
+
 
 export const fetchCommentAsync = createAction<IGetListComment>('post/comment/id');
 function* fetchCommentSaga(action: PayloadAction<IGetListComment>) {
@@ -44,7 +63,7 @@ function* fetchCommentSaga(action: PayloadAction<IGetListComment>) {
 
     yield put(fetchCommentPending([postId]));
 
-    yield delay(1000);
+    yield delay(500);
     const res: IResponseApi<IGetListCommentResponse> = yield call(fetchCommentsApi, payload);
     const { data, error } = res;
     if (!isEmpty(error)) {
@@ -60,6 +79,7 @@ function* fetchCommentSaga(action: PayloadAction<IGetListComment>) {
 export function* postSaga() {
   yield all([
     takeLatest(fetchPostAsync, fetchPostSaga),
+    takeLatest(fetchPostDetailAsync, fetchPostDetailSaga),
     takeLatest(fetchCommentAsync, fetchCommentSaga),
 
   ]);

@@ -19,6 +19,17 @@ services:
       - db
     ports:
       - 5001:8080
+  
+  zigvy-backend:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    container_name: zigvy-backend
+    ports:
+      - 4000:4000
+    env_file:
+      - ./.env
+    restart: always
 
 networks:
   app-tier:
@@ -27,3 +38,4 @@ networks:
 volumes:
   postgres:
   pgadmin:
+  zigvy-backend:
