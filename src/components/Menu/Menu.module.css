@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.heading {
+    font-size: 32px;
+    color: #ccc;
+    text-decoration: dotted;
+}

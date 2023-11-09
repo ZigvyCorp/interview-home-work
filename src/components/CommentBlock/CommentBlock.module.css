@@ -1,0 +1,7 @@
+.comment-item + .comment-item {
+    margin-top: 24px;
+}
+
+.comment-item:first-of-type {
+    margin-top: 12px;
+}

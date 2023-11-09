@@ -1,0 +1,17 @@
+.title {
+    font-size: 32px;
+    text-align: center;
+    color: #333;
+}
+
+.title:hover {
+    opacity: 0.8;
+}
+
+.content {
+    margin-top: 16px;
+}
+
+.comments-block {
+    margin-top: 40px;
+}
