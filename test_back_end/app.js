@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const logger = require('morgan');
+var path = require('path');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -11,6 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(logger('dev'));
+
 
 // Routes
 app.use('/api/',postRoutes);
@@ -26,9 +28,16 @@ mongoose.connect(process.env.ATLAS_URI)
 });
 
 const port = 5001;
-app.get('/',(req,res)=> {
+
+app.use(express.static(path.resolve("../") + "/test_front_end/build"))
+app.get('/', (req, res) => {
+    res.sendFile(path.resolve("../") + "/test_front_end/build/index.html");
+})
+
+
+app.get('/api',(req,res)=> {
     res.status(200).json({
-        message: "ExpressJS + mongoose"
+        message: "API"
     })
 });
 
