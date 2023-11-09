@@ -81,7 +81,7 @@ const Header = ({ valueSearch, setValueSearch }) => {
                         ) : (
                             <Link
                                 to={path.LOGIN}
-                                className="flex flex-col text-sm cursor-pointer hover:text-main transition duration-300"
+                                className="flex flex-col text-sm cursor-pointer text-hover hover:underline transition duration-300"
                             >
                                 <span>Đăng nhập</span>
                                 <span>Đăng ký</span>
