@@ -1,0 +1,11 @@
+.comment {
+  display: flex;
+}
+
+.commentAvatar {
+  width: 80px;
+}
+
+.commentContent {
+  width: calc(100% - 80px);
+}
