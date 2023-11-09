@@ -1,8 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { format, parseISO } from "date-fns";
+
+import { DATE_FORMAT } from "@/shared";
 
 import { Container } from "@/components/common";
 import { Pagination } from "@/components/pagination";
+import { BlogCard } from "@/modules/blogs";
 
 import { IPost, PAGINATION } from "@/modules/blogs";
 
@@ -12,7 +16,6 @@ export interface IBlogList {
 }
 
 const BlogList = ({ className = "", blogs }: IBlogList) => {
-  // const limit = 30;
   const [params, setParams] = useSearchParams();
   const [search, setSearch] = useState<string>("");
   const [pagination, setPagination] = useState(PAGINATION);
@@ -36,12 +39,6 @@ const BlogList = ({ className = "", blogs }: IBlogList) => {
 
   // -- handling ----
 
-  // const getPaginatedData = () => {
-  //   const start = pagination.page * pagination.pageSize - pagination.pageSize;
-  //   const end = start + pagination.pageSize;
-  //   return blogs.slice(start, end);
-  // };
-
   const handleSearch = (e: any) => {
     setSearch(e.target.value);
   };
@@ -60,13 +57,25 @@ const BlogList = ({ className = "", blogs }: IBlogList) => {
   return (
     <div className={`${className}`}>
       <Container>
-        {listData.map((item, index) => {
-          return (
-            <div key={index}>
-              <h2>{item.title}</h2>
-            </div>
-          );
-        })}
+        <div className="pt-[30px] lg:pt-[60px]">
+          <div className="flex flex-wrap -m-[18px]">
+            {listData.map((item, index) => {
+              return (
+                <div key={index} className="p-[18px] w-full md:w-1/2 lg:w-1/3">
+                  <BlogCard
+                    className="w-full"
+                    id={item.id}
+                    author={item.author || ""}
+                    created={format(parseISO(item.createdDate), DATE_FORMAT.DAY_MONTH_YEAR) || ""}
+                    title={item.title}
+                    content={item.body.substring(0, 100)}
+                    comment={item.comments || []}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
 
         <div className="pt-[30px]">
           {listData.length > 0 && (

@@ -4,7 +4,9 @@ export interface IHeader {
 }
 const Header = ({ className = "", children }: IHeader) => {
   return (
-    <header className={`${className} bg-main_bg h-[var(--head-height)] w-full fixed top-0 left-0`}>{children}</header>
+    <header className={`${className} bg-light_bg h-[var(--head-height)] w-full fixed top-0 left-0 z-[200]`}>
+      {children}
+    </header>
   );
 };
 

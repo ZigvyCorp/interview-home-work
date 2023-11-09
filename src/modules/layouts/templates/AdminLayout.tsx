@@ -8,7 +8,7 @@ const AdminLayout = ({ children }: IAdminLayout) => {
   return (
     <>
       <Header></Header>
-      <main className="pt-[var(--head-height)]">{children}</main>
+      <main className="pt-[var(--head-height)] bg-bg min-h-[100vh]">{children}</main>
       <footer></footer>
     </>
   );

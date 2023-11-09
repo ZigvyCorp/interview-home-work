@@ -8,12 +8,17 @@ module.exports = {
   ],
   theme: {
     colors: {
+      light_grey: "#2A3348",
+      grey: "#C9C9C9",
       black: "#000000",
       bg_grey: "#f3f4f6",
       white: "#ffffff",
       black2: "#505564",
       main: "#f9660c",
       main_bg: "#2b2b2b",
+      bg: "#070D1B",
+      light_bg: "#1A2439",
+      yellow: "#FCC02D",
     },
     fontFamily: {
       Inter: ["Inter", "sans-serif"],

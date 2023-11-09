@@ -11,7 +11,7 @@ export interface IPagination {
 const Pagination = ({ className = "", page, pageSize, total, onChange }: IPagination) => {
   return (
     <AntPagination
-      className={`${className}`}
+      className={`${className} custom-pagination`}
       defaultCurrent={1}
       current={page}
       pageSize={pageSize}
