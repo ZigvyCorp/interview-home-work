@@ -1,0 +1,27 @@
+.post-container {
+    background-color: white;
+    padding: 0 2rem 2rem;
+    border: 2px black solid;
+    margin-bottom: 2rem;
+}
+
+.post {
+    width: 100%;
+    background-color: white;
+    font-weight: bold;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ant-tag {
+    font-weight: 400;
+}
+
+.comment-section {
+    width: 100%;
+    margin-top: 1.5rem;
+}
