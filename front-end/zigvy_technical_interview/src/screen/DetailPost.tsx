@@ -67,7 +67,7 @@ const DetailPost = () => {
             <h1 className="text-center">{post.title}</h1>
             <div className="d-flex flex-row my-5">
               <div className="col">
-                <p>Author: </p>
+                <p style={{ marginBottom: "3px" }}>Author: </p>
                 <p>Create at: Oct 1, 2023</p>
               </div>
               <div className="col"></div>

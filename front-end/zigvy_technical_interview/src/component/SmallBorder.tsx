@@ -9,7 +9,7 @@ const SmallBorder = ({ color }: { color: string }) => {
         borderColor: `${color}`,
         borderRadius: "5px",
         marginLeft: "10px",
-        marginTop: "10px",
+        marginBottom: "5px",
       }}
     >
       <p className="m-1 text-center" style={{ color: `${color}` }}>
