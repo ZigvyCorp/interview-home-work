@@ -8,9 +8,9 @@ export class UserController {
   constructor (private readonly userService: UserService) { }
 
   @Get()
-  getAll(@Res() res: Response) {
+  async getAll(@Res() res: Response) {
     try {
-      const data = this.userService.getAll();
+      const data = await this.userService.getAll();
       return res.status(200).json({
         data
       });
@@ -22,12 +22,12 @@ export class UserController {
   }
 
   @Get(":id")
-  getUserById(
+  async getUserById(
     @Param("id", new ParseIntPipe()) id: number,
     @Res() res: Response
   ) {
     try {
-      const data = this.userService.getUserById(id);
+      const data = await this.userService.getUserById(id);
       return res.status(200).json({
         data
       });
@@ -39,12 +39,12 @@ export class UserController {
   }
 
   @Post("create")
-  createUser(
+  async createUser(
     @Body("data") dto: CreateUserDto,
     @Res() res: Response
   ) {
     try {
-      const createUser = this.userService.createUser(dto);
+      const createUser = await this.userService.createUser(dto);
       return res.status(200).json({
         msg: "User has been created."
       });
@@ -56,13 +56,13 @@ export class UserController {
   }
 
   @Put(":id")
-  updateUser(
+  async updateUser(
     @Param("id", new ParseIntPipe()) id: number,
     @Body("data") dto: UpdateUserDto,
     @Res() res: Response
   ) {
     try {
-      const updateUser = this.userService.updateUser(id, dto);
+      const updateUser = await this.userService.updateUser(id, dto);
       return res.status(200).json({
         msg: "User has been updated."
       });
@@ -74,12 +74,12 @@ export class UserController {
   }
 
   @Delete(":id")
-  deleteUser(
+  async deleteUser(
     @Param("id", new ParseIntPipe()) id: number,
     @Res() res: Response
   ) {
     try {
-      const deleteUser = this.userService.deleteUser(id);
+      const deleteUser = await this.userService.deleteUser(id);
       return res.status(200).json({
         msg: "User has been deleted"
       });

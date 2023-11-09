@@ -8,14 +8,14 @@ export class PostController {
   constructor (private readonly postService: PostService) { }
 
   @Get()
-  getAll(
+  async getAll(
     @Query("skip", new ParseIntPipe()) skip: number,
     @Query("take", new ParseIntPipe()) take: number,
     @Query("orderBy") order: string,
     @Res() res: Response
   ) {
     try {
-      const data = this.postService.getAll(skip, take, order);
+      const data = await this.postService.getAll(skip, take, order);
       return res.status(200).json({
         data
       });
@@ -27,12 +27,12 @@ export class PostController {
   }
 
   @Get()
-  getPostByTitle(
+  async getPostByTitle(
     @Query("title") title: string,
     @Res() res: Response
   ) {
     try {
-      const data = this.postService.getPostByTitle(title);
+      const data = await this.postService.getPostByTitle(title);
       return res.status(200).json({
         data
       });
@@ -44,12 +44,12 @@ export class PostController {
   }
 
   @Get(":id")
-  getPostById(
+  async getPostById(
     @Param("id", new ParseIntPipe()) id: number,
     @Res() res: Response
   ) {
     try {
-      const data = this.postService.getPostById(id);
+      const data = await this.postService.getPostById(id);
       return res.status(200).json({
         data
       });
@@ -61,12 +61,12 @@ export class PostController {
   }
 
   @Get("user/:id")
-  getPostByUser(
+  async getPostByUser(
     @Param("id", new ParseIntPipe()) id: number,
     @Res() res: Response
   ) {
     try {
-      const data = this.postService.getPostByUser(id);
+      const data = await this.postService.getPostByUser(id);
       return res.status(200).json({
         data
       });
@@ -78,12 +78,12 @@ export class PostController {
   }
 
   @Post("/create")
-  createPost(
+  async createPost(
     @Body("data") dto: CreatePostDto,
     @Res() res: Response
   ) {
     try {
-      const createPost = this.postService.createPost(dto);
+      const createPost = await this.postService.createPost(dto);
       return res.status(200).json({
         msg: "Post has been created"
       });
@@ -96,13 +96,13 @@ export class PostController {
   }
 
   @Put(":id")
-  updatePost(
+  async updatePost(
     @Param("id", new ParseIntPipe()) id: number,
     @Body("data") dto: UpdatePostDto,
     @Res() res: Response
   ) {
     try {
-      const updatePost = this.postService.updatePost(id, dto);
+      const updatePost = await this.postService.updatePost(id, dto);
       return res.status(200).json({
         msg: "Post has been updated"
       });
@@ -114,12 +114,12 @@ export class PostController {
   }
 
   @Delete(":id")
-  deletePost(
+  async deletePost(
     @Param("id", new ParseIntPipe()) id: number,
     @Res() res: Response
   ) {
     try {
-      const deletePost = this.postService.deletePost(id);
+      const deletePost = await this.postService.deletePost(id);
       return res.status(200).json({
         msg: "Post has been deleted"
       });

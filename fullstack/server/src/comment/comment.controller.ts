@@ -8,9 +8,9 @@ export class CommentController {
   constructor (private readonly commentService: CommentService) { }
 
   @Get()
-  getAll(@Res() res: Response) {
+  async getAll(@Res() res: Response) {
     try {
-      const data = this.commentService.getAll();
+      const data = await this.commentService.getAll();
       return res.status(200).json({
         data
       });
@@ -22,12 +22,12 @@ export class CommentController {
   }
 
   @Get(":id")
-  getCommentById(
+  async getCommentById(
     @Param("id", new ParseIntPipe()) id: number,
     @Res() res: Response
   ) {
     try {
-      const data = this.commentService.getCommentById(id);
+      const data = await this.commentService.getCommentById(id);
       return res.status(200).json({
         data
       });
@@ -39,12 +39,12 @@ export class CommentController {
   }
 
   @Get("post/:id")
-  getCommentByPost(
+  async getCommentByPost(
     @Param("id", new ParseIntPipe()) id: number,
     @Res() res: Response
   ) {
     try {
-      const data = this.commentService.getCommentByPost(id);
+      const data = await this.commentService.getCommentByPost(id);
       return res.status(200).json({
         data
       });
@@ -56,12 +56,12 @@ export class CommentController {
   }
 
   @Post("create")
-  createComment(
+  async createComment(
     @Body("data") dto: CreateCommentDto,
     @Res() res: Response
   ) {
     try {
-      const createComment = this.commentService.createComment(dto);
+      const createComment = await this.commentService.createComment(dto);
       return res.status(200).json({
         msg: "Comment has been created."
       });
@@ -73,13 +73,13 @@ export class CommentController {
   }
 
   @Put(":id")
-  updateComment(
+  async updateComment(
     @Param("id", new ParseIntPipe()) id: number,
     @Body("data") dto: UpdateCommentDto,
     @Res() res: Response
   ) {
     try {
-      const updateComment = this.commentService.updateComment(id, dto);
+      const updateComment = await this.commentService.updateComment(id, dto);
       return res.status(200).json({
         msg: "Comment has been updated"
       });
@@ -91,12 +91,12 @@ export class CommentController {
   }
 
   @Delete(":id")
-  deleteComment(
+  async deleteComment(
     @Param("id", new ParseIntPipe()) id: number,
     @Res() res: Response
   ) {
     try {
-      const deleteComment = this.commentService.deleteComment(id);
+      const deleteComment = await this.commentService.deleteComment(id);
       return res.status(200).json({
         msg: "Comment has been deleted"
       });
