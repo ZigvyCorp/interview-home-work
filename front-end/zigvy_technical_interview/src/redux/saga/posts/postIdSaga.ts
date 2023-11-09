@@ -1,13 +1,13 @@
 import axios from "axios";
 import { put, call, all, takeLatest } from "redux-saga/effects";
-import { Post } from "../../../utils/type";
+import { Post } from "../../../model/type";
 import {
   fetchPostIdSuccess,
   fetchPostIdFailure,
 } from "../../actions/postIdAction";
-import { postIdTypes, postTypes } from "../../actions-types/postTypes";
+import { postIdTypes } from "../../actions-types/postTypes";
+import { baseUrl } from "../../../baseurl";
 
-const baseUrl = "https://jsonplaceholder.typicode.com";
 const getPostId = ({ postId }: { postId: string }) =>
   axios.get<Post>(baseUrl + `/posts/${postId}`);
 

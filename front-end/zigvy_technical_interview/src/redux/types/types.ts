@@ -1,4 +1,4 @@
-import { Post } from "../../utils/type";
+import { Post } from "../../model/type";
 import { postTypes } from "../actions-types/postTypes";
 
 export interface PostsState {

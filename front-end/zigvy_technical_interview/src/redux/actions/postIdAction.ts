@@ -1,4 +1,4 @@
-import { postIdTypes, postTypes } from "../actions-types/postTypes";
+import { postIdTypes } from "../actions-types/postTypes";
 
 import {
   FetchPostIdFailure,

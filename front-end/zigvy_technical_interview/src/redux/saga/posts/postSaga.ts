@@ -1,12 +1,11 @@
 import axios from "axios";
 import { all, call, put, takeLatest } from "redux-saga/effects";
 
-import { Post } from "../../../utils/type";
+import { Post } from "../../../model/type";
 import { fetchPostFailure, fetchPostSuccess } from "../../actions/postsActions";
 
 import { postTypes } from "../../actions-types/postTypes";
-
-const baseUrl = "https://jsonplaceholder.typicode.com";
+import { baseUrl } from "../../../baseurl";
 
 const getPost = () => axios.get<Post[]>(baseUrl + "/posts");
 

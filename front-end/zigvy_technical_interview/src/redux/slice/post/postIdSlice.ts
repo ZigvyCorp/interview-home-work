@@ -1,5 +1,4 @@
-import { postIdTypes, postTypes } from "../../actions-types/postTypes";
-import { PostsAction } from "../../types/types";
+import { postIdTypes } from "../../actions-types/postTypes";
 import { PostIdAction, PostIdState } from "../../types/typesId";
 
 const initialState: PostIdState = {
