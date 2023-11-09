@@ -4,3 +4,8 @@ export const SLICE_INIT = {
   detail: null,
   error: null,
 };
+
+export const PAGINATION = {
+  page: 1,
+  pageSize: 30,
+};
