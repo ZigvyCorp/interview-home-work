@@ -8,3 +8,9 @@ declare interface IPost {
 	authorId: IUser;
 	createdAt: string;
 }
+
+declare interface IPostCreate {
+	title: string;
+	body: string;
+	tags: string[];
+}

@@ -1,3 +1,4 @@
+import FakePage from "@/components/FakePage";
 import { Providers } from "@/redux/provider";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -11,7 +12,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang="en" suppressHydrationWarning={true}>
 			<body>
-				<Providers>{children}</Providers>
+				<Providers>
+					<FakePage />
+					{children}
+				</Providers>
 			</body>
 		</html>
 	);

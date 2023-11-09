@@ -4,3 +4,8 @@ declare interface IComment {
 	name: string;
 	body: string;
 }
+
+declare interface ICommentCreate {
+	postId: string;
+	body: string;
+}

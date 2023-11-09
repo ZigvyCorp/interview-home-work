@@ -1,20 +1,25 @@
+import { createPost } from "@/redux/actions/post.action";
+import { useAppDispatch } from "@/redux/store";
+import { IError } from "@/types/error";
+import { tags } from "@/utils/tag";
+import { toastError } from "@/utils/toast";
 import type { SelectProps } from "antd";
 import { Form, Input, Modal, Select } from "antd";
 import { useState } from "react";
 
 export default function NewBlog() {
-	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+	const dispatch = useAppDispatch();
 
-	const showModal = () => {
-		setIsModalOpen(true);
-	};
+	const showModal = (): void => setIsModalOpen(true);
+	const handleCancel = (): void => setIsModalOpen(false);
 
-	const onFinish = (values: any) => {
-		console.log("Success:", values);
-	};
-
-	const onFinishFailed = (errorInfo: any) => {
-		console.log("Failed:", errorInfo);
+	const onFinish = async (values: IPostCreate) => {
+		try {
+			await dispatch(createPost(values)).unwrap();
+		} catch (error) {
+			toastError((error as IError).message);
+		}
 	};
 
 	const options: SelectProps["options"] = [];
@@ -22,7 +27,7 @@ export default function NewBlog() {
 	type FieldType = {
 		title?: string;
 		body?: string;
-		tag?: string[];
+		tags?: string[];
 	};
 	const { TextArea } = Input;
 
@@ -33,10 +38,6 @@ export default function NewBlog() {
 		});
 	}
 
-	const handleChange = (value: string) => {
-		console.log(`selected ${value}`);
-	};
-
 	return (
 		<section>
 			<button
@@ -45,14 +46,8 @@ export default function NewBlog() {
 			>
 				+ New Blog
 			</button>
-			<Modal title="Add new blog" open={isModalOpen} footer={null}>
-				<Form
-					name="basic"
-					labelCol={{ span: 3 }}
-					onFinish={onFinish}
-					onFinishFailed={onFinishFailed}
-					autoComplete="off"
-				>
+			<Modal title="Add new blog" open={isModalOpen} footer={null} onCancel={handleCancel}>
+				<Form name="basic" labelCol={{ span: 3 }} onFinish={onFinish} autoComplete="off">
 					<Form.Item<FieldType>
 						label="Title"
 						name="title"
@@ -70,14 +65,13 @@ export default function NewBlog() {
 					</Form.Item>
 					<Form.Item<FieldType>
 						label="Tags"
-						name="tag"
+						name="tags"
 						rules={[{ required: true, message: "Please input your tags!" }]}
 					>
 						<Select
 							mode="multiple"
-							// placeholder="Tags Mode"
-							onChange={handleChange}
-							options={options}
+							placeholder="Tags Mode"
+							options={tags.map((tag) => ({ label: tag, value: tag }))}
 						/>
 					</Form.Item>
 

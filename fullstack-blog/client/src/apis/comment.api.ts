@@ -7,4 +7,6 @@ export const commentApi = {
 		axiosService.get(`/${ENDPOINT}/post/${id}?page=${page}`),
 
 	getCommentById: (id: string) => axiosService.get(`/${ENDPOINT}/${id}`),
+
+	createComment: (data: ICommentCreate) => axiosService.post(`/${ENDPOINT}/create-comment`, data),
 };

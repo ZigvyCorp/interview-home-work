@@ -1,8 +1,9 @@
 import axios from "axios";
 import { NextFunction, Request, Response } from "express";
+import { RequestWithUser } from "../middlewares/auth";
 import { Post, User } from "../models";
 import { IPostJS, IUser } from "../types";
-import { generateRandomTags, handleError, handleResponse, normalizedTitle } from "../utils";
+import { formatFirstWord, generateRandomTags, handleError, handleResponse, normalizedTitle } from "../utils";
 
 // get posts from jsonplaceholder and save to db
 export async function getPostFromJsonPlaceholderAndSaveToDb(req: Request, res: Response) {
@@ -14,6 +15,8 @@ export async function getPostFromJsonPlaceholderAndSaveToDb(req: Request, res: R
 		posts.forEach(async (post) => {
 			const newPost = new Post(post);
 			newPost.jsonId = post.id;
+			newPost.title = formatFirstWord(post.title);
+			newPost.body = formatFirstWord(post.body);
 			newPost.tags = generateRandomTags();
 			newPost.authorId = users.find((user: IUser) => user.jsonId === post.userId)._id;
 			await newPost.save();
@@ -42,8 +45,11 @@ export async function getAllPostsWithAuthorIdAndTitle(req: Request, res: Respons
 		const totalPages = Math.ceil(totalPosts / limitNumber);
 
 		const skip = (pageNumber - 1) * limitNumber;
-		const posts = await Post.find(query).skip(skip).limit(limitNumber).populate("authorId");
-
+		const posts = await Post.find(query)
+			.skip(skip)
+			.limit(limitNumber)
+			.populate("authorId")
+			.sort({ createdAt: -1 });
 		const response = {
 			posts,
 			totalPosts,
@@ -73,18 +79,21 @@ export async function getPostById(req: Request, res: Response, next: NextFunctio
 
 // create post
 export async function createPost(req: Request, res: Response, next: NextFunction) {
-	const { title, body, authorId } = req.body;
-	const normalTitle = normalizedTitle(title);
+	const { title, body, tags } = req.body;
+	const { user } = req as RequestWithUser;
+	const normalTitle = formatFirstWord(title);
+
 	try {
-		const isExist = Post.findOne({ normalTitle });
+		const isExist = await Post.findOne({ normalTitle });
+		const author = await User.findById(user._id);
 		if (isExist) throw new Error("Post already exist");
 
 		const newPost = new Post({
-			jsonId: +Post.countDocuments() + 1,
-			normalTitle,
+			jsonId: (await Post.countDocuments()) + 1,
+			title: normalTitle,
 			body,
-			authorId,
-			tags: generateRandomTags(),
+			authorId: author,
+			tags,
 		});
 		await newPost.save();
 

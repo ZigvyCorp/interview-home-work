@@ -2,6 +2,7 @@
 import { useGetAllPost } from "@/hooks/useGetPost";
 import { selectPost } from "@/redux/reducers/post.slice";
 import { useAppSelector } from "@/redux/store";
+import { getDayMonthYear } from "@/utils/date";
 import { Pagination } from "antd";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,7 +23,7 @@ export default function ListBlog() {
 	};
 
 	return (
-		<section id="list-blog" className="">
+		<section id="list-blog" className="px-2 xl:px-0 ">
 			<div className="flex-center-y mb-4 gap-3">
 				<NewBlog />
 				<input
@@ -33,7 +34,7 @@ export default function ListBlog() {
 					onChange={(e) => setTitle(e.target.value)}
 				/>
 			</div>
-			<div className="grid grid-cols-3 gap-4">
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 				{sPost.posts.length ? (
 					sPost.posts.map((post) => (
 						<Link
@@ -52,7 +53,9 @@ export default function ListBlog() {
 									/>
 									<div className="space-y-1">
 										<h4 className="text-xl">{post.authorId.name}</h4>
-										<h4 className="italic text-slate-300">09/11/2023</h4>
+										<h4 className="italic text-slate-100">
+											{getDayMonthYear(post.createdAt)}
+										</h4>
 									</div>
 								</article>
 							</div>
@@ -75,17 +78,11 @@ export default function ListBlog() {
 					</h1>
 				)}
 			</div>
-			{sPost.totalPosts && (
+			{sPost.totalPosts ? (
 				<div className="mb-5 mt-10 flex-center shadow-pop py-3 rounded-2xl text-3xl">
-					<Pagination
-						pageSize={page}
-						hideOnSinglePage={true}
-						current={page}
-						onChange={onChange}
-						total={sPost.totalPosts}
-					/>
+					<Pagination pageSize={page} current={page} onChange={onChange} total={sPost.totalPages} />
 				</div>
-			)}
+			) : null}
 		</section>
 	);
 }

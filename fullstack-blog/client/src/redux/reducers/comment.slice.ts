@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllCommentByPostId } from "../actions/comment.action";
+import { createComment, getAllCommentByPostId } from "../actions/comment.action";
 import { RootState } from "../store";
 
 interface InitialState {
@@ -29,24 +29,35 @@ const initialState: InitialState = {
 const commentSlice = createSlice({
 	name: "comment",
 	initialState,
-	reducers: {},
+	reducers: {
+		showMoreComment: (state, { payload }) => {
+			// state.listComment.comments = [...state.listComment.comments, ...payload.comments];
+			state.listComment.currentPage += 1;
+		},
+	},
 	extraReducers: (builder) => {
 		builder.addCase(getAllCommentByPostId.fulfilled, (state, { payload }) => {
-			state.listComment.comments = payload.comments;
-			state.listComment.totalComments = payload.totalComments;
-			state.listComment.totalPages = payload.totalPages;
-			state.listComment.currentPage = payload.currentPage;
+			if (state.listComment.currentPage === 1) {
+				state.listComment = payload;
+			} else {
+				state.listComment = {
+					...state.listComment,
+					comments: [...state.listComment.comments, ...payload.comments],
+					currentPage: payload.currentPage,
+					totalComments: payload.totalComments,
+					totalPages: payload.totalPages,
+				};
+			}
 		});
-		// builder.addCase(getPostById.fulfilled, (state, { payload }) => {
-		// 	console.log(payload);
-		// 	if (!state.detailPost) {
-		// 		state.detailPost = {} as IComment;
-		// 	}
-		// 	state.detailPost = payload;
-		// });
+		builder.addCase(createComment.fulfilled, (state, { payload }) => {
+			state.listComment.comments.unshift(payload);
+			state.listComment.totalComments += 1;
+			state.listComment.totalPages = Math.ceil(state.listComment.totalComments / 6);
+			state.listComment.currentPage = 1;
+		});
 	},
 });
 
-export const {} = commentSlice.actions;
+export const { showMoreComment } = commentSlice.actions;
 export const selectComment = (state: RootState) => state.comment;
 export default commentSlice.reducer;

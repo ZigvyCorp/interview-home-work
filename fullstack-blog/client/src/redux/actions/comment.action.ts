@@ -23,3 +23,15 @@ export const getCommentById = createAsyncThunk("comment/getCommentById", async (
 		return thunkApi.rejectWithValue(error);
 	}
 });
+
+export const createComment = createAsyncThunk(
+	"comment/createComment",
+	async (data: ICommentCreate, thunkApi) => {
+		try {
+			const res = await commentApi.createComment(data);
+			return res.data;
+		} catch (error) {
+			return thunkApi.rejectWithValue(error);
+		}
+	}
+);

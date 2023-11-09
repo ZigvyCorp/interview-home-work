@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllPosts, getPostById } from "../actions/post.action";
+import { createPost, getAllPosts, getPostById } from "../actions/post.action";
 import { RootState } from "../store";
 
 interface PostInitialState {
@@ -34,11 +34,16 @@ const postSlice = createSlice({
 			state.listPost.currentPage = payload.currentPage;
 		});
 		builder.addCase(getPostById.fulfilled, (state, { payload }) => {
-			console.log(payload);
 			if (!state.detailPost) {
 				state.detailPost = {} as IPost;
 			}
 			state.detailPost = payload;
+		});
+		builder.addCase(createPost.fulfilled, (state, { payload }) => {
+			state.listPost.posts.unshift(payload);
+			state.listPost.totalPosts += 1;
+			state.listPost.totalPages = Math.ceil(state.listPost.totalPosts / 6);
+			state.listPost.currentPage = 1;
 		});
 	},
 });

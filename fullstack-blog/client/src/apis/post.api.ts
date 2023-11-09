@@ -9,4 +9,6 @@ export const postApi = {
 	},
 
 	getPostById: (id: string) => axiosService.get(`/${ENDPOINT}/${id}`),
+
+	createPost: (data: IPostCreate) => axiosService.post(`/${ENDPOINT}/create-post`, data),
 };

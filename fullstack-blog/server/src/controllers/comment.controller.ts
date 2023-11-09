@@ -1,8 +1,9 @@
 import axios from "axios";
 import { NextFunction, Request, Response } from "express";
+import { RequestWithUser } from "../middlewares/auth";
 import { Comment, Post } from "../models";
 import { IComment, IPost } from "../types";
-import { handleError, handleResponse } from "../utils";
+import { formatFirstWord, handleError, handleResponse } from "../utils";
 
 // get comments from jsonplaceholder and save to db
 export async function getCommentFromJPAndSaveToDb(req: Request, res: Response) {
@@ -13,11 +14,12 @@ export async function getCommentFromJPAndSaveToDb(req: Request, res: Response) {
 
 		comments.forEach(async (comment) => {
 			const newComment = new Comment(comment);
+			newComment.body = formatFirstWord(comment.body);
 			newComment.postId = posts.find((post: IPost) => post.jsonId === comment.postId)._id;
 			await newComment.save();
 		});
 
-		res.status(200).json(handleResponse(comments, 200, "Posts fetched successfully"));
+		res.status(200).json(handleResponse(comments, 200, "Comments fetched successfully"));
 	} catch (error) {
 		handleError(error, 500);
 	}
@@ -35,8 +37,11 @@ export async function getAllCommentsWithPostId(req: Request, res: Response, next
 		const totalPages = Math.ceil(totalComments / limitNumber);
 
 		const skip = (pageNumber - 1) * limitNumber;
-		const comments = await Comment.find({ postId }).skip(skip).limit(limitNumber).exec();
-
+		const comments = await Comment.find({ postId })
+			.skip(skip)
+			.limit(limitNumber)
+			.sort({ createdAt: -1 })
+			.exec();
 		const response = {
 			comments,
 			totalComments,
@@ -66,14 +71,16 @@ export async function getCommentById(req: Request, res: Response, next: NextFunc
 
 // create comment
 export async function createComment(req: Request, res: Response, next: NextFunction) {
-	const { postId, body, email, name } = req.body;
+	const { postId, body } = req.body;
+	const { user } = req as RequestWithUser;
+	const normalBody = formatFirstWord(body);
 
 	try {
 		const newComment = new Comment({
 			postId,
-			body,
-			email,
-			name,
+			body: normalBody,
+			email: user.email,
+			name: user.name,
 		});
 
 		await newComment.save();

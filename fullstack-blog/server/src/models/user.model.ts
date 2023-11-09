@@ -1,4 +1,5 @@
 import { model, models, Schema } from "mongoose";
+import { createJWT } from "../utils";
 const userSchema = new Schema(
 	{
 		jsonId: {
@@ -32,16 +33,6 @@ const userSchema = new Schema(
 			catchPhrase: String,
 			bs: String,
 		},
-		address: {
-			street: String,
-			suite: String,
-			city: String,
-			zipcode: String,
-			geo: {
-				lat: String,
-				lng: String,
-			},
-		},
 		image: {
 			type: String,
 			required: true,
@@ -54,6 +45,11 @@ const userSchema = new Schema(
 		timestamps: true,
 	}
 );
+
+userSchema.methods.signToken = function () {
+	const token = createJWT(this._id, this.email, this.name);
+	return token;
+};
 
 const User = models.User || model("User", userSchema);
 export default User;

@@ -4,7 +4,7 @@
 
 @layer base {
 	* {
-		transition: all 0.2s linear;
+		/* transition: all 0.2s linear; */
 	}
 	html {
 		font-family: "Poppins", sans-serif;
