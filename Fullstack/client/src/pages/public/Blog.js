@@ -57,11 +57,11 @@ const Blog = () => {
       {
         posts?.count > 0 ? <>
           <div className="my-5">
-            <Pagination hideOnSinglePage={true} pageSize={6} current={current} onChange={onChange} total={posts?.count} />
+            <Pagination style={{ backgroundColor: "#fff", padding: "5px 0" }} hideOnSinglePage={true} pageSize={6} current={current} onChange={onChange} total={posts?.count} />
           </div>
           <News />
 
-        </> : <p>Not have posts</p>
+        </> : <p className="text-hover">Not have posts</p>
       }
 
       {/* <div className="grid grid-cols-6 gap-5">

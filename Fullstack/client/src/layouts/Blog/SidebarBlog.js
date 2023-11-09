@@ -27,13 +27,13 @@ const SidebarBlog = () => {
             >
                 <FormNews type="create" setIsModal={setIsModal} />
             </Modal>
-            <div className="bg-sub px-3 py-5 rounded-lg mb-5 flex items-center gap-3">
+            <div className=" px-3 py-5 rounded-lg mb-5 flex items-center gap-3">
                 <img
                     className="w-[40px] shadow-md rounded-full"
                     src={currentUser?.image ? `${currentUser?.image}` : Avatar}
                     alt=""
                 />
-                <div className="bg-main rounded-2xl px-3 py-2 w-full text-sm text-sub cursor-pointer">
+                <div className="bg-sub rounded-2xl px-3 py-2 w-full text-sm text-sub cursor-pointer">
                     {currentUser ? (
                         <p onClick={() => setIsModal((prev) => !prev)}>
                             {currentUser?.firstName + currentUser?.lastName}, What's news

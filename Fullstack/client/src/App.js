@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import { Login, Home, Public, Product, Blog, Contact, DetailProduct, Register, ForgotPassword, ResetPassword, NotFound, Cart, Checkout, DetailNews } from "./pages/public"
-import { getAllCategories } from './redux/asyncAction';
+import { Login, Public, Blog, Register, ForgotPassword, ResetPassword, NotFound, DetailNews } from "./pages/public"
 import path from './routes/path';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -14,11 +13,8 @@ import { Loading } from 'components';
 function App() {
 
   const { loading } = useSelector((state) => state.loadingSlice)
-  const dispatch = useDispatch()
 
-  useEffect(() => {
-    dispatch(getAllCategories())
-  }, [dispatch])
+
   return (
     <>
       <div className="min-h-screen font-main bg-main relative">

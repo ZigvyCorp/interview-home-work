@@ -1,19 +1,7 @@
-import React, { memo, useEffect, useRef, useState } from "react";
+import React, { memo } from "react";
 import Avatar from "assets/img/avatar.png";
 import { formatCreatedAt } from "utils/helpers";
-import { Slider } from "components";
-import { useDispatch, useSelector } from "react-redux";
-import { icons } from "utils/icons";
-import { blogService } from "services/blogService";
-import { getAllPosts } from "redux/asyncAction";
-import { toastSucess, toastError } from "utils/helpers";
-import { Modal } from "antd";
-import FormNews from "./FormNews";
-import Interact from "./Interact";
-import CommentBlog from "./CommentBlog";
-import { chatService } from "services/chatService";
-import { Link, useNavigate } from "react-router-dom";
-import path from "routes/path";
+import { Link } from "react-router-dom";
 
 const NewsItem = ({ data }) => {
   return (

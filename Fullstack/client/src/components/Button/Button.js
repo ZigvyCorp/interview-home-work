@@ -9,7 +9,7 @@ const Button = ({ name, handleOnclick, className, iconBefore, iconAfter, type, d
       className={
         className
           ? className
-          : `${disabled && "bg-gray-500 cursor-not-allowed"} bg-feature text-hover p-2 w-full rounded-md mt-5 flex items-center justify-center `
+          : `${disabled && "bg-gray-500 cursor-not-allowed"} bg-red-500 text-hover p-2 w-full rounded-md mt-5 flex items-center justify-center `
       }
     >
 

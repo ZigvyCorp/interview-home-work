@@ -14,7 +14,7 @@ module.exports = {
         main: "75%"
       },
       backgroundColor: {
-        main: "#eee",
+        main: "#000",
         sub: "#fff",
         hover: "#000",
         feature: "#4299e1",

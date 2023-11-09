@@ -1,5 +1,4 @@
-export { default as Conversation } from 'layouts/Chat/Conversation'
-export { default as Chatbox } from 'layouts/Chat/Chatbox'
+
 export { default as News } from 'layouts/Blog/News'
 export { default as SidebarBlog } from 'layouts/Blog/SidebarBlog'
 export { default as FormNews } from 'layouts/Blog/FormNews'
