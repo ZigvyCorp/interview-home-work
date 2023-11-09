@@ -7,6 +7,10 @@ import { Post } from '@schemas';
 import { CreatePostDto, UpdatePostDto } from '@dto';
 import { QueryOption } from '@common';
 
+export interface PostQueryFilter {
+  keyword?: string;
+}
+
 @Injectable()
 export class PostService {
   private readonly logger = new Logger(PostService.name);
@@ -24,9 +28,16 @@ export class PostService {
     return this.postModel.countDocuments(filter).lean();
   }
 
-  findAll(option: QueryOption = {}) {
-    const query = this.postModel.find();
+  findAll(filter: PostQueryFilter = {}, option: QueryOption = {}) {
     const { fields, offset, limit } = option;
+    const { keyword } = filter;
+
+    const query = this.postModel.find(
+      _.omitBy(
+        { title: keyword ? new RegExp(keyword, 'i') : undefined },
+        _.isNil,
+      ),
+    );
     if (fields) query.select(fields);
     if (offset) query.skip(offset);
     if (limit) query.limit(limit);

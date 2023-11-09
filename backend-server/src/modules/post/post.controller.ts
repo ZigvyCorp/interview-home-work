@@ -33,11 +33,17 @@ export class PostController {
   }
 
   @Get()
-  async findAll(@Query('page') page: string = '1') {
+  async findAll(
+    @Query('page') page: string = '1',
+    @Query('search') keyword: string = '',
+  ) {
     const limit = LIMIT_POST_PER_REQUEST;
     const offset = (Number(page) - 1) * limit;
     const fields = 'title author overview';
-    const posts = await this.postService.findAll({ fields, offset, limit });
+    const posts = await this.postService.findAll(
+      { keyword },
+      { fields, offset, limit },
+    );
     const users = await this.userService.findAll(
       { ids: _.map(posts, 'author') },
       { fields: 'firstName lastName username photo' },
