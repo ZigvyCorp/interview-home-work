@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { fetchPostIdRequest } from "../redux/actions/post/postIdAction";
 import { fetchCommentPostIdRequest } from "../redux/actions/comment/commentPostIdAction";
+import { fetchUserIdRequest } from "../redux/actions/user/userIdAction";
 
 const DetailPost = () => {
   const dispatch = useDispatch();
@@ -24,13 +25,20 @@ const DetailPost = () => {
     (state: RootState) => state.commentPostId
   );
 
+  const { loadingUserId, user, errorUserId } = useSelector(
+    (state: RootState) => state.userIdReducer
+  );
+  console.log(user);
   useEffect(() => {
     if (postId !== undefined) {
       dispatch(fetchPostIdRequest({ postId: Number(postId) }));
       dispatch(fetchCommentPostIdRequest({ postId: Number(postId) }));
     }
-  }, []);
-  console.log(showComment);
+
+    if (post.userId !== undefined) {
+      dispatch(fetchUserIdRequest({ userId: Number(post.userId) }));
+    }
+  }, [dispatch]);
 
   const CommentPostId = () => {
     return (
@@ -48,7 +56,7 @@ const DetailPost = () => {
         <h1 className="text-center">{post.title}</h1>
         <div className="d-flex justify-content-between">
           <div>
-            <p>Author: John Smith</p>
+            <p>Author: </p>
             <p>Create at: Oct 1, 2023</p>
           </div>
           <div>coming soon</div>
