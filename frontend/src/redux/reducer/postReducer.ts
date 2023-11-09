@@ -6,7 +6,7 @@ export interface PostState {
   posts: {
     data: IGetListPostResponse | undefined;
     loading: boolean;
-  }
+  },
 }
 
 const initialState: PostState = {
@@ -26,7 +26,6 @@ export const postSlice = createSlice({
     fetchPostSuccess: (state, action: PayloadAction<IGetListPostResponse>) => {
       state.posts.loading = false;
       state.posts.data = action.payload;
-      console.log("🚀 ~ file: postReducer.ts:29 ~ state.posts.data:", state.posts.data)
     },
     fetchPostFailure: (state) => {
       state.posts.loading = false;
@@ -34,11 +33,12 @@ export const postSlice = createSlice({
     },
     fetchPostPending: (state) => {
       state.posts.loading = true;
-
     },
   },
 });
 
-export const { fetchPostSuccess, fetchPostFailure, fetchPostPending } = postSlice.actions;
+export const { 
+  fetchPostSuccess, fetchPostFailure, fetchPostPending,
+ } = postSlice.actions;
 
 export default postSlice.reducer;

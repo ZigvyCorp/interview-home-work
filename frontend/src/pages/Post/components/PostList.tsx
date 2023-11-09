@@ -11,7 +11,7 @@ const { Search } = Input;
 const PostList: React.FC = (props) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [limit, setLimit] = useState(5);
+  const [limit] = useState(5);
   const [page, setPage] = useState(1);
   const [keyword, setKeyword] = useState("");
   const { data: postsState, loading } = useAppSelector(

@@ -1,5 +1,5 @@
 export interface IPost {
-    id: string;
+    id: number;
     title: string;
     content: string;
     createdAt: string;
@@ -41,5 +41,23 @@ export interface IPaginationResponse<K> {
         totalPages: number;
     }
 }
+export const PaginationResponseDefault = {
+    items: [],
+    meta: {
+        currentPage: 0,
+        itemCount: 0,
+        itemsPerPage: 0,
+        totalItems: 0,
+        totalPages: 0,
+    }
+}
+
+
+
 export interface IGetListPost extends IPagination { }
 export interface IGetListPostResponse extends IPaginationResponse<IPost> { }
+
+export interface IGetListComment extends IPagination {
+    postId: number;
+}
+export interface IGetListCommentResponse extends IPaginationResponse<IComment> { }
