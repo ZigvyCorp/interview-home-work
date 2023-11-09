@@ -1,3 +1,4 @@
+import { IPost, IPostJS } from "./post";
 import { IUser } from "./user";
 
-export { IUser };
+export { IPost, IPostJS, IUser };
