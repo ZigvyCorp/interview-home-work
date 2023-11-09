@@ -6,14 +6,14 @@ const auth = async (req, res, next) => {
     const token = req.cookies.accessToken;
 
     if (!token) {
-        return res.status(httpStatus.BAD_REQUEST).send({
+        return res.status(httpStatus.UNAUTHORIZED).send({
             message: "Invalid Token!"
         });
     }
 
-    const decoded = jsonwebtoken.verify(token, 'Zigvy');
+    const decoded = jsonwebtoken.verify(token, process.env.SECRET_TOKEN);
     if (!decoded) {
-        return res.status(httpStatus.BAD_REQUEST).send({
+        return res.status(httpStatus.UNAUTHORIZED).send({
             message: "Invalid Token!"
         });
     }
