@@ -1,0 +1,13 @@
+.container {
+    margin: 2%
+}
+
+.input {
+    margin: 0 40%;
+    text-align: center;
+}
+
+.container .pagination {
+    margin: 0 auto;
+    text-align: center;
+}

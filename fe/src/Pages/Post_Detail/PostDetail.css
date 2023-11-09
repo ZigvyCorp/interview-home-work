@@ -1,0 +1,33 @@
+.detail-container {
+  margin: 0 5%;
+}
+
+.detail-title {
+  font-size: 44px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.detail-name div{
+  font-size: 16px;
+  margin: 10px 0;
+}
+.tag {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  align-items: center;
+}
+
+.tag p {
+  background-color: #eee;
+  padding: 5px 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+}
+
+.content p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
