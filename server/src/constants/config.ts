@@ -4,6 +4,7 @@ dotenv.config();
 export const ENV_CONFIG = {
   PORT: process.env.PORT as string,
   PASSWORD_SECRET: process.env.PASSWORD_SECRET as string,
+  CLIENT_URL: process.env.CLIENT_URL as string,
 
   DB_USERNAME: process.env.DB_USERNAME as string,
   DB_PASSWORD: process.env.DB_PASSWORD as string,
