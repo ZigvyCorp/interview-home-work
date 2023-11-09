@@ -15,8 +15,8 @@ export class UserService {
   ) { }
 
   async create(data: Partial<UserEntity>): Promise<UserEntity> {
-    const created = await this.userRepository.save(data);
-    return created;
+    const created =  this.userRepository.create(data);
+    return this.userRepository.save(created);
   }
 
   async findAll(filters: PaginateQueryDto) {
@@ -42,6 +42,15 @@ export class UserService {
     });
     return queryBuilder.getOne();
   }
+
+  async findByUsername(username: string): Promise<UserEntity> {
+    const queryBuilder = this.userRepository.createQueryBuilder('u');
+    queryBuilder.where('u.username = :username AND u.deletedAt IS NULL', {
+      username,
+    });
+    return queryBuilder.getOne();
+  }
+
 
   update(id: number, updatePostDto: UpdatePostDto) {
     return `This action updates a #${id} post`;

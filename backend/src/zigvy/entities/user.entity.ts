@@ -23,9 +23,9 @@ export class UserEntity extends CustomBaseEntity {
     comments: CommentEntity[];
 
     // Hash password before insert or update
-
     @BeforeInsert()
     async beforeInsert() {
+        this.username = this.username.toLowerCase();
         this.password = await hashPassword(this.password);
     }
 

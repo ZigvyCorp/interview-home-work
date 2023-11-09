@@ -1,25 +1,30 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
-import { PostService } from '../services/post.service';
-import { CreatePostDto } from '../dto/post/create-post.dto';
-import { UpdatePostDto } from '../dto/post/update-post.dto';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, BadGatewayException } from '@nestjs/common';
+import { UserService } from '../services';
 import { PaginateQueryDto } from 'src/common/dtos/paginate.dto';
+import { CreateUserDto } from '../dto/user/create-user.dto';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly postService: PostService) { }
+  constructor(private readonly userService: UserService) { }
 
   @Post()
-  create(@Body() createPostDto: any) {
-    return this.postService.create(createPostDto);
+  async create(@Body() body: CreateUserDto) {
+    const user = await this.userService.findByUsername(body.username.toLowerCase());
+    if(user) {
+      throw new BadGatewayException("User existed");
+    }
+    return this.userService.create({
+      ...body,
+    });
   }
 
   @Get()
   findAll(@Query() query: PaginateQueryDto) {
-    return this.postService.findAll(query);
+    return this.userService.findAll(query);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.postService.findOne(+id);
+    return this.userService.findOne(+id);
   }
 }

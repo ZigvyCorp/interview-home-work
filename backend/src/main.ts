@@ -15,7 +15,7 @@ async function bootstrap() {
     whitelist: true,
     skipUndefinedProperties: true,
   }));
-
+  // TODO: Add swagger api
   const configs = app.get(ConfigService);
   const selfConfig = configs.get<Environment['server']>('server');
   await app.listen(selfConfig.port);

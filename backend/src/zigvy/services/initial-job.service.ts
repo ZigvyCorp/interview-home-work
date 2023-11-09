@@ -35,12 +35,12 @@ export class InitialService implements OnModuleInit {
     ]);
     if (eUser.length <= 0) {
       const users = map(UserJson, u => {
-        return {
+        return this.userRepository.create({
           name: u.name,
           username: u.username,
           password: u.password,
           dob:  moment()
-        }
+        })
       });
       await this.userRepository.save(users);
     }
