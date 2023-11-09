@@ -1,0 +1,12 @@
+.collapse {
+  &-text {
+    padding: 2px 8px 2px 0px;
+    cursor: pointer;
+  }
+
+  &-custom {
+    color: #b42652 !important;
+    padding: 6px;
+    border-bottom: 1px solid #b42652;
+  }
+}

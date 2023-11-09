@@ -1,0 +1,8 @@
+export const POST_LIST = "POST_LIST";
+export const SET_POST_LIST = "SET_POST_LIST";
+export const POST_DETAIL = "POST_DETAIL";
+export const SET_POST_DETAIL = "SET_POST_DETAIL";
+export const PAGINATION = "PAGINATION";
+export const SET_PAGINATION = "SET_PAGINATION";
+export const COMMENT_POST_LIST = "COMMENT_POST_LIST";
+export const SET_COMMENT_POST_LIST = "SET_COMMENT_POST_LIST";

@@ -1,0 +1,18 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 60px);
+  &-body {
+    flex: 1;
+  }
+  &-footer {
+    color: white;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 40px;
+  }
+  &-loading {
+    text-align: center;
+    line-height: 90vh;
+  }
+}
