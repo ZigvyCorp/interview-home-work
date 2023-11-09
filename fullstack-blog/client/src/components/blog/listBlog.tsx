@@ -1,45 +1,91 @@
-import { bgColor } from "@/utils/color";
-import { title } from "process";
-
-const tagExamples: string[] = [
-	"reactjs",
-	"nextjs",
-	"javascript",
-	"typescript",
-	"nodejs",
-	"expressjs",
-	"mongodb",
-	"nestjs",
-	"python",
-	"django",
-];
+"use client";
+import { useGetAllPost } from "@/hooks/useGetPost";
+import { selectPost } from "@/redux/reducers/post.slice";
+import { useAppSelector } from "@/redux/store";
+import { Pagination } from "antd";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import { ListTag, NewBlog } from ".";
 
 export default function ListBlog() {
-	const index = title.length ? (title.length - 1) % bgColor.length : 0;
-	const color = bgColor[index];
+	const [title, setTitle] = useState<string>("");
+	const [page, setPage] = useState<number>(1);
+
+	useGetAllPost(page, title);
+
+	const sPost = useAppSelector(selectPost).listPost;
+
+	const onChange = (page: number): void => {
+		window.scrollTo(0, 0);
+		setPage(page);
+	};
+
 	return (
-		<section id="list-blog">
-			<h1 className="text-center text-4xl font-semibold mb-8">Blog title 1</h1>
-			<div className="flex justify-between">
-				<article className="">
-					<h4 className="text-xl font-semibold">Author: Linh</h4>
-					<h4 className="text-xl font-semibold">Created at: Sep 20, 2018</h4>
-				</article>
-				<div className="max-w-sm flex-wrap flex gap-2">
-					{tagExamples.map((tag, index) => (
-						<span
-							style={{
-								backgroundColor: color,
-							}}
-							key={index}
-							className=" text-white px-2 py-1.5 rounded-3xl"
-						>
-							{tag}
-						</span>
-					))}
-				</div>
+		<section id="list-blog" className="">
+			<div className="flex-center-y mb-4 gap-3">
+				<NewBlog />
+				<input
+					type="text"
+					className="w-full rounded-3xl p-4 pl-6  border border-black"
+					placeholder="Search..."
+					value={title}
+					onChange={(e) => setTitle(e.target.value)}
+				/>
 			</div>
+			<div className="grid grid-cols-3 gap-4">
+				{sPost.posts.length ? (
+					sPost.posts.map((post) => (
+						<Link
+							href={`/blog/${post._id}`}
+							key={post._id}
+							className="bg-cyan-500  p-4 rounded-3xl text-white shadow-pop border-b-2 border-slate-400 tracking-wide"
+						>
+							<div className="flex justify-between mb-5">
+								<article className="flex-center-y gap-3">
+									<Image
+										src={post.authorId.image}
+										alt="avatar"
+										width={60}
+										height={60}
+										className="rounded-full bg-white"
+									/>
+									<div className="space-y-1">
+										<h4 className="text-xl">{post.authorId.name}</h4>
+										<h4 className="italic text-slate-300">09/11/2023</h4>
+									</div>
+								</article>
+							</div>
+							<div className="max-w-full flex flex-wrap overflow-hidden mb-3 gap-1">
+								{post.tags.slice(0, 2).map((tag) => (
+									<ListTag key={tag} tag={tag} />
+								))}
+							</div>
+							<h1 className="text-xl mb-2 font-semibold max-w-full break-words line-clamp-2">
+								{post.title}
+							</h1>
+							<p className="text-lg leading-7 max-w-full break-words line-clamp-4">
+								{post.body}
+							</p>
+						</Link>
+					))
+				) : (
+					<h1 className="text-3xl font-semibold text-center animate-pulse transition-all duration-500 opacity-50 pointer-events-none">
+						Loading...
+					</h1>
+				)}
+			</div>
+			{sPost.totalPosts && (
+				<div className="mb-5 mt-10 flex-center shadow-pop py-3 rounded-2xl text-3xl">
+					<Pagination
+						pageSize={page}
+						hideOnSinglePage={true}
+						current={page}
+						onChange={onChange}
+						total={sPost.totalPosts}
+					/>
+				</div>
+			)}
 		</section>
 	);
 }
-

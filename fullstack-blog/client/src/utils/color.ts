@@ -7,6 +7,6 @@ export const bgColor: string[] = [
 	"#84cc16",
 	"#22c55e",
 	"#ec4899",
-	"#0ea5e9",
+	"#D946EF",
 	"#a855f7",
 ];

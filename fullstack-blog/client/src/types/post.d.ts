@@ -1,8 +1,10 @@
 declare interface IPost {
-	id: string;
+	_id: string;
+	jsonId: number;
 	title: string;
-	content: string;
+	body: string;
 	author: string;
-	createdAt: string;
 	tags: string[];
+	authorId: IUser;
+	createdAt: string;
 }
