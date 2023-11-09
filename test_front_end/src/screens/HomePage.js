@@ -4,14 +4,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts } from '../services/AppService';
 
 export default function HomePage() {
-    const [posts, setPosts] = useState([]);
+    const [listPosts, setListPosts] = useState([]);
     const [currentItems, setCurrentItems] = useState(5);
     const [reachedBottom, setReachedBottom] = useState(false);
+    const [searchText, setSearchText] = useState("");
 
     const dispatch = useDispatch();
     const allPosts = useSelector(state => state.list);
 
     let itemIncreasedAmount = 3;
+
+    const searchList = () => {
+        let myList = [...listPosts];
+        if (searchText !== null) {
+            myList = myList.filter(item => 
+                item.title.toLowerCase().includes(searchText.toLowerCase())
+            )
+        }
+        return myList;
+    }
 
     const handleScroll = () => {
         console.log("offsetHeight:", document.documentElement.offsetHeight,
@@ -31,7 +42,7 @@ export default function HomePage() {
     }
     const initData = async () => {
         const listPosts = await getAllPosts();
-        setPosts(listPosts);
+        setListPosts(listPosts);
 
     }
 
@@ -46,9 +57,17 @@ export default function HomePage() {
         }
 
     }, [reachedBottom])
+
+    useEffect(() => {
+        let list = listPosts.filter(item =>
+            item.title.toLowerCase().includes(searchText.toLowerCase())
+        )
+        console.log(list);
+    }, [searchText])
+
     return (
         <div>
-            <nav className={"navbar navbar-expand-sm p-0 mt-1 mb-4"}>
+            <nav className={"navbar navbar-expand-sm p-0 mt-1 mb-3"}>
                 <div className='container-fluid px-1'>
                     <ul className='navbar-nav w-100'>
                         <li className='bg-secondary px-4 border border-2 border-black border-end-0'></li>
@@ -68,15 +87,16 @@ export default function HomePage() {
 
                     </ul>
                 </div>
-
-            
-
             </nav>
-            <input
-             className='border' 
-            placeholder='Search'/>
+            <div className='mx-auto d-flex mb-4'>
+                <input
+                    className='border border-black rounded mx-auto w-25 ps-2'
+                    placeholder='Search'
+                    onChange={event => setSearchText(event.target.value)} />
+            </div>
+
             <div>
-                {posts.slice(0, currentItems).map(element => {
+                {searchList().slice(0, currentItems).map(element => {
                     return <ItemPost item={element} />
                 })}
             </div>
