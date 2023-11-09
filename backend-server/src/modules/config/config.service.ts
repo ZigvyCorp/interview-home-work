@@ -4,7 +4,7 @@ import * as path from 'path';
 import * as dotenv from 'dotenv';
 import { Inject, Injectable } from '@nestjs/common';
 
-import * as appConfig from './configs';
+import * as appConfig from '@configs';
 import { MODULE_OPTIONS_TOKEN } from './config.module-definition';
 import { ConfigModuleOptions, EnvConfig } from './interfaces';
 
@@ -15,7 +15,7 @@ export class ConfigService {
   constructor(@Inject(MODULE_OPTIONS_TOKEN) options: ConfigModuleOptions) {
     // cannot access extra prop `isGlobal` in `options`
     const filePath = `${options.env}.env`;
-    const envFile = path.resolve(__dirname, '../../', filePath);
+    const envFile = path.resolve(__dirname, '../../../', filePath);
     this.envConfig = dotenv.parse(fs.readFileSync(envFile));
   }
 

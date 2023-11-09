@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
 
-import { ConfigModule } from './config/config.module';
-import { DatabaseModule } from './database/database.module';
-import { PostModule } from './modules/post/post.module';
-import { UserModule } from './modules/user/user.module';
-import { CommentModule } from './modules/comment/comment.module';
+import {
+  CommentModule,
+  UserModule,
+  PostModule,
+  DatabaseModule,
+  ConfigModule,
+} from '@modules';
 
 @Module({
   imports: [

@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { HydratedDocument } from 'mongoose';
 
-import { User } from 'src/schemas';
+import { User } from '@schemas';
 
 const { ObjectId } = mongoose.Schema.Types;
 

@@ -1,6 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { CustomLogger, GlobalExceptionFilter } from './common';
+import {
+  CustomLogger,
+  GlobalExceptionFilter,
+  LoggingInterceptor,
+  TransformInterceptor,
+} from '@common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -8,6 +13,10 @@ async function bootstrap() {
   });
   app.useGlobalFilters(new GlobalExceptionFilter());
   app.useLogger(new CustomLogger());
+  app.useGlobalInterceptors(
+    new LoggingInterceptor(),
+    new TransformInterceptor(),
+  );
   await app.listen(3000);
 }
 bootstrap();

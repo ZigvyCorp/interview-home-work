@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
-import { Comment } from '../../schemas';
-import { CreateCommentDto, UpdateCommentDto } from '../../dto';
+import { Comment } from '@schemas';
+import { CreateCommentDto, UpdateCommentDto } from '@dto';
 
 @Injectable()
 export class CommentService {
@@ -16,18 +16,28 @@ export class CommentService {
   }
 
   findAll() {
-    return `This action returns all comment`;
+    return this.commentModel.find().lean();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} comment`;
+  findOne(id: string) {
+    return this.commentModel.findById(id).lean();
   }
 
-  update(id: number, updateCommentDto: UpdateCommentDto) {
-    return `This action updates a #${id} comment`;
+  findByPost(postId: string) {
+    return this.commentModel.find({ post: postId }).lean();
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} comment`;
+  update(id: string, updateCommentDto: UpdateCommentDto) {
+    return this.commentModel
+      .findByIdAndUpdate(id, updateCommentDto, { new: true })
+      .lean();
+  }
+
+  remove(id: string) {
+    return this.commentModel.deleteOne({ _id: id });
+  }
+
+  removeByPost(postId: string) {
+    return this.commentModel.deleteMany({ post: postId });
   }
 }
