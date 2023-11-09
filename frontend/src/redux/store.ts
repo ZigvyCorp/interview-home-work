@@ -5,6 +5,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './rootSaga';
+import postReducer from './posts/slice';
 
 const sagaMiddleware = createSagaMiddleware();
 const rootPersistConfig = {
@@ -13,7 +14,7 @@ const rootPersistConfig = {
 };
 
 const rootReducer = combineReducers({
-  counter: counterReducer,
+  post: postReducer,
 });
 
 const rootPersistReducer = persistReducer(rootPersistConfig, rootReducer);

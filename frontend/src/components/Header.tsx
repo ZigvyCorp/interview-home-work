@@ -9,10 +9,7 @@ const { Header: HeaderAntDesign } = Layout;
 const headerStyle: React.CSSProperties = {
   backgroundColor: '#fff',
   borderBottom: '1px solid #ccc',
-  position: 'sticky',
-  top: 0,
-  left: 0,
-  zIndex: 99,
+  marginBottom: 2
 };
 
 export function Header() {

@@ -1,7 +1,7 @@
 import mongoose, { model, Schema } from 'mongoose';
 
 export interface IPost {
-  owner: string;
+  userId: Schema.Types.ObjectId;
   title: string;
   content: string;
   tags: string[];
@@ -10,9 +10,10 @@ export interface IPost {
 
 const postSchema = new Schema<IPost>(
   {
-    owner: {
-      type: String,
+    userId: {
+      type: Schema.Types.ObjectId,
       required: true,
+      ref: "User",
     },
     title: {
       type: String,
@@ -28,7 +29,7 @@ const postSchema = new Schema<IPost>(
     },
     comments: [{ type: mongoose.Types.ObjectId, ref: "Comment" }]
   },
-  { timestamps: { createdAt: '1576506719083' } },
+  { timestamps: true },
 );
 
 const PostSchema = model<IPost>('Post', postSchema);

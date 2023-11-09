@@ -27,7 +27,7 @@ const userSchema = new Schema<IUser>(
             default: ""
         },
     },
-    { timestamps: {createdAt: "1576506719083"} },
+    { timestamps: true },
 )
 
 const User = model<IUser>("User", userSchema)
