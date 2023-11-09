@@ -1,0 +1,40 @@
+.post {
+  margin: 10px;
+  padding: 10px;
+  position: relative;
+  border-radius: 25px;
+  border: 1px solid gray;
+
+  .post__title {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 17px;
+  }
+
+  .post__summary {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: space-between;
+  }
+
+  .post__content {
+    margin-bottom: 10px;
+  }
+
+  .post__actions {
+    margin: 0px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .actions__button {
+      gap: 5px;
+      width: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
