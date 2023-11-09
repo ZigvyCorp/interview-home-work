@@ -1,17 +1,15 @@
-const Search = () => {
+import './search.css';
+
+const Search = ({ searchTerm, setSearchTerm }) => {
   return (
-    <div className='container'>
-      <form className='d-flex' role='search'>
-        <input
-          className='form-control me-2'
-          type='search'
-          placeholder='Search'
-          aria-label='Search'
-        />
-        <button className='btn btn-outline-success' type='submit'>
-          Search
-        </button>
-      </form>
+    <div className='container-fluid'>
+      <input
+        type='text'
+        placeholder='Search by post title...'
+        value={searchTerm}
+        onChange={e => setSearchTerm(e.target.value)}
+        className='me-2 search-bar'
+      />
     </div>
   );
 };

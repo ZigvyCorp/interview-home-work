@@ -4,12 +4,11 @@ const router = express.Router();
 
 router.get('/api/posts', async (req, res) => {
   try {
-    const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
-    const data = res.data;
-    res.json(data);
+    const response = await axios.get(`${BASE_URL}/posts`);
+    res.json(response.data);
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    console.error(error);
+    res.status(500).send('Internal Server Error');
   }
 });
 

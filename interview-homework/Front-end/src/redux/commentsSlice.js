@@ -1,17 +1,34 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  postId: 1,
-  id: 1,
-  name: '',
-  email: '',
-  body: '',
+  comments: [],
+  loading: false,
+  error: null,
 };
 
 export const commentsSlice = createSlice({
   name: 'comments',
   initialState,
-  reducers: {},
+  reducers: {
+    fetchCommentsStart: state => {
+      state.loading = true;
+      state.error = null;
+    },
+    fetchCommentsSuccess: (state, action) => {
+      state.loading = false;
+      state.comments = action.payload;
+    },
+    fetchCommentsFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+  },
 });
+
+export const {
+  fetchCommentsStart,
+  fetchCommentsSuccess,
+  fetchCommentsFailure,
+} = commentsSlice.actions;
 
 export default commentsSlice.reducer;

@@ -1,16 +1,44 @@
 const express = require('express');
-const app = express();
-const postsRouter = require('./api/posts');
-const commentsRouter = require('./api/comments');
-const usersRouter = require('./api/users');
+const axios = require('axios');
+const cors = require('cors');
 
+const app = express();
+const port = 5000;
+
+const BASE_URL = 'https://jsonplaceholder.typicode.com';
+
+app.use(cors());
 app.use(express.json());
 
-app.use('/api/posts', postsRouter);
-app.use('/api/comments', commentsRouter);
-app.use('/api/user', usersRouter);
+app.get('/api/posts', async (req, res) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/posts`);
+    res.json(response.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
-const port = 5000;
+app.get('/api/comments', async (req, res) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/comments`);
+    res.json(response.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get('/api/users', async (req, res) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/users`);
+    res.json(response.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
