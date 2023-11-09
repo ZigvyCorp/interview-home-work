@@ -40,3 +40,15 @@ export const BLOGS_MESSAGES = {
   GET_BLOGS_SUCCESSFUL: 'Lấy danh sách blog thành công',
   GET_BLOG_DETAIL_SUCCESSFUL: 'Lấy chi tiết blog thành công'
 } as const;
+
+export const COMMENTS_MESSAGES = {
+  CREATE_COMMENT_SUCCESSFUL: 'Thêm bình luận thành công',
+  COMMENT_CONTENT_IS_REQUIRED: 'Nội dung bình luận là bắt buộc',
+  UPDATE_COMMENT_SUCCESSFUL: 'Cập nhật bình luận thành công',
+  COMMENT_ID_IS_REQUIRED: 'ID bình luận là bắt buộc',
+  COMMENT_ID_IS_INVALID: 'ID bình luận không hợp lệ',
+  COMMENT_IS_NOT_EXISTED: 'Bình luận không tồn tại',
+  COMMENT_AUTHOR_IS_INVALID: 'Bạn không phải là tác giả của bình luận này',
+  DELETE_COMMENT_SUCCESSFUL: 'Xóa bình luận thành công',
+  GET_COMMENTS_SUCCESSFUL: 'Lấy danh sách bình luận thành công'
+} as const;

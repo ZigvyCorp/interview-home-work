@@ -2,6 +2,7 @@ import { Collection, Db, MongoClient } from 'mongodb';
 
 import { ENV_CONFIG } from '~/constants/config';
 import Blog from '~/models/schemas/Blog.schema';
+import Comment from '~/models/schemas/Comment.schema';
 import RefreshToken from '~/models/schemas/RefreshToken.schema';
 import User from '~/models/schemas/User.schema';
 
@@ -36,6 +37,10 @@ class DatabaseService {
 
   get blogs(): Collection<Blog> {
     return this.db.collection(ENV_CONFIG.DB_BLOGS_COLLECTION);
+  }
+
+  get comments(): Collection<Comment> {
+    return this.db.collection(ENV_CONFIG.DB_COMMENTS_COLLECTION);
   }
 }
 
