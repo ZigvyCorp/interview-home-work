@@ -6,10 +6,6 @@ const userController = require('../controllers/userController');
 const router = express.Router();
 router.get('/posts', postController.getAllPosts);
 
-router.get('/comments', commentController.getAllComments);
-
-router.get('/users', userController.getAllUser);
-
 router.post('/getCommentsByPostId', commentController.getCommentsByPostId);
 
 
