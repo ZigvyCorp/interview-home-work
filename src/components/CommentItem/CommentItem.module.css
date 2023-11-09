@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    column-gap: 23px;
+}
+
+.info {
+    flex: 1;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    display: block;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.block-name {
+    display: flex;
+    column-gap: 16px;
+}
+
+.name {
+    color: #aaa;
+}
+
+.createdAt {
+    color: #d9d9d9;
+}
+
+.reply {
+    margin-top: 12px;
+}
+
+.reply::before {
+    content: attr(placeholder);
+    color: #a3a3a3;
+}
+
+.reply:not(:empty)::before {
+    content: '';
+}
