@@ -7,7 +7,7 @@ export interface IInput {
   disabled?: boolean;
   placeholder?: string;
   value: string;
-  handleChange: (e: any) => void;
+  onChange: (e: any) => void;
   onPressEnter?: (e: any) => void;
   [key: string]: any;
 }
@@ -19,7 +19,7 @@ const Input = ({
   disabled,
   placeholder,
   value,
-  handleChange,
+  onChange,
   onPressEnter,
   ...props
 }: IInput) => {
@@ -31,7 +31,7 @@ const Input = ({
       placeholder={placeholder}
       value={value}
       disabled={disabled}
-      onChange={handleChange}
+      onChange={onChange}
       onPressEnter={onPressEnter}
       {...props}
     />
@@ -39,3 +39,5 @@ const Input = ({
 };
 
 export default Input;
+
+Input.Search = AntInput.Search;

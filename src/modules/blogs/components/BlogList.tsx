@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import _debounce from "lodash/debounce";
 import { format, parseISO } from "date-fns";
 
 import { DATE_FORMAT } from "@/shared";
@@ -9,6 +10,7 @@ import { Pagination } from "@/components/pagination";
 import { BlogCard } from "@/modules/blogs";
 
 import { IPost, PAGINATION } from "@/modules/blogs";
+import { SearchBar, SearchBox } from "@/components/searchbar";
 
 export interface IBlogList {
   className?: string;
@@ -18,6 +20,7 @@ export interface IBlogList {
 const BlogList = ({ className = "", blogs }: IBlogList) => {
   const [params, setParams] = useSearchParams();
   const [search, setSearch] = useState<string>("");
+  const [debounceKey, setDebounceKey] = useState<string>("");
   const [pagination, setPagination] = useState(PAGINATION);
 
   useEffect(() => {
@@ -36,11 +39,26 @@ const BlogList = ({ className = "", blogs }: IBlogList) => {
   };
 
   const listData = useMemo(() => getPaginatedData(), [pagination.page, pagination.pageSize]);
+  const listSearchData = useMemo(() => {
+    if (debounceKey.length === 0) {
+      return [];
+    }
+    return blogs.filter((item) => item.title.toLowerCase().indexOf(debounceKey.toLowerCase()) > -1);
+  }, [debounceKey]);
 
   // -- handling ----
 
+  const debounceSearch = useCallback(
+    _debounce((nextValue) => {
+      console.log(nextValue);
+      setDebounceKey(nextValue);
+    }, 500),
+    []
+  );
+
   const handleSearch = (e: any) => {
     setSearch(e.target.value);
+    debounceSearch(e.target.value);
   };
 
   const handlePage = (page: number) => {
@@ -57,7 +75,19 @@ const BlogList = ({ className = "", blogs }: IBlogList) => {
   return (
     <div className={`${className}`}>
       <Container>
-        <div className="pt-[30px] lg:pt-[60px]">
+        <div className="search-bar py-[18px] md:py-[45px] lg:py-[60px] relative">
+          <SearchBar value={search} name="search" onChange={handleSearch} />
+          {debounceKey.length > 0 && (
+            <div className="absolute bg-light_grey w-full top-[72%] left-0 z-[20] rounded-md p-[20px] shadow-md">
+              <SearchBox
+                className="bg-white p-[16px] rounded-md w-full max-h-[400px] overflow-y-auto space-y-[16px]"
+                list={listSearchData}
+              />
+            </div>
+          )}
+        </div>
+
+        <div className="">
           <div className="flex flex-wrap -m-[18px]">
             {listData.map((item, index) => {
               return (
