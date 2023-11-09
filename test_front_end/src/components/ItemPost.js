@@ -4,15 +4,17 @@ import { getUserByID } from "../services/AppService";
 import { getPostCommentsByID } from "../services/AppService";
 import ItemComment from "./ItemComment";
 
-export default function Post({ item }) {
+export default function ItemPost({ item }) {
     const [user, setUser] = useState({});
     const [comments, setComments] = useState([]);
     const [showComments, setShowComments] = useState(false);
 
     const initData = async () => {
+        // Get user from post userId
         const userData = await getUserByID(item.userId);
         setUser(userData);
 
+        // Get all comments from postId
         const commentData = await getPostCommentsByID(item.id);
         setComments(commentData);
         console.log("Post's comments:", commentData);
@@ -23,8 +25,8 @@ export default function Post({ item }) {
     }, [])
 
     return (
-        <div>
-            <div className="mb-4">
+        <div className="mb-3">
+            <div className="mb-4 px-4">
                 <h2 className="text-center">{item ? item.title : 'Temp title'}</h2>
                 <div className={"d-inline-flex w-100"}>
                     <div className="w-75">
@@ -45,23 +47,24 @@ export default function Post({ item }) {
                         <ColorCard title={'purple'} color={'purple'} />
                     </div>
                 </div>
-                <p>{item ? item.body.substring(0, 100) : "temp body"}</p>
-            </div>
-            <div className="mx-4">
-                <button
-                    className="btn btn-light"
-                    onClick={() => setShowComments(!showComments)}>
-                    {comments.length} replies
-                </button>
-                <hr className={" text-center m-auto mb-5"} />
-                {showComments ?
-                    comments.map(itemComment => {
-                        return <ItemComment item={itemComment} />
-                    })
-                    : <></>
-                }
+                <p>{item ? item.body : "temp body"}</p>
+                <div className="mx-4">
+                    <button
+                        className="btn btn-light"
+                        onClick={() => setShowComments(!showComments)}>
+                        {comments.length} replies
+                    </button>
+                    <hr className={" text-center m-auto mb-5"} />
+                    {showComments ?
+                        comments.map(itemComment => {
+                            return <ItemComment item={itemComment} />
+                        })
+                        : <></>
+                    }
 
+                </div>
             </div>
+
             <div className="py-1 bg-dark" />
         </div>
     )

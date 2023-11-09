@@ -1,4 +1,4 @@
-import Post from '../components/ItemPost';
+import ItemPost from '../components/ItemPost';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts } from '../services/AppService';
@@ -16,10 +16,10 @@ export default function HomePage() {
     const handleScroll = () => {
         console.log("offsetHeight:", document.documentElement.offsetHeight,
             "\ninner height:", window.innerHeight,
-            "\noffsetTop:", document.body.scrollTop,
+            "\noffsetTop:", document.documentElement.scrollTop,
             "\currentShownItems:", currentItems);
 
-        if (window.innerHeight + document.body.scrollTop <= document.documentElement.offsetHeight - 10) {
+        if (window.innerHeight + document.documentElement.scrollTop <= document.documentElement.offsetHeight - 10) {
             return;
         }
         increasedShownItems();
@@ -48,20 +48,36 @@ export default function HomePage() {
     }, [reachedBottom])
     return (
         <div>
-            <nav className={"navbar navbar-enpand-lg navbar-light bg-light m-0"}>
-                <div className={"h2 border border-4 border-black flex-fill d-inline-flex"}>
-                    <a className={"h2 border p-3 m-0 bg-secondary"}></a>
-                    <a >Logo</a>
+            <nav className={"navbar navbar-expand-sm p-0 mt-1 mb-4"}>
+                <div className='container-fluid px-1'>
+                    <ul className='navbar-nav w-100'>
+                        <li className='bg-secondary px-4 border border-2 border-black border-end-0'></li>
+                        <li className='nav-item border border-2 border-black border-end-0 d-flex flex-fill m-0 p-0 align-items-center'>
+                            <a className='nav-link'>Logo</a>
+                        </li>
+                        <li className='nav-item border border-2 border-black d-flex align-items-center '>
+                            <p className={"m-0 fs-4 nav-link"}>Blogs</p>
+                        </li>
+                        <li className='nav-item d-flex align-items-center flex-fill border-top border-bottom border-2  border-black'></li>
+                        <li className='nav-item d-flex align-items-center px-2 border border-3 border-secondary'>
+                            <i className="fa-solid fa-user nav-link"></i>
+                        </li>
+                        <li className='nav-item d-flex align-items-center border border-2 border-start-0 border-black'>
+                            <p className={"m-0 fs-4 nav-link "}>Adam Levine</p>
+                        </li>
+
+                    </ul>
                 </div>
-                <a className={"h2 border border-4 border-black flex-fill"}>Blogs</a>
-                <div className={"h2 border border-4 border-black flex-fill"}>
-                    <i className="fa-solid fa-user border border-4"></i>
-                    <a>Adam Levine</a>
-                </div>
+
+            
+
             </nav>
-            <div className={""}>
+            <input
+             className='border' 
+            placeholder='Search'/>
+            <div>
                 {posts.slice(0, currentItems).map(element => {
-                    return <Post item={element} />
+                    return <ItemPost item={element} />
                 })}
             </div>
         </div>
