@@ -17,12 +17,10 @@ const usersSchema = new mongoose.Schema({
   },
   name: {
     type: String,
-    required: true,
   },
   dob: {
     type: String,
     default: new Date().toLocaleDateString("vi-VN"),
-    required: true,
   },
   created_at: {
     type: Date,

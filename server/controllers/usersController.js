@@ -6,7 +6,7 @@ const usersController = {
   addUser: async (req, res) => {
     const { username, password, name, dob } = req.body;
 
-    if (!username || !password || !name || !dob)
+    if (!username || !password)
       return res
         .status(400)
         .json({ success: false, message: "Missing this user!" });
