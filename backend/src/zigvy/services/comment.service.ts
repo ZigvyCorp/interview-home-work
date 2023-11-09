@@ -3,9 +3,8 @@ import { paginate } from 'nestjs-typeorm-paginate';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ILike, Repository } from 'typeorm';
 
-import { PaginateQueryDto } from '../../common/dtos/paginate.dto';
 import { UpdatePostDto } from '../dto/post/update-post.dto';
-import { CommentEntity } from '../entities';
+import { CommentEntity, UserEntity } from '../entities';
 import { GetCommentsDto } from '../dto/comment/get-comments.dto';
 
 @Injectable()
@@ -35,6 +34,7 @@ export class CommentService {
     if (postId) {
       queryBuilder.where('u.post = :postId', { postId });
     }
+    queryBuilder.leftJoinAndMapOne('u.owner', UserEntity, 'user', 'u.owner = user.id');
 
     const response = await paginate<CommentEntity>(queryBuilder, filters);
     return response;

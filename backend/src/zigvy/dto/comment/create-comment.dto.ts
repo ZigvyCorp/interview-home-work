@@ -7,4 +7,8 @@ export class CreateCommentDto {
     @IsNumber()
     @IsDefined()
     postId: number;
+
+    @IsNumber()
+    @IsDefined()
+    userId: number;
 }

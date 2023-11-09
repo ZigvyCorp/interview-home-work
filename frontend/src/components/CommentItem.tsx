@@ -21,7 +21,7 @@ export const CommentItem: React.FC<ICommentProps> = ({ comment, index }) => {
       <Flex vertical style={{ marginLeft: "8px" }}>
         <Flex>
           <Text strong style={{ marginRight: "8px" }}>
-            {get(comment.owner as IUser, "owner.name", "")}
+            {get(comment.owner as IUser, "name", "")}
           </Text>
           <span style={{ opacity: 0.5 }}>
             {moment(comment.created_at).fromNow()}
