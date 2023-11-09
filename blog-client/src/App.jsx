@@ -1,12 +1,14 @@
-import './App.css'
+import { RouterProvider } from "react-router-dom";
+import "./App.css";
+import { router } from "./router";
+import { Container } from "reactstrap";
 
 function App() {
-
-  return (
-    <>
-      Hello
-    </>
-  )
+	return (
+		<Container>
+			<RouterProvider router={router} />
+		</Container>
+	);
 }
 
-export default App
+export default App;

@@ -1,0 +1,22 @@
+.post-item {
+  max-width: 800px;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid black;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+  
+  .post-item__title {
+    text-align: center;
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  }
+
+  .post-item__metadata p {
+    margin-bottom: 0.3rem;
+  }
+}

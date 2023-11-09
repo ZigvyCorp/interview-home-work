@@ -1,0 +1,34 @@
+.header__container {
+  > div {
+    display: flex;
+    align-items: center;
+    border: 1px solid #000000;
+  }
+
+  .header__left {
+    justify-content: left;
+    
+    a {
+      text-decoration: none;
+      color: #000000;
+    }
+  }
+
+  .header__center {
+    justify-content: center;
+    background-color: #e6e6e6;
+  }
+
+  .header__right {
+    justify-content: right;
+    
+    .header__userinfo {
+      display: flex;
+      align-items: center;
+
+      .header__userinfo__username {
+        margin: 0 0.5rem;
+      }
+    }
+  }
+}

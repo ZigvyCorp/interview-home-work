@@ -1,0 +1,11 @@
+.home-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .home-page__search-posts {
+    max-width: 800px;
+    margin: 1rem;
+  }
+}

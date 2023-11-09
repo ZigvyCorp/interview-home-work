@@ -1,5 +1,16 @@
 const pool = require("../config/db.config");
 
+const countPosts = async (search) => {
+	const searchCondition = search ? `AND pa.title LIKE '%${search}%'` : "";
+
+	const query = `SELECT COUNT(*) as count FROM pa_post_attr pa
+    WHERE pa.deleted = FALSE
+			${searchCondition}`;
+
+	const result = await pool.query(query);
+	return Number(result.rows?.[0]?.count) || 0;
+}
+
 const getPosts = async (page, size, search) => {
 	const searchCondition = search ? `AND pa.title LIKE '%${search}%'` : "";
 	const offset = Math.max(page - 1, 0) * size;
@@ -76,6 +87,7 @@ const addPosts = async (posts = []) => {
 };
 
 module.exports = {
+	countPosts,
 	getPosts,
 	getPostById,
 	addPost,
