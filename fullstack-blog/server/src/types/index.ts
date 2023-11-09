@@ -1,4 +1,5 @@
+import { IComment } from "./comment";
 import { IPost, IPostJS } from "./post";
 import { IUser } from "./user";
 
-export { IPost, IPostJS, IUser };
+export { IComment, IPost, IPostJS, IUser };
