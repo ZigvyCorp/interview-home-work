@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPostRequest } from "../redux/actions/post/postsActions";
 import { RootState } from "../redux/store";
 import { Pagination } from "react-bootstrap";
+import ErrorScreen from "./Error";
+import LoadingScreen from "./LoadingScreen";
 
 const ListPost = ({ searchValue }: { searchValue: string }) => {
   const disPatch = useDispatch();
@@ -35,8 +37,18 @@ const ListPost = ({ searchValue }: { searchValue: string }) => {
     return post.title.includes(searchValue);
   });
 
+  const Loading = () => {
+    return <>{loading ? <LoadingScreen /> : ""}</>;
+  };
+
+  const Error = () => {
+    return <>{error ? <ErrorScreen /> : ""}</>;
+  };
+
   return (
     <Fragment>
+      <Loading />
+      <Error />
       {filterPost?.map((value, index) => (
         <div key={index}>
           <BlogCard

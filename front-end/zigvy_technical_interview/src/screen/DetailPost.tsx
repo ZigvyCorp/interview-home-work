@@ -8,6 +8,8 @@ import { fetchCommentPostIdRequest } from "../redux/actions/comment/commentPostI
 import { fetchUserIdRequest } from "../redux/actions/user/userIdAction";
 import { colors } from "../colors";
 import SmallBorder from "../component/SmallBorder";
+import LoadingScreen from "./LoadingScreen";
+import ErrorScreen from "./Error";
 
 const DetailPost = () => {
   const dispatch = useDispatch();
@@ -55,29 +57,48 @@ const DetailPost = () => {
   return (
     <Fragment>
       <div className="p-4 mt-5 d-flex flex-column">
-        <h1 className="text-center">{post.title}</h1>
-        <div className="d-flex flex-row my-5">
-          <div className="col">
-            <p>Author: </p>
-            <p>Create at: Oct 1, 2023</p>
-          </div>
-          <div className="col"></div>
-          <div className="d-flex flex-row flex-wrap col">
-            {colors.map((color) => (
-              <SmallBorder color={color} />
-            ))}
-          </div>
-        </div>
-        <div className="my-5">
-          <p>{post.body}</p>
-        </div>
-        <div>
-          <p style={{ cursor: "pointer" }} onClick={() => handleShowComment()}>
-            {comments.length} replies
-          </p>
-        </div>
+        {loading ? (
+          <LoadingScreen />
+        ) : error !== null ? (
+          <ErrorScreen />
+        ) : (
+          <>
+            <h1 className="text-center">{post.title}</h1>
+            <div className="d-flex flex-row my-5">
+              <div className="col">
+                <p>Author: </p>
+                <p>Create at: Oct 1, 2023</p>
+              </div>
+              <div className="col"></div>
+              <div className="d-flex flex-row flex-wrap col">
+                {colors.map((color) => (
+                  <SmallBorder color={color} />
+                ))}
+              </div>
+            </div>
+            <div className="my-5">
+              <p>{post.body}</p>
+            </div>
+            <div>
+              <p
+                style={{ cursor: "pointer" }}
+                onClick={() => handleShowComment()}
+              >
+                {comments.length} replies
+              </p>
+            </div>
+          </>
+        )}
         <hr />
-        {showComment ? <CommentPostId /> : ""}
+        {showComment ? (
+          loadingComment ? (
+            <LoadingScreen />
+          ) : (
+            <CommentPostId />
+          )
+        ) : (
+          ""
+        )}
       </div>
     </Fragment>
   );
