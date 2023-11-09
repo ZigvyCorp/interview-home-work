@@ -4,20 +4,18 @@ import { Button, Input } from 'antd'
 import isEmpty from 'lodash/isEmpty'
 import { useContext } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import userApi from '~/api/users.api'
-import PATH from '~/constants/path'
 import { AppContext } from '~/providers/AppProvider/AppProvider'
 import { ErrorResponse } from '~/types/utils.type'
-import { LoginSchema, loginSchema } from '~/utils/rules'
+import { registerSchema, RegisterSchema } from '~/utils/rules'
 import { isEntityError } from '~/utils/utils'
-import styles from './Login.module.scss'
+import styles from './Register.module.scss'
 
-type FormSchema = LoginSchema
+type FormSchema = RegisterSchema
 
-const Login = () => {
+const Register = () => {
   const { setIsAuthenticated, setProfile } = useContext(AppContext)
 
   // Form
@@ -27,21 +25,22 @@ const Login = () => {
     control,
     setError
   } = useForm<FormSchema>({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(registerSchema),
     defaultValues: {
       email: '',
-      password: ''
+      password: '',
+      confirm_password: ''
     }
   })
 
-  // Mutation: Đăng nhập
-  const loginMutation = useMutation({
-    mutationFn: userApi.login,
+  // Mutation: Đăng ký
+  const registerMutation = useMutation({
+    mutationFn: userApi.register,
     onSuccess: (data) => {
       const { user } = data.data.data
       setIsAuthenticated(true)
       setProfile(user)
-      toast.success('Đăng nhập thành công')
+      toast.success('Đăng ký thành công')
     },
     onError: (error) => {
       if (isEntityError<ErrorResponse<FormSchema>>(error)) {
@@ -60,14 +59,12 @@ const Login = () => {
 
   // Submit form
   const onSubmit = handleSubmit((data) => {
-    console.log('>>> onSubmit: ', data)
-
-    loginMutation.mutate(data)
+    registerMutation.mutate(data)
   })
 
   return (
     <div className={styles.wrapper}>
-      <h2>Đăng nhập</h2>
+      <h2>Đăng ký</h2>
       <form onSubmit={onSubmit}>
         <div className={styles.field}>
           <Controller control={control} name='email' render={({ field }) => <Input placeholder='Email' {...field} />} />
@@ -81,15 +78,20 @@ const Login = () => {
           />
           {errors.password?.message && <p className={styles.error}>{errors.password.message}</p>}
         </div>
+        <div className={styles.field}>
+          <Controller
+            control={control}
+            name='confirm_password'
+            render={({ field }) => <Input.Password placeholder='Nhập lại mật khẩu' {...field} />}
+          />
+          {errors.confirm_password?.message && <p className={styles.error}>{errors.confirm_password.message}</p>}
+        </div>
         <Button htmlType='submit' type='primary' className={styles.submit}>
-          Đăng nhập
+          Đăng ký
         </Button>
-        <p className={styles.suggest}>
-          Bạn chưa có tài khoản? <Link to={PATH.REGISTER}>Đăng ký ngay</Link>
-        </p>
       </form>
     </div>
   )
 }
 
-export default Login
+export default Register

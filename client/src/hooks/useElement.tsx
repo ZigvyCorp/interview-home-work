@@ -6,6 +6,7 @@ import MainLayout from '~/layouts/MainLayout'
 import Home from '~/pages/Home'
 import Login from '~/pages/Login'
 import NotFound from '~/pages/NotFound'
+import Register from '~/pages/Register'
 import { AppContext } from '~/providers/AppProvider/AppProvider'
 
 // const ProtectedRoute = () => {
@@ -46,6 +47,14 @@ const useElement = () => {
           element: (
             <MainLayout>
               <Login />
+            </MainLayout>
+          )
+        },
+        {
+          path: PATH.REGISTER,
+          element: (
+            <MainLayout>
+              <Register />
             </MainLayout>
           )
         }

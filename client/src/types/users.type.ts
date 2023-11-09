@@ -21,6 +21,13 @@ export interface LoginReqBody {
   password: string
 }
 
+// Request: Đăng ký
+export interface RegisterReqBody {
+  email: string
+  password: string
+  confirm_password: string
+}
+
 // Response: Đăng nhập thành công
 export type AuthResponse = SuccessResponse<{
   access_token: string
