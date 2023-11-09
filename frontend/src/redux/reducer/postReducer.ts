@@ -1,14 +1,20 @@
-import { createAsyncThunk, createAction,createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState, AppThunk } from '../store';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IGetListPostResponse } from '../../types';
 
 export interface PostState {
   value: number;
-  status: 'idle' | 'loading' | 'failed';
+  posts: {
+    data: IGetListPostResponse | undefined;
+    loading: boolean;
+  }
 }
 
 const initialState: PostState = {
-  value: 0,
-  status: 'idle',
+  value: 1,
+  posts: {
+    data: undefined,
+    loading: false,
+  }
 };
 
 
@@ -17,12 +23,22 @@ export const postSlice = createSlice({
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
+    fetchPostSuccess: (state, action: PayloadAction<IGetListPostResponse>) => {
+      state.posts.loading = false;
+      state.posts.data = action.payload;
+      console.log("🚀 ~ file: postReducer.ts:29 ~ state.posts.data:", state.posts.data)
+    },
+    fetchPostFailure: (state) => {
+      state.posts.loading = false;
+
+    },
+    fetchPostPending: (state) => {
+      state.posts.loading = true;
+
     },
   },
 });
 
-export const { incrementByAmount } = postSlice.actions;
+export const { fetchPostSuccess, fetchPostFailure, fetchPostPending } = postSlice.actions;
 
 export default postSlice.reducer;

@@ -1,4 +1,4 @@
-import { configureStore, ThunkAction, Action, applyMiddleware } from '@reduxjs/toolkit';
+import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import {
   persistStore,
@@ -26,11 +26,8 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  }).concat(sagaMiddleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({}).concat(sagaMiddleware),
+  devTools: process.env.NODE_ENV !== 'production',
 });
 sagaMiddleware.run(rootSaga)
 export const persistor = persistStore(store);

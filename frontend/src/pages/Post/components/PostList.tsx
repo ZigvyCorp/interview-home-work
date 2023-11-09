@@ -1,17 +1,27 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Pagination, Col, Row, PaginationProps } from "antd";
+import { Pagination, Col, Row, PaginationProps, Input } from "antd";
+import { get } from "lodash";
 
-import { IPost } from "../../../types";
 import { PostItem } from "./../../../components/PostItem";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { fetchPostAsync } from "../../../redux/saga/postSaga";
+const { Search } = Input;
 
-const PostList: React.FC<{ posts: IPost[] }> = (props) => {
-  const { posts } = props;
+const PostList: React.FC = (props) => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [limit, setLimit] = useState(5);
+  const [page, setPage] = useState(1);
+  const [keyword, setKeyword] = useState("");
+  const { data: postsState, loading } = useAppSelector(
+    (state) => state.post.posts
+  );
   const renderPosts = useCallback(() => {
-    return posts.map((p) => {
+    return postsState?.items.map((p) => {
       return (
         <PostItem
+          key={p.id}
           post={p}
           extra={
             <a
@@ -25,17 +35,41 @@ const PostList: React.FC<{ posts: IPost[] }> = (props) => {
         />
       );
     });
-  }, [props.posts]);
+  }, [postsState]);
+
+  useEffect(() => {
+    handleFetchPost();
+  }, [limit, page, keyword]);
+
+  const handleFetchPost = () => {
+    dispatch(fetchPostAsync({ limit, page, keyword }));
+  };
 
   const onChange: PaginationProps["onChange"] = (pageNumber) => {
-    console.log("Page: ", pageNumber);
+    setPage(pageNumber);
   };
 
   return (
-    <Row>
+    <Row gutter={[16, 16]}>
+      <Col span={8}>
+        <Search
+          enterButton="Search"
+          placeholder="Search posts by title"
+          onSearch={(value) => {
+            setKeyword(value);
+          }}
+        />
+      </Col>
       <Col span={24}>{renderPosts()}</Col>
       <Col span={24}>
-        <Pagination style={{ float: "right" }} size="default" />
+        <Pagination
+          style={{ float: "right" }}
+          size="default"
+          current={get(postsState, "meta.currentPage")}
+          pageSize={limit}
+          total={get(postsState, "meta.totalItems")}
+          onChange={onChange}
+        />
       </Col>
     </Row>
   );

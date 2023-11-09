@@ -16,6 +16,7 @@ import { generateRandomColor } from "../utils";
 
 import CommentsJson from "./../mock/comments.json";
 import { CommentItem } from "../components/CommentItem";
+import { get } from "lodash";
 
 const { Paragraph } = Typography;
 const { Panel } = Collapse;
@@ -25,6 +26,7 @@ interface IPostItemProps {
 }
 const PostItem: React.FC<IPostItemProps> = (props) => {
   const { post, extra } = props;
+  console.log("🚀 ~ file: PostItem.tsx:28 ~ post:", post)
   const [isCollapsed, setIsCollapsed] = useState(true);
 
   const toggleCollapse = () => {
@@ -33,19 +35,19 @@ const PostItem: React.FC<IPostItemProps> = (props) => {
 
   const renderHeader = useCallback(
     (
-      author: string = "Khiem NV",
-      createdAt?: number,
+      author: string = "Unknown",
+      createdAt?: string,
       tags: string[] = ["apple", "pear", "banana"]
     ) => (
       <Flex justify="space-between">
         <Flex vertical flex={1}>
           <div>Author: {author}</div>
-          <div>Created: {moment(createdAt).format("YYYY-MM-DD HH:mm")}</div>
+          <div>Created: {moment(createdAt).fromNow()}</div>
         </Flex>
         <Flex flex={1} justify="end">
           <Space size={[0, "small"]} wrap>
             {tags.map((t) => {
-              return <Tag color={generateRandomColor()}>{t}</Tag>;
+              return <Tag key={t} color={generateRandomColor()}>{t}</Tag>;
             })}
           </Space>
         </Flex>
@@ -81,9 +83,9 @@ const PostItem: React.FC<IPostItemProps> = (props) => {
 
   return (
     <Card title={post.title} extra={extra} style={{ marginTop: "8px" }}>
-      {renderHeader(post.owner, post.created_at, post.tags)}
+      {renderHeader(get(post.owner, "name"), post.createdAt, post.tags)}
       {renderContent(post.content)}
-      {renderComments(4)}
+      {renderComments(get(post, "comments", 0) as number)}
     </Card>
   );
 };

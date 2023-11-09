@@ -13,6 +13,8 @@
     "@types/react": "^18.2.36",
     "@types/react-dom": "^18.2.14",
     "antd": "^5.11.0",
+    "axios": "^1.6.1",
+    "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -47,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.201"
   }
 }
