@@ -34,7 +34,7 @@ export const currentUser = async (req: RequestWithUser, res: Response, next: Nex
 		next();
 	} catch (error) {
 		res.status(401).json({
-			message: "Invalid token",
+			message: "Please login to continue",
 		});
 	}
 };
