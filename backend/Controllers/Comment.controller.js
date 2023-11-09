@@ -6,6 +6,22 @@ const createError =require('http-errors');
 const {commentValidate}= require('../helpers/validation')
 
 module.exports ={
+    getList: async (req,res,next)=>{
+        try {
+            const data = await Comment.find()
+          
+            const count = await Comment.countDocuments();
+            res.status(200).json({
+                status:'okay',
+                elements:data,
+                total: count,
+            });
+            
+        } catch (error) {
+            next(error)
+        }
+    },
+
     add: async (req,res,next)=> {
         try{
             
@@ -35,21 +51,7 @@ module.exports ={
         };
     },
   
-    getList: async (req,res,next)=>{
-        try {
-            const data = await Comment.find()
-          
-            const count = await Comment.countDocuments();
-            res.status(200).json({
-                status:'okay',
-                elements:data,
-                total: count,
-            });
-            
-        } catch (error) {
-            next(error)
-        }
-    },
+  
     delete: async(req,res,next)=>{
         try {
             await Comment.findOneAndDelete({id:req.params.id});
@@ -90,4 +92,21 @@ module.exports ={
             next(error)
         }
     },
+    getListByPostId: async (req,res,next)=>{
+        try {
+            const qry = {post:req.params.pid}
+            const data = await Comment.find(qry)
+          
+            const count = await Comment.countDocuments(qry);
+            res.status(200).json({
+                status:'okay',
+                elements:data,
+                total: count,
+            });
+            
+        } catch (error) {
+            next(error)
+        }
+    },
+  
 }

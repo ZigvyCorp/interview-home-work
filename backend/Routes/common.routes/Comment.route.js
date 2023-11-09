@@ -8,6 +8,8 @@ router.get('/',CommentController.getList);
 
 router.get('/:id',CommentController.getOne);
 
+router.get('/posts/:pid',CommentController.getListByPostId);
+
 router.delete("/:id",CommentController.delete);
 
 router.patch("/:id",CommentController.editComment);

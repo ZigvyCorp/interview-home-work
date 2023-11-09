@@ -6,6 +6,48 @@ const createError =require('http-errors');
 const {postValidate}= require('../helpers/validation')
 
 module.exports ={
+    getList: async (req,res,next)=>{
+        try {
+            // const data = await Post.find()
+          
+            // const count = await Post.countDocuments();
+            // res.status(200).json({
+            //     status:'okay',
+            //     elements:data,
+            //     total: count,
+            // });
+            const pageIndex = parseInt(req.query.pageIndex);
+            const pageSize = parseInt(req.query.pageSize);
+            const skipIndex = (pageIndex - 1) * pageSize;
+        
+            const title = req.query.title || "";
+        
+            const queryObj = {
+              ...req.query,
+              ...(title && {
+                title: { $regex: title, $options: "i" },
+              })
+            };
+            const excludedFields = ["pageIndex", "pageSize"];
+            excludedFields.forEach((el) => delete queryObj[el]);
+        
+            
+            const data = await Post.find(queryObj)
+                .limit(pageSize)
+                .skip(skipIndex)
+                .exec();
+            const count = await Post.countDocuments(queryObj);
+            res.status(200).json({
+                status:'okay',
+                elements:data,
+                total: count,
+            });
+          
+            
+        } catch (error) {
+            next(error)
+        }
+    },
     add: async (req,res,next)=> {
         try{
             
@@ -35,21 +77,7 @@ module.exports ={
         };
     },
   
-    getList: async (req,res,next)=>{
-        try {
-            const data = await Post.find()
-          
-            const count = await Post.countDocuments();
-            res.status(200).json({
-                status:'okay',
-                elements:data,
-                total: count,
-            });
-            
-        } catch (error) {
-            next(error)
-        }
-    },
+    
     getOne: async (req,res,next)=>{
         try {
             const data = await Post.findOne({id:req.params.id})

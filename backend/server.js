@@ -4,13 +4,18 @@ const app = express();
 const UserRouter = require('./Routes/common.routes/User.route')
 const createError =require('http-errors');
 const route = require("./Routes");
-require('dotenv').config();
 
+require('dotenv').config();
+const cors = require("cors");
 // Connect db
 const db = require('./helpers/connection_mongodb')
 db.connect()
 
-
+app.use(cors({
+    origin: ["http://localhost:3000","http://127.0.0.1:3000"],
+    methods: "GET,POST,PUT,PATCH,DELETE",
+    credentials: true,
+  }));
 
 // Set up for json
 app.use(express.json());
@@ -36,7 +41,9 @@ app.use((error,req,res,next)=>{
 
 
 
-const PORT = process.env.PORT || 3000;
+
+
+const PORT = process.env.PORT || 8000;
 app.listen(PORT,()=>{
     console.log(`Server running on ${PORT}`)
 });
