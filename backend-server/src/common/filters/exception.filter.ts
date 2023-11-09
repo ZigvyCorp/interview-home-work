@@ -16,7 +16,7 @@ export class GlobalExceptionFilter
       response.status(status).json({
         success: false,
         code: status,
-        message: exception.message,
+        message: exception.response?.message || exception.message,
       });
     } else {
       super.catch(exception, host);

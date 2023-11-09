@@ -10,7 +10,6 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 
-import { ResponseMessage } from '@common';
 import { CommentService } from './comment.service';
 import { PostService } from '../post/post.service';
 import { CreateCommentDto, UpdateCommentDto } from '@dto';
@@ -28,27 +27,36 @@ export class CommentController {
     const numberOfPost = await this.postService.count(postFilter);
     if (numberOfPost === 0)
       throw new HttpException('Post Not Found', HttpStatus.NOT_FOUND);
-    return this.commentService.create(createCommentDto);
+    const comment = await this.commentService.create(createCommentDto);
+    await this.postService.update(createCommentDto.post, {
+      comments: [comment._id.toString()],
+    });
+    return comment;
   }
 
   @Get()
-  @ResponseMessage('Comment successfully')
-  findAll() {
+  async findAll() {
     return this.commentService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: string) {
     return this.commentService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCommentDto: UpdateCommentDto) {
+  async update(
+    @Param('id') id: string,
+    @Body() updateCommentDto: UpdateCommentDto,
+  ) {
     return this.commentService.update(id, updateCommentDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.commentService.remove(id);
+  async remove(@Param('id') id: string) {
+    const { deletedCount } = await this.commentService.remove(id);
+    if (deletedCount === 0)
+      throw new HttpException('Comment Not Found', HttpStatus.NOT_FOUND);
+    return;
   }
 }

@@ -6,6 +6,7 @@ import {
   LoggingInterceptor,
   TransformInterceptor,
 } from '@common';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -17,6 +18,7 @@ async function bootstrap() {
     new LoggingInterceptor(),
     new TransformInterceptor(),
   );
+  app.useGlobalPipes(new ValidationPipe());
   await app.listen(3000);
 }
 bootstrap();

@@ -6,6 +6,7 @@ import {
   PostModule,
   DatabaseModule,
   ConfigModule,
+  CommonModule,
 } from '@modules';
 
 @Module({
@@ -15,6 +16,7 @@ import {
     PostModule,
     UserModule,
     CommentModule,
+    CommonModule,
   ],
 })
 export class AppModule {}
