@@ -48,7 +48,7 @@ const authController = {
                 });
             }
 
-            const accessToken = generateToken({ id: user.username });
+            const accessToken = generateToken({ id: user._id });
 
             res.cookie("accessToken", accessToken, {
                 httpOnly: true
