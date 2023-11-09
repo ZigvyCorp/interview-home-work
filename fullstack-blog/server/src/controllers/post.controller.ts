@@ -84,9 +84,13 @@ export async function createPost(req: Request, res: Response, next: NextFunction
 	const normalTitle = formatFirstWord(title);
 
 	try {
+		if (!user) throw new Error("Please login to create post");
+
 		const isExist = await Post.findOne({ normalTitle });
-		const author = await User.findById(user._id);
 		if (isExist) throw new Error("Post already exist");
+
+		const author = await User.findById(user._id);
+		if (!author) throw new Error("User not found");
 
 		const newPost = new Post({
 			jsonId: (await Post.countDocuments()) + 1,

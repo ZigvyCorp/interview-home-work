@@ -76,6 +76,8 @@ export async function createComment(req: Request, res: Response, next: NextFunct
 	const normalBody = formatFirstWord(body);
 
 	try {
+		if (!user) throw new Error("Please login to comment");
+
 		const newComment = new Comment({
 			postId,
 			body: normalBody,
