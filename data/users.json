@@ -38,5 +38,13 @@
     "name": "",
     "dob": "",
     "created_at": 1576506719083
+  },
+  {
+    "id": 6,
+    "username": "chung_2023",
+    "password": "user",
+    "name": "",
+    "dob": "",
+    "created_at": 1576506719083
   }
 ]
