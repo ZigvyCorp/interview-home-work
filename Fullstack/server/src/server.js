@@ -13,7 +13,7 @@ require("dotenv").config()
 const app = express();
 const port = process.env.PORT || 8888
 
-app.use(cors({ origin: process.env.CLIENT_URL, methods: ['POST', 'GET', 'DELETE', 'PUT'], credentials: true }))
+app.use(cors({ origin: process.env.CLIENT_URL || "https://zigvy.vercel.app/", methods: ['POST', 'GET', 'DELETE', 'PUT'], credentials: true }))
 
 
 app.use(cookieParser())
