@@ -1,3 +1,11 @@
+.wrap-search {
+    display: flex;
+    justify-content: center;
+    padding-top: 16px;
+}
+.input-search {
+    width: 50%;
+}
 .wrap-item-content {
     padding: 0 20px;
     background-color: white;
@@ -6,6 +14,8 @@
     font-size: 36px;
     font-weight: 600;
     cursor: pointer;
+    text-align: center;
+    padding-top: 10px;
 }
 .wrap-info {
     display: flex;
@@ -17,22 +27,55 @@
     flex: 1;
     margin-right: 20px;
 }
+.author {
+    margin-bottom: 0px;
+}
 .item2 {
     margin-left: 20px;
     flex: 1;
 }
-.btn-custom {
-    margin: 0 5px;
-}
-
 .content {
     font-weight: 500;
     font-size: 18px;
 }
-.wrap-button {
-}
+
 .horizon-line-custom {
     height: 5px;
     background-color: black;
     opacity: 100;
+}
+.ant-collapse-header-text {
+    // flex: none !important;
+}
+.footer {
+    display: flex;
+    justify-content: center;
+}
+// comment
+.wrap-comment {
+    display: flex;
+    padding-bottom: 10px;
+}
+.wrap-avatar {
+    padding: 0px 10px;
+}
+.wrap-name-time {
+    display: flex;
+}
+.comment-user {
+    font-weight: 600;
+    color: #5e5858;
+}
+.comment-time {
+    font-weight: 500;
+    padding-left: 16px;
+    color: #b0b0b0;
+}
+.content-comment {
+    font-weight: 500;
+    // display: block;
+}
+.btn-replies {
+    font-weight: 600;
+    color: #a9a9a9;
 }

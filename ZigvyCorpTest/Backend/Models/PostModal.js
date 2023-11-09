@@ -2,11 +2,10 @@ import mongoose from 'mongoose';
 
 const postSchema = mongoose.Schema(
     {
-        id: {
-            type: String,
-        },
         owner: {
-            type: Number,
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: 'User',
         },
         title: {
             type: String,
@@ -15,10 +14,13 @@ const postSchema = mongoose.Schema(
             type: String,
         },
         created_at: {
-            type: String,
+            type: Number,
+        },
+        numberReplies: {
+            type: Number,
         },
         tags: {
-            type: String,
+            type: [String],
         },
     },
     {

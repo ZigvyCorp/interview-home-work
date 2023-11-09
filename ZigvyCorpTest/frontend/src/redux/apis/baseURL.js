@@ -1,5 +1,5 @@
 const baseURL = {
-  urlJsonServer: "http://localhost:3004",
-  serverURL: "http://localhost:9000",
+    urlJsonServer: 'http://localhost:5000',
+    serverURL: 'http://localhost:5000',
 };
 export default baseURL;

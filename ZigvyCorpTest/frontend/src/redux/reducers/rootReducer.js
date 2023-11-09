@@ -1,9 +1,6 @@
-import { combineReducers } from "redux";
-import userReducers from "./userReducers";
-import productReducers from "./productReducers";
-
+import { combineReducers } from 'redux';
+import postReducers from './postReducers';
 const rootReducer = combineReducers({
-  productInitState: productReducers,
-  userReducerInitState: userReducers,
+    postStates: postReducers,
 });
 export default rootReducer;

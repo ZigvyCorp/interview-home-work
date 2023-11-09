@@ -1,4 +1,3 @@
-import userRouter from './UserRoutes.js';
 import postRoutes from './postRoutes.js';
 import { notFound, errorHandler } from '../Middleware/Errors.js';
 
@@ -10,7 +9,6 @@ const routes = (app) => {
             console.log('error', error);
         }
     });
-    app.use('/api/users', userRouter);
     app.use('/api/posts', postRoutes);
 
     app.use(notFound);

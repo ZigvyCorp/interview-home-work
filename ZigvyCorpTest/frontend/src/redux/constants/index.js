@@ -1,2 +1,1 @@
-export * as productconsts from "./productConsts";
-export * as userConsts from "./userConsts";
+export * as postConsts from './postConsts';
