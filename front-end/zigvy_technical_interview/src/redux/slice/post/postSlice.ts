@@ -1,5 +1,5 @@
-import { postTypes } from "../actions-types/postTypes";
-import { PostsState, PostsAction } from "../types/types";
+import { postTypes } from "../../actions-types/postTypes";
+import { PostsState, PostsAction } from "../../types/types";
 
 const initialState: PostsState = {
   loading: false,

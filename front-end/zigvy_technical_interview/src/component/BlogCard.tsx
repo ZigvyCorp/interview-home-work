@@ -1,7 +1,15 @@
 import moment from "moment";
 import { Link } from "react-router-dom";
 
-const BlogCard = ({ content, title }: { content: string; title: string }) => {
+const BlogCard = ({
+  content,
+  title,
+  postId,
+}: {
+  content: string;
+  title: string;
+  postId: number;
+}) => {
   const time = moment(new Date()).format("DD/MM/YYYY");
 
   if (content.length > 100) {
@@ -16,7 +24,7 @@ const BlogCard = ({ content, title }: { content: string; title: string }) => {
           <p>{time}</p>
         </div>
         <p>{content}</p>
-        <Link to={"/posts/1"}>
+        <Link to={`/posts/${postId}`}>
           <div className="d-flex justify-content-end">View more</div>
         </Link>
       </div>

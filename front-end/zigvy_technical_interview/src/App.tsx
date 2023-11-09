@@ -46,9 +46,9 @@ function App() {
           <button className="mx-2 rounded">Search</button>
         </div>
         <Routes>
-          <Route path="/" Component={ListPost} />
-          <Route path="/posts" Component={ListPost} />
-          <Route path="/posts/:postId" Component={DetailPost} />
+          <Route path="/" element={<ListPost />} />
+          <Route path="/posts" element={<ListPost />} />
+          <Route path="/posts/:postId" element={<DetailPost />} />
         </Routes>
       </div>
     </BrowserRouter>

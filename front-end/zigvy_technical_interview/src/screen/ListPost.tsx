@@ -20,7 +20,11 @@ const ListPost = () => {
     <Fragment>
       {posts?.map((value, index) => (
         <div key={index}>
-          <BlogCard content={value.body} title={value.title} />
+          <BlogCard
+            content={value.body}
+            title={value.title}
+            postId={value.id}
+          />
         </div>
       ))}
     </Fragment>
