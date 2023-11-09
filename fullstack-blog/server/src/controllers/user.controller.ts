@@ -13,6 +13,7 @@ export async function getUserFromJsonPlaceholderAndSaveToDb(req: Request, res: R
 		users.forEach(async (user) => {
 			const newUser = new User(user);
 			newUser.jsonId = user.id;
+			newUser.password = await bcryptjs.hash(user.username, +process.env.SALT_OR_ROUNDS || 10);
 			await newUser.save();
 		});
 		res.status(200).json(handleResponse(users, 200, "Users fetched successfully"));
@@ -62,7 +63,7 @@ export async function createUser(req: Request, res: Response, next: NextFunction
 			name,
 			username,
 			email,
-			password: bcryptjs.hash(password, +process.env.SALT_OR_ROUNDS || 10),
+			password: await bcryptjs.hash(password, +process.env.SALT_OR_ROUNDS || 10),
 		});
 
 		await newUser.save();
