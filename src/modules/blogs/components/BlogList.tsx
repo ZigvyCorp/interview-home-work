@@ -30,7 +30,7 @@ const BlogList = ({ className = "", blogs }: IBlogList) => {
         page: parseInt(params.get("page") as string),
       });
     }
-  }, []);
+  }, [params]);
 
   const getPaginatedData = () => {
     const start = pagination.page * pagination.pageSize - pagination.pageSize;
@@ -50,7 +50,6 @@ const BlogList = ({ className = "", blogs }: IBlogList) => {
 
   const debounceSearch = useCallback(
     _debounce((nextValue) => {
-      console.log(nextValue);
       setDebounceKey(nextValue);
     }, 500),
     []
@@ -96,7 +95,11 @@ const BlogList = ({ className = "", blogs }: IBlogList) => {
                     className="w-full"
                     id={item.id}
                     author={item.author || ""}
-                    created={format(parseISO(item.createdDate), DATE_FORMAT.DAY_MONTH_YEAR) || ""}
+                    created={
+                      typeof item.createdDate === "string"
+                        ? format(parseISO(item.createdDate), DATE_FORMAT.DAY_MONTH_YEAR)
+                        : ""
+                    }
                     title={item.title}
                     content={item.body.substring(0, 100)}
                     comment={item.comments || []}

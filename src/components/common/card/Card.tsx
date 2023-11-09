@@ -23,8 +23,7 @@ const Card = ({ className = "", title, content, comment, active, created, author
       <div className="content-wrapper py-[22px]">
         <div
           className="title relative cursor-pointer pb-[16px] before:content-[''] before:absolute before:w-full before:h-[1px] before:block before:bg-light_grey before:bottom-0
-          after:content-[''] after:block after:absolute after:w-[75%] after:h-[1px] after:bottom-0 after:bg-white after:transition-transform after:duration-2000 after:ease-linear after:origin-left after:scale-0 group-hover:after:scale-100 
-        "
+          after:content-[''] after:block after:absolute after:w-[75%] after:h-[1px] after:bottom-0 after:bg-white after:transition-transform after:duration-200 after:ease-linear after:origin-left after:scale-0 group-hover:after:scale-100 "
         >
           <Link
             to={`/${id}`}
