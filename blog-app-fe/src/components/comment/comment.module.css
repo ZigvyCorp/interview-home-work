@@ -1,0 +1,14 @@
+.name {
+	color: rgb(107, 107, 107);
+}
+
+.time-online {
+	color: #afaeae;
+}
+
+.reply {
+	color: rgb(107, 107, 107);
+	cursor: pointer;
+	padding: 0;
+	margin-top: 16px;
+}

@@ -1,0 +1,29 @@
+.container {
+	display: flex;
+	align-items: center;
+}
+
+.logo-container {
+	flex: 1;
+}
+
+.logo {
+	width: 48px;
+	height: 48px;
+
+	flex-shrink: 0;
+	flex-grow: 0;
+	cursor: pointer;
+}
+
+.title {
+	flex: 1;
+	text-align: center;
+	margin: 0;
+	cursor: pointer;
+}
+
+.user {
+	flex: 1;
+	justify-content: end;
+}

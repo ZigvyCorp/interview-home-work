@@ -1,0 +1,17 @@
+.container > * + * {
+	margin-top: 20px;
+}
+
+.title {
+	width: 100%;
+	text-align: center;
+}
+
+.tags {
+	max-width: 35%;
+}
+
+.comments > * + * {
+	margin-top: 20px;
+	width: 100%;
+}
