@@ -1,7 +1,7 @@
-import { call, put } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import { API } from '../../apis';
 import { postActions } from '../../actions';
-
+import { postConsts } from '../../constants';
 function* getListPostWorker(action) {
     try {
         const inforListPost = yield call(API.getListPostData, action.payload);
@@ -12,8 +12,16 @@ function* getListPostWorker(action) {
 }
 function* getCommentInPostWorker(action) {
     try {
-        const inforCommentInPost = yield call(API.getCommentsInPostData, action.payload);
-        yield put(postActions.getCommentsInPostActionSuccess(inforCommentInPost));
+        const state = yield select(); // Lấy state hiện tại từ Redux
+        const arrComment = state.postStates.commentsData;
+        const id = action.payload._id;
+        const hasOb1Value = arrComment.some((item) => item.post == id);
+        if (hasOb1Value) {
+            yield put({ type: postConsts.DEFAULT });
+        } else {
+            const inforCommentInPost = yield call(API.getCommentsInPostData, action.payload);
+            yield put(postActions.getCommentsInPostActionSuccess(inforCommentInPost));
+        }
     } catch (error) {
         yield put(postActions.getCommentsInPostActionFail(error));
     }

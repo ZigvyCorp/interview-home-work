@@ -1,4 +1,5 @@
 import { postConsts } from '../constants';
+import { useSelector } from 'react-redux';
 
 export const getListPostActionRequest = (payload) => {
     return {

@@ -20,11 +20,6 @@ function UseHeader() {
                     text-color="white"
                     style={{ display: 'flex', flex: 1 }}
                 >
-                    <Menu.Item key="home">
-                        <Link className="nav_item" to="/">
-                            HOME
-                        </Link>
-                    </Menu.Item>
                     <Menu.Item key="product">
                         <Link className="nav_item" to="/">
                             Blogs

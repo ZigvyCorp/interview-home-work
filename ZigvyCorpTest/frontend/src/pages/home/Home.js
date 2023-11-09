@@ -9,14 +9,12 @@ import {
 import './home.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import Loading from '../../components/LoadingError/Loading';
-import Comments from '../../components/comment/Comments';
 import MyPagination from '../../components/pagination/Pagination';
 const { Content } = Layout;
 const { Search } = Input;
 function Home() {
     const dispatch = useDispatch();
     const valuePostState = useSelector((state) => state.postStates);
-    console.log('valuePostState = ', valuePostState);
 
     const { loading, error, listPost, commentsData } = valuePostState;
     const { data, Pagination } = listPost;
@@ -43,7 +41,6 @@ function Home() {
     const CommentList = (arrComment, idPost) => {
         if (arrComment.length > 0) {
             const filteredComments = arrComment.filter((comment) => comment.post === idPost);
-            console.log('filteredComments = ', filteredComments);
             if (filteredComments?.length > 0) {
                 return filteredComments.map((item) => (
                     <div className="wrap-comment" key={item.id}>
@@ -76,6 +73,8 @@ function Home() {
     const onSearch = (value) => {
         dispatch(searchPostActionRequest({ pageNumber: 1, pageSize: 10, title: value }));
     };
+
+    const [isCollapseClicked, setIsCollapseClicked] = useState(false);
     return (
         <>
             <Layout>
@@ -87,9 +86,10 @@ function Home() {
                             className="input-search"
                             onSearch={onSearch}
                             enterButton
+                            loading={loading}
                         />
                     </div>
-                    {loading && <Loading />}
+                    {/* {loading && <Loading />} */}
                     {data?.map
                         ? data?.map((item) => (
                               <div>
@@ -143,40 +143,37 @@ function Home() {
                                               <p>{truncateText(item.content)}</p>
                                           </div>
                                       </div>
-                                      <Collapse
-                                          accordion
-                                          ghost
-                                          onChange={() => {
-                                              dispatch(getCommentsInPostActionRequest({ _id: item._id }));
-                                          }}
-                                          items={[
-                                              {
-                                                  key: '1',
-                                                  label: (
-                                                      <div>
-                                                          <p>{`${item.numberReplies} replies`}</p>
-                                                          <hr />
-                                                      </div>
-                                                  ),
-                                                  children: CommentList(valuePostState?.commentsData, item._id),
-                                                  //   children: (
-                                                  //       <Comments
-                                                  //           arrComment={valuePostState?.commentsData}
-                                                  //           idPost={item._id}
-                                                  //       />
-                                                  //   ),
-
-                                                  showArrow: false,
-                                              },
-                                          ]}
-                                      />
+                                      <div>
+                                          <Collapse
+                                              accordion
+                                              ghost
+                                              onChange={() => {
+                                                  dispatch(getCommentsInPostActionRequest({ _id: item._id }));
+                                              }}
+                                              items={[
+                                                  {
+                                                      key: '1',
+                                                      label: (
+                                                          <div>
+                                                              <p>{`${item.numberReplies} replies`}</p>
+                                                              <hr />
+                                                          </div>
+                                                      ),
+                                                      children: CommentList(valuePostState?.commentsData, item._id),
+                                                      showArrow: false,
+                                                  },
+                                              ]}
+                                          />
+                                      </div>
                                       <hr className="horizon-line-custom" />
                                   </div>
                               </div>
                           ))
                         : ''}
                     <div className="footer">
-                        <MyPagination current={Pagination?.currentPage} total={Pagination?.totalPage} />
+                        {!loading && !error ? (
+                            <MyPagination current={Pagination?.currentPage} total={Pagination?.totalPage} />
+                        ) : null}
                     </div>
                 </Content>
             </Layout>
