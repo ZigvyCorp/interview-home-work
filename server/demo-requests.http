@@ -1,0 +1,28 @@
+//-- demo localhost --
+POST http://localhost:8000/api/user/addUser
+Content-Type: application/json
+
+{
+    "username": "angrybird",
+    "password": "!@#$%^&*()",
+    "name": "Angry bird",
+    "dob": "13/12/2016"
+}
+
+
+###
+GET http://localhost:8000/api/user/users
+
+###
+GET http://localhost:8000/api/user/username/angrybird
+
+###
+POST http://localhost:8000/api/post/addPost
+Content-Type: application/json
+
+{
+    "owner": "654c72df1bab74a94e76b269",
+    "title": "Hello world",
+    "content": "A \"Hello, World!\" program is traditionally used to introduce novice programmers to a programming language. \"Hello, World!\" is also traditionally used in a sanity test to make sure that a computer language is correctly installed, and that the operator understands how to use it. \"Time to hello world\" (TTHW) is a metric for the time to author a \"Hello World\" program in a given programming language and run it. History: \"Hello, World!\" program by Brian Kernighan (1978) While small test programs have existed since the development of programmable computers, the tradition of using the phrase \"Hello World!\" as a test message was influenced by an example program in the seminal 1978 book The C Programming Language [4] The example program in that book prints \"hello, world\", and was inherited from a 1974 Bell Laboratories internal memorandum by Brian Kernighan, Programming in C: A Tutorial:[5] - Wikipedia",
+    "tags": ["consult", "it", "hala"]
+}
