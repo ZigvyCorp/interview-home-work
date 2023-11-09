@@ -10,12 +10,12 @@ export default function ItemPost({ item }) {
     const [showComments, setShowComments] = useState(false);
 
     const initData = async () => {
-        // Get user from post userId
-        const userData = await getUserByID(item.userId);
+        const userData = item.userId;
+        console.log('User data:', userData)
         setUser(userData);
 
         // Get all comments from postId
-        const commentData = await getPostCommentsByID(item.id);
+        const commentData = await getPostCommentsByID(item._id);
         setComments(commentData);
         console.log("Post's comments:", commentData);
     }
@@ -52,7 +52,7 @@ export default function ItemPost({ item }) {
                     <button
                         className="btn btn-light"
                         onClick={() => setShowComments(!showComments)}>
-                        {comments.length} replies
+                        {comments ? comments.length : 0} replies
                     </button>
                     <hr className={" text-center m-auto mb-5"} />
                     {showComments ?

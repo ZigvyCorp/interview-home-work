@@ -36,12 +36,12 @@ export const getAllComments = async () => {
 }
 
 export const getPostCommentsByID = async (postId) => {
-    return await fetch('https://jsonplaceholder.typicode.com/comments')
+    return await fetch('http://localhost:5001/api/getCommentsByPostId', { method: 'post', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ postId: postId }) })
         .then(response => response.json())
         .then(json => {
             let list = [];
-            console.log(json);
-            json.forEach(element => {
+            console.log('Get post comments by id:', json);
+            json.result.forEach(element => {
                 if (element.postId === postId) {
                     list = [...list, element];
                 }
