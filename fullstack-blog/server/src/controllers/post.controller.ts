@@ -2,7 +2,7 @@ import axios from "axios";
 import { NextFunction, Request, Response } from "express";
 import { Post, User } from "../models";
 import { IPostJS, IUser } from "../types";
-import { generateRandomTags, handleError, handleResponse } from "../utils";
+import { generateRandomTags, handleError, handleResponse, normalizedTitle } from "../utils";
 
 // get posts from jsonplaceholder and save to db
 export async function getPostFromJsonPlaceholderAndSaveToDb(req: Request, res: Response) {
@@ -66,6 +66,70 @@ export async function getPostById(req: Request, res: Response, next: NextFunctio
 		if (!post) throw new Error("Post not found");
 
 		res.status(200).json(handleResponse(post, 200, `Post -${id} fetched successfully`));
+	} catch (error) {
+		next(error);
+	}
+}
+
+// create post
+export async function createPost(req: Request, res: Response, next: NextFunction) {
+	const { title, body, authorId } = req.body;
+	const normalTitle = normalizedTitle(title);
+	try {
+		const isExist = Post.findOne({ normalTitle });
+		if (isExist) throw new Error("Post already exist");
+
+		const newPost = new Post({
+			jsonId: +Post.countDocuments() + 1,
+			normalTitle,
+			body,
+			authorId,
+			tags: generateRandomTags(),
+		});
+		await newPost.save();
+
+		res.status(201).json(handleResponse(newPost, 201, "Post created successfully"));
+	} catch (error) {
+		next(error);
+	}
+}
+
+// update post
+export async function updatePost(req: Request, res: Response, next: NextFunction) {
+	const { id } = req.params;
+	const { title, body, authorId } = req.body;
+	const normalTitle = normalizedTitle(title);
+
+	try {
+		const post = await Post.findById(id);
+		if (!post) {
+			throw new Error("Post not found");
+		}
+
+		const isExistTitle = Post.findOne({ normalTitle });
+		if (isExistTitle) throw new Error("Post already exist");
+
+		Object.assign(post, { normalTitle, body, authorId });
+
+		await post.save();
+		res.status(200).json(handleResponse(post, 200, "Post updated successfully"));
+	} catch (error) {
+		next(error);
+	}
+}
+
+// delete post
+export async function deletePost(req: Request, res: Response, next: NextFunction) {
+	const { id } = req.params;
+
+	try {
+		const post = await Post.findById(id);
+		if (!post) {
+			throw new Error("Post not found");
+		}
+
+		await post.remove();
+		res.status(200).json(handleResponse(post, 200, "Post deleted successfully"));
 	} catch (error) {
 		next(error);
 	}
