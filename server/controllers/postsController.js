@@ -1,4 +1,5 @@
 const { Posts } = require("../models");
+const { Comments } = require("../models");
 
 const postsController = {
   //add post
@@ -42,15 +43,14 @@ const postsController = {
     res.status(200).json(findP);
   },
 
-  //delete post
+  //delete post & (cmt || cmts)
   deletePost: async (req, res) => {
     try {
       await Posts.deleteOne({ _id: req.params.postId }).then(
-        res.status(200).json({
-          success: true,
-          message: "Deleted post by id: " + req.params.postId,
-        })
+        console.log("Deleted post by id:", req.params.postId)
       );
+      await Comments.deleteMany({ post: req.params.postId });
+      res.status(200).json(await Posts.find());
     } catch (error) {
       res.status(500).json(error);
     }

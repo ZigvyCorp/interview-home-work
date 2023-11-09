@@ -10,6 +10,7 @@ const port = process.env.PORT || 8000;
 
 const usersRoute = require("./routes/users");
 const postsRoute = require("./routes/posts");
+const cmtsRoute = require("./routes/comments");
 
 dotenv.config();
 //connect mongodb
@@ -38,6 +39,7 @@ app.use(
 
 app.use("/api/user", usersRoute);
 app.use("/api/post", postsRoute);
+app.use("/api/comment", cmtsRoute);
 
 const server = http.createServer(app);
 server.listen(port, () => console.log(`Server started on port ${port}`));
