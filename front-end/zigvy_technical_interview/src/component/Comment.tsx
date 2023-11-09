@@ -13,7 +13,7 @@ const Comments = ({ content, name }: CommentCard) => {
       <div style={{ marginRight: "30px" }}>
         <img
           className="rounded-circle"
-          src="https://firebasestorage.googleapis.com/v0/b/message-app-b0e83.appspot.com/o/DH-Hoa-Sen-Main-Icon.png?alt=media&token=e67fe95b-65cd-4059-91c8-bc8f00c68a29&_gl=1*17tsuf4*_ga*MTMyOTQzNTY0NS4xNjk3Mjk0MjU5*_ga_CW55HF8NVT*MTY5OTQxMjkwMS4yOS4xLjE2OTk0MTI5NjguNTMuMC4w"
+          src="https://a0.anyrgb.com/pngimg/1236/14/no-facial-features-no-avatar-no-eyes-expressionless-avatar-icon-delayering-avatar-user-avatar-men-head-portrait.png"
           style={{ width: "30px", height: "30px" }}
         />
       </div>

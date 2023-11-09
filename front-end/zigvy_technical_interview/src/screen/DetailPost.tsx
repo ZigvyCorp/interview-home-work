@@ -6,6 +6,8 @@ import { RootState } from "../redux/store";
 import { fetchPostIdRequest } from "../redux/actions/post/postIdAction";
 import { fetchCommentPostIdRequest } from "../redux/actions/comment/commentPostIdAction";
 import { fetchUserIdRequest } from "../redux/actions/user/userIdAction";
+import { colors } from "../colors";
+import SmallBorder from "../component/SmallBorder";
 
 const DetailPost = () => {
   const dispatch = useDispatch();
@@ -28,7 +30,7 @@ const DetailPost = () => {
   const { loadingUserId, user, errorUserId } = useSelector(
     (state: RootState) => state.userIdReducer
   );
-  console.log(user);
+
   useEffect(() => {
     if (postId !== undefined) {
       dispatch(fetchPostIdRequest({ postId: Number(postId) }));
@@ -54,12 +56,17 @@ const DetailPost = () => {
     <Fragment>
       <div className="p-4 mt-5 d-flex flex-column">
         <h1 className="text-center">{post.title}</h1>
-        <div className="d-flex justify-content-between">
-          <div>
+        <div className="d-flex flex-row my-5">
+          <div className="col">
             <p>Author: </p>
             <p>Create at: Oct 1, 2023</p>
           </div>
-          <div>coming soon</div>
+          <div className="col"></div>
+          <div className="d-flex flex-row flex-wrap col">
+            {colors.map((color) => (
+              <SmallBorder color={color} />
+            ))}
+          </div>
         </div>
         <div className="my-5">
           <p>{post.body}</p>
