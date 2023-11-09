@@ -1,9 +1,17 @@
 const pool = require("../config/db.config");
 
 const getCommentsByPost = async (postId) => {
-	const query = `SELECT id, post_id, user_id, body, created_time
-	FROM pc_post_comment 
-  WHERE deleted = FALSE AND post_id = '${postId}'
+	const query = `SELECT pc.id, 
+    pc.post_id, 
+    pc.body, 
+    pc.created_time,
+    pc.user_id, 
+    ua.username,
+		ua.name as user_display_name
+	FROM pc_post_comment pc
+  JOIN ua_user_attr ua
+    ON pc.user_id = ua.id
+  WHERE pc.deleted = FALSE AND pc.post_id = '${postId}'
   ORDER BY created_time DESC`;
 
 	const res = await pool.query(query);
