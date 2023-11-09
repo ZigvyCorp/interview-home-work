@@ -1,5 +1,4 @@
 import { Fragment, useEffect, useState } from "react";
-import Comments from "../component/Comment";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
@@ -7,6 +6,8 @@ import { fetchPostIdRequest } from "../redux/actions/post/postIdAction";
 import { fetchCommentPostIdRequest } from "../redux/actions/comment/commentPostIdAction";
 import { fetchUserIdRequest } from "../redux/actions/user/userIdAction";
 import { colors } from "../colors";
+
+import Comments from "../component/Comment";
 import SmallBorder from "../component/SmallBorder";
 import LoadingScreen from "./LoadingScreen";
 import ErrorScreen from "./Error";
