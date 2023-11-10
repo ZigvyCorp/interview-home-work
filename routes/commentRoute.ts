@@ -8,6 +8,6 @@ commentRoute.post('/', commentController.insertComment);
 // get all comment
 commentRoute.get('/all', commentController.getAll);
 // delete comment
-commentRoute.delete('/:commentId', commentController.deleteComment);
+commentRoute.delete('/delete/:commentId', commentController.deleteComment);
 
 export default commentRoute;
