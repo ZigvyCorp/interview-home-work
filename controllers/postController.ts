@@ -18,8 +18,8 @@ const postController = {
   getAll: async (req: Request, res: Response) => {
     try {
       const posts = await PostSchema.find()
-        .populate("owner")
-        .populate("comments");
+        .populate("owner", 'name')
+        .populate("comments", 'content');
 
       return res.status(200).json(posts);
     } catch (error) {

@@ -8,7 +8,7 @@ import postRoute from "./routes/postRoute";
 import commentRoute from "./routes/commentRoute";
 
 const app = express();
-const PORT = process.env.PORT || 3030;
+const PORT = process.env.PORT || 8000;
 
 dotenv.config();
 app.use(bodyParser.json());
