@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	* {
+		/* transition: all 0.2s linear; */
+	}
+	html {
+		font-family: "Poppins", sans-serif;
+		scroll-behavior: smooth;
+	}
+	input::placeholder {
+		@apply capitalize;
+	}
+	input::-ms-reveal,
+	input::-ms-clear {
+		display: none;
+	}
+}
+
+@layer utilities {
+	.container {
+		@apply mx-auto max-w-6xl;
+	}
+	.flex-center {
+		@apply flex items-center justify-center;
+	}
+	.flex-center-x {
+		@apply flex justify-center;
+	}
+	.flex-center-y {
+		@apply flex items-center;
+	}
+	.absolute-center {
+		@apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+	}
+	.absolute-center-x {
+		@apply absolute left-1/2 -translate-x-1/2;
+	}
+	.absolute-center-y {
+		@apply absolute top-1/2 -translate-y-1/2;
+	}
+
+	.image-container {
+		@apply relative;
+	}
+
+	.image-container span {
+		position: unset !important;
+		@apply !h-full;
+	}
+
+	.image-container .image {
+		@apply !relative !h-full !w-full object-cover;
+	}
+}
