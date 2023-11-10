@@ -1,6 +1,7 @@
 import { useInfiniteQuery, useMutation } from '@tanstack/react-query'
 import { Input, Modal } from 'antd'
-import { FormEvent, useContext, useEffect, useMemo, useState } from 'react'
+import { FormEvent, useContext, useEffect, useState } from 'react'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 import blogsApi from '~/api/blogs.api'
 import BlogItem from '~/components/BlogItem'
@@ -38,7 +39,7 @@ const Home = () => {
   const getBlogsQuery = useInfiniteQuery({
     queryKey: ['getBlogs'],
     initialPageParam: 1,
-    queryFn: ({ pageParam }) => blogsApi.getBlogs({ page: pageParam }),
+    queryFn: ({ pageParam }) => blogsApi.getBlogs({ page: pageParam, limit: 5 }),
     getNextPageParam: (lastPage) =>
       lastPage.data.data.pagination.page < lastPage.data.data.pagination.total_pages
         ? lastPage.data.data.pagination.page + 1
@@ -64,6 +65,15 @@ const Home = () => {
     onSuccess: (data) => {
       const newComment = data.data.data.comment
       setComments((prevComments) => [newComment, ...prevComments])
+      currentBlog && setCurrentBlog({ ...currentBlog, comment_count: currentBlog.comment_count + 1 })
+      setBlogs(
+        blogs.map((blog) => {
+          if (blog._id === currentBlog?._id) {
+            return { ...blog, comment_count: blog.comment_count + 1 }
+          }
+          return blog
+        })
+      )
     }
   })
 
@@ -81,12 +91,6 @@ const Home = () => {
     setComments(comments)
   }, [getCommentsQuery.data])
 
-  // Tổng bình luận
-  const totalComments = useMemo(
-    () => getCommentsQuery.data?.pages[0].data.data.pagination.total_rows || 0,
-    [getCommentsQuery.data?.pages]
-  )
-
   // Bình luận
   const handleComment = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -97,12 +101,20 @@ const Home = () => {
 
   return (
     <div>
-      {blogs.map((blog) => (
-        <BlogItem key={blog._id} blog={blog} showModal={showModal} changeCurrentBlog={changeCurrentBlog} />
-      ))}
+      <InfiniteScroll
+        dataLength={comments.length} //This is important field to render the next data
+        next={getBlogsQuery.fetchNextPage}
+        hasMore={getBlogsQuery.hasNextPage}
+        loader={<h4 style={{ textAlign: 'center', padding: '24px 0' }}>Loading...</h4>}
+        scrollThreshold={0.9}
+      >
+        {blogs.map((blog) => (
+          <BlogItem key={blog._id} blog={blog} showModal={showModal} changeCurrentBlog={changeCurrentBlog} />
+        ))}
+      </InfiniteScroll>
 
       <Modal title={currentBlog?.title} open={isModalOpen} onOk={handleOk} onCancel={handleCancel} centered>
-        <div>Bình luận ({totalComments})</div>
+        <div>Bình luận ({currentBlog?.comment_count})</div>
         {comments.map((comment) => (
           <CommentItem key={comment._id} comment={comment} />
         ))}

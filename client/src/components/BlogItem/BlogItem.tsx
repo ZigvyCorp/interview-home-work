@@ -1,12 +1,12 @@
-import { HistoryOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons'
+import { HistoryOutlined, MessageOutlined } from '@ant-design/icons'
 import { Avatar } from 'antd'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 import PATH from '~/constants/path'
 import { Blog } from '~/types/blogs.types'
-import styles from './BlogItem.module.scss'
 import { generateNameId } from '~/utils/utils'
+import styles from './BlogItem.module.scss'
 
 interface BlogItemProps {
   blog: Blog
@@ -38,16 +38,6 @@ const BlogItem = ({ blog, showModal, changeCurrentBlog }: BlogItemProps) => {
           <span>28 phút trước</span>
         </div>
         <div className={styles.count}>
-          <div
-            className={`${styles['count-item']} ${styles['active']}`}
-            aria-hidden='true'
-            tabIndex={0}
-            role='button'
-            onClick={() => {}}
-          >
-            <LikeOutlined />
-            <span>{blog.like_count} lượt thích</span>
-          </div>
           <div className={styles['count-item']} onClick={handlechangeCurrentBlog}>
             <MessageOutlined />
             <span>{blog.comment_count} bình luận</span>
@@ -59,7 +49,9 @@ const BlogItem = ({ blog, showModal, changeCurrentBlog }: BlogItemProps) => {
 }
 
 BlogItem.propTypes = {
-  blog: PropTypes.object.isRequired
+  blog: PropTypes.object.isRequired,
+  showModal: PropTypes.func.isRequired,
+  changeCurrentBlog: PropTypes.func.isRequired
 }
 
 export default BlogItem
