@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --secondary-color: #000;
+  --magenta: #fdf2f6;
+  --red: #fdf2f1;
+  --volcano: #fdf2e9;
+  --orange: #fdf2f6;
+  --gold: #fffbe8;
+  --lime: #feffe9;
+  --green: #f8fff0;
+  --cyan: #ebfffb;
+  --blue: #969043;
+  --geekblue: #eaeffe;
+  --purple: #f7f1fe;
+  --textmagenta: #de60a3;
+  --textred: #e54d4a;
+  --textvolcano: #e96c43;
+  --textorange: #ed9a49;
+  --textgold: #f0b54c;
+  --textlime: #bfdf6c;
+  --textgreen: #91ce68;
+  --textcyan: #6bc7c8;
+  --textblue: #4f99f7;
+  --textgeekblue: rgb(8, 53, 189);
+  --textpurple: #7245cc;
+}
