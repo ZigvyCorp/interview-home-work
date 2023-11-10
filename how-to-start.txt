@@ -1,0 +1,7 @@
+-- Open terminal in both back-end and front-end
+-- Run "npm start" on both
+
+--front-end will listen to localhost:3000
+--back-end will listen to localhost:5000
+
+--
