@@ -3,20 +3,19 @@ import { Types } from "./types";
 const initialState = {
     posts: [],
     filteredPosts: [],
+    comments: [],
     postsPerPage: 10,
     currentPage: 1,
     titleQuery: ''
 };
 
 const reducer = (state = initialState, action) => {
-    // console.log("state in reducer: ", state, ", action: ", action)
     switch (action.type) {
         case Types.onNextPage:
             return {
                 ...state,
                 currentPage: state.currentPage++,
             };
-
         case Types.onPrevPage:
             return {
                 ...state,
@@ -42,6 +41,20 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 titleQuery: action.payload.query,
                 filteredPosts: action.payload.filteredPosts,
+            };
+        case Types.onAddCommentSuccess:
+            return {
+                ...state,
+                comments: [...state.comments, action.payload],
+            };
+        case Types.onFetchComments:
+            return {
+                ...state,
+            };
+        case Types.onFetchCommentsSuccess:
+            return {
+                ...state,
+                comments: action.comments,
             };
         default:
             return state;

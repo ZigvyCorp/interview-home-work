@@ -11,3 +11,15 @@ export async function getPosts() {
             return err;
         });
 }
+
+export async function getComments() {
+    console.log("getComments API");
+    return await axios
+        .get("https://jsonplaceholder.typicode.com/comments")
+        .then((res) => {
+            return res.data;
+        })
+        .catch((err) => {
+            return err;
+        });
+}

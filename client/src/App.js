@@ -8,6 +8,7 @@ import {
   onPrevPage,
   onPageNumClick,
   getPostsFetch,
+  onFetchComments,
 } from './redux/actions';
 
 import { useEffect } from "react";
@@ -19,6 +20,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getPostsFetch());
+    dispatch(onFetchComments());
   }, [dispatch]);
 
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage);

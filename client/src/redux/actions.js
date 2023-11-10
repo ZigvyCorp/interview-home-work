@@ -37,13 +37,33 @@ const onQuerySearch = (query, posts) => {
         return post.title.toLowerCase().includes(query.toLowerCase());
     });
 
-    console.log("filteredPosts: ", filteredPosts);
+
     return {
         type: Types.onQuerySearch,
         payload: {
             query,
             filteredPosts,
         }
+    };
+};
+
+const onAddComment = (comment) => {
+    return {
+        type: Types.onAddCommentSuccess,
+        payload: comment
+    };
+};
+
+const onFetchComments = () => {
+    return {
+        type: Types.onFetchComments,
+    };
+};
+
+const onFetchCommentsSuccess = (comments) => {
+    return {
+        type: Types.onFetchCommentsSuccess,
+        payload: comments,
     };
 };
 
@@ -54,6 +74,9 @@ export {
     getPostsFetch,
     getPostsSuccess,
     onQuerySearch,
+    onAddComment,
+    onFetchComments,
+    onFetchCommentsSuccess
 };
 
 
