@@ -1,7 +1,20 @@
+import { Pagination, SuccessResponse } from './utils.type'
+
 // Type: Blog
 export interface Blog {
   _id: string
-  user_id: string
+  author: {
+    _id: string
+    email: string
+    firstName: string
+    lastName: string
+    gender: number
+    status: number
+    role: number
+    date_of_birth: string
+    created_at: string
+    updated_at: string
+  }
   title: string
   content: string
   view_count: number
@@ -22,3 +35,9 @@ export interface CreateBlogReqBody {
 export interface CreateBlogResponse {
   blog: Blog
 }
+
+// Response: Lấy danh sách blog
+export type GetBlogsResponse = SuccessResponse<{
+  blogs: Blog[]
+  pagination: Pagination
+}>

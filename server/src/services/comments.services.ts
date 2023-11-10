@@ -15,9 +15,52 @@ class CommentsService {
         content
       })
     );
-    const comment = await databaseService.comments.findOne({ _id: insertedId });
+    const comment = await databaseService.comments
+      .aggregate([
+        {
+          $match: {
+            _id: insertedId
+          }
+        },
+        {
+          $lookup: {
+            from: 'users',
+            localField: 'user_id',
+            foreignField: '_id',
+            as: 'author'
+          }
+        },
+        {
+          $unwind: {
+            path: '$author'
+          }
+        },
+        {
+          $group: {
+            _id: '$_id',
+            content: {
+              $first: '$content'
+            },
+            author: {
+              $first: '$author'
+            },
+            created_at: {
+              $first: '$created_at'
+            },
+            updated_at: {
+              $first: '$updated_at'
+            }
+          }
+        },
+        {
+          $project: {
+            'author.password': 0
+          }
+        }
+      ])
+      .toArray();
     return {
-      comment
+      comment: comment[0]
     };
   }
 
@@ -52,11 +95,59 @@ class CommentsService {
     const _limit = Number(limit) || 10;
     const [comments, total] = await Promise.all([
       databaseService.comments
-        .find({
-          blog_id: new ObjectId(blog_id)
-        })
-        .skip((_page - 1) * _limit)
-        .limit(_limit)
+        .aggregate([
+          {
+            $match: {
+              blog_id: new ObjectId(blog_id)
+            }
+          },
+          {
+            $lookup: {
+              from: 'users',
+              localField: 'user_id',
+              foreignField: '_id',
+              as: 'author'
+            }
+          },
+          {
+            $unwind: {
+              path: '$author'
+            }
+          },
+          {
+            $group: {
+              _id: '$_id',
+              content: {
+                $first: '$content'
+              },
+              author: {
+                $first: '$author'
+              },
+              created_at: {
+                $first: '$created_at'
+              },
+              updated_at: {
+                $first: '$updated_at'
+              }
+            }
+          },
+          {
+            $project: {
+              'author.password': 0
+            }
+          },
+          {
+            $sort: {
+              created_at: -1
+            }
+          },
+          {
+            $skip: (_page - 1) * _limit
+          },
+          {
+            $limit: _limit
+          }
+        ])
         .toArray(),
       databaseService.comments.countDocuments({
         blog_id: new ObjectId(blog_id)

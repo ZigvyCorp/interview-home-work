@@ -82,6 +82,21 @@ class BlogsServices {
             }
           },
           {
+            $lookup: {
+              from: 'comments',
+              localField: '_id',
+              foreignField: 'blog_id',
+              as: 'comments'
+            }
+          },
+          {
+            $addFields: {
+              comment_count: {
+                $size: '$comments'
+              }
+            }
+          },
+          {
             $group: {
               _id: '$_id',
               title: {
@@ -98,6 +113,9 @@ class BlogsServices {
               },
               like_count: {
                 $first: '$like_count'
+              },
+              comment_count: {
+                $first: '$comment_count'
               },
               audience: {
                 $first: '$audience'

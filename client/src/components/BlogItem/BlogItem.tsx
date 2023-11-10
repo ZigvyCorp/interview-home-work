@@ -1,24 +1,28 @@
 import { HistoryOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons'
 import { Avatar } from 'antd'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import PATH from '~/constants/path'
 import styles from './BlogItem.module.scss'
+import { Blog } from '~/types/blogs.types'
 
-const BlogItem = () => (
+interface BlogItemProps {
+  blog: Blog
+}
+
+const BlogItem = ({ blog }: BlogItemProps) => (
   <div className={styles.wrapper}>
     <div className={styles.author}>
       <Avatar style={{ backgroundColor: '#fde3cf', color: '#f56a00' }} className={styles.avatar}>
         T
       </Avatar>
-      <span className={styles['author-name']}>haitrieu2524@gmail.com</span>
+      <span className={styles['author-name']}>{blog.author.email}</span>
     </div>
     <Link to={PATH.HOME}>
-      <h3 className={styles.title}>Matthew Perry Wanted To Help People Get Sober, Even When He Couldn’t.</h3>
+      <h3 className={styles.title}>{blog.title}</h3>
     </Link>
-    <p className={styles.desc}>
-      Consistency is helpful as a tool for designing user-friendly experiences. Until it isn’t.
-    </p>
+    <p className={styles.desc}>{blog.content}</p>
     <div className={styles.config}>
       <div className={styles['published-at']}>
         <HistoryOutlined />
@@ -33,7 +37,7 @@ const BlogItem = () => (
           onClick={() => {}}
         >
           <LikeOutlined />
-          <span>25 lượt thích</span>
+          <span>{blog.like_count} lượt thích</span>
         </div>
         <div className={styles['count-item']}>
           <MessageOutlined />
@@ -43,5 +47,9 @@ const BlogItem = () => (
     </div>
   </div>
 )
+
+BlogItem.propTypes = {
+  blog: PropTypes.object.isRequired
+}
 
 export default BlogItem
