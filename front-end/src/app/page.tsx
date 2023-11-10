@@ -3,16 +3,18 @@
 // Utilities
 import { 
   getAccount,
+  getKeyword,
   useDispatch,
   useSelector,
   managePosts,
   getTotalPage,
   getPageNumber,
+  getPostsByKeyword,
   getPostsByPageNumber,
 } from 'lib/redux';
 import dynamic from 'next/dynamic'
-import React, { Suspense } from "react";
 import { BsSearch } from 'react-icons/bs';
+import React, { Suspense, useState } from "react";
 import { Form, InputGroup, Button } from "react-bootstrap";
 
 // Components
@@ -28,17 +30,29 @@ import { UserPost } from 'lib/redux'
 import './home.scss'
 
 export default function Home() {
-  const dispatch = useDispatch()
-  const account = useSelector(getAccount)
-  const totalPage = useSelector(getTotalPage)
-  const pageNumber = useSelector(getPageNumber)
-  const postsByPageNumber = useSelector(getPostsByPageNumber)
+  const dispatch = useDispatch();
+  const account = useSelector(getAccount);
+  const totalPage = useSelector(getTotalPage);
+  const keywordState = useSelector(getKeyword);
+  const pageNumber = useSelector(getPageNumber);
+  const [keyword, setKeyword] = useState<string>('');
+  const resultSearched = useSelector(getPostsByKeyword);
+  const postsByPageNumber = useSelector(getPostsByPageNumber);
 
   const Posts = (accountId: number): React.ReactElement => {
+    const posts = (() => {
+      if(keywordState) {
+        return resultSearched
+      }
+
+      return postsByPageNumber
+    }
+    )()
+
     return (
       <Suspense fallback={<Loading />}>
         {
-          postsByPageNumber.map((post: UserPost) => {
+          posts.map((post: UserPost) => {
             return <PostElement key={post.id} post={post} accountId={accountId} />
           })
         }
@@ -50,6 +64,11 @@ export default function Home() {
     await dispatch(managePosts.actions.setPageNumber(pageNumber))
   }
 
+  const handleSearchClick = async () => {
+    await dispatch(managePosts.actions.setPageNumber(1))
+    dispatch(managePosts.actions.setKeyword(keyword.toLowerCase()))
+  }
+
   return (
     <div className='home-page'>
       <div className='home-page__header'>
@@ -57,11 +76,13 @@ export default function Home() {
         <div className='header__search'>
           <InputGroup className="search__group">
             <Form.Control
-              placeholder="Search post..."
+              value={keyword}
               aria-label="Search"
+              placeholder="Search post..."
               aria-describedby="basic-addon2"
+              onChange={(event) => setKeyword(event.target.value)}
             />
-            <Button variant="outline-info" id="button-addon2">
+            <Button variant="outline-info" id="button-addon2" onClick={handleSearchClick}>
               <BsSearch />
             </Button>
           </InputGroup>

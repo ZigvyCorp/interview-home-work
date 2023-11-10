@@ -10,6 +10,7 @@ import { PAGINATION } from 'constants/index.ts';
 
 const initialState: ManagePosts = {
   posts: [],
+  keyword: '',
   totalPage: 1,
   pageNumber: 1,
 }
@@ -34,7 +35,11 @@ export const managePosts = createSlice({
     },
 
     setPageNumber: (state, action) => {
-      state.pageNumber = action.payload
+      state.pageNumber = action.payload;
+    },
+
+    setKeyword: (state, action) => {
+      state.keyword = action.payload;
     }
   },
 })

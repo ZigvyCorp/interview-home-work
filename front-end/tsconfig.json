@@ -22,6 +22,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "lib/*": ["./src/lib/*"],
+      "assest": ["./src/assest"],
       "utils/*": ["./src/utils/*"],
       "constants/*": ["./src/constants/*"],
       "common-components/*": ["./src/common-components/*"],

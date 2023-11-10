@@ -5,11 +5,18 @@
   border-radius: 25px;
   border: 1px solid gray;
 
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(246, 245, 245);
+    box-shadow: 4px 6px #dcdbdb;
+  }
+
   .post__title {
+    font-size: 17px;
     font-weight: bold;
     text-align: center;
     margin-bottom: 10px;
-    font-size: 17px;
+    text-transform: capitalize;
   }
 
   .post__summary {
@@ -21,6 +28,7 @@
 
   .post__content {
     margin-bottom: 10px;
+    text-transform: capitalize;
   }
 
   .post__actions {

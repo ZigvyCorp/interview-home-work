@@ -30,10 +30,33 @@ export const getPostsByPageNumber = (state: ReduxState): UserPost[] => {
   return posts.splice(startPostIndex, PAGINATION.MAX_ITEM_PER_PAGE);
 }
 
+export const getPostsByKeyword = (state: ReduxState): UserPost[] => {
+  const posts: UserPost[] = getAllPosts(state)
+  const startPostIndex = (state.managePosts.pageNumber - 1) * PAGINATION.MAX_ITEM_PER_PAGE
+  
+  return posts.filter((post: UserPost) => {
+    return post.title.toLowerCase().includes(state.managePosts.keyword || '')
+  }).splice(startPostIndex, PAGINATION.MAX_ITEM_PER_PAGE)
+}
+
+export const getDetailPost = (postId: number) => (state: ReduxState): UserPost => {
+  const posts: UserPost[] = getAllPosts(state);
+
+  return posts[postId] || {};
+}
+
 export const getTotalPage = (state: ReduxState): number => {
+  if(state.managePosts.keyword) {
+    return getPostsByKeyword(state).length / PAGINATION.MAX_ITEM_PER_PAGE;
+  }
+
   return state.managePosts.totalPage;
 }
 
 export const getPageNumber = (state: ReduxState): number => {
   return state.managePosts.pageNumber;
+}
+
+export const getKeyword = (state: ReduxState): string | null => {
+  return state.managePosts.keyword;
 }

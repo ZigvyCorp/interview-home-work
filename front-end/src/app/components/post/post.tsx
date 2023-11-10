@@ -1,8 +1,6 @@
 'use-client'
 
 // Utilities
-import { Moment } from "moment";
-import React, { useEffect } from "react";
 import {
   reduxStore,
   useDispatch,
@@ -10,6 +8,9 @@ import {
   getPostComments,
   getCommentByPost,
 } from "lib/redux";
+import { Moment } from "moment";
+import React, { useEffect, useMemo } from "react";
+import { useRouter } from 'next/navigation';
 
 // Interface
 import { UserPost } from "../../../lib/redux";
@@ -52,36 +53,43 @@ const formatUserName = (post: UserPost, accountId: number): string => {
   return post.username;
 }
 
-const randomLiked = (): React.ReactElement => {
-  return Math.round(Math.random()) ? <BiSolidLike /> : <BiLike />
-}
-
-const randomShared = (): React.ReactElement => {
-  return Math.round(Math.random()) ? <FaShareSquare /> : <FaRegShareSquare />
-}
-
 export default function Post({key , post, accountId}: PostProps): React.ReactElement {
-  const dispatch = useDispatch()
-  const { date, body, title, username, id } = post
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const { date, body, title, id } = post;
 
-  useEffect(() => {
-    dispatch(getPostComments(id))
-  }, [id, dispatch])
+  const randomLiked = useMemo((): React.ReactElement => {
+    return Math.round(Math.random()) ? <BiSolidLike /> : <BiLike />
+  }, [])
+
+  const randomShared = useMemo((): React.ReactElement => {
+    return Math.round(Math.random()) ? <FaShareSquare /> : <FaRegShareSquare />
+  }, [])
 
   const comments = useSelector(getCommentByPost(id))
 
+  useEffect(() => {
+    if(!comments.length) {
+      dispatch(getPostComments(id))
+    }
+  }, [comments.length, id, dispatch]);
+
+  const handleGoToDetailPost = () => {
+    router.push(`post/${id}`)
+  };
+
   return (
-    <div className="post" key={key}>
+    <div className="post" key={key} onClick={handleGoToDetailPost}>
       <div className="post__title">{ title }</div>
       <div className="post__summary">
-        <div className="summary__username">{ formatUserName(post, accountId) }</div>
-        <div className="summary__date">{ formatDate(date) }</div>
+        <div className="summary__username">Author: { formatUserName(post, accountId) }</div>
+        <div className="summary__date">Created at: { formatDate(date) }</div>
       </div>
       <div className="post__content">{ formatContent(body) }</div>
       <div className="post__actions">
-        <Button variant="outline-info" className="actions__button">{ randomLiked() } 2000</Button>
+        <Button variant="outline-info" className="actions__button">{ randomLiked } 2000</Button>
         <Button variant="outline-info" className="actions__button"><AiOutlineComment /> { comments.length }</Button>
-        <Button variant="outline-info" className="actions__button">{ randomShared() } 1703</Button>
+        <Button variant="outline-info" className="actions__button">{ randomShared } 1703</Button>
       </div>
     </div>
   )

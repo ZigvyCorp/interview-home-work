@@ -15,6 +15,7 @@ export interface ManagePosts {
 
   totalPage: number;
   pageNumber: number;
+  keyword: string | null;
 }
 
 export interface UserPost extends Post {
