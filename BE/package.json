@@ -6,7 +6,9 @@
   "author": "Ta Minh Tien",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon main.js"
+    "dev": "nodemon src/main.js",
+    "start": "node src/main.js",
+    "seed": "node src/seeder.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

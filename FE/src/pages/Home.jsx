@@ -1,25 +1,47 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+// import { SearchInput } from '../components/SearchInput';
+import { Typography } from 'antd';
+import { Content } from 'antd/es/layout/layout';
+import { useEffect } from 'react';
+const { Text } = Typography;
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPost } from '../redux/Reducers/postSlice';
+import { Post } from '../components/Post';
+import { CommentSection } from '../components/CommentSection.jsx';
+import { fetchComment } from '../redux/Reducers/commentSlice';
 
 export function Home() {
-  const [data, setData] = useState('');
+  const posts = useSelector((state) => state.postSlice.posts);
+  const comments = useSelector((state) => state.commentSlice.comments);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    axios
-      .get('http://127.0.0.1:3333')
-      .then((res) => {
-        console.log(res.data);
-        setData(res.data);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
-
+    dispatch(fetchPost());
+    dispatch(fetchComment());
+  }, [dispatch]);
   return (
-    <div>
-      Home
-      <p>{data}</p>
-    </div>
+    <>
+      {/* <SearchInput /> */}
+      {!posts || posts.length === 0 ? (
+        <Content style={{ textAlign: 'center' }}>
+          <Text strong style={{ fontSize: '24px' }}>
+            No posts available
+          </Text>
+        </Content>
+      ) : (
+        posts.map((post) => (
+          <div
+            wrap="wrap"
+            style={{
+              border: '1px solid black',
+              padding: '0 30px 20px 30px',
+            }}
+            key={post._id}
+          >
+            <Post props={post} />
+            <CommentSection postId={post._id} comments={comments} />
+          </div>
+        ))
+      )}
+    </>
   );
 }
