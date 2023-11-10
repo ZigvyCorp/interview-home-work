@@ -8,17 +8,13 @@ const { Panel } = Collapse;
 const action = [<span key="comment-list-reply-to-0">Reply to</span>]
 const avatar= 'https://vnn-imgs-a1.vgcloud.vn/image1.ictnews.vn/_Files/2020/03/17/trend-avatar-1.jpg'
 
-const ListComment = ({pid}) => {
-
-
-    const [expanded, setExpanded] = useState(false);
-    const onChange = (key) => {
-        console.log(key);
-    };
+const ListComment = ({pid , full}) => {
+    
     const [comments,setComments] =useState([])
     const [length,setLength] =useState(0)
-
+    
     useEffect(() => {
+        
          axiosClient.get(`/comments/posts/${pid}`) 
             .then(function (response) {
                
@@ -29,13 +25,13 @@ const ListComment = ({pid}) => {
                 console.log(error);
             });
 
-      
-    }, [expanded]);
+           
+    }, []);
 
     const convertDate = (date)=>{
         Moment.locale('en');
         const newDate = new Date(date)
-        return Moment(newDate).format('dd MM YYYY HH:mma');
+        return Moment(newDate).format('DD MM YYYY HH:mma');
     }
     const calDate = (date)=>{
         const newDate = new Date(date)
@@ -46,9 +42,9 @@ const ListComment = ({pid}) => {
     function getPostTime(date) {
         const now = Moment();
         const postDate = Moment(date);
-      
+        
         const diff = now.diff(postDate, "days");
-      
+        console.log(postDate)
         if (diff === 0) {
           return "Hôm nay, lúc " + postDate.format("HH:mm");
         } else if (diff === 1) {
@@ -58,8 +54,8 @@ const ListComment = ({pid}) => {
         }
       }
     return (
-        <Collapse defaultActiveKey={['0']} onChange={onChange} ghost>
-            <Panel header={`${length} replies`} key="1" showArrow={false} className="">
+        <Collapse  ghost defaultActiveKey={full ? 1 :0} className='mt-0' >
+            <Panel header={`${length} replies`} key={1} showArrow={false} className="">
                 <List
                     className="comment-list"
                     itemLayout="horizontal"

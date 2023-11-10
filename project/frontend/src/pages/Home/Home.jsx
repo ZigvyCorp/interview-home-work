@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 const Home = ({ title }) => {
     const [index,setIndex]=useState(1)
-    const [size,setSize]=useState(2)
+    const [size,setSize]=useState(4)
     
 
     useEffect(() => {

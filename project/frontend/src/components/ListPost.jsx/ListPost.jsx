@@ -3,9 +3,7 @@ import { ListComment } from '../ListComment';
 import { Post } from '../Post';
 
 import { useDispatch, useSelector } from 'react-redux';
-import getProducts from '../../redux/post/postSage';
-import onLoadPost from '../../redux/post/postSage';
-import { getListPost, getListPostSuccess } from '../../redux/post/postAction';
+import { getListPost } from '../../redux/post/postAction';
 
 const PostList = ({index,size}) => {
     

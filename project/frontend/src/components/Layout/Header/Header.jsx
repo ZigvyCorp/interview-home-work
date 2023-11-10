@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { getListPost } from '../../../redux/post/postAction';
@@ -7,8 +7,15 @@ const Header = () => {
     const dispatch = useDispatch()
     const search =(e)=>{
         setSearchTerm(e)
-        dispatch(getListPost(`?pageIndex=${1}&pageSize=${10}&title=${searchTerm}`));
+        if(e==""){
+                dispatch(getListPost(`?pageIndex=${1}&pageSize=${4}`));
+        }
+        else{
+            dispatch(getListPost(`?pageIndex=${1}&pageSize=${10}&title=${searchTerm}`));
+
+        }
     }
+
     return (
         <header className="bg-white border-b fixed w-full top-0 z-50 left-0">
             <div className="py-4 mx-auto w-300">
