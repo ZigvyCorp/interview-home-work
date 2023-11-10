@@ -12,7 +12,7 @@ import { Comment } from './Comment';
 const items: CollapseProps['items'] = [
   {
     key: '1',
-    label: '2 Comments',
+    label: '2 replies',
     children: <Comment/>,
     showArrow: false,
   },

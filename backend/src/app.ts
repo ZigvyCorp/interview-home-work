@@ -7,7 +7,7 @@ import cookieParser from 'cookie-parser';
 import connectDB from './config/connectDB';
 import _ from 'lodash';
 import config from './config/appConfig';
-import { postRouter } from './routes';
+import { postRouter, searchRouter} from './routes';
 
 const app = express();
 dotenv.config();
@@ -24,8 +24,10 @@ app.use(
 );
 
 app.use('/api/posts', postRouter());
+app.use('/api/search', searchRouter());
 
 app.listen(config.serverPort, () => {
   console.log(`Server is running on port ${config.serverPort}`);
   connectDB();
 });
+

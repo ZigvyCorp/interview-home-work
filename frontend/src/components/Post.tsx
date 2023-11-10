@@ -20,7 +20,8 @@ export function Post({post}: IPostProps) {
         </Space>
         
         <Typography>
-            {post.content}
+            {/* {post.content} */}
+            {post.body || post.content}
         </Typography>
         <CommentCollapse/>
     </Card>

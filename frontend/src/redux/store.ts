@@ -5,6 +5,7 @@ import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './rootSaga';
 import postReducer from './posts/slice';
+import commentReducer from './comments/slice';
 
 const sagaMiddleware = createSagaMiddleware();
 const rootPersistConfig = {
@@ -14,6 +15,7 @@ const rootPersistConfig = {
 
 const rootReducer = combineReducers({
   post: postReducer,
+  comment: commentReducer
 });
 
 const rootPersistReducer = persistReducer(rootPersistConfig, rootReducer);

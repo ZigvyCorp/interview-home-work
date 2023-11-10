@@ -6,4 +6,6 @@ Please install NodeJS and run the command: `npm install --global yarn`
 
 1. Run: ``yarn install``
 
-2. Run: ``yarn start``
+2. Run: ``yarn build``
+
+3. Run: ``yarn start``
