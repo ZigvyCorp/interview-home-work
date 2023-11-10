@@ -1,13 +1,14 @@
-import express from 'express';
-import cors from 'cors';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import bodyParser from 'body-parser';
-import userRoute from './routes/userRoute';
-import postRoute from './routes/postRoute';
-import commentRoute from './routes/commentRoute';
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import bodyParser from "body-parser";
+import userRoute from "./routes/userRoute";
+import postRoute from "./routes/postRoute";
+import commentRoute from "./routes/commentRoute";
 
 const app = express();
+const PORT = process.env.PORT || 3030;
 
 dotenv.config();
 app.use(bodyParser.json());
@@ -23,12 +24,12 @@ async function connectToDatabase() {
   }
 }
 
-app.use('/user', userRoute);
-app.use('/post', postRoute);
-app.use('/comment', commentRoute);
+app.use("/user", userRoute);
+app.use("/post", postRoute);
+app.use("/comment", commentRoute);
 
 connectToDatabase();
 
-app.listen(8000, () => {
-  console.log("Sever is running...!");
+app.listen(PORT, () => {
+  console.log(`server started on port ${PORT}`);
 });
