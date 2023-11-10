@@ -12,6 +12,9 @@
     "type": "git",
     "url": "git+https://github.com/levinhky/interview-home-work.git"
   },
+  "engines": {
+    "node": ">=16.20.1"
+  },
   "keywords": [
     "kylv",
     "interview"
