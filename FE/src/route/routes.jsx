@@ -5,8 +5,10 @@ export const routes = [
     {
         element: <MainLayout />,
         children: [
-            { path: "/",
-                element: <Home/>}
+            {
+                path: "/",
+                element: <Home />
+            },
         ]
     }
 ]

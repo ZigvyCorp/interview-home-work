@@ -1,15 +1,35 @@
 import { PrismaClient } from "@prisma/client"
 
-const prisma = new PrismaClient({
-    log: ['query', 'info', 'warn', 'error'],
-})
+const prisma = new PrismaClient()
 
 const getPosts = async (_, res) => {
     try {
-        const data = await prisma.post.findMany()
+        const data = await prisma.post.findMany({
+            include: {
+                users: {
+                    select: {
+                        name: true
+                    }
+                },
+                comments: {
+                    select: {
+                        comment_id: true,
+                        users: true,
+                        content: true,
+                        created_at: true
+                    }
+                }
+            }
+
+        }
+        )
+        if (!data) {
+            res.status(200).send("Cant find data")
+
+        }
         res.status(202).send(data)
     } catch (error) {
-        console.error(error)
+        res.status(500).send(error)
     }
 }
 
@@ -39,11 +59,26 @@ const searchPost = async (req, res) => {
                     contains: query,
                     mode: "insensitive"
                 }
+            },
+            include: {
+                users: {
+                    select: {
+                        name: true
+                    }
+                },
+                comments: {
+                    select: {
+                        comment_id: true,
+                        users: true,
+                        content: true,
+                        created_at: true
+                    }
+                }
             }
         })
 
         if (data.length == 0) {
-            res.status(200).send("Srr cant find")
+            res.status(200).send([])
         } else {
             res.status(202).send(data)
         }
