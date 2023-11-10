@@ -1,0 +1,33 @@
+// Create custom bootstrap styles
+
+$theme-colors:( 
+    "magenta": #fff4fb,
+    "magenta-dark": #a80966,
+    "red": #fff4f5,
+    "red-dark": #a80916,
+    "volcano": #fff6f4,
+    "volcano-dark": #a82609,
+    "orange": #fff9f4,
+    "orange-dark": #a85e09,
+    "gold": #fffff4,
+    "gold-dark": #a89b09,
+    "lime": #fdfff4,
+    "lime-dark": #80a809,
+    "green": #f5fff4,
+    "green-dark": #09a80e,
+    "cyan": #f4fffc,
+    "cyan-dark": #09a3a8,
+    "blue": #f4f8ff,
+    "blue-dark": #0956a8,
+    "geekblue": #f6f4ff,
+    "geekblue-dark": #2109a8,
+    "purple": #fff4ff,
+    "purple-dark": #a809a0,
+
+);
+
+$font-sizes: (
+    7: 8
+);
+
+@import "node_modules/bootstrap/scss/bootstrap";
