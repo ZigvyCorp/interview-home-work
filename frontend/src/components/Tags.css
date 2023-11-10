@@ -1,0 +1,98 @@
+/* Tags.css */
+:root {
+    --magenta-color: magenta;
+    --red-color: red;
+    --volcano-color: #ff5714;
+    --orange-color: orange;
+    --gold-color: gold;
+    --lime-color: lime;
+    --green-color: green;
+    --cyan-color: cyan;
+    --blue-color: skyblue;
+    --geekblue-color: blue;
+    --purple-color: purple;
+
+    --opacity: 0.5;
+}
+
+.tag-container {
+    display: flex;
+}
+
+.tag {
+    display: inline-block;
+    padding: 4px 8px;
+    margin: 2px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.tag.magenta {
+    background-color: rgba(var(--magenta-color), var(--opacity));
+    border: 1px solid var(--magenta-color);
+    color: var(--magenta-color);
+    opacity: var(--opacity);
+}
+
+.tag.red {
+    background-color: rgba(var(--red-color), var(--opacity));
+    border: 1px solid var(--red-color);
+    color: var(--red-color);
+}
+
+.tag.volcano {
+    background-color: rgba(var(--volcano-color), var(--opacity));
+    border: 1px solid var(--volcano-color);
+    color: var(--volcano-color);
+}
+
+.tag.orange {
+    background-color: rgba(var(--orange-color), var(--opacity));
+    border: 1px solid var(--orange-color);
+    color: var(--orange-color);
+}
+
+.tag.gold {
+    background-color: rgba(var(--gold-color), var(--opacity));
+    border: 1px solid var(--gold-color);
+    color: var(--gold-color);
+}
+
+.tag.lime {
+    background-color: rgba(var(--lime-color), var(--opacity));
+    border: 1px solid var(--lime-color);
+    color: var(--lime-color);
+}
+
+.tag.green {
+    background-color: rgba(var(--green-color), var(--opacity));
+    border: 1px solid var(--green-color);
+    color: var(--green-color);
+}
+
+.tag.cyan {
+    background-color: rgba(var(--cyan-color), var(--opacity));
+    border: 1px solid var(--cyan-color);
+    color: var(--cyan-color);
+}
+
+.tag.blue {
+    background-color: rgba(var(--blue-color), var(--opacity));
+    border: 1px solid var(--blue-color);
+    color: var(--blue-color);
+}
+
+.tag.geekblue {
+    background-color: rgba(var(--geekblue-color), var(--opacity));
+    border: 1px solid var(--geekblue-color);
+    color: var(--geekblue-color);
+}
+
+.tag.purple {
+    background-color: rgba(var(--purple-color), var(--opacity));
+    border: 1px solid var(--purple-color);
+    color: var(--purple-color);
+}
+
+/* Add any additional CSS styling you need */
