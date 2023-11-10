@@ -19,6 +19,7 @@
     "kylv",
     "interview"
   ],
+  "type": "module",
   "author": "kylv",
   "license": "ISC",
   "bugs": {
