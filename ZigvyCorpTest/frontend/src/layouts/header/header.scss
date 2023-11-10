@@ -1,0 +1,47 @@
+.ant-layout-header {
+    background-color: white;
+}
+
+.header {
+    position: static;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+}
+.logo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+.logo_item {
+    float: left;
+    width: 80px;
+    height: 60px;
+    margin: 8px 24px 0px 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+}
+.nav_item {
+    margin: 10px 20px;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-weight: 500;
+    color: black;
+}
+.wrap_user {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+}
+
+.logo_user {
+    width: 44px;
+    height: 44px;
+    margin: 10px 8px 0px 0;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.name-user {
+    font-weight: 500;
+    color: black;
+}
