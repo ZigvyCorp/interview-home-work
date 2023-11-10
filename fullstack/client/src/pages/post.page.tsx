@@ -1,7 +1,7 @@
-const PostPage = () => {
-  return (
-    <div>PostPage</div>
-  )
-}
+import React from "react";
 
-export default PostPage
+const PostPage: React.FC = () => {
+  return <div>PostPage</div>;
+};
+
+export default PostPage;

@@ -1,12 +1,28 @@
+import React from "react";
 import { Helmet } from "react-helmet-async";
+import PostCard from "../components/card";
+import { Space } from "antd";
 
-const HomePage = () => {
+const HomePage: React.FC = () => {
   return (
     <>
       <Helmet>
         <title>Fullstack assignment</title>
       </Helmet>
-      <h1>Hello world</h1>
+      <Space direction="vertical" size="middle">
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+        <PostCard />
+      </Space>
     </>
   );
 };
