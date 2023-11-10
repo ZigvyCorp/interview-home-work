@@ -62,11 +62,71 @@ class BlogsServices {
     const _limit = Number(limit) || 20;
     const [blogs, total] = await Promise.all([
       databaseService.blogs
-        .find({
-          audience: BlogAudience.Everyone
-        })
-        .skip((_page - 1) * _limit)
-        .limit(_limit)
+        .aggregate([
+          {
+            $match: {
+              audience: BlogAudience.Everyone
+            }
+          },
+          {
+            $lookup: {
+              from: 'users',
+              localField: 'user_id',
+              foreignField: '_id',
+              as: 'author'
+            }
+          },
+          {
+            $unwind: {
+              path: '$author'
+            }
+          },
+          {
+            $group: {
+              _id: '$_id',
+              title: {
+                $first: '$title'
+              },
+              content: {
+                $first: '$content'
+              },
+              author: {
+                $first: '$author'
+              },
+              view_count: {
+                $first: '$view_count'
+              },
+              like_count: {
+                $first: '$like_count'
+              },
+              audience: {
+                $first: '$audience'
+              },
+              created_at: {
+                $first: '$created_at'
+              },
+              updated_at: {
+                $first: '$updated_at'
+              }
+            }
+          },
+          {
+            $project: {
+              'author.password': 0
+            }
+          },
+          {
+            $sort: {
+              created_at: -1
+            }
+          },
+          {
+            $skip: (_page - 1) * _limit
+          },
+          {
+            $limit: _limit
+          }
+        ])
         .toArray(),
       databaseService.blogs.countDocuments({
         audience: BlogAudience.Everyone
