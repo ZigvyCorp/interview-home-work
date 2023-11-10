@@ -19,7 +19,6 @@ const PostDetail = connect((state) => state)((props) => {
 
   useEffect(() => {
     if (!props.posts.data) {
-      console.log('first fetch')
       store.dispatch(getPostsFetch())
     }
   }, [props.posts.data])

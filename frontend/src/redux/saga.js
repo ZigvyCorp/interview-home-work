@@ -4,7 +4,6 @@ import { getPostsSuccess, onLoading } from './postsSlice'
 import { GET_POSTS_FETCH, ON_TYPING_SEARCH } from './actions'
 
 const postsFetch = (page = 1, title) => {
-  console.log('page', page)
   return async function () {
     return apiAxios
       .get('/posts', { params: { page, title } })
@@ -16,7 +15,6 @@ function* workGetPostsFetch(action) {
   const result = yield call(
     postsFetch(action.payload?.page, action.payload?.title),
   )
-  console.log('??4')
   yield put(getPostsSuccess(result))
 }
 

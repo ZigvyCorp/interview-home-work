@@ -13,7 +13,6 @@ const HomePage = connect((state) => state)((props) => {
   useEffect(() => {
     const handleScroll = () => {
       const el = document.getElementById('home-page')
-      console.log(props.posts)
       if (
         isBottom(el) &&
         !props.posts.isLoading &&
@@ -32,17 +31,13 @@ const HomePage = connect((state) => state)((props) => {
 
   useEffect(() => {
     if (!props.posts.data) {
-      console.log('first fetch')
       store.dispatch(getPostsFetch())
     }
   }, [props.posts.data])
 
   return (
     <div id="home-page">
-      <div
-        className="pt-3 pb-5 mx-auto w-50"
-        onScroll={() => console.log('object')}
-      >
+      <div className="pt-3 pb-5 mx-auto w-50">
         <Stack gap={3}>
           {props.posts.data &&
             props.posts.data.map((post) => <Post key={post._id} post={post} />)}

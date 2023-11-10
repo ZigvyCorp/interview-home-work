@@ -1,7 +1,6 @@
 import Image from 'react-bootstrap/esm/Image'
 
 const Comment = ({ comment }) => {
-  console.log('comment', comment)
   return (
     <div className="d-flex">
       <div style={{ marginRight: '10px' }}>
