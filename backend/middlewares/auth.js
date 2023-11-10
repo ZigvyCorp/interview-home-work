@@ -19,7 +19,7 @@ const auth = async (req, res, next) => {
             });
         }
 
-        const user = await Users.findOne({ id: decoded._id });
+        const user = await Users.findById(decoded.id);
         req.user = user;
         next();
     } catch (err) {

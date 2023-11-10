@@ -4,10 +4,11 @@ const postService = {
     createPost: (formData) => {
         return axiosInstance.post('/posts', formData);
     },
-    getPosts: () => {
+    getPosts: (currentPage, perPage) => {
         return axiosInstance.get('/posts', {
             params: {
-
+                page: currentPage,
+                perPage,
             }
         });
     },

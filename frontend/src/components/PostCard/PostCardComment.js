@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Flex, Avatar, Space, Typography } from 'antd';
 
-const PostCardComment = () => {
+const PostCardComment = ({ postId }) => {
     return (
         <Flex vertical gap="large">
             <Flex gap="large">

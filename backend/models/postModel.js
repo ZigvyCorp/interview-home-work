@@ -9,11 +9,15 @@ const postSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    comments: [{ type: mongoose.Types.ObjectId, ref: 'Comment' }],
-    author: {
-        type: mongoose.Types.ObjectId, ref: 'User'
+    // comments: [{ type: mongoose.Types.ObjectId, ref: 'Comment' }],
+    owner: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'User'
     },
-    tag: [{ type: String }]
+    tags: [{ type: String }],
+    created_at: {
+        type: Date,
+        default: Date.now
+    }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Post', postSchema);

@@ -35,21 +35,21 @@ const authController = {
 
             const user = await Users.findOne({ username });
             if (!user) {
-                res.status(httpStatus.NOT_FOUND).send({
+                return res.status(httpStatus.NOT_FOUND).send({
                     message: "Username not found!"
                 });
             }
 
             const isValidPassword = await bcrypt.compareSync(password, user.password);
             if (!isValidPassword) {
-                res.status(httpStatus.BAD_REQUEST).send({
+                return res.status(httpStatus.BAD_REQUEST).send({
                     message: "Wrong password!"
                 });
             }
 
             const accessToken = generateToken({ id: user._id });
 
-            res.status(httpStatus.OK).send({
+            return res.status(httpStatus.OK).send({
                 message: "Login success",
                 accessToken
             });

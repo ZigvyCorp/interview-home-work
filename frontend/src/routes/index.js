@@ -1,16 +1,23 @@
 import { useRoutes } from 'react-router-dom';
-import PageNotFound from '../pages/PageNotFound';
+
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import DetailPost from '../pages/DetailPost';
+import PageNotFound from '../pages/PageNotFound';
+
 import MainLayout from '../layouts/MainLayout';
+
+import AuthGourd from '../guards/AuthGourd';
+import GuestGuard from '../guards/GuestGuard';
 
 const Router = () => {
     return useRoutes([
         {
             path: '/',
-            element: <MainLayout />,
+            element: <AuthGourd>
+                <MainLayout />
+            </AuthGourd>,
             children: [
                 {
                     element: <Home />,
@@ -24,11 +31,15 @@ const Router = () => {
         },
         {
             path: '/login',
-            element: <Login />
+            element: <GuestGuard>
+                <Login />
+            </GuestGuard>
         },
         {
             path: '/register',
-            element: <Register />
+            element: <GuestGuard>
+                <Register />
+            </GuestGuard>
         },
         {
             path: '/*',

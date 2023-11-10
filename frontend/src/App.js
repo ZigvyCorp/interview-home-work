@@ -14,7 +14,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <PersistGate loading={<p1>ahihi</p1>} persistor={persistor}>
+    <PersistGate loading={null} persistor={persistor}>
       <Router />
     </PersistGate>
   );

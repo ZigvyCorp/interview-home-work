@@ -17,6 +17,10 @@ const userSchema = new mongoose.Schema({
     dob: {
         type: String,
         require: true
+    },
+    created_at: {
+        type: Date,
+        default: Date.now
     }
 }, { timestamps: true });
 

@@ -21,6 +21,7 @@ const RenderContent = () => {
 
     return <Button danger icon={<LogoutOutlined />} onClick={() => {
         dispatch(logout());
+        localStorage.removeItem('accessToken');
         navigate('/login');
     }}>
         Logout
