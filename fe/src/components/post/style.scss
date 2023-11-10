@@ -1,0 +1,52 @@
+.post {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e9e4e4;
+  &-container {
+    text-decoration: none;
+    color: #000;
+  }
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &-content {
+      &-title {
+        display: inline;
+        margin-bottom: 8px;
+      }
+
+      &-date {
+        margin: 0;
+        margin-left: 6px;
+        font-size: 14px;
+      }
+    }
+
+    &-author {
+      font-size: 15px;
+      margin: 8px 0;
+    }
+  }
+
+  // &-content {
+  //   width: 100%;
+  //   height: 75px;
+  //   line-height: 24px;
+  //   overflow: hidden;
+  //   text-overflow: ellipsis;
+  // }
+  // &-content {
+  //   max-width: 300px; /* Adjust the max width as needed */
+  //   overflow: hidden;
+  //   white-space: nowrap;
+  //   text-overflow: ellipsis;
+  // }
+
+  // &-content p {
+  //   display: inline;
+  //   word-wrap: break-word;
+  // }
+}
