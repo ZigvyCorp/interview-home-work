@@ -47,13 +47,8 @@ const postController = {
         (await PostSchema.find({ title: { $regex: regexSearch } })
           .populate("owner")
           .populate("comments")) ?? [];
-      const totalCount =
-        (await PostSchema.find({ title: { $regex: regexSearch } })
-          .populate("owner")
-          .populate("comments")
-          .countDocuments({})) ?? 0;
 
-      return res.status(200).json({ posts, totalCount });
+      return res.status(200).json(posts);
     } catch (error) {
       return res.status(500).json(error);
     }
