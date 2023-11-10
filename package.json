@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.ts",
-    "start": "node index.ts",
+    "start": "ts-node --esm index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,7 +19,6 @@
     "kylv",
     "interview"
   ],
-  "type": "module",
   "author": "kylv",
   "license": "ISC",
   "bugs": {
@@ -31,7 +30,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "mongoose": "^8.0.0"
+    "mongoose": "^8.0.0",
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
