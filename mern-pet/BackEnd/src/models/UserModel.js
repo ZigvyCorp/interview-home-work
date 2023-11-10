@@ -5,7 +5,6 @@ const userSchema = new mongoose.Schema(
         password: { type: String, require: true},
         name: { type: String, require: false},
         dob: { type: String, require: false},
-        created_at: { type: String, require: true},
         access_token: { type: String, require: true},
         refresh_token: { type: String, require: true},
     },
