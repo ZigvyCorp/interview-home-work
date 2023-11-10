@@ -15,7 +15,7 @@ const CommentItem = ({ comment }: CommentItemProps) => {
         T
       </Avatar>
       <div className={styles.content}>
-        <h4>{comment.author.email}</h4>
+        <h4 className={styles.email}>{comment.author.email}</h4>
         <div>{comment.content}</div>
       </div>
     </div>

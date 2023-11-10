@@ -64,3 +64,8 @@ export type GetCommentsResponse = SuccessResponse<{
 export type CreateCommentResponse = SuccessResponse<{
   comment: Comment
 }>
+
+// Response: Lấy chi tiết blog
+export type GetBlogResponse = SuccessResponse<{
+  blog: Blog
+}>

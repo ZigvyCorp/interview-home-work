@@ -3,7 +3,8 @@ import {
   CreateBlogResponse,
   GetBlogsResponse,
   GetCommentsResponse,
-  CreateCommentResponse
+  CreateCommentResponse,
+  GetBlogResponse
 } from '~/types/blogs.types'
 import { PaginationReqQuery } from '~/types/utils.type'
 import http from '~/utils/http'
@@ -17,6 +18,11 @@ const blogsApi = {
   // Lấy danh sách blog
   getBlogs: (query: PaginationReqQuery) => {
     return http.get<GetBlogsResponse>('/blogs', { params: query })
+  },
+
+  // Lấy chi tiết blog
+  getBlog(blog_id: string) {
+    return http.get<GetBlogResponse>(`/blogs/${blog_id}`)
   },
 
   // Lấy danh sách comment

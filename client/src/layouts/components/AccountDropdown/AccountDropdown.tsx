@@ -2,7 +2,6 @@ import { useMutation } from '@tanstack/react-query'
 import type { MenuProps } from 'antd'
 import { Avatar, Dropdown } from 'antd'
 import { useCallback, useContext, useMemo } from 'react'
-import { Link } from 'react-router-dom'
 
 import userApi from '~/api/users.api'
 import { AppContext } from '~/providers/AppProvider/AppProvider'
@@ -27,12 +26,8 @@ const AccountDropdown = () => {
   const items: MenuProps['items'] = useMemo(
     () => [
       {
-        label: <Link to='https://www.antgroup.com'>Thông tin tài khoản</Link>,
-        key: '0'
-      },
-      {
         label: <div onClick={logout}>Đăng xuất</div>,
-        key: '2'
+        key: '1'
       }
     ],
     [logout]

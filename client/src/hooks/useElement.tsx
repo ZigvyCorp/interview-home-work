@@ -7,6 +7,7 @@ import MainLayout from '~/layouts/MainLayout'
 import Home from '~/pages/Home'
 import Login from '~/pages/Login'
 import CreateBlog from '~/pages/CreateBlog'
+import BlogDetail from '~/pages/BlogDetail'
 import NotFound from '~/pages/NotFound'
 import Register from '~/pages/Register'
 import { AppContext } from '~/providers/AppProvider/AppProvider'
@@ -36,6 +37,14 @@ const useElement = () => {
       element: (
         <MainLayout>
           <NotFound />
+        </MainLayout>
+      )
+    },
+    {
+      path: PATH.BLOG_DETAIL,
+      element: (
+        <MainLayout>
+          <BlogDetail />
         </MainLayout>
       )
     },

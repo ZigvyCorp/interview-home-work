@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import PATH from '~/constants/path'
 import { Blog } from '~/types/blogs.types'
 import styles from './BlogItem.module.scss'
+import { generateNameId } from '~/utils/utils'
 
 interface BlogItemProps {
   blog: Blog
@@ -27,10 +28,10 @@ const BlogItem = ({ blog, showModal, changeCurrentBlog }: BlogItemProps) => {
         </Avatar>
         <span className={styles['author-name']}>{blog.author.email}</span>
       </div>
-      <Link to={PATH.HOME}>
+      <Link to={`${PATH.BLOG_DETAIL_WITHOUT_PARAM}/${generateNameId({ name: blog.title, id: blog._id })}`}>
         <h3 className={styles.title}>{blog.title}</h3>
       </Link>
-      <p className={styles.desc}>{blog.content}</p>
+      <p className={styles.desc}>{blog.content.slice(0, 100)}...</p>
       <div className={styles.config}>
         <div className={styles['published-at']}>
           <HistoryOutlined />
