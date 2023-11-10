@@ -1,0 +1,29 @@
+.blog {
+  background-color: #e6e6e6;
+  width: 20%;
+  border: 4px solid black;
+  height: 60px;
+}
+.blogWrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.textWrapper {
+  position: relative;
+}
+.textWrapper::before {
+  position: absolute;
+  content: "";
+  height: 32px;
+  width: 32px;
+  background: #e6e6e6;
+  box-shadow: 4px 4px 0 0 black;
+  left: 8px;
+  bottom: -25px;
+  transform: rotate(45deg);
+}

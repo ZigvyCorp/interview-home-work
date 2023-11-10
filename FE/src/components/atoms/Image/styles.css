@@ -1,0 +1,8 @@
+.imageWrapper {
+  background-color: #e6e6e6;
+}
+.image {
+  height: 51px;
+  width: 51px;
+  object-fit: contain;
+}

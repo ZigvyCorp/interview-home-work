@@ -1,0 +1,8 @@
+.replyLink:hover {
+  cursor: pointer;
+  color: #8abcf9 !important;
+  text-decoration: underline !important;
+  font-weight: 500;
+  transition: all 200ms ease;
+}
+

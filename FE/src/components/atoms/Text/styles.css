@@ -1,0 +1,13 @@
+.large {
+    font-size: 30px;
+    font-weight: 500;
+    z-index: 1;
+}
+.medium {
+    font-size: 20px;
+    font-weight: 500;
+    z-index: 1;
+}
+.small {
+    font-size: 10px;
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Tran_Vi_Nhan_BE_2023",
+  "version": "1.0.0",
+  "description": "Interview Zigvy 2023",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
+  }
+}
