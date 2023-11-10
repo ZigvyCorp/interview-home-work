@@ -1,40 +1,41 @@
 import { Fragment, useEffect, useState } from "react";
-import BlogCard from "../component/BlogCard";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPostRequest } from "../redux/actions/post/postsActions";
 import { RootState } from "../redux/store";
 import { Pagination } from "react-bootstrap";
+import { numberOfPage, paginationLibs } from "../libs/pagination";
+
 import ErrorScreen from "./Error";
 import LoadingScreen from "./LoadingScreen";
+import BlogCard from "../component/BlogCard";
+import { searchPost } from "../libs/filterPost";
 
 const ListPost = ({ searchValue }: { searchValue: string }) => {
   const disPatch = useDispatch();
-  const { loading, posts, error } = useSelector(
-    (state: RootState) => state.posts
-  );
+
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [postsPerPage] = useState<number>(5);
 
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts?.slice(indexOfFirstPost, indexOfLastPost);
-
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
-
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(posts?.length / postsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  const { loading, posts, error } = useSelector(
+    (state: RootState) => state.posts
+  );
 
   useEffect(() => {
     disPatch(fetchPostRequest());
-    console.log(posts);
-  }, []);
-  const filterPost = currentPosts?.filter((post) => {
-    if (searchValue === "") {
-      return post;
-    }
-    return post.title.includes(searchValue);
+  }, [disPatch]);
+
+  const currentPosts = paginationLibs({
+    currentPage: currentPage,
+    itemsPerPage: postsPerPage,
+    posts: posts,
+  });
+
+  const pageNumber = numberOfPage({ posts: posts, itemperPage: postsPerPage });
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  const filterPost = searchPost({
+    posts: currentPosts,
+    searchValue: searchValue,
   });
 
   const Loading = () => {
@@ -59,7 +60,7 @@ const ListPost = ({ searchValue }: { searchValue: string }) => {
         </div>
       ))}
       <Pagination>
-        {pageNumbers.map((number) => (
+        {pageNumber.map((number) => (
           <Pagination.Item
             key={number}
             active={number === currentPage}

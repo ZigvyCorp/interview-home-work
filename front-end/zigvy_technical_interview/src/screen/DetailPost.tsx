@@ -11,6 +11,7 @@ import Comments from "../component/Comment";
 import SmallBorder from "../component/SmallBorder";
 import LoadingScreen from "./LoadingScreen";
 import ErrorScreen from "./Error";
+import { UserModel } from "../model/type";
 
 const DetailPost = () => {
   const dispatch = useDispatch();
@@ -30,19 +31,16 @@ const DetailPost = () => {
     (state: RootState) => state.commentPostId
   );
 
-  const { loadingUserId, user, errorUserId } = useSelector(
-    (state: RootState) => state.userIdReducer
-  );
+  const { user } = useSelector((state: RootState) => state.userIdReducer) as {
+    user: UserModel;
+  };
 
   useEffect(() => {
     if (postId !== undefined) {
       dispatch(fetchPostIdRequest({ postId: Number(postId) }));
       dispatch(fetchCommentPostIdRequest({ postId: Number(postId) }));
     }
-
-    if (post.userId !== undefined) {
-      dispatch(fetchUserIdRequest({ userId: Number(post.userId) }));
-    }
+    dispatch(fetchUserIdRequest({ userId: post.userId }));
   }, [dispatch]);
 
   const CommentPostId = () => {
@@ -67,13 +65,13 @@ const DetailPost = () => {
             <h1 className="text-center">{post.title}</h1>
             <div className="d-flex flex-row my-5">
               <div className="col">
-                <p style={{ marginBottom: "3px" }}>Author: </p>
+                <p style={{ marginBottom: "3px" }}>Author: {user.name}</p>
                 <p>Create at: Oct 1, 2023</p>
               </div>
               <div className="col"></div>
               <div className="d-flex flex-row flex-wrap col">
-                {colors.map((color) => (
-                  <SmallBorder color={color} />
+                {colors.map((color, index) => (
+                  <SmallBorder key={index} color={color} />
                 ))}
               </div>
             </div>
