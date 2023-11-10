@@ -1,0 +1,25 @@
+.reply-item {
+  display: flex;
+  align-items: start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  .reply-item__avatar {
+    border-radius: 50%;
+    width: 50px;
+  }
+
+  .reply-item__content {
+
+    .reply-item__content__metadata {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+
+      .reply-item__content__created-time {
+        opacity: 0.6;
+        font-weight: 500;
+        margin-left: 0.7rem;
+      }
+    }
+  }
+}

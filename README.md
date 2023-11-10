@@ -1,5 +1,13 @@
 # Zigvy Technical Assignment Interview
 
+## How to run
+- Backend project (Node Js, Express, Postgres):
+  - Create a new Postgres database named **zigvy_blog** and restore the schema using the dump file at `blog-server/database.sql`
+  - Modify the database config file (`blog-server/app/config/db.config.js`) if needed
+  - `cd blog-server`, `npm install` and `npm start`
+- Front-end project (React):
+  - `cd blog-client`, `npm install` and `npm run dev`
+
 ## Description
 - This is a **Small Project Test** for online interview at Zigvy Corp. This assignment has 2 main tasks: **Front-end** and **Back-end**. You will be required to complete each tasks with your applied position. For short, you can check the list below
   - Full-stack engineer: Both Front-end and Back-end
