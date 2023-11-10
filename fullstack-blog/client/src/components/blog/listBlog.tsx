@@ -80,7 +80,7 @@ export default function ListBlog() {
 			</div>
 			{sPost.totalPosts ? (
 				<div className="mb-5 mt-10 flex-center shadow-pop py-3 rounded-2xl text-3xl">
-					<Pagination pageSize={page} current={page} onChange={onChange} total={sPost.totalPages} />
+					<Pagination pageSize={6} total={sPost.totalPosts} current={page} onChange={onChange} />
 				</div>
 			) : null}
 		</section>
