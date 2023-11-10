@@ -1,3 +1,49 @@
+
+# Zigvy Testing
+
+Project completed
+
+I using ReactJS, Vite, NodeJS, Bootstrap to completed it.
+
+## How to start Project
+
+### BACK END
+
+First, we move to 'BE' folder to start be server
+
+```cd BE```
+
+Then, we need install library with 
+
+```yarn```
+
+And we start the server  
+
+```npx nodemon server.js```
+
+### FRONT END
+
+After start backend, we will direct back to 'FE' folder
+
+```cd ..```
+
+```cd FE```
+
+we install library
+
+```yarn```
+
+Then, start project on broswer using command: 
+
+```yarn dev```
+
+
+Thank you for reviewing my project.
+
+My Contacts:
+Email: vinhan.dev@gmail.com
+Phone: 0362017512
+
 # Zigvy Technical Assignment Interview
 
 ## Description
