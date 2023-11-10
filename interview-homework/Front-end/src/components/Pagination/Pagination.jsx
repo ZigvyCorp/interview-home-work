@@ -6,7 +6,7 @@ const Pagination = ({ postsPerPage, totalPost, paginate }) => {
     pageNumbers.push(i);
   }
   return (
-    <nav aria-label='Page navigation example'>
+    <div className='d-flex justify-content-center'>
       <ul className='pagination'>
         {pageNumbers.map(number => (
           <li key={number} className='page-item'>
@@ -16,7 +16,7 @@ const Pagination = ({ postsPerPage, totalPost, paginate }) => {
           </li>
         ))}
       </ul>
-    </nav>
+    </div>
   );
 };
 export default Pagination;

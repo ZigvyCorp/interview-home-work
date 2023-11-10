@@ -13,10 +13,25 @@ const BlogPost = ({ post, comments }) => {
     <div className='p-2 border-bottom border-3 border-dark'>
       <div className='card-body'>
         <h1 className='card-title mb-2 text-center fw-bold'>{postTitle}</h1>
-        <h6 className='card-subtitle mb-5 fw-bold d-flex flex-column'>
-          <span className='mb-2'>Author: Adam Levin</span>
-          <span>Created at: {randomDate}</span>
-        </h6>
+        <div className='d-flex justify-content-between flex-wrap mb-4'>
+          <h6 className='card-subtitle mb-5 fw-bold d-flex flex-column'>
+            <span className='mb-2'>Author: Adam Levin</span>
+            <span>Created at: {randomDate}</span>
+          </h6>
+          <div className='btn-container'>
+            <button className='btn btn-sm color-magenta'>magenta</button>
+            <button className='btn btn-sm color-red'>red</button>
+            <button className='btn btn-sm color-volcano'>volcano</button>
+            <button className='btn btn-sm color-orange'>orange</button>
+            <button className='btn btn-sm color-gold'>gold</button>
+            <button className='btn btn-sm color-lime'>lime</button>
+            <button className='btn btn-sm color-green'>green</button>
+            <button className='btn btn-sm color-cyan'>cyan</button>
+            <button className='btn btn-sm color-blue'>blue</button>
+            <button className='btn btn-sm color-geekblue'>geekblue</button>
+            <button className='btn btn-sm color-purple'>purple</button>
+          </div>
+        </div>
         <h6 className='card-text d-flex justify-content-center fw-bold'>
           {postBody.substring(0, 100)}...{' '}
           <a className='' href='/'>

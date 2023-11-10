@@ -23,17 +23,15 @@ const HomePage = () => {
     dispatch(fetchCommentsStart());
   }, [dispatch]);
 
-  const filteredAndPaginatedPosts = () => {
-    const filteredPosts = searchTerm
-      ? posts.filter(post =>
-          post.title.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-      : posts;
+  const filteredPosts = searchTerm
+    ? posts.filter(post =>
+        post.title.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : posts;
 
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    return filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
-  };
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
@@ -47,16 +45,14 @@ const HomePage = () => {
       ) : (
         <>
           <div className='posts'>
-            {filteredAndPaginatedPosts().map(post => (
+            {currentPosts.map(post => (
               <BlogPost key={post.id} post={post} comments={comments} />
             ))}
           </div>
           <div className='container-fluid'>
             <Pagination
               postsPerPage={postsPerPage}
-              totalPost={
-                searchTerm ? posts.length : filteredAndPaginatedPosts().length
-              }
+              totalPost={filteredPosts.length}
               paginate={paginate}
             />
           </div>
