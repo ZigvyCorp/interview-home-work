@@ -15,7 +15,15 @@ export const PostList = () => {
 	return (
 		<div className="">
 			{posts.map((post) => (
-				<Post post={posts} key={post._id} />
+				<Post
+					username={post.username}
+					title={post.title}
+					content={post.content}
+					createdAt={post.createdAt}
+					tags={post.tags}
+					_id={post._id}
+					key={post._id}
+				/>
 			))}
 		</div>
 	);

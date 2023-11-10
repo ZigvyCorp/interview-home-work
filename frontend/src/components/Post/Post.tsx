@@ -1,15 +1,21 @@
 import { useState, useCallback } from "react";
-import { IPosts } from "../../types/posts.type";
+
 import classNames from "classnames/bind";
 import styles from "./Post.module.scss";
 
 import { useSelector } from "react-redux";
 import { RootState } from "../../types/rootState.type";
+import { IUser } from "../../types/user.type";
 
 const cx = classNames.bind(styles);
 
 interface IProps {
-	post: IPosts;
+	_id: string;
+	title: string;
+	username: IUser;
+	content: string;
+	createdAt: string;
+	tags: string[];
 }
 
 interface IColor {
@@ -17,7 +23,14 @@ interface IColor {
 	color: string;
 }
 
-export const Post: React.FC<IProps> = ({ post }) => {
+export const Post = ({
+	_id,
+	title,
+	username,
+	content,
+	createdAt,
+	tags,
+}: IProps) => {
 	const [showComment, setShowcomment] = useState(false);
 	const { comments } = useSelector((state: RootState) => state);
 
@@ -30,7 +43,7 @@ export const Post: React.FC<IProps> = ({ post }) => {
 		}
 		return color;
 	}
-	for (const tag of post.tags) {
+	for (const tag of tags) {
 		const randomColor = getRandomColor();
 		tagColors.push({ tag, color: randomColor });
 	}
@@ -50,23 +63,21 @@ export const Post: React.FC<IProps> = ({ post }) => {
 
 	return (
 		<div className="p-4 border border-top-0 border-4 border-bottom border-dark">
-			<h1 className="text-center fw-bold text-capitalize">
-				{post.title}
-			</h1>
+			<h1 className="text-center fw-bold text-capitalize">{title}</h1>
 			<div className="d-flex justify-content-between align-items-center px-4">
 				<div>
-					<span>Author: {post.username.username}</span>
-					<p>Created at: {new Date(post.createdAt).toDateString()}</p>
+					<span>Author: {username.username}</span>
+					<p>Created at: {new Date(createdAt).toDateString()}</p>
 				</div>
 				<ul className="d-flex list-unstyled flex-wrap">{renderTag}</ul>
 			</div>
-			<p className="px-4">{post?.content}</p>
+			<p className="px-4">{content}</p>
 			<div className="px-4">
 				<button
 					onClick={() => showHandlerButtonComment()}
 					className="border-0 p-2 bg-light"
 				>
-					{comments.find((comment) => comment.postId === post._id)
+					{comments.find((comment) => comment.postId === _id)
 						? comments.length
 						: 0}{" "}
 					replies
@@ -75,7 +86,7 @@ export const Post: React.FC<IProps> = ({ post }) => {
 				{!showComment && (
 					<ul>
 						{comments.map((comment) => {
-							if (post._id === comment.postId) {
+							if (_id === comment.postId) {
 								return (
 									<li className="p-2 list-unstyled">
 										<img
