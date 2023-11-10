@@ -1,5 +1,6 @@
 import {call, put, takeLatest} from 'redux-saga/effects'
 
+// Fetch post from mongodb
 export const getAllPosts = async () => {
     return await fetch('http://localhost:5001/api/posts')
         .then(response => {
@@ -15,6 +16,7 @@ export const getAllPosts = async () => {
         }));
 }
 
+// Fetch comments by post id from mongodb
 export const getPostCommentsByID = async (postId) => {
     return await fetch('http://localhost:5001/api/getCommentsByPostId', { method: 'post', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ postId: postId }) })
         .then(response => response.json())

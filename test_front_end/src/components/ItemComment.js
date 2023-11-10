@@ -3,13 +3,13 @@ export default function ItemComment({ item }) {
         <div>
             <div className="d-inline-flex w-100">
                 <div>
-                <img
-                    className="rounded-circle me-4"
-                    src="https://images.pexels.com/photos/18758628/pexels-photo-18758628/free-photo-of-a-highland-cow-on-a-field.jpeg"
-                    width={60}
-                    height={60} />
+                    <img
+                        className="rounded-circle me-4"
+                        src="https://images.pexels.com/photos/18758628/pexels-photo-18758628/free-photo-of-a-highland-cow-on-a-field.jpeg"
+                        width={60}
+                        height={60} />
                 </div>
-                
+
                 <div className="">
                     <div className="d-inline-flex">
                         <p className="me-2">{item ? item.name : "Temp name"}</p>

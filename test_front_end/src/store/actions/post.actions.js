@@ -1,6 +1,8 @@
+// Action types
 export const FETCH_POST_BEGIN = "FETCH_POST_BEGIN";
 export const FETCH_POST_SUCCESS = "FETCH_POST_SUCCESS";
 export const FETCH_POST_FAILED = "FETCH_POST_FAILED";
+
 
 export const fetch_posts = () => {
     return dispatch => {

@@ -10,6 +10,7 @@ export default function ItemPost({ item }) {
     const [showComments, setShowComments] = useState(false);
 
     const initData = async () => {
+        // Save user data to usestate
         const userData = item.userId;
         console.log('User data:', userData)
         setUser(userData);
