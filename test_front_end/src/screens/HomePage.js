@@ -1,9 +1,11 @@
 import ItemPost from '../components/ItemPost';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { getAllPosts } from '../services/AppService';
+import {fetch_posts} from '../store/actions/post.actions';
 
-export default function HomePage() {
+export function HomePage({onFetchPosts}) {
     const [listPosts, setListPosts] = useState([]);
     const [currentItems, setCurrentItems] = useState(5);
     const [reachedBottom, setReachedBottom] = useState(false);
@@ -48,6 +50,8 @@ export default function HomePage() {
 
     useEffect(() => {
         initData();
+        const test = onFetchPosts;
+        console.log('redux', test)
     }, [])
 
     useEffect(() => {
@@ -103,3 +107,18 @@ export default function HomePage() {
         </div>
     );
 }
+
+const mapStateToProps = state => {
+    return{
+        list: state.list
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        //on_fetch_posts: bindActionCreators(fetch_posts, dispatch)
+        onFetchPosts: () => dispatch(fetch_posts())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

@@ -1,8 +1,22 @@
-import { GET } from '../actions/post.actions';
+import {FETCH_POST_BEGIN, FETCH_POST_FAILED, FETCH_POST_SUCCESS} from '../actions/post.actions'
 
-const PostReducer = (state = { list: 5 }, action) => {
+const PostReducer = (state = { list: [] }, action) => {
     switch (action.type) {
-        case GET: return {list: state.list};
+        case FETCH_POST_SUCCESS:
+            return{
+                ...state,
+                list: action.result
+            };
+        case FETCH_POST_FAILED:
+            return{
+                ...state,
+                list: []
+            };
+        case FETCH_POST_BEGIN:
+            return {
+                ...state,
+                list: []
+            }
         default: return state;
     }
 }
