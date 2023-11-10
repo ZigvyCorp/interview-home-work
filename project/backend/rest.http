@@ -40,7 +40,7 @@ Content-Type: application/json
 }
 ###    
 
-GET http://localhost:8000/api/v1/posts
+GET http://localhost:8000/api/v1/posts?pageIndex=1&pageSize=2
 ###
 
 GET http://localhost:8000/api/v1/posts/1

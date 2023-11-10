@@ -23,6 +23,17 @@ const CommentSchema = new Schema({
         type: Date,
 		default: Date.now,
     }
-}, )
-
+}, {toJSON: {virtuals:true} })
+CommentSchema.virtual('owners', {
+    ref: 'User', 
+    localField: 'owner', 
+    foreignField: 'id', 
+    justOne: true
+  });
+  CommentSchema.virtual('posts', {
+    ref: 'Post', 
+    localField: 'post', 
+    foreignField: 'id', 
+    justOne: true
+  });
 module.exports = mongoose.model('Comment',CommentSchema);

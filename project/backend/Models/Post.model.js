@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const User = require('./User.model')
 const Schema = mongoose.Schema;
 const PostSchema = new Schema({
     id:{
@@ -9,7 +9,8 @@ const PostSchema = new Schema({
     },
     owner:{
         type:Number,
-        required:true
+        required:true,
+        
     },
     title:{
         type:String,
@@ -27,6 +28,11 @@ const PostSchema = new Schema({
         type: Date,
 		default: Date.now,
     }
-}, )
-
+},{toJSON: {virtuals:true} } )
+PostSchema.virtual('owners', {
+    ref: 'User', 
+    localField: 'owner', 
+    foreignField: 'id', 
+    justOne: true
+  });
 module.exports = mongoose.model('Post',PostSchema);

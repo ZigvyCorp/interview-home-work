@@ -9,6 +9,7 @@ module.exports ={
     getList: async (req,res,next)=>{
         try {
             const data = await Comment.find()
+                                
           
             const count = await Comment.countDocuments();
             res.status(200).json({
@@ -81,7 +82,8 @@ module.exports ={
     getOne: async (req,res,next)=>{
         try {
             const data = await Comment.findOne({id:req.params.id})
-          
+                                        .populate("owners")
+                                        .populate("posts")
             
             res.status(200).json({
                 status:'okay',
@@ -96,7 +98,8 @@ module.exports ={
         try {
             const qry = {post:req.params.pid}
             const data = await Comment.find(qry)
-          
+                                        .populate("owners")
+                                        
             const count = await Comment.countDocuments(qry);
             res.status(200).json({
                 status:'okay',

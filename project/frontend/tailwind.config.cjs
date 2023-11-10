@@ -21,6 +21,9 @@ module.exports = {
                     700: '#F9C307',
                 },
             },
+            width: {
+                300: "75rem",
+            }
         },
     },
     plugins: [require('tailwindcss'), require('postcss')],

@@ -1,2 +1,7 @@
-### Demo
--    [demo](https://tgdd-iota.vercel.app)
+### Install library
+
+    - yarn
+
+### Run
+
+    - yarn dev

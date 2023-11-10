@@ -1,29 +1,14 @@
-// import { createSlice } from '@reduxjs/toolkit';
-
-import { GET_LIST_POST, GET_LIST_POST_SUCCESS } from "./postConstant";
-
-// export const postSlice = createSlice({
-//     name: 'post',
-//     initialState: {
-//         allPost: [],
-//     },
-//     reducers: {
-//         setPostList: (state, action) => {
-//             state.allPost = action.payload;
-//         },
-
-//     },
-// });
-// export const { setPostList } = postSlice.actions;
-
-// export default postSlice.reducer;
+import { GET_LIST_POST, GET_LIST_POST_SUCCESS,GET_POST,GET_POST_SUCCESS } from "./postConstant";
 
 const INITIAL_STATE={
-    post:[],
+    posts:[],
+    post:{},
     load:false,
+    total:0
 }
 
 const postsReducer = (state = INITIAL_STATE, action) => {
+    
     switch (action.type) {
         case GET_LIST_POST:
             return {
@@ -31,10 +16,22 @@ const postsReducer = (state = INITIAL_STATE, action) => {
                 load: true,
             };
         case GET_LIST_POST_SUCCESS:
-            const { data } = action.payload;
+            const { elements,total } = action.payload;
             return {
                 ...state,
-                posts: data,
+                posts: elements,
+                load: false,
+                total:total
+            };
+        case GET_POST:
+            return {
+                ...state,
+                load: true,
+            };
+        case GET_POST_SUCCESS:
+            return {
+                ...state,
+                post: action.payload.elements,
                 load: false,
             };
         default:
