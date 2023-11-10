@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Gilda+Display&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --bg-page: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*, body {
+    font-family: 'Gilda Display', serif;
+    background-color: var(--bg-page);
+}
+
+a {
+    text-decoration: none;
+    color:black;
+}
+/* .active { */
+/*     font-weight: 800; */
+/* } */
+a:hover {
+    color: grey;
+}
+
+/* HEADER */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__logo img {
+    width: 200px;
+    object-fit: contain;
+    padding: 2em 0;
+    margin-right: 7em;
+}
+
+.header__content {
+    @apply flex items-center justify-between pr-[1em] grow
+}
+.header__links {
+    font-size: 2rem;
+    margin:0 1em;
+}
