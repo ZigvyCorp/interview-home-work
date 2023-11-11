@@ -1,0 +1,17 @@
+
+export const GET_POSTS = 'GET_POSTS';
+export const GET_POSTS_SUCCESS = 'GET_POSTS_SUCCESS';
+export const GET_POSTS_FAILURE = 'GET_POSTS_FAILURE';
+
+export const OPEN_MODAL = 'OPEN_MODAL';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
+
+export const CREATE_POST = 'CREATE_POST';
+export const CREATE_POST_SUCCESS = 'CREATE_POST_SUCCESS';
+export const CREATE_POST_FAILURE = 'CREATE_POST_FAILURE';
+
+export const FETCH_POST = 'FETCH_POST';
+export const LOAD_MORE_POST = 'LOAD_MORE_POST';
+
+export const INCREASE_COMMENT_COUNT = 'INCREASE_COMMENT_COUNT';
+

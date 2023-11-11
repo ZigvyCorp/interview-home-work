@@ -1,0 +1,9 @@
+.container {
+    padding: 40px;
+    background-color: #fafafa;
+}
+
+.home {
+    max-width: 600px;
+    margin: auto;
+}
