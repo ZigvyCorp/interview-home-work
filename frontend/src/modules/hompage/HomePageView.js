@@ -3,6 +3,7 @@ import './styles/homepage.css'
 import { optionsTag } from '../../util/data';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBlogs, postBlog } from './blogSlice';
+import { postComment } from './commentSlice';
 import { useEffect } from 'react';
 import moment from 'moment'
 import CollapsePanel from 'antd/es/collapse/CollapsePanel';
@@ -10,7 +11,8 @@ import { useForm } from 'antd/es/form/Form';
 import { getComments } from './commentSlice';
 const HomePageView = () => {
 
-    const [form] = useForm()
+    const [form] = useForm();
+    const [commentForm] = useForm();
     const dispatch = useDispatch();
     const { blogs } = useSelector((state) => { return state.blogs });
     const { comments } = useSelector((state) => { return state.comments });
@@ -22,10 +24,20 @@ const HomePageView = () => {
         form.resetFields();
     }
 
+    const onSubmit = (value, item) => {
+
+        const data = {
+            post: item.id,
+            content: value.content
+        }
+        dispatch(postComment(data))
+        commentForm.resetFields();
+    }
+
+
     const onChage = (value, item) => {
 
         if (value[0] === '0') {
-            console.log(item);
             dispatch(getComments(item.id))
         }
     }
@@ -82,15 +94,16 @@ const HomePageView = () => {
                                                 <div className='col-11'>
                                                     <div>
                                                     <Form
-                                                        form={form}
+                                                        form={commentForm}
+                                                        name='commentForm'
                                                         layout="horizontal"
                                                         className='w-100'
-                                                        onFinish={onFinish}
+                                                        onFinish={(value) => onSubmit(value, item)}
                                                     >
                                                         <Form.Item
                                                             name="content"
                                                         >
-                                                            <Input.TextArea placeholder='Content' maxLength={100} />
+                                                            <Input.TextArea placeholder='Comment Here' maxLength={100} />
                                                         </Form.Item>
                                                         <Form.Item>
                                                             <Button type="primary" htmlType="submit">
@@ -112,6 +125,7 @@ const HomePageView = () => {
             <div className='input-post col-4'>
                 <Form
                     form={form}
+                    name='postForm'
                     layout="horizontal"
                     className='w-100'
                     onFinish={onFinish}

@@ -6,7 +6,7 @@ const CommentSchema = new Schema({
     owner: Number,
     post: Number, 
     content: String,
-    create_At: Date
+    create_At: { type: Date, default: Date.now},
 })
 
 module.exports = mongoose.model('comments', CommentSchema)

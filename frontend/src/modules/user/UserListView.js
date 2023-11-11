@@ -4,11 +4,12 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUsers, postUser } from './userSlice';
 import moment from 'moment';
+import { useForm } from 'antd/es/form/Form';
 
 const UserListView = () => {
     const dispatch = useDispatch();
     const selector = useSelector((state) => {return state.users});
-
+    const [form] = useForm() 
     useEffect(() => {
 
         dispatch(getUsers())
@@ -22,21 +23,24 @@ const UserListView = () => {
       ]);
 
     const onFinish = (value) => {
-        // console.log()
+
         dispatch(postUser({...value, dob: moment(new Date(value.dob)).format('DD/MM/YYYY')}))
+        form.resetFields()
+
     }
     return (
         <div className='row m-3'>
-            <div className="ag-theme-alpine col-8" style={{ minHeight: 400 }}>
+            <div className="ag-theme-alpine col-7" style={{ minHeight: 500 }}>
                 <AgGridReact animateRows={true} rowData={selector.users} columnDefs={columnDefs} defaultColDef={{cellStyle: { 'text-align': "left" }}}></AgGridReact>
             </div>
-            <div className='col-4'>
+            <div className='col-5'>
                 <Form
                     labelCol={{ span: 5 }}
                     wrapperCol={{ span: 13 }}
                     layout="horizontal"
                     style={{ maxWidth: 500 }}
                     onFinish={onFinish}
+                    form={form}
                 >
                     <h3>Add User</h3>
                     <Form.Item

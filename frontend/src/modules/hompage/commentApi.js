@@ -1,6 +1,7 @@
 import { takeLatest, call, put } from 'redux-saga/effects'
 import axios from 'axios';
 import { getComments, setComments, postComment } from './commentSlice';
+import { getBlogs } from './blogSlice';
 
 function apiFetchComment(value) {
     return axios.get(process.env.REACT_APP_API_URL + '/comment/' + value)
@@ -13,12 +14,12 @@ function* fecthComment(action) {
 }
 
 function apiPostComment(value) {
-   return axios.post(process.env.REACT_APP_API_URL + '/comment/' + value)
+   return axios.post(process.env.REACT_APP_API_URL + '/comment', value)
 }
 
 function* postCommentData(action) {
     yield call(apiPostComment, action.payload)
-    yield put(getComments())
+    yield put(getBlogs())
     
 }
 
