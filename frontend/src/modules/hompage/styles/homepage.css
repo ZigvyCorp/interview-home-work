@@ -27,3 +27,8 @@ h2 {
 .ant-collapse-content-box {
     border-top: 1px solid gray;
 }
+
+.ant-form-item-control-input-content {
+    display: flex;
+    justify-content: end;
+}

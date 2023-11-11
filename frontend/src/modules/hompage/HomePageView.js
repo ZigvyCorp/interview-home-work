@@ -32,9 +32,10 @@ const HomePageView = () => {
 
     return (
         <div className='homepage row'>
-            <div className='col-8'> {blogs.map(item => {
+            <div className='col-8'> 
+            {blogs.map((item, i) => {
                 return (
-                    <div className='post'>
+                    <div key={i} className='post'>
                         <h2>{item.title}</h2>
                         <div className='body'>
                             <div className='body-head row'>
@@ -44,8 +45,8 @@ const HomePageView = () => {
                                 </div>
                                 <div className='all-tag col'>
                                     <Space size={[0, 8]} wrap>
-                                        {item.tags.map(tag => {
-                                            return <Tag color={tag}>{tag}</Tag>
+                                        {item.tags.map((tag, ind) => {
+                                            return <Tag key={ind} color={tag}>{tag}</Tag>
                                         })}
 
                                     </Space>
@@ -58,8 +59,8 @@ const HomePageView = () => {
                             <div className='comment'>
                                 <Collapse ghost onChange={(value) => onChage(value, item)}>
                                     <CollapsePanel header={`${item.comment_infor.length ?? 0} relies`}>
-                                        {comments.map(comment => {
-                                            return <div className='row' style={{ marginBottom: 30 }}>
+                                        {comments.map((comment, index) => {
+                                            return <div key={index} className='row' style={{ marginBottom: 30 }}>
                                                 <div className='col-1'>
                                                     <Avatar />
                                                 </div>
@@ -74,9 +75,35 @@ const HomePageView = () => {
                                                 </div>
                                             </div>;
                                         })}
-
+                                        <div className='row' style={{ marginBottom: 30 }}>
+                                                <div className='col-1'>
+                                                    <Avatar />
+                                                </div>
+                                                <div className='col-11'>
+                                                    <div>
+                                                    <Form
+                                                        form={form}
+                                                        layout="horizontal"
+                                                        className='w-100'
+                                                        onFinish={onFinish}
+                                                    >
+                                                        <Form.Item
+                                                            name="content"
+                                                        >
+                                                            <Input.TextArea placeholder='Content' maxLength={100} />
+                                                        </Form.Item>
+                                                        <Form.Item>
+                                                            <Button type="primary" htmlType="submit">
+                                                                Submit
+                                                            </Button>
+                                                        </Form.Item>
+                                                    </Form>
+                                                    </div>
+                                                </div>
+                                        </div>
                                     </CollapsePanel>
                                 </Collapse>
+                                
                             </div>
                         </div>
                     </div>
