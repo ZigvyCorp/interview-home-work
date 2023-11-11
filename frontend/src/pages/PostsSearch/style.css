@@ -1,0 +1,13 @@
+.posts__search {
+    max-width: 600px;
+    margin: 30px auto;
+}
+
+.posts__search--title {
+    text-align: center;
+}
+
+.spin {
+    margin-top: 100px;
+    text-align: center;
+}

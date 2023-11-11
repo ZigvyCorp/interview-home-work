@@ -11,7 +11,8 @@ const postController = {
                 message: "Create post successfully!",
                 post: {
                     ...newPost._doc,
-                    owner: req.user
+                    owner: req.user,
+                    comments_count: 0
                 }
             });
         } catch (err) {
@@ -20,33 +21,80 @@ const postController = {
     },
     getPosts: async (req, res) => {
         try {
-            const { page, perPage } = req.query;
+            let { page, perPage } = req.query;
 
-            const posts = await Posts.find()
-                .populate("owner").sort('-created_at')
-                .skip((page * perPage) - perPage)
-                .limit(perPage);
+            page = parseInt(page);
+            perPage = parseInt(perPage);
 
-            const totalPost = await Posts.countDocuments();
+            let skip = (page - 1) * perPage;
+            let limit = perPage;
+
+            let query = [
+                {
+                    $lookup: {
+                        from: "users",
+                        localField: "owner",
+                        foreignField: "_id",
+                        as: "owner"
+                    }
+                },
+                {
+                    $unwind: "$owner"
+                },
+            ];
+
+            let keyword = req.query.keyword || "";
+
+            if (keyword) {
+                query.push({
+                    $match: {
+                        $or: [
+                            {
+                                title: { $regex: req.query.keyword }
+                            }
+                        ]
+                    }
+                });
+            }
+
+            const totalPost = await Posts.countDocuments({ title: { $regex: keyword, $options: "i" } });
+
+            query.push({
+                $sort: {
+                    created_at: -1
+                }
+            });
+
+            query.push({
+                $skip: skip
+            });
+
+            query.push({
+                $limit: limit
+            });
+
+            query.push({
+                $project: {
+                    "_id": 1,
+                    "title": 1,
+                    "content": 1,
+                    "tags": 1,
+                    "owner": 1,
+                    "created_at": 1,
+                    "comments_count": { $size: { "$ifNull": ["$comments", []] } },
+                }
+            });
+
+            const posts = await Posts.aggregate(query);
 
             return res.status(httpStatus.OK).send({
                 message: "Get posts successfully!",
                 posts,
-                perPage: parseInt(perPage),
-                currentPage: parseInt(page),
+                perPage: perPage,
+                currentPage: page,
                 totalItems: totalPost,
-                totalPages: Math.ceil(totalPost / perPage)
+                totalPages: Math.ceil(totalPost / parseInt(perPage))
             });
-
-        } catch (err) {
-            return res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err);
-        }
-    },
-    searchPosts: async (req, res) => {
-        try {
-            console.log(req.query.keyword);
-            // const posts = await Post.find({})
-
         } catch (err) {
             return res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err);
         }

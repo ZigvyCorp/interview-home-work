@@ -1,27 +1,42 @@
-import React from 'react';
 import dayjs from 'dayjs';
-import PostCardComment from './PostCardComment';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { CommentOutlined } from '@ant-design/icons';
 import { Card, Flex, Space, Typography, Tag, Button, Collapse } from 'antd';
-import { shortedString } from '../../utils/formatString';
+
 import { COLORS } from '../../config';
 import { getRandom } from '../../utils/random';
+import { shortedString } from '../../utils/formatString';
+import PostCardCommentSection from './PostCardCommentSection';
+import { getCommentByPost } from '../../store/comment/action';
 
 const PostCard = ({ post }) => {
-    const { title, content, owner, tags, created_at, _id } = post;
+
+    const { title, content, owner, tags, created_at, _id, comments_count } = post;
+    const [isFetch, setIsFetch] = useState(false);
+    const dispatch = useDispatch();
+
+    const handleChange = () => {
+        if (!isFetch) {
+            return dispatch(getCommentByPost(_id));
+        }
+        setIsFetch(true);
+    };
+
     return (
         <Card actions={[
             <Collapse
                 ghost
+                onChange={handleChange}
                 items={[
                     {
                         key: 'comments',
-                        label: <Button type="text">
-                            <Typography.Text strong>4</Typography.Text>
+                        showArrow: false,
+                        label: <Button type="text" >
+                            <Typography.Text strong>{comments_count}</Typography.Text>
                             <CommentOutlined />
                         </Button>,
-                        children: <PostCardComment postid={_id} />,
-                        showArrow: false
+                        children: <PostCardCommentSection postId={_id} />,
                     },
                 ]}
             />

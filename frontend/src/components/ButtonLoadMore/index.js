@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'antd';
@@ -9,7 +8,6 @@ const ButtonLoadMore = () => {
     const dispatch = useDispatch();
 
     const { posts, isLoadMore } = useSelector(state => state.post);
-
     const { currentPage, totalPages, perPage } = posts;
     const hasMorePosts = currentPage < totalPages;
 

@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-
-import { Form, Input, Button, DatePicker, message } from 'antd';
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Form, Input, Button, DatePicker, Typography } from 'antd';
 
 import { register } from '../store/auth/actions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,13 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 const Register = () => {
 
   const dispatch = useDispatch();
-  const { isLoading, error } = useSelector(state => state.auth);
-
-  useEffect(() => {
-    if (error != null) {
-      message.error(`${error}`);
-    }
-  }, [error]);
+  const navigate = useNavigate();
+  const { isLoading } = useSelector(state => state.auth);
 
   return (
     <Form
@@ -31,9 +26,11 @@ const Register = () => {
         let { cf_password, dob, ...other } = values;
         dob = dob.format('DD-MM-YYYY');
         const formData = { ...other, dob };
-        dispatch(register(formData));
+        dispatch(register(formData, navigate));
       }}
     >
+      <Typography.Title level={3} style={{ textAlign: 'center' }}>Register</Typography.Title>
+
       <Form.Item
         label="Username"
         name="username"
@@ -42,6 +39,7 @@ const Register = () => {
             required: true,
             message: 'Please input your username!',
           },
+          { min: 6, message: 'Username must be minimum 6 characters.' },
         ]}
       >
         <Input />
@@ -56,6 +54,7 @@ const Register = () => {
             required: true,
             message: 'Please input your password!',
           },
+          { min: 6, message: 'Username must be minimum 6 characters.' },
         ]}
       >
         <Input.Password />
@@ -109,6 +108,10 @@ const Register = () => {
       >
         <DatePicker format={'DD-MM-YYYY'} style={{ width: '100%' }} />
       </Form.Item>
+
+      <Link to='/login'>
+        <Typography.Title level={5} style={{ marginBottom: "20px", color: '#ff4d4f', textAlign: 'right' }}>Login now</Typography.Title>
+      </Link>
 
       <Form.Item>
         <Button type="primary" htmlType="submit" block loading={isLoading}>

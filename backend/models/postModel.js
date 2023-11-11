@@ -9,10 +9,8 @@ const postSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    // comments: [{ type: mongoose.Types.ObjectId, ref: 'Comment' }],
-    owner: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'User'
-    },
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
+    owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     tags: [{ type: String }],
     created_at: {
         type: Date,

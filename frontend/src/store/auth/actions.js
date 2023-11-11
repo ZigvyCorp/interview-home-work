@@ -16,9 +16,9 @@ export const loginFailure = () => ({
 });
 
 //register
-export const register = (formData) => ({
+export const register = (formData, navigate) => ({
     type: REGISTER,
-    payload: { formData }
+    payload: { formData, navigate }
 });
 
 export const registerSuccess = () => ({

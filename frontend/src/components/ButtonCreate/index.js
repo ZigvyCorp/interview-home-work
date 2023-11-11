@@ -1,17 +1,25 @@
 import React from 'react';
-
 import { Button } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
 import { useDispatch } from 'react-redux';
+import { UploadOutlined } from '@ant-design/icons';
 import { openModal } from '../../store/post/actions';
 
 const ButtonCreate = () => {
     const dispatch = useDispatch();
 
+    const handleClick = () => {
+        dispatch(openModal());
+
+    };
+
     return (
-        <Button type='primary' icon={<UploadOutlined />} style={{ marginBlock: '20px' }} onClick={() => {
-            dispatch(openModal());
-        }}>
+        <Button
+            type='dashed'
+            color=''
+            icon={<UploadOutlined />}
+            style={{ marginBottom: '30px' }}
+            onClick={handleClick}
+        >
             Create Post
         </Button>
     );

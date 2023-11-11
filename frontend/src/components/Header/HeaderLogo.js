@@ -1,9 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { default as logo } from '../../logo.svg';
 
 const HeaderLogo = () => {
     return (
-        <img src={logo} style={{ width: '70px', height: '70px' }} alt="logo" />
+        <Link to={'/'}>
+            <img
+                src={logo}
+                alt="logo"
+                style={{ width: '50px', height: '50px', verticalAlign: 'middle' }}
+            />
+        </Link>
     );
 };
 

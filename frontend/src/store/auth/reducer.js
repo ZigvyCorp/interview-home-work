@@ -6,7 +6,6 @@ const initialState = {
     token: getToken(),
     currentUser: null,
     isAuthenticated: false,
-    error: null
 };
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -14,7 +13,6 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: true,
-                error: null
             };
         case REGISTER_SUCCESS:
             return {
@@ -25,7 +23,6 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                error: action.payload
             };
         case LOGIN:
             return {

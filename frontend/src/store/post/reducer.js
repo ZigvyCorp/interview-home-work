@@ -1,20 +1,20 @@
-import { DEFAULT_PER_PAGE } from '../../config';
-import { CLOSE_MODAL, CREATE_POST_FAILURE, CREATE_POST_SUCCESS, GET_POSTS, GET_POSTS_FAILURE, GET_POSTS_SUCCESS, LOAD_MORE_POST, OPEN_MODAL } from './actionTypes';
+import { getDefaultPaging } from '../../utils/getPaging';
+import { CLOSE_MODAL, CREATE_POST_FAILURE, CREATE_POST_SUCCESS, FETCH_POST, GET_POSTS, GET_POSTS_FAILURE, GET_POSTS_SUCCESS, INCREASE_COMMENT_COUNT, LOAD_MORE_POST, OPEN_MODAL } from './actionTypes';
 
 const initialState = {
-    posts: {
-        list: [],
-        perPage: DEFAULT_PER_PAGE,
-        currentPage: 0,
-        totalItems: 0,
-        totalPages: 0
-    },
+    posts: getDefaultPaging(),
     isOpenModal: false,
-    isLoadMore: false
+    isLoadMore: false,
+    isFetching: false
 };
 
 const postReducer = (state = initialState, action) => {
     switch (action.type) {
+        case FETCH_POST:
+            return {
+                ...state,
+                isFetching: true
+            };
         case GET_POSTS:
             return {
                 ...state,
@@ -32,11 +32,13 @@ const postReducer = (state = initialState, action) => {
                     totalPages: action.payload.totalPages,
                     totalItems: action.payload.totalItems
                 },
-                isLoadMore: false
+                isFetching: false,
+                isLoadMore: false,
             };
         case GET_POSTS_FAILURE:
             return {
                 ...state,
+                isFetching: false
             };
         case OPEN_MODAL:
             return {
@@ -68,6 +70,16 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoadMore: true
+            };
+        }
+        case INCREASE_COMMENT_COUNT: {
+            let newList = state.posts.list.map(item => ({ ...item, comments_count: (item._id === action.payload) ? item.comments_count + 1 : item.comments_count }));
+            return {
+                ...state,
+                posts: {
+                    ...state.posts,
+                    list: newList
+                }
             };
         }
         default:

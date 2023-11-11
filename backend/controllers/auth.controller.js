@@ -1,6 +1,5 @@
-const httpStatus = require('http-status');
 const bcrypt = require('bcryptjs');
-
+const httpStatus = require('http-status');
 const Users = require('../models/userModel');
 const generateToken = require('../utils/jwt');
 
@@ -36,14 +35,14 @@ const authController = {
             const user = await Users.findOne({ username });
             if (!user) {
                 return res.status(httpStatus.NOT_FOUND).send({
-                    message: "Username not found!"
+                    message: "Invalid Credentials!"
                 });
             }
 
             const isValidPassword = await bcrypt.compareSync(password, user.password);
             if (!isValidPassword) {
                 return res.status(httpStatus.BAD_REQUEST).send({
-                    message: "Wrong password!"
+                    message: "Invalid Credentials!"
                 });
             }
 

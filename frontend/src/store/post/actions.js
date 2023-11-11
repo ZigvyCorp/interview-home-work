@@ -1,10 +1,11 @@
-import { CLOSE_MODAL, CREATE_POST, CREATE_POST_SUCCESS, GET_POSTS, GET_POSTS_FAILURE, GET_POSTS_SUCCESS, LOAD_MORE_POST, OPEN_MODAL } from "./actionTypes";
+import { CLOSE_MODAL, CREATE_POST, CREATE_POST_SUCCESS, FETCH_POST, GET_POSTS, GET_POSTS_FAILURE, GET_POSTS_SUCCESS, INCREASE_COMMENT_COUNT, LOAD_MORE_POST, OPEN_MODAL } from "./actionTypes";
 
-export const getPosts = ({ currentPage, perPage }) => ({
+export const getPosts = ({ currentPage, perPage, ...restParams }) => ({
     type: GET_POSTS,
     payload: {
         currentPage,
-        perPage
+        perPage,
+        ...restParams
     }
 });
 
@@ -35,6 +36,15 @@ export const createPostSuccess = (post) => ({
     payload: post
 });
 
+export const fetchingPost = () => ({
+    type: FETCH_POST
+});
+
 export const loadMorePost = () => ({
     type: LOAD_MORE_POST
+});
+
+export const increaseCommentCount = (postId) => ({
+    type: INCREASE_COMMENT_COUNT,
+    payload: postId
 });

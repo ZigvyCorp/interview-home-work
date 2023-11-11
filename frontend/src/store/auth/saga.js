@@ -1,16 +1,18 @@
+import { toast } from 'react-toastify';
 import { takeEvery, call, put } from 'redux-saga/effects';
 
 import authService from '../../services/auth';
-
 import { GET_ME, LOGIN, REGISTER } from './actionTypes';
-import { getMe, getMeSuccess, loginFailure, loginSuccess, logout, registerFailure } from './actions';
+import { getMe, getMeSuccess, loginFailure, loginSuccess, logout, registerFailure, registerSuccess } from './actions';
 
-function* registerSaga({ payload: { formData } }) {
+function* registerSaga({ payload: { formData, navigate } }) {
     try {
         const res = yield call(authService.register, formData);
-        console.log("Res: ", res);
+        toast.success(res.data.message);
+        yield put(registerSuccess());
+        navigate('/login');
     } catch (err) {
-        console.log('Register err: ', err);
+        toast.error(err.message);
         yield put(registerFailure(err.message));
     }
 }
@@ -23,7 +25,7 @@ function* loginSaga({ payload: { formData, navigate } }) {
         yield put(getMe());
         navigate('/');
     } catch (err) {
-        console.log("Login err: ", err);
+        toast.error(err.message);
         yield put(loginFailure());
     }
 }

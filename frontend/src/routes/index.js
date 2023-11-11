@@ -3,13 +3,13 @@ import { useRoutes } from 'react-router-dom';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
-import DetailPost from '../pages/DetailPost';
 import PageNotFound from '../pages/PageNotFound';
 
 import MainLayout from '../layouts/MainLayout';
 
 import AuthGourd from '../guards/AuthGourd';
 import GuestGuard from '../guards/GuestGuard';
+import PostsSearch from '../pages/PostsSearch';
 
 const Router = () => {
     return useRoutes([
@@ -24,9 +24,9 @@ const Router = () => {
                     index: true
                 },
                 {
-                    path: '/posts/:id',
-                    element: <DetailPost />
-                },
+                    path: '/search',
+                    element: <PostsSearch />
+                }
             ]
         },
         {

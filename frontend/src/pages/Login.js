@@ -1,7 +1,8 @@
 import React from 'react';
-import { Form, Input, Button } from 'antd';
+import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Form, Input, Button, Typography } from 'antd';
+
 import { login } from '../store/auth/actions';
 
 const Login = () => {
@@ -11,6 +12,7 @@ const Login = () => {
     const { isLoading } = useSelector(state => state.auth);
 
     return (
+
         <Form
             layout='vertical'
             autoComplete="off"
@@ -25,6 +27,7 @@ const Login = () => {
                 dispatch(login(values, navigate));
             }}
         >
+            <Typography.Title level={3} style={{ textAlign: 'center' }}>Login</Typography.Title>
             <Form.Item
                 label="Username"
                 name="username"
@@ -50,7 +53,9 @@ const Login = () => {
             >
                 <Input.Password />
             </Form.Item>
-
+            <Link to='/register'>
+                <Typography.Title level={5} style={{ marginBottom: "20px", color: '#ff4d4f', textAlign: 'right' }}>Register now</Typography.Title>
+            </Link>
             <Form.Item>
                 <Button type="primary" htmlType="submit" block loading={isLoading}>
                     Login
