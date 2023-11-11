@@ -1,0 +1,122 @@
+/* App.css */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.ant-menu-horizontal > .ant-menu-item-selected {
+  border-bottom: none !important;
+}
+.logo {
+  font-size: 40px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.layout {
+  min-height: 100vh;
+}
+
+.content {
+  padding: 50px;
+  background-color: #fff;
+  min-height: calc(100vh - 134px);
+}
+
+.site-layout-content {
+  margin: 24px 16px;
+  padding: 24px;
+  background-color: #fff;
+  min-height: 280px;
+}
+
+.footer {
+  text-align: center;
+  background-color: #001529;
+  color: #fff;
+  padding: 16px;
+}
+
+/* Styling for the menu */
+.ant-menu-item {
+  font-size: 16px;
+  line-height: 64px;
+}
+
+.ant-menu-horizontal {
+  border-bottom: none;
+}
+
+.ant-menu-horizontal > .ant-menu-item-selected {
+  background-color: transparent;
+  border-bottom: 2px solid #1890ff;
+}
+
+.ant-menu-horizontal > .ant-menu-item-selected > a {
+  color: #1890ff;
+}
+
+/* Styling for the login and register forms */
+.ant-form-item-label {
+  text-align: left;
+}
+
+.ant-form-item-required:before {
+  display: none;
+}
+
+/* Styling for buttons */
+.ant-btn-primary {
+  background-color: #1890ff;
+  border-color: #1890ff;
+}
+
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+  background-color: #40a9ff;
+  border-color: #40a9ff;
+}
+
+/* Styling for post list */
+.post-list-item {
+  margin-bottom: 16px;
+}
+
+.post-list-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.post-list-date {
+  color: #999;
+}
+
+/* Styling for post detail */
+.post-detail-content {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Styling for profile form */
+.profile-form-label {
+  width: 120px;
+}
+
+.profile-form-field {
+  width: 200px;
+}
+
+/* Styling for create post form */
+.create-post-form-label {
+  width: 120px;
+}
+
+.create-post-form-field {
+  width: 400px;
+}
+
+/* Styling for error messages */
+.error-message {
+  color: #f5222d;
+}

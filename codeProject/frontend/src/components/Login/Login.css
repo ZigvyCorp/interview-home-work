@@ -1,0 +1,110 @@
+:root {
+  --blue-5: #123456;
+  --blue: #1890ff;
+  --lightblue: #e6f7ff;
+  --green: #52c41a;
+  --green2: #73d13d;
+  --card-shadow: 0 4px 16px #e6e6e6;
+}
+.ant-card-body {
+  box-shadow: var(--card-shadow);
+}
+
+.ant-input:focus,
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused {
+  border-color: var(--blue-5);
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+}
+
+.ant-input:hover,
+.ant-input-affix-wrapper:hover {
+  border-color: var(--blue-5);
+}
+
+.ant-form-item-has-error .ant-input-affix-wrapper {
+  box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
+}
+
+a.ant-typography,
+.ant-typography a,
+a,
+a.ant-typography:focus,
+.ant-typography a:focus,
+a.ant-typography:hover,
+.ant-typography a:hover {
+  color: var(--blue-5);
+}
+
+.side-logo {
+  padding: 13px 30px;
+  height: 70px;
+  transition: all 0.25s ease-out;
+}
+
+.ant-layout-sider-collapsed .side-logo {
+  padding: 20px 10px;
+  transition: all 0.25s ease-out;
+}
+
+.container-center {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-section {
+  margin-bottom: 30px;
+}
+
+.field-section {
+  margin-bottom: 15px;
+}
+
+.content-blue {
+  background-color: var(--blue);
+  color: white;
+}
+
+.typo-pointer {
+  cursor: pointer;
+}
+
+.typo-blue {
+  color: var(--blue-5);
+}
+
+.typo-grey {
+  margin: 5px 0;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.typo-bold {
+  font-weight: 600;
+}
+
+.typo-center {
+  text-align: center;
+}
+
+.typo-right {
+  text-align: right;
+}
+
+.margin-auto {
+  margin: auto;
+}
+
+.btn-green {
+  background-color: var(--green);
+  border-color: var(--green);
+  color: white;
+}
+
+.btn-green:hover,
+.btn-green:focus {
+  background-color: var(--green2);
+  border-color: var(--green2);
+}
