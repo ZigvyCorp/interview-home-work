@@ -2,19 +2,19 @@ import { Schema, Types, model } from 'mongoose';
 
 const CommentSchema = new Schema(
   {
-    _id: Number,
+    // _id: {type:Number,unique:true},
     owner: {
-      type: Number,
+      type: Types.ObjectId,
       ref: 'User',
     },
     post: {
-      type: Number,
+      type: Types.ObjectId,
       ref: 'Post',
     },
-    content: String,
-    created_at: Date,
-  },
-  { _id: false }
+    content: { type: String, require: true },
+    created_at: { type: Date, default: Date.now },
+  }
+  // { _id: false }
 );
 
 export const Comment = model('Comment', CommentSchema);

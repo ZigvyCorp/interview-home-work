@@ -1,18 +1,14 @@
 import { Schema, Types, model } from 'mongoose';
 
-const postSchema = new Schema(
-  {
-    _id: Number,
-    owner: {
-      type: Number,
-      ref: 'User',
-    },
-    title: String,
-    content: String,
-    created_at: Date,
-    tags: [String],
+const postSchema = new Schema({
+  owner: {
+    type: Types.ObjectId,
+    ref: 'User',
   },
-  { _id: false }
-);
+  title: { type: String, require: true },
+  content: { type: String, require: true },
+  created_at: { type: Date, default: Date.now },
+  tags: [String],
+});
 
 export const Post = model('Post', postSchema);
