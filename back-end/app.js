@@ -9,6 +9,9 @@ var postsRouter = require('./routes/posts');
 var commentsRouter = require('./routes/comments');
 var usersRouter = require('./routes/users');
 
+require('dotenv').config();
+require('./config/db');
+
 var app = express();
 
 // view engine setup
