@@ -2,7 +2,9 @@ const Comment = require("../models/comment.model");
 
 const getComments = async (req, res) => {
     try {
-        const comments = await Comment.find();
+        const { postId } = req.query;
+        const query = postId ? { postId } : {};
+        const comments = await Comment.find(query);
         res.json(comments);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -10,5 +12,5 @@ const getComments = async (req, res) => {
 };
 
 module.exports = {
-    getComments
+    getComments,
 }
