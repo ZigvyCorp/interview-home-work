@@ -1,4 +1,5 @@
 const Post = require("../models/post.model");
+const Comment = require("../models/comment.model");
 
 const getPosts = async (req, res) => {
     try {
@@ -19,7 +20,18 @@ const getPostById = async (req, res) => {
     }
 };
 
+const getCommentFromPost = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const comments = await Comment.find({ postId: id });
+        res.json(comments);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
 module.exports = {
     getPosts,
-    getPostById
+    getPostById,
+    getCommentFromPost
 }
