@@ -14,11 +14,25 @@ function Post() {
 				Quibusdam expedita repudiandae minus culpa quis, veritatis,
 				voluptatem dolore tempore explicabo, quidem sit!
 			</p>
-			<section>
-				<span className="text-secondary">
+			<div>
+				<span
+					className="text-secondary"
+					role="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#commentContainer"
+					aria-expanded="false"
+					aria-controls="commentContainer"
+				>
 					<em>2 replies</em>
 				</span>
-			</section>
+				<div className="collapse" id="commentContainer">
+					<div className="card card-body">
+						Some placeholder content for the collapse component.
+						This panel is hidden by default but revealed when the
+						user activates the relevant trigger.
+					</div>
+				</div>
+			</div>
 		</article>
 	);
 }
