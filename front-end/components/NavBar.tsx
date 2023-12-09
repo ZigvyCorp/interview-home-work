@@ -5,19 +5,28 @@ import Link from "next/link";
 
 function NavBar() {
 	return (
-		<nav className={styles.navBar}>
-			<Link href="/">
-				<Image
-					src="/vercel.svg"
-					alt="Vercel Logo"
-					width={72}
-					height={16}
-				/>
-			</Link>
-			<Link href="/">Blogs</Link>
-			<Link href="/posts/1">
-				<div>Account</div>
-			</Link>
+		<nav className={`navbar bg-body-tertiary`}>
+			<div className="container-fluid">
+				<Link href="/" className="navbar-brand">
+					<Image
+						src="/vercel.svg"
+						alt="Vercel Logo"
+						width={72}
+						height={16}
+					/>
+				</Link>
+				<ul className="navbar-nav">
+					<li className="nav-item">
+						<Link href="/" className="nav-link">
+							Blogs
+						</Link>
+					</li>
+				</ul>
+				<div className="d-flex gap-2 align-items-center">
+					<Image src="/cat.png" alt="User" width={32} height={32} />
+					<span>Account</span>
+				</div>
+			</div>
 		</nav>
 	);
 }
