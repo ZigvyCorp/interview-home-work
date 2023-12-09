@@ -6,7 +6,6 @@ import Post from "@/components/Post";
 export default function Home() {
 	return (
 		<main className={styles.main}>
-			<NavBar />
 			<Post />
 		</main>
 	);
