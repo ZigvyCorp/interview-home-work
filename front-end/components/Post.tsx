@@ -1,8 +1,9 @@
 import React from "react";
+import Comment from "./Comment";
 
 function Post() {
 	return (
-		<article className={`container`}>
+		<article>
 			<h1 className="text-center">Title</h1>
 			<div className="d-flex flex-column">
 				<span>Author: username</span>
@@ -25,11 +26,11 @@ function Post() {
 				>
 					<em>2 replies</em>
 				</span>
-				<div className="collapse" id="commentContainer">
-					<div className="card card-body">
-						Some placeholder content for the collapse component.
-						This panel is hidden by default but revealed when the
-						user activates the relevant trigger.
+				<div className="collapse py-3" id="commentContainer">
+					<div className="d-flex flex-column gap-4">
+						<Comment />
+						<Comment />
+						<Comment />
 					</div>
 				</div>
 			</div>
