@@ -1,6 +1,6 @@
 import Post from "@/components/Post";
 
-type Post = {
+type BlogPost = {
 	id: number;
 	userId: number;
 	title: string;
@@ -13,7 +13,7 @@ export default async function Home() {
 
 	return (
 		<main className="container mt-3">
-			{posts.map((post: Post) => (
+			{posts.map((post: BlogPost) => (
 				<Post key={post.id} {...post} createdAt={new Date()} />
 			))}
 		</main>

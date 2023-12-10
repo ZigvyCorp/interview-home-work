@@ -1,7 +1,7 @@
 import React from "react";
 import Comment from "./Comment";
 
-type Post = {
+type BlogPost = {
 	id: number;
 	userId: number;
 	title: string;
@@ -9,12 +9,23 @@ type Post = {
 	createdAt: Date;
 };
 
-function Post({ id, userId, title, body, createdAt }: Post) {
+type Comment = {
+	id: number;
+	postId: number;
+	name: string;
+	email: string;
+	body: string;
+};
+
+async function Post({ id, userId, title, body, createdAt }: BlogPost) {
+	const comments = await getComments(id);
+	const author = await getAuthorDetails(userId);
+	console.log(id, comments.length);
 	return (
 		<article>
 			<h1 className="text-center">{title}</h1>
 			<div className="d-flex flex-column">
-				<span>Author: {userId}</span>
+				<span>Author: {author.name}</span>
 				<span>{`Created at: ${createdAt.toLocaleDateString()}`}</span>
 			</div>
 			<p className="my-3">{body}</p>
@@ -23,23 +34,45 @@ function Post({ id, userId, title, body, createdAt }: Post) {
 					className="text-secondary"
 					role="button"
 					data-bs-toggle="collapse"
-					data-bs-target="#commentContainer"
+					data-bs-target={`#commentContainer-${id}`}
 					aria-expanded="false"
-					aria-controls="commentContainer"
+					aria-controls={`commentContainer-${id}`}
 				>
-					<em>2 replies</em>
+					<em>{`${comments.length} replies`}</em>
 				</span>
 				<hr />
-				<div className="collapse py-2" id="commentContainer">
+				<div className="collapse py-2" id={`commentContainer-${id}`}>
 					<div className="d-flex flex-column gap-4">
-						<Comment />
-						<Comment />
-						<Comment />
+						{comments.map((comment: Comment) => (
+							<Comment key={comment.id} {...comment} />
+						))}
 					</div>
 				</div>
 			</div>
 		</article>
 	);
+}
+
+async function getComments(postId: number) {
+	const res = await fetch(
+		`https://jsonplaceholder.typicode.com/posts/${postId}/comments`
+	);
+
+	if (!res.ok) {
+		throw new Error("Failed to fetch data");
+	}
+
+	return res.json();
+}
+
+async function getAuthorDetails(id: number) {
+	const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
+
+	if (!res.ok) {
+		throw new Error("Failed to fetch data");
+	}
+
+	return res.json();
 }
 
 export default Post;
