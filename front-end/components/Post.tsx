@@ -1,20 +1,22 @@
 import React from "react";
 import Comment from "./Comment";
 
-function Post() {
+type Post = {
+	id: number;
+	userId: number;
+	title: string;
+	body: string;
+};
+
+function Post({ id, userId, title, body }: Post) {
 	return (
 		<article>
-			<h1 className="text-center">Title</h1>
+			<h1 className="text-center">{title}</h1>
 			<div className="d-flex flex-column">
-				<span>Author: username</span>
-				<span>Created at: 1/1/1111</span>
+				<span>Author: {userId}</span>
+				<span>Created at: 01/01/1111</span>
 			</div>
-			<p className="my-3">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-				modi optio aperiam nisi quisquam, atque blanditiis dicta.
-				Quibusdam expedita repudiandae minus culpa quis, veritatis,
-				voluptatem dolore tempore explicabo, quidem sit!
-			</p>
+			<p className="my-3">{body}</p>
 			<div>
 				<span
 					className="text-secondary"
@@ -26,7 +28,8 @@ function Post() {
 				>
 					<em>2 replies</em>
 				</span>
-				<div className="collapse py-3" id="commentContainer">
+				<hr />
+				<div className="collapse py-2" id="commentContainer">
 					<div className="d-flex flex-column gap-4">
 						<Comment />
 						<Comment />

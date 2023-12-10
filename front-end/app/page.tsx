@@ -1,9 +1,30 @@
 import Post from "@/components/Post";
 
-export default function Home() {
+type Post = {
+	id: number;
+	userId: number;
+	title: string;
+	body: string;
+};
+
+export default async function Home() {
+	const posts = await getPosts();
+
 	return (
 		<main className="container mt-3">
-			<Post />
+			{posts.map((post: Post) => (
+				<Post key={post.id} {...post} />
+			))}
 		</main>
 	);
+}
+
+async function getPosts() {
+	const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+
+	if (!res.ok) {
+		throw new Error("Failed to fetch data");
+	}
+
+	return res.json();
 }
