@@ -1,5 +1,6 @@
 import React from "react";
 import Comment from "./Comment";
+import Link from "next/link";
 
 type BlogPost = {
 	id: number;
@@ -20,10 +21,17 @@ type PostComment = {
 async function Post({ id, userId, title, body, createdAt }: BlogPost) {
 	const comments = await getComments(id);
 	const author = await getAuthorDetails(userId);
-	console.log(id, comments.length);
+
 	return (
 		<article>
-			<h1 className="text-center">{title}</h1>
+			<h1 className="text-center">
+				<Link
+					className="text-decoration-none text-dark"
+					href={`/posts/${id}`}
+				>
+					{title}
+				</Link>
+			</h1>
 			<div className="d-flex flex-column">
 				<span>Author: {author.name}</span>
 				<span>{`Created at: ${createdAt.toLocaleDateString()}`}</span>
