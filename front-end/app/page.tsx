@@ -5,6 +5,7 @@ type Post = {
 	userId: number;
 	title: string;
 	body: string;
+	createdAt: Date;
 };
 
 export default async function Home() {
@@ -13,7 +14,7 @@ export default async function Home() {
 	return (
 		<main className="container mt-3">
 			{posts.map((post: Post) => (
-				<Post key={post.id} {...post} />
+				<Post key={post.id} {...post} createdAt={new Date()} />
 			))}
 		</main>
 	);

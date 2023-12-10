@@ -6,15 +6,16 @@ type Post = {
 	userId: number;
 	title: string;
 	body: string;
+	createdAt: Date;
 };
 
-function Post({ id, userId, title, body }: Post) {
+function Post({ id, userId, title, body, createdAt }: Post) {
 	return (
 		<article>
 			<h1 className="text-center">{title}</h1>
 			<div className="d-flex flex-column">
 				<span>Author: {userId}</span>
-				<span>Created at: 01/01/1111</span>
+				<span>{`Created at: ${createdAt.toLocaleDateString()}`}</span>
 			</div>
 			<p className="my-3">{body}</p>
 			<div>
