@@ -1,7 +1,15 @@
 import Image from "next/image";
 import React from "react";
 
-function Comment() {
+type Comment = {
+	id: number;
+	postId: number;
+	name: string;
+	email: string;
+	body: string;
+};
+
+function Comment({ id, postId, name, email, body }: Comment) {
 	return (
 		<div className="d-flex gap-3">
 			<div className="avatar-container">
@@ -9,16 +17,12 @@ function Comment() {
 			</div>
 			<div className="text-container d-flex flex-column">
 				<div>
-					<span className="me-2 text-secondary">Varia</span>
+					<span className="me-2 text-secondary">{name}</span>
 					<span className="text-body-tertiary">
 						<small>a day ago</small>
 					</span>
 				</div>
-				<p className="mb-1">
-					Some placeholder content for the collapse component. This
-					panel is hidden by default but revealed when the user
-					activates the relevant trigger.
-				</p>
+				<p className="mb-1">{body}</p>
 				<span className="text-secondary">
 					<small>Reply to</small>
 				</span>
