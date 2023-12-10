@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import Comment from "./Comment";
 import Link from "next/link";
 
@@ -19,16 +19,67 @@ type PostComment = {
 	body: string;
 };
 
-async function Post({
-	id,
-	userId,
-	title,
-	body,
-	createdAt,
-	collapse = true,
-}: Props) {
-	const comments = await getComments(id);
-	const author = await getAuthorDetails(userId);
+type User = {
+	id: number;
+	name: string;
+	username: string;
+	email: string;
+	address: {
+		street: string;
+		suite: string;
+		city: string;
+		zipcode: string;
+		geo: {
+			lat: string;
+			lng: string;
+		};
+	};
+	phone: string;
+	website: string;
+	company: {
+		name: string;
+		catchPhrase: string;
+		bs: string;
+	};
+} | null;
+
+function Post({ id, userId, title, body, createdAt, collapse = true }: Props) {
+	const [comments, setComments] = useState([]);
+	const [author, setAuthor] = useState<User>(null);
+	useEffect(() => {
+		if (id === 0) {
+			return;
+		}
+
+		async function fetchComments(postId: number) {
+			const res = await fetch(
+				`https://jsonplaceholder.typicode.com/posts/${postId}/comments`
+			);
+
+			if (!res.ok) {
+				throw new Error("Failed to fetch data");
+			}
+
+			const _comments = await res.json();
+			setComments(_comments);
+		}
+
+		async function fetchAuthorDetails(id: number) {
+			const res = await fetch(
+				`https://jsonplaceholder.typicode.com/users/${id}`
+			);
+
+			if (!res.ok) {
+				throw new Error("Failed to fetch data");
+			}
+
+			const _author: User = await res.json();
+			setAuthor(_author);
+		}
+
+		fetchComments(id);
+		fetchAuthorDetails(userId);
+	}, [id]);
 
 	return (
 		<article>
@@ -41,7 +92,7 @@ async function Post({
 				</Link>
 			</h1>
 			<div className="d-flex flex-column">
-				<span>Author: {author.name}</span>
+				<span>Author: {author?.name ?? ""}</span>
 				<span>{`Created at: ${createdAt.toLocaleDateString()}`}</span>
 			</div>
 			<p className="my-3">{body}</p>
@@ -70,28 +121,6 @@ async function Post({
 			</div>
 		</article>
 	);
-}
-
-async function getComments(postId: number) {
-	const res = await fetch(
-		`https://jsonplaceholder.typicode.com/posts/${postId}/comments`
-	);
-
-	if (!res.ok) {
-		throw new Error("Failed to fetch data");
-	}
-
-	return res.json();
-}
-
-async function getAuthorDetails(id: number) {
-	const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
-
-	if (!res.ok) {
-		throw new Error("Failed to fetch data");
-	}
-
-	return res.json();
 }
 
 export default Post;

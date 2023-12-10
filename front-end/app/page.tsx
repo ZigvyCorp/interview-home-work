@@ -1,4 +1,7 @@
+"use client";
+
 import Post from "@/components/Post";
+import { useEffect, useState } from "react";
 
 type BlogPost = {
 	id: number;
@@ -8,24 +11,35 @@ type BlogPost = {
 	createdAt: Date;
 };
 
-export default async function Home() {
-	const posts = await getPosts();
+export default function Home() {
+	const [posts, setPosts] = useState([]);
+	useEffect(() => {
+		async function fetchPosts() {
+			const res = await fetch(
+				"https://jsonplaceholder.typicode.com/posts"
+			);
+
+			if (!res.ok) {
+				throw new Error("Failed to fetch data");
+			}
+
+			const _posts = await res.json();
+			setPosts(_posts);
+		}
+
+		fetchPosts();
+	}, []);
 
 	return (
 		<main className="container mt-3">
 			{posts.map((post: BlogPost) => (
-				<Post key={post.id} {...post} createdAt={new Date()} />
+				<Post
+					key={post.id}
+					{...post}
+					createdAt={new Date()}
+					collapse={true}
+				/>
 			))}
 		</main>
 	);
-}
-
-async function getPosts() {
-	const res = await fetch("https://jsonplaceholder.typicode.com/posts");
-
-	if (!res.ok) {
-		throw new Error("Failed to fetch data");
-	}
-
-	return res.json();
 }
