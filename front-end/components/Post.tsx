@@ -8,7 +8,7 @@ type Props = {
 	title: string;
 	body: string;
 	createdAt: Date;
-	collapse: Boolean;
+	type: "summary" | "detail";
 };
 
 type PostComment = {
@@ -43,7 +43,7 @@ type User = {
 	};
 } | null;
 
-function Post({ id, userId, title, body, createdAt, collapse = true }: Props) {
+function Post({ id, userId, title, body, createdAt, type }: Props) {
 	const [comments, setComments] = useState([]);
 	const [author, setAuthor] = useState<User>(null);
 	useEffect(() => {
@@ -95,7 +95,11 @@ function Post({ id, userId, title, body, createdAt, collapse = true }: Props) {
 				<span>Author: {author?.name ?? ""}</span>
 				<span>{`Created at: ${createdAt.toLocaleDateString()}`}</span>
 			</div>
-			<p className="my-3">{body}</p>
+			<p className="my-3">
+				{type === "summary" && body.length > 100
+					? body.slice(0, 99) + "..."
+					: body}
+			</p>
 			<div>
 				<span
 					className="text-secondary"
@@ -109,7 +113,9 @@ function Post({ id, userId, title, body, createdAt, collapse = true }: Props) {
 				</span>
 				<hr />
 				<div
-					className={`collapse ${collapse ? "" : "show"} py-2`}
+					className={`collapse ${
+						type === "detail" ? "show" : ""
+					} py-2`}
 					id={`commentContainer-${id}`}
 				>
 					<div className="d-flex flex-column gap-4">

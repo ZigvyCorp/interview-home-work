@@ -43,7 +43,7 @@ export default function PostDetails({ params }: Props) {
 	}, []);
 	return (
 		<main className="container mt-3">
-			<Post {...post} createdAt={new Date()} collapse={false} />
+			<Post {...post} createdAt={new Date()} type="detail" />
 		</main>
 	);
 }

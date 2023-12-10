@@ -70,7 +70,7 @@ export default function Home() {
 					key={post.id}
 					{...post}
 					createdAt={new Date()}
-					collapse={true}
+					type="summary"
 				/>
 			))}
 			<div className="d-flex justify-content-center">
