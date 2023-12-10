@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-type Comment = {
+type PostComment = {
 	id: number;
 	postId: number;
 	name: string;
@@ -9,7 +9,7 @@ type Comment = {
 	body: string;
 };
 
-function Comment({ id, postId, name, email, body }: Comment) {
+function Comment({ id, postId, name, email, body }: PostComment) {
 	return (
 		<div className="d-flex gap-3">
 			<div className="avatar-container">

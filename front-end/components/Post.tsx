@@ -9,7 +9,7 @@ type BlogPost = {
 	createdAt: Date;
 };
 
-type Comment = {
+type PostComment = {
 	id: number;
 	postId: number;
 	name: string;
@@ -43,7 +43,7 @@ async function Post({ id, userId, title, body, createdAt }: BlogPost) {
 				<hr />
 				<div className="collapse py-2" id={`commentContainer-${id}`}>
 					<div className="d-flex flex-column gap-4">
-						{comments.map((comment: Comment) => (
+						{comments.map((comment: PostComment) => (
 							<Comment key={comment.id} {...comment} />
 						))}
 					</div>
