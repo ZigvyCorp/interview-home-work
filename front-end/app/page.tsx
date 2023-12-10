@@ -13,6 +13,7 @@ type BlogPost = {
 
 export default function Home() {
 	const [posts, setPosts] = useState([]);
+	const [offset, setOffset] = useState(1);
 	useEffect(() => {
 		async function fetchPosts() {
 			const res = await fetch(
@@ -23,8 +24,8 @@ export default function Home() {
 				throw new Error("Failed to fetch data");
 			}
 
-			const _posts = await res.json();
-			setPosts(_posts);
+			const data = await res.json();
+			setPosts(data);
 		}
 
 		fetchPosts();

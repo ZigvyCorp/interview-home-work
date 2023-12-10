@@ -60,8 +60,8 @@ function Post({ id, userId, title, body, createdAt, collapse = true }: Props) {
 				throw new Error("Failed to fetch data");
 			}
 
-			const _comments = await res.json();
-			setComments(_comments);
+			const data = await res.json();
+			setComments(data);
 		}
 
 		async function fetchAuthorDetails(id: number) {
@@ -73,8 +73,8 @@ function Post({ id, userId, title, body, createdAt, collapse = true }: Props) {
 				throw new Error("Failed to fetch data");
 			}
 
-			const _author: User = await res.json();
-			setAuthor(_author);
+			const data: User = await res.json();
+			setAuthor(data);
 		}
 
 		fetchComments(id);

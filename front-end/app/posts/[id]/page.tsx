@@ -24,7 +24,7 @@ export default function PostDetails({ params }: Props) {
 		body: "",
 	});
 	useEffect(() => {
-		async function getPost(id: string) {
+		async function fetchPost(id: string) {
 			try {
 				const res = await fetch(
 					`https://jsonplaceholder.typicode.com/posts/${id}`
@@ -39,7 +39,7 @@ export default function PostDetails({ params }: Props) {
 			}
 		}
 
-		getPost(params.id);
+		fetchPost(params.id);
 	}, []);
 	return (
 		<main className="container mt-3">
