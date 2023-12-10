@@ -2,12 +2,13 @@ import React from "react";
 import Comment from "./Comment";
 import Link from "next/link";
 
-type BlogPost = {
+type Props = {
 	id: number;
 	userId: number;
 	title: string;
 	body: string;
 	createdAt: Date;
+	collapse: Boolean;
 };
 
 type PostComment = {
@@ -18,7 +19,14 @@ type PostComment = {
 	body: string;
 };
 
-async function Post({ id, userId, title, body, createdAt }: BlogPost) {
+async function Post({
+	id,
+	userId,
+	title,
+	body,
+	createdAt,
+	collapse = true,
+}: Props) {
 	const comments = await getComments(id);
 	const author = await getAuthorDetails(userId);
 
@@ -49,7 +57,10 @@ async function Post({ id, userId, title, body, createdAt }: BlogPost) {
 					<em>{`${comments.length} replies`}</em>
 				</span>
 				<hr />
-				<div className="collapse py-2" id={`commentContainer-${id}`}>
+				<div
+					className={`collapse ${collapse ? "" : "show"} py-2`}
+					id={`commentContainer-${id}`}
+				>
 					<div className="d-flex flex-column gap-4">
 						{comments.map((comment: PostComment) => (
 							<Comment key={comment.id} {...comment} />
