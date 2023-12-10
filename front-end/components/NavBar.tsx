@@ -4,7 +4,7 @@ import Link from "next/link";
 
 function NavBar() {
 	return (
-		<nav className={`navbar bg-body-tertiary`}>
+		<nav className={`navbar bg-body-tertiary sticky-top`}>
 			<div className="container-fluid">
 				<Link href="/" className="navbar-brand">
 					<Image
