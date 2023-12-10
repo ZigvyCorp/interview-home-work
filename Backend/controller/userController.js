@@ -97,7 +97,7 @@ class UserController {
       });
       res.status(200).json({
         success: true,
-        message: "",
+        message: "Successfully get data",
         data: users,
       });
     } catch (error) {
