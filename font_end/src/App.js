@@ -1,9 +1,17 @@
-import React from 'react';
+import useFetcher from './hooks/useFetcher';
+import './index.css';
 
 export default function App() {
-    fetch('https://jsonplaceholder.typicode.com/users')
-        .then((data) => data.json())
-        .then((data) => console.log(data));
-
-    return <div>hello</div>;
+    const { data, isLoading } = useFetcher(
+        'https://jsonplaceholder.typicode.com/users'
+    );
+    if (isLoading) return <div>Loading...</div>;
+    return (
+        // <>
+        //     {data.map((user) => (
+        //         <div key={user.id}>{user.name}</div>
+        //     ))}
+        // </>
+        <div className="text-green-400">hello</div>
+    );
 }
