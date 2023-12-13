@@ -1,17 +1,36 @@
-import useFetcher from './hooks/useFetcher';
 import './index.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import Layout from './components/Layout';
+import Home from './pages/Home';
+import Blog from './pages/Blog';
+import NotFound from './pages/NotFound';
 
 export default function App() {
-    const { data, isLoading } = useFetcher(
-        'https://jsonplaceholder.typicode.com/users'
-    );
-    if (isLoading) return <div>Loading...</div>;
     return (
-        // <>
-        //     {data.map((user) => (
-        //         <div key={user.id}>{user.name}</div>
-        //     ))}
-        // </>
-        <div className="text-green-400">hello</div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/blog">
+                    <Route index element={<NotFound />} />
+                    <Route
+                        path=":id"
+                        element={
+                            <Layout>
+                                <Blog />
+                            </Layout>
+                        }
+                    />
+                </Route>
+                <Route
+                    path="/"
+                    element={
+                        <Layout>
+                            <Home />
+                        </Layout>
+                    }
+                />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        </BrowserRouter>
     );
 }
