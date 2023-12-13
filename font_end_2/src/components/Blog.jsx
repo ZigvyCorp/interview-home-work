@@ -1,14 +1,17 @@
 import dateFormat from 'dateformat';
 import { useCallback } from 'react';
-import { Card } from 'antd';
+import { Card, Typography } from 'antd';
+import { Link } from 'react-router-dom';
 
 import useFetcher from '../hooks/useFetcher';
 import capitalize from '../lib/capitalize';
 import CommentSection from './CommentSection';
 
+const { Title } = Typography;
+
 const Blog = ({ content }) => {
     const { data } = useFetcher(
-        `https://jsonplaceholder.typicode.com/users?id=1`
+        `https://jsonplaceholder.typicode.com/users?id=${content.userId}`
     );
 
     const randomDate = useCallback(() => {
@@ -26,16 +29,25 @@ const Blog = ({ content }) => {
 
     return (
         <Card className="mt-10">
-            <h1 className="text-2xl text-center capitalize mb-4">
-                {content.title}
-            </h1>
-            <p>
-                <span className="font-bold">Author:</span> {user?.name}
-            </p>
-            <p>
-                <span className="font-bold">Create at:</span> {dateFormated}
-            </p>
-            <p className="text-lg mt-4">{capitalize(content.body)}</p>
+            <Link to={`blog/${content.id}`}>
+                <Title className="text-center capitalize" level={4}>
+                    {content.title}
+                </Title>
+                <p className="font-bold">
+                    Author:
+                    <span className="font-normal text-base"> {user?.name}</span>
+                </p>
+                <p className="font-bold">
+                    Create at:
+                    <span className="font-normal text-base">
+                        {' '}
+                        {dateFormated}
+                    </span>
+                </p>
+                <p className="text-lg mt-4">
+                    {capitalize(content.body) + '. . .'}
+                </p>
+            </Link>
             <CommentSection postId={content.id} postDate={date} />
         </Card>
     );
