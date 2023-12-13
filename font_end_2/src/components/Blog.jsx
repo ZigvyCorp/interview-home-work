@@ -13,11 +13,12 @@ const Blog = ({ content }) => {
 
     const randomDate = useCallback(() => {
         return new Date(
-            new Date(2020, 1, 1).getTime() +
-                Math.random() *
+            new Date(2010, 1, 1).getTime() +
+                (content.id / 100) *
                     (new Date(2023, 1, 1).getTime() -
-                        new Date(2020, 1, 1).getTime())
+                        new Date(2010, 1, 1).getTime())
         );
+        // eslint-disable-next-line
     }, []);
     const user = data?.[0];
     const date = randomDate();
