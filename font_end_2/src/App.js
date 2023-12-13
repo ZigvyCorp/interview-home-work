@@ -9,7 +9,7 @@ import Blog from './components/Blog';
 const { Header, Content } = Layout;
 export default function App() {
     const { data, isLoading } = useFetcher(
-        'https://jsonplaceholder.typicode.com/posts?_limit=10'
+        'https://jsonplaceholder.typicode.com/posts'
     );
     if (isLoading)
         return (
