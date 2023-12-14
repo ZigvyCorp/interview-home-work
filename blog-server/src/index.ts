@@ -1,13 +1,15 @@
 import express, { Express, Request, Response } from "express";
 import bodyParser from "body-parser";
-import mongoose from "mongoose";
 import logger from "morgan";
 import dotenv from "dotenv";
+import mongoose from "mongoose";
+import routes from "./routes";
 
 dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
+const connectionString = process.env.ATLAS_URI || "";
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -22,11 +24,36 @@ app.listen(port, () => {
 });
 
 // set up mongoose
-mongoose
-  .connect(`http://localhost:${port}`)
-  .then(() => {
-    console.log("Database connected");
-  })
-  .catch((error) => {
-    console.log("Error connecting to database");
-  });
+mongoose.set("strictQuery", false);
+const connectDatabase = async () => {
+  try {
+    await mongoose.connect(connectionString);
+    console.log(`MongoDB Connected`);
+  } catch (error: any) {
+    console.error(`Error: ${error.message}`);
+    process.exit(1);
+  }
+};
+
+connectDatabase();
+
+// Initialize CORS middleware
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+
+  next();
+});
+
+routes(app);
