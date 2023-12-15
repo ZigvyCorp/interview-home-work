@@ -1,0 +1,6 @@
+.text-truncate {
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    white-space: normal !important;
+    display: -webkit-box;
+}
