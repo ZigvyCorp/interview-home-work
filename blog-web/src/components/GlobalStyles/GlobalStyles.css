@@ -1,0 +1,95 @@
+
+:root {
+  --primary-color: #f57224;
+  --white-color: #ffffff;
+  --text-color: #212121;
+  --title-color: #333;
+  --background: rgba(0, 0, 0, 0.03);
+  --text-navbar: #0f1568;
+
+  /*height*/
+  --header-height: 64px;
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  text-rendering: optimizeSpeed;
+  font-family: Helvetica Neue, Helvetica, Arial, 文泉驛正黑, WenQuanYi Zen Hei,
+    Hiragino Sans GB, 儷黑 Pro, LiHei Pro, Heiti TC, 微軟正黑體,
+    Microsoft JhengHei UI, Microsoft JhengHei, sans-serif;
+}
+
+h1.h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+input {
+  font-size: 1.6rem;
+}
+
+.box-shadow {
+  box-shadow: 0 3px 10px 0 rgb(22 13 13 / 14%);
+}
+
+/* Scrollbar css */
+html *::-webkit-scrollbar {
+  border-radius: 0;
+  width: 8px;
+}
+
+html *::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(22, 24, 35, 0.06);
+}
+
+html *::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(22, 24, 35, 0.06);
+}
+
+html *::-webkit-scrollbar-track {
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0);
+}
+.center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  max-width: 1180px;
+  padding: 20px;
+  box-sizing: border-box;
+
+}
+
+.ant-collapse-header {
+  padding: 0 !important;
+}
+.fix-center{
+  position: fixed;
+  top: 30%;
+  left: 50%;
+}
+
+
