@@ -1,8 +1,8 @@
 import { Skeleton, Card } from 'antd';
 
-const SkeletonBlobs = () => {
+const SkeletonBlog = () => {
     return (
-        <Card className="my-10">
+        <Card className="my-10 dark:bg-neutral-800">
             <Skeleton.Input className="mb-4" active block size="large" />
             <Skeleton
                 // avatar
@@ -18,4 +18,4 @@ const SkeletonBlobs = () => {
     );
 };
 
-export default SkeletonBlobs;
+export default SkeletonBlog;
