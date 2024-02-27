@@ -20,9 +20,7 @@ const userSchema = new Schema(
       required: true,
       unique: true,
     },
-    dob: {
-      type: String,
-    },
+    dob: { type: Date },
     role: {
       type: String,
       enum: ["user", "admin"],
