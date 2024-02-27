@@ -4,7 +4,10 @@
         "module": "CommonJS",
         "outDir": "./dist",
         "strict": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "paths": {
+            "@/*": ["./*"]
+        }
     },
     "include": ["src/**/*.ts"]
 }
