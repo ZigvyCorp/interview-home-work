@@ -13,8 +13,6 @@ export default function PostPage() {
   const { postData, fetchMorePosts } = usePost();
   const [showComment, setShowComment] = useState<boolean>(false);
   const [postId, setPostId] = useState<string>();
-  // const observer = useRef<IntersectionObserver | null>(null);
-  console.log("postData", postData);
   const lastPostRef = useRef<HTMLDivElement | null>(null);
 
   const showCommentModal = () => {
