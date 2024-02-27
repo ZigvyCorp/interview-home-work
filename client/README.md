@@ -1,1 +1,1 @@
-# fotobook-be
+# Blog front-end
