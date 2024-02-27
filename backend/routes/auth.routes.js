@@ -36,6 +36,10 @@ router.post(
       .matches(/\d/)
       .withMessage("Password must contain a number"),
     check("role").isIn(["user", "admin"]).withMessage("You must choose a role"),
+    check("dob")
+      .isISO8601()
+      .toDate()
+      .withMessage("Date of birth must be in ISO 8601 format (YYYY-MM-DD)"),
   ],
   (req, res) => {
     try {
@@ -56,7 +60,9 @@ router.post(
           req.login(newUser, (err) =>
             err
               ? res.status(500).json({ message: "Login error" })
-              : res.status(200).json(newUser)
+              : res
+                  .status(200)
+                  .json({ message: "Registration successful", user: newUser })
           )
         )
         .catch(() =>
