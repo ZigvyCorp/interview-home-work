@@ -1,0 +1,119 @@
+.container{
+    padding: 0 40px;
+}
+
+.header-container,.header-user-container,.body-heading-color-container{
+    display: flex;
+}
+
+.header-container{
+    
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    border: 2px solid #000;
+    h5{
+        margin: 10px 0;
+    }
+    >div,>div:last-child  div:first-child
+
+    {
+        border-left:  2px solid #000;
+        border-right:  2px solid #000;
+    }
+    >div:last-child,>div:first-child{
+        border: 0;
+    }
+    .header-logo{
+        padding-left: 60px;
+    }
+    .header-blog{
+        padding: 0 80px;
+        background-color: #ccc;
+    }
+    .header-user-container{
+        h6{
+            font-size: 26px;
+        }
+        h5{
+           margin: 10px;
+        }
+    }
+    
+    
+    
+}
+.body-heading{
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 50px;
+    .body-heading-color-container{
+        flex-wrap: wrap;
+        position: absolute;
+        max-width: 265px;
+        top: 0;
+        right: 0;
+        div{
+            font-size: 12px;
+            margin: 4px;
+            padding: 2px;
+        }
+    }
+}
+.body-content{
+    text-align: start;
+    margin-bottom: 60px;
+}
+.card-comment {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 20px;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border-radius: 6px;
+}
+
+.comment-box {
+    padding: 5px;
+    text-align: start;
+    margin-left: 12px;
+
+    h6{
+        display: flex;
+        p{
+            margin: 0 0 0 10px;
+            opacity: 0.5;
+        }
+    }
+    >p:last-child{
+        margin-top: 12px;
+        opacity: 0.5;
+    }
+}
+.divide-page {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+    button {
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 99px;
+        min-width: 35px;
+        min-height: 35px;
+        margin: 0 2px;
+
+        &:not(:disabled):hover {
+            background-color: rgb(34, 101, 105);
+            border: none;
+            color: #fff;
+        }
+    }
+    .active {
+        background-color: rgb(34, 101, 105);
+        border: none;
+        color: #fff;
+    }
+}
