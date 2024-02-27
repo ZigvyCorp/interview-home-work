@@ -1,3 +1,4 @@
+const Comment = require("../models/comment.model");
 const Post = require("../models/post.model");
 
 // Get all posts: GET /api/v1/posts?page=1&limit=10
@@ -203,10 +204,31 @@ const deletePost = async (req, res) => {
   }
 };
 
+// Get comments by post id: GET GET /api/v1/posts/:id/comments?page=1&limit=10
+const getCommentsByPostId = async (req, res) => {
+  try {
+    const postId = req.params.id;
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const skipIndex = (page - 1) * limit;
+
+    const comments = await Comment.find({ post: postId })
+      .populate("owner", "username")
+      .sort({ createdAt: -1 })
+      .skip(skipIndex)
+      .limit(limit);
+
+    res.status(200).json(comments);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 module.exports = {
   getPosts,
   getPostById,
   createPost,
   updatePost,
   deletePost,
+  getCommentsByPostId,
 };
