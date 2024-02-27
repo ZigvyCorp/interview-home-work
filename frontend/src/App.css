@@ -1,0 +1,8 @@
+:root {
+  --padding-y-wrapper: 24px;
+  --height-header: 56px;
+  --padding-x-oversize: 160px;
+  --padding-x-desktop: 64px;
+  --padding-x-mobile: 32px;
+  --max-width: 1600px;
+}

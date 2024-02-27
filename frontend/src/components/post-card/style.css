@@ -1,0 +1,16 @@
+.icon-back {
+  animation-name: animate;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+@keyframes animate {
+  0% {
+    transform: translateX(18px);
+  }
+  50% {
+    transform: translateX(15px);
+  }
+  100% {
+    transform: translateX(18px);
+  }
+}
