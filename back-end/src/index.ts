@@ -1,4 +1,3 @@
-//docker run --name zigvy_home_test -e POSTGRES_PASSWORD=123456 -e POSTGRES_DB=zigvy_home_test -p 5432:5432 -d postgres:13
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';

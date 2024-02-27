@@ -1,0 +1,20 @@
+# dependencies
+/client/node_modules
+/api-gateway/dist
+/api-gateway/node_modules
+/user-service/dist
+/user-service/node_modules
+
+# next.js
+/client/.next/
+/client/out/
+
+# production
+/client/build
+
+# local env files
+/client/.env*.local
+
+# typescript
+*.tsbuildinfo
+/client/next-env.d.ts
