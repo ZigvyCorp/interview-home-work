@@ -1,4 +1,4 @@
-import { Example } from "./example.types";
+import { Example } from "@/common/features/example/example.types";
 import HttpService from "@/common/services/http.service";
 
 class ExampleApiService extends HttpService {

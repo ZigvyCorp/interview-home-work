@@ -1,7 +1,9 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
 
-const MyButton = () => {
-  return <div>MyButton</div>;
+interface IMyButtonProps extends HTMLAttributes<HTMLButtonElement> {}
+
+const MyButton = (props: IMyButtonProps) => {
+  return <button {...props}>MyButton</button>;
 };
 
 export default MyButton;
