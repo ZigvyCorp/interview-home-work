@@ -1,6 +1,7 @@
 const { check } = require("express-validator");
 const User = require("../models/user.model");
 
+// The validateSignUp middleware is used to validate the user's input when signing up.
 const validateSignUp = [
   check("username")
     .isLength({ min: 5 })
@@ -23,4 +24,13 @@ const validateSignUp = [
     .withMessage("Date of birth must be in ISO 8601 format (YYYY-MM-DD)"),
 ];
 
-module.exports = { validateSignUp };
+// Middleware passport.authenticate("local") is used to authenticate the user.
+const ensureAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+
+  res.status(401).json({ message: "Unauthorized" });
+};
+
+module.exports = { validateSignUp, ensureAuthenticated };
