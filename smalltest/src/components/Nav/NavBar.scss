@@ -1,0 +1,32 @@
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+
+  ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 !important;
+    padding: 0 !important;
+
+    li {
+      &:hover {
+        border-bottom: greenyellow solid 5px;
+      }
+
+      &.active {
+        border-bottom: greenyellow solid 5px;
+      }
+    }
+
+    a {
+      display: inline-block;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      letter-spacing: 0.15rem;
+    }
+  }
+}

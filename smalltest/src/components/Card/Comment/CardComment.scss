@@ -1,0 +1,19 @@
+.card-comment-container {
+  margin-bottom: 20px;
+  .card {
+    border: none;
+    margin: 5px;
+    padding: 5px 0;
+    font-weight: 400;
+    .card-comment-title {
+      text-transform: capitalize;
+      font-size: 15px;
+    }
+    .card-comment-body {
+      font-size: 20px;
+      .comment-body::first-letter {
+        text-transform: capitalize;
+      }
+    }
+  }
+}
