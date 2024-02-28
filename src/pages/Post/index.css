@@ -1,0 +1,13 @@
+.btn1 {
+  background-color: white;
+  border: 1px solid rgb(112, 76, 182);
+  border-radius: 5px;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+.btn1:focus {
+  outline: rgb(112, 76, 282);
+  color: black;
+}
