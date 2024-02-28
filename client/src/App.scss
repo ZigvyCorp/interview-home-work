@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    #main-layout {
+        min-height: 100vh;
+
+        .main-layout-avatar-col {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .ant-layout-content {
+            padding: 24px 24px 24px 0px;
+        }
+
+        .antd-custom-divider {
+            margin: 8px 0px;
+        }
+
+    }
+}
