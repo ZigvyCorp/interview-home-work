@@ -1,0 +1,23 @@
+{
+  "name": "ProjectX-backend",
+  "version": "1.0.0",
+  "description": "ProjectX-backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "json-server --watch db.json",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "backend",
+    "json",
+    "server"
+  ],
+  "author": "StevenCanDrink",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "json-server": "0.17.3",
+    "mongoose": "^8.2.0"
+  }
+}
