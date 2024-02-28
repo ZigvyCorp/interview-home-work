@@ -1,3 +1,40 @@
 .card-body__comment .ant-collapse-header-text {
     color: #808080;
 }
+
+/* tile uploaded pictures */
+.comment-action {
+    padding-left: 8px;
+    cursor: 'auto';
+  }
+  
+  [class*='-col-rtl'] .comment-action {
+    padding-right: 8px;
+    padding-left: 0;
+  }
+.media-comment-box {
+    display: flex;
+    flex-direction: row;
+
+}
+.name-user {
+    font-size: 12px;
+    font-weight: 500;
+    color: #808080;
+}
+.time-comment {
+    margin-left: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #a9a6a6;
+}
+.reply-btn:hover {
+    text-decoration: underline !important;
+}
+.card-title a {
+    color:var(--bs-gray-900);
+}
+
+.card-title a:hover {
+    color:var(--bs-primary);
+}
