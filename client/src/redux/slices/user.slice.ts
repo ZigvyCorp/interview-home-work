@@ -7,14 +7,16 @@ type UserType = {
     id: string
     name: string,
     username: string,
-    email: string
+    email: string,
+    accessToken: string
 }
 
 const initialState : UserType= {
-    id: '1',
-    name: 'user',
-    username: 'user',
-    email: 'user@example.com'
+    id: '',
+    name: '',
+    username: '',
+    email: '',
+    accessToken: '',
 }
 
 const userSlice = createSlice({
@@ -26,6 +28,7 @@ const userSlice = createSlice({
             state.name = action.payload.name;
             state.username = action.payload.username;
             state.email = action.payload.email;
+            state.accessToken = action.payload.accessToken;
         }
     }
 })

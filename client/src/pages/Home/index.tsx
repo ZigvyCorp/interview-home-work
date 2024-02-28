@@ -4,13 +4,22 @@ import { IPost } from "src/interfaces/post.interface";
 import { Input, Skeleton } from "antd";
 import { useGetAllPostByPageQuery } from "src/redux/services/post.api";
 import { useEffect, useState } from "react";
+import { useAppSelector } from "src/redux/hook";
 
 const { Search } = Input;
 
 const Home = () => {
+    const user = useAppSelector((state) => state.user);
     const [page, setPage] = useState(1);
-    const { data, isLoading } = useGetAllPostByPageQuery(page.toString());
-    const [posts, setPost] = useState<IPost[]>(data?.message);
+    const param = {
+        page: page.toString(),
+        accessToken: user.accessToken,
+    };
+
+    const { data, isLoading } = useGetAllPostByPageQuery(param);
+    console.log(data);
+    const [posts, setPost] = useState<IPost[]>(data?.message || []);
+    console.log("posts", posts);
 
     const handleScroll = () => {
         if (
