@@ -1,60 +1,94 @@
 const axios = require('axios')
 const apiBaseUrl = 'https://jsonplaceholder.typicode.com/posts'
+const {
+  findAllPost,
+  createPost,
+  findPostByIdAllData,
+  findPostByText,
+} = require('../models/repo/post.repo')
+const post = require('../models/post.model')
 
-class PostFactory {
-  static async findAllPost({ limit = 10, sort = 'ctime', page = 1 }) {
+class Post {
+  static async findAllPost({
+    limit = 10,
+    sort = 'ctime',
+    page = 1,
+    filter = {},
+    select = ['_id', 'title', 'body'],
+  }) {
     try {
-      const response = await axios.get(apiBaseUrl, {
-        params: {
-          _limit: limit,
-          _sort: sort,
-          _page: page,
-        },
+      const response = findAllPost({
+        limit,
+        sort,
+        page,
+        filter,
+        select,
       })
-      return response.data
+      return response
     } catch (error) {
       console.error('Error fetching posts:', error)
       return []
     }
   }
-  static async findPostById({id}) {
+  static async findPostById({ id }) {
     try {
-      const response = await axios.get(`${apiBaseUrl}/${id}`);
-      return response.data; 
+      const response = await findPostByIdAllData(id)
+      return response
     } catch (error) {
-      console.error('Error find post by id', error)
-      return []
+      if (error.response && error.response.status === 404) {
+        const res = await post.findOne({ _id: id }).exec()
+        if (!res) throw new Error('Post not found')
+        return res
+      } else {
+        console.error('Error find post by id', error)
+        return []
+      }
     }
   }
-  static async createPost({title, body, userId}) {
+  static async findPostByText({ text }) {
+    function findSimilarTitle(posts, query) {
+      const lowerCaseQuery = query.toLowerCase()
+      return posts.filter((post) =>
+        post.title.toLowerCase().includes(lowerCaseQuery),
+      )
+    }
     try {
-      const response = await axios.post(apiBaseUrl,{
-        title,
-        body,
-        userId
-      });
-      return response.data; 
+      const post = await findAllPost({ page: 0 })
+      const result = await findSimilarTitle(post.data, text)
+      return {
+        count: result.length,
+        data: result,
+      }
     } catch (error) {
-      console.error('Error create post', error)
-      return []
+      console.error('Error find post by text', error)
     }
   }
-  static async updatePost({id, title, body, userId}) {
-    console.log("🚀 ~ PostFactory ~ updatePost ~ id:", id)
-    // console.log("🚀 ~ PostFactory ~ updatePost ~ title, body, userId:", title, body, userId)
+
+  static async createPost(data) {
+    let newPost = []
+    const response = findAllPost({
+      limit,
+      sort,
+      page,
+      filter,
+      select,
+    })
+    // response.map(post => post)
+    try {
+      const foundPost = await post.findOne().sort('-_id').exec()
+      newPost = await post.create({ _id: foundPost._id + 1, ...data })
+      if (!newPost) throw new Error('Error creating post')
+    } catch (err) {
+      console.error(err)
+    }
+    return newPost
+  }
+  static async updatePost({ id, title, body, userId }) {
     try {
       const getPost = await axios.get(`${apiBaseUrl}/${id}`)
-      console.log("🚀 ~ PostFactory ~ updatePost ~ getPost:", getPost.data.length)
-      if(!getPost.data){
+      if (!getPost.data) {
         throw new Error('Post not found')
       }
-
-      // const response = await axios.put(`${apiBaseUrl}/${id}`, {
-      //   title: title,
-      //   body: body,
-      //   userId: userId,
-      // });
-      // return response.data; 
     } catch (error) {
       console.error('Error find post by id', error)
       return []
@@ -62,4 +96,4 @@ class PostFactory {
   }
 }
 
-module.exports = PostFactory
+module.exports = Post

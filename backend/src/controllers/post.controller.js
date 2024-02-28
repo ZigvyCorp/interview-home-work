@@ -13,6 +13,12 @@ class PostController {
       data: await postController.findPostById(post_id),
     }).send(res)
   }
+  getPostByText = async (req, res, next) => {
+    const text = req.params
+    new OK({
+      data: await postController.findPostByText(text),
+    }).send(res)
+  }
   createPost = async (req, res, next) => {
     new Created({
       data: await postController.createPost(req.body),
