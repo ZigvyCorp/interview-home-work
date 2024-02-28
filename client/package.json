@@ -1,35 +1,51 @@
 {
-  "name": "fotobook-be",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.ts"
-  },
-  "author": "",
-  "license": "ISC",
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "@supabase/supabase-js": "^2.39.7",
-    "bcrypt": "^5.1.1",
-    "body-parser": "^1.20.2",
-    "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "http-status-codes": "^2.3.0",
-    "jsonwebtoken": "^9.0.2",
-    "morgan": "^1.10.0",
-    "nodemon": "^3.0.1"
+    "@reduxjs/toolkit": "^2.2.1",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.83",
+    "@types/react": "^18.2.60",
+    "@types/react-dom": "^18.2.19",
+    "@types/redux-persist": "^4.3.1",
+    "antd": "^5.14.2",
+    "axios": "^1.6.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^9.1.0",
+    "react-router-dom": "^6.22.1",
+    "react-scripts": "5.0.1",
+    "redux-persist": "^6.0.0",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
   },
-  "devDependencies": {
-    "@types/bcrypt": "^5.0.1",
-    "@types/cookie-parser": "^1.4.5",
-    "@types/cors": "^2.8.15",
-    "@types/express": "^4.17.20",
-    "@types/jsonwebtoken": "^9.0.4",
-    "@types/morgan": "^1.9.7",
-    "@types/node": "^20.8.7",
-    "typescript": "^5.2.2"
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
