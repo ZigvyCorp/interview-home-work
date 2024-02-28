@@ -26,6 +26,8 @@
     },
     "devDependencies": {
         "@types/cors": "^2.8.17",
-        "@types/node": "^20.11.20"
+        "@types/node": "^20.11.20",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier": "^5.1.3"
     }
 }

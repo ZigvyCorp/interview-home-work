@@ -1,28 +1,32 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { Post, fetchPostsStart, selectPosts, loadMorePostsStart, searchPostsStart } from '../store/slices/postSlice';
+import { fetchPostsStart, selectPosts, loadMorePostsStart, searchPostsStart } from '../store/slices/postSlice';
 import { Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import PostItem from './PostItem';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import PostSkeleton from './PostSkeleton';
+import { Post } from '../types';
 
 export function PostList() {
     const { posts, loading, hasMore, keyword, error } = useAppSelector(selectPosts);
     const [searchTerm, setSearchTerm] = useState<string>('');
     const dispatch = useAppDispatch();
 
+    //get data from local storage
     useEffect(() => {
         if (posts.length == 0) dispatch(fetchPostsStart());
         if (keyword !== '') setSearchTerm(keyword);
     }, []);
 
+    //dispatch search by keyword
     const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
         const term = e.target.value;
         setSearchTerm(term);
         dispatch(searchPostsStart(term));
     };
 
+    //handle infinite scroll
     const handleLoadMore = () => {
         if (!loading && hasMore) {
             dispatch(loadMorePostsStart());
@@ -31,10 +35,11 @@ export function PostList() {
 
     return (
         <div className="min-h-[100vh]">
+            {/* Header  */}
             <div className="bg-black border-b-[1px] border-b-gray-200  fixed top-0 left-0 right-0 h-[60px] flex items-center px-4">
                 <Input
                     onChange={e => handleSearchChange(e)}
-                    className="bg-blue-500 w-1/2 rounded-md"
+                    className="bg-blue-500 w-4/5 md:w-1/2 mx-auto rounded-md"
                     size="large"
                     placeholder="Search post by title"
                     allowClear
@@ -42,6 +47,8 @@ export function PostList() {
                     addonBefore={<SearchOutlined />}
                 />
             </div>
+
+            {/* ListPost */}
             {error ? (
                 <div className="min-h-[100vh] justify-center flex items-center text-2xl text-white">
                     Something's wrong

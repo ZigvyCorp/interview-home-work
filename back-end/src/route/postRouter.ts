@@ -1,6 +1,7 @@
 import express from 'express';
-import { UserController } from '../controller';
-const userRouter = express.Router();
+import { PostController } from '../controller';
+const postRouter = express.Router();
 
-userRouter.route('/').get(UserController.getUsers);
-export default userRouter;
+postRouter.route('/').get(PostController.getPosts).post(PostController.createPost);
+postRouter.route('/:id').get(PostController.getPost).patch(PostController.updatePost).delete(PostController.deletePost);
+export default postRouter;

@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Post } from '../store/slices/postSlice';
 import CommentItem from './CommentItem';
 import { formatDate, get100FirstCharacters } from '../utils';
 import { useNavigate } from 'react-router-dom';
+import { Post } from '../types';
 
 interface PostItemProps {
     post: Post;

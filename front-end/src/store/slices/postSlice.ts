@@ -1,26 +1,6 @@
+import { Post } from '../../types';
 import { RootState } from '../index';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-export type Comment = {
-    id: number;
-    email: string;
-    content: string;
-    createdAt: string;
-};
-
-export interface Post {
-    id: number;
-    ownerId: number;
-    title: string;
-    content: string;
-    comments: Comment[];
-    owner: {
-        email: string;
-        name: string;
-    };
-    createdAt: string;
-}
-
 interface PostsState {
     posts: Post[];
     keyword: string;
@@ -50,7 +30,7 @@ const postsSlice = createSlice({
         fetchPostsSuccess(state, action: PayloadAction<Post[]>) {
             state.loading = false;
             state.posts = action.payload;
-            state.hasMore = action.payload.length > 0;
+            state.hasMore = action.payload.length === 10;
         },
         fetchPostsFailure(state, action: PayloadAction<string>) {
             state.loading = false;

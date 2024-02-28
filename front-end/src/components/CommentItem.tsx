@@ -1,4 +1,4 @@
-import { Comment } from '../store/slices/postSlice';
+import { Comment } from '../types';
 import { formatDate } from '../utils';
 
 interface CommentItemProps {

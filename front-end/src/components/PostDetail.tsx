@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Post } from '../store/slices/postSlice';
 import { formatDate, get100FirstCharacters } from '../utils';
 import { useNavigate, useParams } from 'react-router-dom';
 import CommentItem from './CommentItem';
 import { postApi } from '../api';
+import { Post } from '../types';
 
 interface PostDetailProps {}
 

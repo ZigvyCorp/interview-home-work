@@ -5,10 +5,10 @@ import {
     fetchPostsFailure,
     loadMorePostsSuccess,
     loadMorePostsStart,
-    searchPostsStart,
-    Post
+    searchPostsStart
 } from '../slices/postSlice';
 import { postApi } from '../../api';
+import { Post } from '../../types';
 
 async function fetchPosts(page: number, keyword: string) {
     const posts = await postApi.getAll(page, keyword);
@@ -38,5 +38,5 @@ function* loadMorePostsSaga() {
 export function* watchFetchPosts() {
     yield takeLatest(fetchPostsStart.toString(), fetchPostsSaga);
     yield takeLatest(loadMorePostsStart.toString(), loadMorePostsSaga);
-    yield debounce(1000, searchPostsStart.toString(), fetchPostsSaga);
+    yield debounce(500, searchPostsStart.toString(), fetchPostsSaga);
 }
