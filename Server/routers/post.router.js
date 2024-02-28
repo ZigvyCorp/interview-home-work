@@ -6,14 +6,14 @@ const {
     authenticate,
 } = require("../middlewares/veryfy-token.middleware");
 
-const userRouter = express.Router();
+const postsRouter = express.Router();
 
-userRouter.get(
+postsRouter.get(
     "/",
     authenticate,
     async (req, res) => {
         try {
-            let data = db.user
+            let data = db.post
             res.send(data).status(RESPONSE_CODE.OK);
         } catch (error) {
             res.status(RESPONSE_CODE.INTERNAL_SERVER_ERROR).send(error);
@@ -21,26 +21,21 @@ userRouter.get(
     }
 );
 
-userRouter.get(
-    "/detail/:userId",
+postsRouter.get(
+    "/:postId",
     authenticate,
     async (req, res) => {
         try {
-            const {userId} = req.params
+            const {postId} = req.params
             let listPosts = db.post
             let userList = db.user
             let commentList = db.comment
-
-            const userDetail = userList.filter(x => x.id === parseInt(userId))[0]
-
-            const posts = listPosts.filter(x => x.userId === parseInt(userId))
+            const postDetail = listPosts.filter(x => x.id === parseInt(postId))[0]
 
             const data = {
-                ...userDetail,
-                posts: posts.map(post => ({
-                    ...post,
-                    comments: commentList.filter(comment => comment.postId === post.id)
-                }))
+                ...postDetail,
+                user: userList.filter(x => x.id === postDetail.id)[0],
+                comments: commentList.filter(x => x.postId === postDetail.id)
             }
 
             res.send(data).status(RESPONSE_CODE.OK);
@@ -51,5 +46,5 @@ userRouter.get(
 );
 
 module.exports = {
-    userRouter,
+    postsRouter,
 };

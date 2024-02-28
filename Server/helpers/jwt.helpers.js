@@ -5,13 +5,12 @@ const generateToken = (user) => {
   const payload = {
     id: user.id,
     email: user.email,
-    role: user.role,
+    userName: user.userName
   };
-  const secretKey = "movie-api";
-  const token = jwt.sign(payload, secretKey, {
+  const secretKey = "post-api";
+  return jwt.sign(payload, secretKey, {
     expiresIn: "24h",
   });
-  return token;
 };
 
 module.exports = {

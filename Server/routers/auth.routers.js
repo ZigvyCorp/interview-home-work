@@ -8,7 +8,6 @@ const {
     registerUser,
 } = require("../controllers/user.controllers");
 const {generateToken} = require("../helpers/jwt.helpers");
-const {emailValidation} = require("../utils/validation");
 
 const authRouter = express.Router();
 

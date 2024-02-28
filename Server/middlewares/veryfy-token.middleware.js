@@ -4,22 +4,21 @@ const { getTimeStampSecond } = require("../utils/date");
 
 const authenticate = (req, res, next) => {
   try {
-    const token = req.header("AccessToken");
-    const secretKey = "movie-api";
-
-    const decode = jwt.verify(token, secretKey);
+    const token = req.header("Authorization");
+    const secretKey = "post-api";
+    const decode = jwt.verify(JSON.parse(token), secretKey);
     if (decode.exp < getTimeStampSecond()) {
       return res
         .status(RESPONSE_CODE.FORBIDDEN)
-        .send("Phiên làm việc hết hạn vui lòng đăng nhập lại");
+        .send("Unauthenticated");
     }
-    const { id, userName, email, role } = decode;
-    req.user = { id, userName, email, role };
+    const { id, userName, email } = decode;
+    req.user = { id, userName, email };
     next();
   } catch (error) {
     res
       .status(RESPONSE_CODE.BAD_REQUEST)
-      .send("Vui lòng đăng nhập để tiếp tục");
+      .send("Please login");
   }
 };
 
@@ -32,7 +31,7 @@ const authorize =
     if (index === -1)
       return res
         .status(RESPONSE_CODE.FORBIDDEN)
-        .send("Bạn không thể thực hiện chức năng này");
+        .send("Unauthenticated");
     next();
   };
 
