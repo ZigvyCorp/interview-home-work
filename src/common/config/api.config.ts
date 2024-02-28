@@ -2,11 +2,11 @@ import { AxiosRequestConfig } from "axios";
 
 const axiosConfigs = {
   development: {
-    baseURL: "http://157.245.48.233:4000/api",
+    baseURL: "https://jsonplaceholder.typicode.com/",
     timeout: 10000,
   },
   production: {
-    baseURL: "http://157.245.48.233:4000/api",
+    baseURL: "https://jsonplaceholder.typicode.com/",
     timeout: 10000,
   },
   test: {

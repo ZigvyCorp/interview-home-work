@@ -1,5 +1,6 @@
+import { ROUTES_PATH } from "@/common/enum/routes.enum";
 import MainLayout from "@/layouts/MainLayout/MainLayout";
-import { BlogDetailPage, HomePage } from "@/pages";
+import { BlogDetailPage, HomePage, UserInfoPage } from "@/pages";
 
 export interface IRoute {
   path: string;
@@ -10,13 +11,18 @@ export interface IRoute {
 const PRIVATE_ROUTE: IRoute[] = [];
 const PUBLIC_ROUTE: IRoute[] = [
   {
-    path: "/",
+    path: ROUTES_PATH.HOME,
     page: HomePage,
     layout: MainLayout,
   },
   {
-    path: "/:blogId",
+    path: ROUTES_PATH.BLOG_DETAIL,
     page: BlogDetailPage,
+    layout: MainLayout,
+  },
+  {
+    path: ROUTES_PATH.USER,
+    page: UserInfoPage,
     layout: MainLayout,
   },
 ];

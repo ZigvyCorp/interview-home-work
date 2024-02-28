@@ -1,11 +1,12 @@
-import Http from '@/common/services/http.service';
+import Http from "@/common/services/http.service";
 
 class BaseApiService {
   protected httpClient: Http;
 
   constructor() {
-    //TODO: APPLY BASE URL
-    this.httpClient = new Http();
+    this.httpClient = new Http({
+      baseURL: "https://jsonplaceholder.typicode.com",
+    });
   }
 }
 

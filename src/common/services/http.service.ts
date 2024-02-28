@@ -18,7 +18,6 @@ export default class HttpService {
 
   constructor(config = axiosConfig) {
     const axiosConfigs = config;
-    console.log("axiosConfigs:", axiosConfigs);
 
     const instance = axios.create({ ...axiosConfigs });
     Object.assign(instance, this.setupInterceptorsTo(instance));
