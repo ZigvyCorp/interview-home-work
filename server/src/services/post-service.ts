@@ -52,8 +52,6 @@ class PostService {
             )
             const paginatedData = posts.slice(offset, offset + pageSize);
 
-            console.log(paginatedData.length);
-
             return {
                 code: StatusCodes.OK,
                 type: "Success",
