@@ -11,7 +11,6 @@ import { IPayloadGetPosts, IPost, IPostComment } from "../../redux/saga/post/mod
 import { RootState } from "../../redux/store";
 import MainLayout from "../layout/MainLayout";
 import FormSearchPost from "./components/FormSearchPost";
-import { IUser } from "../../redux/saga/user/model";
 
 const BlogComponent = () => {
     const [page, setPage] = useState(0 as number);
