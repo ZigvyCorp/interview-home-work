@@ -1,0 +1,313 @@
+paths:
+  /api/auth/login:
+    post:
+      tags:
+        - User
+      operationId: login
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: admin
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/adminLogin"
+      responses:
+        "200":
+          description: Success
+  /api/auth/register:
+    post:
+      tags:
+        - User
+      operationId: login
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: admin
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/adminLogin"
+      responses:
+        "200":
+          description: Success
+  /api/auth/access-token:
+    post:
+      tags:
+        - user-controller
+      operationId: loginAccessToken
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: verifyToken
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/getNonce"
+      responses:
+        "200":
+          description: Success
+  /api/pre-sales:
+    get:
+      tags:
+        - user-controller
+      operationId: presale-user
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: network_id
+          in: query
+          required: false
+          schema:
+            $ref: "#/definitions/getPresale"
+        - name: status
+          in: query
+          required: false
+          schema:
+            $ref: "#/definitions/getPresale"
+        - name: limit
+          in: query
+          required: false
+          schema:
+            $ref: "#/definitions/getPresale"
+        - name: page
+          in: query
+          required: false
+          schema:
+            $ref: "#/definitions/getPresale"
+      responses:
+        "200":
+          description: Success
+  /api/pre-sales/{presale_id}:
+    get:
+      tags:
+        - user-controller
+      operationId: presale-user-byId
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: presale_id
+          in: path
+          required: true
+          schema:
+            $ref: "#/definitions/getPresaleById"
+      responses:
+        "200":
+          description: Success
+  /api/pre-sales/:presale_id/buyer-info:
+    get:
+      tags:
+        - user-controller
+      operationId: presale-buyer-info
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: presale_id
+          in: path
+          required: true
+          schema:
+            $ref: "#/definitions/getPresaleBuyerInfo"
+      responses:
+        "200":
+          description: Success
+      security:
+        - Bearer: [ ]
+  /api/pre-sales/participated:
+    get:
+      tags:
+        - user-controller
+      operationId: presale-participated
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      responses:
+        "200":
+          description: Success
+      security:
+        - Bearer: [ ]
+  /api/pre-sales/mytoken:
+    get:
+      tags:
+        - user-controller
+      operationId: presale-mytoken
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      responses:
+        "200":
+          description: Success
+      security:
+        - Bearer: [ ]
+definitions:
+  Access-Control-Allow-Headers: Content-Type, api_key, Authorization
+  adminLogin:
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+  getNonce:
+    type: object
+    properties:
+      wallet_address:
+        type: string
+      network_id:
+        format: int32
+        type: integer
+      signature:
+        type: string
+  getPresale:
+    type: object
+    properties:
+      presale_id:
+        format: int32
+        type: integer
+      wallet_address:
+        format: int32
+        type: integer
+      limit:
+        format: int32
+        type: integer
+      page:
+        format: int32
+        type: integer
+  getPresaleById:
+    type: object
+    properties:
+      presale_id:
+        format: int32
+        type: integer
+  getPaymentHistory:
+    type: object
+    properties:
+      presale_id:
+        format: int32
+        type: integer
+      wallet_address:
+        type: string
+      limit:
+        format: int32
+        type: integer
+      page:
+        format: int32
+        type: integer
+  getWhiteListByPresaleId:
+    type: object
+    properties:
+      presale_id:
+        format: int32
+        type: integer
+  getWhiteListUser:
+    type: object
+    properties:
+      presale_id:
+        format: int32
+        type: integer
+  getPresaleBuyerInfo:
+    type: object
+    properties:
+      presale_id:
+        format: int32
+        type: integer
+  changeActivePresale:
+    type: object
+    properties:
+      presale_id:
+        format: int32
+        type: integer
+  getParticipated:
+    type: object
+    properties:
+      presale_id:
+        format: int32
+        type: integer
+  getMytoken:
+    type: object
+  requestPayment:
+    type: object
+    properties:
+      wallet_address:
+        type: string
+      presale_id:
+        format: int32
+        type: integer
+      package_amount:
+        format: int32
+        type: integer
+      token_amount:
+        format: int32
+        type: integer
+      price:
+        type: string
+  getHistoryByPresaleId:
+    type: object
+    properties:
+      presale_id:
+        format: int32
+        type: integer
+      limit:
+        format: int32
+        type: integer
+      page:
+        format: int32
+        type: integer
+  getHistoryByWalletAddress:
+    type: object
+    properties:
+      wallet_address:
+        format: int32
+        type: integer
+      limit:
+        format: int32
+        type: integer
+      page:
+        format: int32
+        type: integer
+  accessToken:
+    type: object
+    properties:
+      nonceNumber:
+        type: number
+  "KeyValuePair[String,StringValues]":
+    type: object
+    properties:
+      key:
+        type: string
+        readOnly: true
+      value:
+        uniqueItems: false
+        type: array
+        items:
+          type: string
+        readOnly: true

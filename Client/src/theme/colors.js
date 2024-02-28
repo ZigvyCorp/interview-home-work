@@ -1,0 +1,41 @@
+export const COLORS = {
+    RED50: '#ffebee',
+    RED100: '#ffcdd2',
+    RED200: '#ef9a9a',
+    RED300: '#e57373',
+    RED400: '#ef5350',
+    RED500: '#f44336',
+    RED600: '#e53935',
+    RED700: '#d32f2f',
+    RED800: '#c62828',
+    RED900: '#b71c1c',
+
+    GRAY50: '#fafafa',
+    GRAY100: '#f5f5f5',
+    GRAY200: '#eeeeee',
+    GRAY300: '#e0e0e0',
+    GRAY400: '#bdbdbd',
+    GRAY500: '#9e9e9e',
+    GRAY600: '#757575',
+    GRAY700: '#616161',
+    GRAY800: '#424242',
+    GRAY900: '#212121',
+
+    BLUE50: '#e3f2fd',
+    BLUE100: '#bbdefb',
+    BLUE200: '#90caf9',
+    BLUE300: '#64b5f6',
+    BLUE400: '#42a5f5',
+    BLUE500: '#2196f3',
+    BLUE600: '#1e88e5',
+    BLUE700: '#1976d2',
+    BLUE800: '#1565c0',
+    BLUE900: '#0d47a1',
+
+    PRIMARY1: '#0a0f89',
+    PRIMARY2: '#00584B',
+    PRIMARY3: '#510058',
+    ACCENT: '#9e9e9e',
+}
+
+
