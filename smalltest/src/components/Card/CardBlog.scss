@@ -1,0 +1,33 @@
+.card-blog-container {
+  margin: 5px 0;
+  .card {
+    border: 2px solid;
+    font-weight: 500;
+    .card-blog-title {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      text-transform: capitalize;
+    }
+    .card-blog-body {
+      gap: 20px;
+      font-size: 25px;
+      margin: 5px 15px;
+      padding: 5px 0;
+      &::first-letter {
+        text-transform: capitalize;
+      }
+    }
+    .reply-content {
+      color: #919191;
+      margin: 5px 25px;
+      .btn-show-replies {
+        border: none;
+        cursor: pointer;
+        &:hover {
+          color: blue;
+        }
+      }
+    }
+  }
+}
