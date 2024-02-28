@@ -25,7 +25,7 @@ export const fetchPosts = async (posts: Post[]) => {
     }
 };
 
-export const getPosts = (page: number | undefined) => {
+export const getPosts = (page: number | undefined, keyword: string) => {
     if (!page) return prisma.post.findMany({});
     return prisma.post.findMany({
         skip: (page - 1) * 10,
@@ -44,6 +44,9 @@ export const getPosts = (page: number | undefined) => {
                     createdAt: true
                 }
             }
+        },
+        where: {
+            title: { contains: keyword }
         }
     });
 };
