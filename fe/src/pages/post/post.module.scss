@@ -1,0 +1,112 @@
+.post-wrapper{
+    padding: 0 40px;
+}
+
+.search-wrapper{
+    display: flex;
+    justify-content: right;
+}
+.search{
+    // position: absolute;
+    // right: 0;
+    // top: 120%;
+    max-width: 240px;
+    
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 10px 0;
+    .search-icon{
+        border-right: 1px solid #ccc;
+        padding: 2px 4px;
+    }
+    input{
+        border: none;
+        outline: none;
+    }
+}
+
+.body-heading-color-container{
+    display: flex;
+}
+
+
+.body-heading{
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 50px;
+    .body-heading-color-container{
+        flex-wrap: wrap;
+        position: absolute;
+        max-width: 265px;
+        top: 0;
+        right: 0;
+        div{
+            font-size: 12px;
+            margin: 4px;
+            padding: 2px;
+        }
+    }
+}
+.body-content{
+    text-align: start;
+    margin-bottom: 60px;
+}
+.card-comment {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 20px;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border-radius: 6px;
+    
+    .card-comment-count{
+        text-align: left;
+        cursor: pointer;
+    }
+}
+
+.comment-box {
+    padding: 5px;
+    text-align: start;
+    margin-left: 12px;
+
+    h6{
+        display: flex;
+        p{
+            margin: 0 0 0 10px;
+            opacity: 0.5;
+        }
+    }
+    >p:last-child{
+        margin-top: 12px;
+        opacity: 0.5;
+    }
+}
+.divide-page {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+    button {
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 99px;
+        min-width: 35px;
+        min-height: 35px;
+        margin: 0 2px;
+
+        &:not(:disabled):hover {
+            background-color: rgb(34, 101, 105);
+            border: none;
+            color: #fff;
+        }
+    }
+    .active {
+        background-color: rgb(34, 101, 105);
+        border: none;
+        color: #fff;
+    }
+}
