@@ -1,0 +1,11 @@
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 25px 0px 0px 5px;
+}
+
+.date-ago {
+  color: #c7c5c1;
+}
