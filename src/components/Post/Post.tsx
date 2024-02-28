@@ -1,4 +1,5 @@
 import { PAGE_SECTION } from "@/common/enum/routes.enum";
+import getContentSummary from "@/common/utils/getContentSummary";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -21,7 +22,7 @@ const Post = (props: IPostProps) => {
           </div>
           <div className="post_content-body">
             <h3>{props.title}</h3>
-            <p>{props.body}</p>
+            <p>{getContentSummary(props.body)}</p>
           </div>
         </div>
       </div>

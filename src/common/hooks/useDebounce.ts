@@ -44,6 +44,7 @@ export function useDebouncedState<T = any>(
     () => ({
       debouncedSetValue,
     }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 

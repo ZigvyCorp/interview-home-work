@@ -43,7 +43,6 @@ const HomePage = () => {
   useEffect(() => {
     const fetchPostPagination = async () => {
       try {
-        setIsFetching(true);
         const postsData = await postApi.getPostPagination(
           currentPageActive,
           POST_PER_PAGE
@@ -68,7 +67,7 @@ const HomePage = () => {
       }
     };
     fetchPostPagination();
-  }, [currentPageActive, users]);
+  }, [currentPageActive]);
 
   return (
     <div className="container">
@@ -88,9 +87,9 @@ const HomePage = () => {
           })}
         </Pagination>
 
-        {isFetching || isError
+        {isFetching
           ? Array.from({ length: 10 }).map((_, index) => (
-              <div key={index} className="col-4">
+              <div className="col-4" key={index}>
                 <PostSkeleton />
               </div>
             ))
