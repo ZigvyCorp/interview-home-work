@@ -1,15 +1,16 @@
 import className from "classnames/bind";
-import style from "./Home.module.scss";
 import { useEffect, useMemo, useState } from "react";
 import { faL } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
+import style from "./post.module.scss";
 import DividePage from "../../components/dividePage";
 import Search from "../../components/search";
 import { setPost } from "../../stores/post.store";
 
 const cx = className.bind(style);
-function Body() {
+function Posts({ showSearch = false, postsId = null }) {
   const dispatch = useDispatch();
   const colorList = [
     { name: "magenta" },
@@ -24,6 +25,7 @@ function Body() {
     { name: "geekblue", color: "#1269C7" },
     { name: "purple" },
   ];
+
   let [state, setState] = useState({
     users: null,
     posts: null,
@@ -32,13 +34,17 @@ function Body() {
     searchValue: "",
   });
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
+    fetch(`https://jsonplaceholder.typicode.com/posts/${postsId ?? ""}`)
       .then((response) => response.json())
-      .then((json) => {
+      .then((jsons) => {
+        const json = Array.isArray(jsons) ? jsons : [jsons];
         json.map((item) => (item.collapsed = true));
         setState((prev) => ({ ...prev, posts: json, postsDivided: json }));
-        dispatch(setPost(json));
+        if (!postsId) {
+          dispatch(setPost(json));
+        }
       });
+
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((json) => {
@@ -52,15 +58,14 @@ function Body() {
   }, []);
 
   const collapseComment = (index) => {
-    try {
-      setState((prev) => {
-        let posts = prev.posts;
-        posts[index].collapsed = false;
-        return { ...prev, posts: posts };
-      });
-    } catch (e) {
-      console.log(e);
-    }
+    setState((prev) => {
+      const updatedPosts = [...prev.postsDivided]; // Create a copy of the posts array
+      updatedPosts[index] = {
+        ...updatedPosts[index],
+        collapsed: !updatedPosts[index].collapsed,
+      }; // Update the specified post with collapsed: false
+      return { ...prev, postsDivided: updatedPosts };
+    });
   };
 
   const handleSearch = (value) => {
@@ -84,14 +89,14 @@ function Body() {
   );
 
   return (
-    <div>
-      <Search sendValue={handleSearch} />
+    <div className={cx("post-wrapper")}>
+      {showSearch && <Search sendValue={handleSearch} />}
       {state.users &&
         state.posts &&
         state.comments &&
         state.postsDivided.map((post, index) => (
           <div>
-            <h1>{post.title}</h1>
+            <h1 className="text-center">{post.title}</h1>
             <div className={cx("body-heading")}>
               <div className="text-start">
                 <h5>author : {state.users[post.userId - 1].name}</h5>
@@ -114,7 +119,9 @@ function Body() {
               </div>
             </div>
             <div className={cx("body-content")}>
-              <h5>{post.body.slice(0, 100)}</h5>
+              <h5>{postsId ? post.body : post.body.slice(0, 100)}</h5>
+
+              {!postsId && <Link to={`/postDetail/${post.id}`}>detail</Link>}
             </div>
 
             <div>
@@ -171,4 +178,4 @@ function Body() {
   );
 }
 
-export default Body;
+export default Posts;

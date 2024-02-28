@@ -1,13 +1,9 @@
-import className from "classnames/bind";
-import style from "./Home.module.scss";
+import Posts from "../post/posts";
 
-import Body from "./body";
-
-const cx = className.bind(style);
 function Home() {
   return (
-    <div className={cx("container")}>
-      <Body />
+    <div>
+      <Posts showSearch={true} />
     </div>
   );
 }
