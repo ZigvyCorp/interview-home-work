@@ -1,10 +1,11 @@
 import { RootState } from '../index';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type Comment = {
+export type Comment = {
+    id: number;
     email: string;
     content: string;
-    createdAt: number;
+    createdAt: string;
 };
 
 export interface Post {
@@ -17,7 +18,7 @@ export interface Post {
         email: string;
         name: string;
     };
-    createdAt: number;
+    createdAt: string;
 }
 
 interface PostsState {
@@ -49,6 +50,7 @@ const postsSlice = createSlice({
         fetchPostsSuccess(state, action: PayloadAction<Post[]>) {
             state.loading = false;
             state.posts = action.payload;
+            state.hasMore = action.payload.length > 0;
         },
         fetchPostsFailure(state, action: PayloadAction<string>) {
             state.loading = false;
@@ -66,6 +68,8 @@ const postsSlice = createSlice({
         searchPostsStart(state, action: PayloadAction<string>) {
             state.loading = true;
             state.keyword = action.payload;
+            state.hasMore = true;
+            state.page = 1;
         }
     }
 });

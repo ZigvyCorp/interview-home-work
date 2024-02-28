@@ -1,18 +1,18 @@
-import { call, put, select, takeLatest } from 'redux-saga/effects';
+import { call, debounce, put, select, takeLatest } from 'redux-saga/effects';
 import {
     fetchPostsStart,
     fetchPostsSuccess,
     fetchPostsFailure,
-    Post,
     loadMorePostsSuccess,
     loadMorePostsStart,
-    searchPostsStart
+    searchPostsStart,
+    Post
 } from '../slices/postSlice';
-import axios from 'axios';
+import { postApi } from '../../api';
 
 async function fetchPosts(page: number, keyword: string) {
-    const res = await axios.get(`http://localhost:3000/api/posts?page=${page}&keyword=${keyword}`);
-    return res.data.posts;
+    const posts = await postApi.getAll(page, keyword);
+    return posts;
 }
 
 function* fetchPostsSaga(): Generator<any, void, any> {
@@ -38,5 +38,5 @@ function* loadMorePostsSaga() {
 export function* watchFetchPosts() {
     yield takeLatest(fetchPostsStart.toString(), fetchPostsSaga);
     yield takeLatest(loadMorePostsStart.toString(), loadMorePostsSaga);
-    yield takeLatest(searchPostsStart.toString(), fetchPostsSaga);
+    yield debounce(1000, searchPostsStart.toString(), fetchPostsSaga);
 }

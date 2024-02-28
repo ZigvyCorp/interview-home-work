@@ -1,18 +1,16 @@
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { Post, fetchPostsStart, selectPosts, loadMorePostsStart, searchPostsStart } from '../store/slices/postSlice';
 import { Input } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-import { debounce } from 'lodash';
 import PostItem from './PostItem';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import PostSkeleton from './PostSkeleton';
 
 export function PostList() {
-    const { posts, loading, hasMore, keyword } = useAppSelector(selectPosts);
+    const { posts, loading, hasMore, keyword, error } = useAppSelector(selectPosts);
     const [searchTerm, setSearchTerm] = useState<string>('');
     const dispatch = useAppDispatch();
-    const debouncedSearch = useRef(debounce(term => dispatch(searchPostsStart(term)), 300));
 
     useEffect(() => {
         if (posts.length == 0) dispatch(fetchPostsStart());
@@ -22,7 +20,7 @@ export function PostList() {
     const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
         const term = e.target.value;
         setSearchTerm(term);
-        debouncedSearch.current(term);
+        dispatch(searchPostsStart(term));
     };
 
     const handleLoadMore = () => {
@@ -44,19 +42,25 @@ export function PostList() {
                     addonBefore={<SearchOutlined />}
                 />
             </div>
-            <InfiniteScroll
-                dataLength={posts.length}
-                next={handleLoadMore}
-                hasMore={hasMore}
-                loader={<PostSkeleton />}
-                endMessage={<p className="text-center text-[30px] py-8 text-white">No more posts to load</p>}
-            >
-                <div className="w-[90%] md:w-4/5 max-w-[1200px] mx-auto pt-[72px]">
-                    {posts.map((post: Post) => (
-                        <PostItem key={post.id} post={post} />
-                    ))}
+            {error ? (
+                <div className="min-h-[100vh] justify-center flex items-center text-2xl text-white">
+                    Something's wrong
                 </div>
-            </InfiniteScroll>
+            ) : (
+                <InfiniteScroll
+                    dataLength={posts.length}
+                    next={handleLoadMore}
+                    hasMore={hasMore}
+                    loader={<PostSkeleton />}
+                    endMessage={<p className="text-center text-[30px] py-8 text-white">No more posts to load</p>}
+                >
+                    <div className="w-[90%] md:w-4/5 max-w-[1200px] mx-auto pt-[72px]">
+                        {posts.map((post: Post) => (
+                            <PostItem key={post.id} post={post} />
+                        ))}
+                    </div>
+                </InfiniteScroll>
+            )}
         </div>
     );
 }
