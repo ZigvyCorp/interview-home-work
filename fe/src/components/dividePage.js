@@ -5,7 +5,7 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import style from "./Home/Home.module.scss";
+import style from "./components.module.scss";
 
 const cx = classNames.bind(style);
 
@@ -15,7 +15,7 @@ function DividePage({ posts, itemsPerPage = 8, sendPage = () => {} }) {
   useEffect(() => {
     getPage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage]);
+  }, [currentPage, posts.length]);
   const previousPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);

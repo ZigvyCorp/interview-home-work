@@ -2,47 +2,35 @@
     padding: 0 40px;
 }
 
-.header-container,.header-user-container,.body-heading-color-container{
+.search-wrapper{
+    display: flex;
+    justify-content: right;
+}
+.search{
+    // position: absolute;
+    // right: 0;
+    // top: 120%;
+    max-width: 240px;
+    
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 10px 0;
+    .search-icon{
+        border-right: 1px solid #ccc;
+        padding: 2px 4px;
+    }
+    input{
+        border: none;
+        outline: none;
+    }
+}
+
+.body-heading-color-container{
     display: flex;
 }
 
-.header-container{
-    
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-    border: 2px solid #000;
-    h5{
-        margin: 10px 0;
-    }
-    >div,>div:last-child  div:first-child
 
-    {
-        border-left:  2px solid #000;
-        border-right:  2px solid #000;
-    }
-    >div:last-child,>div:first-child{
-        border: 0;
-    }
-    .header-logo{
-        padding-left: 60px;
-    }
-    .header-blog{
-        padding: 0 80px;
-        background-color: #ccc;
-    }
-    .header-user-container{
-        h6{
-            font-size: 26px;
-        }
-        h5{
-           margin: 10px;
-        }
-    }
-    
-    
-    
-}
 .body-heading{
     justify-content: space-between;
     position: relative;
@@ -74,6 +62,11 @@
     background-color: #fff;
     background-clip: border-box;
     border-radius: 6px;
+    
+    .card-comment-count{
+        text-align: left;
+        cursor: pointer;
+    }
 }
 
 .comment-box {
