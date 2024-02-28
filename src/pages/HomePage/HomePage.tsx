@@ -1,99 +1,83 @@
-import { IUser } from "@/common/@types/types";
+import { IPost, IUser } from "@/common/@types/types";
 import { useDebouncedState } from "@/common/hooks/useDebounce";
 import Post, { IPostProps } from "@/components/Post/Post";
 import PostSkeleton from "@/components/PostSkeleton/PostSkeleton";
 import postApi from "@/features/post/post.service";
 import userApi from "@/features/user/user.service";
-import React, { useEffect } from "react";
-import Pagination from "react-bootstrap/Pagination";
+import { Pagination } from "antd";
+import React, { useEffect, useState } from "react";
 
-const POST_PER_PAGE = 10;
+const POST_PER_PAGE = 9;
 const DEBOUNCE_TIME = 500;
 
 const HomePage = () => {
-  const [posts, setPosts] = React.useState<IPostProps[]>([]);
-  const [users, setUsers] = React.useState<IUser[]>([]);
-  const [currentPageActive, setCurrentPageActive] = React.useState<number>(1);
-  const [isFetching, setIsFetching] = React.useState<boolean>(false);
-  const [isError, setIsError] = React.useState<boolean>(false);
-  const [totalPages, { debouncedSetValue }] = useDebouncedState<number>(
-    0,
-    DEBOUNCE_TIME
-  );
+  const [posts, setPosts] = useState<IPost[]>([]);
+  const [users, setUsers] = useState<IUser[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [filteredPosts, setFilteredPosts] = useState<IPostProps[]>([]);
+
+  const [{ value: currentPage }, { debouncedSetValue: setCurrentPage }] =
+    useDebouncedState<number>(1, DEBOUNCE_TIME);
+  console.log("🚀 ~ HomePage ~ currentPage:", currentPage);
 
   useEffect(() => {
-    const fetchTotalPost = async () => {
+    const fetchPosts = async () => {
+      setIsLoading(true);
       try {
-        setIsFetching(true);
-        const [totalPostRes, usersData] = await Promise.all([
+        const [postsRes, usersRes] = await Promise.all([
           postApi.getPosts(),
           userApi.getUsers(),
         ]);
-        setUsers(usersData);
-        debouncedSetValue(Math.ceil(totalPostRes.length / POST_PER_PAGE));
+        setPosts(postsRes);
+        setUsers(usersRes);
       } catch (error) {
         setIsError(true);
       } finally {
-        setIsFetching(false);
+        setIsLoading(false);
       }
     };
-    fetchTotalPost();
-  }, [debouncedSetValue]);
+    fetchPosts();
+  }, []);
 
   useEffect(() => {
-    const fetchPostPagination = async () => {
-      try {
-        const postsData = await postApi.getPostPagination(
-          currentPageActive,
-          POST_PER_PAGE
-        );
-
-        const postsWithAuthor: IPostProps[] = postsData.map((post) => {
-          return {
-            id: post.id,
-            author:
-              users.find((user) => user.id === post.userId)?.name ?? "Unknow",
-            createdAt: "thg 2 10, 12:00 SA",
-            title: post.title,
-            body: post.body,
-          };
-        });
-
-        setPosts(postsWithAuthor);
-      } catch (error) {
-        setIsError(true);
-      } finally {
-        setIsFetching(false);
-      }
-    };
-    fetchPostPagination();
-  }, [currentPageActive]);
+    const start = (currentPage - 1) * POST_PER_PAGE;
+    const end = currentPage * POST_PER_PAGE;
+    const newPosts = posts.slice(start, end);
+    setFilteredPosts(
+      newPosts.map((post) => {
+        return {
+          id: post.id,
+          title: post.title,
+          body: post.body,
+          createdAt: "thg 2 10, 12:00 SA",
+          author: users.find((user) => user.id === post.userId)?.name,
+        };
+      })
+    );
+  }, [currentPage, posts, users]);
 
   return (
     <div className="container">
       <div className="row">
-        <Pagination className="mt-3">
-          {Array.from({ length: totalPages.value }).map((_, index) => {
-            const pageIndex = index + 1;
-            return (
-              <Pagination.Item
-                active={pageIndex === currentPageActive}
-                key={pageIndex}
-                onClick={() => setCurrentPageActive(pageIndex)}
-              >
-                {pageIndex}
-              </Pagination.Item>
-            );
-          })}
-        </Pagination>
+        <Pagination
+          className="mb-3 mt-4"
+          showLessItems={true}
+          showSizeChanger={false}
+          defaultCurrent={1}
+          total={posts.length}
+          current={currentPage}
+          pageSize={POST_PER_PAGE}
+          onChange={(page) => setCurrentPage(page)}
+        />
 
-        {isFetching
-          ? Array.from({ length: 10 }).map((_, index) => (
+        {isLoading || isError
+          ? Array.from({ length: POST_PER_PAGE }).map((_, index) => (
               <div className="col-4" key={index}>
                 <PostSkeleton />
               </div>
             ))
-          : posts.map((post) => (
+          : filteredPosts.map((post) => (
               <div className="col-4" key={post.id}>
                 <Post
                   id={post.id}

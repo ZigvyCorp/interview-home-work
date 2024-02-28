@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { IRoute, PUBLIC_ROUTE } from "./routes";
 import { PageNotFound } from "./pages";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
+import { ROUTES_PATH } from "./common/enum/routes.enum";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             />
           );
         })}
+        <Route path={ROUTES_PATH.PAGE_NOT_FOUND} element={<PageNotFound />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>

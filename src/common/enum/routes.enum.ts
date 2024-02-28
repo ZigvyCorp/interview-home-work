@@ -8,4 +8,5 @@ export const ROUTES_PATH = {
   HOME: `/${PAGE_SECTION.HOME}`,
   USER: `${PAGE_SECTION.USER}/:userId`,
   BLOG_DETAIL: `/${PAGE_SECTION.BLOG}/:blogId`,
+  PAGE_NOT_FOUND: "/page-not-found",
 };
