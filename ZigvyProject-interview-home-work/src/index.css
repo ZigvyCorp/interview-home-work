@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply m-0 p-0 antialiased leading-5 relative;
+  }
+
+  html {
+    @apply scroll-smooth box-border outline-none list-none overflow-x-hidden;
+    font-family: "Inter", sans-serif;
+  }
+
+  a {
+    @apply no-underline;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-[12px];
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent border-[1px] border-[#7e7e7e] rounded-[8px];
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-[#f1f1f1] border-[2px] border-[#616161] rounded-[8px];
+  }
+}
+
+@layer components {
+  .classcanthemcss {
+    @apply bg-white;
+  }
+}
+
+
+@layer utilities {
+  .transform-origin-center {
+    transform-origin: center center;
+  }
+}
+
+.thumb,
+.thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* For Chrome browsers */
+.thumb::-webkit-slider-thumb {
+  @apply bg-[#f1f5f7] shadow-[0_0_1px_1px_#ced4da] cursor-pointer h-[18px] w-[18px] relative mt-1 rounded-[50%] border-[none];
+  pointer-events: all;
+}
