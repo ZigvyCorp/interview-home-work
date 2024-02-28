@@ -51,7 +51,7 @@ const callApi = async ({
         return response
     } catch (error) {
         console.log(error)
-        const dataError = error.response.data
+        const dataError = error.response.data || error.message
         if (error.code === 'ERR_BAD_REQUEST') {
             Toast({
                 title: dataError,

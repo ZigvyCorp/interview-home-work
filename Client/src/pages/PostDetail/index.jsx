@@ -26,8 +26,12 @@ const PostDetailPage = () => {
 
     return (
         <DetailContainer>
-            <CardDetail id={postDetail?.id} comments={postDetail?.comments} user={postDetail?.user}
-                        title={postDetail?.title}>
+            <CardDetail
+                id={postDetail?.id}
+                comments={postDetail?.comments}
+                user={postDetail?.user}
+                title={postDetail?.title}
+            >
                 {postDetail?.body}
             </CardDetail>
         </DetailContainer>

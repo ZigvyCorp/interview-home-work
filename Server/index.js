@@ -15,8 +15,16 @@ const options = {
     swaggerDefinition: {
         swagger: "2.0",
         info: {
-            title: "Movie Api",
+            title: "Post Api",
             version: "1.0.0",
+        },
+        securityDefinitions: {
+            Authorization: {
+                type: 'apiKey',
+                name: 'Authorization',
+                scheme: 'Authorization',
+                in: 'header',
+            },
         },
         servers: [
             {

@@ -3,7 +3,7 @@ paths:
     post:
       tags:
         - User
-      operationId: login
+      operationId: logins
       consumes:
         - application/json
         - application/xml
@@ -11,11 +11,11 @@ paths:
         - application/xml
         - application/json
       parameters:
-        - name: admin
+        - name: user
           in: body
           required: true
           schema:
-            $ref: "#/definitions/adminLogin"
+            $ref: "#/definitions/login"
       responses:
         "200":
           description: Success
@@ -23,7 +23,7 @@ paths:
     post:
       tags:
         - User
-      operationId: login
+      operationId: register
       consumes:
         - application/json
         - application/xml
@@ -31,74 +31,35 @@ paths:
         - application/xml
         - application/json
       parameters:
-        - name: admin
+        - name: user
           in: body
           required: true
           schema:
-            $ref: "#/definitions/adminLogin"
+            $ref: "#/definitions/register"
       responses:
         "200":
           description: Success
-  /api/auth/access-token:
-    post:
-      tags:
-        - user-controller
-      operationId: loginAccessToken
-      consumes:
-        - application/json
-        - application/xml
-      produces:
-        - application/xml
-        - application/json
-      parameters:
-        - name: verifyToken
-          in: body
-          required: true
-          schema:
-            $ref: "#/definitions/getNonce"
-      responses:
-        "200":
-          description: Success
-  /api/pre-sales:
+  /api/posts:
     get:
       tags:
-        - user-controller
-      operationId: presale-user
+        - api-post
+      operationId: post
       consumes:
         - application/json
         - application/xml
       produces:
         - application/xml
         - application/json
-      parameters:
-        - name: network_id
-          in: query
-          required: false
-          schema:
-            $ref: "#/definitions/getPresale"
-        - name: status
-          in: query
-          required: false
-          schema:
-            $ref: "#/definitions/getPresale"
-        - name: limit
-          in: query
-          required: false
-          schema:
-            $ref: "#/definitions/getPresale"
-        - name: page
-          in: query
-          required: false
-          schema:
-            $ref: "#/definitions/getPresale"
       responses:
         "200":
           description: Success
-  /api/pre-sales/{presale_id}:
+      security:
+        - Authorization: [ ]
+  /api/posts/{postId}:
     get:
       tags:
-        - user-controller
-      operationId: presale-user-byId
+        - api-post
+      operationId: post-id
       consumes:
         - application/json
         - application/xml
@@ -106,19 +67,37 @@ paths:
         - application/xml
         - application/json
       parameters:
-        - name: presale_id
+        - name: postId
           in: path
           required: true
           schema:
-            $ref: "#/definitions/getPresaleById"
+            $ref: "#/definitions/getPostById"
       responses:
         "200":
           description: Success
-  /api/pre-sales/:presale_id/buyer-info:
+      security:
+        - Authorization: [ ]
+  /api/users:
     get:
       tags:
-        - user-controller
-      operationId: presale-buyer-info
+        - api-user
+      operationId: user
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      responses:
+        "200":
+          description: Success
+      security:
+        - Authorization: [ ]
+  /api/users/detail/{userId}:
+    get:
+      tags:
+        - api-user
+      operationId: user-id
       consumes:
         - application/json
         - application/xml
@@ -126,21 +105,21 @@ paths:
         - application/xml
         - application/json
       parameters:
-        - name: presale_id
+        - name: userId
           in: path
           required: true
           schema:
-            $ref: "#/definitions/getPresaleBuyerInfo"
+            $ref: "#/definitions/getUserById"
       responses:
         "200":
           description: Success
       security:
-        - Bearer: [ ]
-  /api/pre-sales/participated:
+        - Authorization: [ ]
+  /api/comments:
     get:
       tags:
-        - user-controller
-      operationId: presale-participated
+        - api-comment
+      operationId: user
       consumes:
         - application/json
         - application/xml
@@ -151,154 +130,32 @@ paths:
         "200":
           description: Success
       security:
-        - Bearer: [ ]
-  /api/pre-sales/mytoken:
-    get:
-      tags:
-        - user-controller
-      operationId: presale-mytoken
-      consumes:
-        - application/json
-        - application/xml
-      produces:
-        - application/xml
-        - application/json
-      responses:
-        "200":
-          description: Success
-      security:
-        - Bearer: [ ]
+        - Authorization: [ ]
 definitions:
   Access-Control-Allow-Headers: Content-Type, api_key, Authorization
-  adminLogin:
+  login:
     type: object
     properties:
+      userName:
+        type: string
+      password:
+        type: string
+  register:
+    type: object
+    properties:
+      userName:
+        type: string
+      name:
+        type: string
       email:
         type: string
       password:
         type: string
-  getNonce:
+  getUserById:
     type: object
     properties:
-      wallet_address:
-        type: string
-      network_id:
-        format: int32
-        type: integer
-      signature:
-        type: string
-  getPresale:
-    type: object
-    properties:
-      presale_id:
-        format: int32
-        type: integer
-      wallet_address:
-        format: int32
-        type: integer
-      limit:
-        format: int32
-        type: integer
-      page:
-        format: int32
-        type: integer
-  getPresaleById:
-    type: object
-    properties:
-      presale_id:
-        format: int32
-        type: integer
-  getPaymentHistory:
-    type: object
-    properties:
-      presale_id:
-        format: int32
-        type: integer
-      wallet_address:
-        type: string
-      limit:
-        format: int32
-        type: integer
-      page:
-        format: int32
-        type: integer
-  getWhiteListByPresaleId:
-    type: object
-    properties:
-      presale_id:
-        format: int32
-        type: integer
-  getWhiteListUser:
-    type: object
-    properties:
-      presale_id:
-        format: int32
-        type: integer
-  getPresaleBuyerInfo:
-    type: object
-    properties:
-      presale_id:
-        format: int32
-        type: integer
-  changeActivePresale:
-    type: object
-    properties:
-      presale_id:
-        format: int32
-        type: integer
-  getParticipated:
-    type: object
-    properties:
-      presale_id:
-        format: int32
-        type: integer
-  getMytoken:
-    type: object
-  requestPayment:
-    type: object
-    properties:
-      wallet_address:
-        type: string
-      presale_id:
-        format: int32
-        type: integer
-      package_amount:
-        format: int32
-        type: integer
-      token_amount:
-        format: int32
-        type: integer
-      price:
-        type: string
-  getHistoryByPresaleId:
-    type: object
-    properties:
-      presale_id:
-        format: int32
-        type: integer
-      limit:
-        format: int32
-        type: integer
-      page:
-        format: int32
-        type: integer
-  getHistoryByWalletAddress:
-    type: object
-    properties:
-      wallet_address:
-        format: int32
-        type: integer
-      limit:
-        format: int32
-        type: integer
-      page:
-        format: int32
-        type: integer
-  accessToken:
-    type: object
-    properties:
-      nonceNumber:
-        type: number
+      userId:
+        format: string
   "KeyValuePair[String,StringValues]":
     type: object
     properties:
