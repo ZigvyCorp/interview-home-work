@@ -1,0 +1,170 @@
+paths:
+  /api/auth/login:
+    post:
+      tags:
+        - User
+      operationId: logins
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: user
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/login"
+      responses:
+        "200":
+          description: Success
+  /api/auth/register:
+    post:
+      tags:
+        - User
+      operationId: register
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: user
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/register"
+      responses:
+        "200":
+          description: Success
+  /api/posts:
+    get:
+      tags:
+        - api-post
+      operationId: post
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      responses:
+        "200":
+          description: Success
+      security:
+        - Authorization: [ ]
+  /api/posts/{postId}:
+    get:
+      tags:
+        - api-post
+      operationId: post-id
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            $ref: "#/definitions/getPostById"
+      responses:
+        "200":
+          description: Success
+      security:
+        - Authorization: [ ]
+  /api/users:
+    get:
+      tags:
+        - api-user
+      operationId: user
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      responses:
+        "200":
+          description: Success
+      security:
+        - Authorization: [ ]
+  /api/users/detail/{userId}:
+    get:
+      tags:
+        - api-user
+      operationId: user-id
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            $ref: "#/definitions/getUserById"
+      responses:
+        "200":
+          description: Success
+      security:
+        - Authorization: [ ]
+  /api/comments:
+    get:
+      tags:
+        - api-comment
+      operationId: user
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      responses:
+        "200":
+          description: Success
+      security:
+        - Authorization: [ ]
+definitions:
+  Access-Control-Allow-Headers: Content-Type, api_key, Authorization
+  login:
+    type: object
+    properties:
+      userName:
+        type: string
+      password:
+        type: string
+  register:
+    type: object
+    properties:
+      userName:
+        type: string
+      name:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+  getUserById:
+    type: object
+    properties:
+      userId:
+        format: string
+  "KeyValuePair[String,StringValues]":
+    type: object
+    properties:
+      key:
+        type: string
+        readOnly: true
+      value:
+        uniqueItems: false
+        type: array
+        items:
+          type: string
+        readOnly: true
