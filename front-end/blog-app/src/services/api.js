@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = "http://localhost:3001/api";
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -12,6 +12,10 @@ const api = axios.create({
 const apiService = {
   getPosts: async () => {
     const response = await api.get("/posts");
+    return response.data;
+  },
+  getPostsAuthor: async () => {
+    const response = await api.get("/posts/getAll");
     return response.data;
   },
 

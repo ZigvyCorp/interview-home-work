@@ -9,7 +9,7 @@ const PostList = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const data = await apiService.getPosts();
+        const data = await apiService.getPostsAuthor();
         setPosts(data);
         setLoading(false);
       } catch (error) {
@@ -28,14 +28,17 @@ const PostList = () => {
   if (error) {
     return <div>Error: {error}</div>;
   }
-  console.log(posts);
+
   return (
-    <div>
-      <h2>Post List</h2>
+    <div className="container">
+      <div className="h2 text-center">Post List</div>
       {posts.map((post) => (
-        <div key={post.id}>
-          <h3>{post.title}</h3>
-          <p>{post.body}</p>
+        <div className="card mb-3" key={post.id}>
+          <div className="card-body">
+            <h3 className="card-title">{post.author}</h3>
+            <h3 className="card-title">{post.title}</h3>
+            <p className="card-text">{post.body}</p>
+          </div>
         </div>
       ))}
     </div>

@@ -6,11 +6,12 @@ const postRoutes = require("./routes/postRoute");
 const userRoutes = require("./routes/userRoute");
 const commentRoutes = require("./routes/commentRoute");
 // Add more routes as needed
-
+const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
+app.use(cors());
 app.use(bodyParser.json());
 
 // Routes

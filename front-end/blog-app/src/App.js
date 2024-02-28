@@ -1,17 +1,12 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import PostDetailPage from "./pages/PostDetailPage";
-
+import { BrowserRouter as Router } from "react-router-dom";
+import PostList from "./components/PostList";
 const App = () => {
   return (
     <Router>
       <div>
-        <h1>Blog App</h1>
-        <Routes>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/posts/:postId" component={PostDetailPage} />
-        </Routes>
+        <div className="h2 text-center">Blog App</div>
+        <PostList></PostList>
       </div>
     </Router>
   );
