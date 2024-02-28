@@ -12,6 +12,8 @@ import { RootState } from "../../redux/store";
 import MainLayout from "../layout/MainLayout";
 import FormSearchPost from "./components/FormSearchPost";
 
+export const tags = ['magenta', 'red', 'volcano', "orange", "lime", "green", "cyan", "blue", "geekblue", "purple"]
+
 const BlogComponent = () => {
     const [page, setPage] = useState(0 as number);
     const [pageSize, setPageSize] = useState(10 as number);
@@ -159,17 +161,9 @@ export const Blog = (props: IProps) => {
                 </Col>
                 <Col xs={24} sm={24} md={12} lg={8}>
                     <Space size={[0, 8]} wrap>
-                        <Tag color="magenta">magenta</Tag>
-                        <Tag color="red">red</Tag>
-                        <Tag color="volcano">volcano</Tag>
-                        <Tag color="orange">orange</Tag>
-                        <Tag color="gold">gold</Tag>
-                        <Tag color="lime">lime</Tag>
-                        <Tag color="green">green</Tag>
-                        <Tag color="cyan">cyan</Tag>
-                        <Tag color="blue">blue</Tag>
-                        <Tag color="geekblue">geekblue</Tag>
-                        <Tag color="purple">purple</Tag>
+                        {
+                            tags.map((tag: string) => <Tag color={tag}>{tag}</Tag>)
+                        }
                     </Space>
                 </Col>
             </Row>

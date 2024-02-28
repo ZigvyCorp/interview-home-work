@@ -9,6 +9,7 @@ import { IPayloadGetPost, IPostComment } from "../../redux/saga/post/model"
 import { IPayloadGetUser } from "../../redux/saga/user/model"
 import { RootState } from "../../redux/store"
 import MainLayout from "../layout/MainLayout"
+import { tags } from "../blog/BlogComponent"
 
 const BlogDetailComponent = () => {
     const postId = getPathParam('id')
@@ -52,17 +53,9 @@ const BlogDetailComponent = () => {
                             </Col>
                             <Col xs={24} sm={24} md={12} lg={8}>
                                 <Space size={[0, 8]} wrap>
-                                    <Tag color="magenta">magenta</Tag>
-                                    <Tag color="red">red</Tag>
-                                    <Tag color="volcano">volcano</Tag>
-                                    <Tag color="orange">orange</Tag>
-                                    <Tag color="gold">gold</Tag>
-                                    <Tag color="lime">lime</Tag>
-                                    <Tag color="green">green</Tag>
-                                    <Tag color="cyan">cyan</Tag>
-                                    <Tag color="blue">blue</Tag>
-                                    <Tag color="geekblue">geekblue</Tag>
-                                    <Tag color="purple">purple</Tag>
+                                    {
+                                        tags.map((tag: string) => <Tag color={tag}>{tag}</Tag>)
+                                    }
                                 </Space>
                             </Col>
                         </Row>
