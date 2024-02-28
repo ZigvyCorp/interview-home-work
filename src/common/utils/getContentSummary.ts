@@ -1,7 +1,8 @@
-function getContentSummary(content: string, wordCount: number = 100): string {
-  const words = content.split(" ");
-  const summary = words.slice(0, wordCount).join(" ");
-  return summary + "...";
+function getContentSummary(
+  content: string,
+  charactersCount: number = 100
+): string {
+  return content.slice(0, charactersCount) + "...";
 }
 
 export default getContentSummary;
