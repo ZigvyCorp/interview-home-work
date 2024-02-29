@@ -1,54 +1,58 @@
 import { IComment, IPost, IUser } from "@/common/@types/types";
-import { ROUTES_PATH } from "@/common/enum/routes.enum";
 import Comment from "@/components/Comment/Comment";
 import commentApi from "@/features/comment/comment.service";
 import postApi from "@/features/post/post.service";
 import userApi from "@/features/user/user.service";
 import { Tooltip } from "antd";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const BlogDetailPage = () => {
-  const [post, setPost] = useState<IPost>();
-  const [author, setAuthor] = useState<IUser>();
-  const [comments, setComments] = useState<IComment[] | undefined>();
-  const [isOpenComment, setIsOpenComment] = useState<boolean>(false);
-  const [iSloading, setISloading] = useState<boolean>(true);
-
   const { postId } = useParams();
-  const navigate = useNavigate();
+  const [post, setPost] = useState<IPost | null>(null);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [comments, setComments] = useState<IComment[] | undefined>();
+  const [author, setAuthor] = useState<IUser | null>();
+  const [isOpenComment, setIsOpenComment] = useState<boolean>(false);
 
   useLayoutEffect(() => {
-    if (!postId) navigate(ROUTES_PATH.PAGE_NOT_FOUND);
-    else {
-      const fetchData = async () => {
-        setISloading(true);
-        try {
-          const [postsRes, commentsRes] = await Promise.all([
-            postApi.getPostById(postId),
-            commentApi.getCommentsByPostId(postId),
-          ]);
-          const authorRes = await userApi.getUserById(postsRes.userId);
+    const fetchPost = async () => {
+      try {
+        setIsLoading(true);
+        const post = await postApi.getPostById(postId ?? "");
+        const user = await userApi.getUserById(post?.userId ?? "");
+        if (!post) return setIsError(true);
+        setAuthor(user);
+        setPost(post);
+      } catch (error) {
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchPost();
+  }, [postId]);
 
-          setAuthor(authorRes);
-          setPost(postsRes);
-          setComments(commentsRes);
-        } catch (error) {
-          navigate(ROUTES_PATH.PAGE_NOT_FOUND);
-        } finally {
-          setISloading(false);
-        }
-      };
-      fetchData();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const comments = await commentApi.getCommentsByPostId(postId ?? "");
+        setComments(comments);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchComments();
+  }, [postId]);
 
-  return (
+  return isError ? (
+    <p className="fs-1 fw-bold text-center mt-5">Không tìm thấy bài viết!</p>
+  ) : (
     <div className="min-vh-100">
       <div className="container">
-        {iSloading ? (
+        {isLoading ? (
           <div className="loading d-flex justify-content-center align-items-center mt-5">
             <Spinner animation="border" role="output" />
           </div>
@@ -56,7 +60,7 @@ const BlogDetailPage = () => {
           <>
             <h1 className="text-center mt-5 fw-bold">{post?.title}</h1>
             <div className="mt-5">
-              <p className="fs-2 fw-bolder mb-0">{author?.name}</p>
+              <p className="fs-2 fw-bolder mb-0">{author?.name ?? "Unknows"}</p>
               <p className="fw-bolder fst-italic">Created at: Sep 20, 2024</p>
             </div>
             <p className="fs-2 mt-5">{post?.body}</p>
