@@ -11,7 +11,6 @@ import { IAuthToken } from "../@types/types";
 import StoreKeys from "../enum/storekeys.enum";
 import localStorageService from "./localStorage.service";
 import HttpStatusCode from "../enum/httpStatusCode.enum";
-import { ROUTES_PATH } from "../enum/routes.enum";
 
 /** @class */
 export default class HttpService {

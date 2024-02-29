@@ -3,20 +3,23 @@ import { createSlice } from "@reduxjs/toolkit";
 
 type PostsState = {
   posts: IPost[];
-  loading: boolean;
-  filter: string;
 };
 
 const initialState: PostsState = {
   posts: [],
-  loading: true,
-  filter: "",
 };
 
 const postsSlice = createSlice({
   name: "posts",
   initialState,
-  reducers: {},
+  reducers: {
+    getPostsSuccess: (state, action) => {
+      state.posts = action.payload;
+    },
+    getPostsFailure: (state, action) => {
+      state.posts = [];
+    },
+  },
 });
 
 export const { reducer: postsReducer } = postsSlice;
