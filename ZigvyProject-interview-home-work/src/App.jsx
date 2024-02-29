@@ -1,11 +1,14 @@
 import { useState } from "react";
 import "./App.css";
-import Home from "./pages/Home";
+import Router from "./routes";
 
 function App() {
   return (
     <div className="">
-      <Home />
+     <Router />
+      {/* <Home /> */}
+      {/* <Login/> */}
+      {/* <SignUp/> */}
     </div>
   );
 }

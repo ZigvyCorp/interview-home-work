@@ -4,6 +4,8 @@ import createSagaMiddleware from "redux-saga";
 import storage from "redux-persist/lib/storage";
 
 import postReducer from "./post/postSlice";
+import userReducer from "./user/userSlice";
+
 
 import  rootSaga  from "./sagas";
 
@@ -13,6 +15,8 @@ const middleware = [sagaMiddleware];
 
 const rootReducer = combineReducers({
   posts: postReducer,
+  users: userReducer,
+
 });
 
 const persistConfig = {

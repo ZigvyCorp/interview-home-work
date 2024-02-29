@@ -86,7 +86,7 @@ const PostItems = ({ post }) => {
               key: "1",
               label: `${comments.length} replies`,
               children: comments?.map((comment) => {
-                return <CommentItem key={comment.id} comment={comment} />;
+                return <CommentItem key={comment._id} comment={comment} />;
               }),
             },
           ]}
