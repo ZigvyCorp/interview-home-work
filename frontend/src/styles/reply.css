@@ -1,0 +1,23 @@
+.reply-img {
+  width: 36px;
+  height: 36px;
+
+  border-radius: 100%;
+  margin-right: 12px;
+}
+.reply-btn {
+  border: none;
+  background-color: white;
+  padding: 0;
+  color: gray;
+  margin-top: 12px;
+}
+
+.reply-text-name {
+  color: gray;
+}
+
+.reply-text-date {
+  color: rgb(180, 180, 180);
+  font-size: 14px;
+}
