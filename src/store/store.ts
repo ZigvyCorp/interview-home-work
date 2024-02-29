@@ -5,11 +5,15 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import createSagaMiddleware from "redux-saga";
 import { counterReducer } from "./features/counter/counterSlice";
 import rootSaga from "./sagas/rootSaga";
+import { authReducer } from "./features/auth/authSlice";
+import { postsReducer } from "./features/posts/postsSlice";
 
 const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
   counter: counterReducer,
+  auth: authReducer,
+  posts: postsReducer,
 });
 
 type RootReducerType = Required<NonNullable<Parameters<typeof rootReducer>[0]>>;
@@ -17,8 +21,6 @@ type RootReducerType = Required<NonNullable<Parameters<typeof rootReducer>[0]>>;
 const persistConfig: PersistConfig<RootReducerType> = {
   key: "root",
   storage: AsyncStorage,
-  whitelist: ["counter"], // only counter will be persisted
-  blacklist: [], // only counter will be persisted
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

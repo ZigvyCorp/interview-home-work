@@ -19,7 +19,6 @@ const HomePage = () => {
 
   const [{ value: currentPage }, { debouncedSetValue: setCurrentPage }] =
     useDebouncedState<number>(1, DEBOUNCE_TIME);
-  console.log("🚀 ~ HomePage ~ currentPage:", currentPage);
 
   useEffect(() => {
     const fetchPosts = async () => {

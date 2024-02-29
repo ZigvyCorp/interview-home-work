@@ -1,17 +1,19 @@
 import { IComment, IPost, IUser } from "@/common/@types/types";
 import { ROUTES_PATH } from "@/common/enum/routes.enum";
+import Comment from "@/components/Comment/Comment";
 import commentApi from "@/features/comment/comment.service";
 import postApi from "@/features/post/post.service";
 import userApi from "@/features/user/user.service";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 
 const BlogDetailPage = () => {
   const [post, setPost] = useState<IPost>();
   const [author, setAuthor] = useState<IUser>();
-  const [comments, setComments] = useState<IComment[]>([]);
-  const [iSloading, setIsLoading] = useState<boolean>(true);
+  const [comments, setComments] = useState<IComment[] | undefined>();
+  const [isOpenComment, setIsOpenComment] = useState<boolean>(false);
+  const [iSloading, setISloading] = useState<boolean>(true);
 
   const { blogId } = useParams();
   const navigate = useNavigate();
@@ -20,7 +22,7 @@ const BlogDetailPage = () => {
     if (!blogId) navigate(ROUTES_PATH.PAGE_NOT_FOUND);
     else {
       const fetchData = async () => {
-        setIsLoading(true);
+        setISloading(true);
         try {
           const [postsRes, commentsRes] = await Promise.all([
             postApi.getPostById(blogId),
@@ -34,7 +36,7 @@ const BlogDetailPage = () => {
         } catch (error) {
           navigate(ROUTES_PATH.PAGE_NOT_FOUND);
         } finally {
-          setIsLoading(false);
+          setISloading(false);
         }
       };
       fetchData();
@@ -44,10 +46,10 @@ const BlogDetailPage = () => {
 
   return (
     <div className="min-vh-100">
-      <div className=" container">
+      <div className="container">
         {iSloading ? (
           <div className="loading d-flex justify-content-center align-items-center mt-5">
-            <Spinner animation="border" role="status" />
+            <Spinner animation="border" role="output" />
           </div>
         ) : (
           <>
@@ -57,6 +59,28 @@ const BlogDetailPage = () => {
               <p className="fw-bolder fst-italic">Created at: Sep 20, 2024</p>
             </div>
             <p className="fs-2 mt-5">{post?.body}</p>
+
+            {/* comments render */}
+            {comments && (
+              <div className="comments mt-5">
+                <div className="border-bottom">
+                  <button
+                    className="border-0 bg-white w-vw-100"
+                    onClick={() => setIsOpenComment((prev) => !prev)}
+                  >
+                    {comments.length} replies
+                  </button>
+                </div>
+
+                {isOpenComment && (
+                  <div className="mt-3">
+                    {comments.map((cmt) => (
+                      <Comment key={cmt.id} comment={cmt} />
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
           </>
         )}
       </div>
