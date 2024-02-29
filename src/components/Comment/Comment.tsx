@@ -6,7 +6,7 @@ interface ICommentProps {
 
 const Comment = ({ comment }: ICommentProps) => {
   return (
-    <div className="row mb-3">
+    <div className="row mb-5">
       <div className="col-1">
         <div className="d-flex justify-content-center align-items-center">
           <img
@@ -23,7 +23,8 @@ const Comment = ({ comment }: ICommentProps) => {
           <span className="fw-bold">{comment.email}</span>
           <span className="text-secondary ms-3">2 days ago</span>
         </p>
-        <p>{comment.body}</p>
+        <p className="mb-2">{comment.body}</p>
+        <button className="text-secondary border-0 bg-white">Reply To</button>
       </div>
     </div>
   );

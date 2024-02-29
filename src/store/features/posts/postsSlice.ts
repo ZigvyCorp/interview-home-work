@@ -5,11 +5,13 @@ import { getPostsThunk } from "./postsThunkAction";
 type PostsState = {
   posts: IPost[];
   loading: boolean;
+  filter: string;
 };
 
 const initialState: PostsState = {
   posts: [],
   loading: true,
+  filter: "",
 };
 
 const postsSlice = createSlice({
@@ -18,14 +20,14 @@ const postsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getPostsThunk.pending, (state, action) => {
+      .addCase(getPostsThunk.pending, (state) => {
         state.loading = true;
       })
       .addCase(getPostsThunk.fulfilled, (state, action) => {
         state.posts = action.payload;
         state.loading = false;
       })
-      .addCase(getPostsThunk.rejected, (state, action) => {
+      .addCase(getPostsThunk.rejected, (state) => {
         state.loading = true;
       });
   },

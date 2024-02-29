@@ -4,6 +4,7 @@ import Comment from "@/components/Comment/Comment";
 import commentApi from "@/features/comment/comment.service";
 import postApi from "@/features/post/post.service";
 import userApi from "@/features/user/user.service";
+import { Tooltip } from "antd";
 import React, { useLayoutEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
@@ -64,12 +65,14 @@ const BlogDetailPage = () => {
             {comments && (
               <div className="comments mt-5">
                 <div className="border-bottom">
-                  <button
-                    className="border-0 bg-white w-vw-100"
-                    onClick={() => setIsOpenComment((prev) => !prev)}
-                  >
-                    {comments.length} replies
-                  </button>
+                  <Tooltip title="Đóng/Mở danh sách bình luận!">
+                    <button
+                      className="border-0 bg-white w-vw-100"
+                      onClick={() => setIsOpenComment((prev) => !prev)}
+                    >
+                      {comments.length} replies
+                    </button>
+                  </Tooltip>
                 </div>
 
                 {isOpenComment && (

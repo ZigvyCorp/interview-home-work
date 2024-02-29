@@ -15,6 +15,10 @@ class User extends HttpService {
   getUserById(id: string) {
     return this.get<IUser>(`/users/${id}`);
   }
+
+  getUserForLogin() {
+    return this.get<IUser>("/users/1");
+  }
 }
 
 const userApi = new User();

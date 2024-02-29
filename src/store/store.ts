@@ -3,7 +3,6 @@ import { persistReducer, persistStore } from "redux-persist";
 import { PersistConfig } from "redux-persist/lib/types";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import createSagaMiddleware from "redux-saga";
-import { counterReducer } from "./features/counter/counterSlice";
 import rootSaga from "./sagas/rootSaga";
 import { authReducer } from "./features/auth/authSlice";
 import { postsReducer } from "./features/posts/postsSlice";
@@ -11,7 +10,6 @@ import { postsReducer } from "./features/posts/postsSlice";
 const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = combineReducers({
-  counter: counterReducer,
   auth: authReducer,
   posts: postsReducer,
 });
