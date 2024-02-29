@@ -7,6 +7,7 @@ const getPosts = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
     const skipIndex = (page - 1) * limit;
+    const keyword = req.query.keyword;
 
     let query = {};
 
@@ -138,7 +139,8 @@ const getPostById = async (req, res) => {
 // Create a new post: POST /api/v1/posts
 const createPost = async (req, res) => {
   try {
-    const { owner, title, content, tags } = req.body;
+    const owner = req.user._id;
+    const { title, content, tags } = req.body;
 
     const lowerCaseTags = tags.map((tag) => tag.toLowerCase());
 
