@@ -32,7 +32,6 @@ export default function Search() {
 			}
 
 			let data = await res.json();
-			console.log("🚀 ~ fetchPosts ~ data:", data)
 
 			if (data.length > batchSize * offset) {
 				data = data.slice(0, batchSize * offset);

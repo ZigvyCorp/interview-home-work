@@ -1,6 +1,7 @@
 import type { Action, ThunkAction } from "@reduxjs/toolkit";
 import { combineSlices, configureStore } from "@reduxjs/toolkit";
 import { counterSlice } from "./features/counter/counterSlice";
+import { postsSlice } from "./features/posts/postsSlice";
 import { quotesApiSlice } from "./features/quotes/quotesApiSlice";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -10,7 +11,7 @@ const persistConfig = {
 	storage,
 };
 
-const rootReducer = combineSlices(counterSlice, quotesApiSlice);
+const rootReducer = combineSlices(counterSlice, postsSlice, quotesApiSlice);
 // Infer the `RootState` type from the root reducer
 export type RootState = ReturnType<typeof rootReducer>;
 

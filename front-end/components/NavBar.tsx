@@ -4,9 +4,12 @@ import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { loadMoreAsync } from "@/lib/features/posts/postsSlice";
+import { useAppDispatch } from "@/lib/hooks";
 
 function NavBar() {
 	const router = useRouter();
+	const dispatch = useAppDispatch();
 
 	function handleSearch(event: React.FormEvent) {
 		event.preventDefault();
@@ -67,7 +70,10 @@ function NavBar() {
 						</div>
 					</form>
 
-					<div className="d-flex gap-2 align-items-center">
+					<div
+						className="d-flex gap-2 align-items-center"
+						onClick={() => dispatch(loadMoreAsync(1))}
+					>
 						<Image
 							src="/cat.png"
 							alt="User"
