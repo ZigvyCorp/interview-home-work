@@ -1,0 +1,26 @@
+.blog-wrapper {
+  border-bottom: 1px solid gainsboro;
+  padding-bottom: 12px;
+  margin-bottom: 36px;
+  cursor: pointer;
+  padding: 12px;
+  transition: all ease 0.3s;
+}
+.blog-wrapper:hover {
+  background-color: rgb(240, 240, 240);
+}
+
+.reply-collapse {
+  border-top: solid 1px gainsboro;
+  padding: 4px;
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.blog-text {
+  color: black;
+  font-weight: 500;
+  font-size: 18px;
+}
