@@ -1,5 +1,6 @@
 [
   {
+    "_id": "65e0b867ae632ccb9e0cd121",
     "id": 1,
     "owner": 1,
     "title": "Hello world",
@@ -8,6 +9,7 @@
     "tags": ["consult", "it", "hala"]
   },
   {
+    "_id": "65e0b867ae632ccb9e0cd122",
     "id": 2,
     "owner": 3,
     "title": "The building",
@@ -16,6 +18,7 @@
     "tags": ["gov", "legal", "political"]
   },
   {
+    "_id": "65e0b867ae632ccb9e0cd123",
     "id": 3,
     "owner": 2,
     "title": "Silk of Dreamer",

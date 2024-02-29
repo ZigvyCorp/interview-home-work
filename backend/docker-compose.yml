@@ -1,0 +1,35 @@
+version: '3'
+
+networks:
+  app-network:
+    driver: bridge
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    networks:
+      - app-network
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: test
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+  
+  express:
+    build: .
+    container_name: express
+    networks:
+      - app-network
+    ports:
+      - "5000:5000"
+    environment:
+      PORT: 5000
+      DB_URL: mongodb://root:root@mongo:27017/test
+    volumes:
+      - .:/app
+    depends_on:
+      - mongo
