@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 import BootstrapClient from "@/components/BootstrapClient";
+import StoreProvider from "./StoreProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,12 +19,14 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en">
-			<body className={inter.className}>
-				<NavBar />
-				{children}
-				<BootstrapClient />
-			</body>
-		</html>
+		<StoreProvider>
+			<html lang="en">
+				<body className={inter.className}>
+					<NavBar />
+					{children}
+					<BootstrapClient />
+				</body>
+			</html>
+		</StoreProvider>
 	);
 }
