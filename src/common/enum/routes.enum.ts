@@ -1,12 +1,12 @@
 export enum PAGE_SECTION {
   HOME = "",
   USER = "user",
-  BLOG = "blog",
+  POST = "post",
 }
 
 export const ROUTES_PATH = {
   HOME: `/${PAGE_SECTION.HOME}`,
   USER: `${PAGE_SECTION.USER}/:userId`,
-  BLOG_DETAIL: `/${PAGE_SECTION.BLOG}/:blogId`,
+  POST_DETAIL: `/${PAGE_SECTION.POST}/:postId`,
   PAGE_NOT_FOUND: "/page-not-found",
 };

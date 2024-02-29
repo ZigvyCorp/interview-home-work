@@ -3,8 +3,8 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { IRoute, PUBLIC_ROUTE } from "./routes";
 import { PageNotFound } from "./pages";
-import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import { ROUTES_PATH } from "./common/enum/routes.enum";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 function App() {
   return (

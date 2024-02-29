@@ -16,7 +16,7 @@ const PUBLIC_ROUTE: IRoute[] = [
     layout: MainLayout,
   },
   {
-    path: ROUTES_PATH.BLOG_DETAIL,
+    path: ROUTES_PATH.POST_DETAIL,
     page: BlogDetailPage,
     layout: MainLayout,
   },

@@ -14,12 +14,12 @@ export interface IPostProps {
 
 const Post = (props: IPostProps) => {
   return (
-    <Link to={`/${PAGE_SECTION.BLOG}/${props.id}`}>
+    <Link to={`/${PAGE_SECTION.POST}/${props.id}`}>
       <Tooltip title="Bấm vào để xem chi tiết!">
         <div className="post shadow p-3 mb-5 bg-white rounded">
           <div className="post__content">
             <div className="post_content-heading column-gap-2">
-              <p className="mb-1 fw-bold">{props.author || "Unknown user"}</p>
+              <p className="mb-1 fw-bold">{props.author}</p>
               <p>{props.createdAt}</p>
             </div>
             <div className="post_content-body">

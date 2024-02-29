@@ -16,11 +16,11 @@ class Post extends HttpService {
     return this.get<IPost>(`/posts/${id}`);
   }
 
-  getPostPagination(page: number, limit: number) {
+  getPostPagination(page: number, limit: number = 10) {
     return this.get<IPost[]>(`/posts?_page=${page}&_limit=${limit}`);
   }
 }
 
-const blogApi = new Post();
+const postsApi = new Post();
 
-export default blogApi;
+export default postsApi;

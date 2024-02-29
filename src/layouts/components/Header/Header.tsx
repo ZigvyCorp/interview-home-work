@@ -18,7 +18,9 @@ const Header = () => {
         </Navbar.Text>
 
         <Navbar.Collapse className="justify-content-end">
-          <Button>Đăng nhập</Button>
+          <Button onClick={() => alert("Tính năng chưa được phát triển")}>
+            Đăng nhập
+          </Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>

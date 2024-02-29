@@ -16,18 +16,18 @@ const BlogDetailPage = () => {
   const [isOpenComment, setIsOpenComment] = useState<boolean>(false);
   const [iSloading, setISloading] = useState<boolean>(true);
 
-  const { blogId } = useParams();
+  const { postId } = useParams();
   const navigate = useNavigate();
 
   useLayoutEffect(() => {
-    if (!blogId) navigate(ROUTES_PATH.PAGE_NOT_FOUND);
+    if (!postId) navigate(ROUTES_PATH.PAGE_NOT_FOUND);
     else {
       const fetchData = async () => {
         setISloading(true);
         try {
           const [postsRes, commentsRes] = await Promise.all([
-            postApi.getPostById(blogId),
-            commentApi.getCommentsByPostId(blogId),
+            postApi.getPostById(postId),
+            commentApi.getCommentsByPostId(postId),
           ]);
           const authorRes = await userApi.getUserById(postsRes.userId);
 
@@ -55,7 +55,7 @@ const BlogDetailPage = () => {
         ) : (
           <>
             <h1 className="text-center mt-5 fw-bold">{post?.title}</h1>
-            <div>
+            <div className="mt-5">
               <p className="fs-2 fw-bolder mb-0">{author?.name}</p>
               <p className="fw-bolder fst-italic">Created at: Sep 20, 2024</p>
             </div>
