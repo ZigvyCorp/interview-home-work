@@ -3,7 +3,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { IRoute, PUBLIC_ROUTE } from "./routes";
 import { PageNotFound } from "./pages";
-import { ROUTES_PATH } from "./common/enum/routes.enum";
+import MainLayout from "./layouts/MainLayout/MainLayout";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 function App() {
@@ -26,8 +26,14 @@ function App() {
             />
           );
         })}
-        <Route path={ROUTES_PATH.PAGE_NOT_FOUND} element={<PageNotFound />} />
-        <Route path="*" element={<PageNotFound />} />
+        <Route
+          path="*"
+          element={
+            <MainLayout>
+              <PageNotFound />
+            </MainLayout>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );
