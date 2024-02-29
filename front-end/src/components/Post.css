@@ -1,0 +1,11 @@
+.card {
+  margin-bottom: 10px;
+}
+
+.card > .card-body > .card-text {
+  margin-top: 10px;
+}
+
+.card > .card-body > .card-content > .tags > span {
+  margin-right: 4px;
+}

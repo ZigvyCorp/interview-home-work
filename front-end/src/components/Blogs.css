@@ -1,0 +1,30 @@
+.blogs-wrapper {
+  margin: 0 auto;
+  padding: 40px 10% 0;
+}
+
+.blogs-wrapper > .search-box {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.blogs-wrapper > .search-box > input {
+  outline: none;
+  padding-left: 30px;
+  width: 25%;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid;
+}
+
+.blogs-wrapper > .search-box > .search-icon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 30px;
+  height: 30px;
+  z-index: 10;
+  text-align: center;
+}
+
