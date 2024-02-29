@@ -27,7 +27,7 @@ export default function PostDetails({ params }: Props) {
 		async function fetchPost(id: string) {
 			try {
 				const res = await fetch(
-					`https://jsonplaceholder.typicode.com/posts/${id}`
+					`${process.env.NEXT_PUBLIC_BACKEND_URL}/${id}`
 				);
 				if (!res.ok) {
 					throw new Error("Failed to fetch data");

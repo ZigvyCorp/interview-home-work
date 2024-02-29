@@ -19,8 +19,9 @@ export default function Home() {
 
 	useEffect(() => {
 		async function fetchPosts() {
+			console.log();
 			const res = await fetch(
-				"https://jsonplaceholder.typicode.com/posts"
+				`${process.env.NEXT_PUBLIC_BACKEND_URL}/posts`
 			);
 
 			if (!res.ok) {

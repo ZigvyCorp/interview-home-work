@@ -53,7 +53,7 @@ function Post({ id, userId, title, body, createdAt, type }: Props) {
 
 		async function fetchComments(postId: number) {
 			const res = await fetch(
-				`https://jsonplaceholder.typicode.com/posts/${postId}/comments`
+				`${process.env.NEXT_PUBLIC_BACKEND_URL}/posts/${postId}/comments`
 			);
 
 			if (!res.ok) {
@@ -66,7 +66,7 @@ function Post({ id, userId, title, body, createdAt, type }: Props) {
 
 		async function fetchAuthorDetails(id: number) {
 			const res = await fetch(
-				`https://jsonplaceholder.typicode.com/users/${id}`
+				`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${id}`
 			);
 
 			if (!res.ok) {
