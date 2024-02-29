@@ -9,8 +9,7 @@ export const InfiniteScroll = ({
 	className,
 	fetchMore,
 	hasMore,
-	dataLength
-
+	dataLength,
 }) => {
 	const pageEndRef = useRef(null);
 
@@ -38,12 +37,12 @@ export const InfiniteScroll = ({
 	return (
 		<div className={className}>
 			{children}
-			{!hasMore && dataLength && (
+			{!hasMore && dataLength ? (
 				<Result
 					icon={<SmileOutlined />}
 					title="Great, you have read all posts !!!"
 				/>
-			)}
+			) : null}
 			{<div ref={pageEndRef}>{loading && loader}</div>}
 		</div>
 	);
