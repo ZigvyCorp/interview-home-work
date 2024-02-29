@@ -1,0 +1,32 @@
+[{
+  "_id": {
+    "$oid": "65e04c8cd5821b826de17f54"
+  },
+  "owner": {
+    "$oid": "65df320aec5c1b5056f68ed4"
+  },
+  "post": {
+    "$oid": "65df321cec5c1b5056f68ed7"
+  },
+  "content": "Hello 12345689",
+  "created_at": {
+    "$date": "2024-02-29T09:21:16.923Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e04cf5d5821b826de17f62"
+  },
+  "owner": {
+    "$oid": "65df320aec5c1b5056f68ed4"
+  },
+  "post": {
+    "$oid": "65df321cec5c1b5056f68ed7"
+  },
+  "content": "STEVENCANDRINK",
+  "created_at": {
+    "$date": "2024-02-29T09:23:01.459Z"
+  },
+  "__v": 0
+}]

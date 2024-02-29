@@ -1,0 +1,12 @@
+{
+  "name": "interview-home-work",
+  "version": "1.0.0",
+  "description": "## Description - This is a **Small Project Test** for online interview at Zigvy Corp. This assignment has 2 main tasks: **Front-end** and **Back-end**. You will be required to complete each tasks with your applied position. For short, you can check the list below   - Full-stack engineer: Both Front-end and Back-end   - Front-end engineer: Front-end only   - Back-end engineer: Complete basic layout of Front-end task and Back-end task",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
