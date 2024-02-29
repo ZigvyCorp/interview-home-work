@@ -3,6 +3,7 @@ import Post from "../components/Post";
 import { useEffect, useState } from "react";
 import { clearPostStore, fetchPostsStart } from "../redux/slices/postSlice";
 import { useInView } from "react-intersection-observer";
+import { clearSearchPost } from "../redux/slices/searchPostslice";
 
 export const Home = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ export const Home = () => {
   const [page, setPage] = useState(0);
   useEffect(() => {
     dispatch(clearPostStore());
+    dispatch(clearSearchPost());
   }, []);
   useEffect(() => {
     dispatch(fetchPostsStart({ page }));
@@ -27,7 +29,7 @@ export const Home = () => {
 
   return (
     <div>
-      {searchPosts.length !== 0
+      {searchPosts !== null
         ? searchPosts.map((el, index) => <Post {...el} key={index} />)
         : posts?.map((el, index) => <Post {...el} key={index} />)}
 

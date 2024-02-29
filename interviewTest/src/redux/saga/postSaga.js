@@ -11,7 +11,8 @@ function* getPosts({ payload }) {
   try {
     const { page } = payload;
     const posts = yield call(getPostsOnPage, page);
-    yield put(fetchPostsSuccess(posts));
+    console.log(posts);
+    yield put(fetchPostsSuccess(posts.data));
   } catch (error) {
     yield put(fetchPostsFailure(error));
   }

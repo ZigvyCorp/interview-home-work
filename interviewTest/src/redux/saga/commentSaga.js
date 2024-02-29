@@ -9,8 +9,9 @@ import {
 function* getComments({ payload }) {
   try {
     const { postId } = payload;
+    console.log("getComments", postId);
     const comments = yield call(getCommentsApi, postId);
-    yield put(getCommentsSuccess(comments));
+    yield put(getCommentsSuccess(comments.data));
   } catch (error) {
     yield put(getCommentsFailure(error));
   }

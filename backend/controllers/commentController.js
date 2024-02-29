@@ -1,4 +1,5 @@
 import Comment from "../Models/Comments.js";
+import Post from "../Models/Post.js";
 
 export const createComment = async (req, res) => {
   try {
@@ -9,12 +10,20 @@ export const createComment = async (req, res) => {
         .status(400)
         .json({ error: "postId, userId, and body are required fields." });
     }
+    const post = await Post.findById(postId);
 
+    if (!post) {
+      return res.status(400).json({ error: "PostId not found." });
+    }
     const newComment = await Comment.create({
       postId,
       creator,
       body,
     });
+
+    post.comments.push(newComment._id);
+
+    post.save();
 
     res.status(201).json({ success: true, data: newComment });
   } catch (error) {

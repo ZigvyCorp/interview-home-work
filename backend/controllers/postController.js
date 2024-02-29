@@ -29,7 +29,6 @@ export const createPost = async (req, res, next) => {
 
 export const getPostOnPage = async (req, res) => {
   try {
-    console.log("getPostOnPage");
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 3;
 
@@ -39,27 +38,11 @@ export const getPostOnPage = async (req, res) => {
     const totalPosts = await Post.countDocuments();
     const totalPage = Math.ceil(totalPosts / limit);
 
-    const posts = await Post.aggregate([
-      {
-        $lookup: {
-          from: "comments",
-          localField: "_id",
-          foreignField: "postId",
-          as: "comment",
-        },
-      },
-      {
-        $project: {
-          _id: 1,
-          title: 1,
-          body: 1,
-          author: 1,
-          "comment._id": 1,
-        },
-      },
-      { $skip: startIndex },
-      { $limit: limit },
-    ]);
+    const posts = await Post.find()
+      .populate("author", "userName _id")
+      .skip((page - 1) * limit)
+      .limit(limit);
+
     const pagination = {};
     if (endIndex < totalPosts) {
       pagination.next = {
@@ -88,6 +71,35 @@ export const getPostOnPage = async (req, res) => {
     res.status(500).json({
       status: "error",
       message: error.message,
+    });
+  }
+};
+
+export const searchPostByTitle = async function (req, res) {
+  try {
+    const { title } = req.query;
+
+    if (!title) {
+      return res.status(400).json({
+        status: "error",
+        message: "Title is required for search.",
+      });
+    }
+
+    const posts = await Post.find({ title: new RegExp(title, "i") }).populate(
+      "author",
+      "userName _id"
+    );
+
+    res.status(200).json({
+      status: "success",
+      data: posts,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      status: "error",
+      message: "Internal server error.",
     });
   }
 };

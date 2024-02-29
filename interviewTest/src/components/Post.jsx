@@ -1,41 +1,13 @@
 import { Collapse, Space, Tag } from "antd";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 import CommentItemList from "./Comment";
-import { getCommentsApi, getUserByIdAPI } from "../api/api";
-import { useDispatch } from "react-redux";
 
-const Post = ({ userId, id, title, body }) => {
-  const [user, setUser] = useState();
-  const tags = ["Red", "Green", "Blue", "Yellow", "Pink", "Orange", "Purple"];
-  const dispatch = useDispatch();
-  const [commentLength, setCommentLength] = useState();
-  useEffect(() => {
-    const getUserById = async (id) => {
-      try {
-        const data = await getUserByIdAPI(id);
-        setUser(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    const getCommentLength = async (id) => {
-      try {
-        const data = await getCommentsApi(id);
-        setCommentLength(data.length);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    if (userId) {
-      getUserById(userId);
-    }
-    getCommentLength(id);
-  }, [userId, id]);
-  const createdAt = new Date("2024-02-28T08:00:00");
+const Post = ({ author, _id, title, body, createdAt, comments, tags }) => {
+  const publish = new Date(createdAt);
   const items = [
     {
-      label: `${commentLength} replies`,
-      children: <CommentItemList postId={id} />,
+      label: `${comments.length} replies`,
+      children: <CommentItemList postId={_id} />,
     },
   ];
   return (
@@ -44,10 +16,10 @@ const Post = ({ userId, id, title, body }) => {
         <h1 className=" font-bold text-2xl text-center">{title}</h1>
         <div className="flex justify-between items-center">
           <div className=" text-lg">
-            <div>Author: {user?.name}</div>
+            <div>Author: {author?.userName}</div>
             <div>
               Created at:{" "}
-              {createdAt.toLocaleDateString("en-US", {
+              {publish.toLocaleDateString("en-US", {
                 month: "short",
                 day: "numeric",
                 year: "numeric",

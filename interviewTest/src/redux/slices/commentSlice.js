@@ -13,7 +13,6 @@ export const commentSlice = createSlice({
       state.error = null;
     },
     getCommentsSuccess(state, action) {
-      console.log("getComments", action.payload);
       state.loading = false;
       state.comments = action.payload;
     },

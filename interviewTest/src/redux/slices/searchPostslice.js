@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const searchPostsSlice = createSlice({
   name: "searchPosts",
   initialState: {
-    searchPosts: [],
+    searchPosts: null,
     loading: false,
     error: null,
   },
@@ -13,7 +13,6 @@ const searchPostsSlice = createSlice({
       state.error = null;
     },
     searchPostsSuccess(state, action) {
-      console.log("searchPostsSuccess", action.payload);
       state.loading = false;
       state.searchPosts = action.payload;
     },
@@ -23,7 +22,7 @@ const searchPostsSlice = createSlice({
     },
     clearSearchPost(state, action) {
       state.loading = false;
-      state.searchPosts = [];
+      state.searchPosts = null;
       state.error = null;
     },
   },

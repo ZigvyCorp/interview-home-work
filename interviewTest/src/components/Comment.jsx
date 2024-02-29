@@ -5,16 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getCommentsStart } from "../redux/slices/commentSlice";
 
-const CommentItem = ({ postId, id, name, email, body }) => {
+const CommentItem = ({ postId, id, creator, body, createdAt }) => {
   const actions = [<span key="comment-basic-reply-to">Reply to</span>];
-  const time = new Date("2024-02-28T08:00:00");
 
   return (
     <div>
       <Comment
         actions={actions}
         author={
-          <a className=" text-gray-700 font-medium ">{email?.split("@")[0]}</a>
+          <a className=" text-gray-700 font-medium ">{creator?.userName}</a>
         }
         avatar={
           <Avatar
@@ -26,8 +25,8 @@ const CommentItem = ({ postId, id, name, email, body }) => {
         }
         content={<p className=" text-gray-700 font-medium">{body}</p>}
         datetime={
-          <Tooltip title={timeAgo(time)}>
-            <span>{timeAgo(time)}</span>
+          <Tooltip title={timeAgo(new Date(createdAt))}>
+            <span>{timeAgo(new Date(createdAt))}</span>
           </Tooltip>
         }
       />

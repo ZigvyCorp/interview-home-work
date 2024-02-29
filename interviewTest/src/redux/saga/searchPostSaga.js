@@ -9,9 +9,10 @@ import {
 function* searchPosts({ payload }) {
   try {
     const { searchTerm } = payload;
-    const posts = yield call(searchPostsByTitle, searchTerm);
-
-    yield put(searchPostsSuccess(posts));
+    if (searchTerm !== "") {
+      const posts = yield call(searchPostsByTitle, searchTerm);
+      yield put(searchPostsSuccess(posts.data));
+    }
   } catch (error) {
     yield put(searchPostsFailure(error));
   }
