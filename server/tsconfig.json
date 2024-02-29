@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "es6", 
+        "module": "commonjs",
+        "baseUrl": "src",
+        "outDir": "dist",
+        "sourceMap": true,
+        "noImplicitAny": false,
+        "esModuleInterop": true,
+    },
+    "include": ["src/**/*"],
+}
