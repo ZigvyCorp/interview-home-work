@@ -1,0 +1,42 @@
+.root {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.avatarCtn {
+  width: 60px;
+  padding-left: 0;
+  padding-right: 20px;
+}
+
+.infoCtn {
+  width: calc(100% - 50px);
+  display: flex;
+  flex-direction: column;
+}
+
+.authorAndTime {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.author {
+  margin-right: 10px;
+}
+
+.time {
+  color: #d7d7d7;
+}
+
+.content {
+  margin: 20px 0;
+}
+
+.avatar {
+  width: 100%;
+  border-radius: 50%;
+}
