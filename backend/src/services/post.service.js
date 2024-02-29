@@ -7,6 +7,7 @@ const {
   findPostByText,
 } = require('../models/repo/post.repo')
 const post = require('../models/post.model')
+const { removeUndefined } = require('../utils')
 
 class Post {
   static async findAllPost({
@@ -64,34 +65,54 @@ class Post {
     }
   }
 
-  static async createPost(data) {
+  static async createPost(user_id, data) {
     let newPost = []
-    const response = findAllPost({
-      limit,
-      sort,
-      page,
-      filter,
-      select,
-    })
+    // const response = findAllPost({
+    //   limit,
+    //   sort,
+    //   page: 0,
+    //   filter,
+    //   select,
+    // })
     // response.map(post => post)
     try {
       const foundPost = await post.findOne().sort('-_id').exec()
-      newPost = await post.create({ _id: foundPost._id + 1, ...data })
+      newPost = await post.create({
+        _id: foundPost._id + 1,
+        user: user_id,
+        ...data,
+      })
       if (!newPost) throw new Error('Error creating post')
     } catch (err) {
       console.error(err)
     }
     return newPost
   }
-  static async updatePost({ id, title, body, userId }) {
+  static async updatePost( {post_id, title, body, userId }) {
+    console.log('🚀 ~ Post ~ updatePost ~ id:',typeof post_id)
+
     try {
-      const getPost = await axios.get(`${apiBaseUrl}/${id}`)
+      const getPost = await axios.get(`${apiBaseUrl}/${post_id}`)
       if (!getPost.data) {
         throw new Error('Post not found')
       }
     } catch (error) {
-      console.error('Error find post by id', error)
-      return []
+      const update = {
+        title,
+        body,
+      }
+      const objectParams = await removeUndefined(update)
+      const updated = await post.findOneAndUpdate(
+        { _id: post_id },
+        objectParams,
+        {
+          new: true,
+        },
+      )
+      return {
+        message: 'Post updated successfully',
+        data: updated,
+      }
     }
   }
 }

@@ -1,6 +1,8 @@
 const postController = require('../services/post.service')
 const { OK, Created, Updated } = require('../core/success.response')
-
+const HEADER = {
+  USER_ID: 'x-user-id',
+}
 class PostController {
   getAllPost = async (req, res, next) => {
     new OK({
@@ -20,14 +22,15 @@ class PostController {
     }).send(res)
   }
   createPost = async (req, res, next) => {
+    const user_id = req.headers[HEADER.USER_ID]?.toString()
     new Created({
-      data: await postController.createPost(req.body),
+      data: await postController.createPost(user_id, req.body),
     }).send(res)
   }
   updatePost = async (req, res, next) => {
-    const post_id = req.params
+    // const post_id = req.params
     new Updated({
-      data: await postController.updatePost(post_id, req.body),
+      data: await postController.updatePost(req.body),
     }).send(res)
   }
 }

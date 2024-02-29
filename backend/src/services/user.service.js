@@ -8,7 +8,8 @@ const createUser = async (userdata) => {
   if (existUser) {
     throw new Error('Email already exist')
   }
-  const newUser = user.create(userdata)
+  const foundUserId = await user.findOne().sort('-_id').exec()
+  const newUser = user.create({ ...userdata, _id: foundUserId._id + 1 })
   return newUser
 }
 const findAllUser = async ({
