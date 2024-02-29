@@ -4,10 +4,10 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test:user": "npm run db:seed && node node_modules/.bin/jest --verbose --runInBand --forceExit --detectOpenHandles --testPathPattern=tests/user.test.js",
-		"test:post": "npm run db:seed && node node_modules/.bin/jest --verbose --runInBand --forceExit --detectOpenHandles --testPathPattern=tests/post.test.js",
+		"test:user": "npm run db:seed && node node_modules/.bin/jest --verbose --runInBand --forceExit --detectOpenHandles --testPathPattern=tests/user.test.js && npm run db:seed",
+		"test:post": "npm run db:seed && node node_modules/.bin/jest --verbose --runInBand --forceExit --detectOpenHandles --testPathPattern=tests/post.test.js && npm run db:seed",
 		"test:comment": "npm run db:seed && node node_modules/.bin/jest --verbose --runInBand --forceExit --detectOpenHandles --testPathPattern=tests/comment.test.js",
-		"dev": "nodemon server.js && npm run db:seed",
+		"dev": "npm run db:seed && nodemon server.js",
 		"start": "node server.js",
 		"db:seed": "node db/seed.js"
 	},

@@ -1,8 +1,21 @@
-# React + Vite
+# Zigvy Interview Frontend Implementation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## How to run
 
-Currently, two official plugins are available:
+Use following command: <code>npm i && npm run dev</code>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## How to test
+
+### With jsonplaceholder server
+
+React app will call api from jsonplaceholer by default
+
+### With local server
+
+- Run local server: (instruction in <strong>backend</strong> folder)
+- Config this file: src/configs/index.js. Change SERVER_URL to http://localhost:5000
+
+## Note
+
+- To test <strong>Infinite Scroll</strong>, use jsonplaceholder server because local server has so few data
+- To clear data from <strong>Redux persist</strong>, look at the bottom right screen, click on Clean button

@@ -30,6 +30,6 @@ services:
       PORT: 5000
       DB_URL: mongodb://root:root@mongo:27017/test
     volumes:
-      - .:/app
+      - .:/home/node/app
     depends_on:
       - mongo
