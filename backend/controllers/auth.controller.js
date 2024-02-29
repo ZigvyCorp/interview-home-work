@@ -29,11 +29,12 @@ const signup = async (req, res) => {
                 .json({ message: "Registration successful", user: newUser })
         )
       )
-      .catch(() =>
+      .catch((error) => {
+        console.log(error);
         res
           .status(500)
-          .json({ message: "Error saving user to DB. Please try again." })
-      );
+          .json({ message: "Error saving user to DB. Please try again." });
+      });
   } catch (error) {
     res.status(500).json({ message: "Error creating user" });
   }
