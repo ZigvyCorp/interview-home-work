@@ -9,6 +9,16 @@ const getUsers = async (req, res) => {
     }
 };
 
+const getUserById = async (req, res) => {
+    try {
+        const user = await User.findOne({ id: req.params.id });
+        res.json(user);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+};
+
 module.exports = {
-    getUsers
+    getUsers,
+    getUserById
 }
