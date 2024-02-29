@@ -1,0 +1,32 @@
+version: "3.5"
+
+volumes:
+  db_data:
+  api_image:
+
+networks:
+  db_net:
+
+services:
+  db:
+    image: postgres:15
+    ports:
+      - 5432:5432
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=blog
+      - POSTGRES_USER=blogadmin
+      - POSTGRES_PASSWORD=blogadmin
+      - PGDATA=/var/lib/postgresql/data
+    networks:
+      - db_net
+  db-pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - 17691:80
+    networks:
+      - db_net
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@test.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
