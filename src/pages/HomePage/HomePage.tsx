@@ -1,58 +1,83 @@
 import { IPost, IUser } from "@/common/@types/types";
 import { useDebouncedState } from "@/common/hooks/useDebounce";
+import paginate from "@/common/utils/paginate";
 import Post from "@/components/Post/Post";
 import PostSkeleton from "@/components/PostSkeleton/PostSkeleton";
 import postsApi from "@/features/post/post.service";
 import userApi from "@/features/user/user.service";
 import { Pagination, PaginationProps } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { Form } from "react-bootstrap";
 
 const DEBOUNCE_DELAY = 300;
+const POST_PER_PAGE = 9;
+
 const paginationConfig: PaginationProps = {
   defaultCurrent: 1,
-  pageSize: 9,
+  pageSize: POST_PER_PAGE,
   showSizeChanger: false,
-  total: 100,
 };
 
 const HomePage = () => {
-  const [{ value: page }, { debouncedSetValue: setPage }] =
-    useDebouncedState<number>(1, DEBOUNCE_DELAY);
   const [users, setUsers] = useState<IUser[] | undefined>();
   const [posts, setPosts] = useState<IPost[] | undefined>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [search, setSearch] = useState<string>("");
+  const [{ value: page }, { debouncedSetValue: setPage }] =
+    useDebouncedState<number>(1, DEBOUNCE_DELAY);
+  const [{ value: searchDebounce }, { debouncedSetValue: setSearchDebounce }] =
+    useDebouncedState<string>("", 700);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value);
+    setSearchDebounce(e.target.value);
+  };
 
   useEffect(() => {
-    const fetchPost = async () => {
+    const fetchData = async () => {
       setIsLoading(true);
       try {
         const [postsRes, usersRes] = await Promise.all([
-          postsApi.getPostPagination(page, 9),
+          postsApi.getPosts(),
           userApi.getUsers(),
         ]);
 
+        setPosts(postsRes.filter((p) => p.title.includes(searchDebounce)));
         setUsers(usersRes);
-        setPosts(postsRes);
-      } catch (error) {
-        console.log(error);
-      } finally {
         setIsLoading(false);
+      } catch (error) {
+        setPosts([]);
       }
     };
-    fetchPost();
-  }, [page]);
+    fetchData();
+  }, [searchDebounce]);
+
+  const memoData = useMemo(() => {
+    return paginate(posts ?? [], page, POST_PER_PAGE);
+  }, [page, posts]);
 
   return (
     <div className="container mt-5">
-      <Pagination onChange={(p) => setPage(p)} {...paginationConfig} />
+      <Pagination
+        onChange={(p) => setPage(p)}
+        {...paginationConfig}
+        total={memoData.totalItems}
+      />
+      <Form.Control
+        type="text"
+        placeholder="Nhập tiêu đề cần tìm kiếm!"
+        className=" mr-sm-2 mt-3"
+        value={search}
+        onChange={handleInputChange}
+      />
       <div className="row mt-4">
-        {!posts || isLoading
-          ? Array.from({ length: 9 }).map((_, i) => (
+        {!memoData.items || isLoading
+          ? Array.from({ length: POST_PER_PAGE }).map((_, i) => (
               <div className="col-4" key={i}>
                 <PostSkeleton />
               </div>
             ))
-          : posts.map((post) => {
+          : memoData.items.map((post) => {
               const author = users?.find((u) => u.id === post.userId)?.name;
               return (
                 <div className="col-4" key={post.id}>
