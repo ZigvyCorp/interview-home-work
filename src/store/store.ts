@@ -30,7 +30,7 @@ export const store = configureStore({
     getDefaultMiddleware({
       serializableCheck: false,
       immutableCheck: true,
-      thunk: false,
+      thunk: true,
     }).concat(sagaMiddleware),
   devTools: process.env.NODE_ENV !== "production",
 });

@@ -4,6 +4,9 @@ import Post, { IPostProps } from "@/components/Post/Post";
 import PostSkeleton from "@/components/PostSkeleton/PostSkeleton";
 import postApi from "@/features/post/post.service";
 import userApi from "@/features/user/user.service";
+import { postsSelector } from "@/store/features/posts/postsSelector";
+import { getPostsThunk } from "@/store/features/posts/postsThunkAction";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { Pagination } from "antd";
 import React, { useEffect, useState } from "react";
 
@@ -11,7 +14,9 @@ const POST_PER_PAGE = 9;
 const DEBOUNCE_TIME = 500;
 
 const HomePage = () => {
-  const [posts, setPosts] = useState<IPost[]>([]);
+  const { posts } = useAppSelector(postsSelector);
+  const dispatch = useAppDispatch();
+
   const [users, setUsers] = useState<IUser[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
@@ -24,11 +29,8 @@ const HomePage = () => {
     const fetchPosts = async () => {
       setIsLoading(true);
       try {
-        const [postsRes, usersRes] = await Promise.all([
-          postApi.getPosts(),
-          userApi.getUsers(),
-        ]);
-        setPosts(postsRes);
+        dispatch(getPostsThunk());
+        const usersRes = await userApi.getUsers();
         setUsers(usersRes);
       } catch (error) {
         setIsError(true);
