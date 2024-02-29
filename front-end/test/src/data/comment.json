@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "author": "Vo Duy Tao",
+    "parentId": null,
+    "owner": 1,
+    "post": 1,
+    "content": "Delightful unreserved impossible few estimating men favourable see entreaties. She propriety immediate was improving. He or entrance humoured likewise moderate. Much nor game son say feel. Fat make met can must form into gate. Me we offending prevailed discovery. ",
+    "created_at": "a day ago"
+  },
+  {
+    "id": 2,
+    "author": "Vo Duy Tao",
+    "owner": 3,
+    "parentId": null,
+    "post": 1,
+    "content": "Very good. But very bad also",
+    "created_at": "a day ago"
+  }
+]
