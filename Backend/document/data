@@ -1,0 +1,115 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 15.1
+-- Dumped by pg_dump version 15.1
+
+-- Started on 2023-12-10 15:56:51
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 3344 (class 0 OID 74580)
+-- Dependencies: 216
+-- Data for Name: User; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public."User" VALUES (2, 'TPA', '$2a$10$ax.b3Hgw67N13htL.eiS1uL4rwDkwc.RvaTOQGbwDymnzA.DThVtO', 'Han Solo', '2001-11-27 10:22:49.728+07', '2023-12-06 10:12:34.873+07', '2023-12-06 10:12:34.873+07');
+INSERT INTO public."User" VALUES (3, 'VMK', '$2a$10$ax.b3Hgw67N13htL.eiS1uL4rwDkwc.RvaTOQGbwDymnzA.DThVtO', 'Rose', '2001-11-27 10:22:49.728+07', '2023-12-06 10:12:34.873+07', '2023-12-06 10:12:34.873+07');
+INSERT INTO public."User" VALUES (4, 'PTT', '$2a$10$ax.b3Hgw67N13htL.eiS1uL4rwDkwc.RvaTOQGbwDymnzA.DThVtO', 'Jack', '2001-11-27 10:22:49.728+07', '2023-12-06 10:12:34.873+07', '2023-12-06 10:12:34.873+07');
+INSERT INTO public."User" VALUES (1, 'VVT', '$2a$10$ax.b3Hgw67N13htL.eiS1uL4rwDkwc.RvaTOQGbwDymnzA.DThVtO', 'Alex', '2001-11-27 10:22:49.728+07', '2023-12-06 10:12:34.873+07', '2023-12-06 10:12:34.873+07');
+
+
+--
+-- TOC entry 3346 (class 0 OID 74589)
+-- Dependencies: 218
+-- Data for Name: Post; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public."Post" VALUES (1, 'JavaSript', 'JavaScript is a scripting or programming language that allows you to implement complex features on web pages', '{consult,it,hala,breathtaking}', 1, '2023-12-06 10:12:34.873+07', '2023-12-06 10:12:34.873+07');
+INSERT INTO public."Post" VALUES (2, 'ReactJS', 'ReactJS, often referred to as React, is an open-source JavaScript library for building user interfaces or UI components, developed and maintained by Facebook. React was first released in 2013 and has since gained widespread popularity in the web development community. It allows developers to create interactive and dynamic user interfaces efficiently.', '{consult,breathtaking}', 2, '2023-12-07 11:11:30.698+07', '2023-12-07 11:11:30.698+07');
+INSERT INTO public."Post" VALUES (3, 'PosgreSql', 'PostgreSQL is a powerful, open source object-relational database system with over 35 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.', '{consult,it,hala,gov,legal}', 1, '2023-12-09 10:25:52.212+07', '2023-12-09 10:25:52.212+07');
+INSERT INTO public."Post" VALUES (4, 'NodeJs', 'Node.js® is an open-source, cross-platform JavaScript runtime environment.', '{hala}', 1, '2023-12-09 10:36:30.74+07', '2023-12-09 10:36:30.74+07');
+INSERT INTO public."Post" VALUES (5, 'MongoDB', 'MongoDB is a document database with the scalability and flexibility that you want with the querying and indexing that you need', '{consult,it,hala}', 2, '2023-12-09 17:39:03.382+07', '2023-12-09 17:39:03.382+07');
+INSERT INTO public."Post" VALUES (6, 'C++', 'C++ is a general-purpose, free-form programming language created by Bjarne Stroustrup in 1979 at Bell Labs in Murray Hill, New Jersey, as an enhancement to the C language.', '{consult}', 2, '2023-12-09 18:06:54.124+07', '2023-12-09 18:06:54.124+07');
+INSERT INTO public."Post" VALUES (7, 'React-query', 'React Query is a powerful data synchronization library for React that solves these problems. It provides you with a set of hooks that you can use to fetch, cache, and update data in your React and Next. js applications', '{consult}', 2, '2023-12-09 18:06:55.111+07', '2023-12-09 18:06:55.111+07');
+INSERT INTO public."Post" VALUES (8, 'Ant Design', 'antd provides plenty of UI components to enrich your web applications, and we will improve components experience consistently. We also recommend some great Third-Party Libraries additionally.', '{consult}', 2, '2023-12-09 18:06:55.677+07', '2023-12-09 18:06:55.677+07');
+INSERT INTO public."Post" VALUES (9, 'Bootstrap', 'Bootstrap is a free, open source front-end development framework for the creation of websites and web apps. Designed to enable responsive development of mobile-first websites, Bootstrap provides a collection of syntax for template designs.', '{consult}', 2, '2023-12-09 18:06:56.135+07', '2023-12-09 18:06:56.135+07');
+INSERT INTO public."Post" VALUES (10, 'HTML', 'HTML is the standard markup language for creating Web pages.', '{consult}', 2, '2023-12-09 18:06:57.276+07', '2023-12-09 18:06:57.276+07');
+INSERT INTO public."Post" VALUES (11, 'CSS', 'CSS is the language we use to style a Web page.', '{consult}', 2, '2023-12-09 18:06:57.917+07', '2023-12-09 18:06:57.917+07');
+INSERT INTO public."Post" VALUES (12, 'C#', 'C# (C-Sharp) is a programming language developed by Microsoft that runs on the .NET Framework.', '{legal,gov,hala}', 2, '2023-12-09 18:08:33.773+07', '2023-12-09 18:08:33.773+07');
+INSERT INTO public."Post" VALUES (13, 'Python', 'Python is a popular programming language. It was created by Guido van Rossum, and released in 1991.', '{consult}', 1, '2023-12-09 19:02:21.252+07', '2023-12-09 19:02:21.252+07');
+INSERT INTO public."Post" VALUES (14, 'Java', 'Java is a popular programming language, created in 1995.', '{consult}', 1, '2023-12-09 19:04:15.546+07', '2023-12-09 19:04:15.546+07');
+INSERT INTO public."Post" VALUES (18, 'PHP', 'PHP code is executed on the server.', '{breathtaking}', 1, '2023-12-09 21:45:48.711+07', '2023-12-09 21:45:48.711+07');
+INSERT INTO public."Post" VALUES (20, 'Jquery', 'The purpose of jQuery is to make it much easier to use JavaScript on your website.', '{consult,it}', 1, '2023-12-10 15:30:53.385+07', '2023-12-10 15:30:53.385+07');
+INSERT INTO public."Post" VALUES (21, 'XML', 'XML is a software- and hardware-independent tool for storing and transporting data.', '{consult,it,hala}', 1, '2023-12-10 15:31:32.485+07', '2023-12-10 15:31:32.485+07');
+
+
+--
+-- TOC entry 3348 (class 0 OID 74603)
+-- Dependencies: 220
+-- Data for Name: Comment; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public."Comment" VALUES (1, 1, 1, 'Boring!!!', '2023-12-06 10:12:34.873+07', '2023-12-06 10:12:34.873+07');
+INSERT INTO public."Comment" VALUES (2, 2, 1, 'Boring too!!!', '2023-12-07 10:44:04.365+07', '2023-12-07 10:44:04.365+07');
+INSERT INTO public."Comment" VALUES (3, 2, 1, 'Nice', '2023-12-09 11:12:38.436+07', '2023-12-09 11:12:38.436+07');
+INSERT INTO public."Comment" VALUES (4, 2, 1, 'Good Language', '2023-12-09 11:16:05.87+07', '2023-12-09 11:16:05.87+07');
+INSERT INTO public."Comment" VALUES (28, 1, 4, 'Nice', '2023-12-10 08:23:49.314+07', '2023-12-10 08:23:49.314+07');
+INSERT INTO public."Comment" VALUES (29, 1, 4, 'Good tech', '2023-12-10 08:23:54.16+07', '2023-12-10 08:23:54.16+07');
+
+
+--
+-- TOC entry 3342 (class 0 OID 74574)
+-- Dependencies: 214
+-- Data for Name: SequelizeMeta; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public."SequelizeMeta" VALUES ('1-migration-create-user.js');
+INSERT INTO public."SequelizeMeta" VALUES ('2-migration-create-post.js');
+INSERT INTO public."SequelizeMeta" VALUES ('3-migration-create-comment.js');
+
+
+--
+-- TOC entry 3354 (class 0 OID 0)
+-- Dependencies: 219
+-- Name: Comment_commentId_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Comment_commentId_seq"', 30, true);
+
+
+--
+-- TOC entry 3355 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: Post_postId_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Post_postId_seq"', 21, true);
+
+
+--
+-- TOC entry 3356 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: User_userId_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."User_userId_seq"', 1, true);
+
+
+-- Completed on 2023-12-10 15:56:51
+
+--
+-- PostgreSQL database dump complete
+--
+
