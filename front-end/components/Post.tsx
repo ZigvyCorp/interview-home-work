@@ -92,7 +92,7 @@ function Post({ id, userId, title, body, createdAt, type }: Props) {
 				</Link>
 			</h1>
 			<div className="d-flex flex-column">
-				<span>Author: {author?.name ?? ""}</span>
+				<span>Author: {author?.username ?? ""}</span>
 				<span>{`Created at: ${createdAt.toLocaleDateString()}`}</span>
 			</div>
 			<p className="my-3">
