@@ -1,6 +1,8 @@
 import React from 'react';
-import { Layout, Menu, theme } from 'antd';
+import { Dropdown, Flex, Layout, Menu, theme } from 'antd';
 import { Outlet, useNavigate } from 'react-router-dom';
+import Search from 'antd/es/input/Search';
+import PostSearchInput from '../../features/PostSearch/Components/PostSearchInput/PostSearchInput';
 const { Header, Footer, Content } = Layout;
 
 const HomeLayout = () => {
@@ -18,6 +20,7 @@ const HomeLayout = () => {
 
         }
     ];
+
     return <Layout>
         <Header
             style={{
@@ -26,22 +29,26 @@ const HomeLayout = () => {
             }}
         >
             <div className="demo-logo" />
-            <Menu
-                theme="dark"
-                mode="horizontal"
-                defaultSelectedKeys={['1']}
-                items={listMenu}
-                style={{
-                    flex: 1
-                }}
-            />
+            <Flex justify='space-between' align='center' >
+                <Menu
+                    theme="dark"
+                    mode="horizontal"
+                    defaultSelectedKeys={['1']}
+                    items={listMenu}
+                    style={{
+                        flex: 1,
+                        minWidth: 100
+                    }}
+                />
+
+            </Flex>
         </Header>
         <Content
             style={{
-                padding: '0 48px',
+                padding: '10px 48px',
             }}
         >
-
+            <PostSearchInput />
             <div
                 style={{
                     background: colorBgContainer,

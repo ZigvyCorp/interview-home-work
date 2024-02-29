@@ -5,21 +5,21 @@ const commentSchema = new mongoose.Schema({
         type: Number,
         require: true
     },
-    email: {
+    owner: {
+        type: Number,
+        require: true
+    },
+    content: {
         type: String,
         require: true
     },
-    body: {
-        type: String,
-        require: true
-    },
-    name: {
-        type: String,
+    post: {
+        type: Number,
         require: true
     },
 
-    postId: {
-        type: Number,
+    created_at: {
+        type: Date,
         ref: 'Posts',
         require: true
     },

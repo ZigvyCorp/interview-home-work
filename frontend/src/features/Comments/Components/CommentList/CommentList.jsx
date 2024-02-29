@@ -1,36 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { fetchPostsRequest } from '../../Services/postAction';
-import PostItem from '../PostItem/PostItem';
+import { fetchCommentsRequest } from '../../Services/commentAction';
+import CommentItem from '../CommentItem/CommentItem';
 import { Button, Flex, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-function PostList({ loading, posts, error, hasNextPage, fetchPosts }) {
 
+function CommentList({ commentState, fetchComments, postId }) {
+    const commentData = commentState[postId] || [];
     const [page, setPage] = useState(1);
     useEffect(() => {
-        if (hasNextPage)
-            fetchPosts(page); // Gọi action fetchPostsRequest khi component được render  
-    }, [page, fetchPosts]);
+        fetchComments(postId, page);
+    }, [page, postId, fetchComments]);
     const handleLoadMoreComment = () => {
-        if (hasNextPage) {
-            setPage(page + 1)
-        }
+        if (commentData.hasNextPage) setPage(page + 1)
     }
 
     return (
         <div style={{
-            padding: "0px 25px",
+            padding: "0px 25px"
         }}>
             {
-                posts?.length > 0 && posts ? posts?.map((post, index) => (
-                    <PostItem key={index} data={post} />
+                commentData?.data?.length > 0 && commentData?.data ? commentData?.data?.map((comment, index) => (
+                    <CommentItem key={index} data={comment} />
                 )) : null
             }
             {
-                hasNextPage &&
+                commentData.hasNextPage &&
                 <Flex justify='center' style={{ marginTop: 10 }}>
                     {
-                        loading ?
+                        commentData.loading ?
                             <Spin indicator={
                                 <LoadingOutlined style={{
                                     fontSize: 24,
@@ -41,20 +39,16 @@ function PostList({ loading, posts, error, hasNextPage, fetchPosts }) {
                 </Flex>
             }
 
-
         </div>
     );
 }
 
 const mapStateToProps = (state) => ({
-    loading: state.posts.loading,
-    posts: state.posts.data,
-    error: state.posts.error,
-    hasNextPage: state.posts.hasNextPage,
+    commentState: state.comments
 });
 
 const mapDispatchToProps = {
-    fetchPosts: fetchPostsRequest,
+    fetchComments: fetchCommentsRequest,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostList);
+export default connect(mapStateToProps, mapDispatchToProps)(CommentList);

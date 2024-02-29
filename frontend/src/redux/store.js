@@ -2,8 +2,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import createSagaMiddleware from 'redux-saga';
-import rootReducer from '../features/Posts/Services/postReducer';
-import rootSaga from '../features/Posts/Services/postSaga';
+import rootReducer from '../redux/reducer';
+import rootSaga from '../redux/rootSaga';
 
 // Cấu hình Redux Persist
 const persistConfig = {

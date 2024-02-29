@@ -2,7 +2,7 @@
 import { HTTP } from '../../../lib/axiosClient';
 
 export const fetchAllPostsAPI = async (page) => {
-    const res = await HTTP.get('posts');
+    const res = await HTTP.get(`posts?page=${page}`);
     return res.data;
 };
 

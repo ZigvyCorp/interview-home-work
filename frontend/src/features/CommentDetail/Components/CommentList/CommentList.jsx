@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { fetchPostsRequest } from '../../Services/postAction';
-import PostItem from '../PostItem/PostItem';
 import { Button, Flex, Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
-function PostList({ loading, posts, error, hasNextPage, fetchPosts }) {
+import { useParams } from 'react-router-dom';
+import { fetchCommentsRequest } from '../../../Comments/Services/commentAction';
+import CommentItem from '../../../Comments/Components/CommentItem/CommentItem';
 
+function CommentList({ loading, comments, hasNextPage, error, fetchComments }) {
+    const { id } = useParams();
     const [page, setPage] = useState(1);
     useEffect(() => {
-        if (hasNextPage)
-            fetchPosts(page); // Gọi action fetchPostsRequest khi component được render  
-    }, [page, fetchPosts]);
+        fetchComments(id, page);
+    }, [page, id, fetchComments]);
+
     const handleLoadMoreComment = () => {
         if (hasNextPage) {
             setPage(page + 1)
@@ -19,11 +21,11 @@ function PostList({ loading, posts, error, hasNextPage, fetchPosts }) {
 
     return (
         <div style={{
-            padding: "0px 25px",
+            padding: "0px 25px"
         }}>
             {
-                posts?.length > 0 && posts ? posts?.map((post, index) => (
-                    <PostItem key={index} data={post} />
+                comments?.length > 0 && comments ? comments?.map((comment, index) => (
+                    <CommentItem key={index} data={comment} />
                 )) : null
             }
             {
@@ -41,20 +43,20 @@ function PostList({ loading, posts, error, hasNextPage, fetchPosts }) {
                 </Flex>
             }
 
-
         </div>
     );
 }
 
 const mapStateToProps = (state) => ({
-    loading: state.posts.loading,
-    posts: state.posts.data,
-    error: state.posts.error,
-    hasNextPage: state.posts.hasNextPage,
+    loading: state.cmtPostDetail.loading,
+    comments: state.cmtPostDetail.data,
+    error: state.cmtPostDetail.error,
+    hasNextPage: state.cmtPostDetail.hasNextPage
 });
 
 const mapDispatchToProps = {
-    fetchPosts: fetchPostsRequest,
+    fetchComments: fetchCommentsRequest,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostList);
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentList);

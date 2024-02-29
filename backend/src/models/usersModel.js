@@ -5,53 +5,24 @@ const userSchema = new mongoose.Schema({
         type: Number,
         require: true
     },
+    username: {
+        type: String,
+        require: true
+    },
+    password: {
+        type: String,
+        require: true
+    },
     name: {
         type: String,
         require: true
     },
-    email: {
+    dob: {
         type: String,
         require: true
     },
-    address: {
-        street: {
-            type: String,
-        },
-        suite: {
-            type: String,
-        },
-        city: {
-            type: String,
-        },
-        zipcode: {
-            type: String,
-        },
-        geo: {
-            lat: {
-                type: String,
-            },
-            lng: {
-                type: String,
-            },
-        },
-    },
-    phone: {
-        type: String,
-        require: true
-    },
-    website: {
-        type: String,
-    },
-    company: {
-        name: {
-            type: String,
-        },
-        catchPhrase: {
-            type: String,
-        },
-        bs: {
-            type: String,
-        }
+    created_at: {
+        type: Date,
     }
 });
 

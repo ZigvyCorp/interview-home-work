@@ -4,6 +4,7 @@ const initialPostsState = {
     loading: false,
     data: [],
     error: null,
+    hasNextPage: true
 };
 
 const postsReducer = (state = initialPostsState, action) => {
@@ -15,10 +16,18 @@ const postsReducer = (state = initialPostsState, action) => {
                 error: null,
             };
         case FETCH_POSTS_SUCCESS:
+            let data = state.data;
+            if (action.payload.page > 1) {
+                data = [
+                    ...data,
+                    ...action.payload.data
+                ]
+            } else data = action.payload.data
             return {
                 ...state,
                 loading: false,
-                data: action.payload,
+                data: data,
+                hasNextPage: action.payload.data.length > 0
             };
         case FETCH_POSTS_FAILURE:
             return {

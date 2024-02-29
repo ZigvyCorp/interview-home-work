@@ -2,8 +2,9 @@ export const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 export const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE';
 
-export const fetchPostsRequest = () => ({
+export const fetchPostsRequest = (page) => ({
     type: FETCH_POSTS_REQUEST,
+    payload: page
 });
 
 export const fetchPostsSuccess = (data) => ({
@@ -15,3 +16,6 @@ export const fetchPostsFailure = (error) => ({
     type: FETCH_POSTS_FAILURE,
     payload: error,
 });
+
+
+
