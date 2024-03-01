@@ -4,7 +4,26 @@ import { counterSlice } from "./features/counter/counterSlice";
 import { postsSlice } from "./features/posts/postsSlice";
 import { quotesApiSlice } from "./features/quotes/quotesApiSlice";
 import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import createWebStorage from "redux-persist/lib/storage/createWebStorage";
+
+const createNoopStorage = () => {
+	return {
+		getItem() {
+			return Promise.resolve(null);
+		},
+		setItem(_key: string, value: number) {
+			return Promise.resolve(value);
+		},
+		removeItem() {
+			return Promise.resolve();
+		},
+	};
+};
+
+const storage =
+	typeof window !== "undefined"
+		? createWebStorage("local")
+		: createNoopStorage();
 
 const persistConfig = {
 	key: "persist",

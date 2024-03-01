@@ -1,7 +1,7 @@
 import type { Post } from "./postsSlice";
 
 export const fetchPosts = async () => {
-	const response = await fetch("http://localhost:3000/posts", {
+	const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/posts`, {
 		method: "GET",
 		headers: { "Content-Type": "application/json" },
 	});
