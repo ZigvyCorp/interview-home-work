@@ -143,8 +143,6 @@ const dataReducer = (state = initialData, action) => {
             state.alertModal.message = 'Log out successfully'
             state.alertModal.color = 'green'
             break
-
-
         // Signup
         case SIGNUP_SUCCESS:
             state.signupModal = false
