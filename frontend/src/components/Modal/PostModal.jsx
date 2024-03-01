@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, FormGroup, Label } from 'reactstrap';
-import { togglePostModal } from '../../actions/dataAction';
+import { toggleAlertModal, togglePostModal } from '../../actions/dataAction';
 import { createPostRequest } from '../../actions/sagaAction';
 function PostModal() {
     const { postModal } = useSelector(state => state.data)
@@ -26,7 +26,15 @@ function PostModal() {
         }))
     }
     const handleCreatePost = () => {
-        dispatch(createPostRequest(postData));
+        if (postData.title === '') {
+            dispatch(toggleAlertModal('Title is required'))
+        }
+        if (postData.content === '') {
+            dispatch(toggleAlertModal('content is required'))
+        }
+        if (postData.title !== '' && postData.content !== '') {
+            dispatch(createPostRequest(postData));
+        }
     }
     const toggle = () => {
         dispatch(togglePostModal())
