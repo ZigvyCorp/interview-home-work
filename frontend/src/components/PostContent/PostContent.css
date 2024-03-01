@@ -1,0 +1,20 @@
+.post-header{
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.post-title{
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    font-size: x-large;
+}
+
+.post-title:hover{
+    text-decoration: underline;
+}
+
+.post-item{
+    border-bottom: 1px solid black;
+    padding: 0 5em;
+}

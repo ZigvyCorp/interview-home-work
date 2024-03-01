@@ -1,0 +1,11 @@
+.pagination-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-section{
+    margin-top: 1em;
+    padding: 0 5em;
+}
+
