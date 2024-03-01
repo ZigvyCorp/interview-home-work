@@ -54,7 +54,14 @@ class PostService {
     try {
       const regex = new RegExp(query, "i");
       const posts = await PostModel.find({ title: { $regex: regex } });
-      return posts;
+      const postsWithCommentsCount = await Promise.all(
+        posts.map(async (post) => {
+          const commentCount = await this.getCommentCountByPostId(post._id);
+          return { ...post.toObject(), commentCount };
+        })
+      );
+      return postsWithCommentsCount;
+      
     } catch (error) {
       throw new APIError("API Error", STATUS_CODES.INTERNAL_ERROR, "Unable to Search Post");
     }
