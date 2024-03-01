@@ -1,0 +1,142 @@
+// WIDTH
+.width-100 {
+    width: 100%;
+}
+
+.width-20 {
+    width: 20%
+}
+
+.width-40 {
+    width: 40%
+}
+
+.width-60 {
+    width: 60%
+}
+
+.width-80 {
+    width: 80%
+}
+
+.width-25 {
+    width: 25%
+}
+
+.width-50 {
+    width: 50%
+}
+
+.width-75 {
+    width: 75%
+}
+
+.width-33 {
+    width: 33.33%;
+}
+
+.width-66 {
+    width: 66.67%;
+}
+
+// HEIGHT
+.height-100 {
+    height: 100%;
+}
+
+.height-20 {
+    height: 20%
+}
+
+.height-40 {
+    height: 40%
+}
+
+.height-60 {
+    height: 60%
+}
+
+.height-80 {
+    height: 80%
+}
+
+.height-25 {
+    height: 25%
+}
+
+.height-50 {
+    height: 50%
+}
+
+.height-75 {
+    height: 75%
+}
+
+.height-33 {
+    height: 33.33%;
+}
+
+.height-66 {
+    height: 66.67%;
+}
+
+// FLEX
+.flex {
+    display: flex;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.direct-row {
+    flex-direction: row;
+}
+
+.direct-row-reverse {
+    flex-direction: row-reverse;
+}
+
+.direct-column {
+    flex-direction: column;
+}
+
+.direct-column-reverse {
+    flex-direction: column-reverse;
+}
+
+.justify-start {
+    justify-content: flex-start;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-evenly {
+    justify-content: space-evenly;
+}
+
+.justify-around {
+    justify-content: space-around;
+}
+
+.align-start {
+    align-items: flex-start;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.align-end {
+    align-items: flex-end;
+}
