@@ -1,0 +1,14 @@
+.author-infor{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.post-infor{
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-tags{
+    width: 30%;
+}

@@ -1,0 +1,26 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border: solid 1px black;
+    text-align: center;
+}
+
+.logo{
+    height: 100%;
+}
+
+.logo-img{
+    height: 100%;
+}
+
+.menu{
+    background-color: white;
+    width: 5rem;
+    border: solid 1px gray;
+}
+
+.user-info{
+    background-color: white;
+}
