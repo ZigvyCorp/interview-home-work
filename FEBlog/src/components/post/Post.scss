@@ -1,0 +1,192 @@
+@import '../../globalStyle/mixin';
+@import '../../globalStyle/variables';
+
+.post-wrapper {
+    width: 100%;
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+
+    @include mobile {
+        padding: 10px 20px;
+    }
+
+    .post-info-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @include mobile {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .post-info {
+            p {
+                font-size: $fontSizeDesktop;
+                font-weight: 600;
+
+                @include mobile {
+                    font-size: $fontSizeMobile;
+                    margin-bottom: -5px;
+                }
+            }
+        }
+
+        .colors-wrapper {
+            @include mobile {
+                margin-top: 15px;
+            }
+
+            .color-line {
+                display: flex;
+
+                p {
+                    padding: 2px 5px;
+                    border-radius: 5px;
+                    margin: 4px;
+
+                    @include tablet {
+                        font-size: 10px;
+                        margin: 2px;
+                        padding: 1px 4px;
+                    }
+
+                    @include mobile {
+                        // font-size: 8px;
+                        margin: 0 5px 5px 0;
+                    }
+                }
+
+                .magenta {
+                    color: magenta;
+                    border: 1px solid magenta;
+                }
+
+                .red {
+                    color: red;
+                    border: 1px solid red;
+                }
+
+                .volcano {
+                    color: #f06625;
+                    border: 1px solid #f06625;
+                }
+
+                .orange {
+                    color: orange;
+                    border: 1px solid orange;
+                }
+
+                .gold {
+                    color: gold;
+                    border: 1px solid gold;
+                }
+
+                .lime {
+                    color: lime;
+                    border: 1px solid lime;
+                }
+
+                .green {
+                    color: green;
+                    border: 1px solid green;
+                }
+
+                .cyan {
+                    color: cyan;
+                    border: 1px solid cyan;
+                }
+
+                .blue {
+                    color: blue;
+                    border: 1px solid blue;
+                }
+
+                .geekblue {
+                    color: #00008B;
+                    border: 1px solid #00008B;
+                }
+
+                .purple {
+                    color: purple;
+                    border: 1px solid purple;
+                }
+            }
+        }
+    }
+
+    .post-content {
+        font-size: $fontSizeDesktop;
+        font-weight: 600;
+        line-height: 24px;
+        margin-top: 10px;
+
+        @include mobile {
+            font-size: $fontSizeMobile;
+            font-weight: 400;
+            line-height: 20px;
+        }
+    }
+
+    .comments-wrapper {
+        width: 100%;
+       margin-top: 20px; 
+       display: flex;
+       flex-direction: column;
+        align-items: flex-start;
+
+       .comment-quantity {
+            font-size: $fontSizeDesktop;
+            cursor: pointer;
+       }
+
+       hr {
+        width: 100%;
+       }
+
+       .list-comments-wrapper {
+            // display: flex;   
+            flex-direction: column;
+
+           .comment-wrapper {
+                display: flex;
+                margin-bottom: 10px;
+
+                img {
+                    height: 50px;
+                    width: auto;
+                    margin: 8px 10px 0 0;
+                }
+    
+                .comment-info {
+                    display: flex;
+                    flex-direction: column;
+    
+                    .ci-user {
+                        font-size: $fontSizeDesktop;
+    
+                        span {
+                            margin-left: 10px;
+                            color: #ccc;
+                        }
+                    }
+    
+                    .comment-content {
+                        font-size: 18px;
+                        margin-bottom: 10px;
+                        line-height: 24px;
+    
+                        @include mobile {
+                            font-size: 16px;
+                            line-height: 20px;
+                        }
+                    }
+                }
+           }
+       }
+    }
+}

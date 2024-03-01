@@ -1,0 +1,167 @@
+@import '../../globalStyle/mixin';
+@import '../../globalStyle/variables';
+
+.home-wrapper {
+    width: 100%;
+    background-color: #ECEDEF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+
+    .header-wrapper {
+        width: 70%;
+        height: 50px;
+        border: 3px solid #000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #fff;
+        box-sizing: border-box;
+
+        @include tablet {
+            width: 90%;
+        }
+
+        @include mobile {
+            width: 90%;
+            height: 45px;
+            border: 2px solid #000;
+        }
+
+        .logo-wrapper {
+            width: 16%;
+            height: 100%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 0;
+
+            @include tablet {
+                width: 10.5rem;
+            }
+
+            @include mobile {
+                width: 25%;
+            }
+
+            .block {
+                width: 44px;
+                height: 100%;
+                background-color: #ECEDEF;
+
+                @include mobile {
+                    width: 41px;
+                }
+            }
+
+            a {
+                color: #000;
+                font-size: $fontSizeDesktop;
+                margin-left: 5px;
+
+                @include mobile {
+                    font-size: $fontSizeMobile;
+                }
+            }
+        }    
+
+        .blog-title {
+            width: 10%;
+            height: 100%;
+            padding: 0;
+            // text-align: center;
+            font-size: $fontSizeDesktop;
+            font-weight: 600;
+            border-left: 3px solid #000;
+            border-right: 3px solid #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ECEDEF;
+
+            @include tablet {
+                width: 15%;
+            }
+
+            @include mobile {
+                width: 15%;
+                font-size: $fontSizeMobile;
+                border-left: 2px solid #000;
+                border-right: 2px solid #000;
+            }
+        }
+
+        .user-wrapper {
+            height: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            img {
+                width: 44px;
+                height: 100%;
+
+                @include mobile {
+                    width: 41px;
+                }
+            }
+
+            p {
+                margin: 0 5px;
+                font-size: $fontSizeDesktop;
+                font-weight: 600;
+
+                @include mobile {
+                    font-size: $fontSizeMobile;
+                }
+            }
+        }
+    }
+
+    .posts-wrapper {
+        width: 70%;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-left: 3px solid #ccc;
+        border-right: 3px solid #ccc;
+        border-bottom: 3px solid #ccc;
+        position: relative;
+
+        @include tablet {
+            width: 90%;
+        }
+        
+        @include mobile {
+            width: 90%;
+        }
+
+        .triangle {
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 20px solid transparent;
+            border-top: 20px solid #000;
+            display: inline-block;
+
+            @include mobile {
+                display: none;
+            }
+        }
+
+        .small-triangle {
+            border-left: 19.5px solid transparent;
+            border-right: 19.5px solid transparent;
+            border-bottom: 19.5px solid transparent;
+            border-top: 19.5px solid #ECEDEF;
+            display: inline-block;
+            position: absolute;
+            top: -3px;
+
+            @include mobile {
+                display: none;
+            }
+        }
+    }
+}
