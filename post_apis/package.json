@@ -1,0 +1,19 @@
+{
+  "name": "post_apis",
+  "version": "1.0.0",
+  "description": "testBE-postAPIs",
+  "main": "server.js",
+  "author": "Nguyen Ngoc Duy",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "mongoose": "^8.2.0",
+    "nodemon": "^3.1.0"
+  },
+  "scripts": {
+    "start": "nodemon src/server.js"
+  }
+}

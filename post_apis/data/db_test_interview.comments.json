@@ -1,0 +1,59 @@
+[
+  {
+    "_id": {
+      "$oid": "65deecfb586d63f1661f07d5"
+    },
+    "userId": {
+      "$oid": "65ded06ac43e57fa445a5d0e"
+    },
+    "postId": {
+      "$oid": "65ded0dac43e57fa445a5d10"
+    },
+    "content": "Boring!!!",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2024-02-28T08:21:15.862Z"
+    },
+    "updatedAt": {
+      "$date": "2024-02-28T08:21:15.862Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "65deecfb586d63f1661f07d6"
+    },
+    "userId": {
+      "$oid": "65dee1edc7903accaecf04e1"
+    },
+    "postId": {
+      "$oid": "65ded0dac43e57fa445a5d10"
+    },
+    "content": "Very good. But very bad also",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2024-02-28T08:21:15.863Z"
+    },
+    "updatedAt": {
+      "$date": "2024-02-28T08:21:15.863Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "65deecfb586d63f1661f07d7"
+    },
+    "userId": {
+      "$oid": "65dee1edc7903accaecf04e0"
+    },
+    "postId": {
+      "$oid": "65dee2b4c7903accaecf04e5"
+    },
+    "content": "Delightful unreserved impossible few estimating men favourable see entreaties. She propriety immediate was improving. He or entrance humoured likewise moderate. Much nor game son say feel. Fat make met can must form into gate. Me we offending prevailed discovery. ",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2024-02-28T08:21:15.863Z"
+    },
+    "updatedAt": {
+      "$date": "2024-02-28T08:21:15.863Z"
+    }
+  }
+]
