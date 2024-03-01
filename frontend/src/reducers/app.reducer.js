@@ -13,6 +13,7 @@ export function app(state = initialState, action) {
 
 		case appConstants.ADD_NOTIFICATION:
 			action.payload.id = v4();
+			console.log("action.payload", action.payload);
 			return { ...state, notifications: [...state.notifications, action.payload] };
 
 		case appConstants.REMOVE_NOTIFICATION:

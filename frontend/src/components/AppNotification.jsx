@@ -15,6 +15,7 @@ export const AppNotification = () => {
 	const { notifications } = useSelector((state) => state.app);
 
 	const openNotificationWithIcon = (notification) => {
+		console.log("notification", notification);
 		api[notification.type]({
 			message: MESSAGES[notification.type],
 			description: notification.description,

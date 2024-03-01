@@ -23,25 +23,18 @@ export const AppLayout = () => {
 					<AppHeader />
 					<Content className="mt-16">
 						<Outlet />
+						<FloatButton.Group>
+							<FloatButton
+								onClick={changeTheme}
+								icon={darkMode ? <MoonFilled /> : <SunOutlined />}
+							/>
+							<FloatButton onClick={reInitialize} icon={<ClearOutlined />} />
+						</FloatButton.Group>
 					</Content>
 					<Footer className="text-center shadow">
 						Zigvy Corp ©{new Date().getFullYear()} Interview Testing
 					</Footer>
 				</Layout>
-
-				<FloatButton.Group>
-					<FloatButton
-						onClick={changeTheme}
-						icon={
-							darkMode ? (
-								<MoonFilled />
-							) : (
-								<SunOutlined />
-							)
-						}
-					/>
-					<FloatButton onClick={reInitialize} icon={<ClearOutlined />} />
-				</FloatButton.Group>
 			</Layout>
 		</>
 	);

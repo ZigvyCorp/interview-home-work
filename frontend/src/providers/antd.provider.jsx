@@ -24,7 +24,7 @@ export const AntdProvider = ({ children }) => {
 					},
 					Button: {
 						colorLink: darkMode ? "#fff" : "#000",
-						algorithm: true,
+						// algorithm: true,
 					},
 					Switch: {
 						algorithm: true,

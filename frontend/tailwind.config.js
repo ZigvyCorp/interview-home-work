@@ -9,6 +9,15 @@ export default {
 				error: "#ff4d4f",
 				primary: "#1677ff",
 			},
+
+			screens: {
+				xs: '480px',
+				sm: '576px',
+				md: '768px',
+				lg: '992px',
+				xl: '1200px',
+				xxl: '1600px',
+			}
 		},
 	},
 	plugins: [],

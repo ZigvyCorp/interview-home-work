@@ -1,5 +1,5 @@
 import { call, put, takeLatest } from "redux-saga/effects";
-import { postConstants } from "../constants";
+import { appConstants, postConstants } from "../constants";
 import { postServices } from "../services";
 
 export function* postSaga() {
@@ -12,6 +12,10 @@ function* watchGetPosts(action) {
 		const posts = yield call(postServices.getPosts, skip, limit, keyword);
 		yield put({ type: postConstants.GET_POSTS_SUCCESS, payload: posts });
 	} catch (error) {
+		yield put({ type: appConstants.ADD_NOTIFICATION, payload: {
+			type: "error",
+			description: error.message || "Failed to get posts",
+		} });
 		yield put({ type: postConstants.GET_POSTS_FAILURE, payload: error });
 	}
 }
