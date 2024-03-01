@@ -1,0 +1,77 @@
+.blogs_tab {
+  position: relative;
+  background: #e6e6e6;
+  border-left: 3px solid black;
+  border-right: 3px solid black;
+  z-index: 20;
+}
+
+.triangle {
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  background-color: #e6e6e6;
+  width: 46px;
+  height: 22px;
+  position: absolute;
+  z-index: 10;
+  bottom: -50%;
+  left: 40.75%;
+  /* left: 180px; */
+}
+
+.triangle_border {
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
+  background-color: rgb(28, 28, 28);
+  width: 52px;
+  height: 25px;
+  position: absolute;
+  bottom: -58%;
+  left: 40%;
+}
+.custom_header {
+  width: 100%;
+  margin-top: 10;
+  border: 3px solid black;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.custom_text {
+  text-align: left !important;
+  margin-bottom: 0;
+}
+.custom_icon {
+  width: 25%;
+}
+@media only screen and (max-width: 768px) {
+  .custom_icon {
+    width: 0%;
+    display: none;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .custom_header {
+    font-size: 24px;
+  }
+  .triangle {
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+    background-color: #e6e6e6;
+    width: 35px;
+    height: 18px;
+    position: absolute;
+    z-index: 10;
+    bottom: -50%;
+    left: 22.75%;
+    /* left: 180px; */
+  }
+
+  .triangle_border {
+    clip-path: polygon(50% 100%, 0 0, 100% 0);
+    background-color: rgb(28, 28, 28);
+    width: 40px;
+    height: 20px;
+    position: absolute;
+    bottom: -59%;
+    left: 18.5%;
+  }
+}
