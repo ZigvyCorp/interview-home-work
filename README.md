@@ -36,7 +36,7 @@ To run this project locally, follow these steps:
 2. **Backend:**
 
    - DO ALL API (CRUD) /blogs, /comments, /users
-   - DO authentication /auths
+   - DO authentication /auth
    - DO validate for request data
 
    - Navigate to the `/backend` directory.
