@@ -1,7 +1,7 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
 import * as api from './callApi'; // assume there's an api.js file for API calls
-import { loginFailure, loginSuccess, signupSuccess, signupFailure, getPostsSuccess, getPostsError, getCommentsSuccess, getCommentsError } from '../actions/sagaAction';
-import { GET_COMMENTS_REQUEST, GET_POSTS_REQUEST, LOGIN_REQUEST, SIGNUP_REQUEST } from '../actionTypes/actionTypes';
+import { loginFailure, loginSuccess, signupSuccess, signupFailure, getPostsSuccess, getPostsError, getCommentsSuccess, getCommentsError, createCommentSuccess, createCommentError, createPostSuccess, createPostError } from '../actions/sagaAction';
+import { CREATE_COMMENT_REQUEST, CREATE_POST_REQUEST, GET_COMMENTS_REQUEST, GET_POSTS_REQUEST, LOGIN_REQUEST, SIGNUP_REQUEST } from '../actionTypes/actionTypes';
 
 // get posts
 function* getPostsSaga(action) {
@@ -15,6 +15,18 @@ function* getPostsSaga(action) {
 export function* getPosts() {
     yield takeLatest(GET_POSTS_REQUEST, getPostsSaga);
 }
+// create post
+function* createPostSaga(action) {
+    try {
+        const post = yield call(api.callAPICreatePost, action.payload);
+        yield put(createPostSuccess(post));
+    } catch (error) {
+        yield put(createPostError(error));
+    }
+}
+export function* createPost() {
+    yield takeLatest(CREATE_POST_REQUEST, createPostSaga);
+}
 
 // get comments
 function* getCommentsSaga(action) {
@@ -27,6 +39,18 @@ function* getCommentsSaga(action) {
 }
 export function* getComments() {
     yield takeEvery(GET_COMMENTS_REQUEST, getCommentsSaga);
+}
+// create comment
+function* createCommentSaga(action) {
+    try {
+        const comment = yield call(api.callAPICreateComment, action.payload);
+        yield put(createCommentSuccess(comment));
+    } catch (error) {
+        yield put(createCommentError(error));
+    }
+}
+export function* createComment() {
+    yield takeLatest(CREATE_COMMENT_REQUEST, createCommentSaga);
 }
 
 // login

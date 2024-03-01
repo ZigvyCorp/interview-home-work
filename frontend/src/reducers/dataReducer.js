@@ -1,4 +1,11 @@
-import { LOGIN_ERROR, LOGIN_SUCCESS, LOGOUT_REQUEST, SIGNUP_SUCCESS, SIGNUP_ERROR, TOGGLE_ALERT_MODAL, TOGGLE_LOGIN_MODAL, TOGGLE_SIGNUP_MODAL, PAGE_CHANGE_PAGINATION, PAGE_CHANGE_NUM, GET_POSTS_SUCCESS, GET_POSTS_ERROR, SET_TITLE, GET_COMMENTS_SUCCESS, GET_COMMENTS_ERROR } from "../actionTypes/actionTypes";
+import {
+    LOGIN_ERROR, LOGIN_SUCCESS, LOGOUT_REQUEST, SIGNUP_SUCCESS, SIGNUP_ERROR,
+    TOGGLE_ALERT_MODAL, TOGGLE_LOGIN_MODAL, TOGGLE_SIGNUP_MODAL,
+    PAGE_CHANGE_PAGINATION,
+    GET_POSTS_SUCCESS, GET_POSTS_ERROR, SET_TITLE,
+    GET_COMMENTS_SUCCESS, GET_COMMENTS_ERROR,
+    SET_REPLY, CREATE_COMMENT_SUCCESS, CREATE_COMMENT_ERROR, TOGGLE_POST_MODAL, CREATE_POST_SUCCESS, CREATE_POST_ERROR
+} from "../actionTypes/actionTypes";
 
 const initialData = {
     user: null,
@@ -6,6 +13,11 @@ const initialData = {
     posts: [],
     // comments: [{ postId: '1', list: [],_start:0,_limit:5 }],
     comments: [],
+    reply: {
+        userId: '',
+        postId: '',
+        content: ''
+    },
     pagination: {
         limit: 5,
         noPage: 0,
@@ -14,6 +26,7 @@ const initialData = {
         rowsPerPage: 1,
         title: '',
     },
+    postModal: false,
     signupModal: false,
     loginModal: {
         state: false,
@@ -22,7 +35,8 @@ const initialData = {
     alertModal: {
         state: false,
         message: '',
-        color: ''
+        color: '',
+        flag: ''
     },
 }
 
@@ -32,7 +46,7 @@ const dataReducer = (state = initialData, action) => {
         case PAGE_CHANGE_PAGINATION:
             state.pagination.currentPage = action.payload;
             break;
-
+        // Handle post action
         // Get posts
         case GET_POSTS_SUCCESS:
             state.pending = false;
@@ -44,7 +58,28 @@ const dataReducer = (state = initialData, action) => {
             state.posts = []
             console.log(action.payload)
             break
+        // Set title
+        case SET_TITLE:
+            state.pagination.title = action.payload.toLowerCase()
+            break
+        //    create post
+        case CREATE_POST_SUCCESS:
+            // window.location.reload()
+            state.alertModal.state = true
+            state.alertModal.message = 'Reply successfully'
+            state.alertModal.color = 'green'
+            state.alertModal.flag = 'reload'
+            state.postModal = !state.postModal
+            break
+        case CREATE_POST_ERROR:
+            state.alertModal.state = true
+            state.alertModal.message = 'Reply error'
+            state.alertModal.color = 'danger'
+            state.alertModal.flag = ''
+            state.postModal = !state.postModal
+            break
 
+        // Handle comment action
         // Get comments
         case GET_COMMENTS_SUCCESS:
             if (state.comments.length !== 0) {
@@ -61,13 +96,25 @@ const dataReducer = (state = initialData, action) => {
             break
         case GET_COMMENTS_ERROR:
             state.comments = []
-            console.log(action.payload)
             break
-
-
-        // Set title
-        case SET_TITLE:
-            state.pagination.title = action.payload.toLowerCase()
+        // Set reply to send comment
+        case SET_REPLY:
+            state.reply.userId = localStorage.getItem('user') === null ? '' : JSON.parse(localStorage.getItem('user'))?._id
+            state.reply.content = action.payload.content
+            state.reply.postId = action.payload.postId
+            break
+        // Create comment
+        case CREATE_COMMENT_SUCCESS:
+            state.alertModal.state = true
+            state.alertModal.message = 'Reply successfully'
+            state.alertModal.color = 'green'
+            state.alertModal.flag = 'reload'
+            break
+        case CREATE_COMMENT_ERROR:
+            state.alertModal.state = true
+            state.alertModal.message = 'Reply error'
+            state.alertModal.color = 'danger'
+            state.alertModal.flag = ''
             break
         // Login
         case LOGIN_SUCCESS:
@@ -79,20 +126,24 @@ const dataReducer = (state = initialData, action) => {
             state.alertModal.state = true
             state.alertModal.message = 'Log in successfully'
             state.alertModal.color = 'green'
+            state.alertModal.flag = ''
             break
         case LOGIN_ERROR:
             state.user = null;
             state.alertModal.state = true
             state.alertModal.message = action.payload
             state.alertModal.color = 'red'
+            state.alertModal.flag = ''
             break
         case LOGOUT_REQUEST:
             state.user = null
             localStorage.clear()
             state.alertModal.state = true
+            state.alertModal.flag = ''
             state.alertModal.message = 'Log out successfully'
             state.alertModal.color = 'green'
             break
+
 
         // Signup
         case SIGNUP_SUCCESS:
@@ -100,7 +151,8 @@ const dataReducer = (state = initialData, action) => {
             state.loginModal.state = true
             state.loginModal.logout = false
             state.alertModal.state = true
-            state.alertModal.message = 'Sign up successfully, you can log in now.'
+            state.alertModal.flag = ''
+            state.alertModal.message = 'Sign up successfully'
             state.alertModal.color = 'green'
             break
         case SIGNUP_ERROR:
@@ -108,9 +160,13 @@ const dataReducer = (state = initialData, action) => {
             state.alertModal.state = true
             state.alertModal.message = action.payload
             state.alertModal.color = 'red'
+            state.alertModal.flag = ''
             break
 
         // Modal
+        case TOGGLE_POST_MODAL:
+            state.postModal = !state.postModal
+            break
         case TOGGLE_LOGIN_MODAL:
             state.loginModal.state = action.payload.toggle
             if (action.payload.flag === 'login') {
@@ -126,6 +182,7 @@ const dataReducer = (state = initialData, action) => {
             state.alertModal.state = !state.alertModal.state
             state.alertModal.message = action?.payload?.message || ''
             state.alertModal.color = action?.payload?.color || ''
+            state.alertModal.flag = ''
             break
         default:
             break

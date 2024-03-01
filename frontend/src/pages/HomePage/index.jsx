@@ -2,6 +2,7 @@ import Content from "../../components/Content"
 import Header from "../../components/Header"
 import AlertModal from "../../components/Modal/AlertModal"
 import LoginModal from "../../components/Modal/LoginModal"
+import PostModal from "../../components/Modal/PostModal"
 import SignupModal from "../../components/Modal/SignupModal"
 
 const HomePage = () => {
@@ -14,6 +15,7 @@ const HomePage = () => {
             <AlertModal />
             <LoginModal />
             <SignupModal />
+            <PostModal />
         </>
     )
 }

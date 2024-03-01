@@ -6,7 +6,7 @@ import { pageChangePagination } from "../../../actions/dataAction"
 const PaginationBar = () => {
     const dispatch = useDispatch()
     const { pagination } = useSelector(state => state.data)
-    console.log(pagination)
+
     const onChangePagination = (event, value) => {
         dispatch(pageChangePagination(value));
     }

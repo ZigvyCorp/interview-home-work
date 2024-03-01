@@ -7,6 +7,9 @@ function AlertModal() {
     const { alertModal } = useSelector(state => state.data)
     const dispatch = useDispatch()
     const toggle = () => {
+        if (alertModal.flag !== '') {
+            window.location.reload()
+        }
         dispatch(toggleAlertModal())
     }
     return (

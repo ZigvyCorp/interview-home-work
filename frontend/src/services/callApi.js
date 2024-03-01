@@ -26,6 +26,36 @@ export const callAPIGetComments = async (params) => {
         throw error.response.data.status
     }
 }
+export const callAPICreateComment = async (data) => {
+    try {
+        const response = await axios({
+            url: url + 'comments',
+            method: 'POST',
+            data: data,
+            headers: {
+                'x-access-token': localStorage.getItem('x-access-token')
+            }
+        })
+        return response.data
+    } catch (error) {
+        throw error.response.data.status
+    }
+}
+export const callAPICreatePost = async (data) => {
+    try {
+        const response = await axios({
+            url: url + 'posts',
+            method: 'POST',
+            data: data,
+            headers: {
+                'x-access-token': localStorage.getItem('x-access-token')
+            }
+        })
+        return response.data
+    } catch (error) {
+        throw error.response.data.status
+    }
+}
 export const callAPILogin = async (data) => {
     try {
         const response = await axios({

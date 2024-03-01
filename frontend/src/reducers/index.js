@@ -5,7 +5,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 import * as reduxThunk from 'redux-thunk';
 import dataReducer from "./dataReducer";
-import { getComments, getPosts, login, signup } from "../services/saga";
+import { getComments, getPosts, login, createComment, signup, createPost } from "../services/saga";
 import { all } from "redux-saga/effects";
 const rootReducer = combineReducers({
     data: dataReducer,
@@ -38,6 +38,8 @@ function* rootSaga() {
     yield all([
         getPosts(),
         getComments(),
+        createComment(),
+        createPost(),
         login(),
         signup()
         // Add other sagas here if needed

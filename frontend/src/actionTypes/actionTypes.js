@@ -22,11 +22,13 @@ export const SIGNUP_ERROR = 'signupError'
 export const TOGGLE_LOGIN_MODAL = 'open or close login modal'
 export const TOGGLE_SIGNUP_MODAL = 'open or close signup modal'
 export const TOGGLE_ALERT_MODAL = 'open or close alert modal'
+export const TOGGLE_POST_MODAL = 'open or close post modal'
 
 export const CREATE_POST_REQUEST = 'create post request'
 export const CREATE_POST_SUCCESS = 'create post success'
 export const CREATE_POST_ERROR = 'create post error'
 
+export const SET_REPLY = 'set reply content'
 export const CREATE_COMMENT_REQUEST = 'create comment request'
 export const CREATE_COMMENT_SUCCESS = 'create comment success'
 export const CREATE_COMMENT_ERROR = 'create comment error'
