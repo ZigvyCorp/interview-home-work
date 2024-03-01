@@ -1,0 +1,11 @@
+.content {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  margin-top: 20px;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+}
