@@ -1,0 +1,82 @@
+[
+  {
+    "_id": {
+      "$oid": "65ded06ac43e57fa445a5d0e"
+    },
+    "username": "meowmeow",
+    "password": "1234567890",
+    "name": "Cat face",
+    "dob": "01/06/2016",
+    "createdAt": {
+      "$date": "2024-02-28T06:19:22.178Z"
+    },
+    "updatedAt": {
+      "$date": "2024-02-28T06:19:22.178Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "65dee1edc7903accaecf04e0"
+    },
+    "username": "angrybird",
+    "password": "!@#$%^&*()",
+    "name": "Angry bird",
+    "dob": "13/12/2016",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2024-02-28T07:34:05.371Z"
+    },
+    "updatedAt": {
+      "$date": "2024-02-28T07:34:05.371Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "65dee1edc7903accaecf04e1"
+    },
+    "username": "happydog",
+    "password": "Zigvy~~~",
+    "name": "Happy Dog",
+    "dob": "",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2024-02-28T07:34:05.371Z"
+    },
+    "updatedAt": {
+      "$date": "2024-02-28T07:34:05.371Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "65dee1edc7903accaecf04e2"
+    },
+    "username": "admin",
+    "password": "admin",
+    "name": "Admin",
+    "dob": "",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2024-02-28T07:34:05.371Z"
+    },
+    "updatedAt": {
+      "$date": "2024-02-28T07:34:05.371Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "65dee1edc7903accaecf04e3"
+    },
+    "username": "user",
+    "password": "user",
+    "name": "User",
+    "dob": "",
+    "__v": 0,
+    "createdAt": {
+      "$date": "2024-02-28T07:34:05.371Z"
+    },
+    "updatedAt": {
+      "$date": "2024-02-28T07:34:05.371Z"
+    }
+  }
+]

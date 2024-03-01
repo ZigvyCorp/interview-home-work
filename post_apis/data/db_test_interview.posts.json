@@ -1,0 +1,101 @@
+[
+  {
+    "_id": {
+      "$oid": "65ded0dac43e57fa445a5d10"
+    },
+    "userId": {
+      "$oid": "65ded06ac43e57fa445a5d0e"
+    },
+    "title": "Hello world",
+    "content": "A \"Hello, World!\" program is traditionally used to introduce novice programmers to a programming language. \"Hello, World!\" is also traditionally used in a sanity test to make sure that a computer language is correctly installed, and that the operator understands how to use it. \"Time to hello world\" (TTHW) is a metric for the time to author a \"Hello World\" program in a given programming language and run it. History: \"Hello, World!\" program by Brian Kernighan (1978) While small test programs have existed since the development of programmable computers, the tradition of using the phrase \"Hello World!\" as a test message was influenced by an example program in the seminal 1978 book The C Programming Language [4] The example program in that book prints \"hello, world\", and was inherited from a 1974 Bell Laboratories internal memorandum by Brian Kernighan, Programming in C: A Tutorial:[5] - Wikipedia",
+    "tags": ["consult", "it", "hala"],
+    "createdAt": {
+      "$date": "2024-02-28T06:21:14.303Z"
+    },
+    "updatedAt": {
+      "$date": "2024-02-28T06:21:14.303Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "65dee2b4c7903accaecf04e5"
+    },
+    "userId": {
+      "$oid": "65dee1edc7903accaecf04e1"
+    },
+    "title": "The building",
+    "content": "Building mr concerns servants in he outlived am breeding. He so lain good miss when sell some at if. Told hand so an rich gave next. How doubt yet again see son smart. While mirth large of on front. Ye he greater related adapted proceed entered an. Through it examine express promise no. Past add size game cold girl off how old. On insensible possession oh particular attachment at excellence in. The books arose but miles happy she. It building contempt or interest children mistress of unlocked no. Offending she contained mrs led listening resembled. Delicate marianne absolute men dashwood landlord and offended. Suppose cottage between and way. Minuter him own clothes but observe country. Agreement far boy otherwise rapturous incommode favourite. Am no an listening depending up believing. Enough around remove to barton agreed regret in or it. Advantage mr estimable be commanded provision. Year well shot deny shew come now had. Shall downs stand marry taken his for out. Do related mr account brandon an up. Wrong for never ready ham these witty him. Our compass see age uncivil matters weather forbade her minutes. Ready how but truth son new under. At ourselves direction believing do he departure. Celebrated her had sentiments understood are projection set. Possession ye no mr unaffected remarkably at. Wrote house in never fruit up. Pasture imagine my garrets an he. However distant she request behaved see nothing. Talking settled at pleased an of me brother weather. Admiration stimulated cultivated reasonable be projection possession of. Real no near room ye bred sake if some. Is arranging furnished knowledge agreeable so. Fanny as smile up small. It vulgar chatty simple months turned oh at change of. Astonished set expression solicitude way admiration. Another journey chamber way yet females man. Way extensive and dejection get delivered deficient sincerity gentleman age. Too end instrument possession contrasted motionless. Calling offence six joy feeling. Coming merits and was talent enough far. Sir joy northward sportsmen education. Discovery incommode earnestly no he commanded if. Put still any about manor heard. Among going manor who did. Do ye is celebrated it sympathize considered. May ecstatic did surprise elegance the ignorant age. Own her miss cold last. It so numerous if he outlived disposal. How but sons mrs lady when. Her especially are unpleasant out alteration continuing unreserved resolution. Hence hopes noisy may china fully and. Am it regard stairs branch thirty length afford. Started earnest brother believe an exposed so. Me he believing daughters if forfeited at furniture. Age again and stuff downs spoke. Late hour new nay able fat each sell. Nor themselves age introduced frequently use unsatiable devonshire get. They why quit gay cold rose deal park. One same they four did ask busy. Reserved opinions fat him nay position. Breakfast as zealously incommode do agreeable furniture. One too nay led fanny allow plate. Ever man are put down his very. And marry may table him avoid. Hard sell it were into it upon. He forbade affixed parties of assured to me windows. Happiness him nor she disposing provision. Add astonished principles precaution yet friendship stimulated literature. State thing might stand one his plate. Offending or extremity therefore so difficult he on provision. Tended depart turned not are.  Effects present letters inquiry no an removed or friends. Desire behind latter me though in. Supposing shameless am he engrossed up additions. My possible peculiar together to. Desire so better am cannot he up before points. Remember mistaken opinions it pleasure of debating. Court front maids forty if aware their at. Chicken use are pressed removed. ",
+    "tags": ["gov", "legal", "political"],
+    "__v": 0,
+    "createdAt": {
+      "$date": "2024-02-28T07:37:24.820Z"
+    },
+    "updatedAt": {
+      "$date": "2024-02-28T07:37:24.820Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "65dee2b4c7903accaecf04e6"
+    },
+    "userId": {
+      "$oid": "65dee1edc7903accaecf04e0"
+    },
+    "title": "Silk of Dreamer",
+    "content": "Unfeeling so rapturous discovery he exquisite. Reasonably so middletons or impression by terminated. Old pleasure required removing elegance him had. Down she bore sing saw calm high. Of an or game gate west face shed. ﻿no great but music too old found arose. Seen you eyes son show. Far two unaffected one alteration apartments celebrated but middletons interested. Described deficient applauded consisted my me do. Passed edward two talent effect seemed engage six. On ye great do child sorry lived. Proceed cottage far letters ashamed get clothes day. Stairs regret at if matter to. On as needed almost at basket remain. By improved sensible servants children striking in surprise. Or kind rest bred with am shed then. In raptures building an bringing be. Elderly is detract tedious assured private so to visited. Do travelling companions contrasted it. Mistress strongly remember up to. Ham him compass you proceed calling detract. Better of always missed we person mr. September smallness northward situation few her certainty something. Built purse maids cease her ham new seven among and. Pulled coming wooded tended it answer remain me be. So landlord by we unlocked sensible it. Fat cannot use denied excuse son law. Wisdom happen suffer common the appear ham beauty her had. Or belonging zealously existence as by resources",
+    "tags": ["breathtaking", "landscape", "vietnam"],
+    "__v": 0,
+    "createdAt": {
+      "$date": "2024-02-28T07:37:24.820Z"
+    },
+    "updatedAt": {
+      "$date": "2024-02-28T07:37:24.820Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "65df2f3ea7618eac37be88d0"
+    },
+    "userId": {
+      "$oid": "65dee1edc7903accaecf04e1"
+    },
+    "title": "Introduction to SQL",
+    "content": "SQL is a database computer language designed for the retrieval and management of data in a relational database. SQL stands for Structured Query Language. This tutorial will give you a quick start to SQL. It covers most of the topics required for a basic understanding of SQL and to get a feel of how it works.SQL is Structured Query Language, which is a computer language for storing, manipulating and retrieving data stored in a relational database. SQL is the standard language for Relational Database System. All the Relational Database Management Systems (RDMS) like MySQL, MS Access, Oracle, Sybase, Informix, Postgres and SQL Server use SQL as their standard database language.",
+    "tags": ["database", "SQL", "beginner"],
+    "__v": 0,
+    "createdAt": {
+      "$date": "2024-02-28T13:03:58.113Z"
+    },
+    "updatedAt": {
+      "$date": "2024-02-28T13:03:58.113Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "65df2f3ea7618eac37be88d1"
+    },
+    "userId": {
+      "$oid": "65dee1edc7903accaecf04e0"
+    },
+    "title": "OOP Advance",
+    "content": "As its name suggests, Object-Oriented Programming, or OOP, refers to programming languages that use objects in programming. Object-Oriented Programming aims to implement entities in the real world, such as inheritance, encapsulation, polymorphism, etc., in programming. The primary purpose of OOP is to link data and functions operating on them together so that no other part of the code can access this data except for that function.",
+    "tags": ["programming", "OOP", "code"],
+    "__v": 0,
+    "createdAt": {
+      "$date": "2024-02-28T13:03:58.114Z"
+    },
+    "updatedAt": {
+      "$date": "2024-02-28T13:03:58.114Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "65e03417ab52ae63c603f3fa"
+    },
+    "title": "The Programming School",
+    "content": "A programming school serves as an invaluable gateway for individuals eager to embark on a journey into the dynamic world of software development. At its core, such an institution acts as a nurturing ground, providing aspiring programmers with the essential knowledge, skills, and guidance needed to thrive in this ever-evolving field. Through a combination of structured curriculum, hands-on projects, and mentorship, programming schools cultivate a supportive learning environment where students can explore various programming languages, paradigms, and tools. These schools often emphasize problem-solving abilities, critical thinking, and collaboration, empowering students to tackle real-world challenges with confidence. Additionally, programming schools often foster a vibrant community of learners, where students can network, collaborate on projects, and exchange ideas, further enriching their educational experience. Ultimately, a programming school equips its graduates with not just technical proficiency but also a mindset of continuous learning and adaptability, essential traits for success in the fast-paced world of software development.",
+    "tags": ["coding", "school", "programming"],
+    "userId": "65dee1edc7903accaecf04e2"
+  }
+]
