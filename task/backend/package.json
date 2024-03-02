@@ -1,0 +1,52 @@
+{
+  "name": "be-lechihai_2024",
+  "version": "1.0.0",
+  "description": "be-lechihai_2024",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon --inspect src/index.js",
+    "watch": "node-sass --watch src/resources/scss/app.scss src/public/css/app.css",
+    "format": "prettier --single-quote --trailing-comma all --tab-width 2 --write src/**/*.{js,json,scss}",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lehai4/lechihai_2024.git"
+  },
+  "keywords": [
+    "nodejs",
+    "blog"
+  ],
+  "author": "LeChiHai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lehai4/lechihai_2024/issues"
+  },
+  "homepage": "https://github.com/lehai4/lechihai_2024#readme",
+  "lint-staged": {
+    "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --tab-width 2 --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.7",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.1"
+  },
+  "devDependencies": {
+    "axios": "^1.6.7",
+    "husky": "^4.2.5",
+    "lint-staged": "^13.1.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.8.4"
+  }
+}
