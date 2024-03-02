@@ -1,0 +1,51 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+}
+
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header {
+  box-shadow: 0 4px 2px -2px lightgray;
+  margin-bottom: 20px
+}
+
+.search-box {
+  position: relative;
+}
+
+.search-results {
+  position: absolute;
+  width: 100%;
+  padding-top: 0.5rem ;
+  padding-right: .25rem ;
+  border-radius: 0.25rem;
+  padding-left: .25rem;
+  z-index: 10;
+  overflow: auto;
+  max-height: calc(100vh - 100px);
+  background: #fff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  list-style-type: none;
+
+}
