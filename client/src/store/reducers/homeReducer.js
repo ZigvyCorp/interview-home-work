@@ -15,7 +15,7 @@ const initialState = {
   loading: false,
   posts: [],
   comments: [],
-  user: [],
+  users: [],
 };
 
 const homeReducer = (state = initialState, actions) => {
@@ -63,7 +63,7 @@ const homeReducer = (state = initialState, actions) => {
     case LOAD_USER_COMPLETE:
       return {
         ...state,
-        user: actions.payload,
+        users: actions.payload,
       };
     case LOAD_USER_FAILED:
       return {

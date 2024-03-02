@@ -1,10 +1,10 @@
 const { default: axios } = require("axios");
 
-const getUserById = async (req, res) => {
+const getUsers = async (req, res) => {
   const { id } = req.params;
 
   const { data: users } = await axios.get(
-    `https://jsonplaceholder.typicode.com/users/${id}`
+    "https://jsonplaceholder.typicode.com/users"
   );
   return res.json({
     user: users,
@@ -12,5 +12,5 @@ const getUserById = async (req, res) => {
 };
 
 module.exports = {
-  getUserById,
+  getUsers,
 };

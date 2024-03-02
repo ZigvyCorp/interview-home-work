@@ -3,15 +3,17 @@ import { connect, useDispatch } from "react-redux";
 import {
   loadPostsAction,
   loadCommentsAction,
+  loadUserAction,
 } from "../store/actions/homeActions";
 import { useEffect } from "react";
 import PostPreview from "./PostPreview";
 
-function PostList({ posts, loading, loadPostsAction }) {
+function PostList({ posts, users, loading, loadPostsAction }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadPostsAction());
+    dispatch(loadUserAction());
   }, []);
 
   // useEffect(() => {
@@ -39,7 +41,7 @@ function PostList({ posts, loading, loadPostsAction }) {
       size="large"
       bordered
       dataSource={posts}
-      renderItem={(item) => <PostPreview post={item} />}
+      renderItem={(item) => <PostPreview post={item} users={users} />}
     />
   );
 }

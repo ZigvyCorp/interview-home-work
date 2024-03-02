@@ -26,10 +26,10 @@ export function* loadComments(action) {
     yield put({ type: LOAD_COMMENTS_FAILED, payload: e });
   }
 }
-export function* loadUser(action) {
+export function* loadUsers() {
   try {
-    const { user } = yield call(ApiService.getUserById, action.payload);
-    yield put({ type: LOAD_USER_COMPLETE, payload: user });
+    const { users } = yield call(ApiService.getUsers, null);
+    yield put({ type: LOAD_USER_COMPLETE, payload: users });
   } catch (e) {
     yield put({ type: LOAD_USER_FAILED, payload: e });
   }

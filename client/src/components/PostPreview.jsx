@@ -1,9 +1,6 @@
 import { Button, Flex, List, Space, Tag } from "antd";
 import { useEffect, useState, useMemo } from "react";
-import {
-  loadCommentsAction,
-  loadUserAction,
-} from "../store/actions/homeActions";
+import { loadCommentsAction } from "../store/actions/homeActions";
 import { connect, useDispatch } from "react-redux";
 import Comment from "./Comment";
 
@@ -18,8 +15,6 @@ function PostPreview({ post, comments }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(loadUserAction(post.userId));
-
     if (showComment) {
       dispatch(loadCommentsAction(post.id));
     }
@@ -33,8 +28,6 @@ function PostPreview({ post, comments }) {
     return thisPostComments;
   }, [comments, post.id]);
 
-  // console.log(user);
-
   return (
     <List.Item style={{ borderBlockEndWidth: 10 }} key={post.id}>
       <div>
@@ -42,7 +35,7 @@ function PostPreview({ post, comments }) {
       </div>
       <Flex gap="middle">
         <Flex style={{ margin: 0, width: "70%" }} vertical={"vertical"}>
-          <p>Author: {post.userId}</p>
+          <p>Author: {post.userId} </p>
           <p>Created at: {generateRandomDate()}</p>
         </Flex>
         <Flex

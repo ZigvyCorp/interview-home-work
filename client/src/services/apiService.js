@@ -13,16 +13,16 @@ const getPostComments = async (postId) => {
   const { data } = await apiClient.get(`/api/posts/${postId}/comments`);
   return data;
 };
-const getUserById = async (userId) => {
-  const { data } = await apiClient.get(`/api/users/${userId}`);
-  const { user } = data;
-  return user;
+const getUsers = async () => {
+  const { data } = await apiClient.get("/api/users");
+  console.log(data);
+  return data;
 };
 
 const ApiService = {
   getPosts,
   getPostComments,
-  getUserById,
+  getUsers,
 };
 
 export default ApiService;
