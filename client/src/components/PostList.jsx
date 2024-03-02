@@ -14,9 +14,9 @@ function PostList({ posts, loading, loadPostsAction }) {
     dispatch(loadPostsAction());
   }, []);
 
-  useEffect(() => {
-    console.log({ props: posts });
-  }, [posts]);
+  // useEffect(() => {
+  //   console.log({ props: posts });
+  // }, [posts]);
 
   if (loading) {
     return (

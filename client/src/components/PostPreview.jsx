@@ -1,7 +1,11 @@
 import { Button, Flex, List, Space, Tag } from "antd";
 import { useEffect, useState, useMemo } from "react";
-import { loadCommentsAction } from "../store/actions/homeActions";
+import {
+  loadCommentsAction,
+  loadUserAction,
+} from "../store/actions/homeActions";
 import { connect, useDispatch } from "react-redux";
+import Comment from "./Comment";
 
 function generateRandomDate(from = new Date(2023, 0, 1), to = new Date()) {
   return new Date(
@@ -12,8 +16,10 @@ function generateRandomDate(from = new Date(2023, 0, 1), to = new Date()) {
 function PostPreview({ post, comments }) {
   const [showComment, setShowComment] = useState(false);
   const dispatch = useDispatch();
-  console.log(showComment);
+
   useEffect(() => {
+    // dispatch(loadUserAction(post.userId));
+
     if (showComment) {
       dispatch(loadCommentsAction(post.id));
     }
@@ -27,12 +33,10 @@ function PostPreview({ post, comments }) {
     return thisPostComments;
   }, [comments, post.id]);
 
+  // console.log(user);
+
   return (
     <List.Item style={{ borderBlockEndWidth: 10 }} key={post.id}>
-      {/* <List.Item.Meta
-        title={<a href={post.href}>{post.title}</a>}
-        description={"Author:" + post.userId}
-      /> */}
       <div>
         <h1 style={{ textAlign: "center" }}>{post.title}</h1>
       </div>
@@ -73,10 +77,8 @@ function PostPreview({ post, comments }) {
           show comment
         </Button>
       )}
-      {showComment &&
-        myComments.map((c) => {
-          return <div key={c.id}>{c.id}</div>;
-        })}
+
+      {showComment && <Comment key={myComments.id} data={myComments} />}
     </List.Item>
   );
 }

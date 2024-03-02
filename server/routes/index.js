@@ -1,3 +1,3 @@
-const routes = [require("./posts"), require("./404")];
+const routes = [require("./posts"), require("./users"), require("./404")];
 
 module.exports = routes;
