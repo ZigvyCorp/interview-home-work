@@ -4,7 +4,6 @@ import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { loadMoreAsync } from "@/lib/features/posts/postsSlice";
 import { useAppDispatch } from "@/lib/hooks";
 
 function NavBar() {
@@ -72,7 +71,6 @@ function NavBar() {
 
 					<div
 						className="d-flex gap-2 align-items-center"
-						onClick={() => dispatch(loadMoreAsync(1))}
 					>
 						<Image
 							src="/cat.png"

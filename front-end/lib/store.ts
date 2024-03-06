@@ -1,6 +1,7 @@
 import type { Action, ThunkAction } from "@reduxjs/toolkit";
 import { combineSlices, configureStore } from "@reduxjs/toolkit";
 import { counterSlice } from "./features/counter/counterSlice";
+import { apiSlice } from "./features/api/apiSlice";
 import { postsSlice } from "./features/posts/postsSlice";
 import { quotesApiSlice } from "./features/quotes/quotesApiSlice";
 import { persistStore, persistReducer } from "redux-persist";
@@ -30,13 +31,15 @@ const persistConfig = {
 	storage,
 };
 
-const rootReducer = combineSlices(counterSlice, postsSlice, quotesApiSlice);
+const rootReducer = combineSlices(postsSlice, apiSlice);
 // Infer the `RootState` type from the root reducer
 export type RootState = ReturnType<typeof rootReducer>;
 
 const makeConfiguredStore = () =>
 	configureStore({
 		reducer: rootReducer,
+		middleware: (getDefaultMiddleware) =>
+			getDefaultMiddleware().concat(apiSlice.middleware),
 	});
 
 // `makeStore` encapsulates the store configuration to allow
@@ -51,6 +54,8 @@ export const makeStore = () => {
 		const persistedReducer = persistReducer(persistConfig, rootReducer);
 		let store: any = configureStore({
 			reducer: persistedReducer,
+			middleware: (getDefaultMiddleware) =>
+				getDefaultMiddleware().concat(apiSlice.middleware),
 		});
 		store.__persistor = persistStore(store);
 		return store;

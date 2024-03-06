@@ -1,5 +1,4 @@
 import { createAppSlice } from "@/lib/createAppSlice";
-import { fetchPosts } from "./postAPI";
 
 export interface Post {
 	_id: string;
@@ -23,23 +22,10 @@ export const postsSlice = createAppSlice({
 	name: "posts",
 	initialState,
 	reducers: (create) => ({
-		loadMoreAsync: create.asyncThunk(
-			async () => {
-				const response = await fetchPosts();
-				return response;
-			},
-			{
-				pending: (state) => {
-					state.status = "loading";
-				},
-				fulfilled: (state, action) => {
-					console.log(action);
-					state.status = "idle";
-					state.value = state.value.concat(action.payload);
-				},
-				rejected: (state) => {
-					state.status = "failed";
-				},
+		loadMorePost: create.reducer(
+			(state, action: { type: string; payload: Post[] }) => {
+				state.status = "idle";
+				state.value = state.value.concat(action.payload);
 			}
 		),
 	}),
@@ -49,6 +35,6 @@ export const postsSlice = createAppSlice({
 	},
 });
 
-export const { loadMoreAsync } = postsSlice.actions;
+export const { loadMorePost } = postsSlice.actions;
 
 export const { selectPosts, selectStatus } = postsSlice.selectors;

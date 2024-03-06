@@ -2,7 +2,7 @@
 
 import Post from "@/components/Post";
 import { useEffect, useRef, useState } from "react";
-
+import { useGetPostBatchQuery } from "@/lib/features/api/apiSlice";
 type BlogPost = {
 	id: number;
 	userId: number;
@@ -13,35 +13,34 @@ type BlogPost = {
 
 export default function Home() {
 	const batchSize = 5;
-	const [posts, setPosts] = useState([]);
-	const [offset, setOffset] = useState(1);
+	const [offset, setOffset] = useState<number>(0);
+	const { data: posts = [] } = useGetPostBatchQuery({ batchSize, offset });
 	const observerTarget = useRef<HTMLDivElement>(null);
 
-	useEffect(() => {
-		async function fetchPosts() {
-			console.log();
-			const res = await fetch(
-				`${process.env.NEXT_PUBLIC_BACKEND_URL}/posts`
-			);
+	// useEffect(() => {
+	// 	async function fetchPosts() {
+	// 		const res = await fetch(
+	// 			`${process.env.NEXT_PUBLIC_BACKEND_URL}/posts`
+	// 		);
 
-			if (!res.ok) {
-				throw new Error("Failed to fetch data");
-			}
+	// 		if (!res.ok) {
+	// 			throw new Error("Failed to fetch data");
+	// 		}
 
-			let data = await res.json();
+	// 		let data = await res.json();
 
-			if (data.length > batchSize * offset) {
-				data = data.slice(0, batchSize * offset);
-			} else {
-				if (observerTarget.current) {
-					observerTarget.current.classList.add("d-none");
-				}
-			}
-			setPosts(data);
-		}
+	// 		if (data.length > batchSize * offset) {
+	// 			data = data.slice(0, batchSize * offset);
+	// 		} else {
+	// 			if (observerTarget.current) {
+	// 				observerTarget.current.classList.add("d-none");
+	// 			}
+	// 		}
+	// 		setPosts(data);
+	// 	}
 
-		fetchPosts();
-	}, [offset]);
+	// 	fetchPosts();
+	// }, [offset]);
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
