@@ -3,12 +3,17 @@ const Comment = require("../models/comment.model");
 
 const getPosts = async (req, res) => {
     try {
-        const keyword = req.query.keyword;
-        let query = {};
+        const { keyword, batchSize, offset = 0 } = req.query;
+
+        let filter = {};
+        let options = {};
         if (keyword) {
-            query = { $text: { $search: keyword } };
+            filter = { $text: { $search: keyword } };
         }
-        const posts = await Post.find(query);
+        if (batchSize) {
+            options = { limit: batchSize, skip: batchSize * offset };
+        }
+        const posts = await Post.find(filter, null, options);
         res.json(posts);
     } catch (err) {
         res.status(500).json({ message: err.message });
