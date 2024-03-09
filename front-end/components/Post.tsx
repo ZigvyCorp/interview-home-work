@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Comment from "./Comment";
 import Link from "next/link";
+import type { PostComment, User } from "@/types";
 
 type Props = {
 	id: number;
@@ -10,38 +11,6 @@ type Props = {
 	createdAt: Date;
 	type: "summary" | "detail";
 };
-
-type PostComment = {
-	id: number;
-	postId: number;
-	name: string;
-	email: string;
-	body: string;
-};
-
-type User = {
-	id: number;
-	name: string;
-	username: string;
-	email: string;
-	address: {
-		street: string;
-		suite: string;
-		city: string;
-		zipcode: string;
-		geo: {
-			lat: string;
-			lng: string;
-		};
-	};
-	phone: string;
-	website: string;
-	company: {
-		name: string;
-		catchPhrase: string;
-		bs: string;
-	};
-} | null;
 
 function Post({ id, userId, title, body, createdAt, type }: Props) {
 	const [comments, setComments] = useState([]);
