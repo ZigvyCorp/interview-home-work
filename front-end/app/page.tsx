@@ -3,18 +3,20 @@
 import Post from "@/components/Post";
 import { useEffect, useRef, useState } from "react";
 import { useGetPostBatchQuery } from "@/lib/features/api/apiSlice";
-type BlogPost = {
-	id: number;
-	userId: number;
-	title: string;
-	body: string;
-	createdAt: Date;
-};
+import { useSelector } from "react-redux";
+import { selectPosts } from "@/lib/features/posts/postsSlice";
+import type { PostData } from "@/types";
 
 export default function Home() {
 	const batchSize = 5;
 	const [offset, setOffset] = useState<number>(0);
-	const { data: posts = [] } = useGetPostBatchQuery({ batchSize, offset });
+	const { data: postBatch = [] } = useGetPostBatchQuery({
+		batchSize,
+		offset,
+	});
+
+	const posts = useSelector(selectPosts);
+
 	const observerTarget = useRef<HTMLDivElement>(null);
 
 	// useEffect(() => {
@@ -49,7 +51,7 @@ export default function Home() {
 					setOffset((prevOffset) => prevOffset + 1);
 				}
 			},
-			{ threshold: 1 }
+			{ threshold: 0 }
 		);
 
 		if (observerTarget.current) {
@@ -65,7 +67,7 @@ export default function Home() {
 
 	return (
 		<main className="container mt-3">
-			{posts.map((post: BlogPost) => (
+			{posts.map((post: PostData) => (
 				<Post
 					key={post.id}
 					{...post}

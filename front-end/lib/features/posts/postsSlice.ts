@@ -1,15 +1,8 @@
 import { createAppSlice } from "@/lib/createAppSlice";
-
-export interface Post {
-	_id: string;
-	userId: number;
-	id: number;
-	title: string;
-	body: string;
-}
+import type { PostData } from "@/types";
 
 export interface PostsSliceState {
-	value: Post[];
+	value: PostData[];
 	status: "idle" | "loading" | "failed";
 }
 
@@ -23,7 +16,7 @@ export const postsSlice = createAppSlice({
 	initialState,
 	reducers: (create) => ({
 		loadMorePost: create.reducer(
-			(state, action: { type: string; payload: Post[] }) => {
+			(state, action: { type: string; payload: PostData[] }) => {
 				state.status = "idle";
 				state.value = state.value.concat(action.payload);
 			}
