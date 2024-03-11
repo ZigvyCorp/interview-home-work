@@ -4,9 +4,12 @@ const Comment = require("../models/comment.model");
 const getPosts = async (req, res) => {
     try {
         const { keyword, batchSize, offset = 0 } = req.query;
-
         let filter = {};
         let options = {};
+        const result = {};
+
+        const numPosts = await Post.countDocuments();
+
         if (keyword) {
             filter = { $text: { $search: keyword } };
         }
@@ -14,7 +17,10 @@ const getPosts = async (req, res) => {
             options = { limit: batchSize, skip: batchSize * offset };
         }
         const posts = await Post.find(filter, null, options);
-        res.json(posts);
+        result.data = posts;
+        result.hasNext = numPosts > batchSize * offset;
+        // result.total = numPosts;
+        res.json(result);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
