@@ -4,15 +4,14 @@ import Post from "@/components/Post";
 import { useEffect, useRef, useState } from "react";
 import { useGetPostBatchQuery } from "@/lib/features/api/apiSlice";
 import type { PostData } from "@/types";
+import { DEFAULT_POST_BATCH_SIZE } from "@/constants";
 
 export default function Home() {
-	const batchSize = 5;
-
 	const [offset, setOffset] = useState<number>(0);
 	const [posts, setPosts] = useState<PostData[]>([]);
 
 	const { data: postBatch, isLoading } = useGetPostBatchQuery({
-		batchSize,
+		batchSize: DEFAULT_POST_BATCH_SIZE,
 		offset,
 	});
 

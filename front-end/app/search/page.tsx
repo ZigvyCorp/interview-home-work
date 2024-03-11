@@ -2,7 +2,8 @@
 
 import Post from "@/components/Post";
 import { useEffect, useRef, useState } from "react";
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams } from "next/navigation";
+import { DEFAULT_POST_BATCH_SIZE } from "@/constants";
 
 type BlogPost = {
 	id: number;
@@ -13,9 +14,9 @@ type BlogPost = {
 };
 
 export default function Search() {
-    const searchParams = useSearchParams();
+	const searchParams = useSearchParams();
 
-    const keyword = searchParams.get('keyword');
+	const keyword = searchParams.get("keyword");
 	const batchSize = 5;
 	const [posts, setPosts] = useState([]);
 	const [offset, setOffset] = useState(1);
@@ -69,7 +70,7 @@ export default function Search() {
 
 	return (
 		<main className="container mt-3">
-            <h1>Results for: {keyword}</h1>
+			<h1>Results for: {keyword}</h1>
 			{posts.map((post: BlogPost) => (
 				<Post
 					key={post.id}
