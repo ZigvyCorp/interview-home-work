@@ -4,14 +4,8 @@ import Post from "@/components/Post";
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { DEFAULT_POST_BATCH_SIZE } from "@/constants";
-
-type BlogPost = {
-	id: number;
-	userId: number;
-	title: string;
-	body: string;
-	createdAt: Date;
-};
+import { useGetPostBatchQuery } from "@/lib/features/api/apiSlice";
+import type { BlogPost } from "@/types";
 
 export default function Search() {
 	const searchParams = useSearchParams();
