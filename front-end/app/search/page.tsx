@@ -5,14 +5,14 @@ import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { DEFAULT_POST_BATCH_SIZE } from "@/constants";
 import { useGetPostBatchQuery } from "@/lib/features/api/apiSlice";
-import type { BlogPost } from "@/types";
+import type { PostData } from "@/types";
 
 export default function Search() {
 	const searchParams = useSearchParams();
 
 	const keyword = searchParams.get("keyword");
-	const [posts, setPosts] = useState([]);
 	const [offset, setOffset] = useState<number>(0);
+	const [posts, setPosts] = useState<PostData[]>([]);
 	const observerTarget = useRef<HTMLDivElement>(null);
 
 	const { data: postBatch, isLoading } = useGetPostBatchQuery({
@@ -37,7 +37,9 @@ export default function Search() {
 		const observer = new IntersectionObserver(
 			(entries) => {
 				if (entries[0].isIntersecting) {
-					setOffset((prevOffset) => prevOffset + 1);
+                    if (postBatch?.hasNext) {
+                        setOffset((prevOffset) => prevOffset + 1);
+                    }
 				}
 			},
 			{ threshold: 0 }
@@ -57,7 +59,7 @@ export default function Search() {
 	return (
 		<main className="container mt-3">
 			<h1>Results for: {keyword}</h1>
-			{posts.map((post: BlogPost) => (
+			{posts.map((post: PostData) => (
 				<Post
 					key={post.id}
 					{...post}

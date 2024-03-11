@@ -13,7 +13,7 @@ whyDidYouRender(React, {
 	trackHooks: true,
 	logOwnerReasons: true,
 	collapseGroups: true,
-	include: [/Home/],
+	include: [/Search/],
 
 	// This is for testing, remove it, if you don't want to log on different values
 	logOnDifferentValues: true,

@@ -19,20 +19,28 @@ export const apiSlice = createApi({
 					batchSize ? `batchSize=${batchSize}&offset=${offset}` : ""
 				}`;
 			},
-			async onCacheEntryAdded(
-				arg,
-				{
-					cacheDataLoaded,
-					cacheEntryRemoved,
-					updateCachedData,
-					dispatch,
-				}
-			) {
-				try {
-					const { data } = await cacheDataLoaded;
-					dispatch(loadMorePost(data.data));
-				} catch {}
-			},
+            // async onQueryStarted({ keyword, batchSize, offset }, { dispatch, queryFulfilled }) {
+            //     try {
+            //         console.log("queryStarted", { keyword, batchSize, offset });
+            //         const { data } = await queryFulfilled;
+            //         console.log("🚀 ~ queryFulfilled ~ data:", data)
+            //         // dispatch(loadMorePost(data.data));
+            //     } catch {}
+            // }
+			// async onCacheEntryAdded(
+			// 	arg,
+			// 	{
+			// 		cacheDataLoaded,
+			// 		cacheEntryRemoved,
+			// 		updateCachedData,
+			// 		dispatch,
+			// 	}
+			// ) {
+			// 	try {
+			// 		const { data } = await cacheDataLoaded;
+			// 		dispatch(loadMorePost(data.data));
+			// 	} catch {}
+			// },
 		}),
 		getUserDetails: builder.query({
 			query: (userId: number) => `/users/${userId}`,
