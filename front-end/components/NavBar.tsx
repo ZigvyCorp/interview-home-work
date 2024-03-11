@@ -4,11 +4,9 @@ import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useAppDispatch } from "@/lib/hooks";
 
 function NavBar() {
 	const router = useRouter();
-	const dispatch = useAppDispatch();
 
 	function handleSearch(event: React.FormEvent) {
 		event.preventDefault();
@@ -18,8 +16,7 @@ function NavBar() {
 	}
 
 	return (
-		<nav className={`navbar bg-body-tertiary sticky-top`}>
-			<div className="container-fluid">
+		<nav className={`navbar navbar-expand-lg bg-body-tertiary sticky-top`}>
 				<Link href="/" className="navbar-brand">
 					<Image
 						src="/vercel.svg"
@@ -31,11 +28,21 @@ function NavBar() {
 				<ul className="navbar-nav">
 					<li className="nav-item">
 						<Link href="/" className="nav-link">
-							Blogs
+							Home
+						</Link>
+					</li>
+					<li className="nav-item">
+						<Link href="/" className="nav-link">
+							About
+						</Link>
+					</li>
+					<li className="nav-item">
+						<Link href="/" className="nav-link">
+							Contact
 						</Link>
 					</li>
 				</ul>
-				<div className="d-flex" style={{ gap: 15 }}>
+				<div className="d-flex" style={{ gap: 15, marginLeft: "auto" }}>
 					<form onSubmit={handleSearch}>
 						<div className="input-group">
 							<div className="form-outline" data-mdb-input-init>
@@ -69,9 +76,7 @@ function NavBar() {
 						</div>
 					</form>
 
-					<div
-						className="d-flex gap-2 align-items-center"
-					>
+					<div className="d-flex gap-2 align-items-center">
 						<Image
 							src="/cat.png"
 							alt="User"
@@ -81,7 +86,6 @@ function NavBar() {
 						<span>Account</span>
 					</div>
 				</div>
-			</div>
 		</nav>
 	);
 }
