@@ -32,7 +32,10 @@ export const apiSlice = createApi({
 				} catch {}
 			},
 		}),
+		getUserDetails: builder.query({
+			query: (id: number) => `/users/${id}`,
+		}),
 	}),
 });
 
-export const { useGetPostBatchQuery } = apiSlice;
+export const { useGetPostBatchQuery, useGetUserDetailsQuery } = apiSlice;
