@@ -18,7 +18,7 @@ const getPosts = async (req, res) => {
         result.data = posts;
 
         const numPosts = await Post.countDocuments(filter);
-        result.hasNext = numPosts > batchSize * offset;
+        result.hasNext = numPosts > (Number(batchSize) * (Number(offset) + 1));
         // result.total = numPosts;
 
         res.json(result);
