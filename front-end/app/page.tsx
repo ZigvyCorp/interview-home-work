@@ -3,46 +3,32 @@
 import Post from "@/components/Post";
 import { useEffect, useRef, useState } from "react";
 import { useGetPostBatchQuery } from "@/lib/features/api/apiSlice";
-import { useSelector } from "react-redux";
-import { selectPosts } from "@/lib/features/posts/postsSlice";
 import type { PostData } from "@/types";
 
 export default function Home() {
 	const batchSize = 5;
+
 	const [offset, setOffset] = useState<number>(0);
-	const { data: postBatch = [] } = useGetPostBatchQuery({
+	const [posts, setPosts] = useState<PostData[]>([]);
+
+	const { data: postBatch, isLoading } = useGetPostBatchQuery({
 		batchSize,
 		offset,
 	});
 
-	const posts = useSelector(selectPosts);
+	useEffect(() => {
+		if (!isLoading && postBatch.data.length > 0) {
+			setPosts(posts.concat(postBatch.data));
+		}
+	}, [postBatch]);
 
 	const observerTarget = useRef<HTMLDivElement>(null);
 
-	// useEffect(() => {
-	// 	async function fetchPosts() {
-	// 		const res = await fetch(
-	// 			`${process.env.NEXT_PUBLIC_BACKEND_URL}/posts`
-	// 		);
-
-	// 		if (!res.ok) {
-	// 			throw new Error("Failed to fetch data");
-	// 		}
-
-	// 		let data = await res.json();
-
-	// 		if (data.length > batchSize * offset) {
-	// 			data = data.slice(0, batchSize * offset);
-	// 		} else {
-	// 			if (observerTarget.current) {
-	// 				observerTarget.current.classList.add("d-none");
-	// 			}
-	// 		}
-	// 		setPosts(data);
-	// 	}
-
-	// 	fetchPosts();
-	// }, [offset]);
+	if (!isLoading && !postBatch.hasNext) {
+		if (observerTarget.current) {
+			observerTarget.current.classList.add("d-none");
+		}
+	}
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(

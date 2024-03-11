@@ -28,7 +28,7 @@ export const apiSlice = createApi({
 			) {
 				try {
 					const { data } = await cacheDataLoaded;
-					dispatch(loadMorePost(data));
+					dispatch(loadMorePost(data.data));
 				} catch {}
 			},
 		}),
