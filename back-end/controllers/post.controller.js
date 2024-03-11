@@ -8,10 +8,6 @@ const getPosts = async (req, res) => {
         let options = {};
         const result = {};
 
-        const numPosts = await Post.countDocuments();
-        result.hasNext = numPosts > batchSize * offset;
-        // result.total = numPosts;
-
         if (keyword) {
             filter = { $text: { $search: keyword } };
         }
@@ -20,6 +16,11 @@ const getPosts = async (req, res) => {
         }
         const posts = await Post.find(filter, null, options);
         result.data = posts;
+
+        const numPosts = await Post.countDocuments(filter);
+        result.hasNext = numPosts > batchSize * offset;
+        // result.total = numPosts;
+
         res.json(result);
     } catch (err) {
         res.status(500).json({ message: err.message });

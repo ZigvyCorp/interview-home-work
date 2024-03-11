@@ -7,14 +7,16 @@ export const apiSlice = createApi({
 	endpoints: (builder) => ({
 		getPostBatch: builder.query({
 			query: ({
+				keyword,
 				batchSize,
 				offset = 0,
 			}: {
+				keyword?: string | null;
 				batchSize?: number;
 				offset?: number;
 			}) => {
-				return `/posts${
-					batchSize ? `?batchSize=${batchSize}&offset=${offset}` : ""
+				return `/posts?${keyword ? `keyword=${keyword}&` : ""}${
+					batchSize ? `batchSize=${batchSize}&offset=${offset}` : ""
 				}`;
 			},
 			async onCacheEntryAdded(

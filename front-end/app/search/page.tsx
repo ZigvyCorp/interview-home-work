@@ -11,35 +11,27 @@ export default function Search() {
 	const searchParams = useSearchParams();
 
 	const keyword = searchParams.get("keyword");
-	const batchSize = 5;
 	const [posts, setPosts] = useState([]);
-	const [offset, setOffset] = useState(1);
+	const [offset, setOffset] = useState<number>(0);
 	const observerTarget = useRef<HTMLDivElement>(null);
 
+	const { data: postBatch, isLoading } = useGetPostBatchQuery({
+		keyword,
+		batchSize: DEFAULT_POST_BATCH_SIZE,
+		offset,
+	});
+
 	useEffect(() => {
-		async function fetchPosts() {
-			const res = await fetch(
-				`${process.env.NEXT_PUBLIC_BACKEND_URL}/posts?keyword=${keyword}`
-			);
-
-			if (!res.ok) {
-				throw new Error("Failed to fetch data");
-			}
-
-			let data = await res.json();
-
-			if (data.length > batchSize * offset) {
-				data = data.slice(0, batchSize * offset);
-			} else {
-				if (observerTarget.current) {
-					observerTarget.current.classList.add("d-none");
-				}
-			}
-			setPosts(data);
+		if (!isLoading && postBatch.data.length > 0) {
+			setPosts(posts.concat(postBatch.data));
 		}
+	}, [postBatch]);
 
-		fetchPosts();
-	}, [offset]);
+	if (!isLoading && !postBatch.hasNext) {
+		if (observerTarget.current) {
+			observerTarget.current.classList.add("d-none");
+		}
+	}
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
@@ -48,7 +40,7 @@ export default function Search() {
 					setOffset((prevOffset) => prevOffset + 1);
 				}
 			},
-			{ threshold: 1 }
+			{ threshold: 0 }
 		);
 
 		if (observerTarget.current) {
