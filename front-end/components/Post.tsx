@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import Comment from "./Comment";
 import Link from "next/link";
 import type { PostComment, User } from "@/types";
-import { useGetUserDetailsQuery } from "@/lib/features/api/apiSlice";
+import {
+	useGetPostCommentsQuery,
+	useGetUserDetailsQuery,
+} from "@/lib/features/api/apiSlice";
 
 type Props = {
 	id: number;
@@ -14,30 +17,8 @@ type Props = {
 };
 
 function Post({ id, userId, title, body, createdAt, type }: Props) {
-	const [comments, setComments] = useState([]);
-
 	const { data: author } = useGetUserDetailsQuery(userId);
-
-	useEffect(() => {
-		if (id === 0) {
-			return;
-		}
-
-		async function fetchComments(postId: number) {
-			const res = await fetch(
-				`${process.env.NEXT_PUBLIC_BACKEND_URL}/posts/${postId}/comments`
-			);
-
-			if (!res.ok) {
-				throw new Error("Failed to fetch data");
-			}
-
-			const data = await res.json();
-			setComments(data);
-		}
-
-		fetchComments(id);
-	}, [id]);
+	const { data: comments = [] } = useGetPostCommentsQuery(id);
 
 	return (
 		<article>

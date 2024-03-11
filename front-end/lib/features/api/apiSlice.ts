@@ -33,9 +33,16 @@ export const apiSlice = createApi({
 			},
 		}),
 		getUserDetails: builder.query({
-			query: (id: number) => `/users/${id}`,
+			query: (userId: number) => `/users/${userId}`,
+		}),
+		getPostComments: builder.query({
+			query: (postId: number) => `/posts/${postId}/comments`,
 		}),
 	}),
 });
 
-export const { useGetPostBatchQuery, useGetUserDetailsQuery } = apiSlice;
+export const {
+	useGetPostBatchQuery,
+	useGetUserDetailsQuery,
+	useGetPostCommentsQuery,
+} = apiSlice;
