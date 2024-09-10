@@ -34,11 +34,11 @@ app.use(express.json());
 
 app.use("/api", PostRouter);
 
-app.get("*", (req, res, next) => {
-  if (req.originalUrl.startsWith("/api/v1"))
-    return next(new NotFoundError("Not found"));
-  res.sendFile(path.join(__dirname, "./client/", "index.html"));
-});
+// app.get("*", (req, res, next) => {
+//   if (req.originalUrl.startsWith("/api/"))
+//     return next(new NotFoundError("Not found"));
+//   res.sendFile(path.join(__dirname, "./client/", "index.html"));
+// });
 
 //   global error handler
 app.all("*", (req: Request, res: Response, next: NextFunction) => {
