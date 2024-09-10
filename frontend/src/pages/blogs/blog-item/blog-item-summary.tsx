@@ -1,17 +1,21 @@
 import { IPost } from "@/models";
 
-function getContentSummary(content: string): string {
-  return content.length > 100 ? content.substring(0, 100) + "..." : content;
+function extractFirst100Words(text: string) {
+  const words = text.trim().split(/\s+/);
+
+  const first100Words = words.slice(0, 100);
+
+  return first100Words.join(" ") + "...";
 }
 
 type Props = {
   summary: IPost["body"];
 };
 
-function BlogItemSummayr({ summary }: Props) {
-  const content = getContentSummary(summary);
+function BlogItemSummary({ summary }: Props) {
+  const content = extractFirst100Words(summary);
 
   return <p className='mt-6'>{content}</p>;
 }
 
-export default BlogItemSummayr;
+export default BlogItemSummary;

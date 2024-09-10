@@ -1,8 +1,8 @@
-import { User } from "@/models";
+import { IUser } from "@/models";
 import { formatDate, getRandomDate } from "@/utils/date.util";
 
 type Props = {
-  author: User;
+  author: IUser;
 };
 
 function BlogItemAuthor({ author }: Props) {
@@ -10,7 +10,7 @@ function BlogItemAuthor({ author }: Props) {
   const formattedDate = formatDate(randomDate);
 
   return (
-    <div className='flex flex-col gap-2'>
+    <div className='flex flex-col gap'>
       <p>Author: {author.name}</p>
       <p>Created At: {formattedDate} </p>
     </div>
