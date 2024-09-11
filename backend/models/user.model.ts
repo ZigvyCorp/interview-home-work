@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
 
 export interface IUserDocument {
-  id: number;
+  id: string;
   name: string;
   username: string;
+
   email: string;
 }
 

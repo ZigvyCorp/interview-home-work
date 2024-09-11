@@ -1,69 +1,72 @@
-import fs from "fs";
-import path from "path";
-
 import { NextFunction, Request, Response } from "express";
 
+import Post from "../models/post.model";
 import catchAsync from "../utils/catch-async";
-import { IPostDocument } from "../models/post.model";
-import { IUserDocument } from "../models/user.model";
+import Comments from "../models/comment.model";
 
-let postData: IPostDocument[];
-let userData: IUserDocument[];
-
-const postFilePath = path.join(__dirname, "../data/posts.json");
-const userFilePath = path.join(__dirname, "../data/users.json");
-
-const jsonPostData = fs.readFileSync(postFilePath, "utf-8");
-const jsonUserData = fs.readFileSync(userFilePath, "utf-8");
-
-// adjust the structure to look like from apo
-postData = JSON.parse(jsonPostData).map(
-  (data: IPostDocument & { owner: number; content: string }) => {
-    const { owner, content, ...rest } = data;
-    return { ...rest, userId: owner, body: content };
-  }
-);
-userData = JSON.parse(jsonUserData);
-
-const initialPosts = postData.map((post) => {
-  const user = userData.find((user) => user.id === post.userId);
-  return { ...post, user };
-});
-
-const NUMBER_OF_POST = 100;
-const LIMIT_POST = 10;
 export const getPosts = catchAsync(
-  async (req: Request, res: Response, next: NextFunction) => {
-    const { page = 1 } = req.query;
-
-    const postRes = await fetch(
-      `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${LIMIT_POST}`
-    );
-    const posts = await postRes.json();
-
-    const userRes = await fetch("https://jsonplaceholder.typicode.com/users");
-    const users = await userRes.json();
-
-    const data = (posts as IPostDocument[]).map((post) => {
-      const user = (users as IUserDocument[]).find(
-        (user) => user.id === post.userId
-      );
-      return { ...post, user };
-    });
-
-    const nextPageValue =
-      +page * LIMIT_POST < NUMBER_OF_POST ? +page + 1 : null;
-
+  async (req: Request, res: Response, _: NextFunction) => {
+    const { page = 1, search = "", limit = 10 } = req.query; // Extract page and search from query
     const currentPage = +page;
+    const limitPost = +limit;
 
-    const postCount = NUMBER_OF_POST;
+    const skip = (currentPage - 1) * limitPost;
+
+    let query = {};
+    if (search) {
+      const lowercaseSearch = (search as string).toLowerCase();
+      query = { title: { $regex: lowercaseSearch, $options: "i" } }; // Case-insensitive search
+    }
+
+    const postCount = await Post.countDocuments(query);
+
+    const posts = await Post.find(query)
+      .populate({
+        path: "user",
+        select: "name",
+      })
+      .skip(skip)
+      .limit(limitPost);
+
+    const postsWithComments = await Promise.all(
+      posts.map(async (post) => {
+        const comments = await Comments.find({ post: post._id }).populate({
+          path: "user",
+          select: "name email",
+        });
+        return { ...post.toObject(), comments };
+      })
+    );
+    const nextPageValue =
+      currentPage * limitPost < postCount ? currentPage + 1 : null;
 
     res.status(200).json({
       status: "success",
-      result: { data: [...initialPosts, ...data] },
+      result: { data: postsWithComments },
       nextPage: nextPageValue,
       currentPage,
       postCount,
     });
+  }
+);
+
+export const createPosts = catchAsync(
+  async (req: Request, res: Response, _: NextFunction) => {
+    try {
+      const newPosts = await Post.insertMany(req.body);
+
+      res.status(201).json({
+        status: "success",
+        data: {
+          post: newPosts,
+        },
+      });
+    } catch (error) {
+      const err = error as { message: string };
+      res.status(400).json({
+        status: "fail",
+        message: err.message,
+      });
+    }
   }
 );

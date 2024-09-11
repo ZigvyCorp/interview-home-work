@@ -1,4 +1,4 @@
-import { IPost } from "@/models";
+import { IBlog } from "@/models";
 
 function extractFirst100Words(text: string) {
   const words = text.trim().split(/\s+/);
@@ -9,13 +9,13 @@ function extractFirst100Words(text: string) {
 }
 
 type Props = {
-  summary: IPost["body"];
+  summary: IBlog["body"];
 };
 
 function BlogItemSummary({ summary }: Props) {
   const content = extractFirst100Words(summary);
 
-  return <p className='mt-6'>{content}</p>;
+  return <p>{content}</p>;
 }
 
 export default BlogItemSummary;

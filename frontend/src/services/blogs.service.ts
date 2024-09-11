@@ -1,16 +1,22 @@
 import { API_END_POINTS } from "@/constants/api-endpoints.constant";
 
-import { IPost, IUser } from "@/models";
+import { IBlog } from "@/models";
 
 import callApi from "@/utils/service.util";
 
-export const getBlogs = async ({ pageParam }: { pageParam: number }) => {
+export const getBlogs = async ({
+  pageParam,
+  search,
+}: {
+  pageParam: number;
+  search: string;
+}) => {
   const response = await callApi<{
-    data: (IPost & { user: IUser })[];
+    data: IBlog[];
     nextPage: number | null;
     currentPage: number;
     postCount: number;
-  }>(`${API_END_POINTS.posts}?page=${pageParam}`);
+  }>(`${API_END_POINTS.posts}?search=${search}&page=${pageParam}`);
 
   return response.result;
 };

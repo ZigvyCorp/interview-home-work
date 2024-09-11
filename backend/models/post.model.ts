@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 export interface IPostDocument {
-  userId: number;
+  user: Schema.Types.ObjectId;
   id: number;
   title: string;
   body: string;
@@ -9,7 +9,10 @@ export interface IPostDocument {
 
 const postSchema = new mongoose.Schema(
   {
-    userId: String,
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
     id: Number,
     title: String,
     body: String,
