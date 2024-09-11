@@ -50,6 +50,36 @@ export const getPosts = catchAsync(
   }
 );
 
+export const getPost = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const postId = req.params.id;
+
+      const post = await Post.findById(postId).populate("user");
+
+      if (!post) {
+        return res
+          .status(404)
+          .json({ status: "fail", message: "Post not found" });
+      }
+
+      const comments = await Comments.find({ post: post._id }).populate({
+        path: "user",
+        select: "name email",
+      });
+
+      const data = { ...post.toObject(), comments };
+      res.status(200).json({
+        status: "success",
+        result: { data },
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Server error" });
+    }
+  }
+);
+
 export const createPosts = catchAsync(
   async (req: Request, res: Response, _: NextFunction) => {
     try {

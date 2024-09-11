@@ -5,8 +5,6 @@ type Props = {
   data: IComment[];
 };
 function BlogComments({ data }: Props) {
-  console.log("why???");
-  console.log(data);
   return (
     <div className='mt-12'>
       <CommentDetails data={data} />
