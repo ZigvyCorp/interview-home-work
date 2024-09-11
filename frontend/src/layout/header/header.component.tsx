@@ -1,16 +1,19 @@
 import { cn } from "@/lib/utils";
 import styles from "./header.module.css";
 import { User } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
     <header className='flex h-16 px-2 justify-between border-4 border-black'>
       <div className='flex-1'>
-        <img
-          className='object-fit h-full'
-          src='/zigvy-logo.webp'
-          alt='Zigvy Logo'
-        />
+        <Link to='/'>
+          <img
+            className='object-fit h-full'
+            src='/zigvy-logo.webp'
+            alt='Zigvy Logo'
+          />
+        </Link>
       </div>
       <div
         className={cn(

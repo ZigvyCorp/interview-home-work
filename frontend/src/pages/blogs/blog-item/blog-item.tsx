@@ -5,6 +5,8 @@ import BlogItemAuthor from "./blog-item-author.component";
 import BlogItemComments from "./blog-item-comments.component";
 import BlogItemSummary from "./blog-item-summary";
 import { IBlog } from "@/models";
+import { Link } from "react-router-dom";
+import { APP_URL } from "@/constants/navigation.constant";
 
 type Props = {
   blog: IBlog;
@@ -58,19 +60,24 @@ const defaultColorPallete = [
 ];
 
 function BlogItem({ blog }: Props) {
-  console.log(blog);
   return (
     <li className='px-8 py-12 border-b-4 border-b-black'>
-      <h2 className='text-center text-3xl font-semibold mb-4'>{blog!.title}</h2>
-      <div className='flex justify-between'>
-        <BlogItemAuthor author={blog!.user} />
-        <div className='flex flex-wrap w-[30%] gap-2 mb-8'>
-          {defaultColorPallete.map(({ color, text }) => (
-            <ColorTag key={text} text={text} color={color} />
-          ))}
-        </div>
+      <div>
+        <Link to={`${APP_URL.BLOGS}/${blog.id}`}>
+          <h2 className='text-center text-3xl font-semibold mb-4'>
+            {blog!.title}
+          </h2>
+          <div className='flex justify-between'>
+            <BlogItemAuthor author={blog!.user} />
+            <div className='flex flex-wrap w-[30%] gap-2 mb-8'>
+              {defaultColorPallete.map(({ color, text }) => (
+                <ColorTag key={text} text={text} color={color} />
+              ))}
+            </div>
+          </div>
+          <BlogItemSummary summary={blog!.body} />
+        </Link>
       </div>
-      {/* <BlogItemSummary summary={blog!.body} /> */}
       <BlogItemComments data={blog!.comments} />
     </li>
   );

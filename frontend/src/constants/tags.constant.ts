@@ -1,4 +1,5 @@
 export const TAGS = {
-  POSTS: "POSTS",
+  BLOGS: "BLOGS",
+  BLOG: "BLOG",
   USERS: "USERS",
 } as const;

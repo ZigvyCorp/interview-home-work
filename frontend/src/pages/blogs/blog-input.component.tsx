@@ -4,11 +4,13 @@ import useBlogs from "./blogs.hook";
 
 function BlogInput() {
   const searchTerm = useGetSearchTerms();
-  // const { handleChangeSearch } = useBlogs();
+  const { handleChangeSearch } = useBlogs();
   return (
     <div className='mt-6'>
       <Input
-        onChange={(e) => {}}
+        onChange={(e) => {
+          handleChangeSearch(e.target.value);
+        }}
         value={searchTerm}
         placeholder='Search Blogs....'
       />

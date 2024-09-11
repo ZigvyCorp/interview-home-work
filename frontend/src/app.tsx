@@ -4,7 +4,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import { APP_URL } from "./constants/navigation.constant";
 import { Layout } from "./layout";
-import { Blogs } from "./pages";
+import { Blog, Blogs } from "./pages";
 
 const queryClient = new QueryClient();
 
@@ -22,7 +22,11 @@ function App() {
             }
           >
             <Route index element={<Navigate to={APP_URL.BLOGS} replace />} />
-            <Route path={APP_URL.BLOGS} element={<Blogs />} />
+            <Route path={APP_URL.BLOGS}>
+              <Route index element={<Blogs />} />
+              <Route path={`${APP_URL.BLOGS}/:id`} element={<Blog />} />
+            </Route>
+            <Route path='*' element={<p>Page not found</p>} />
           </Route>
         </Routes>
       </BrowserRouter>

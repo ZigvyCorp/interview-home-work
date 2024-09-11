@@ -1,9 +1,9 @@
-import { useEffect, useRef } from "react";
-import { debounce } from "lodash";
+import { useEffect } from "react";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { TAGS } from "@/constants/tags.constant";
+import useDebounce from "@/hooks/use-debounce";
 import { getBlogs } from "@/services/blogs.service";
 import {
   useGetQueryData,
@@ -14,14 +14,17 @@ import {
 
 function useBlogs() {
   const searchTerm = useGetSearchTerms();
+
   const handleChangeSearchTerm = useSetSearchTerms();
 
   const queryData = useGetQueryData();
   const setQueryData = useSetQueryData();
 
-  const { data, error, status, fetchNextPage, refetch, isSuccess } =
+  const debouncedSearchTerm = useDebounce(searchTerm);
+
+  const { data, error, status, fetchNextPage, refetch, isSuccess, isPending } =
     useInfiniteQuery({
-      queryKey: [TAGS.POSTS, searchTerm],
+      queryKey: [TAGS.BLOGS, debouncedSearchTerm],
 
       queryFn: ({ pageParam = 1 }) =>
         getBlogs({ pageParam, search: searchTerm }),
@@ -30,17 +33,8 @@ function useBlogs() {
       getNextPageParam: (lastPage) => lastPage?.nextPage,
     });
 
-  const debouncedRefetch = useRef(
-    debounce(refetch, 500, {
-      leading: true,
-      trailing: true,
-    })
-  ).current;
-  console.log("-----");
-  console.log(data);
   const handleChangeSearch = (value: string) => {
     handleChangeSearchTerm(value);
-    debouncedRefetch();
   };
 
   useEffect(() => {
@@ -50,20 +44,17 @@ function useBlogs() {
         pages: dataPages,
         pageParams: data.pageParams as number[],
       });
-      // const fetchedBlogs = data.pages.flatMap((page) => page?.data);
-      // console.log(fetchedBlogs);
-      // setQueryData({pages:data.pages })
-      // setQueryData({pages:data.pages})
-      // setQueryData({pageParams:data.pageParams,currentPage:data.pages})
     }
   }, [data, isSuccess, setQueryData]);
 
   return {
     refetch,
     data,
+    isPending,
     error,
     status,
     fetchNextPage,
+    searchTerm,
     handleChangeSearch,
   };
 }
