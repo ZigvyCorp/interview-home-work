@@ -1,0 +1,29 @@
+.blog {
+  position: relative;
+  border-right: 4px solid #000;
+  border-left: 4px solid #000;
+  background-color: #ddd;
+}
+.blog::before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  display: block;
+  bottom: 0;
+}
+.blog::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  display: block;
+  rotate: 45deg;
+  border-bottom: 4px solid #000;
+  border-right: 4px solid #000;
+  bottom: 0;
+  left: 50%;
+  margin-left: -10px;
+  background: #ddd;
+  transform: translate(50%, 50%);
+}

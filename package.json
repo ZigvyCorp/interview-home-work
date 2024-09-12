@@ -1,0 +1,17 @@
+{
+  "name": "zigvy-homework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./backend/server.ts",
+  "scripts": {
+    "dev": "concurrently \"cd frontend && yarn dev\" \"cd backend && yarn dev\"",
+    "install-server": "npm install",
+    "install-dependencies": " npm run install-client && npm run install-server "
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}
