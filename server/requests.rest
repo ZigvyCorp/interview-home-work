@@ -1,0 +1,17 @@
+POST http://localhost:3055/create-blog
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZWMxMmNlODBlNWJlMDgyN2MzODM4OCIsImlhdCI6MTcyNjgzMDgxOX0.3lE_Ug2KAubPcSAc65zTsA9W4juypxy63SJhl_PHc24
+
+# {
+#     "email": "Long123@gmail.com",
+#     "password": "Long12345"
+# }
+
+{
+    "title":"Test title 10",
+    "des":"this is test title",
+    "content": {
+        "blocks": [1,2]
+    },
+    "tags": ["film making", "social media"]
+}
