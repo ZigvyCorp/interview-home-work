@@ -1,0 +1,439 @@
+{
+	"info": {
+		"_postman_id": "7e363c3c-8c91-42db-8c25-839ab330dbd6",
+		"name": "Zigvy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35024491"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dang-hoang-son-2024.vercel.app/users",
+							"protocol": "https",
+							"host": [
+								"dang-hoang-son-2024",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dang-hoang-son-2024.vercel.app/users/7",
+							"protocol": "https",
+							"host": [
+								"dang-hoang-son-2024",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"users",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Test\",\r\n    \"username\": \"test\",\r\n    \"email\": \"test@gmail.com\",\r\n    \"address\": \"27/11A khu pho 1\",\r\n    \"phone\": \"0919919950\",\r\n    \"website\": \"test.com.vn\",\r\n    \"password\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dang-hoang-son-2024.vercel.app/users",
+							"protocol": "https",
+							"host": [
+								"dang-hoang-son-2024",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://dang-hoang-son-2024.vercel.app/users/1",
+							"protocol": "https",
+							"host": [
+								"dang-hoang-son-2024",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Son Test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dang-hoang-son-2024.vercel.app/users/6",
+							"protocol": "https",
+							"host": [
+								"dang-hoang-son-2024",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"users",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dang-hoang-son-2024.vercel.app/posts?page=1&limit=5",
+							"protocol": "https",
+							"host": [
+								"dang-hoang-son-2024",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"posts"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dang-hoang-son-2024.vercel.app/posts",
+							"protocol": "https",
+							"host": [
+								"dang-hoang-son-2024",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"First Post\",\r\n    \"body\": \"This is my First Post\",\r\n    \"userId\": 6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dang-hoang-son-2024.vercel.app/posts",
+							"protocol": "https",
+							"host": [
+								"dang-hoang-son-2024",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://dang-hoang-son-2024.vercel.app/posts/1",
+							"protocol": "https",
+							"host": [
+								"dang-hoang-son-2024",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Updated First Post\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dang-hoang-son-2024.vercel.app/posts/2",
+							"protocol": "https",
+							"host": [
+								"dang-hoang-son-2024",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"posts",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comments By Post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dang-hoang-son-2024.vercel.app/posts/3/comments",
+							"protocol": "https",
+							"host": [
+								"dang-hoang-son-2024",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"posts",
+								"3",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dang-hoang-son-2024.vercel.app/comments",
+							"protocol": "https",
+							"host": [
+								"dang-hoang-son-2024",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://dang-hoang-son-2024.vercel.app/comments/1",
+							"protocol": "https",
+							"host": [
+								"dang-hoang-son-2024",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"body\": \"This is my First Comment\",\r\n    \"userId\": 6,\r\n    \"postId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dang-hoang-son-2024.vercel.app/comments",
+							"protocol": "https",
+							"host": [
+								"dang-hoang-son-2024",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://dang-hoang-son-2024.vercel.app/comments/1",
+							"protocol": "https",
+							"host": [
+								"dang-hoang-son-2024",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"body\": \"abc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dang-hoang-son-2024.vercel.app/comments/1",
+							"protocol": "https",
+							"host": [
+								"dang-hoang-son-2024",
+								"vercel",
+								"app"
+							],
+							"path": [
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Import Mock Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/data/import",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"data",
+						"import"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
