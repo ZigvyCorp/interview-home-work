@@ -1,0 +1,17 @@
+@media (min-width: 320px) {
+}
+@media (max-width: 767px) {
+  .text-lg {
+    font-size: medium !important;
+  }
+
+  h1.text-center.mb-2 {
+    font-size: xx-large !important;
+  }
+}
+@media (min-width: 768px) {
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+@media (min-width: 1025px) {
+}
