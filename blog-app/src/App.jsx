@@ -1,17 +1,21 @@
-import { Container, Row, Col, Button } from "react-bootstrap"; // Import từ react-bootstrap
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { store, persistor } from "./redux/store"; // Corrected import
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <Container>
-      <h1 className="text-center my-4">Welcome to My React App</h1>
-      <Row className="justify-content-md-center">
-        <Col md={6}>
-          <Button variant="primary" className="w-100">
-            Get Started
-          </Button>
-        </Col>
-      </Row>
-    </Container>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Router>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            {/* Add other routes here */}
+          </Routes>
+        </Router>
+      </PersistGate>
+    </Provider>
   );
 }
 

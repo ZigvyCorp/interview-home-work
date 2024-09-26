@@ -6,7 +6,11 @@ require("dotenv").config(); // Nạp biến môi trường từ file .env
 const app = express();
 
 // Sử dụng cors
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Địa chỉ frontend của bạn
+  })
+);
 
 // Phân tích các yêu cầu JSON
 app.use(express.json());
