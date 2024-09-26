@@ -10,7 +10,6 @@ import {
 
 const router = express.Router();
 
-// Define routes for Post
 router.get('/', getAllPosts);
 router.get('/:id', getPostById);
 router.post('/', createPost);
