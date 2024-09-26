@@ -1,15 +1,20 @@
 import { errorHandler } from "../handlers/error.js";
+import Comment from "../models/comment.model.js";
 import Post from "../models/post.model.js";
 
 // Get all Posts
 export const getAllPosts = async (req, res, next) => {
   try {
     const { limit, skip } = req.query;
-    const data = await Post.find({
-      limit: limit && limit < 100 ? limit : 100,
-      skip: skip ? skip : 0,
-      lean: true,
-    });
+    const data = await Post.find(
+      {},
+      {},
+      {
+        limit: limit && limit < 100 ? limit : 100,
+        skip: skip ? skip : 0,
+        lean: true,
+      }
+    );
     res.status(200).json(data);
   } catch (error) {
     next(error);
@@ -19,7 +24,7 @@ export const getAllPosts = async (req, res, next) => {
 // Get a single Post by ID
 export const getPostById = async (req, res, next) => {
   try {
-    const item = await Post.findById(req.params.id).lean();
+    const item = await Post.findOne({ id: req.params.id }).lean();
     if (!item) {
       return next(errorHandler(400, "Post not found"));
     }
@@ -43,10 +48,14 @@ export const createPost = async (req, res, next) => {
 // Update a Post by ID (PUT)
 export const updatePostById = async (req, res, next) => {
   try {
-    const updatedItem = await Post.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      lean: true,
-    });
+    const updatedItem = await Post.findOneAndUpdate(
+      { id: req.params.id },
+      req.body,
+      {
+        new: true,
+        lean: true,
+      }
+    );
     if (!updatedItem) {
       return next(errorHandler(400, "Post not found"));
     }
@@ -59,8 +68,8 @@ export const updatePostById = async (req, res, next) => {
 // Partially update a Post by ID (PATCH)
 export const patchPostById = async (req, res, next) => {
   try {
-    const updatedItem = await Post.findByIdAndUpdate(
-      req.params.id,
+    const updatedItem = await Post.findOneAndUpdate(
+      { id: req.params.id },
       { $set: req.body },
       {
         new: true,
@@ -79,7 +88,7 @@ export const patchPostById = async (req, res, next) => {
 // Delete a Post by ID
 export const deletePostById = async (req, res, next) => {
   try {
-    const deletedItem = await Post.findByIdAndDelete(req.params.id);
+    const deletedItem = await Post.findOneAndDelete({ id: req.params.id });
     if (!deletedItem) {
       return next(errorHandler(400, "Post not found"));
     }
@@ -88,3 +97,22 @@ export const deletePostById = async (req, res, next) => {
     next(error);
   }
 };
+
+export const getCommentsByPost = async (req, res, next) => {
+  try {
+    const { limit, skip } = req.query;
+    const data = await Comment.find(
+      { postId: req.params.id },
+      {},
+      {
+        limit: limit && limit < 100 ? limit : 100,
+        skip: skip ? skip : 0,
+        lean: true,
+      }
+    );
+    res.status(200).json(data);
+  } catch (error) {
+    next(error);
+  }
+};
+
