@@ -2,8 +2,8 @@ import express from "express";
 import { config } from "dotenv";
 import cookieParser from "cookie-parser";
 
-import postRouter from "./routes/post.routes"
-import connectdb from "./utils/connectdb";
+import postRouter from "./routes/post.routes.js"
+import connectdb from "./utils/connectdb.js";
 config();
 
 const app = express();
