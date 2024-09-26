@@ -3,15 +3,7 @@ import { config } from "dotenv";
 config();
 
 export default async () => {
- 
-  const cnn = await mongoose.connect(
-    process.env.MONGO_URI,
-    {
-      authSource: "admin",
-      user,
-      pass,
-      dbName: "zigvy-interview",
-    }
-  );
+    console.log(process.env.MONGO_URI);
+  const cnn = await mongoose.connect(process.env.MONGO_URI);
   console.log(`Connected to mongodb on port: ${cnn.connection.port}`);
 };
