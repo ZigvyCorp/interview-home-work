@@ -1,4 +1,5 @@
-import { Pool } from 'pg';
+import pkg from 'pg';
+const { Pool } = pkg;
 import { config } from 'dotenv';
 config();
 
@@ -9,3 +10,5 @@ const pool = new Pool({
     password: process.env.POSTGRE_PASSWORD,
     port: process.env.POSTGRE_PORT,
 });
+
+export default pool;
