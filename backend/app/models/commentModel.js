@@ -21,14 +21,14 @@ class Comment {
 
     static async updateComment(id, data) {
         const res = await pool.query(
-            'UPDATE comments SET owner = $1 , content= $2 WHERE id= $3 RETURNING *',
+            'UPDATE comments SET owner = $1 , content = $2 WHERE id = $3 RETURNING *',
             [data.owner || null, data.content || null, id]
         );
         return res.rows[0];
     }
 
     static async deleteComment(id) {
-        const res = await pool.query('DELETE FROM comments WHERE id=$1 RETURNING*', [id]);
+        const res = await pool.query('DELETE FROM comments WHERE id = $1 RETURNING*', [id]);
         return res.rows[0];
     }
 }
