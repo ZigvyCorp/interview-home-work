@@ -1,0 +1,4 @@
+{
+  "watch": ["app"],
+  "exec": "node app/app.js"
+}
