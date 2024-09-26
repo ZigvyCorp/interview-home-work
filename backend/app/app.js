@@ -8,20 +8,20 @@ config();
 // const commentRoutes = require('./routes/commentRoutes');
 // const userRoutes = require('./routes/userRoutes');
 
-
 // Initialize the Express application instance.
 const app = express();
-
+const PORT = process.env.APP_PORT;
 // Middleware to parse JSON request bodies.
+app.use(cors());
 app.use(bodyParser.json());
-app.use(cors())
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// Define API routes with base path '/api'.
-app.use('/api/', postRoutes);
-app.use('/api/', commentRoutes);
-app.use('/api/', userRoutes);
+// // Define API routes with base path '/api'.
+// app.use('/api/', postRoutes);
+// app.use('/api/', commentRoutes);
+// app.use('/api/', userRoutes);
 
 // Start server on port 3000 and log message on successful start-up.
-app.listen(process.env.PORT || 3000, () => {
-    console.log("Server running on port", process.env.PORT || 3000);
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });

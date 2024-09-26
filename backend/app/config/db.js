@@ -1,9 +1,11 @@
 import { Pool } from 'pg';
+import { config } from 'dotenv';
+config();
 
 const pool = new Pool({
-    user: 'your_user',
-    host: 'localhost',
-    database: 'your_database',
-    password: 'your_password',
-    port: 5432,
+    user: process.env.POSTGRE_USER,
+    host: process.env.POSTGRE_HOST,
+    database: process.env.POSTGRE_DATABASE,
+    password: process.env.POSTGRE_PASSWORD,
+    port: process.env.POSTGRE_PORT,
 });
