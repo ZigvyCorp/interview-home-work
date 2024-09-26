@@ -1,0 +1,39 @@
+// {
+//     "compilerOptions": {
+//         "target": "es6",
+//         "module": "commonjs",
+//         "outDir": "./dist",
+//         "strict": true,
+//         "esModuleInterop": true,
+//         "skipLibCheck": true,
+//         "forceConsistentCasingInFileNames": true
+//     },
+//     "include": [
+//         "src/**/*.ts",
+//         "**/*.ts"
+//     ],
+//     "exclude": [
+//         "node_modules"
+//     ]
+// }
+{
+    "compilerOptions": {
+        "target": "es2016",
+        "lib": [
+            "es6"
+        ],
+        "module": "commonjs",
+        "rootDir": "src",
+        "resolveJsonModule": true,
+        "allowJs": true,
+        "outDir": "dist",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "noImplicitAny": true,
+        "skipLibCheck": true,
+    },
+    "include": [
+        "src/**/*.ts",
+    ]
+}
