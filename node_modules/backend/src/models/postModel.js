@@ -1,3 +1,9 @@
+/**
+ * @file postModel.js
+ * @description This file defines the schema and model for posts using Mongoose.
+ * @module models/postModel
+ * @requires mongoose
+ */
 const mongoose = require('mongoose');
 
 const postSchema = new mongoose.Schema({

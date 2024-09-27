@@ -1,3 +1,9 @@
+/**
+ * @file commentModel.js
+ * @description This file contains the schema definition for the Comment model using Mongoose.
+ * @module models/commentModel
+ * @requires mongoose
+ */
 const mongoose = require('mongoose');
 
 const commentSchema = new mongoose.Schema({

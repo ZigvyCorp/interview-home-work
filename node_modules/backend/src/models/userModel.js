@@ -1,3 +1,9 @@
+/**
+ * @file userModel.js
+ * @description This file contains the schema definition for the User model using Mongoose.
+ * @module models/userModel
+ * @requires mongoose
+ */
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
