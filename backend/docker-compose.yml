@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: interview
+    restart: unless-stopped
+    volumes:
+      - ./data:/docker-entrypoint-initdb.d/:ro
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - '5435:5432'
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: interview
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U dev -d interview']
+      interval: 5s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  pgdata:
