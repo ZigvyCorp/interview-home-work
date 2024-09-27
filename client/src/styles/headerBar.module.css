@@ -1,0 +1,10 @@
+.centerZone::after {
+    content: "";
+    position: absolute;
+    bottom: -17px;
+    width: 40;
+    height: 40;
+    border-left: 17px solid transparent;
+    border-right: 17px solid transparent;
+    border-top: 17px solid #E6E6E6;
+}
