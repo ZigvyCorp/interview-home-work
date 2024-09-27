@@ -12,8 +12,6 @@ export const Pagination = () => {
   const totalPages = useSelector((state: PageInfo) => state.totalPages);
   const dispatch = useDispatch();
 
-  console.log(pageInfo)
-
   return (
     <nav aria-label="Page navigation example">
       <ul className="pagination d-flex justify-content-center">

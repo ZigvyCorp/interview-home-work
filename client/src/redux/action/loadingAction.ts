@@ -1,4 +1,4 @@
-import { FINISHED, LOADING } from "../../types/redux/action";
+import { FINISHED, LOADING } from "../../constant/redux/action";
 
 export function loading() {
   return {

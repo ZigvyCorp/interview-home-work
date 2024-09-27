@@ -24,11 +24,6 @@ type User = {
   createdAt: Date;
 };
 
-type ReduxAction = {
-  type: string,
-  payload: any
-}
-
 type PageInfo = {
   pageNumber: number;
   totalPages: number;

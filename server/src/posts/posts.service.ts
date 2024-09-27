@@ -10,8 +10,12 @@ export class PostsService {
     return 'This action adds a new post';
   }
 
-  findAll() {
-    return this.prisma.post.findMany({ include: { comment: true } });
+  findAll(pageIndex: number = 0) {
+    return this.prisma.post.findMany({
+      include: { comment: true },
+      skip: pageIndex * 5,
+      take: 5,
+    });
   }
 
   findOne(id: number) {

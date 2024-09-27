@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { Prisma } from '@prisma/client';
 import { ApiTags } from '@nestjs/swagger';
@@ -14,8 +14,8 @@ export class PostsController {
   }
 
   @Get()
-  findAll() {
-    return this.postsService.findAll();
+  findAll(@Query() query) {
+    return this.postsService.findAll(query.pageIndex);
   }
 
   @Get(':id')

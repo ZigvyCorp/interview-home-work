@@ -1,4 +1,4 @@
-import { NEXT_PAGE, PAGINATION_CLICKED, PREVIOUS_PAGE } from "../../types/redux/action";
+import { NEXT_PAGE, PAGINATION_CLICKED, PREVIOUS_PAGE } from "../../constant/redux/action";
 
 const initialState : PageInfo = {
   pageNumber: 0,
@@ -7,7 +7,7 @@ const initialState : PageInfo = {
   pageSize: 5,
 };
 
-export function pageReducer(state = initialState, action: ReduxAction) {
+export function pageReducer(state = initialState, action: any) {
   switch (action.type) {
     case NEXT_PAGE:
       return { ...state, pageNumber: state.pageNumber + 1 };

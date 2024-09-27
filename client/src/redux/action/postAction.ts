@@ -1,9 +1,14 @@
-import { createAction } from "@reduxjs/toolkit/react"
+import { POST_FETCH_REQUESTED, POST_FETCH_SUCCEED } from "../../constant/redux/action";
 
-const fetchPost = createAction<number>('post/fetchPost')
-const createPost = createAction<number>('post/createPost')
+export function postFetched() {
+  return {
+    type: POST_FETCH_SUCCEED,
+  };
+}
 
-export {
-    fetchPost,
-    createPost
+export function fetchPost(pageIndex: number) {
+  return {
+    type: POST_FETCH_REQUESTED,
+    pageIndex: pageIndex
+  };
 }

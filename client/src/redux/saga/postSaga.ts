@@ -1,27 +1,25 @@
-import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
+import { call, put, takeLatest } from "redux-saga/effects";
 import { getPost } from "../../api/PostAPI";
 import { finished } from "../action/loadingAction";
 import { useDispatch } from "react-redux";
+import { POST_FETCH_REQUESTED } from "../../constant/redux/action";
 
-const postFetch = (pageIndex: number) => {
-  const dispatch = useDispatch();
-  return getPost(pageIndex)
-    .then((res) => res.data as Post[])
-    .finally(() => dispatch(finished()));
-};
+function* postFetch(pageIndex: number) {
+  return yield getPost(pageIndex);
+}
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* fetchPost(action: any) {
   try {
-    const posts: Post[] = yield call(postFetch, action.payload.pageIndex);
-    yield put({ type: "USER_FETCH_SUCCEEDED", post: posts });
+    const posts = yield call(postFetch, action.pageIndex);
+    yield put({ type: "POST_FETCH_SUCCEED", post: posts.data });
   } catch (e) {
-    yield put({ type: "USER_FETCH_FAILED", message: "Fetch failed" });
+    yield put({ type: "POST_FETCH_FAILED", message: "Fetch failed" });
   }
 }
 
 function* PostSaga() {
-  yield takeLatest("POST_FETCH_REQUESTED", fetchPost);
+  yield takeLatest(POST_FETCH_REQUESTED, fetchPost);
 }
 
 export { PostSaga };

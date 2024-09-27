@@ -2,7 +2,7 @@ import {
   NEXT_PAGE,
   PAGINATION_CLICKED,
   PREVIOUS_PAGE,
-} from "../../types/redux/action";
+} from "../../constant/redux/action";
 
 export function nextPage() {
   return {

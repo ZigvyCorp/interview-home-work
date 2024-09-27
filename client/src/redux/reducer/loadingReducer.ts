@@ -1,8 +1,8 @@
-import { FINISHED, LOADING } from "../../types/redux/action";
+import { FINISHED, LOADING } from "../../constant/redux/action";
 
 const initialState = false;
 
-export function loadingReducer(state = initialState, action: ReduxAction) {
+export function loadingReducer(state = initialState, action: any) {
   switch (action.type) {
     case LOADING:
       return true;

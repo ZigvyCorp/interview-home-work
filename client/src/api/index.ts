@@ -2,7 +2,7 @@ import { notification } from 'antd';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 
 export const http = axios.create({
-  baseURL: 'https://localhost:3000/',
+  baseURL: 'http://localhost:3000/',
   timeout: 100000,
 });
 
