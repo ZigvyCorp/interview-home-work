@@ -1,0 +1,2 @@
+## Description
+I tried to implement an API to get list of posts to show a few of my skills although I didn't have much time. You can test the API on Swagger UI which I have pre-configured. The path to swagger will be shown when you run the project.

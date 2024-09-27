@@ -1,0 +1,72 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "My API",
+    "description": "API Documentation",
+    "version": "1.0.0"
+  },
+  "host": "localhost:5000/api",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Posts",
+      "description": "Endpoints related to post operation"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "securityDefinitions": {
+    "apiKeyAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization",
+      "description": "Please enter JWT or API Key with Bearer into field"
+    }
+  },
+  "paths": {
+    "/posts": {
+      "get": {
+        "tags": [
+          "Posts"
+        ],
+        "summary": "Get posts list",
+        "description": "Get posts list and use pagination",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "number",
+            "description": "Page for pagination. Page is not required, default is 1."
+          },
+          {
+            "name": "pagesize",
+            "in": "query",
+            "type": "number",
+            "description": "Item quantity which per page return. Pagesize is not required. Default is 10."
+          }
+        ],
+        "responses": {
+          "200": {
+            "message": "Get posts successfully",
+            "statusCode": 200,
+            "pagination": {
+              "currentPage": 1,
+              "totalItems": 100,
+              "pagesize": 10
+            },
+            "data": [
+              {
+                "userId": 1,
+                "id": 1,
+                "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+                "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+              }
+            ],
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
