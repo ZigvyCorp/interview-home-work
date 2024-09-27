@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Form, FormControl, Button } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Form, FormControl, Button } from "react-bootstrap";
 
 const Search = ({ onSearch }) => {
-  const [keyword, setKeyword] = useState('');
+  const [keyword, setKeyword] = useState("");
 
   const handleSearch = (e) => {
     e.preventDefault();

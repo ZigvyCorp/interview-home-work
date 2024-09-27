@@ -1,4 +1,3 @@
-// action types
 export const GET_POSTS_REQUEST = "GET_POSTS_REQUEST";
 export const GET_POSTS_SUCCESS = "GET_POSTS_SUCCESS";
 export const GET_POSTS_FAILURE = "GET_POSTS_FAILURE";
@@ -15,7 +14,6 @@ export const GET_POST_DETAILS_REQUEST = "GET_POST_DETAILS_REQUEST";
 export const GET_POST_DETAILS_SUCCESS = "GET_POST_DETAILS_SUCCESS";
 export const GET_POST_DETAILS_FAILURE = "GET_POST_DETAILS_FAILURE";
 
-// action creators
 export const getPostsRequest = () => ({ type: GET_POSTS_REQUEST });
 export const getPostsSuccess = (posts) => ({
   type: GET_POSTS_SUCCESS,
