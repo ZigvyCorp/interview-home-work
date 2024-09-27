@@ -38,7 +38,11 @@ const PostList = () => {
     return {
       ...post,
       username: user?.username,
-      created_at: new Date().toLocaleDateString("vi-VN"),
+      created_at: new Date().toLocaleDateString("en-US", {
+        year: 'numeric',
+        month: 'short',
+        day: '2-digit',
+      }),
     };
   });
 
@@ -96,7 +100,7 @@ const PostList = () => {
         />
       </div>
 
-      <h2 className="mb-4">List of Posts</h2>
+      <h2 className="mb-4">List of Post</h2>
       {filteredPosts?.length > 0 ? (
         filteredPosts?.map((post) => (
           <div
@@ -116,14 +120,17 @@ const PostList = () => {
                 </strong>
               </p>
               <p className="card-subtitle mb-2 text-muted">
-                Created date: {post.created_at}
+                Created at: {post.created_at}
               </p>
               <p className="card-text">{post?.body?.slice(0, 100)}...</p>
               <p>{post.comments?.length} replies</p>
 
               <button
                 className="btn btn-secondary"
-                onClick={() => toggleComments(post.id)}
+                onClick={(e) => {
+                  e.stopPropagation(); 
+                  toggleComments(post.id);
+                }}
               >
                 {showComments[post.id] ? "Hide" : "Show comments"}
               </button>
