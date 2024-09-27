@@ -10,12 +10,22 @@ export class PostsService {
     return 'This action adds a new post';
   }
 
-  findAll(pageIndex: number = 0) {
-    return this.prisma.post.findMany({
-      include: { comment: true },
+  async findAll(pageIndex: number = 0) {
+    const posts = await this.prisma.post.findMany({
+      include: { comments: true },
       skip: pageIndex * 5,
       take: 5,
     });
+    const totalRecord = await this.prisma.post.count();
+    return {
+      pageInfo: {
+        pageNumber: pageIndex,
+        totalPages: Math.ceil(totalRecord / 5),
+        totalRecords: totalRecord,
+        pageSize: 5,
+      },
+      data: posts,
+    };
   }
 
   findOne(id: number) {

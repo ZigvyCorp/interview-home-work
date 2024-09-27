@@ -20,22 +20,7 @@ const Home = () => {
         posts?.map((post) => (
           <Post
             post={post}
-            comments={[
-              {
-                id: 1,
-                owner: 1,
-                post: 1,
-                content: "Boring!!!",
-                createdAt: new Date(1576506719083),
-              },
-              {
-                id: 2,
-                owner: 3,
-                post: 1,
-                content: "Very good. But very bad also",
-                createdAt: new Date(1576506719083),
-              },
-            ]}
+            comments={post?.comments}
           />
         ))}
       <Pagination />

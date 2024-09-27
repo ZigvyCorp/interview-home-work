@@ -6,7 +6,7 @@ import { Pagination } from "./Pagination/Pagination";
 
 type PostProps = {
   post: Post;
-  comments: Comments[];
+  comments?: Comments[];
 };
 
 const Post = ({ post, comments }: PostProps) => {
@@ -34,30 +34,32 @@ const Post = ({ post, comments }: PostProps) => {
             <a
               className="text-black-50"
               data-bs-toggle="collapse"
-              href="#collapseComments"
+              href={`#collapseComments-${post.id}`}
               role="button"
               aria-expanded="false"
-              aria-controls="collapseComments"
+              aria-controls={`collapseComments-${post.id}`}
             >
-              {comments.length} replies
+              {comments?.length || 0} replies
             </a>
           </p>
         </div>
         <hr />
-        <div className="collapse" id="collapseComments">
-          {comments.map((comment: Comments) => (
-            <Comment
-              comment={comment}
-              user={{
-                id: 1,
-                username: "meowmeow",
-                password: "1234567890",
-                name: "Cat face",
-                dob: "01/06/2016",
-                createdAt: new Date(1576506719083),
-              }}
-            ></Comment>
-          ))}
+        <div className="collapse" id={`collapseComments-${post.id}`}>
+          {comments &&
+            comments?.map((comment: Comments) => (
+              <Comment
+                key={comment.id}
+                comment={comment}
+                user={{
+                  id: 1,
+                  username: "meowmeow",
+                  password: "1234567890",
+                  name: "Cat face",
+                  dob: "01/06/2016",
+                  createdAt: new Date(1576506719083),
+                }}
+              ></Comment>
+            ))}
         </div>
       </section>
     </div>

@@ -36,7 +36,7 @@ model Post {
   ownerId   Int
   tags      Tag[]
   createdAt DateTime  @default(now())
-  comment   Comment[]
+  comments   Comment[]
 }
 
 model Comment {

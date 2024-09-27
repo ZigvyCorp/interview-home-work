@@ -5,6 +5,7 @@ type Post = {
     content: string, 
     createdAt: Date,
     tags: string[],
+    comments: Comments[]
 };
 
 type Comments = {

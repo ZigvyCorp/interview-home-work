@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   nextPage,
@@ -8,27 +8,33 @@ import {
 import { loading } from "../../redux/action/loadingAction";
 
 export const Pagination = () => {
-  const pageInfo = useSelector((state: {pages: PageInfo}) => state.pages);
-  const totalPages = useSelector((state: PageInfo) => state.totalPages);
+  const pageInfo = useSelector((state: { pages: PageInfo }) => state.pages);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    console.log(pageInfo);
+  }, [pageInfo]);
   return (
     <nav aria-label="Page navigation example">
       <ul className="pagination d-flex justify-content-center">
-        <li className={`page-item ${pageInfo.pageNumber === 1 ? "disabled" : undefined}`}>
+        <li
+          className={`page-item ${
+            pageInfo.pageNumber === 1 ? "disabled" : undefined
+          }`}
+        >
           <button
             className="page-link"
             aria-label="Previous"
             disabled={pageInfo.pageNumber === 1}
             onClick={() => {
-              dispatch(previousPage());
+              dispatch(previousPage(pageInfo));
               dispatch(loading());
             }}
           >
             <span aria-hidden="true">&laquo;</span>
           </button>
         </li>
-        {Array.from(Array(totalPages)).map((item, index) => (
+        {Array.from(Array(pageInfo.totalPages)).map((_, index) => (
           <li
             key={index}
             className={`page-item ${
@@ -37,7 +43,7 @@ export const Pagination = () => {
           >
             <button
               onClick={() => {
-                dispatch(pageChange(index + 1));
+                dispatch(pageChange(index + 1, pageInfo));
                 dispatch(loading());
               }}
               className="page-link"
@@ -49,14 +55,14 @@ export const Pagination = () => {
         ))}
         <li
           className={`page-item ${
-            pageInfo.pageNumber === totalPages ? "disabled" : undefined
+            pageInfo.pageNumber === pageInfo.totalPages ? "disabled" : undefined
           }`}
         >
           <button
             className="page-link"
-            disabled={totalPages === pageInfo.pageNumber}
+            disabled={pageInfo.totalPages === pageInfo.pageNumber}
             onClick={() => {
-              dispatch(nextPage());
+              dispatch(nextPage(pageInfo));
               dispatch(loading());
             }}
           >
