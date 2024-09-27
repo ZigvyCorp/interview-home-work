@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchPostStart } from "../redux/posts/postsSlice";
 import { Card, Collapse, Skeleton } from "antd";
-import Comments from "../components/comments";
+import Comments from "../components/Comments";
 import { resetComments, setPostId } from "../redux/comments/commentsSlice";
 
 export default function Post() {
@@ -12,7 +12,7 @@ export default function Post() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchPostStart(id));
-    dispatch(resetComments())
+    dispatch(resetComments());
     dispatch(setPostId(id));
   }, [dispatch, id]);
   if (loading) {
