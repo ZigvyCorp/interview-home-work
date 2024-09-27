@@ -5,7 +5,7 @@ import { fetchPostsStart } from "../redux/posts/postsSlice";
 import { Link } from "react-router-dom";
 import { CommentOutlined } from "@ant-design/icons";
 import { List, Button, Typography, Modal } from "antd";
-import Comments from "../components/comments";
+import Comments from "../components/Comments";
 import { resetComments, setPostId } from "../redux/comments/commentsSlice";
 
 const { Text } = Typography;
