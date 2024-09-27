@@ -23,3 +23,15 @@ type User = {
   dob: string;
   createdAt: Date;
 };
+
+type ReduxAction = {
+  type: string,
+  payload: any
+}
+
+type PageInfo = {
+  pageNumber: number;
+  totalPages: number;
+  totalRecords: number;
+  pageSize: number;
+}

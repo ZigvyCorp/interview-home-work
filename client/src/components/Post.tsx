@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import React from "react";
 import Comment from "./Comment";
 import { contentTruncate } from "../libs/helper";
+import { Pagination } from "./Pagination/Pagination";
 
 type PostProps = {
   post: Post;
