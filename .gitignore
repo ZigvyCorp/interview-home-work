@@ -12,6 +12,7 @@ client/coverage
 client/build
 
 # misc
+.DS_Store
 client/.DS_Store
 client/.env.local
 client/.env.development.local
