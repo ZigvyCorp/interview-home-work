@@ -34,7 +34,7 @@ import PropTypes from 'prop-types';
 import { List, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPosts } from '../actions/postActions';
+import { fetchPosts } from '../redux/actions/postActions';
 
 const PostList = () => {
   const dispatch = useDispatch();
