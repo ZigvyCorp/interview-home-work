@@ -1,0 +1,8 @@
+exports.NOT_ALLOWED_MAILS = 'NOT_ALLOWED_MAILS'
+exports.FILE_NAME = 'Solution'
+exports.PASSED = 'Passed'
+exports.FAILED = 'Failed'
+exports.TEST_CASE = 'Test Case'
+exports.SOLVED = 'SOLVED'
+exports.OPENED = 'OPENED'
+exports.TODO = 'TODO'
