@@ -1,6 +1,9 @@
+#!/bin/bash  
 source .env
+npm install 
+cd client && npm install 
 npm run build
-docker-compose up -d
+docker compose up -d
 sleep 10
 healthcheck=$(docker inspect --format="{{json .State.Health.Status}}" $MONGO_HOST | tr -d '"')
 app="zigvy-app" 
