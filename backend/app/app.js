@@ -19,7 +19,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// // Define API routes with base path '/api'.
+// Define API routes with base path '/'.
 app.use('/', postRoutes);
 app.use('/', commentRoutes);
 app.use('/', userRoutes);
