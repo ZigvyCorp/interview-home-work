@@ -1,55 +1,99 @@
-// import { all, call, put, takeEvery } from 'redux-saga/effects';
-// import axios from 'axios';
+import { all, call, put, takeEvery, fork } from 'redux-saga/effects';
+import { API} from '../store/api'
+import {
+    GET_POSTS_REQUEST, getPostsSuccess, getPostsFailure,
+    GET_COMMENTS_REQUEST, getCommentsSuccess, getCommentsFailure,
+    GET_USERS_REQUEST, getUsersSuccess, getUsersFailure,
+    GET_POST_DETAILS_REQUEST, getPostDetailsSuccess, getPostDetailsFailure
+} from './actions';
 
-// import { API } from "../data/api";
+// Fetch Posts
+const fetchPostsAPI = async () => {
+    const response = await fetch(API.POSTS);
+    if (!response.ok) throw new Error('Failed to fetch posts');
+    return await response.json();
+};
 
-// const getAllPosts = async () => {
-//     try {
-//         const response = await fetch(API.POSTS, {
-//             method: 'GET',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//         });
-//         const data = await response.json();
-//         return data;
-//     } catch (err) {
-//         return false;
-//     }
-// };
+function* fetchPosts() {
+    try {
+        const posts = yield call(fetchPostsAPI);
+        yield put(getPostsSuccess(posts));
+    } catch (error) {
+        yield put(getPostsFailure(error.message));
+    }
+}
 
-// const getAllComments = async () => {
-//     try {
-//         const response = await fetch(API.COMMENTS, {
-//             method: 'GET',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//         });
-//         const data = await response.json();
-//         return data;
-//     } catch (err) {
-//         return false;
-//     }
-// };
+// Fetch Comments
+const fetchCommentsAPI = async () => {
+    const response = await fetch(API.COMMENTS);
+    if (!response.ok) throw new Error('Failed to fetch comments');
+    return await response.json();
+};
 
-// const getAllUsers = async () => {
-//     try {
-//         const response = await fetch(API.USERS, {
-//             method: 'GET',
-//             headers: {
-//                 'Content-Type': 'application/json',
-//             },
-//         });
-//         const data = await response.json();
-//         return data;
-//     } catch (err) {
-//         return false;
-//     }
-// };
+function* fetchComments() {
+    try {
+        const comments = yield call(fetchCommentsAPI);
+        yield put(getCommentsSuccess(comments));
+    } catch (error) {
+        yield put(getCommentsFailure(error.message));
+    }
+}
 
-// export const ShopService = {
-//     getAllPosts,
-//     getAllComments,
-//     getAllUsers,
-// }
+// Fetch Users
+const fetchUsersAPI = async () => {
+    const response = await fetch(API.USERS);
+    if (!response.ok) throw new Error('Failed to fetch users');
+    return await response.json();
+};
+
+function* fetchUsers() {
+    try {
+        const users = yield call(fetchUsersAPI);
+        yield put(getUsersSuccess(users));
+    } catch (error) {
+        yield put(getUsersFailure(error.message));
+    }
+}
+
+// Fetch Post Details
+const fetchPostDetailsAPI = async (postId) => {
+    const response = await fetch(`${API.POSTS}/${postId}`);
+    if (!response.ok) throw new Error('Failed to fetch post details');
+    return await response.json();
+};
+
+function* fetchPostDetails(action) {
+    try {
+        const postDetails = yield call(fetchPostDetailsAPI, action.postId);
+        yield put(getPostDetailsSuccess(postDetails));
+    } catch (error) {
+        yield put(getPostDetailsFailure(error.message));
+    }
+}
+
+// Watchers
+function* watchFetchPosts() {
+    yield takeEvery(GET_POSTS_REQUEST, fetchPosts);
+}
+
+function* watchFetchComments() {
+    yield takeEvery(GET_COMMENTS_REQUEST, fetchComments);
+}
+
+function* watchFetchUsers() {
+    yield takeEvery(GET_USERS_REQUEST, fetchUsers);
+}
+
+function* watchFetchPostDetails() {
+    yield takeEvery(GET_POST_DETAILS_REQUEST, fetchPostDetails);
+}
+
+// Root saga
+export default function* rootSaga() {
+  yield all([
+      fork(watchFetchPosts),  // Sử dụng fork
+      fork(watchFetchComments), // Sử dụng fork
+      fork(watchFetchUsers),    // Sử dụng fork
+      fork(watchFetchPostDetails), // Sử dụng fork
+  ]);
+}
