@@ -6,6 +6,8 @@ const PostSchema = new mongoose.Schema(
     title: String,
     body: String,
     userId: String,
+    commentCount: Number,
+    author: String
   },
   { timestamps: true }
 );

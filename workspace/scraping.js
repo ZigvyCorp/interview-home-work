@@ -11,11 +11,13 @@ const postScraping = async () => {
   await Promise.all(
     data.map(async (post) => {
       const { userId, id, title, body } = post;
-      return Promise.all([
-        Post.findOneAndUpdate({ id }, { $set: post }, { upsert: true }),
-        commentScraping(id),
-        userScraping({ id: userId }),
-      ]);
+      const author = await userScraping({ id: userId });
+      const commentCount = await commentScraping(id);
+      await Post.findOneAndUpdate(
+        { id },
+        { $set: { ...post, commentCount, author } },
+        { upsert: true }
+      );
     })
   );
 };
@@ -34,29 +36,33 @@ const commentScraping = async (postId) => {
       ]);
     })
   );
+  return data.length;
 };
 const userScraping = async ({ id, email }) => {
   if (id) {
     const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
     const user = await res.json();
-    return User.findOneAndUpdate(
+    await User.findOneAndUpdate(
       { id: user.id },
       { $set: user },
       { upsert: true, new: true }
     );
+    return user.name;
   }
   const res = await fetch(
     `https://jsonplaceholder.typicode.com/users?email=${email}`
   );
-  console.log(`https://jsonplaceholder.typicode.com/users?email=${email}`);
   const [user] = await res.json();
   if (!user) return;
-  return User.findOneAndUpdate(
+  await User.findOneAndUpdate(
     { id: user.id },
     { $set: user },
     { upsert: true, new: true }
   );
+  return user.name;
 };
 
 await connectdb();
 await postScraping();
+console.log("done");
+process.exit();
