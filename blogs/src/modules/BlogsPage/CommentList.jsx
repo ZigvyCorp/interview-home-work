@@ -1,35 +1,35 @@
-import React, { useState } from "react";
+import { Collapse, Typography } from "antd";
+
+const { Panel } = Collapse;
+const { Text } = Typography;
 
 const CommentsList = ({ postId, comments }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
   const postComments = comments.filter((comment) => comment.postId === postId);
   const commentCount = postComments.length;
 
-  const toggleComments = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
     <div style={{ marginBottom: "1rem" }}>
-      <div
-        onClick={toggleComments}
-        style={{ cursor: "pointer", fontWeight: "bold", color: "blue" }}
-      >
-        {isOpen ? "Hide" : "Show"} Comments ({commentCount})
-      </div>
-      {isOpen && (
-        <ul style={{ listStyleType: "none", paddingLeft: "1rem" }}>
-          {postComments.map((comment) => (
-            <li key={comment.id}>
-              <strong>
-                {comment.name} ({comment.email}):
-              </strong>{" "}
-              {comment.body}
-            </li>
-          ))}
-        </ul>
-      )}
+      <Collapse defaultActiveKey={[]} expandIconPosition="right">
+        <Panel
+          header={
+            <Text strong>
+              {commentCount} Comment{commentCount !== 1 ? 's' : ''}
+            </Text>
+          }
+          key="1"
+        >
+          <ul style={{ listStyleType: "none", paddingLeft: "1rem" }}>
+            {postComments.map((comment) => (
+              <li key={comment.id}>
+                <Text strong>
+                  {comment.name} ({comment.email}):
+                </Text>{" "}
+                {comment.body}
+              </li>
+            ))}
+          </ul>
+        </Panel>
+      </Collapse>
     </div>
   );
 };

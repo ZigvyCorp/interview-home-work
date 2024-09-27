@@ -47,12 +47,6 @@ const BlogPage = () => {
         renderItem={(post) => (
           <List.Item
             key={post.id}
-            actions={[
-              // eslint-disable-next-line react/jsx-key
-              <Typography.Text>{post.userId}</Typography.Text>,
-              // eslint-disable-next-line react/jsx-key
-              <Typography.Text>{post.id}</Typography.Text>,
-            ]}
           >
             <List.Item.Meta
               title={<a href={`/posts/${post.id}`}>{post.title}</a>}
