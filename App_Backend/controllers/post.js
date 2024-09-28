@@ -29,7 +29,14 @@ async function getAll(req, res) {
             include: [
                 {
                     model: Comment,
-                    as:'Comments'
+                    as:'Comments',
+                    include: [
+                        {
+                            model: User,  // Include the User model for each comment
+                            as: 'Owner',  // Assuming 'owner' is the alias for the user who made the comment
+                            attributes: ['id', 'username', 'name']  // Only select the fields you need
+                        }
+                    ]
                 },
                 {
                     model: User,

@@ -1,9 +1,12 @@
 var express = require('express')
+const cors = require('cors');
 var app = express();
 const { initModels } = require('./models/init'); 
 const routes = require('./routes/prefixes');
-app.use(express.json());
+require('dotenv').config();
 
+app.use(cors());
+app.use(express.json());
 app.use('/api', routes);
 
 
@@ -11,6 +14,6 @@ initModels().then(() => {
     console.log('All models were synchronized successfully.');
 });
 
-app.listen(80,async()=>{
-    console.log('server running on port 80');
+app.listen(process.env.APP_PORT,async()=>{
+    console.log('server running on port '+process.env.APP_PORT);
 })

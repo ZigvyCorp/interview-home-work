@@ -13,7 +13,7 @@ async function createByPost(req, res) {
 
         res.status(201).json(newComment);
     } catch (error) {
-        console.error(error);
+        console.log(error);
         res.status(500).json({ message: 'Internal server error' });
     }
 }

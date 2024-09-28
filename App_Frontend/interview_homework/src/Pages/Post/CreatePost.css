@@ -1,0 +1,71 @@
+.create-post {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers horizontally */
+    justify-content: center; /* Centers vertically */
+    height: 100vh; /* Full viewport height */
+    padding: 20px;
+    background-color: #f8f9fa; /* Optional: Light background color */
+  }
+  
+  .create-post h2 {
+    margin-bottom: 20px;
+  }
+  
+  .create-post form {
+    width: 100%;
+    max-width: 500px; /* Max width for the form */
+    background: white; /* Optional: White background for form */
+    padding: 20px; /* Padding inside the form */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+  }
+  
+  .create-post label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .create-post input[type="text"],
+  .create-post textarea {
+    width: 100%; /* Full width */
+    padding: 10px; /* Padding inside input fields */
+    margin-bottom: 15px; /* Spacing below input fields */
+    border: 1px solid #ced4da; /* Border color */
+    border-radius: 4px; /* Rounded corners */
+  }
+  
+  .create-post button {
+    padding: 10px 15px; /* Padding inside button */
+    background-color: #007bff; /* Button background color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+  }
+  
+  .create-post button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+  
+  .tags-container {
+    margin-bottom: 15px; /* Spacing below tags container */
+  }
+  
+  .tag {
+    display: inline-block;
+    margin-right: 5px; /* Spacing between tags */
+    padding: 5px 10px; /* Padding inside tag */
+    background-color: #007bff; /* Tag background color */
+    color: white; /* Tag text color */
+    border-radius: 4px; /* Rounded corners */
+  }
+  
+  .tag button {
+    margin-left: 5px; /* Spacing to the left of the remove button */
+    background: none; /* No background */
+    border: none; /* No border */
+    color: white; /* Text color */
+    cursor: pointer; /* Pointer cursor */
+  }
+  
