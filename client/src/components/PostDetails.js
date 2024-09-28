@@ -12,15 +12,19 @@ const PostDetails = () => {
 
     useEffect(() => {
         const localStorageData = JSON.parse(localStorage.getItem('persist:root'));
-        const localSelectedPost = localStorageData ? JSON.parse(localStorageData.selectedPost) : null;
+        const localPosts = localStorageData ? JSON.parse(localStorageData.posts) : null;
 
-        if (localSelectedPost) {
+        if (localPosts != null && localPosts.length > 0) {
+            const localSelectedPost = localPosts.find((post) => post._id == id);
             console.log("Using localSelectedPosts from LocalStorage:", localSelectedPost);
-            currentSelectedPost = localSelectedPost;
-        } else {
-            console.log("Fetching localSelectedPosts from API...");
-            dispatch(fetchPostByIdRequest(id));
-        }
+            if (localSelectedPost) {
+                currentSelectedPost = localSelectedPost;
+                return;
+            } 
+        } 
+        
+        console.log("Fetching localSelectedPosts from API...");
+        dispatch(fetchPostByIdRequest(id));
     }, []);
 
     if (loading) {
