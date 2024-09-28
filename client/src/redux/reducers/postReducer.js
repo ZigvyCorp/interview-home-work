@@ -1,7 +1,7 @@
 const initialState = {
   posts: [],
   filterPosts: [],
-  selectedPost: {},
+  selectedPost: null,
   comments: [],
   loading: false,
   error: '',
