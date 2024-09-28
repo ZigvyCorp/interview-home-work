@@ -51,7 +51,7 @@ const $logo = {
 const $centerZone = {
   backgroundColor: colors.leftEmptyZone,
   height: 60,
-  width: "14%",
+  width: "20%",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",

@@ -1,11 +1,16 @@
 import Container from "react-bootstrap/Container";
 import Accordion from "react-bootstrap/Accordion";
 import { specialColors, colors } from "../themes/colors";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChangeTextColorButton, Reply } from "../components";
+import styles from "../styles/post.module.css";
+import { useNavigate } from "react-router-dom"
 
-export const Post = ({detail}) => {
+export const Post = ({detail, data}) => {
     const [textColor, setTextColor] = useState(colors.black);
+    const [author, setAuthor] = useState('');
+    const [comments, setComments] = useState([]);
+    const navigate = useNavigate();
 
     const handleTextColorOnChange = (textColor) => {
         setTextColor(textColor);
@@ -18,12 +23,26 @@ export const Post = ({detail}) => {
         return text;
     }
 
+    const handleNavigateToDetailedPost = () => {
+        navigate(`/post/${data.id}`);
+    }
+
+    useEffect(() => {
+        fetch(`https://jsonplaceholder.typicode.com/users/${data.userId}`)
+        .then(response => response.json())
+        .then(user => setAuthor(user.name))
+
+        fetch(`https://jsonplaceholder.typicode.com/comments?postId=${data.id}`)
+        .then(response => response.json())
+        .then(comments => setComments(comments))
+    }, [data.userId, data.id]);
+
     return (
         <Container fluid style={$container}>
-            <p style={$title(textColor)}>Post title 1</p>
+            <button style={$title(textColor)} onClick={handleNavigateToDetailedPost}><p className={styles.title}>{data.title}</p></button>
             <div style={$subTextContainer}>
                 <div>
-                    <p style={$subText(textColor)}>Author: John Smith</p>
+                    <p style={$subText(textColor)}>Author: {author}</p>
                     <p style={$subText(textColor)}>Created at: Sep 20, 2018</p>
                 </div>
                 <div style={$buttonContainer}>
@@ -40,13 +59,16 @@ export const Post = ({detail}) => {
                     }
                 </div>
             </div>
-            <p style={$content(textColor)}>{detail ? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas libero sapien, sollicitudin ac mi nec, dignissim vulputate metus. Suspendisse bibendum nisl ut urna ultrices pulvinar. Donec efficitur dictum magna sed ultrices. Pellentesque non est fermentum, placerat libero sit amet, hendrerit libero. Vestibulum nec nibh eu neque auctor iaculis ut in dui. Sed viverra feugiat cursus. Quisque auctor non orci id congue. Fusce at convallis lectus. Quisque finibus porttitor nisi, nec semper felis fringilla quis." : handleTextTruncate("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas libero sapien, sollicitudin ac mi nec, dignissim vulputate metus. Suspendisse bibendum nisl ut urna ultrices pulvinar. Donec efficitur dictum magna sed ultrices. Pellentesque non est fermentum, placerat libero sit amet, hendrerit libero. Vestibulum nec nibh eu neque auctor iaculis ut in dui. Sed viverra feugiat cursus. Quisque auctor non orci id congue. Fusce at convallis lectus. Quisque finibus porttitor nisi, nec semper felis fringilla quis.")}</p>
+            <p style={$content(textColor)}>{detail ? data.body : handleTextTruncate(data.body)}</p>
             <Accordion flush style={$accordionContainer}>
                 <Accordion.Item eventKey="0">
-                    <Accordion.Header >2 replies</Accordion.Header>
+                    <Accordion.Header >{comments.length} {comments.length === 1 ? "reply" : "replies"}</Accordion.Header>
                     <Accordion.Body style={$accordionBody}>
-                        <Reply />
-                        <Reply />
+                        {
+                            comments.map((comment, index) => (
+                                <Reply key={index} data={comment} />
+                            ))
+                        }
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
@@ -64,7 +86,10 @@ const $container = {
 const $title = (color) => ({
     color,
     fontSize: 43,
-    fontWeight: 600
+    fontWeight: 600,
+    lineHeight: 1.3,
+    border: "none",
+    backgroundColor: "transparent"
 })
 
 const $subTextContainer = {

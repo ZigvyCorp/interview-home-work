@@ -1,9 +1,9 @@
-import { createStore, applyMiddleware } from 'redux';
+import { legacy_createStore as createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
-import rootReducer from './rootReducer'; // combine your reducers here
-import rootSaga from './sagas'; // import your root saga
+import storage from 'redux-persist/lib/storage';
+import rootReducer from './rootReducer';
+import rootSaga from './sagas';
 
 // Create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
@@ -20,7 +20,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 // Create the Redux store and apply saga middleware
 const store = createStore(
   persistedReducer,
-  applyMiddleware(sagaMiddleware) // Redux DevTools + middleware
+  applyMiddleware(sagaMiddleware)
 );
 
 // Run the saga middleware

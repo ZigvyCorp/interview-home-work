@@ -1,16 +1,16 @@
 import Container from "react-bootstrap/Container";
 import { images } from "../themes/images";
 import { colors } from "../themes/colors";
-export const Reply = () => {
+export const Reply = ({data}) => {
     return (
         <Container fluid style={$container}>
             <img style={$avatar} src={images.userAvatar} alt="User avatar" />
             <div style={$replyTextContainer}>
                 <div style={$userInfo}>
-                    <p style={$userInfoText(colors.replierName)}>Han Solo</p>
+                    <p style={$userInfoText(colors.replierName)}>{data.name}</p>
                     <p style={$userInfoText(colors.replyTime)}>a day ago</p>
                 </div>
-                <p style={$replyText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p style={$replyText}>{data.body}</p>
                 <p style={Object.assign($userInfoText(colors.replyToText), {textAlign: "left", marginTop: 5})}>Reply to</p>
             </div>
         </Container>
