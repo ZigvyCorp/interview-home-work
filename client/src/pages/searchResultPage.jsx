@@ -8,7 +8,6 @@ import { colors } from "../themes/colors";
 export const SearchResultPage = () => {
     const [searchParams, ] = useSearchParams();
     const [filter, setFilter] = useState([]);
-    const [posts, setPosts] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [activeIndex, setActiveIndex] = useState(1);
     const title = searchParams.get("title");
@@ -26,18 +25,14 @@ export const SearchResultPage = () => {
             if(post.title.includes(title)) result.push(post);
         })
         setTotalPages(Math.ceil(result.length / itemPerPages))
-        setFilter(result.slice(startIndex, startIndex + itemPerPages))
+        setFilter(result)
     }
 
     useEffect(()=>{
         fetch("https://jsonplaceholder.typicode.com/posts")
             .then(response => response.json())
-            .then(posts => setPosts(posts))
+            .then(posts => filterPost(posts))
     }, [])
-
-    useEffect(()=>{
-        filterPost(posts);
-    }, [activeIndex])
 
     return (
         <Container fluid>
@@ -45,7 +40,7 @@ export const SearchResultPage = () => {
                 filter.length === 0 ?
                 <p style={$text}>No results match <b>{`${title}`}</b></p>
                 :
-                filter.map((post, index) => (
+                filter.slice(startIndex, startIndex + itemPerPages).map((post, index) => (
                     index < filter.length - 1 ?
                     <>
                         <Post key={post.id} data={post} />
