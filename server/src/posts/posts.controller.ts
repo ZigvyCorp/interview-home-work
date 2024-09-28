@@ -15,7 +15,7 @@ export class PostsController {
 
   @Get()
   findAll(@Query() query) {
-    return this.postsService.findAll(query.pageIndex);
+    return this.postsService.findAll(query.pageIndex, query.keywords);
   }
 
   @Get(':id')

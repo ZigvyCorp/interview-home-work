@@ -1,8 +1,6 @@
 import dayjs from "dayjs";
-import React from "react";
 import Comment from "./Comment";
 import { contentTruncate } from "../libs/helper";
-import { Pagination } from "./Pagination/Pagination";
 
 type PostProps = {
   post: Post;
@@ -24,7 +22,7 @@ const Post = ({ post, comments }: PostProps) => {
           <span>Created At: </span>
           <span>{dayjs(post.createdAt).format("MMM DD, YYYY")}</span>
         </div>
-        <div>
+        <div className="mt-5">
           <p>{contentTruncate(post?.content) || "Post content"}</p>
         </div>
       </section>

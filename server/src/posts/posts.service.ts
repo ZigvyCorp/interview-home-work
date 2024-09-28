@@ -10,16 +10,21 @@ export class PostsService {
     return 'This action adds a new post';
   }
 
-  async findAll(pageIndex: number = 0) {
+  async findAll(pageIndex: number = 0, keywords: string = "") {
     const posts = await this.prisma.post.findMany({
+      where: {
+        title: {
+          contains: keywords
+        }
+      },
       include: { comments: true },
       skip: pageIndex * 5,
       take: 5,
     });
-    const totalRecord = await this.prisma.post.count();
+    const totalRecord = keywords ? posts.length : await this.prisma.post.count();
     return {
       pageInfo: {
-        pageNumber: pageIndex,
+        pageNumber: Number(pageIndex),
         totalPages: Math.ceil(totalRecord / 5),
         totalRecords: totalRecord,
         pageSize: 5,

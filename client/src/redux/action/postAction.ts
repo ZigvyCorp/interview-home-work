@@ -6,9 +6,10 @@ export function postFetched() {
   };
 }
 
-export function fetchPost(pageIndex: number) {
+export function fetchPost(pageIndex: number = 0, keywords: string = "") {
   return {
     type: POST_FETCH_REQUESTED,
-    pageIndex: pageIndex
+    pageIndex: pageIndex,
+    keywords: keywords
   };
 }

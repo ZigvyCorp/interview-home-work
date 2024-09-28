@@ -1,27 +1,15 @@
 import {
   NEXT_PAGE,
+  PAGE_CHANGED,
   PAGINATION_CLICKED,
   PREVIOUS_PAGE,
 } from "../../constant/redux/action";
 
-export function nextPage(currentState: object) {
-  return {
-    type: NEXT_PAGE,
-    state: currentState,
-  };
-}
 
-export function previousPage(currentState: object) {
+export function pageChanged(pageNumber: number) {
+  console.log("sd " + pageNumber)
   return {
-    type: PREVIOUS_PAGE,
-    state: currentState,
-  };
-}
-
-export function pageChange(pageNumber: number, currentState: object) {
-  return {
-    type: PAGINATION_CLICKED,
-    pageNumber: pageNumber,
-    state: currentState,
+    type: PAGE_CHANGED,
+    pageIndex: pageNumber,
   };
 }

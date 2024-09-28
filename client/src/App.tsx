@@ -9,7 +9,7 @@ const App = () => {
   );
 
   return (
-    <Spin spinning={isLoading}>
+    <Spin className="" spinning={isLoading}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
