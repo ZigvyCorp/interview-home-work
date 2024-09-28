@@ -7,7 +7,7 @@ config();
 import postRoutes from './routes/postRoute.js';
 import commentRoutes from './routes/commentRoute.js';
 import userRoutes from './routes/userRoute.js';
-import { createBlogTable } from './config/db.js';
+import { createBlogTable, readJSONFiles, insertData } from './config/db.js';
 
 // Initialize the Express application instance.
 const app = express();
@@ -27,6 +27,16 @@ app.use('/', userRoutes);
 // Create blog table before starting server
 // Start server on port 3000 and log message on successful start-up.
 await createBlogTable();
+const jsonData = await readJSONFiles();
+if (jsonData) {
+    await insertData(jsonData);
+}
+// (async () => {
+//     const jsonData = await readJSONFiles();
+//     if (jsonData) {
+//         await insertData(jsonData);
+//     }
+// })();
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}, database running on port ${DB_PORT}`);
 });
