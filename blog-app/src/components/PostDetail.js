@@ -16,9 +16,8 @@ const PostDetail = () => {
                 const response = await axios.get(`http://172.20.10.4:3000/api/posts/detail/${id}`);
                 setPost(response.data);
             } catch (err) {
-                // Handle error (e.g., post not found)
                 if (err.response && err.response.status === 404) {
-                    navigate('/404'); // Navigate to NotFound page
+                    navigate('/404');
                 } else {
                     navigate('/404');
                 }

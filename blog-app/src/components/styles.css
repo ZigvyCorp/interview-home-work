@@ -70,3 +70,21 @@
     background-color: #007bff;
     color: white;
 }
+.add-post-button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.add-post-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.add-post-button:focus {
+    outline: none;
+}

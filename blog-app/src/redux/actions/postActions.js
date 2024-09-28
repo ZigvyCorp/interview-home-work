@@ -10,10 +10,10 @@ export const fetchPosts = (page = 1, limit = 10) => ({
 export const fetchPostsSuccess = (data) => ({
     type: FETCH_POSTS_SUCCESS,
     payload: {
-        posts: data.posts,        // Các bài viết
-        currentPage: data.currentPage,  // Trang hiện tại
-        totalPages: data.totalPages,    // Tổng số trang
-        totalPosts: data.totalPosts,    // Tổng số bài viết
+        posts: data.posts,
+        currentPage: data.currentPage,
+        totalPages: data.totalPages,
+        totalPosts: data.totalPosts,
     },
 });
 

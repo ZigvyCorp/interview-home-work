@@ -18,9 +18,9 @@ const postReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 posts: action.payload.posts,
-                currentPage: action.payload.currentPage,  // Cập nhật trang hiện tại
-                totalPages: action.payload.totalPages,    // Cập nhật tổng số trang
-                totalPosts: action.payload.totalPosts,    // Cập nhật tổng số bài viết
+                currentPage: action.payload.currentPage,
+                totalPages: action.payload.totalPages,
+                totalPosts: action.payload.totalPosts,
             };
         case FETCH_POSTS_FAILURE:
             return { ...state, loading: false, error: action.payload };

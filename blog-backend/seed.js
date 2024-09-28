@@ -86,6 +86,8 @@ Giá vàng nhẫn tròn trơn tiếp tục có những "pha nhảy vọt" ấn t
 }
 
 async function createUser(username, password, name, dob) {
+    // Mã hóa mật khẩu
+    const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({
         username,

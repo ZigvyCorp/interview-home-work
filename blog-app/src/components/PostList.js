@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts } from '../redux/actions/postActions';
 import { fetchComments } from '../redux/actions/commentActions';
@@ -7,6 +7,9 @@ import { Card, Collapse } from 'react-bootstrap';
 import './styles.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { UserContext } from './contexts/UserContext';
+import Login from './Login';
+import NewPost from './NewPost';
 
 const PostList = () => {
     const dispatch = useDispatch();
@@ -18,16 +21,18 @@ const PostList = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [newComment, setNewComment] = useState('');
-    const user = JSON.parse(localStorage.getItem('user'));
+
+    const [showLoginModal, setShowLoginModal] = useState(false);
+    const [showNewPostModal, setshowNewPostModal] = useState(false)
+    const { user } = useContext(UserContext);
     const navigate = useNavigate();
 
-    // Function to fetch posts based on search
     const handleSearch = async () => {
         if (searchQuery.trim()) {
             const response = await axios.get(`http://172.20.10.4:3000/api/posts/search?q=${searchQuery}`);
-            setSearchResults(response.data); // Update search results
+            setSearchResults(response.data);
         } else {
-            setSearchResults([]); // Clear search results if the query is empty
+            setSearchResults([]);
         }
     };
 
@@ -52,7 +57,7 @@ const PostList = () => {
     useEffect(() => {
         dispatch(fetchPosts(currentPage, postsPerPage));
         dispatch(fetchComments());
-    }, [dispatch, currentPage, postsPerPage]);
+    }, [dispatch, currentPage, postsPerPage, showNewPostModal]);
 
     const toggleComments = (postId) => {
         setShowComments((prev) => ({
@@ -64,12 +69,13 @@ const PostList = () => {
     const handleCommentSubmit = async (postId) => {
         try {
             if (!newComment.trim()) return;
-            const response = await axios.post(`http://172.20.10.4:3000/api/posts/${postId}/comment`, {
+            const response = await axios.post(`http://172.20.10.4:3000/api/comments`, {
                 content: newComment,
-                userId: user._id, // Assuming user has an _id field
+                owner: user.id,
+                post: postId
             });
-            setNewComment(''); // Clear input after submission
-            dispatch(fetchComments()); // Refresh comments
+            setNewComment('');
+            dispatch(fetchComments());
         } catch (error) {
             console.error('Failed to submit comment:', error);
         }
@@ -82,14 +88,18 @@ const PostList = () => {
 
     if (loading || loadingComments) return <p>Loading...</p>;
 
-    // Determine which posts to display
     const displayPosts = searchResults.length > 0 ? searchResults : posts;
 
     return (
         <div className="container">
-            {/* Search Input */}
+            <div className="mt-3">
+                <button className="add-post-button"  onClick={() => setshowNewPostModal(true)} variant="link">
+                    Add New Your Post
+                </button>
+            </div>
+
             <div className="search-bar mb-3">
-            <input
+                <input
                     type="text"
                     placeholder="Search posts..."
                     value={searchQuery}
@@ -167,32 +177,32 @@ const PostList = () => {
                                             </li>
                                         ))}
                                 </ul>
-                                
+
                             </div>
                         </Collapse>
                         {user ? (
-                                    <div className="mt-3">
-                                        <input
-                                            type="text"
-                                            value={newComment}
-                                            onChange={(e) => setNewComment(e.target.value)}
-                                            placeholder="Add a comment"
-                                            className="form-control"
-                                        />
-                                        <button
-                                            className="btn btn-primary mt-2"
-                                            onClick={() => handleCommentSubmit(post._id)}
-                                        >
-                                            Submit
-                                        </button>
-                                    </div>
-                                ) : (
-                                    <div className="mt-3">
-                                        <button className="btn btn-link" onClick={() => navigate('/login')}>
-                                            Login to comment
-                                        </button>
-                                    </div>
-                                )}
+                            <div className="mt-3">
+                                <input
+                                    type="text"
+                                    value={newComment}
+                                    onChange={(e) => setNewComment(e.target.value)}
+                                    placeholder="Add a comment"
+                                    className="form-control"
+                                />
+                                <button
+                                    className="btn btn-primary mt-2"
+                                    onClick={() => handleCommentSubmit(post._id)}
+                                >
+                                    Submit
+                                </button>
+                            </div>
+                        ) : (
+                            <div className="mt-3">
+                                <button onClick={() => setShowLoginModal(true)} variant="link">
+                                    Login to comment
+                                </button>
+                            </div>
+                        )}
                     </Card.Body>
                 </Card>
             ))}
@@ -222,8 +232,16 @@ const PostList = () => {
                     </select>
                 </div>
             </div>
+            <Login
+                showLoginModal={showLoginModal}
+                setShowLoginModal={setShowLoginModal}
+            />
+            <NewPost
+                showNewPostModal={showNewPostModal}
+                setShowNewPostModal={setshowNewPostModal}
+            />
         </div>
     );
-};  
+};
 
 export default PostList;

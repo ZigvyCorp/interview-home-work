@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "../../../../assets/images/logozigvy.png";
 import './footer.css'
 
 function Footer() {

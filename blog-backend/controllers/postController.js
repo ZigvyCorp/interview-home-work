@@ -7,10 +7,12 @@ exports.getAllPosts = async (req, res) => {
 
         const skip = (page - 1) * limit;
 
+        // Fetch posts from newest to oldest
         const posts = await Post.find()
+            .sort({ created_at: -1 }) // Sort by creation date in descending order
             .skip(skip)
             .limit(limit)
-            .populate('owner')
+            .populate('owner'); // Assuming 'owner' is a reference field
 
         const totalPosts = await Post.countDocuments();
 
@@ -24,6 +26,7 @@ exports.getAllPosts = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
 
 // Get post by ID
 exports.getPostById = async (req, res) => {
