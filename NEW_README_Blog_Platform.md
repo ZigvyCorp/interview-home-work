@@ -17,27 +17,27 @@ To assess your ability to develop a full-stack JavaScript application using mode
 
 ### Tasks:
   1. Homepage:
-    - Display a list of posts, with each post showing:
-      - Author name.
-      - Date of creation (you can mock this).
-      - Title.
-      - A truncated summary of the post's content (100 characters).
-      - Comment count (collapsed by default).
-      - Ability to search for posts by title.
-      - Implement pagination or infinite scroll for the list of posts.
+     - Display a list of posts, with each post showing:
+        - Author name.
+        - Date of creation (you can mock this).
+        - Title.
+        - A truncated summary of the post's content (100 characters).
+        - Comment count (collapsed by default).
+        - Ability to search for posts by title.
+        - Implement pagination or infinite scroll for the list of posts.
 
   2. Post Detail Page:
-    - Clicking on a post should navigate to the post detail page.
-    - Display the post's full content, author, and date.
-    - Show all the comments for that post in an expandable section.
-    - Implement a form to add a new comment (bonus: use optimistic UI updates).
+     - Clicking on a post should navigate to the post detail page.
+     - Display the post's full content, author, and date.
+     - Show all the comments for that post in an expandable section.
+     - Implement a form to add a new comment (bonus: use optimistic UI updates).
 
-  3. Client-Side Caching: (OPTIONAL)
-    - Use React Query to cache fetched data (such as posts and comments).
-    - Ensure that the data is fetched from the backend and properly cached in memory, reducing redundant network calls.
+  4. Client-Side Caching: (OPTIONAL)
+     - Use React Query to cache fetched data (such as posts and comments).
+     - Ensure that the data is fetched from the backend and properly cached in memory, reducing redundant network calls.
 
-  4. Form Validation:
-    - Implement basic form validation when adding comments (e.g., required fields).
+  6. Form Validation:
+     - Implement basic form validation when adding comments (e.g., required fields).
 
 ### Bonus: (OPTIONAL)
   - Implement optimistic updates for adding comments (i.e., show the comment immediately, even before the server confirms the action).
@@ -53,31 +53,31 @@ To assess your ability to develop a full-stack JavaScript application using mode
 
 ### Tasks:
   1. Posts API:
-    - Implement the following endpoints:
-    - `GET /posts`: Fetch a list of all posts with pagination support.
-    - `GET /posts/:id`: Fetch a single post by its ID.
-    - `POST /posts`: Create a new post (only title and content required).
-    - `PUT /posts/:id`: Update a post.
-    - `DELETE /posts/:id`: Delete a post.
+     - Implement the following endpoints:
+     - `GET /posts`: Fetch a list of all posts with pagination support.
+     - `GET /posts/:id`: Fetch a single post by its ID.
+     - `POST /posts`: Create a new post (only title and content required).
+     - `PUT /posts/:id`: Update a post.
+     - `DELETE /posts/:id`: Delete a post.
 
-  2. Comments API:
-    - Implement the following endpoints:
-    - `GET /posts/:id/comments`: Fetch all comments related to a post.
-    - `POST /posts/:id/comments`: Add a new comment to a post.
-    - `DELETE /comments/:id`: Delete a comment.
+  3. Comments API:
+     - Implement the following endpoints:
+     - `GET /posts/:id/comments`: Fetch all comments related to a post.
+     - `POST /posts/:id/comments`: Add a new comment to a post.
+     - `DELETE /comments/:id`: Delete a comment.
 
-  3. API Error Handling:
-    - Ensure that the API handles errors gracefully:
-    - 404 for not found resources.
-    - 400 for bad requests.
-    - 500 for internal server errors.
+  5. API Error Handling:
+     - Ensure that the API handles errors gracefully:
+     - 404 for not found resources.
+     - 400 for bad requests.
+     - 500 for internal server errors.
 
-  4. API Pagination:
+  7. API Pagination:
      - Ensure that `GET /posts` and `GET /posts/:id/comments` support pagination.
 
-  5. Testing: (OPTIONAL)
-    - Write unit tests for the core API functionality (e.g., Jest).
-    - Bonus: Write integration tests for API endpoints.
+  9. Testing: (OPTIONAL)
+     - Write unit tests for the core API functionality (e.g., Jest).
+     - Bonus: Write integration tests for API endpoints.
 
 ### Bonus: (OPTIONAL)
   - Add rate-limiting to the API endpoints (to simulate production-like scenarios).
