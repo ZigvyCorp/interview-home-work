@@ -10,10 +10,13 @@ To assess your ability to develop a full-stack JavaScript application using mode
 # Project Requirements:
 ## Frontend:
 ### General:
-  - React with React Query for data fetching and state management.
-  - Use either Ant Design or Bootstrap for UI components.
-  - Must use React Router for page navigation.
-  - Design must be responsive for mobile and desktop views.
+  - React with **React Query** for data fetching and state management.
+  - Use either **Ant Design** or **Bootstrap** for UI components.
+  - Use **Tailwind** CSS is a plus.
+  - Use **react-hook-form** or **tanstack/form** or **formik** is a plus.
+  - Must use **React Router** for page navigation.
+  - Design must be responsive for **mobile** and **desktop** views.
+  - **TypeScript** is needed.
 
 ### Tasks:
   1. Homepage:
@@ -50,6 +53,7 @@ To assess your ability to develop a full-stack JavaScript application using mode
   - Database must be MongoDB or PostgreSQL.
   - API must follow RESTful principles and be well-structured (modular).
   - Handle typical CRUD operations for posts and comments.
+  - **TypeScript** is needed.
 
 ### Tasks:
   1. Posts API:
