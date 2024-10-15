@@ -1,0 +1,61 @@
+.logo {
+  width: 100%;
+}
+
+.logo-button {
+  display: block;
+  width: 64px;
+  height: 64px;
+}
+
+p {
+  margin: 0;
+}
+
+.title {
+  font-size: 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.profile {
+  display: flex;
+
+  align-items: center;
+  float: right;
+}
+
+.name {
+  margin-left: 4px;
+  font-size: 20px;
+}
+
+.ant-card-head-title {
+  text-align: center;
+}
+
+.content {
+  margin-top: 12px;
+}
+
+.ant-card + .ant-card {
+  margin-top: 12px;
+}
+
+.flex {
+  display: flex;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.paginator {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
