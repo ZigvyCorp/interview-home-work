@@ -1,0 +1,41 @@
+$post-card-border-color: #e0e0e0;
+$post-card-background-color: #f8f9fa;
+$comment-name-color: #1877f2; // Màu xanh giống Facebook
+
+.postCard {
+  border-radius: 8px;
+  border: 1px solid $post-card-border-color;
+  transition: box-shadow 0.3s;
+
+  &.shadow-sm {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-body {
+    padding: 20px;
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .card-text {
+      strong {
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .card-footer {
+    background-color: $post-card-background-color;
+    border-top: 1px solid $post-card-border-color;
+
+    .comment {
+      padding: 10px 0;
+
+      strong {
+        color: $comment-name-color; // Màu tên người bình luận
+      }
+    }
+  }
+}

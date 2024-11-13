@@ -1,0 +1,25 @@
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+
+# Build outputs
+dist/
+build/
+
+# Coverage directory
+coverage/
+
+# Dependency directories
+jspm_packages/
+
+# Other files to ignore
+.DS_Store
+Thumbs.db
+.env
