@@ -1,0 +1,90 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.post-card {
+    margin-bottom: 20px;
+    width: 1000px;
+}
+
+.post-header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.post-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.post-author {
+    text-align: left;
+}
+
+.post-tags {
+    text-align: right;
+}
+
+.post-content {
+    margin-bottom: 15px;
+}
+
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment-count {
+    color: #007bff;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px 10px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    background-color: white;
+    transition: background-color 0.3s ease;
+}
+
+.post-readmore {
+    color: #007bff;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px 10px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    background-color: white;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+}
+
+.comment-count:hover {
+    background-color: #007bff;
+    color: white;
+}
+.add-post-button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.add-post-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.add-post-button:focus {
+    outline: none;
+}

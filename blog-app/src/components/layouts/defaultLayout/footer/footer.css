@@ -1,0 +1,23 @@
+
+.footer {
+  background-color: #161616;
+  padding: 40px 0;
+
+  .container {
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+  }
+
+  .footer-col {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    
+  }
+  .txtFooter {
+    color : white
+  }
+
+}
