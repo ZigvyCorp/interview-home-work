@@ -1,0 +1,39 @@
+[{
+  "_id": {
+    "$oid": "65df320aec5c1b5056f68ed4"
+  },
+  "username": "nhatngau3",
+  "password": "12345",
+  "name": "hoang",
+  "dob": null,
+  "created_at": {
+    "$date": "1970-07-04T22:23:33.987Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e07f16f6d12baf9d51eba1"
+  },
+  "username": "nhatngau5",
+  "password": "12345",
+  "name": "Vking",
+  "dob": null,
+  "created_at": {
+    "$date": "1970-07-04T22:23:33.987Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e07f25f6d12baf9d51eba4"
+  },
+  "username": "nhatngau6",
+  "password": "12345",
+  "name": "Vking1",
+  "dob": null,
+  "created_at": {
+    "$date": "1970-07-04T22:23:33.987Z"
+  },
+  "__v": 0
+}]
