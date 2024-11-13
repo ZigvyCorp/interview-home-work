@@ -1,0 +1,55 @@
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.layout {
+  min-height: 100vh;
+}
+
+.header {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Ensure space between logo and user avatar */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  /* Center the logo vertically */
+}
+
+.blog-logo {
+  margin-left: 30px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.user-menu-item {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+}
