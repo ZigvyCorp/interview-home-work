@@ -12,11 +12,9 @@ const commentRouter = express.Router();
 
 commentRouter.get("/", getAllComments);
 commentRouter.get("/:commentId", getCommentById);
-commentRouter.post("/", createComment);
-commentRouter.patch("/:commentId", updateCommentById);
-commentRouter.delete("/:commentId", deleteCommentById);
-// commentRouter.post("/", verifyToken, createComment);
-// commentRouter.patch("/:commentId", verifyToken, updateCommentById);
-// commentRouter.delete("/:commentId", verifyToken, deleteCommentById);
+
+commentRouter.post("/", verifyToken, createComment);
+commentRouter.patch("/:commentId", verifyToken, updateCommentById);
+commentRouter.delete("/:commentId", verifyToken, deleteCommentById);
 
 export default commentRouter;
