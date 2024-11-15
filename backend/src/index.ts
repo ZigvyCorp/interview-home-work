@@ -1,7 +1,7 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-
+import cors from "cors";
 import { Users } from "./models/users.model";
 import { Posts } from "./models/posts.model";
 import { Comments } from "./models/comments.model";
@@ -21,6 +21,7 @@ mongoose
   .then(() => console.log("Connect MongoDB successfully"))
   .catch((err) => console.log(err));
 app.use(express.json());
+app.use(cors());
 app.use("/", userRouter);
 app.use("/posts", postRouter);
 app.use("/comments", commentRouter);

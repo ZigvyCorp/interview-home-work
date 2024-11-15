@@ -12,8 +12,8 @@ import { checkIdType } from "../utils/checkId";
 import { Comments } from "../models/comments.model";
 
 export const getAllComments = wrapRequestHandler(async (req, res) => {
-  const { page, _limit }: ICondition = req.query;
-  const comments = await findWithCondition(Comments, { page, _limit });
+  const { page, _limit, postId }: ICondition = req.query;
+  const comments = await findWithCondition(Comments, { page, _limit, postId });
   if (comments?.data?.length) {
     return defaultSuccessHandler(
       res,
@@ -66,6 +66,7 @@ export const createComment = wrapRequestHandler(async (req, res) => {
     owner,
     post,
     content,
+    created_at: new Date().getTime(),
   });
   return defaultSuccessHandler(
     res,

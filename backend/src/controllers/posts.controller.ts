@@ -78,6 +78,7 @@ export const createPost = wrapRequestHandler(async (req, res) => {
     owner,
     content,
     tags,
+    created_at: new Date().getTime(),
   });
   return defaultSuccessHandler(
     res,
@@ -92,7 +93,7 @@ export const updatePostById = wrapRequestHandler(async (req, res) => {
   if (isValidId) {
     const updatedPost = await Posts.findByIdAndUpdate(postId, req.body);
     if (updatedPost) {
-      const post = await Comments.findById(postId);
+      const post = await Posts.findById(postId);
       return defaultSuccessHandler(
         res,
         post,

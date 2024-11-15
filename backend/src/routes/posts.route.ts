@@ -12,8 +12,11 @@ const postRouter = express.Router();
 
 postRouter.get("/", getAllPosts);
 postRouter.get("/:postId", getPostById);
-postRouter.post("/", verifyToken, createPost);
-postRouter.patch("/:postId", verifyToken, updatePostById);
-postRouter.delete("/:postId", verifyToken, deletePostById);
+postRouter.post("/", createPost);
+postRouter.patch("/:postId", updatePostById);
+postRouter.delete("/:postId", deletePostById);
+// postRouter.post("/", verifyToken, createPost);
+// postRouter.patch("/:postId", verifyToken, updatePostById);
+// postRouter.delete("/:postId", verifyToken, deletePostById);
 
 export default postRouter;
