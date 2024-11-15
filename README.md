@@ -1,123 +1,128 @@
-# Full-Stack JavaScript Developer Technical Assessment
-# BLOG PLATFORM
+# Blog Platform - README
 
-# Project Brief:
-You are tasked with developing a blog platform with simple CRUD functionality for posts and comments. Users should be able to view posts, search for posts, view post details, and manage comments. The platform must be built with a modern tech stack, ensuring best practices in both frontend and backend development.
+## Project Overview
+This project is a **full-stack blog platform** with CRUD functionality for posts and comments. It allows users to view posts and comments, leveraging modern web development technologies and best practices. The application is designed to be responsive and provides a clean, user-friendly interface for mobile and desktop users.
 
-# Objective:
-To assess your ability to develop a full-stack JavaScript application using modern frameworks and best practices. This assignment should take no more than 6-8 hours to complete, but you are encouraged to focus on quality over quantity.
+---
 
-# Project Requirements:
-## Frontend:
-### General:
-  - React with **React Query** for data fetching and state management.
-  - Use either **Ant Design** or **Bootstrap** for UI components.
-  - Use **Tailwind** CSS is a plus.
-  - Use **react-hook-form** or **tanstack/form** or **formik** is a plus.
-  - Must use **React Router** for page navigation.
-  - Design must be responsive for **mobile** and **desktop** views.
-  - **TypeScript** is needed.
+## Features
 
-### Tasks:
-  1. Homepage:
-     - Display a list of posts, with each post showing:
-        - Author name.
-        - Date of creation (you can mock this).
-        - Title.
-        - A truncated summary of the post's content (100 characters).
-        - Comment count (collapsed by default).
-        - Ability to search for posts by title.
-        - Implement pagination or infinite scroll for the list of posts.
+### Frontend
+- **Homepage**:  
+  - Display a list of paginated posts with author, creation date, title, truncated content, and comment count.   
 
-  2. Post Detail Page:
-     - Clicking on a post should navigate to the post detail page.
-     - Display the post's full content, author, and date.
-     - Show all the comments for that post in an expandable section.
-     - Implement a form to add a new comment (bonus: use optimistic UI updates).
+- **Post Detail Page**:  
+  - View full content of a post along with its author and date.  
+  - Expandable comment section.  
+  - Form for adding new comments with validation.
 
-  4. Client-Side Caching: (OPTIONAL)
-     - Use React Query to cache fetched data (such as posts and comments).
-     - Ensure that the data is fetched from the backend and properly cached in memory, reducing redundant network calls.
+- **Optimizations**:  
+  - Client-side caching with React Query.  
+  - Form validation with react-hook-form.  
+  - Responsive design using Ant Design and Tailwind CSS.
 
-  6. Form Validation:
-     - Implement basic form validation when adding comments (e.g., required fields).
+---
 
-### Bonus: (OPTIONAL)
-  - Implement optimistic updates for adding comments (i.e., show the comment immediately, even before the server confirms the action).
-  - Use local storage to persist the state of the application between page reloads.
+### Backend
+- RESTful API built with **Express.js**.  
+- MongoDB as the database.  
+- CRUD operations for posts and comments.  
+- Error handling for 404, 400, and 500 errors.  
+- Pagination support for posts and comments.  
 
+---
 
-## Backend:
-### General:
-  - Backend must be built using either Nest.js or Express.js.
-  - Database must be MongoDB or PostgreSQL.
-  - API must follow RESTful principles and be well-structured (modular).
-  - Handle typical CRUD operations for posts and comments.
-  - **TypeScript** is needed.
+## Tech Stack
 
-### Tasks:
-  1. Posts API:
-     - Implement the following endpoints:
-     - `GET /posts`: Fetch a list of all posts with pagination support.
-     - `GET /posts/:id`: Fetch a single post by its ID.
-     - `POST /posts`: Create a new post (only title and content required).
-     - `PUT /posts/:id`: Update a post.
-     - `DELETE /posts/:id`: Delete a post.
+### Frontend
+- **Framework**: React.js (with React Query, React Router)  
+- **UI Components**: Ant Design, Tailwind CSS  
+- **Forms**: react-hook-form  
+- **Language**: TypeScript  
 
-  3. Comments API:
-     - Implement the following endpoints:
-     - `GET /posts/:id/comments`: Fetch all comments related to a post.
-     - `POST /posts/:id/comments`: Add a new comment to a post.
-     - `DELETE /comments/:id`: Delete a comment.
+### Backend
+- **Framework**: Express.js  
+- **Database**: MongoDB 
+- **Language**: TypeScript  
 
-  5. API Error Handling:
-     - Ensure that the API handles errors gracefully:
-     - 404 for not found resources.
-     - 400 for bad requests.
-     - 500 for internal server errors.
+---
 
-  7. API Pagination:
-     - Ensure that `GET /posts` and `GET /posts/:id/comments` support pagination.
+## Getting Started
 
-  9. Testing: (OPTIONAL)
-     - Write unit tests for the core API functionality (e.g., Jest).
-     - Bonus: Write integration tests for API endpoints.
+### Prerequisites
+- Node.js (>=18.x)
+- npm
+- MongoDB database
 
-### Bonus: (OPTIONAL)
-  - Add rate-limiting to the API endpoints (to simulate production-like scenarios).
-  - Implement authentication for the backend (JWT-based) and protect sensitive API routes (e.g., creating or deleting posts).
+---
 
+### Installation
 
-# Technical Expectations:
-## Frontend Requirements:
-  - Use React and React Query to manage data fetching and state.
-  - Use either Ant Design or Bootstrap for styling and UI components.
-  - Implement pagination or infinite scrolling for posts.
-  - Ensure proper routing using React Router.
-  - Provide search functionality for posts.
-  - Follow best practices for component-based architecture.
+1. **Install frontend dependencies:**:
+   ```bash
+   cd front-end
+   npm install
+   ```
+2. **Install backend dependencies:**:
+   ```bash
+   cd back-end
+   npm install
+   ```
+### Configuration
 
-## Backend Requirements:
-  - Use Nest.js or Express.js to build a RESTful API.
-  - CRUD operations for posts and comments must be fully implemented.
-  - Ensure proper error handling and API pagination.
-  - Must follow best practices for API design and MVC architecture.
+1. **Frontend:**:
+   Create an `.env` file by copying the `.env.example` file
+   ```bash
+   cd front-end
+   cp .env.example .env
+   ```
+   
+2. **Install backend dependencies:**:
+   Create an `.env` file by copying the `.env.example` file
+   ```bash
+   cd back-end
+   cp .env.example .env
+   ```
+   Then config your mongoDB uri in the `.env` file
 
-## General:
-  - Write clean, maintainable, and well-documented code.
-  - Provide a clear README explaining how to run the project, install dependencies, and run tests.
-  - The project must be hosted in a Git repository, with clear commit messages.
-  
-## <span style="color: red;">Submission Process: IMPORTANT!!! - GUIDELINES MUST BE FOLLOWED</span>
-  - **Fork** the provided GitHub repository.
-  - **Create** a new **branch** from the **forked repo** following the naming convention **yourname_2024**.
-  - Complete the tasks and make frequent commits to the **forked repo** (we want to see your workflow).
-  - Push your branch and create a Pull Request and point to the original repository.
-  - Send the PR link to us via email to notify us of your submission.
+### Running the Application
+1. **Start the backend**:
 
-## Evaluation Criteria:
-  - Code Quality: Is your code clean, modular, and well-documented?
-  - Problem-Solving: How well did you handle the requirements? Did you approach each problem logically and efficiently?
-  - Tech Stack Familiarity: Are you proficient in React, React Query, Nest.js/Express.js, and database management?
-  - Error Handling: Does your application handle errors gracefully (both on frontend and backend)?
-  - Bonus: Extra features like optimistic updates, authentication, or rate-limiting will add extra points.
+  ```bash
+    cd back-end
+    npm run dev
+  ```
+2. **Start the frontend**:
+
+  ```bash
+    cd front-end
+    npm run dev
+  ```
+3. **Open the app in your browser:**
+```
+    http://localhost:5173
+  ```
+### API Endpoints
+
+Authentication
+* `POST /auth/login`: Login.
+* `POST /auth/logout`: Logout.
+* `POST /auth/refresh-token`: Refresh the access token.
+* `GET /auth/logged-user`: Get the current logged user.
+
+Posts
+* `GET /posts`: Fetch paginated posts.
+* `GET /posts/:id`: Fetch a single post.
+* `POST /posts`: Create a new post.
+* `PUT /posts/:id`: Update a post.
+* `DELETE /posts/:id`: Delete a post.
+
+Comments
+* `GET /posts/:id/comments`: Fetch comments for a post.
+* `POST /posts/:id/comments`: Add a comment to a post.
+* `DELETE /comments/:id`: Delete a comment.
+
+### Bonus Features
+* Optimistic Updates: Comments are added instantly on the frontend before confirmation from the server.
+* Authentication: JWT-based authentication for secured routes.
+* Rate Limiting: API endpoints include rate-limiting for production-like scenarios.
