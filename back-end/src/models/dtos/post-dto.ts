@@ -9,5 +9,4 @@ export interface PostDto extends TimeStamps {
   slug: string;
   tags: string[];
   owner: UserDto;
-  comments: CommentDto[]
 }

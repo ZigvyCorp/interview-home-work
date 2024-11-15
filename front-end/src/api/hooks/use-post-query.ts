@@ -1,23 +1,40 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createPost, deletePost, getPostByIdOrSlug, getPosts, updatePost } from "@/api/methods/post.ts";
+import {
+  useMutation,
+  useQuery,
+  useQueryClient,
+  useInfiniteQuery,
+} from "@tanstack/react-query";
+import {
+  createPost,
+  deletePost,
+  getPostByIdOrSlug,
+  getPosts,
+  updatePost,
+} from "@/api/methods/post.ts";
 
 const QUERY_KEY = ["home", "Post"];
 
 export const useGetPosts = () => {
-  return useQuery({
+  const LIMIT = 5;
+  return useInfiniteQuery({
     queryKey: [...QUERY_KEY],
-    queryFn: async () => {
-      return await getPosts();
+    queryFn: async ({ pageParam }) => {
+      return await getPosts(pageParam, LIMIT);
     },
-    throwOnError: true
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages, lastPageParam) => {
+      const pages = Math.ceil(lastPage.total / LIMIT);
+      if (pages <= lastPageParam) return undefined;
+      return allPages.length + 1;
+    },
   });
 };
 export const useGetPostByIdOrSlug = (id: string) => {
   return useQuery({
-    queryKey: [...QUERY_KEY, id],
+    queryKey: [...QUERY_KEY, { id }],
     queryFn: async () => {
       return await getPostByIdOrSlug(id);
-    }
+    },
   });
 };
 
@@ -28,7 +45,7 @@ export const useCreatePost = () => {
     mutationFn: createPost,
     onSuccess: () => {
       return queryClient.invalidateQueries({ queryKey: QUERY_KEY });
-    }
+    },
   });
 };
 export const useUpdatePost = () => {
@@ -36,8 +53,10 @@ export const useUpdatePost = () => {
   return useMutation({
     mutationFn: updatePost,
     onSuccess: (_, variables) => {
-      return queryClient.invalidateQueries({ queryKey: [...QUERY_KEY, variables.id] });
-    }
+      return queryClient.invalidateQueries({
+        queryKey: [...QUERY_KEY, variables.id],
+      });
+    },
   });
 };
 export const useDeletePost = () => {
@@ -46,6 +65,6 @@ export const useDeletePost = () => {
     mutationFn: deletePost,
     onSuccess: () => {
       return queryClient.invalidateQueries({ queryKey: QUERY_KEY });
-    }
+    },
   });
 };

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getRefreshToken } from "@/api/methods/auth.ts";
 
 type FailedQueue = {
   resolve: (value: unknown) => void
@@ -44,19 +45,17 @@ instance.interceptors.response.use(function(response) {
     return new Promise(function(resolve, reject) {
       getRefreshToken()
         .then(() => {
+          isRefreshing = false;
           processQueue(null);
           resolve(instance(originalRequest));
         })
         .catch((err) => {
+          isRefreshing = false;
           processQueue(err);
           reject(err);
         })
-        .finally(() => {
-          isRefreshing = false;
-        });
     });
   }
   return Promise.reject(error);
 });
 export default instance;
-const getRefreshToken = async () => "";

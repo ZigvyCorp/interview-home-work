@@ -4,7 +4,6 @@ import { RouterProvider } from "react-router-dom";
 import AuthProvider from "@/providers/auth-provider.tsx";
 
 const queryClient = new QueryClient();
-
 export default function AppProvider() {
   return (
     <QueryClientProvider client={queryClient}>

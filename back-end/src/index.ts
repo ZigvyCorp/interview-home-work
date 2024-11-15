@@ -6,6 +6,7 @@ import routes from "@/routes";
 import errorHandlerMiddleware from "@/middlewares/error-handler-middleware";
 import cors from 'cors';
 import rateLimit from 'express-rate-limit';
+import cookieParser from "cookie-parser"
 import { ONE_MINUTE } from "@/constants/time";
 dotenv.config();
 
@@ -25,6 +26,7 @@ const limiter = rateLimit({
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
+app.use(cookieParser());
 app.use(limiter);
 app.use(cors({
   origin: "http://localhost:5173", // Allow only this origin

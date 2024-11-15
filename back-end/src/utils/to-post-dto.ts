@@ -17,6 +17,5 @@ export const toPostDto = (post: IPopulatedPost): PostDto => {
     content: post.content,
     createdAt: post.createdAt,
     updatedAt: post.updatedAt,
-    comments: post.comments.map(toCommentDto)
   };
 };

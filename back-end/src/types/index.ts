@@ -1,6 +1,6 @@
 import { Document } from "mongoose";
 import { Request } from "express";
-import { JwtPayload } from "jsonwebtoken";
+import { UserDto } from "@/models/dtos/user-dto";
 
 export type MongoDocument<T extends Record<string, any>> = Document<unknown, {}, T>
 
@@ -9,5 +9,5 @@ export type TimeStamps = {
   updatedAt?: Date;
 }
 export interface AuthenticatedRequest extends Request {
-  user?: JwtPayload | string;
+  user?: UserDto
 }

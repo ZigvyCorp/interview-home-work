@@ -7,7 +7,7 @@ export const toCommentDto = (comment: IPopulatedComment): CommentDto => {
     id: comment._id.toString(),
     owner: toUserDto(comment.owner),
     content: comment.content,
-    postId: comment.post.toString(),
+    postID: comment.post.toString(),
     createdAt: comment.createdAt,
     updatedAt: comment.updatedAt
   };

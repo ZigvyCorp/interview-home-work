@@ -4,7 +4,7 @@ import { CookieOptions, Request, Response } from "express";
 import * as jwt from "jsonwebtoken";
 import { createUser } from "@/repositories/user-repo";
 import { convertToMilliseconds } from "@/utils";
-import { MongoDocument } from "@/types";
+import { AuthenticatedRequest, MongoDocument } from "@/types";
 
 
 export const registerRequest = async (req: Request, res: Response) => {
@@ -21,7 +21,7 @@ export const loginRequest = async (req: Request, res: Response) => {
   const user = await User.findOne({ username: lowerCaseUsername });
   if (!user) {
     console.error("User not found");
-    res.status(404).json({ message: "User not found" });
+    res.status(401).json({ message: "Invalid credentials" });
     return;
   }
   const isMatch = await bcrypt.compare(password, user.passwordHash);
@@ -33,7 +33,11 @@ export const loginRequest = async (req: Request, res: Response) => {
   generateTokens(user, res);
   res.status(200).json({ message: "Logged in successfully" });
 };
-
+export const logoutRequest = async (req: Request, res: Response) => {
+  res.clearCookie("accessToken");
+  res.clearCookie("refreshToken");
+  res.status(200).json({ message: "Logged out successfully" });
+};
 export const refreshTokenRequest = async (req: Request, res: Response) => {
   const refreshToken = req.cookies.refreshToken;
   if (!refreshToken) {
@@ -72,3 +76,6 @@ const generateTokens = (user: IUser, res: Response) => {
   res.cookie("refreshToken", newRefreshToken, cookieOptions);
 };
 
+export const getLoggedUserRequest = (req: AuthenticatedRequest, res: Response) => {
+  res.status(200).json(req.user);
+};

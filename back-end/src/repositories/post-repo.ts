@@ -5,11 +5,19 @@ import { toPostDto } from "@/utils/to-post-dto";
 import { Types } from "mongoose";
 import populatePost from "@/utils/populate-post";
 
-export const getPosts = async () => {
-  const posts = await populatePost(Post.find({})).lean<IPopulatedPost[]>();
+export const getPosts = async ({ page, limit }: { page: number; limit: number }) => {
+  const skip = (page - 1) * limit;
+  const posts = await populatePost(Post.find({})
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit)
+  ).lean<IPopulatedPost[]>();
   return posts.map(toPostDto);
 };
-
+export const countPosts = async () => {
+  const count = await Post.countDocuments();
+  return count;
+}
 export const getPostByIdOrSlug = async (idOrSlug: string) => {
   let post;
   if (Types.ObjectId.isValid(idOrSlug)) {

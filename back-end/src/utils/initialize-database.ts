@@ -7,8 +7,11 @@ import Post from "@/models/post";
 import { slugify } from "@/utils/index";
 import { createPost, getPostByIdOrSlug } from "@/repositories/post-repo";
 import Comment, { IPopulatedComment } from "@/models/comment";
-import { createComment } from "@/repositories/comment-repo";
+import { createComment, getComments } from "@/repositories/comment-repo";
 import { CommentDto } from "@/models/dtos/comment-dto";
+import populateComment from "@/utils/populate-comment";
+import { Types } from "mongoose";
+import { toCommentDto } from "@/utils/to-comment-dto";
 
 type MockUser = (typeof mockUsers)[number];
 type MockPost = (typeof mockPosts)[number];
@@ -62,21 +65,19 @@ const initializeComment = async ({ mockComment, user, post }: {
   user: Awaited<ReturnType<typeof initializeUser>>,
   post: Awaited<ReturnType<typeof initializePost>>
 }) => {
-  const postFromDB = await getPostByIdOrSlug(post._id);
-  if (!postFromDB) return;
-  const commentsFromPost = postFromDB.comments;
-  let commentFromDB = commentsFromPost.find(x =>
-    x.content === mockComment.content
-    && x.owner.id === user._id.toString()
-    && x.postId === post._id.toString()
-  );
-  if (!commentFromDB) {
-    commentFromDB = await createComment({
+  const queryComment = await populateComment(Comment.findOne({
+    post: new Types.ObjectId(post._id),
+    content: mockComment.content,
+    owner: new Types.ObjectId(user._id)
+  }).sort({ createdAt: -1 }))
+    .lean<IPopulatedComment>();
+  if (!queryComment) {
+    const createdComment = await createComment({
       content: mockComment.content,
-      postId: post._id,
+      postID: post._id,
       owner: user._id
-    }) as CommentDto;
-    console.log(`Comment ${commentFromDB!.content.substring(0, 10)} created successfully`);
+    });
+    console.log(`Comment ${createdComment!.content.substring(0, 10)} created successfully`);
   }
   return {};
 };
