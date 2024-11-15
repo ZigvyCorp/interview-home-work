@@ -1,0 +1,9 @@
+{
+  "singleAttributePerLine": true,
+  "proseWrap": "preserve",
+  "endOfLine": "auto",
+  "bracketSameLine": true,
+  "quoteProps": "preserve",
+  "printWidth": 70,
+  "tabWidth": 2
+}
