@@ -3,6 +3,7 @@ import { map } from "lodash";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../utils/date.utils";
+import { IPosts } from "../../types/posts";
 
 const tagColors = [
   "magenta",
@@ -24,45 +25,39 @@ const getRandomTagColor = () => {
 };
 
 interface PostsCardProps {
-  post: {
-    id: number;
-    title: string;
-    owner: { name: string };
-    createdAt: string;
-    content: string;
-    tags: string[];
-  };
+  post: IPosts;
 }
 
-const PostsCard: React.FC<PostsCardProps> = ({ post }) => {
+const PostsCard: React.FC<PostsCardProps> = (props) => {
+  const { id, content, owner, tags, title, createdAt } = props.post;
   const navigate = useNavigate();
   return (
-    <div key={post.id}>
+    <div key={id}>
       <div className="flex justify-center">
         <h3
-          className="font-semibold text-2xl cursor-pointer"
+          className="font-semibold text-2xl cursor-pointer mb-4"
           onClick={() => {
-            navigate(`/posts/${post.id}`);
+            navigate(`/posts/${id}`);
           }}
         >
-          {post.title}
+          {title}
         </h3>
       </div>
       <div className="flex justify-between">
-        <div className="flex flex-col">
-          <span>Author: {post.owner.name}</span>
-          <span>Created at: {formatDate(post.createdAt)}</span>
+        <div className="flex flex-col w-1/2">
+          <span>Author: {owner?.name}</span>
+          <span>Created at: {formatDate(createdAt)}</span>
         </div>
-        <div>
-          {map(post.tags, (tag) => (
-            <Tag key={tag} color={getRandomTagColor()}>
+        <div className="w-1/2 flex items-center flex-wrap justify-end">
+          {map(tags, (tag, index) => (
+            <Tag key={index} color={getRandomTagColor()} className="mb-2">
               {tag}
             </Tag>
           ))}
         </div>
       </div>
       <div className="py-4">
-        <p>{post.content}</p>
+        <p>{content}</p>
       </div>
     </div>
   );

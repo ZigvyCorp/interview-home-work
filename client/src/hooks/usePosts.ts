@@ -8,3 +8,10 @@ export const usePostsById = (id: string) => {
     enabled: !!id,
   });
 };
+
+export const usePosts = () => {
+  return useQuery({
+    queryKey: ["posts"],
+    queryFn: () => postsApi.getAllPosts(),
+  });
+};

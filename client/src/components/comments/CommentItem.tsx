@@ -1,8 +1,7 @@
-import React from "react";
-
 import { Avatar } from "antd";
-import { formatDate } from "../../utils/date.utils";
+import React from "react";
 import { IComment } from "../../types/comment";
+import { calculateTimeAgo } from "../../utils/date.utils";
 
 interface ICommentItemProps {
   comment: IComment;
@@ -20,7 +19,7 @@ const CommentItem: React.FC<ICommentItemProps> = ({ comment }) => {
       <div>
         <div className="flex gap-4">
           <span>{comment?.owner?.name}</span>
-          <span>{formatDate(comment.createdAt)}</span>
+          <span>{calculateTimeAgo(comment.createdAt)}</span>
         </div>
         <div>
           <p>{comment.content}</p>

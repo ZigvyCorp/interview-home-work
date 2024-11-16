@@ -79,10 +79,19 @@ const PostsDetail: React.FC = () => {
       </div>
       <div>
         <Collapse
+          collapsible={
+            comments?.meta?.total && comments?.meta?.total > 0
+              ? "header"
+              : "disabled"
+          }
           items={[
             {
               key: "comments",
-              label: `${comments?.meta?.total || 0} replies`,
+              label: `${
+                comments?.meta?.total && comments?.meta?.total > 0
+                  ? `${comments?.meta?.total} replies`
+                  : `There are no comments for this article yet`
+              } `,
               children: (
                 <>
                   <List
