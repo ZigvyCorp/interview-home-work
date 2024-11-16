@@ -8,6 +8,7 @@ import { AppLoggerMiddleware } from './middlewares/logger/logger.middleware';
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { JwtModule } from '@nestjs/jwt';
+import { PostsModule } from './modules/posts/posts.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { JwtModule } from '@nestjs/jwt';
     }),
     UserModule,
     AuthModule,
+    PostsModule,
   ],
   controllers: [],
   providers: [],
