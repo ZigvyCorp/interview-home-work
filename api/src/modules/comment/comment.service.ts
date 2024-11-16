@@ -41,6 +41,23 @@ export class CommentService {
           id: payload.postId,
         },
       },
+      relations: {
+        owner: true,
+      },
+      select: {
+        id: true,
+        content: true,
+        createdAt: true,
+        updatedAt: true,
+        owner: {
+          id: true,
+          name: true,
+          username: true,
+          dob: true,
+          createdAt: true,
+          updatedAt: true,
+        },
+      },
       take,
       skip,
       order: {

@@ -17,11 +17,29 @@ export class PostsService {
   ) {}
 
   private async findPostById(id: string) {
-    return this.postRepo.findOne({
+    return await this.postRepo.findOne({
       where: {
         id,
       },
-      relations: ['owner'],
+      relations: {
+        owner: true,
+      },
+      select: {
+        id: true,
+        title: true,
+        content: true,
+        tags: true,
+        owner: {
+          id: true,
+          dob: true,
+          name: true,
+          createdAt: true,
+          updatedAt: true,
+          username: true,
+        },
+        createdAt: true,
+        updatedAt: true,
+      },
     });
   }
 
@@ -54,6 +72,25 @@ export class PostsService {
                 title: ILike(`%${search}%`),
               }
             : {}),
+        },
+        relations: {
+          owner: true,
+        },
+        select: {
+          id: true,
+          title: true,
+          content: true,
+          tags: true,
+          owner: {
+            id: true,
+            dob: true,
+            name: true,
+            createdAt: true,
+            updatedAt: true,
+            username: true,
+          },
+          createdAt: true,
+          updatedAt: true,
         },
         order: {
           createdAt: 'desc',
@@ -99,13 +136,13 @@ export class PostsService {
 
   async updatePosts(payload: IUpdatePosts) {
     try {
-      const post = await this.findPostById(payload.id);
-      if (!post) {
+      const posts = await this.findPostById(payload.id);
+      if (!posts) {
         throw new NotFoundException('Post not found');
       }
       const checkOwnership = await this.checkPostsOwnership({
         userId: payload.userId,
-        ownerId: post.owner.id,
+        ownerId: posts.owner.id,
       });
       if (!checkOwnership) {
         throw new UnauthorizedException('You are not the owner of this post');
@@ -130,13 +167,13 @@ export class PostsService {
 
   async deletePosts({ id, userId }: { id: string; userId: string }) {
     try {
-      const post = await this.findPostById(id);
-      if (!post) {
+      const posts = await this.findPostById(id);
+      if (!posts) {
         throw new NotFoundException('Post not found');
       }
       const checkOwnership = await this.checkPostsOwnership({
         userId,
-        ownerId: post.owner.id,
+        ownerId: posts.owner.id,
       });
       if (!checkOwnership) {
         throw new UnauthorizedException('You are not the owner of this post');
