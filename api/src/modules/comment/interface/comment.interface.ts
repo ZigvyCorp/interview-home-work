@@ -3,3 +3,9 @@ export interface ICreateComment {
   ownerId: string;
   content: string;
 }
+
+export interface IUpdateComment {
+  id: string;
+  userId: string;
+  content: string;
+}

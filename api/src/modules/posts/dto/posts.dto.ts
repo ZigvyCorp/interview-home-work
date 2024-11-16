@@ -19,7 +19,7 @@ export class CreatePostsDto {
   @IsNotEmpty()
   content: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     description: 'The tags of the post',
     example: ['tag1', 'tag2'],
   })

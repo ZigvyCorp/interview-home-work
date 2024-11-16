@@ -10,3 +10,5 @@ export class CreateCommentToPostsDto {
   @IsNotEmpty()
   content: string;
 }
+
+export class UpdateCommentDto extends CreateCommentToPostsDto {}

@@ -4,7 +4,7 @@ import { CommentEntity } from './entity/comment.entity';
 import { Repository } from 'typeorm';
 import { IGetAllCommentByPostId } from '../posts/interface/posts.interface';
 import { getQueryParamsResult } from 'src/utils/pagination.util';
-import { ICreateComment } from './interface/comment.interface';
+import { ICreateComment, IUpdateComment } from './interface/comment.interface';
 
 @Injectable()
 export class CommentService {
@@ -19,6 +19,20 @@ export class CommentService {
         id,
       },
       relations: ['owner'],
+      select: {
+        id: true,
+        content: true,
+        createdAt: true,
+        updatedAt: true,
+        owner: {
+          id: true,
+          name: true,
+          username: true,
+          dob: true,
+          createdAt: true,
+          updatedAt: true,
+        },
+      },
     });
   }
 
@@ -28,6 +42,17 @@ export class CommentService {
     }
 
     return false;
+  }
+
+  async getCommentById(id: string) {
+    const data = await this.findCommentById(id);
+    if (!data) {
+      throw new NotFoundException('Comment not found');
+    }
+    return {
+      data,
+      message: 'success',
+    };
   }
 
   async getAllCommentByPostsId(payload: IGetAllCommentByPostId) {
@@ -89,6 +114,28 @@ export class CommentService {
     return {
       data,
       message: 'created successfully',
+    };
+  }
+
+  async updateComment(payload: IUpdateComment) {
+    const { id, userId, content } = payload;
+    const comment = await this.findCommentById(id);
+    if (!comment) {
+      throw new NotFoundException('Comment not found');
+    }
+    const checkOwnership = this.checkCommentOwnership({
+      ownerId: comment.owner.id,
+      userId,
+    });
+    if (!checkOwnership) {
+      throw new NotFoundException('You are not the owner of this comment');
+    }
+
+    await this.commentRepo.update(id, {
+      content,
+    });
+    return {
+      message: 'updated successfully',
     };
   }
 
