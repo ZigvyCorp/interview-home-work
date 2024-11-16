@@ -1,18 +1,20 @@
-import React, { useEffect } from "react";
-import postsApi from "./api/posts.api";
+import { Suspense } from "react";
+import MainRoutes from "./routes";
+import { Spin } from "antd";
 
-const App: React.FC = () => {
-  useEffect(() => {
-    async function fetchData() {
-      const data = await postsApi.getAllPosts();
-      console.log("🚀 ~ fetchData ~ data:", data);
-    }
-    fetchData();
-  }, []);
+const App = () => {
   return (
-    <section>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    </section>
+    <main className="overflow-x-hidden">
+      <Suspense
+        fallback={
+          <div className="flex justify-center items-center h-screen">
+            <Spin />
+          </div>
+        }
+      >
+        <MainRoutes />
+      </Suspense>
+    </main>
   );
 };
 
