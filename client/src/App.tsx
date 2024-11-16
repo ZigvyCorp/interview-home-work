@@ -1,6 +1,6 @@
+import { Spin } from "antd";
 import { Suspense } from "react";
 import MainRoutes from "./routes";
-import { Spin } from "antd";
 
 const App = () => {
   return (

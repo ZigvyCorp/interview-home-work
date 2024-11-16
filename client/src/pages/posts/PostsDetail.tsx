@@ -12,8 +12,8 @@ import { IComment, ICreateComment } from "../../types/comment";
 
 const PostsDetail: React.FC = () => {
   const { id } = useParams();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [pageSize, setPageSize] = useState<number>(10);
   const [form] = Form.useForm();
   const { data: posts } = usePostsById(id as string);
   const {
@@ -31,7 +31,7 @@ const PostsDetail: React.FC = () => {
     setPageSize(size);
   };
 
-  const createComment = useMutation({
+  const createCommentMutate = useMutation({
     mutationFn: (values: ICreateComment) => {
       return postsApi.createComment(id as string, values.content);
     },
@@ -46,14 +46,14 @@ const PostsDetail: React.FC = () => {
   });
 
   const onSubmitComment = (values: ICreateComment) => {
-    createComment.mutate(values);
+    createCommentMutate.mutate(values);
   };
 
   return (
     <div className="p-4">
       <div>{posts ? <PostsCard post={posts.data} /> : "Loading..."}</div>
       <div>
-        <Form form={form} onFinish={onSubmitComment}>
+        <Form name="create comment" form={form} onFinish={onSubmitComment}>
           <Form.Item
             name="content"
             rules={[
@@ -96,9 +96,7 @@ const PostsDetail: React.FC = () => {
                 <>
                   <List
                     loading={isLoading}
-                    dataSource={
-                      Array.isArray(comments?.data) ? comments.data : []
-                    }
+                    dataSource={comments?.data || []}
                     renderItem={(comment: IComment) => (
                       <CommentItem comment={comment} />
                     )}

@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import postsApi from "../api/posts.api";
+import { IGetAllPosts } from "../types/posts";
 
 export const usePostsById = (id: string) => {
   return useQuery({
@@ -9,9 +10,14 @@ export const usePostsById = (id: string) => {
   });
 };
 
-export const usePosts = () => {
+export const usePosts = (payload: IGetAllPosts) => {
   return useQuery({
-    queryKey: ["posts"],
-    queryFn: () => postsApi.getAllPosts(),
+    queryKey: ["posts", payload.page, payload.limit, payload.search],
+    queryFn: () =>
+      postsApi.getAllPosts({
+        page: payload.page,
+        limit: payload.limit,
+        search: payload.search,
+      }),
   });
 };

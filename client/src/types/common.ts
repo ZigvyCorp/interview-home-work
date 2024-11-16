@@ -7,3 +7,9 @@ export interface ListResponse<T> {
   };
   message?: string;
 }
+
+export interface IQueryParams {
+  page?: number;
+  limit?: number;
+  search?: string;
+}

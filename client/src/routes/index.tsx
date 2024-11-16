@@ -1,8 +1,9 @@
 import { size } from "lodash";
 import React, { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
+import Login from "../pages/login/Login";
 
-const HomePage = lazy(() => import("../pages/home/HomePage"));
+const Home = lazy(() => import("../pages/home/Home"));
 const PostsDetail = lazy(() => import("../pages/posts/PostsDetail"));
 
 interface TRoute {
@@ -15,12 +16,17 @@ interface TRoute {
 const routes: TRoute[] = [
   {
     path: "/",
-    element: HomePage,
+    element: Home,
     layout: null,
   },
   {
     path: "/posts/:id",
     element: PostsDetail,
+    layout: null,
+  },
+  {
+    path: "/login",
+    element: Login,
     layout: null,
   },
 ];

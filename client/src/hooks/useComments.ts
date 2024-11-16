@@ -12,7 +12,12 @@ export const useCommentsByPosts = ({
 }) => {
   return useQuery({
     queryKey: ["comments", id, page, limit],
-    queryFn: () => postsApi.getAllCommentByPostsId(id, page, limit),
+    queryFn: () =>
+      postsApi.getAllCommentByPostsId({
+        postId: id,
+        page,
+        limit,
+      }),
     enabled: !!id,
   });
 };
