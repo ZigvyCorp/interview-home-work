@@ -9,6 +9,7 @@ import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { JwtModule } from '@nestjs/jwt';
 import { PostsModule } from './modules/posts/posts.module';
+import { CommentModule } from './modules/comment/comment.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { PostsModule } from './modules/posts/posts.module';
     UserModule,
     AuthModule,
     PostsModule,
+    CommentModule,
   ],
   controllers: [],
   providers: [],

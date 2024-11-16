@@ -2,15 +2,18 @@ import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/co
 import { InjectRepository } from '@nestjs/typeorm';
 import { ILike, Repository } from 'typeorm';
 import { PostsEntity } from './entity/posts.entity';
-import { ICreatePosts, IUpdatePosts } from './interface/posts.interface';
+import { ICreatePosts, IGetAllCommentByPostId, IUpdatePosts } from './interface/posts.interface';
 import { IQueryParams } from 'src/common/interface/common.interface';
 import { getQueryParamsResult } from 'src/utils/pagination.util';
+import { CommentService } from '../comment/comment.service';
+import { ICreateComment } from '../comment/interface/comment.interface';
 
 @Injectable()
 export class PostsService {
   constructor(
     @InjectRepository(PostsEntity)
     private readonly postRepo: Repository<PostsEntity>,
+    private readonly commentService: CommentService,
   ) {}
 
   private async findPostById(id: string) {
@@ -25,7 +28,9 @@ export class PostsService {
   async createPosts(payload: ICreatePosts) {
     try {
       const data = await this.postRepo.save({
-        ...payload,
+        title: payload.title,
+        content: payload.content,
+        tags: payload.tags,
         owner: {
           id: payload.ownerId,
         },
@@ -145,5 +150,28 @@ export class PostsService {
     } catch (error) {
       throw error;
     }
+  }
+
+  async getAllCommentByPostsId(payload: IGetAllCommentByPostId) {
+    const { postId, page, limit } = payload;
+    const { data, meta } = await this.commentService.getAllCommentByPostsId({
+      postId,
+      page,
+      limit,
+    });
+    return {
+      data,
+      meta: {
+        page: meta.page,
+        limit: meta.limit,
+        total: meta.total,
+      },
+      message: 'success',
+    };
+  }
+
+  async createCommentToPosts(payload: ICreateComment) {
+    const { postId, ownerId, content } = payload;
+    return this.commentService.createComment({ postId, ownerId, content });
   }
 }

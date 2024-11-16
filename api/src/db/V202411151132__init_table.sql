@@ -19,18 +19,15 @@ create table "posts" (
   "content" text not null,
   "tags" jsonb ,
   "created_at" timestamp not null default current_timestamp,
-  "updated_at" timestamp not null default current_timestamp,
-   CONSTRAINT fk_posts_owner FOREIGN KEY ("owner_id") REFERENCES "user"("id") ON DELETE CASCADE
+  "updated_at" timestamp not null default current_timestamp
 );
 
 
 create table comments (
   "id" uuid primary key default uuid_generate_v4(),
   "owner_id" uuid references "user"("id") not null,
-  "post_id" uuid references "posts"("id") not null,
+  "post_id" uuid references "posts"("id") on delete cascade not null,
   "content" text not null,
   "created_at" timestamp not null default current_timestamp,
-  "updated_at" timestamp not null default current_timestamp,
-  CONSTRAINT fk_comment_owner FOREIGN KEY ("owner_id") REFERENCES "user"("id") ON DELETE CASCADE,
-  CONSTRAINT fk_comment_posts FOREIGN KEY ("post_id") REFERENCES "posts"("id") ON DELETE CASCADE
+  "updated_at" timestamp not null default current_timestamp
 );

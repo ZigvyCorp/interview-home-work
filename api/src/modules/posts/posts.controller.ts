@@ -1,11 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, Query, Request, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
-import { FetchByIdDto } from 'src/common/dto/common.dto';
+import { FetchByIdDto, QueryParamsDto } from 'src/common/dto/common.dto';
 import { AuthGuard } from 'src/common/guards/auth.guard';
 import { IRequestAuth } from '../auth/interface/auth.interface';
 import { IVerifyUser } from '../user/interface/user.interface';
 import { CreatePostsDto, GetAllPostsDto } from './dto/posts.dto';
 import { PostsService } from './posts.service';
+import { CreateCommentToPostsDto } from '../comment/dto/comment.dto';
 
 @Controller('posts')
 export class PostsController {
@@ -62,6 +63,33 @@ export class PostsController {
     return this.postsService.deletePosts({
       id: params.id,
       userId: req.user.id,
+    });
+  }
+
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Fetch all comments related to a post' })
+  @Get(':id/comments')
+  getAllCommentsByPostsId(@Param() params: FetchByIdDto, @Query() queryParams: QueryParamsDto) {
+    return this.postsService.getAllCommentByPostsId({
+      postId: params.id,
+      ...queryParams,
+    });
+  }
+
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Create a comment to a post' })
+  @Post(':id/comments')
+  createCommentToPost(
+    @Param() params: FetchByIdDto,
+    @Body() payload: CreateCommentToPostsDto,
+    @Request() req: IRequestAuth<IVerifyUser>,
+  ) {
+    return this.postsService.createCommentToPosts({
+      ...payload,
+      postId: params.id,
+      ownerId: req.user.id,
     });
   }
 }
