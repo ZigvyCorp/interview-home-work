@@ -1,3 +1,4 @@
+import { IComment } from "./comment";
 import { IQueryParams } from "./common";
 import { IUser } from "./user";
 
@@ -9,6 +10,7 @@ export interface IPosts {
   createdAt: string;
   updatedAt: string;
   owner?: IUser;
+  comments?: IComment[];
 }
 
 export interface IGetAllCommentByPostsId extends IQueryParams {

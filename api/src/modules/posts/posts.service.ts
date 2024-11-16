@@ -75,6 +75,9 @@ export class PostsService {
         },
         relations: {
           owner: true,
+          comments: {
+            owner: true,
+          },
         },
         select: {
           id: true,
@@ -88,6 +91,20 @@ export class PostsService {
             createdAt: true,
             updatedAt: true,
             username: true,
+          },
+          comments: {
+            id: true,
+            content: true,
+            createdAt: true,
+            updatedAt: true,
+            owner: {
+              id: true,
+              name: true,
+              username: true,
+              dob: true,
+              createdAt: true,
+              updatedAt: true,
+            },
           },
           createdAt: true,
           updatedAt: true,

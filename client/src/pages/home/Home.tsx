@@ -1,4 +1,4 @@
-import { Divider, Form, Input } from "antd";
+import { Collapse, Divider, Form, Input, List } from "antd";
 import { map, size } from "lodash";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,8 @@ import CustomPagination from "../../components/pagination/CustomPagination";
 import PostsCard from "../../components/posts/PostCard";
 import { usePosts } from "../../hooks/usePosts";
 import { IPosts } from "../../types/posts";
+import CommentItem from "../../components/comments/CommentItem";
+import { IComment } from "../../types/comment";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -62,15 +64,44 @@ const Home: React.FC = () => {
           Logout
         </span>
       </div>
-
       {map(posts?.data, (post: IPosts, index: number) => (
         <React.Fragment key={post.id}>
           <PostsCard post={post} />
+          <div className="">
+            <Collapse
+              collapsible={
+                post?.comments && post?.comments?.length > 0
+                  ? "header"
+                  : "disabled"
+              }
+              items={[
+                {
+                  key: "comments",
+                  label: `${
+                    post?.comments && post?.comments?.length > 0
+                      ? `${post?.comments?.length} replies`
+                      : `There are no comments for this article yet`
+                  } `,
+                  children: (
+                    <>
+                      <List
+                        loading={isLoading}
+                        dataSource={post.comments || []}
+                        renderItem={(comment: IComment) => (
+                          <CommentItem comment={comment} />
+                        )}
+                      />
+                    </>
+                  ),
+                },
+              ]}
+            />
+          </div>
           {index < size(posts.data) - 1 && <Divider className="bg-black" />}
         </React.Fragment>
       ))}
       {posts?.meta.total > 0 && (
-        <div className="flex justify-end">
+        <div className="flex justify-end mt-4">
           <CustomPagination
             pageSize={pageSize}
             currentPage={currentPage}

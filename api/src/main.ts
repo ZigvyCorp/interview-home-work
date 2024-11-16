@@ -1,10 +1,10 @@
-import { HttpAdapterHost, NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { NestExpressApplication } from '@nestjs/platform-express';
 import { ConfigService } from '@nestjs/config';
-import { LoggerService } from './modules/logger/logger.service';
+import { HttpAdapterHost, NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './common/exception-filter/all-exception.filter';
 import { setupSwagger } from './configs/swagger.config';
+import { LoggerService } from './modules/logger/logger.service';
 
 async function bootstrap() {
   const app: NestExpressApplication = await NestFactory.create(AppModule);
@@ -14,7 +14,6 @@ async function bootstrap() {
   const port: number = config.get<number>('PORT');
   const loggerService = app.get(LoggerService);
   const nodeEnv: string = config.get<string>('NODE_ENV');
-
   app.setGlobalPrefix('v1/api');
 
   app.enableCors({
