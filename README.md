@@ -1,123 +1,69 @@
-# Full-Stack JavaScript Developer Technical Assessment
-# BLOG PLATFORM
+## General
 
-# Project Brief:
-You are tasked with developing a blog platform with simple CRUD functionality for posts and comments. Users should be able to view posts, search for posts, view post details, and manage comments. The platform must be built with a modern tech stack, ensuring best practices in both frontend and backend development.
+- After starting the backend, open ${BASE_URL}/v1/api/docs to run the API. First, create a user → log in → create a post to generate test data.
 
-# Objective:
-To assess your ability to develop a full-stack JavaScript application using modern frameworks and best practices. This assignment should take no more than 6-8 hours to complete, but you are encouraged to focus on quality over quantity.
+## Technologies Used
 
-# Project Requirements:
-## Frontend:
-### General:
-  - React with **React Query** for data fetching and state management.
-  - Use either **Ant Design** or **Bootstrap** for UI components.
-  - Use **Tailwind** CSS is a plus.
-  - Use **react-hook-form** or **tanstack/form** or **formik** is a plus.
-  - Must use **React Router** for page navigation.
-  - Design must be responsive for **mobile** and **desktop** views.
-  - **TypeScript** is needed.
+- Frontend:
+  - Framework: ReactJS
+  - Routing: React Router DOM
+  - Styling: TailwindCSS, Ant Design (Antd)
+  - State Management: React Query
+  - HTTP Client: Axios
+- Backend:
+  - NestJS
+- Database:
+  - PostgreSQL
 
-### Tasks:
-  1. Homepage:
-     - Display a list of posts, with each post showing:
-        - Author name.
-        - Date of creation (you can mock this).
-        - Title.
-        - A truncated summary of the post's content (100 characters).
-        - Comment count (collapsed by default).
-        - Ability to search for posts by title.
-        - Implement pagination or infinite scroll for the list of posts.
+## Frontend Features
 
-  2. Post Detail Page:
-     - Clicking on a post should navigate to the post detail page.
-     - Display the post's full content, author, and date.
-     - Show all the comments for that post in an expandable section.
-     - Implement a form to add a new comment (bonus: use optimistic UI updates).
+    - Login: Users can log in to access the application.
+    - Homepage
+      - Displays a list of posts.
+      - Includes search functionality to filter posts by title.
+      - Supports pagination.
+    - Post Details Page
+      - Displays detailed information about a specific post.
+      - Shows comments on the post with pagination.
+      - Allows users to add comments to the post.
 
-  4. Client-Side Caching: (OPTIONAL)
-     - Use React Query to cache fetched data (such as posts and comments).
-     - Ensure that the data is fetched from the backend and properly cached in memory, reducing redundant network calls.
+## Backend Features
 
-  6. Form Validation:
-     - Implement basic form validation when adding comments (e.g., required fields).
+    - User Management:
+      - Create a new user.
+      - User login functionality.
+    - Post Management:
+      - Create posts.
+      - List all posts with pagination.
+      - Retrieve detailed information about a specific post.
+      - Update a post (only if the post was created by the logged-in user).
+      - Delete a post (only if the post was created by the logged-in user).
+    - Comment Management:
+      - Add comments to a post
+      - List all comments for a specific post with pagination.
+      - Retrieve detailed information about a specific comment.
+      - Update a comment (only if the comment was created by the logged-in user).
+      - Delete a comment (only if the comment was created by the logged-in user).
 
-### Bonus: (OPTIONAL)
-  - Implement optimistic updates for adding comments (i.e., show the comment immediately, even before the server confirms the action).
-  - Use local storage to persist the state of the application between page reloads.
+## Run Backend
 
+- Install the tool to run PostgreSQL (if not already installed).
+- Create a database named `blog-zigvy`.
+- Run the SQL script to create the tables located in the `api/src/db` folder.
+- Navigate to the `api` directory.
+- Create a `.env` file with the variables from the `.env.example` file.
+  - **Note**: In the `.env` file, make sure to update the `DB_URL` variable with your local PostgreSQL connection details:
+    ```
+    DB_URL=postgresql://${username}:${password}@localhost:5432/blog-zigvy?schema=public
+    ```
+    Ensure that the database URL matches your local setup.
+- Run the command: `yarn` or `npm install`.
+- After installing the necessary libraries, run the command: `yarn start:dev`.
+- After successfully running the backend, access `${BASE_URL}/v1/api/docs` to view the backend documentation.
 
-## Backend:
-### General:
-  - Backend must be built using either Nest.js or Express.js.
-  - Database must be MongoDB or PostgreSQL.
-  - API must follow RESTful principles and be well-structured (modular).
-  - Handle typical CRUD operations for posts and comments.
-  - **TypeScript** is needed.
+## Run Frontend
 
-### Tasks:
-  1. Posts API:
-     - Implement the following endpoints:
-     - `GET /posts`: Fetch a list of all posts with pagination support.
-     - `GET /posts/:id`: Fetch a single post by its ID.
-     - `POST /posts`: Create a new post (only title and content required).
-     - `PUT /posts/:id`: Update a post.
-     - `DELETE /posts/:id`: Delete a post.
-
-  3. Comments API:
-     - Implement the following endpoints:
-     - `GET /posts/:id/comments`: Fetch all comments related to a post.
-     - `POST /posts/:id/comments`: Add a new comment to a post.
-     - `DELETE /comments/:id`: Delete a comment.
-
-  5. API Error Handling:
-     - Ensure that the API handles errors gracefully:
-     - 404 for not found resources.
-     - 400 for bad requests.
-     - 500 for internal server errors.
-
-  7. API Pagination:
-     - Ensure that `GET /posts` and `GET /posts/:id/comments` support pagination.
-
-  9. Testing: (OPTIONAL)
-     - Write unit tests for the core API functionality (e.g., Jest).
-     - Bonus: Write integration tests for API endpoints.
-
-### Bonus: (OPTIONAL)
-  - Add rate-limiting to the API endpoints (to simulate production-like scenarios).
-  - Implement authentication for the backend (JWT-based) and protect sensitive API routes (e.g., creating or deleting posts).
-
-
-# Technical Expectations:
-## Frontend Requirements:
-  - Use React and React Query to manage data fetching and state.
-  - Use either Ant Design or Bootstrap for styling and UI components.
-  - Implement pagination or infinite scrolling for posts.
-  - Ensure proper routing using React Router.
-  - Provide search functionality for posts.
-  - Follow best practices for component-based architecture.
-
-## Backend Requirements:
-  - Use Nest.js or Express.js to build a RESTful API.
-  - CRUD operations for posts and comments must be fully implemented.
-  - Ensure proper error handling and API pagination.
-  - Must follow best practices for API design and MVC architecture.
-
-## General:
-  - Write clean, maintainable, and well-documented code.
-  - Provide a clear README explaining how to run the project, install dependencies, and run tests.
-  - The project must be hosted in a Git repository, with clear commit messages.
-  
-## <span style="color: red;">Submission Process: IMPORTANT!!! - GUIDELINES MUST BE FOLLOWED</span>
-  - **Fork** the provided GitHub repository.
-  - **Create** a new **branch** from the **forked repo** following the naming convention **yourname_2024**.
-  - Complete the tasks and make frequent commits to the **forked repo** (we want to see your workflow).
-  - Push your branch and create a Pull Request and point to the original repository.
-  - Send the PR link to us via email to notify us of your submission.
-
-## Evaluation Criteria:
-  - Code Quality: Is your code clean, modular, and well-documented?
-  - Problem-Solving: How well did you handle the requirements? Did you approach each problem logically and efficiently?
-  - Tech Stack Familiarity: Are you proficient in React, React Query, Nest.js/Express.js, and database management?
-  - Error Handling: Does your application handle errors gracefully (both on frontend and backend)?
-  - Bonus: Extra features like optimistic updates, authentication, or rate-limiting will add extra points.
+- Navigate to the `client` directory.
+- Create a `.env` file with the variables from the `.env.example` file.
+- Run the command: `yarn` or `npm install`.
+- After installing the necessary libraries, run the command: `yarn dev`.
