@@ -17,7 +17,7 @@ create table "posts" (
   "owner_id" uuid references "user"("id") not null,
   "title" varchar(255) not null,
   "content" text not null,
-  "tags" jsonb ,
+  "tags" jsonb,
   "created_at" timestamp not null default current_timestamp,
   "updated_at" timestamp not null default current_timestamp
 );

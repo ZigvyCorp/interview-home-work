@@ -12,9 +12,4 @@ export class UserController {
   create(@Body() payload: CreateUserDto) {
     return this.userService.create(payload);
   }
-
-  @Get('test')
-  test() {
-    return 'test';
-  }
 }

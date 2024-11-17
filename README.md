@@ -1,3 +1,50 @@
+## General
+
+- Sau khi chạy được backend thì mở `${BASE_URL}/v1/api/docs` chạy api tạo user trước ---> login ---> tạo bài viết để có data test
+
+## Technologies Used
+
+- Frontend:
+  - Framework: ReactJS
+  - Routing: React Router DOM
+  - Styling: TailwindCSS, Ant Design (Antd)
+  - State Management: React Query
+  - HTTP Client: Axios
+- Backend:
+  - NestJS
+- Database:
+  - PostgreSQL
+
+## Frontend Features
+
+    - Login: Users can log in to access the application.
+    - Homepage
+      - Displays a list of posts.
+      - Includes search functionality to filter posts by title.
+      - Supports pagination.
+    - Post Details Page
+      - Displays detailed information about a specific post.
+      - Shows comments on the post with pagination.
+      - Allows users to add comments to the post.
+
+## Backend Features
+
+    - User Management:
+      - Create a new user.
+      - User login functionality.
+    - Post Management:
+      - Create posts.
+      - List all posts with pagination.
+      - Retrieve detailed information about a specific post.
+      - Update a post (only if the post was created by the logged-in user).
+      - Delete a post (only if the post was created by the logged-in user).
+    - Comment Management:
+      - Add comments to a post
+      - List all comments for a specific post with pagination.
+      - Retrieve detailed information about a specific comment.
+      - Update a comment (only if the comment was created by the logged-in user).
+      - Delete a comment (only if the comment was created by the logged-in user).
+
 ## Run Backend
 
 - Install the tool to run PostgreSQL (if not already installed).
