@@ -1,6 +1,6 @@
 ## General
 
-- Sau khi chạy được backend thì mở `${BASE_URL}/v1/api/docs` chạy api tạo user trước ---> login ---> tạo bài viết để có data test
+- After starting the backend, open ${BASE_URL}/v1/api/docs to run the API. First, create a user → log in → create a post to generate test data.
 
 ## Technologies Used
 
