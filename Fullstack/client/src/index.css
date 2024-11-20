@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,600;1,100;1,300;1,400;1,600&display=swap");
+
+input:focus ~ .input-text,
+input:not(:placeholder-shown) ~ .input-text {
+  @apply text-blue-500 transform translate-x-[5px] translate-y-[-19px];
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: gray !important;
+  transition: all 0.5s;
+}
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  color: black !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: white !important;
+}
