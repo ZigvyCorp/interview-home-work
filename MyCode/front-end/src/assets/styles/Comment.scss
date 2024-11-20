@@ -1,0 +1,15 @@
+.comment-card {
+    margin-top: 20px;
+
+    &:first-child {
+        margin-top: 50px;
+    }
+
+    .comment-body {
+        display: flex;
+        gap: 20px;
+        .detail{
+           text-align: left;
+        }
+    }
+}
