@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('layouts/header') -%>
+
+    <body>
+        <!-- Navigation-->
+        <%- include('layouts/navbar') -%>
+            <!-- Page Header-->
+            <header class="py-5 bg-light border-bottom mb-4">
+                <div class="container">
+                    <div class="text-center my-5">
+                        <h1 class="fw-bolder">Create New Post</h1>
+                    </div>
+                </div>
+            </header>
+            <!-- Main Content-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-md-10 mx-auto">
+                        <form action="/posts/store" method="post">
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls">
+                                    <lable>Title</lable>
+                                    <input type="text" class="form-control" placeholder="Title" name="title" id="title">
+                                </div>
+                            </div>
+                            </br>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls">
+                                    <lable>Content</lable>
+                                    <textarea class="form-control" id="content" placeholder="Content" name="content"
+                                        rows="10"></textarea>
+                                </div>
+                            </div>
+                            </br>
+                            <div class="control-group">
+                                <div class="form-group floating-label-form-group controls">
+                                    <lable>Tags (Separated by commas)</lable>
+                                    <input type="text" class="form-control" placeholder="Tags list" name="tags" id="tags">
+                                </div>
+                            </div>
+                            </br>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" id="sendDataButton">Create</button>
+                            </div>
+                        </form>
+                        </br>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer-->
+            <%- include('layouts/footer') -%>
+                <!-- Bootstrap core JS-->
+                <%- include('layouts/scripts') -%>
+    </body>
+
+</html>
