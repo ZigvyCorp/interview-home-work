@@ -1,0 +1,5 @@
+{
+    "evn": {
+        "JWT_KEY": "secret"
+    }
+}
