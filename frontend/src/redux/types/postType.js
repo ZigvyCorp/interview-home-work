@@ -1,0 +1,3 @@
+export const POST_FETCH = "POST_FETCH";
+export const POST_FETCH_SUCCESS = "POST_FETCH_SUCCESS";
+export const POST_FETCH_FAILED = "POST_FETCH_FAILED";
