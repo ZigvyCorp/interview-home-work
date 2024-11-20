@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family:"Lora-Regular";
+  --co-main: #88CA5E;
+  --co-title-highlight: #21bd2e;
+  --co-title: #253A17;
+
+}
+
+@font-face {
+  font-family:"Lora-Regular";
+  src:url(./fonts/Lora-Regular.ttf)
+}
+
+@font-face {
+  font-family:"Jost-Bold";
+  src:url(./fonts/Jost-Bold.ttf)
+}
+
+.page{
+  margin: 0 11rem;
+  padding-top: 3rem;
+  box-shadow: 6px 0 40px -4px rgba(201, 196, 196, 0.8), -6px 0 40px -4px rgb(201, 196, 196, 0.8);
+}
