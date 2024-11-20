@@ -1,0 +1,52 @@
+.post-item{
+  width: 100%;
+  
+  &:not(:first-child){
+    margin-top: 32px;
+  }
+  
+  &:not(:last-child){
+    border-bottom: 1px solid #525252;
+  }
+  .post-item__title{
+    color: var(--text-color);
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  .post-item__info{
+    display: flex;
+    justify-content: space-between;
+
+    .ant-typography{
+      text-align: left;
+      color: var(--text-color);
+      font-size: 16px;
+      margin-bottom: .5rem;
+    }
+    
+    .post-info__author{
+      justify-content: flex-start;
+    }
+  }
+
+  .post-item__body{
+
+    .ant-typography{
+      text-align: start;
+      color: var(--text-color);
+      font-size: 22px;
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  .post-item__comment{
+    margin-bottom: 1rem;
+    margin-left: 8px;
+    .ant-typography {
+      color: var(--text-color);
+      font-size: 16px;
+    }
+  }
+}
