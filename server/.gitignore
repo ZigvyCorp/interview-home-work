@@ -1,0 +1,8 @@
+# Ignore node_modules (dependencies)
+node_modules/
+
+# Ignore logs, build artifacts, and other generated files
+logs/
+dist/
+.env
+.DS_Store
