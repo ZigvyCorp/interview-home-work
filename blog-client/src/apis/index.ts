@@ -1,0 +1,1 @@
+export * as postApi from "./post"
