@@ -1,0 +1,16 @@
+.header.ant-layout-header {
+	padding: 0;
+	background-color: #ffffff;
+	width: 100%;
+	position: relative;
+
+	> ul {
+		padding-left: 50px;
+	}
+
+	.ant-input-search {
+		position: absolute;
+		top: 16px;
+		right: 50px;
+	}
+}

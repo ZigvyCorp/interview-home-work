@@ -1,0 +1,27 @@
+.custom-collapse {
+	&.ant-collapse {
+		background-color: unset;
+		border: unset;
+
+		.ant-collapse-item.ant-collapse-no-arrow {
+			border: unset;
+			.ant-collapse-header {
+				padding: 0 0 12px;
+				border-bottom: 1px solid #d9d9d9;
+			}
+
+			.ant-collapse-content {
+				border-top: unset;
+				.ant-collapse-content-box {
+					padding: 12px 0;
+				}
+			}
+		}
+
+		.ant-collapse-item-disabled {
+			.ant-collapse-header {
+				cursor: unset;
+			}
+		}
+	}
+}
