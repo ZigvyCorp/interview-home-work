@@ -1,0 +1,30 @@
+.header {
+    height: 50px;
+    & .left-header, & .right-header, .middle-header {
+        border: 2px solid black;
+        display: flex;
+        align-items: center;
+    }
+    & .middle-header {
+        justify-content: center;
+        background-color: rgb(209, 208, 208);
+    }
+    & .right-header {
+        justify-content: end;
+        & .name-user {
+            margin: 0px 20px;
+        }
+    }
+}
+.after-header {
+    width: 100% ;
+    display: flex;
+    justify-content: center;
+    & .item {
+        width: 0;
+        height: 0;
+        border-top: 10px solid rgb(209, 208, 208);
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+    }
+}
