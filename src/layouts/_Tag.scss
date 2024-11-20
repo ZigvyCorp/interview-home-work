@@ -1,0 +1,16 @@
+.tag {
+    border: 1px solid;
+    padding: 1px 8px;
+    border-radius: 5px;
+    margin-right: 20px;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background-color: currentColor;
+        opacity: 0.08;
+    }
+}
