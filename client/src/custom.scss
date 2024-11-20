@@ -1,0 +1,19 @@
+$light: #e6e6e6;
+$primary: #8c8c8c;
+
+@import '~bootstrap/scss/_functions.scss';
+@import '~bootstrap/scss/_variables.scss';
+
+$custom-spacers: (
+	6: $spacer * 10,
+);
+
+$spacers: map-merge($custom-spacers, $spacers);
+
+$custom-theme-colors: (
+	'custom': $light,
+);
+
+$theme-colors: map-merge($theme-colors, $custom-theme-colors);
+
+@import '~bootstrap/scss/bootstrap.scss';
