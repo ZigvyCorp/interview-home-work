@@ -1,0 +1,79 @@
+.username {
+  display: flex;
+  align-items: center;
+}
+
+.user-time {
+  padding-left: 12px;
+  font-size: 14px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.btn-container {
+  width: 350px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.color-magenta {
+  border: 1px solid #f3b5d3 !important;
+  background-color: #fdf2f6 !important;
+  color: #dd5ca0 !important;
+}
+.color-red {
+  border: 1px solid #f2a7a1 !important;
+  background-color: #fdf2f1 !important;
+  color: #e23c38 !important;
+}
+.color-volcano {
+  border: 1px solid #f6bd9c !important;
+  background-color: #fdf2e9 !important;
+  color: #e9663b !important;
+}
+.color-orange {
+  border: 1px solid #fad69b !important;
+  background-color: #fef7e9 !important;
+  color: #efa863 !important;
+}
+.color-gold {
+  border: 1px solid #fbe7a3 !important;
+  background-color: #fffbe8 !important;
+  color: #efb042 !important;
+}
+.color-lime {
+  border: 1px solid #eefe9d !important;
+  background-color: #feffe9 !important;
+  color: #aed64b !important;
+}
+.color-green {
+  border: 1px solid #d6f2ba !important;
+  background-color: #f8fff0 !important;
+  color: #7ac34c !important;
+}
+.color-cyan {
+  border: 1px solid #9fe6de !important;
+  background-color: #ebfffb !important;
+  color: #74cacb !important;
+}
+.color-blue {
+  border: 1px solid #b3ddfb !important;
+  background-color: #eaf7fe !important;
+  color: #61a4f9 !important;
+}
+.color-geekblue {
+  border: 1px solid #b3c8fb !important;
+  background-color: #f1f5fe !important;
+  color: #3b5ee4 !important;
+}
+.color-purple {
+  border: 1px solid #cdb0f3 !important;
+  background-color: #f8f2fe !important;
+  color: #693ac9 !important;
+}
