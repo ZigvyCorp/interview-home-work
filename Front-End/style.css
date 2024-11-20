@@ -1,0 +1,41 @@
+body {
+	width: 100%
+}
+.header {
+}
+
+.header .logo {
+	border-left: 3px solid black;
+	border-top: 3px solid black;
+	border-bottom: 3px solid black;
+}
+
+.header .blogs {
+	border: 3px solid black;
+	background-color: #95a0aa;
+
+}
+
+.header .user {
+	border-right: 3px solid black;
+	border-top: 3px solid black;
+	border-bottom: 3px solid black;
+}
+
+.header .block-logo {
+	background-color: #95a0aa;
+	width: 100px
+}
+
+.header .user .spinner {
+	width: 10%;
+}
+
+.img-comment {
+	height: 70px;
+}
+
+.content {
+	border-bottom: 3px solid black;
+}
+
