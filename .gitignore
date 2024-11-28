@@ -1,0 +1,4 @@
+# IDE files
+.idea/
+zigvy.iml
+repo/backend/node_modules/
